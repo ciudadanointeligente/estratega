@@ -1,0 +1,22 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.event-content {
+	color:red;
+}
+.stencil-trigger {
+	bottom: 25px;
+    height: 143px;
+    position: absolute;
+}
+.inspector-trigger {
+    position: absolute;
+    right: 0;
+    width: 270px;
+}

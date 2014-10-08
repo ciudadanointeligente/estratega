@@ -10,6 +10,7 @@ class SandboxesController < ApplicationController
   # GET /sandboxes/1
   # GET /sandboxes/1.json
   def show
+    render :layout => "sandboxes"
   end
 
   # GET /sandboxes/new
