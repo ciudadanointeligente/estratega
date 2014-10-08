@@ -5,6 +5,9 @@ Vizard Rails
 
 [![Build Status](https://travis-ci.org/ciudadanointeligente/vizard.svg?branch=travis)](https://travis-ci.org/ciudadanointeligente/vizard)
 
+[![Coverage Status](https://coveralls.io/repos/ciudadanointeligente/vizard/badge.png)](https://coveralls.io/r/ciudadanointeligente/vizard)
+
+[![Code Climate](https://codeclimate.com/github/ciudadanointeligente/vizard/badges/gpa.svg)](https://codeclimate.com/github/ciudadanointeligente/vizard)
 
 This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
 provided by the [RailsApps Project](http://railsapps.github.io/).
