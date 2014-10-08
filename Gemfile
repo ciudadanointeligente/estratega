@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.3'
+ruby '2.1.1'
 gem 'rails', '4.1.6'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -42,4 +42,5 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'coveralls', require: false
 end
