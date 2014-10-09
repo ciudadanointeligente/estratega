@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SandboxesController do
+RSpec.describe SandboxesController, :type => :controller do
   describe "GET #index" do
     it "populates an array of sandboxes" do
       sandbox = FactoryGirl.create(:sandbox)
