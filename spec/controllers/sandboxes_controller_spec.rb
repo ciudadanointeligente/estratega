@@ -79,4 +79,44 @@ RSpec.describe SandboxesController, :type => :controller do
       end
     end
   end
+
+  describe "PUT update" do
+    describe "with valid params" do
+      it "updates the requested sandbox" do
+        sandbox = FactoryGirl.create(:sandbox)
+        new_data = "NewData"
+        put :update, {:id => sandbox.to_param, :sandbox => {"graph_data"=>new_data}}
+        sandbox.reload
+        expect(sandbox.graph_data).to eq(new_data)
+        # It shouldn't modify other parameters
+        expect(sandbox.name).to eq(FactoryGirl.attributes_for(:sandbox)[:name])
+      end
+
+      it "assigns the requested sandbox as @sandbox" do
+        sandbox = FactoryGirl.create(:sandbox)
+        put :update, {:id => sandbox.to_param, :sandbox => FactoryGirl.attributes_for(:sandbox)}
+        expect(assigns(:sandbox)).to eq(sandbox)
+      end
+
+      it "redirects to the sandbox" do
+        sandbox = FactoryGirl.create(:sandbox)
+        put :update, {:id => sandbox.to_param, :sandbox => FactoryGirl.attributes_for(:sandbox)}
+        expect(response).to redirect_to(sandbox)
+      end
+    end
+
+    describe "with invalid params" do
+      xit "assigns the sandbox as @sandbox" do
+        sandbox = Sandbox.create! valid_attributes
+        put :update, {:id => sandbox.to_param, :sandbox => invalid_attributes}, valid_session
+        expect(assigns(:sandbox)).to eq(sandbox)
+      end
+
+      xit "re-renders the 'edit' template" do
+        sandbox = Sandbox.create! valid_attributes
+        put :update, {:id => sandbox.to_param, :sandbox => invalid_attributes}, valid_session
+        expect(response).to render_template("edit")
+      end
+    end
+  end
 end
