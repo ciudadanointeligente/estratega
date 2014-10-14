@@ -155,7 +155,7 @@ stencil.render().$el.appendTo('#stencil-container');
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Event = joint.shapes.basic.TextBlock.extend({
+joint.shapes.bpmn.Event = joint.shapes.basic.TextBlock.extend({
 
     markup: ['<g class="rotatable">',
              '<g class="scalable"><rect class="body outer"/><div class="date_holder"></div><rect class="body inner"></rect><text class="date" /></g>',
@@ -171,7 +171,7 @@ Event = joint.shapes.basic.TextBlock.extend({
     defaults: joint.util.deepSupplement({
 
         size: { width: 100, height: 100 },
-        type: 'Step',
+        type: 'bpmn.Step',
         attrs: {
             rect: {
                 rx: 8,
@@ -367,13 +367,13 @@ Event = joint.shapes.basic.TextBlock.extend({
 }).extend(joint.shapes.bpmn.IconInterface).extend(joint.shapes.bpmn.SubProcessInterface);
 
 
-Step = Event.extend()
+joint.shapes.bpmn.Step = joint.shapes.bpmn.Event.extend()
 
-External = Step.extend({
+joint.shapes.bpmn.External = joint.shapes.bpmn.Step.extend({
     defaults: joint.util.deepSupplement({
 
         size: { width: 100, height: 100 },
-        type: 'External',
+        type: 'bpmn.External',
         attrs: {
             rect: {
                 rx: 8,
@@ -418,13 +418,13 @@ External = Step.extend({
    })
 })
 
-Intervention = Step.extend({
+joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
 
 
     defaults: joint.util.deepSupplement({
 
         size: { width: 100, height: 100 },
-        type: 'Intervention',
+        type: 'bpmn.Intervention',
         attrs: {
             rect: {
                 rx: 8,
@@ -463,13 +463,13 @@ Intervention = Step.extend({
 })
 
 
-Person = joint.dia.Element.extend({
+joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
     markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image/></g><text class="label"/></g>',
 
     defaults: joint.util.deepSupplement({
 
-        type: 'Person',
+        type: 'bpmn.Person',
         size: { width: 60, height: 60 },
         attrs: {
             '.body': {
@@ -561,13 +561,13 @@ Person = joint.dia.Element.extend({
 
 }).extend(joint.shapes.bpmn.IconInterface);
 
-Organization = joint.dia.Element.extend({
+joint.shapes.bpmn.Organization = joint.dia.Element.extend({
 
     markup: '<g class="rotatable"><g class="scalable"><polygon class="body"/><image/></g></g><text class="label"/>',
 
     defaults: joint.util.deepSupplement({
 
-        type: 'Organization',
+        type: 'bpmn.Organization',
         size: { width: 80, height: 80 },
         attrs: {
             '.body': {
@@ -597,11 +597,11 @@ Organization = joint.dia.Element.extend({
 
 
 stencil.load([
-    new Step,
-    new External,
-    new Intervention,
-    new Person,
-    new Organization,
+    new joint.shapes.bpmn.Step,
+    new joint.shapes.bpmn.External,
+    new joint.shapes.bpmn.Intervention,
+    new joint.shapes.bpmn.Person,
+    new joint.shapes.bpmn.Organization,
     new joint.shapes.bpmn.Annotation,
     new joint.shapes.bpmn.Group({
         attrs: {
@@ -641,6 +641,15 @@ graph.on('add', function(cell, collection, opt) {
     // must be 3,1,2) in one batch. Can't be done silently either (becoming an attribute
     // of an element being added) because redo action of `add` (=remove) won't reset the parent embeds.
     // --embedInPool(cell);
+
+    $.ajax({
+        type: "PUT",
+        dataType: 'json',
+        url: document.URL,
+        contentType: "application/json",
+        data: JSON.stringify({sandbox: {graph_data: JSON.stringify(graph.toJSON())}}),
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+    });
 
     if (!opt.stencil) return;
     
@@ -774,21 +783,26 @@ var toolbar = {
     },
 
     saveGraph: function() {
-
-        gd_auth(function() {
-
-            showStatus('saving..', 'info');
-            var name = document.getElementById('fileName').value;
-            gd_save(name, JSON.stringify(graph.toJSON()), function(file) {
-
-                if (file) {
-                    showStatus('saved.', 'success');
-                } else {
-                    showStatus('failed.', 'error');
-                }
-            });
-
-        }, true);
+        $.ajax({
+            type: "PUT",
+            dataType: 'json',
+            url: document.URL,
+            contentType: "application/json",
+            data: JSON.stringify({sandbox: {graph_data: JSON.stringify(graph.toJSON())}}),
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        });
     }
 };
 
+
+
+$(function () {
+
+    var graph_data_json = $("#graph_data").html();
+    // console.log(graph_data_json);
+    var graph_data     = $.parseJSON(graph_data_json);
+
+    console.log(graph_data);
+    graph.fromJSON(graph_data)
+
+});

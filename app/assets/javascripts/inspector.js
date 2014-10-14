@@ -362,7 +362,7 @@ var inputs = {
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    'Step': {
+    'bpmn.Step': {
         content: {
             type: 'text',
             label: 'Title',
@@ -389,7 +389,7 @@ var inputs = {
         },
     },
 
-    'External': {
+    'bpmn.External': {
         content: {
             type: 'text',
             label: 'Title',
@@ -416,7 +416,7 @@ var inputs = {
         },
     },
 
-    'Intervention': {
+    'bpmn.Intervention': {
         content: {
             type: 'text',
             label: 'Title',
@@ -442,7 +442,7 @@ var inputs = {
             index: 2
         },
     },
-    'Person': {
+    'bpmn.Person': {
         pos: {
             type: 'text',
             label: 'Position',
@@ -471,7 +471,7 @@ var inputs = {
         }
     },
 
-    'Organization': {
+    'bpmn.Organization': {
         description: {
             type: 'textarea',
             label: 'Description',

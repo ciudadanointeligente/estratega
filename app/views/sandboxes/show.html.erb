@@ -12,7 +12,7 @@
 
 <p>
   <strong>Data:</strong>
-  <%= @sandbox.data %>
+  <%= @sandbox.graph_data %>
 </p>
 
 <%= link_to 'Edit', edit_sandbox_path(@sandbox) %> |
@@ -64,6 +64,9 @@
 
         <!-- // <script type="text/javascript" src="/javascripts/gd.js"></script> -->
         <script type="text/javascript" src="//apis.google.com/js/client.js"></script>
+        <script id="graph_data" type="text/json">
+          <%= @sandbox.graph_data.html_safe %>
+        </script>
 
         <!-- // <script src="https://s3.amazonaws.com/VIZARD/javascripts/joint.all.js"></script> -->
 
