@@ -42,10 +42,15 @@ class SandboxesController < ApplicationController
   # PATCH/PUT /sandboxes/1.json
   def update
     respond_to do |format|
+      puts "data"
+      puts sandbox_params
+      puts "/data"
       if @sandbox.update(sandbox_params)
+        puts "updated!!!"
         format.html { redirect_to @sandbox, notice: 'Sandbox was successfully updated.' }
         format.json { render :show, status: :ok, location: @sandbox }
       else
+        puts "NOT updated!!!"
         format.html { render :edit }
         format.json { render json: @sandbox.errors, status: :unprocessable_entity }
       end
@@ -70,6 +75,6 @@ class SandboxesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sandbox_params
-      params.require(:sandbox).permit(:name, :description, :data)
+      params.require(:sandbox).permit(:name, :description, :graph_data)
     end
 end

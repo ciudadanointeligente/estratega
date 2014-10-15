@@ -362,34 +362,7 @@ var inputs = {
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    'Step': {
-            content: {
-            type: 'text',
-            label: 'Title',
-            group: 'general',
-            index: 1
-        },
-        actors: {
-            type: 'textarea',
-            label: 'Actors Involved',
-            group: 'general',
-            index: 3
-        },
-        date: {
-            type: 'text',
-            label: 'Date',
-            group: 'general',
-            index: 4
-        },
-        description: {
-            type: 'textarea',
-            label: 'Description',
-            group: 'general',
-            index: 2
-        },
-    },
-
-    'External': {
+    'bpmn.Step': {
         content: {
             type: 'text',
             label: 'Title',
@@ -416,7 +389,7 @@ var inputs = {
         },
     },
 
-    'Intervention': {
+    'bpmn.External': {
         content: {
             type: 'text',
             label: 'Title',
@@ -442,7 +415,34 @@ var inputs = {
             index: 2
         },
     },
-    'Person': {
+
+    'bpmn.Intervention': {
+        content: {
+            type: 'text',
+            label: 'Title',
+            group: 'general',
+            index: 1
+        },
+        actors: {
+            type: 'textarea',
+            label: 'Actors Involved',
+            group: 'general',
+            index: 3
+        },
+        date: {
+            type: 'text',
+            label: 'Date',
+            group: 'general',
+            index: 4
+        },
+        description: {
+            type: 'textarea',
+            label: 'Description',
+            group: 'general',
+            index: 2
+        },
+    },
+    'bpmn.Person': {
         pos: {
             type: 'text',
             label: 'Position',
@@ -471,7 +471,7 @@ var inputs = {
         }
     },
 
-    'Organization': {
+    'bpmn.Organization': {
         description: {
             type: 'textarea',
             label: 'Description',

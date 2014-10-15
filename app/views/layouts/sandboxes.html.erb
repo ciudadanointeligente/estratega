@@ -5,7 +5,8 @@
     <title><%= content_for?(:title) ? yield(:title) : "Vizard Rails" %></title>
     <!-- <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Vizard Rails" %>"> -->
     <%= stylesheet_link_tag 'sandboxes', media: 'all', 'data-turbolinks-track' => true %>
-    <!-- <%= csrf_meta_tags %> -->
+    <%= javascript_include_tag 'sandboxes', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
   </head>
   <body>
     <header>
