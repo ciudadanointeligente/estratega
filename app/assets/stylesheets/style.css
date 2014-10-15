@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -15,8 +15,23 @@ a {
     height: 143px;
     position: absolute;
 }
+
+/*Inspector*/
+
+#inspector-container {
+  background: #F2F2F2;
+}
+
 .inspector-trigger {
     position: absolute;
     right: 0;
     width: 270px;
+}
+
+.inspector input, .inspector textarea {
+border: none;
+border-radius: 0px;
+padding: 2px 5px 2px 5px;
+font-family: sans-serif;
+background: #FFFFFF;
 }

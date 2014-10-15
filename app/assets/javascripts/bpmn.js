@@ -18,13 +18,13 @@ var graph = new joint.dia.Graph({ type: 'bpmn' }).on({
         // some types of the elements need resizing after they are dropped
         var x = { 'bpmn.Pool': 5, 'bpmn.Choreography': 2 }[type];
 
-        if (x) {
+        // if (x) {
             var size = cell.get('size');
             cell.set('size', {
-                width: size.width * x,
-                height: size.height * x
+                width: 240,
+                height: 210
             }, { silent: true });
-        }
+        // }
     }
 
 });
@@ -170,12 +170,12 @@ Event = joint.shapes.basic.TextBlock.extend({
 
     defaults: joint.util.deepSupplement({
 
-        size: { width: 100, height: 100 },
+        size: { width: 240, height: 210 },
         type: 'Step',
         attrs: {
             rect: {
-                rx: 8,
-                ry: 8,
+                rx: 0,
+                ry: 0,
                 width: 100,
                 height: 100
             },
@@ -323,8 +323,6 @@ Event = joint.shapes.basic.TextBlock.extend({
 
     onSubProcessChange: function(cell, subProcess) {
 
-        // Although that displaying sub-process icon is implemented in the interface
-        // we want also to reposition text and image when sub-process is shown.
 
         if (subProcess) {
 
@@ -376,8 +374,8 @@ External = Step.extend({
         type: 'External',
         attrs: {
             rect: {
-                rx: 8,
-                ry: 8,
+                rx: 0,
+                ry: 0,
                 width: 100,
                 height: 100
             },
@@ -427,8 +425,8 @@ Intervention = Step.extend({
         type: 'Intervention',
         attrs: {
             rect: {
-                rx: 8,
-                ry: 8,
+                rx: 0,
+                ry: 0,
                 width: 100,
                 height: 100
             },
