@@ -1278,9 +1278,9 @@ unmatched elements opaque instead of completely invisible which is the default.
         top: 0 !important;
         background: none !important;
         border: none !important;
-        margin: 0mm; !important;
-        padding: 0mm; !important;
-        overflow: visible; !important;
+        margin: 0mm !important;
+        padding: 0mm !important;
+        overflow: visible !important;
         z-index: 99999;
     }
 
