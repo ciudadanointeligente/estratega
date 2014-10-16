@@ -362,86 +362,106 @@ var inputs = {
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     'bpmn.Step': {
-        content: {
+        title: {
             type: 'text',
             label: 'Title',
             group: 'general',
             index: 1
         },
-        actors: {
+        content: {
             type: 'textarea',
-            label: 'Actors Involved',
+            label: 'Content',
             group: 'general',
-            index: 3
+            index: 2
         },
+        // actors: {
+        //     type: 'textarea',
+        //     label: 'Actors Involved',
+        //     group: 'general',
+        //     index: 3
+        // },
         date: {
             type: 'text',
             label: 'Date',
             group: 'general',
             index: 4
         },
-        description: {
-            type: 'textarea',
-            label: 'Description',
-            group: 'general',
-            index: 2
-        },
+        // description: {
+        //     type: 'textarea',
+        //     label: 'Description',
+        //     group: 'general',
+        //     index: 2
+        // },
     },
 
     'bpmn.External': {
-        content: {
+        title: {
             type: 'text',
             label: 'Title',
             group: 'general',
             index: 1
         },
-        actors: {
+        content: {
             type: 'textarea',
-            label: 'Actors Involved',
+            label: 'Content',
             group: 'general',
-            index: 3
+            index: 2
         },
+        // actors: {
+        //     type: 'textarea',
+        //     label: 'Actors Involved',
+        //     group: 'general',
+        //     index: 3
+        // },
         date: {
             type: 'text',
             label: 'Date',
             group: 'general',
             index: 4
         },
-        description: {
-            type: 'textarea',
-            label: 'Description',
-            group: 'general',
-            index: 2
-        },
+        // description: {
+        //     type: 'textarea',
+        //     label: 'Description',
+        //     group: 'general',
+        //     index: 2
+        // },
     },
 
     'bpmn.Intervention': {
-        content: {
+        title: {
             type: 'text',
             label: 'Title',
             group: 'general',
             index: 1
         },
-        actors: {
-            type: 'textarea',
-            label: 'Actors Involved',
+        content: {
+            type: 'texttextarea',
+            label: 'Content',
             group: 'general',
-            index: 3
+            index: 2
         },
+        // actors: {
+        //     type: 'textarea',
+        //     label: 'Actors Involved',
+        //     group: 'general',
+        //     index: 3
+        // },
         date: {
             type: 'text',
             label: 'Date',
             group: 'general',
             index: 4
         },
-        description: {
-            type: 'textarea',
-            label: 'Description',
-            group: 'general',
-            index: 2
-        },
+        // description: {
+        //     type: 'textarea',
+        //     label: 'Description',
+        //     group: 'general',
+        //     index: 2
+        // },
     },
+
     'bpmn.Person': {
         pos: {
             type: 'text',
