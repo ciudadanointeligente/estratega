@@ -628,15 +628,15 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                 stroke: '#E9E9E9'
             },
             '.outer': {
-                'stroke-width': 1, r:30,
+                'stroke-width': 1, r:20,
                 transform: 'translate(30,30)'
             },
             '.inner': {
-                'stroke-width': 1, r: 26,
+                'stroke-width': 1, r: 16,
                 transform: 'translate(30,30)'
             },
             image: {
-                width:  40, height: 40, 'xlink:href': '', transform: 'translate(10,10)'
+                width:  20, height: 20, 'xlink:href': '', transform: 'translate(20,20)'
             },
             '.label': {
                 text: '',
@@ -727,15 +727,15 @@ joint.shapes.bpmn.Organization = joint.dia.Element.extend({
                 stroke: '#E9E9E9'
             },
             '.outer': {
-                'stroke-width': 1, r:30,
+                'stroke-width': 1, r:20,
                 transform: 'translate(30,30)'
             },
             '.inner': {
-                'stroke-width': 1, r: 26,
+                'stroke-width': 1, r: 16,
                 transform: 'translate(30,30)'
             },
             image: {
-                width:  40, height: 40, 'xlink:href': '', transform: 'translate(10,10)'
+                width:  20, height: 20, 'xlink:href': '', transform: 'translate(20,20)'
             },
             '.label': {
                 text: '',
