@@ -388,10 +388,12 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
     setDivContent: function(cell, content) {
         var titleDiv = document.createElement("div"); 
         var titleText = document.createTextNode(this.get("title"));
-        titleDiv.appendChild(titleText)
+        titleDiv.appendChild(titleText);
+        titleDiv.classList.add("step-title");
         var contentDiv = document.createElement("div"); 
         var contentText = document.createTextNode(this.get("content"));
         contentDiv.appendChild(contentText)
+        contentDiv.classList.add("step-content");
         // Append the content to div as html.
         cell.attr(
             { div :
