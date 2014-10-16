@@ -18,13 +18,13 @@ var graph = new joint.dia.Graph({ type: 'bpmn' }).on({
         // some types of the elements need resizing after they are dropped
         var x = { 'bpmn.Pool': 5, 'bpmn.Choreography': 2 }[type];
 
-        if (x) {
+        // if (x) {
             var size = cell.get('size');
             cell.set('size', {
-                width: size.width * x,
-                height: size.height * x
+                width: 240,
+                height: 210
             }, { silent: true });
-        }
+        // }
     }
 
 });
@@ -33,6 +33,140 @@ var commandManager = new joint.dia.CommandManager({ graph: this.graph });
 
 /* PAPER + SCROLLER */
 
+
+joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
+
+    defaults: {
+
+        type: "bpmn.Flow",
+
+        attrs: {
+
+            '.marker-source': {
+                d: 'M 0 0'
+            },
+            '.marker-target': {
+                d: 'M 20 -10 L 0 5 L 20 20 z',
+                stroke: '#4A90E2', 
+                fill: 'rgba(255, 255, 255, 0)'
+            },
+            '.connection': {
+                'stroke-dasharray': ' ',
+                stroke: '#4A90E2', 
+                'stroke-width': 1
+            },
+            '.connection-wrap': {
+                style: '',
+                onMouseOver: '',
+                onMouseOut: ''
+            }
+        },
+
+        flowType: "normal"
+    },
+
+    initialize: function() {
+
+        joint.dia.Link.prototype.initialize.apply(this, arguments);
+
+        this.listenTo(this, 'change:flowType', this.onFlowTypeChange);
+
+        this.onFlowTypeChange(this, this.get('flowType'));
+    },
+
+    onFlowTypeChange: function(cell, type) {
+
+        var attrs;
+
+        switch (type) {
+
+        case 'default':
+
+            attrs = {
+                '.marker-source': {
+                    d: 'M 0 5 L 20 5 M 20 0 L 10 10',
+                    fill: 'none'
+                }
+            };
+
+            break;
+
+        case 'conditional':
+
+            attrs = {
+                '.marker-source': {
+                    d: 'M 20 8 L 10 0 L 0 8 L 10 16 z',
+                    fill: '#FFF'
+                }
+            };
+
+            break;
+
+        case 'normal':
+
+            attrs = {};
+
+            break;
+
+        case 'message':
+
+            attrs = {
+                '.marker-target': {
+                    fill: '#FFF'
+                },
+                '.connection': {
+                    'stroke-dasharray': '4,4'
+                }
+            };
+
+            break;
+
+        case 'association':
+
+            attrs = {
+                '.marker-target': {
+                    d: 'M 0 0'
+                },
+                '.connection': {
+                    'stroke-dasharray': '4,4'
+                }
+            };
+
+            break;
+
+        case 'conversation':
+
+            // The only way how to achieved 'spaghetti insulation effect' on links is to
+            // have the .connection-wrap covering the inner part of the .connection.
+            // The outer part of the .connection then looks like two parallel lines.
+            attrs = {
+                '.marker-target': {
+                    d: 'M 0 0'
+                },
+                '.connection': {
+                    'stroke-width': '7px'
+                },
+                '.connection-wrap': {
+                    // As the css takes priority over the svg attributes, that's only way
+                    // how to overwrite default jointjs styling.
+                    style: 'stroke: #fff; stroke-width: 5px; opacity: 1;',
+                    onMouseOver: "var s=this.style;s.stroke='#000';s.strokeWidth=15;s.opacity=.4",
+                    onMouseOut: "var s=this.style;s.stroke='#fff';s.strokeWidth=5;s.opacity=1"
+                }
+            };
+
+            break;
+
+        default:
+
+            throw "BPMN: Unknown Flow Type: " + type;
+        }
+
+        cell.attr(_.merge({}, this.defaults.attrs, attrs));
+    }
+
+});
+
 var paper = new joint.dia.Paper({
     width: 4000,
     height: 1000,
@@ -40,7 +174,8 @@ var paper = new joint.dia.Paper({
     gridSize: 10,
     model: graph,
     perpendicularLinks: true,
-    defaultLink: new joint.shapes.bpmn.Flow,
+    // defaultLink: new joint.shapes.bpmn.Flow,
+    defaultLink: new joint.shapes.bpmn.StepLink,
     validateConnection: function(cellViewS, magnetS, cellViewT, magnetT, end, linkView) {
 
         // don't allow loop links
@@ -155,6 +290,24 @@ stencil.render().$el.appendTo('#stencil-container');
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+
+// Icons
+
+joint.shapes.bpmn.icons = {
+
+    none: '',
+
+    message: 'https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/icon-org.svg',
+
+    cross: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI0IDI0IiBoZWlnaHQ9IjI0cHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0cHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik0yMi4yNDUsNC4wMTVjMC4zMTMsMC4zMTMsMC4zMTMsMC44MjYsMCwxLjEzOWwtNi4yNzYsNi4yN2MtMC4zMTMsMC4zMTItMC4zMTMsMC44MjYsMCwxLjE0bDYuMjczLDYuMjcyICBjMC4zMTMsMC4zMTMsMC4zMTMsMC44MjYsMCwxLjE0bC0yLjI4NSwyLjI3N2MtMC4zMTQsMC4zMTItMC44MjgsMC4zMTItMS4xNDIsMGwtNi4yNzEtNi4yNzFjLTAuMzEzLTAuMzEzLTAuODI4LTAuMzEzLTEuMTQxLDAgIGwtNi4yNzYsNi4yNjdjLTAuMzEzLDAuMzEzLTAuODI4LDAuMzEzLTEuMTQxLDBsLTIuMjgyLTIuMjhjLTAuMzEzLTAuMzEzLTAuMzEzLTAuODI2LDAtMS4xNGw2LjI3OC02LjI2OSAgYzAuMzEzLTAuMzEyLDAuMzEzLTAuODI2LDAtMS4xNEwxLjcwOSw1LjE0N2MtMC4zMTQtMC4zMTMtMC4zMTQtMC44MjcsMC0xLjE0bDIuMjg0LTIuMjc4QzQuMzA4LDEuNDE3LDQuODIxLDEuNDE3LDUuMTM1LDEuNzMgIEwxMS40MDUsOGMwLjMxNCwwLjMxNCwwLjgyOCwwLjMxNCwxLjE0MSwwLjAwMWw2LjI3Ni02LjI2N2MwLjMxMi0wLjMxMiwwLjgyNi0wLjMxMiwxLjE0MSwwTDIyLjI0NSw0LjAxNXoiLz48L3N2Zz4=',
+
+    user: 'https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/icon-user.svg',
+
+    circle: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gULEBE3DEP64QAAAwlJREFUaN7dmktrU0EUx38ZmmBbfEIL2hSjkYKC1EW6EDFudC+404/gE6WKSvGxERQfIH4AX1T9EOKrCrYurVrbgsZWoaBVixDbpC6ci+Fyz9ybZG478cBs7syc+Z+5c86c+c8ksCPrgW1ADtgEbARafG1+AW+AYWAIGADGWUTZAJwHxoD5GssocA7ILiTwLcADoFQHcH8pAfeB7jiBtwO3gLJF4P5S1mO02wa/C5iMEbi/TAI7bYE/Y3m5VLOs+sLAJULqrgKHIxhZBp4DT4FX2jkLGoinq1M7fg7YDmwFVATd14CjFboiy5UIs/QBOAmka/izaeCU1hE2zuVqlZ8IUfgVOAA0WViiTcBBrdM0Zm9UhTuAOYOiRzXOeJh0Ak8M484B+TAlK4BPBiU3gWSMoTqpw6g0fgFYblJww9D5dojT25IEcMeA47rUsdsQLp9FmPmURSNSOqpJS2lzUKd+ocN3IBNx5mz+oXXADwHTXX/jjMFxjy1iwtgrYJoF1lY27BMafozZaaMspYKA7XRlw7f1xt4Y5biA7bXXIGv4TW0OGNCmsQRhzCidlwTJADDlgAFTwAuhLq+AHqHyMe6IhKVHAV1C5ZBDBkhYupThPPreIQNGJTJBGXKLLw4Z8NmQu/Fb8PCkQwakBIxFRWPLvAJmhMpWh4AuFb7PKGBaqFzjkAGrhe/TSjNrQZJ1yAAJy5gCRoTKnEMGSFhGFDBoOBu7IhKWQe8wLRFLHQ6A7zCcFNNK59vvAjoqYK8DBuwTCLBhTUD8Hweahj9S2jjU297VqzrU26BVmi2yEjXRKg1PbHnpqYla7AeWxAi+GbhHHdSit2mYyN2XQQ5kQTJ6Y6qL3PUkCr2+H7v0+jcs0eueRLngGNeKa9mxY73g8JzpEtHusorAQ/7e+e7WUWIl//jSVTrK7QEu6KgW9d7tYr3B44iBWPJfkZZ8pZ4r2VngkC0HywMTLNwN5YSBcKtZWoGzernEBbyox2iJc6Np2KcGfnHisYet1CDouc2yCjbhp07MrD+3+QNxi4JkAscRswAAAABJRU5ErkJggg=='
+
+};
+
+
 joint.shapes.bpmn.Event = joint.shapes.basic.TextBlock.extend({
 
     markup: ['<g class="rotatable">',
@@ -170,18 +323,18 @@ joint.shapes.bpmn.Event = joint.shapes.basic.TextBlock.extend({
 
     defaults: joint.util.deepSupplement({
 
-        size: { width: 100, height: 100 },
+        size: { width: 240, height: 210 },
         type: 'bpmn.Step',
         attrs: {
             rect: {
-                rx: 8,
-                ry: 8,
+                rx: 0,
+                ry: 0,
                 width: 100,
                 height: 100
             },
             '.body': {
                 fill: '#ffffff',
-                stroke: '#000000'
+                stroke: '#E9E9E9'
             },
             '.inner': {
                 transform: 'scale(0.9,0.9) translate(5,5)'
@@ -191,7 +344,7 @@ joint.shapes.bpmn.Event = joint.shapes.basic.TextBlock.extend({
                 ref: '.inner',
                 'ref-x': 0.5,
                 'ref-dy': -30,
-                'x-alignment': 'middle',
+                'x-alignment': 'top',
                 stroke: '#000000',
                 fill: 'transparent'
             },
@@ -323,8 +476,6 @@ joint.shapes.bpmn.Event = joint.shapes.basic.TextBlock.extend({
 
     onSubProcessChange: function(cell, subProcess) {
 
-        // Although that displaying sub-process icon is implemented in the interface
-        // we want also to reposition text and image when sub-process is shown.
 
         if (subProcess) {
 
@@ -349,7 +500,7 @@ joint.shapes.bpmn.Event = joint.shapes.basic.TextBlock.extend({
             cell.attr({
                 '.fobj div': {
                     style: {
-                        verticalAlign: 'middle',
+                        verticalAlign: 'top',
                         paddingTop: 0
                     }
                 },
@@ -376,14 +527,14 @@ joint.shapes.bpmn.External = joint.shapes.bpmn.Step.extend({
         type: 'bpmn.External',
         attrs: {
             rect: {
-                rx: 8,
-                ry: 8,
+                rx: 0,
+                ry: 0,
                 width: 100,
                 height: 100
             },
             '.body': {
-                fill: '#A5D2FF',
-                stroke: '#000000'
+                fill: '#EAF4FD',
+                stroke: '#C2DFF7'
             },
             '.inner': {
                 transform: 'scale(0.9,0.9) translate(5,5)'
@@ -427,14 +578,14 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
         type: 'bpmn.Intervention',
         attrs: {
             rect: {
-                rx: 8,
-                ry: 8,
+                rx: 0,
+                ry: 0,
                 width: 100,
                 height: 100
             },
             '.body': {
-                fill: '#F1F37C',
-                stroke: '#000000'
+                fill: '#FFF6E8',
+                stroke: '#FFDCA3'
             },
             '.inner': {
                 transform: 'scale(0.9,0.9) translate(5,5)'
@@ -465,7 +616,7 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
 
 joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
-    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image/></g><text class="label"/></g>',
+    markup: '<g class="rotatable"><g><circle class="body outer"/><circle class="body inner"/><image/></g><text class="label"/></g>',
 
     defaults: joint.util.deepSupplement({
 
@@ -474,7 +625,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         attrs: {
             '.body': {
                 fill: '#ffffff',
-                stroke: '#000000'
+                stroke: '#E9E9E9'
             },
             '.outer': {
                 'stroke-width': 1, r:30,
@@ -490,12 +641,12 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
             '.label': {
                 text: '',
                 fill: '#000000',
-                'font-family': 'Arial', 'font-size': 14,
                 ref: '.outer', 'ref-x': .5, 'ref-dy': 20,
                 'x-alignment': 'middle', 'y-alignment': 'middle'
             }
         },
-        eventType: "start"
+        eventType: "start", 
+        icon: 'user'
 
     }, joint.dia.Element.prototype.defaults),
 
@@ -561,37 +712,102 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
 }).extend(joint.shapes.bpmn.IconInterface);
 
+
 joint.shapes.bpmn.Organization = joint.dia.Element.extend({
 
-    markup: '<g class="rotatable"><g class="scalable"><polygon class="body"/><image/></g></g><text class="label"/>',
+    markup: '<g class="rotatable"><g><circle class="body outer"/><circle class="body inner"/><image/></g><text class="label"/></g>',
 
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.Organization',
-        size: { width: 80, height: 80 },
+        size: { width: 60, height: 60 },
         attrs: {
             '.body': {
-                points: '40,0 80,40 40,80 0,40',
                 fill: '#ffffff',
-                stroke: '#000000'
+                stroke: '#E9E9E9'
+            },
+            '.outer': {
+                'stroke-width': 1, r:30,
+                transform: 'translate(30,30)'
+            },
+            '.inner': {
+                'stroke-width': 1, r: 26,
+                transform: 'translate(30,30)'
+            },
+            image: {
+                width:  40, height: 40, 'xlink:href': '', transform: 'translate(10,10)'
             },
             '.label': {
                 text: '',
-                ref: '.body',
-                'ref-x': .5,
-                'ref-dy': 20,
-                'y-alignment': 'middle',
-                'x-alignment': 'middle',
-                'font-size': 14,
-                'font-family': 'Arial, helvetica, sans-serif',
-                fill: '#000000'
-            },
-            image: {
-                width:  40, height: 40, 'xlink:href': '', transform: 'translate(20,20)'
+                fill: '#000000',
+                ref: '.outer', 'ref-x': .5, 'ref-dy': 20,
+                'x-alignment': 'middle', 'y-alignment': 'middle'
             }
-        }
+        },
+        eventType: "start", 
+        icon: 'message'
 
-    }, joint.dia.Element.prototype.defaults)
+    }, joint.dia.Element.prototype.defaults),
+
+    initialize: function() {
+
+        joint.dia.Element.prototype.initialize.apply(this, arguments);
+
+        this.listenTo(this, 'change:eventType', this.onEventTypeChange);
+
+        this.onEventTypeChange(this, this.get('eventType'));
+    },
+
+    onEventTypeChange: function(cell, type) {
+
+        switch (type) {
+
+        case 'start':
+
+            cell.attr({
+                '.inner': {
+                    visibility: 'hidden'
+                },
+                '.outer': {
+                    'stroke-width': 1
+                }
+            });
+
+            break;
+
+        case 'end':
+
+            cell.attr({
+                '.inner': {
+                    visibility: 'hidden'
+                },
+                '.outer': {
+                    'stroke-width': 5
+                }
+            });
+
+            break;
+
+        case 'intermediate':
+
+            cell.attr({
+                '.inner': {
+                    visibility: 'visible'
+                },
+                '.outer': {
+                    'stroke-width': 1
+                }
+            });
+
+            break;
+
+        default:
+
+            throw "BPMN: Unknown Event Type: " + type;
+
+            break;
+        }
+    }
 
 }).extend(joint.shapes.bpmn.IconInterface);
 
@@ -711,7 +927,7 @@ function openIHF(cellView) {
 
         if (cellView.model instanceof joint.dia.Element && !selection.contains(cellView.model)) {
 
-            new joint.ui.FreeTransform({ cellView: cellView }).render();
+            // new joint.ui.FreeTransform({ cellView: cellView }).render();
 
             new joint.ui.Halo({
                 cellView: cellView,
