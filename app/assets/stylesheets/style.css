@@ -1,6 +1,7 @@
 body {
   padding: 20px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
 }
 
 a {
@@ -16,10 +17,23 @@ a {
     position: absolute;
 }
 
+/*Paper*/
+
+.paper-scroller > .paper {
+  background: #F8F9FA;
+}
+
+/*Step*/
+
+.element .fobj div {
+  text-align: left;
+}
+
 /*Inspector*/
 
 #inspector-container {
   background: #F2F2F2;
+  width: 300px;
 }
 
 .inspector-trigger {
@@ -29,9 +43,24 @@ a {
 }
 
 .inspector input, .inspector textarea {
-border: none;
-border-radius: 0px;
-padding: 2px 5px 2px 5px;
-font-family: sans-serif;
-background: #FFFFFF;
+  border: none;
+  border-radius: 0px;
+  font-family: 'Open Sans', sans-serif;
+  background: #FFFFFF;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 10px 3%;
+  width: 93%;
+}
+
+.inspector input[type=text] {
+  width: 93%;
+}
+
+.inspector input, .inspector .toggle, .inspector select, .inspector .list-item .btn-list-del {
+  float: none;
+}
+
+.inspector textarea {
+  min-height: 210px;
 }
