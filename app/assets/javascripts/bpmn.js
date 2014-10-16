@@ -600,7 +600,7 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
 
 joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
-    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image/></g><text class="label"/></g>',
+    markup: '<g class="rotatable"><g><circle class="body outer"/><circle class="body inner"/><image/></g><text class="label"/></g>',
 
     defaults: joint.util.deepSupplement({
 
@@ -846,7 +846,7 @@ function openIHF(cellView) {
 
         if (cellView.model instanceof joint.dia.Element && !selection.contains(cellView.model)) {
 
-            new joint.ui.FreeTransform({ cellView: cellView }).render();
+            // new joint.ui.FreeTransform({ cellView: cellView }).render();
 
             new joint.ui.Halo({
                 cellView: cellView,
