@@ -357,12 +357,8 @@ joint.shapes.bpmn.Event = joint.shapes.basic.TextBlock.extend({
             '.date': {
                 text: '',
                 fill: '#000000',
-                'font-family': 'Arial', 'font-size': 14,
                 ref: '.inner', 
-                // width: 50,
-                // height: 50,
                  'ref-x': .5, 'ref-dy': -25,
-                //'transform': 'translate(-6, 30)',
                 'x-alignment': 'right', 'y-alignment': 'top'
             },
         },
@@ -625,18 +621,18 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         attrs: {
             '.body': {
                 fill: '#ffffff',
-                stroke: '#E9E9E9'
+                stroke: '#0091EA'
             },
             '.outer': {
-                'stroke-width': 1, r:30,
+                'stroke-width': 1, r:20,
                 transform: 'translate(30,30)'
             },
             '.inner': {
-                'stroke-width': 1, r: 26,
+                'stroke-width': 1, r: 16,
                 transform: 'translate(30,30)'
             },
             image: {
-                width:  40, height: 40, 'xlink:href': '', transform: 'translate(10,10)'
+                width:  20, height: 20, 'xlink:href': '', transform: 'translate(20,20)'
             },
             '.label': {
                 text: '',
@@ -724,18 +720,18 @@ joint.shapes.bpmn.Organization = joint.dia.Element.extend({
         attrs: {
             '.body': {
                 fill: '#ffffff',
-                stroke: '#E9E9E9'
+                stroke: '#0091EA'
             },
             '.outer': {
-                'stroke-width': 1, r:30,
+                'stroke-width': 1, r:20,
                 transform: 'translate(30,30)'
             },
             '.inner': {
-                'stroke-width': 1, r: 26,
+                'stroke-width': 1, r: 16,
                 transform: 'translate(30,30)'
             },
             image: {
-                width:  40, height: 40, 'xlink:href': '', transform: 'translate(10,10)'
+                width:  20, height: 20, 'xlink:href': '', transform: 'translate(20,20)'
             },
             '.label': {
                 text: '',
