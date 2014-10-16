@@ -1,7 +1,7 @@
 body {
-  padding: 20px;
+  padding: 15px 10px;
   font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 a {
@@ -27,6 +27,7 @@ a {
 
 .element .fobj div {
   text-align: left;
+  font-size: 13px;
 }
 
 /*Inspector*/
@@ -37,9 +38,12 @@ a {
 }
 
 .inspector-trigger {
-    position: absolute;
-    right: 0;
-    width: 270px;
+  position: absolute;
+  right: 0;
+  width: 320px;
+  background: #F2F2F2;
+  height: 70px;
+  padding: 10px;
 }
 
 .inspector input, .inspector textarea {

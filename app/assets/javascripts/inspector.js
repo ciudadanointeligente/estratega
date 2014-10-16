@@ -488,7 +488,7 @@ var inputs = {
                 group: 'appearance',
                 index: 1
             }
-        }
+        },
     },
 
     'bpmn.Organization': {
