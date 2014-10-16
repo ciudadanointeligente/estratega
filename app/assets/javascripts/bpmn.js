@@ -18,13 +18,13 @@ var graph = new joint.dia.Graph({ type: 'bpmn' }).on({
         // some types of the elements need resizing after they are dropped
         var x = { 'bpmn.Pool': 5, 'bpmn.Choreography': 2 }[type];
 
-        if (x) {
+        // if (x) {
             var size = cell.get('size');
             cell.set('size', {
-                width: size.width * x,
-                height: size.height * x
+                width: 240,
+                height: 210
             }, { silent: true });
-        }
+        // }
     }
 
 });
@@ -33,6 +33,140 @@ var commandManager = new joint.dia.CommandManager({ graph: this.graph });
 
 /* PAPER + SCROLLER */
 
+
+joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
+
+    defaults: {
+
+        type: "bpmn.Flow",
+
+        attrs: {
+
+            '.marker-source': {
+                d: 'M 0 0'
+            },
+            '.marker-target': {
+                d: 'M 20 -10 L 0 5 L 20 20 z',
+                stroke: '#4A90E2', 
+                fill: 'rgba(255, 255, 255, 0)'
+            },
+            '.connection': {
+                'stroke-dasharray': ' ',
+                stroke: '#4A90E2', 
+                'stroke-width': 1
+            },
+            '.connection-wrap': {
+                style: '',
+                onMouseOver: '',
+                onMouseOut: ''
+            }
+        },
+
+        flowType: "normal"
+    },
+
+    initialize: function() {
+
+        joint.dia.Link.prototype.initialize.apply(this, arguments);
+
+        this.listenTo(this, 'change:flowType', this.onFlowTypeChange);
+
+        this.onFlowTypeChange(this, this.get('flowType'));
+    },
+
+    onFlowTypeChange: function(cell, type) {
+
+        var attrs;
+
+        switch (type) {
+
+        case 'default':
+
+            attrs = {
+                '.marker-source': {
+                    d: 'M 0 5 L 20 5 M 20 0 L 10 10',
+                    fill: 'none'
+                }
+            };
+
+            break;
+
+        case 'conditional':
+
+            attrs = {
+                '.marker-source': {
+                    d: 'M 20 8 L 10 0 L 0 8 L 10 16 z',
+                    fill: '#FFF'
+                }
+            };
+
+            break;
+
+        case 'normal':
+
+            attrs = {};
+
+            break;
+
+        case 'message':
+
+            attrs = {
+                '.marker-target': {
+                    fill: '#FFF'
+                },
+                '.connection': {
+                    'stroke-dasharray': '4,4'
+                }
+            };
+
+            break;
+
+        case 'association':
+
+            attrs = {
+                '.marker-target': {
+                    d: 'M 0 0'
+                },
+                '.connection': {
+                    'stroke-dasharray': '4,4'
+                }
+            };
+
+            break;
+
+        case 'conversation':
+
+            // The only way how to achieved 'spaghetti insulation effect' on links is to
+            // have the .connection-wrap covering the inner part of the .connection.
+            // The outer part of the .connection then looks like two parallel lines.
+            attrs = {
+                '.marker-target': {
+                    d: 'M 0 0'
+                },
+                '.connection': {
+                    'stroke-width': '7px'
+                },
+                '.connection-wrap': {
+                    // As the css takes priority over the svg attributes, that's only way
+                    // how to overwrite default jointjs styling.
+                    style: 'stroke: #fff; stroke-width: 5px; opacity: 1;',
+                    onMouseOver: "var s=this.style;s.stroke='#000';s.strokeWidth=15;s.opacity=.4",
+                    onMouseOut: "var s=this.style;s.stroke='#fff';s.strokeWidth=5;s.opacity=1"
+                }
+            };
+
+            break;
+
+        default:
+
+            throw "BPMN: Unknown Flow Type: " + type;
+        }
+
+        cell.attr(_.merge({}, this.defaults.attrs, attrs));
+    }
+
+});
+
 var paper = new joint.dia.Paper({
     width: 4000,
     height: 1000,
@@ -40,7 +174,8 @@ var paper = new joint.dia.Paper({
     gridSize: 10,
     model: graph,
     perpendicularLinks: true,
-    defaultLink: new joint.shapes.bpmn.Flow,
+    // defaultLink: new joint.shapes.bpmn.Flow,
+    defaultLink: new joint.shapes.bpmn.StepLink,
     validateConnection: function(cellViewS, magnetS, cellViewT, magnetT, end, linkView) {
 
         // don't allow loop links
@@ -155,6 +290,8 @@ stencil.render().$el.appendTo('#stencil-container');
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+
+
 joint.shapes.bpmn.Event = joint.shapes.basic.TextBlock.extend({
 
     markup: ['<g class="rotatable">',
@@ -170,18 +307,18 @@ joint.shapes.bpmn.Event = joint.shapes.basic.TextBlock.extend({
 
     defaults: joint.util.deepSupplement({
 
-        size: { width: 100, height: 100 },
+        size: { width: 240, height: 210 },
         type: 'bpmn.Step',
         attrs: {
             rect: {
-                rx: 8,
-                ry: 8,
+                rx: 0,
+                ry: 0,
                 width: 100,
                 height: 100
             },
             '.body': {
                 fill: '#ffffff',
-                stroke: '#000000'
+                stroke: '#E9E9E9'
             },
             '.inner': {
                 transform: 'scale(0.9,0.9) translate(5,5)'
@@ -191,7 +328,7 @@ joint.shapes.bpmn.Event = joint.shapes.basic.TextBlock.extend({
                 ref: '.inner',
                 'ref-x': 0.5,
                 'ref-dy': -30,
-                'x-alignment': 'middle',
+                'x-alignment': 'top',
                 stroke: '#000000',
                 fill: 'transparent'
             },
@@ -323,8 +460,6 @@ joint.shapes.bpmn.Event = joint.shapes.basic.TextBlock.extend({
 
     onSubProcessChange: function(cell, subProcess) {
 
-        // Although that displaying sub-process icon is implemented in the interface
-        // we want also to reposition text and image when sub-process is shown.
 
         if (subProcess) {
 
@@ -349,7 +484,7 @@ joint.shapes.bpmn.Event = joint.shapes.basic.TextBlock.extend({
             cell.attr({
                 '.fobj div': {
                     style: {
-                        verticalAlign: 'middle',
+                        verticalAlign: 'top',
                         paddingTop: 0
                     }
                 },
@@ -376,14 +511,14 @@ joint.shapes.bpmn.External = joint.shapes.bpmn.Step.extend({
         type: 'bpmn.External',
         attrs: {
             rect: {
-                rx: 8,
-                ry: 8,
+                rx: 0,
+                ry: 0,
                 width: 100,
                 height: 100
             },
             '.body': {
-                fill: '#A5D2FF',
-                stroke: '#000000'
+                fill: '#EAF4FD',
+                stroke: '#C2DFF7'
             },
             '.inner': {
                 transform: 'scale(0.9,0.9) translate(5,5)'
@@ -427,14 +562,14 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
         type: 'bpmn.Intervention',
         attrs: {
             rect: {
-                rx: 8,
-                ry: 8,
+                rx: 0,
+                ry: 0,
                 width: 100,
                 height: 100
             },
             '.body': {
-                fill: '#F1F37C',
-                stroke: '#000000'
+                fill: '#FFF6E8',
+                stroke: '#FFDCA3'
             },
             '.inner': {
                 transform: 'scale(0.9,0.9) translate(5,5)'
@@ -474,7 +609,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         attrs: {
             '.body': {
                 fill: '#ffffff',
-                stroke: '#000000'
+                stroke: '#E9E9E9'
             },
             '.outer': {
                 'stroke-width': 1, r:30,
