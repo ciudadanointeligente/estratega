@@ -28,6 +28,14 @@ a {
 .element .fobj div {
   text-align: left;
   font-size: 13px;
+  float: left;
+  width: 200px;
+}
+
+.element .fobj div.step-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 14px;
 }
 
 /*Inspector*/
