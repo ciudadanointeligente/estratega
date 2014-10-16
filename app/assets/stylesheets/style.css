@@ -11,11 +11,6 @@ a {
 .event-content {
 	color:red;
 }
-.stencil-trigger {
-	bottom: 25px;
-    height: 143px;
-    position: absolute;
-}
 
 /*Paper*/
 
@@ -45,15 +40,6 @@ a {
   width: 300px;
 }
 
-.inspector-trigger {
-  position: absolute;
-  right: 0;
-  width: 320px;
-  background: #F2F2F2;
-  height: 70px;
-  padding: 10px;
-}
-
 .inspector input, .inspector textarea {
   border: none;
   border-radius: 0px;
@@ -75,4 +61,70 @@ a {
 
 .inspector textarea {
   min-height: 210px;
+}
+
+.inspector-trigger {
+  position: absolute;
+  right: 0;
+  width: 340px;
+  background: #F2F2F2;
+  height: 70px;
+  cursor: pointer;
+}
+
+.inspector-trigger::before, .inspector-trigger::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 1px;
+  background: #888;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.inspector-trigger::before {
+  top: 36%;
+  left: 5px;
+}
+
+.inspector-trigger::after {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 64%;
+  left: 5px;
+}
+
+.stencil-trigger {
+  bottom: 0;
+  height: 190px;
+  width: 75px;
+  position: absolute;
+  background: #F2F2F2;
+  cursor: pointer;
+}
+
+.stencil-trigger::before, .stencil-trigger::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 1px;
+  background: #888;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.stencil-trigger::before {
+  top: 20px;
+  right: 12px;
+}
+
+.stencil-trigger::after {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 20px;
+  left: 12px;
 }

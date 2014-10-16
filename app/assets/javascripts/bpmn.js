@@ -507,7 +507,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                 'x-alignment': 'middle', 'y-alignment': 'middle'
             }
         },
-        eventType: "start", 
+        eventType: "start",
         icon: 'user'
 
     }, joint.dia.Element.prototype.defaults),
