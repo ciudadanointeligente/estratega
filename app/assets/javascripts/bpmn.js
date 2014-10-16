@@ -445,7 +445,7 @@ joint.shapes.bpmn.External = joint.shapes.bpmn.Step.extend({
 joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
     defaults: joint.util.deepSupplement({
 
-        type: 'bpmn.External',
+        type: 'bpmn.Intervention',
 
         // see joint.css for more element styles
         attrs: {
