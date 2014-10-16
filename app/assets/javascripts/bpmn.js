@@ -290,7 +290,6 @@ stencil.render().$el.appendTo('#stencil-container');
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-
 // Icons
 
 joint.shapes.bpmn.icons = {
@@ -307,308 +306,175 @@ joint.shapes.bpmn.icons = {
 
 };
 
+joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
+    markup: ['<g class="rotatable"><g class="scalable"><rect/></g><switch>',
 
-joint.shapes.bpmn.Event = joint.shapes.basic.TextBlock.extend({
-
-    markup: ['<g class="rotatable">',
-             '<g class="scalable"><rect class="body outer"/><div class="date_holder"></div><rect class="body inner"></rect><text class="date" /></g>',
-             '<switch>',
              // if foreignObject supported
+
+             // '<foreignObject requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" class="title">',
+             // '<body xmlns="http://www.w3.org/1999/xhtml"><div/></body>',
+             // '</foreignObject>',
              '<foreignObject requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" class="fobj">',
              '<body xmlns="http://www.w3.org/1999/xhtml"><div/></body>',
              '</foreignObject>',
+
              // else foreignObject is not supported (fallback for IE)
-             '<text class="content"/>',
-             '</switch><path class="sub-process"/></g>'].join(''),
+             // '<text class="content"/>',
+
+             '</switch></g>'].join(''),
 
     defaults: joint.util.deepSupplement({
 
         size: { width: 240, height: 210 },
         type: 'bpmn.Step',
+
+        // see joint.css for more element styles
         attrs: {
             rect: {
-                rx: 0,
-                ry: 0,
-                width: 100,
+                fill: '#ffffff',
+                stroke: '#E9E9E9',
+                width: 80,
                 height: 100
             },
-            '.body': {
-                fill: '#ffffff',
-                stroke: '#E9E9E9'
-            },
-            '.inner': {
-                transform: 'scale(0.9,0.9) translate(5,5)'
-            },
-            path: {
-                d: 'M 0 0 L 30 0 30 30 0 30 z M 15 4 L 15 26 M 4 15 L 26 15',
-                ref: '.inner',
-                'ref-x': 0.5,
-                'ref-dy': -30,
-                'x-alignment': 'top',
-                stroke: '#000000',
-                fill: 'transparent'
-            },
-            image: {
-                ref: '.inner',
-                'ref-x': 5,
-                width: 20,
-                height: 20
-            },
-            '.date': {
-                text: '',
+            text: {
                 fill: '#000000',
                 ref: '.inner', 
                  'ref-x': .5, 'ref-dy': -25,
                 'x-alignment': 'right', 'y-alignment': 'top'
             },
+            '.content': {
+                text: '',
+                ref: 'rect',
+                'ref-x': .5,
+                'ref-y': .5,
+                'y-alignment': 'middle',
+                'x-alignment': 'middle'
+            }
         },
-        activityType: 'task',
-        subProcess: null
 
-   }, joint.shapes.basic.TextBlock.prototype.defaults),
+        content: '',
+        title: ''
+
+    }, joint.shapes.basic.Generic.prototype.defaults),
 
     initialize: function() {
 
-        joint.shapes.basic.TextBlock.prototype.initialize.apply(this, arguments);
+        if (typeof SVGForeignObjectElement !== 'undefined') {
 
-        this.listenTo(this, 'change:activityType', this.onActivityTypeChange);
-        this.listenTo(this, 'change:subProcess', this.onSubProcessChange);
+            // foreignObject supported
+            this.setForeignObjectSize(this, this.get('size'));
+            this.setDivContent(this, this.get('content'));
+            this.setDivContent(this, this.get('title'));
+            this.listenTo(this, 'change:size', this.setForeignObjectSize);
+            this.listenTo(this, 'change:content', this.setDivContent);
+            this.listenTo(this, 'change:title', this.setDivContent);
 
-        this.onSubProcessChange(this, this.get('subProcess'));
-        this.onActivityTypeChange(this, this.get('activityType'));
+        }
+
+        joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
     },
 
-    onActivityTypeChange: function(cell, type) {
+    setForeignObjectSize: function(cell, size) {
 
-        switch (type) {
-
-        case 'task':
-
-            cell.attr({
-                '.inner': {
-                    visibility: 'hidden'
-                },
-                '.outer': {
-                    'stroke-width': 1,
-                    'stroke-dasharray': 'none'
-                },
-                path: {
-                    ref: '.outer'
-                },
-                image: {
-                    ref: '.outer'
-                }
-            });
-
-            break;
-
-        case 'transaction':
-
-            cell.attr({
-                '.inner': {
-                    visibility: 'visible'
-                },
-                '.outer': {
-                    'stroke-width': 1,
-                    'stroke-dasharray': 'none'
-                },
-                path: {
-                    ref: '.inner'
-                },
-                image: {
-                    ref: '.inner'
-                }
-            });
-
-            break;
-
-        case 'event-sub-process':
-
-            cell.attr({
-                '.inner': {
-                    visibility: 'hidden'
-                },
-                '.outer': {
-                    'stroke-width': 1,
-                    'stroke-dasharray': '1,2'
-                },
-                path: {
-                    ref: '.outer'
-                },
-                image: {
-                    ref: '.outer'
-                }
-            });
-
-            break;
-
-        case 'call-activity':
-
-            cell.attr({
-                '.inner': {
-                    visibility: 'hidden'
-                },
-                '.outer': {
-                    'stroke-width': 5,
-                    'stroke-dasharray': 'none'
-                },
-                path: {
-                    ref: '.outer'
-                },
-                image: {
-                    ref: '.outer'
-                }
-            });
-
-            break;
-
-        default:
-
-            throw "BPMN: Unknown Activity Type: " + type;
-
-            break;
-        }
+        // Selector `foreignObject' doesn't work accross all browsers, we'r using class selector instead.
+        // We have to clone size as we don't want attributes.div.style to be same object as attributes.size.
+        cell.attr({
+            '.fobj': _.clone(size),
+            div: { style: _.clone(size) }
+        });
     },
 
-    onSubProcessChange: function(cell, subProcess) {
 
-
-        if (subProcess) {
-
-            cell.attr({
-                '.fobj div': {
-                    style: {
-                        verticalAlign: 'baseline',
-                        paddingTop: 10
-                    }
-                },
-                image: {
-                    'ref-dy': -25,
-                    'ref-y': ''
-                },
-                text: { // IE fallback only
-                    'ref-y': 25
-                }
-            });
-
-        } else {
-
-            cell.attr({
-                '.fobj div': {
-                    style: {
-                        verticalAlign: 'top',
-                        paddingTop: 0
-                    }
-                },
-                image: {
-                    'ref-dy': '',
-                    'ref-y': 5
-                },
-                text: { // IE fallback only
-                    'ref-y': .5
-                }
-            });
-        }
+    setDivContent: function(cell, content) {
+        var titleDiv = document.createElement("div"); 
+        var titleText = document.createTextNode(this.get("title"));
+        titleDiv.appendChild(titleText);
+        titleDiv.classList.add("step-title");
+        var contentDiv = document.createElement("div"); 
+        var contentText = document.createTextNode(this.get("content"));
+        contentDiv.appendChild(contentText)
+        contentDiv.classList.add("step-content");
+        // Append the content to div as html.
+        cell.attr(
+            { div :
+                // {html: this.get('title')+ this.get('content')}
+                // {html: "<div>"+ this.get('title') +"</div>"+"<div>"+ this.get('content') +"</div>"}
+                {html: titleDiv.outerHTML + contentDiv.outerHTML}
+            }
+        );
     }
 
-}).extend(joint.shapes.bpmn.IconInterface).extend(joint.shapes.bpmn.SubProcessInterface);
+});
 
-
-joint.shapes.bpmn.Step = joint.shapes.bpmn.Event.extend()
+joint.shapes.bpmn.StepView = joint.shapes.basic.TextBlockView;
 
 joint.shapes.bpmn.External = joint.shapes.bpmn.Step.extend({
     defaults: joint.util.deepSupplement({
 
-        size: { width: 100, height: 100 },
         type: 'bpmn.External',
+
+        // see joint.css for more element styles
         attrs: {
             rect: {
-                rx: 0,
-                ry: 0,
-                width: 100,
-                height: 100
-            },
-            '.body': {
                 fill: '#EAF4FD',
-                stroke: '#C2DFF7'
-            },
-            '.inner': {
-                transform: 'scale(0.9,0.9) translate(5,5)'
-            },
-            path: {
-                d: 'M 0 0 L 30 0 30 30 0 30 z M 15 4 L 15 26 M 4 15 L 26 15',
-                ref: '.inner',
-                'ref-x': 0.5,
-                'ref-dy': -30,
-                'x-alignment': 'middle',
-                stroke: '#000000',
-                fill: 'transparent'
-            },
-            image: {
-                ref: '.inner',
-                'ref-x': 5,
-                width: 20,
-                height: 20
-            },
-            '.date': {
-                text: '',
-                fill: '#000000',
-                'font-family': 'Arial', 'font-size': 14,
-                ref: '.outer', 
-                'ref-x': 25, 'ref-dy': -50,
-                'x-alignment': 'right', 'y-alignment': 'top'
-            },
-        },
-        activityType: 'task',
-        subProcess: null
-
-   })
-})
-
-joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
-
-
-    defaults: joint.util.deepSupplement({
-
-        size: { width: 100, height: 100 },
-        type: 'bpmn.Intervention',
-        attrs: {
-            rect: {
-                rx: 0,
-                ry: 0,
-                width: 100,
+                stroke: '#C2DFF7',
+                width: 80,
                 height: 100
             },
-            '.body': {
-                fill: '#FFF6E8',
-                stroke: '#FFDCA3'
+            text: {
+                fill: '#000000',
+                'font-size': 14,
+                'font-family': 'Arial, helvetica, sans-serif'
             },
-            '.inner': {
-                transform: 'scale(0.9,0.9) translate(5,5)'
-            },
-            path: {
-                d: 'M 0 0 L 30 0 30 30 0 30 z M 15 4 L 15 26 M 4 15 L 26 15',
-                ref: '.inner',
-                'ref-x': 0.5,
-                'ref-dy': -30,
-                'x-alignment': 'middle',
-                stroke: '#000000',
-                fill: 'transparent'
-            },
-            image: {
-                ref: '.inner',
-                'ref-x': 5,
-                width: 20,
-                height: 20
+            '.content': {
+                text: '',
+                ref: 'rect',
+                'ref-x': .5,
+                'ref-y': .5,
+                'y-alignment': 'middle',
+                'x-alignment': 'middle'
             }
         },
-        activityType: 'task',
-        subProcess: null
 
-   })
+        content: '',
+        title: ''
 
-})
+    }, joint.shapes.basic.Generic.prototype.defaults),
+});
 
+joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
+    defaults: joint.util.deepSupplement({
+
+        type: 'bpmn.External',
+
+        // see joint.css for more element styles
+        attrs: {
+            rect: {
+                fill: '#FFF6E8',
+                stroke: '#FFDCA3',
+                width: 80,
+                height: 100
+            },
+            text: {
+                fill: '#000000',
+                'font-size': 14,
+                'font-family': 'Arial, helvetica, sans-serif'
+            },
+            '.content': {
+                text: '',
+                ref: 'rect',
+                'ref-x': .5,
+                'ref-y': .5,
+                'y-alignment': 'middle',
+                'x-alignment': 'middle'
+            }
+        },
+
+        content: '',
+        title: ''
+
+    }, joint.shapes.basic.Generic.prototype.defaults),
+});
 
 joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
