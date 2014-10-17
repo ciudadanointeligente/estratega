@@ -118,7 +118,7 @@ a {
 
 .stencil-trigger::before {
   top: 20px;
-  right: 12px;
+  left: 12px;
 }
 
 .stencil-trigger::after {
@@ -126,5 +126,5 @@ a {
   -moz-transform: rotate(-45deg);
   transform: rotate(-45deg);
   top: 20px;
-  left: 12px;
+  right: 12px;
 }
