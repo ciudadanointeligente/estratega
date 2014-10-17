@@ -437,7 +437,7 @@ var inputs = {
             index: 1
         },
         content: {
-            type: 'texttextarea',
+            type: 'textarea',
             label: 'Content',
             group: 'general',
             index: 2

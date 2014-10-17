@@ -333,7 +333,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             rect: {
                 fill: '#ffffff',
                 stroke: '#E9E9E9',
-                width: 80,
+                width: 220,
                 height: 100
             },
             text: {
