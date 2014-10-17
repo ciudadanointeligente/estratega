@@ -333,7 +333,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             rect: {
                 fill: '#ffffff',
                 stroke: '#E9E9E9',
-                width: 80,
+                width: 220,
                 height: 100
             },
             text: {
@@ -507,7 +507,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                 'x-alignment': 'middle', 'y-alignment': 'middle'
             }
         },
-        eventType: "start", 
+        eventType: "start",
         icon: 'user'
 
     }, joint.dia.Element.prototype.defaults),
