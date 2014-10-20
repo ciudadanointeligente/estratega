@@ -705,7 +705,8 @@ stencil.getPaper().fitToContent(0, 0, 10);
 stencil.getGraph().get('cells').each(function(cell) {
     new joint.ui.Tooltip({
         target: '.stencil [model-id="' + cell.id + '"]',
-        content: cell.get('type'),
+        //hack for getting the type without the bpmn
+        content: cell.get('type').split(".")[1],
         bottom: '.stencil',
         direction: 'bottom',
         padding: 0
