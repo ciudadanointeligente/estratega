@@ -1,5 +1,5 @@
 body {
-  padding: 15px 10px;
+  padding: 15px 6px;
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
 }
@@ -11,11 +11,6 @@ a {
 .event-content {
 	color:red;
 }
-.stencil-trigger {
-	bottom: 25px;
-    height: 143px;
-    position: absolute;
-}
 
 /*Paper*/
 
@@ -23,11 +18,99 @@ a {
   background: #F8F9FA;
 }
 
+#paper-container {
+  right: 300px;
+  left: 300px;
+  bottom: 0px;
+}
+
 /*Step*/
 
 .element .fobj div {
   text-align: left;
   font-size: 13px;
+  float: left;
+  width: 200px;
+}
+
+.element .fobj div.step-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+/*Sidebar*/
+
+.sidebar {
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  height: 100%;
+  width: 300px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.12);
+  background: #F2F2F2;
+}
+
+#stencil-container {
+  width: 100%;
+  position: relative;
+  float: left;
+}
+
+#toolbar-container {
+  position: relative;
+  width: 100%;
+  float: left;
+  background: transparent;
+  border: none;
+  padding: 0;
+  height: 50px;
+}
+
+#toolbar-container button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  color: #4A4A4A;
+  font-weight: 300;
+  background: transparent;
+}
+
+.stencil .elements {
+  background: transparent;
+}
+
+.stencil-trigger {
+  position: absolute;
+  left: 300px;
+  width: 40px;
+  background: #F2F2F2;
+  height: 70px;
+  cursor: pointer;
+}
+
+.stencil-trigger::before, .stencil-trigger::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 1px;
+  background: #888;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.stencil-trigger::before {
+  top: 64%;
+  right: 5px;
+}
+
+.stencil-trigger::after {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 36%;
+  right: 5px;
 }
 
 /*Inspector*/
@@ -35,15 +118,6 @@ a {
 #inspector-container {
   background: #F2F2F2;
   width: 300px;
-}
-
-.inspector-trigger {
-  position: absolute;
-  right: 0;
-  width: 320px;
-  background: #F2F2F2;
-  height: 70px;
-  padding: 10px;
 }
 
 .inspector input, .inspector textarea {
@@ -67,4 +141,37 @@ a {
 
 .inspector textarea {
   min-height: 210px;
+}
+
+.inspector-trigger {
+  position: absolute;
+  right: 0;
+  width: 340px;
+  background: #F2F2F2;
+  height: 70px;
+  cursor: pointer;
+}
+
+.inspector-trigger::before, .inspector-trigger::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 1px;
+  background: #888;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.inspector-trigger::before {
+  top: 36%;
+  left: 5px;
+}
+
+.inspector-trigger::after {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 64%;
+  left: 5px;
 }

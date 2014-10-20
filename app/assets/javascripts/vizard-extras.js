@@ -83,95 +83,15 @@ function adjustVertices(graph, cell) {
 };
 
 
+var btn_sidebar_right = document.getElementById("btn-inspector-container"),
+    sidebar_right = document.getElementById("inspector-container"),
+    btn_sidebar_left = document.getElementById("btn-sidebar-left"), 
+    sidebar_left = document.getElementById("sidebar-left"); 
 
-$(function(){//Document ready equivalente a decir $(document).ready(function(){  })
-	var stencil_container_selector = '#stencil-container';
-	var stencil_toggle_button = '.btn-toggleStencil';
-	var paper_container_selector = '#paper-container';
-	var inspector_container_selector = "#inspector-container";
-	var inspector_toggle_button = '.btn-toggleInspector';
+btn_sidebar_right.addEventListener('click', function(){
+  $(sidebar_right).toggle();
+})
 
-	var showElement = function(element, callback){
-		$(element).show(400, 'linear', function(){
-
-			callback(element);
-		})
-	}
-	var hideElement = function(element, callback){
-		$(element).hide(400, 'linear', function(){
-			callback(element)
-			
-		})
-	}
-
-	var showStencil = function(){
-		showElement(stencil_container_selector, function(element){
-			$(paper_container_selector).css('bottom', "160px")
-			$(stencil_toggle_button).css('bottom', "0px")
-			$(stencil_toggle_button).css('height', "170px")
-		})
-		
-	}
-	var hideStencil = function(){
-		hideElement(stencil_container_selector, function(element){
-			$(paper_container_selector).css('bottom', "10px")
-			$(stencil_toggle_button).css('bottom', "0px")
-			$(stencil_toggle_button).css('height', "18px")
-
-		})
-	}
-	var toggleStencil = function(){
-		var is_visible = $(stencil_container_selector).is(":visible");
-		if(is_visible){
-			hideStencil()
-		}
-		else{
-			showStencil()
-		}
-	}
-	$(stencil_toggle_button).click(function(){
-		toggleStencil()
-	})
-
-	var showInspector = function(){
-		showElement(inspector_container_selector, function(element){
-			$(paper_container_selector).css('right', "267px")
-			$(stencil_container_selector).css('right', "267px")
-			//
-			$(inspector_toggle_button).css('width', '270px')
-			$(inspector_toggle_button).css('right', '0px')
-		})
-		
-
-	}
-	var hideInspector = function(){
-		hideElement(inspector_container_selector, function(element){
-			$(paper_container_selector).css('right', "17px")
-			$(stencil_container_selector).css('right', "17px")
-			//
-			$(inspector_toggle_button).css('width', '16px')
-		})
-	}
-	var toggleInspector = function(){
-		var is_visible = $(inspector_container_selector).is(":visible");
-    console.log(is_visible);
-		if (is_visible){
-			hideInspector()
-		}
-		else{
-			showInspector()
-		}
-	}
-	$(inspector_toggle_button_).on("click", function(){
-		toggleInspector()
-	})
-});
-
-
-var btn_inspector = document.getElementById("btn-inspector-container"),
-    inspector_container = document.getElementById("inspector-container"); 
-
-btn_inspector.addEventListener('click', function(){
-  $(btn_inspector).css
-  $(inspector_container).toggle()
+btn_sidebar_left.addEventListener('click', function(){
+  $(sidebar_left).toggle();
 })

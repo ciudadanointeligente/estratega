@@ -18,13 +18,14 @@ var graph = new joint.dia.Graph({ type: 'bpmn' }).on({
         // some types of the elements need resizing after they are dropped
         var x = { 'bpmn.Pool': 5, 'bpmn.Choreography': 2 }[type];
 
-        // if (x) {
+        if (cell instanceof joint.shapes.bpmn.Step) {
             var size = cell.get('size');
             cell.set('size', {
                 width: 240,
                 height: 210
             }, { silent: true });
-        // }
+            cell.setForeignObjectSize(cell, {width: 240, height: 210});
+        }
     }
 
 });
@@ -333,8 +334,8 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             rect: {
                 fill: '#ffffff',
                 stroke: '#E9E9E9',
-                width: 80,
-                height: 100
+                width: 240,
+                height: 210
             },
             text: {
                 fill: '#000000',
@@ -418,8 +419,8 @@ joint.shapes.bpmn.External = joint.shapes.bpmn.Step.extend({
             rect: {
                 fill: '#EAF4FD',
                 stroke: '#C2DFF7',
-                width: 80,
-                height: 100
+                width: 240 ,
+                height: 210
             },
             text: {
                 fill: '#000000',
@@ -445,15 +446,15 @@ joint.shapes.bpmn.External = joint.shapes.bpmn.Step.extend({
 joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
     defaults: joint.util.deepSupplement({
 
-        type: 'bpmn.External',
+        type: 'bpmn.Intervention',
 
         // see joint.css for more element styles
         attrs: {
             rect: {
                 fill: '#FFF6E8',
                 stroke: '#FFDCA3',
-                width: 80,
-                height: 100
+                width: 240,
+                height: 210
             },
             text: {
                 fill: '#000000',
@@ -507,7 +508,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                 'x-alignment': 'middle', 'y-alignment': 'middle'
             }
         },
-        eventType: "start", 
+        eventType: "start",
         icon: 'user'
 
     }, joint.dia.Element.prototype.defaults),
@@ -690,11 +691,11 @@ stencil.load([
 ]);
 
 joint.layout.GridLayout.layout(stencil.getGraph(), {
-    columns: 100,
-    columnWidth: 110,
-    rowHeight: 110,
-    dy: 20,
-    dx: 20,
+    columns: 5,
+    columnWidth: 53,
+    rowHeight: 60,
+    dy: 5,
+    dx: 10,
     resizeToFit: true
 });
 
