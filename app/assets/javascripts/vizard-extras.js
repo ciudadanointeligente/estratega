@@ -153,7 +153,8 @@ $(function(){//Document ready equivalente a decir $(document).ready(function(){ 
 		})
 	}
 	var toggleInspector = function(){
-		var is_visible = $(inspector_container_selector).is(":visible")
+		var is_visible = $(inspector_container_selector).is(":visible");
+    console.log(is_visible);
 		if (is_visible){
 			hideInspector()
 		}
@@ -161,7 +162,16 @@ $(function(){//Document ready equivalente a decir $(document).ready(function(){ 
 			showInspector()
 		}
 	}
-	$(inspector_toggle_button).click(function(){
+	$(inspector_toggle_button_).on("click", function(){
 		toggleInspector()
 	})
+});
+
+
+var btn_inspector = document.getElementById("btn-inspector-container"),
+    inspector_container = document.getElementById("inspector-container"); 
+
+btn_inspector.addEventListener('click', function(){
+  $(btn_inspector).css
+  $(inspector_container).toggle()
 })
