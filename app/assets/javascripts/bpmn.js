@@ -334,8 +334,8 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             rect: {
                 fill: '#ffffff',
                 stroke: '#E9E9E9',
-                width: 220,
-                height: 100
+                width: 240,
+                height: 210
             },
             text: {
                 fill: '#000000',
@@ -419,8 +419,8 @@ joint.shapes.bpmn.External = joint.shapes.bpmn.Step.extend({
             rect: {
                 fill: '#EAF4FD',
                 stroke: '#C2DFF7',
-                width: 80,
-                height: 100
+                width: 240 ,
+                height: 210
             },
             text: {
                 fill: '#000000',
@@ -453,8 +453,8 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
             rect: {
                 fill: '#FFF6E8',
                 stroke: '#FFDCA3',
-                width: 80,
-                height: 100
+                width: 240,
+                height: 210
             },
             text: {
                 fill: '#000000',
@@ -691,11 +691,11 @@ stencil.load([
 ]);
 
 joint.layout.GridLayout.layout(stencil.getGraph(), {
-    columns: 100,
-    columnWidth: 110,
-    rowHeight: 110,
-    dy: 20,
-    dx: 20,
+    columns: 5,
+    columnWidth: 53,
+    rowHeight: 60,
+    dy: 5,
+    dx: 10,
     resizeToFit: true
 });
 
