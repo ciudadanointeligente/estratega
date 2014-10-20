@@ -18,13 +18,14 @@ var graph = new joint.dia.Graph({ type: 'bpmn' }).on({
         // some types of the elements need resizing after they are dropped
         var x = { 'bpmn.Pool': 5, 'bpmn.Choreography': 2 }[type];
 
-        // if (x) {
+        if (cell instanceof joint.shapes.bpmn.Step) {
             var size = cell.get('size');
             cell.set('size', {
                 width: 240,
                 height: 210
             }, { silent: true });
-        // }
+            cell.setForeignObjectSize(cell, {width: 240, height: 210});
+        }
     }
 
 });
