@@ -18,6 +18,12 @@ a {
   background: #F8F9FA;
 }
 
+#paper-container {
+  right: 300px;
+  left: 300px;
+  bottom: 0px;
+}
+
 /*Step*/
 
 .element .fobj div {
@@ -31,6 +37,80 @@ a {
   font-weight: 600;
   margin-bottom: 10px;
   font-size: 14px;
+}
+
+/*Sidebar*/
+
+.sidebar {
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  height: 100%;
+  width: 300px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.12);
+  background: #F2F2F2;
+}
+
+#stencil-container {
+  width: 100%;
+  position: relative;
+  float: left;
+}
+
+#toolbar-container {
+  position: relative;
+  width: 100%;
+  float: left;
+  background: transparent;
+  border: none;
+  padding: 0;
+  height: 50px;
+}
+
+#toolbar-container button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  color: #4A4A4A;
+  font-weight: 300;
+  background: transparent;
+}
+
+.stencil .elements {
+  background: transparent;
+}
+
+.stencil-trigger {
+  position: absolute;
+  left: 300px;
+  width: 40px;
+  background: #F2F2F2;
+  height: 70px;
+  cursor: pointer;
+}
+
+.stencil-trigger::before, .stencil-trigger::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 1px;
+  background: #888;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.stencil-trigger::before {
+  top: 64%;
+  right: 5px;
+}
+
+.stencil-trigger::after {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 36%;
+  right: 5px;
 }
 
 /*Inspector*/
@@ -94,37 +174,4 @@ a {
   transform: rotate(-45deg);
   top: 64%;
   left: 5px;
-}
-
-.stencil-trigger {
-  bottom: 0;
-  height: 190px;
-  width: 75px;
-  position: absolute;
-  background: #F2F2F2;
-  cursor: pointer;
-}
-
-.stencil-trigger::before, .stencil-trigger::after {
-  content: '';
-  position: absolute;
-  width: 30px;
-  height: 1px;
-  background: #888;
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-.stencil-trigger::before {
-  top: 20px;
-  left: 12px;
-}
-
-.stencil-trigger::after {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  top: 20px;
-  right: 12px;
 }

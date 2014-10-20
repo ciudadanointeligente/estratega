@@ -106,17 +106,17 @@ $(function(){//Document ready equivalente a decir $(document).ready(function(){ 
 
 	var showStencil = function(){
 		showElement(stencil_container_selector, function(element){
-			$(paper_container_selector).css('bottom', "160px")
-			$(stencil_toggle_button).css('bottom', "0px")
-			$(stencil_toggle_button).css('height', "170px")
+			$(paper_container_selector).css('left', "160px")
+			$(stencil_toggle_button).css('left', "0px")
+			$(stencil_toggle_button).css('width', "300px")
 		})
 		
 	}
 	var hideStencil = function(){
 		hideElement(stencil_container_selector, function(element){
-			$(paper_container_selector).css('bottom', "10px")
-			$(stencil_toggle_button).css('bottom', "0px")
-			$(stencil_toggle_button).css('height', "18px")
+			$(paper_container_selector).css('left', "10px")
+			$(stencil_toggle_button).css('left', "0px")
+			$(stencil_toggle_button).css('width', "40px")
 
 		})
 	}
