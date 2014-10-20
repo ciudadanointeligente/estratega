@@ -39,7 +39,7 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
 
     defaults: {
 
-        type: "bpmn.Flow",
+        type: "bpmn.StepLink",
 
         attrs: {
 
