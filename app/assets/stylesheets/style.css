@@ -51,6 +51,23 @@ a {
   background: #F2F2F2;
 }
 
+.stencil {
+  border-top: none;
+}
+
+#fileName {
+  position: relative;
+  border: 1px solid #FFF;
+  border-radius: 0px;
+  color: #666;
+  top: 0%;
+  width: 90%;
+  text-align: left;
+  outline: none;
+  padding: 5px;
+  font-family: 'Open Sans', sans-serif;
+}
+
 #stencil-container {
   width: 100%;
   position: relative;
@@ -64,20 +81,27 @@ a {
   background: transparent;
   border: none;
   padding: 0;
-  height: 50px;
+  height: 80px;
 }
 
 #toolbar-container button {
   width: 30px;
-  height: 30px;
+  height: 40px;
   border: none;
   color: #4A4A4A;
   font-weight: 300;
   background: transparent;
 }
 
+#toolbar-container button:active {
+-moz-box-shadow: none;
+-webkit-box-shadow: none;
+box-shadow: none;
+color: #BD10E0;
+}
+
 .stencil .elements {
-  background: transparent;
+  background: rgb(255, 255, 255);
 }
 
 .stencil-trigger {
@@ -87,6 +111,7 @@ a {
   background: #F2F2F2;
   height: 70px;
   cursor: pointer;
+  top: 45px;
 }
 
 .stencil-trigger::before, .stencil-trigger::after {
