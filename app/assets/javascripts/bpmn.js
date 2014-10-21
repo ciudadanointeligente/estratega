@@ -47,9 +47,9 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
                 d: 'M 0 0'
             },
             '.marker-target': {
-                d: 'M 20 -10 L 0 5 L 20 20 z',
+                d: 'M 12 -2 L 0 5 L 12 12 z',
                 stroke: '#4A90E2', 
-                fill: 'rgba(255, 255, 255, 0)'
+                fill: '#4A90E2'
             },
             '.connection': {
                 'stroke-dasharray': ' ',
