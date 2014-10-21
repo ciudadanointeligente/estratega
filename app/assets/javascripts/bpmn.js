@@ -69,110 +69,14 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
     initialize: function() {
 
         joint.dia.Link.prototype.initialize.apply(this, arguments);
-
-        this.listenTo(this, 'change:flowType', this.onFlowTypeChange);
-
-        this.onFlowTypeChange(this, this.get('flowType'));
     },
-
-    onFlowTypeChange: function(cell, type) {
-
-        var attrs;
-
-        switch (type) {
-
-        case 'default':
-
-            attrs = {
-                '.marker-source': {
-                    d: 'M 0 5 L 20 5 M 20 0 L 10 10',
-                    fill: 'none'
-                }
-            };
-
-            break;
-
-        case 'conditional':
-
-            attrs = {
-                '.marker-source': {
-                    d: 'M 20 8 L 10 0 L 0 8 L 10 16 z',
-                    fill: '#FFF'
-                }
-            };
-
-            break;
-
-        case 'normal':
-
-            attrs = {};
-
-            break;
-
-        case 'message':
-
-            attrs = {
-                '.marker-target': {
-                    fill: '#FFF'
-                },
-                '.connection': {
-                    'stroke-dasharray': '4,4'
-                }
-            };
-
-            break;
-
-        case 'association':
-
-            attrs = {
-                '.marker-target': {
-                    d: 'M 0 0'
-                },
-                '.connection': {
-                    'stroke-dasharray': '4,4'
-                }
-            };
-
-            break;
-
-        case 'conversation':
-
-            // The only way how to achieved 'spaghetti insulation effect' on links is to
-            // have the .connection-wrap covering the inner part of the .connection.
-            // The outer part of the .connection then looks like two parallel lines.
-            attrs = {
-                '.marker-target': {
-                    d: 'M 0 0'
-                },
-                '.connection': {
-                    'stroke-width': '7px'
-                },
-                '.connection-wrap': {
-                    // As the css takes priority over the svg attributes, that's only way
-                    // how to overwrite default jointjs styling.
-                    style: 'stroke: #fff; stroke-width: 5px; opacity: 1;',
-                    onMouseOver: "var s=this.style;s.stroke='#000';s.strokeWidth=15;s.opacity=.4",
-                    onMouseOut: "var s=this.style;s.stroke='#fff';s.strokeWidth=5;s.opacity=1"
-                }
-            };
-
-            break;
-
-        default:
-
-            throw "BPMN: Unknown Flow Type: " + type;
-        }
-
-        cell.attr(_.merge({}, this.defaults.attrs, attrs));
-    }
-
 });
 
 var paper = new joint.dia.Paper({
     width: 4000,
     height: 1000,
     model: graph,
-    gridSize: 10,
+    gridSize: 40,
     model: graph,
     perpendicularLinks: true,
     // defaultLink: new joint.shapes.bpmn.Flow,
