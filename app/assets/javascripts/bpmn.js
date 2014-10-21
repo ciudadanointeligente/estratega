@@ -793,12 +793,19 @@ function openIHF(cellView) {
 
             // new joint.ui.FreeTransform({ cellView: cellView }).render();
 
-            new joint.ui.Halo({
+            var halo = new joint.ui.Halo({
                 cellView: cellView,
                 boxContent: function(cellView) {
                     return cellView.model.get('type');
                 }
-            }).render();
+            });
+            halo.render();
+            halo.removeHandle('resize');
+            halo.removeHandle('rotate');
+            halo.removeHandle('clone');
+            halo.removeHandle('unlink');
+            halo.changeHandle('link', { position: 'se' });
+            halo.changeHandle('fork', { position: 's' });
 
             selectionView.cancelSelection();
             selection.reset([cellView.model], { safe: true });
