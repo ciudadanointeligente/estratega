@@ -63,13 +63,50 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
             }
         },
 
+        description: '',
+
         flowType: "normal"
+    },
+
+    tooltip: function() {new joint.ui.Tooltip({
+        target: ' [model-id="' + this.id + '"]',
+        //hack for getting the type without the bpmn
+        content: this.attributes.description,
+        bottom: '.connection-wrap',
+        direction: 'bottom',
+        padding: 0
+       })
     },
 
     initialize: function() {
 
         joint.dia.Link.prototype.initialize.apply(this, arguments);
+
+        this.setTooltip();
+
+        this.listenTo(this, 'change:description', this.setTooltip);
     },
+
+    tooltipId: '',
+
+    setTooltip: function() {
+        this.removePreviousTooltip();
+        var tooltip = new joint.ui.Tooltip({
+            target: ' [model-id="' + this.id + '"]',
+            //hack for getting the type without the bpmn
+            content: this.attributes.description,
+            bottom: '.connection-wrap',
+            direction: 'bottom',
+            padding: 0
+        });
+
+        this.tooltipId = tooltip.id;
+    },
+
+    removePreviousTooltip: function() {
+        $('[model-id="' + this.tooltipId + '"]').remove()
+    }
+
 });
 
 var paper = new joint.dia.Paper({
@@ -790,10 +827,22 @@ var toolbar = {
 $(function () {
 
     var graph_data_json = $("#graph_data").html();
-    // console.log(graph_data_json);
     var graph_data     = $.parseJSON(graph_data_json);
 
-    console.log(graph_data);
     graph.fromJSON(graph_data)
+
+    // console.log(graph.get('cells'))
+    // graph.get('cells').each(function(cell) {
+    //     if (cell instanceof joint.shapes.bpmn.StepLink){
+    //         new joint.ui.Tooltip({
+    //             target: ' [model-id="' + cell.id + '"]',
+    //             //hack for getting the type without the bpmn
+    //             content: cell.attributes.description,
+    //             bottom: '.connection-wrap',
+    //             direction: 'bottom',
+    //             padding: 0
+    //         });
+    //     }
+    // });
 
 });
