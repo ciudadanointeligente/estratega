@@ -39,6 +39,53 @@ a {
   font-size: 14px;
 }
 
+/*Step halo*/
+
+.halo > div {
+  width: 30px;
+  height: 30px;
+  background-size: 30px 30px;
+}
+
+.halo .handle.se {
+  bottom: -9px;
+  right: -11px;
+}
+
+.halo .handle.s {
+  bottom: -9px;
+  left: 80%;
+}
+
+.halo .handle.nw {
+  top: -9px;
+  left: -11px;
+}
+
+.halo .link {
+  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/arrow-right.svg);
+}
+
+.halo .remove {
+  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/delete.svg);
+}
+
+.halo .fork {
+  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/fork.svg);
+}
+
+.halo .link:hover {
+  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/arrow-right-h.svg);
+}
+
+.halo .remove:hover {
+  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/delete-h.svg);
+}
+
+.halo .fork:hover {
+  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/fork-h.svg);
+}
+
 /*Sidebar*/
 
 .sidebar {
@@ -93,7 +140,7 @@ a {
   background: transparent;
 }
 
-#toolbar-container button:active {
+#toolbar-container button:active, #toolbar-container button:hover {
 -moz-box-shadow: none;
 -webkit-box-shadow: none;
 box-shadow: none;
