@@ -33,7 +33,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'rspec-rails'
-  gem 'mysql2'
+  # gem 'mysql2'
 end
 group :production do
   gem 'rails_12factor'

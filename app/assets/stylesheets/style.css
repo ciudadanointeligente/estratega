@@ -41,6 +41,13 @@ a {
 
 /*Step halo*/
 
+.halo {
+  padding: 0px;
+  margin: -2px;
+  border: 1px solid #0091EA;
+  box-shadow: 0px 0px 6px #0091EA;
+}
+
 .halo > div {
   width: 30px;
   height: 30px;
@@ -48,18 +55,18 @@ a {
 }
 
 .halo .handle.se {
-  bottom: -9px;
-  right: -11px;
+  bottom: -15px;
+  right: -15px;
 }
 
 .halo .handle.s {
-  bottom: -9px;
+  bottom: -15px;
   left: 80%;
 }
 
 .halo .handle.nw {
-  top: -9px;
-  left: -11px;
+  top: -15px;
+  left: -15px;
 }
 
 .halo .link {
