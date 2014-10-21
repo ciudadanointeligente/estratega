@@ -68,16 +68,6 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
         flowType: "normal"
     },
 
-    tooltip: function() {new joint.ui.Tooltip({
-        target: ' [model-id="' + this.id + '"]',
-        //hack for getting the type without the bpmn
-        content: this.attributes.description,
-        bottom: '.connection-wrap',
-        direction: 'bottom',
-        padding: 0
-       })
-    },
-
     initialize: function() {
 
         joint.dia.Link.prototype.initialize.apply(this, arguments);
@@ -87,24 +77,21 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
         this.listenTo(this, 'change:description', this.setTooltip);
     },
 
-    tooltipId: '',
+    tooltip: {},
 
     setTooltip: function() {
-        this.removePreviousTooltip();
-        var tooltip = new joint.ui.Tooltip({
+        if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
+        this.tooltip = new joint.ui.Tooltip({
             target: ' [model-id="' + this.id + '"]',
-            //hack for getting the type without the bpmn
             content: this.attributes.description,
             bottom: '.connection-wrap',
             direction: 'bottom',
-            padding: 0
+            padding: 10
         });
-
-        this.tooltipId = tooltip.id;
     },
 
     removePreviousTooltip: function() {
-        $('[model-id="' + this.tooltipId + '"]').remove()
+        this.tooltip.remove()
     }
 
 });
@@ -831,18 +818,11 @@ $(function () {
 
     graph.fromJSON(graph_data)
 
-    // console.log(graph.get('cells'))
-    // graph.get('cells').each(function(cell) {
-    //     if (cell instanceof joint.shapes.bpmn.StepLink){
-    //         new joint.ui.Tooltip({
-    //             target: ' [model-id="' + cell.id + '"]',
-    //             //hack for getting the type without the bpmn
-    //             content: cell.attributes.description,
-    //             bottom: '.connection-wrap',
-    //             direction: 'bottom',
-    //             padding: 0
-    //         });
-    //     }
-    // });
+    //ugly hack for initializing tooltips
+    graph.get('cells').each(function(cell) {
+        if (cell instanceof joint.shapes.bpmn.StepLink){
+            cell.setTooltip();
+        }
+    });
 
 });
