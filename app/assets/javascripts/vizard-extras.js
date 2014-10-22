@@ -82,16 +82,36 @@ function adjustVertices(graph, cell) {
     }
 };
 
+$(function(){
+    var btn_sidebar_right = "#btn-inspector-container",
+        sidebar_right = "#inspector-container",
+        btn_sidebar_left = "#btn-sidebar-left", 
+        sidebar_left = "#sidebar-left",
+        paper_container = "#paper-container";
 
-var btn_sidebar_right = document.getElementById("btn-inspector-container"),
-    sidebar_right = document.getElementById("inspector-container"),
-    btn_sidebar_left = document.getElementById("btn-sidebar-left"), 
-    sidebar_left = document.getElementById("sidebar-left"); 
+    $(btn_sidebar_right).on('click', function(){
+      if ( $(sidebar_right).css('width') == '300px' ) {
+        $(sidebar_right).css('display','none');
+        $(paper_container).css('right','0px');
+        $(sidebar_right).css('width','0px');
+        $(this).css('width','40px');
+      } else {
+        $(sidebar_right).css('display','block');
+        $(paper_container).css('right','300px');
+        $(sidebar_right).css('width','300px');
+        $(this).css('width','340px');
+      }
+    });
 
-btn_sidebar_right.addEventListener('click', function(){
-  $(sidebar_right).toggle();
-})
-
-btn_sidebar_left.addEventListener('click', function(){
-  $(sidebar_left).toggle();
-})
+    $(btn_sidebar_left).on('click', function(){
+      if ( $(this).css('left') == '300px' ) {
+        $(this).css('left','0px');
+        $(sidebar_left).css('display','none');
+        $(paper_container).css('left','0px');
+      } else {
+        $(this).css('left','300px');
+        $(sidebar_left).css('display','block');
+        $(paper_container).css('left','300px');
+      }
+    });
+});
