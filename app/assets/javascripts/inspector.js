@@ -336,22 +336,13 @@ var inputs = {
         }
     },
 
-    'bpmn.Flow': {
-        labels: {
-                type: 'list',
-                group: 'labels',
-                item: {
-                    type: 'object',
-                    properties: {
-                        position: { type: 'range', min: 0.1, max: .9, step: .1, defaultValue: .5, label: 'position', index: 2},
-                        attrs: {
-                            text: {
-                                text: { type: 'text', label: 'text', defaultValue: 'relation', index: 1}
-                            }
-                        }
-                    }
-                }
-            }
+    'bpmn.StepLink': {
+        description: {
+            type: 'textarea',
+            label: 'Description',
+            group: 'general',
+            index: 1
+        }
     },
 
 
