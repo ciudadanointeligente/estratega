@@ -63,13 +63,37 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
             }
         },
 
+        description: '',
+
         flowType: "normal"
     },
 
     initialize: function() {
 
         joint.dia.Link.prototype.initialize.apply(this, arguments);
+
+        this.setTooltip();
+
+        this.listenTo(this, 'change:description', this.setTooltip);
     },
+
+    tooltip: {},
+
+    setTooltip: function() {
+        if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
+        this.tooltip = new joint.ui.Tooltip({
+            target: ' [model-id="' + this.id + '"]',
+            content: this.attributes.description,
+            bottom: '.connection-wrap',
+            direction: 'bottom',
+            padding: 10
+        });
+    },
+
+    removePreviousTooltip: function() {
+        this.tooltip.remove()
+    }
+
 });
 
 var paper = new joint.dia.Paper({
@@ -790,10 +814,15 @@ var toolbar = {
 $(function () {
 
     var graph_data_json = $("#graph_data").html();
-    // console.log(graph_data_json);
     var graph_data     = $.parseJSON(graph_data_json);
 
-    console.log(graph_data);
     graph.fromJSON(graph_data)
+
+    //ugly hack for initializing tooltips
+    graph.get('cells').each(function(cell) {
+        if (cell instanceof joint.shapes.bpmn.StepLink){
+            cell.setTooltip();
+        }
+    });
 
 });
