@@ -86,7 +86,7 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
             content: this.attributes.description,
             bottom: '.connection-wrap',
             direction: 'bottom',
-            padding: 10
+            padding: 50
         });
     },
 
