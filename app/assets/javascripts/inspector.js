@@ -454,6 +454,12 @@ var inputs = {
     },
 
     'bpmn.Person': {
+        name: {
+            type: 'text',
+            label: 'Name',
+            group: 'general',
+            index: 1
+        },
         pos: {
             type: 'text',
             label: 'Position',
@@ -467,12 +473,6 @@ var inputs = {
             index: 3
         },
         attrs: {
-            '.label/text': {
-                type: 'text',
-                label: 'Name',
-                group: 'general',
-                index: 1
-            },
             '.body/fill': {
                 type: 'color',
                 label: 'Body Color',
