@@ -448,6 +448,25 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         this.listenTo(this, 'change:eventType', this.onEventTypeChange);
 
         this.onEventTypeChange(this, this.get('eventType'));
+
+        this.listenTo(this, 'change:description', this.setTooltip);
+    },
+
+    tooltip: {},
+
+    setTooltip: function() {
+        if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
+        this.tooltip = new joint.ui.Tooltip({
+            target: ' [model-id="' + this.id + '"]',
+            content: this.attributes.description,
+            bottom: '.connection-wrap',
+            direction: 'bottom',
+            padding: 10
+        });
+    },
+
+    removePreviousTooltip: function() {
+        this.tooltip.remove()
     },
 
     onEventTypeChange: function(cell, type) {
