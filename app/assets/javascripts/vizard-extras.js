@@ -90,7 +90,6 @@ $(function(){
         paper_container = "#paper-container";
 
     $(btn_sidebar_right).on('click', function(){
-        console.log( $(sidebar_right).css('width') );
       if ( $(sidebar_right).css('width') == '300px' ) {
         $(sidebar_right).css('display','none');
         $(paper_container).css('right','0px');
@@ -106,11 +105,13 @@ $(function(){
 
     $(btn_sidebar_left).on('click', function(){
       if ( $(this).css('left') == '300px' ) {
-          $(this).css('left','0px');
-          $(sidebar_left).css('display','none');
+        $(this).css('left','0px');
+        $(sidebar_left).css('display','none');
+        $(paper_container).css('left','0px');
       } else {
         $(this).css('left','300px');
         $(sidebar_left).css('display','block');
+        $(paper_container).css('left','300px');
       }
     });
 });
