@@ -113,7 +113,7 @@ text.label {
 }
 
 .halo .fork {
-  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/fork.svg);
+  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/copy.svg);
 }
 
 .halo .link:hover {
@@ -125,7 +125,7 @@ text.label {
 }
 
 .halo .fork:hover {
-  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/fork-h.svg);
+  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/copy-h.svg);
 }
 
 /*Sidebar*/
@@ -294,16 +294,10 @@ color: #BD10E0;
 
 .tooltip {
   max-width: 800px;
-  min-width: 50px;
   border: none;
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.22);
   font-size: 13px;
   padding: 15px 15px 25px;
-  /*position: relative;*/
-}
-
-.tooltip.bottom {
-  position: relative;
 }
 
 .tooltip.bottom:after {
@@ -317,6 +311,21 @@ color: #BD10E0;
   pointer-events: none;
   border-color: rgba(255, 255, 255, 0);
   border-top-color: #ffffff;
+  border-width: 15px;
+  margin-left: -15px;
+}
+
+.tooltip.top:after {
+  bottom: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(255, 255, 255, 0);
+  border-bottom-color: #ffffff;
   border-width: 15px;
   margin-left: -15px;
 }
