@@ -449,6 +449,8 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
         this.onEventTypeChange(this, this.get('eventType'));
 
+        this.listenTo(this, 'change:name', this.setTooltip);
+        this.listenTo(this, 'change:pos', this.setTooltip);
         this.listenTo(this, 'change:description', this.setTooltip);
     },
 
@@ -456,12 +458,22 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
     setTooltip: function() {
         if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
+        var div = document.createElement("div"); 
+        div.className = 'tooltip-content';
+        var name = document.createElement("div");
+        name.className = 'tooltip-strong';
+        name.appendChild(document.createTextNode(this.get('name') || ''));
+        var pos = document.createElement("div").appendChild(document.createTextNode(this.get('pos') || ''));
+        var description = document.createElement("div").appendChild(document.createTextNode(this.get('description') || ''));
+        description.className = 'tooltip-text';
+        div.appendChild(name);
+        div.appendChild(description);
         this.tooltip = new joint.ui.Tooltip({
             target: ' [model-id="' + this.id + '"]',
-            content: this.attributes.description,
+            content: div.innerHTML,
             bottom: '.connection-wrap',
             direction: 'bottom',
-            padding: 10
+            padding: 0
         });
     },
 
