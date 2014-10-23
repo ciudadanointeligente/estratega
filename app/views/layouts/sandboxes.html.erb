@@ -5,9 +5,10 @@
     <title><%= content_for?(:title) ? yield(:title) : "Vizard Rails" %></title>
     <!-- <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Vizard Rails" %>"> -->
     <%= stylesheet_link_tag 'sandboxes', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'sandboxes', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
   <body>
@@ -18,6 +19,8 @@
        <!-- <%= render 'layouts/messages' %> -->
        <%= yield %>
     </main>
+
     <%= javascript_include_tag 'sandboxes', 'data-turbolinks-track' => true %>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   </body>
 </html>
