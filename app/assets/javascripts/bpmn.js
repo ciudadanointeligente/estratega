@@ -86,7 +86,7 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
             content: this.attributes.description,
             bottom: '.connection-wrap',
             direction: 'bottom',
-            padding: 10
+            padding: 30
         });
     },
 
@@ -514,6 +514,37 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         this.listenTo(this, 'change:eventType', this.onEventTypeChange);
 
         this.onEventTypeChange(this, this.get('eventType'));
+
+        this.listenTo(this, 'change:name', this.setTooltip);
+        this.listenTo(this, 'change:pos', this.setTooltip);
+        this.listenTo(this, 'change:description', this.setTooltip);
+    },
+
+    tooltip: {},
+
+    setTooltip: function() {
+        if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
+        var div = document.createElement("div"); 
+        div.className = 'tooltip-content';
+        var name = document.createElement("div");
+        name.className = 'tooltip-strong';
+        name.appendChild(document.createTextNode(this.get('name') || ''));
+        var pos = document.createElement("div").appendChild(document.createTextNode(this.get('pos') || ''));
+        var description = document.createElement("div").appendChild(document.createTextNode(this.get('description') || ''));
+        description.className = 'tooltip-text';
+        div.appendChild(name);
+        div.appendChild(description);
+        this.tooltip = new joint.ui.Tooltip({
+            target: ' [model-id="' + this.id + '"]',
+            content: div.innerHTML,
+            bottom: '.connection-wrap',
+            direction: 'bottom',
+            padding: 0
+        });
+    },
+
+    removePreviousTooltip: function() {
+        this.tooltip.remove()
     },
 
     onEventTypeChange: function(cell, type) {

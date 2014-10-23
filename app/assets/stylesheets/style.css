@@ -113,7 +113,7 @@ text.label {
 }
 
 .halo .fork {
-  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/fork.svg);
+  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/copy.svg);
 }
 
 .halo .link:hover {
@@ -125,7 +125,7 @@ text.label {
 }
 
 .halo .fork:hover {
-  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/fork-h.svg);
+  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/copy-h.svg);
 }
 
 /*Sidebar*/
@@ -201,6 +201,7 @@ color: #BD10E0;
   height: 70px;
   cursor: pointer;
   top: 45px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.12);
 }
 
 .stencil-trigger::before, .stencil-trigger::after {
@@ -232,6 +233,7 @@ color: #BD10E0;
 #inspector-container {
   background: #F2F2F2;
   width: 300px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12);
 }
 
 .inspector input, .inspector textarea {
@@ -264,6 +266,7 @@ color: #BD10E0;
   background: #F2F2F2;
   height: 70px;
   cursor: pointer;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12);
 }
 
 .inspector-trigger::before, .inspector-trigger::after {
@@ -288,4 +291,46 @@ color: #BD10E0;
   transform: rotate(-45deg);
   top: 64%;
   left: 5px;
+}
+
+/*Tooltip*/
+
+.tooltip {
+  max-width: 800px;
+  background: #FFFBF6;
+  border: none;
+  box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.22);
+  font-size: 13px;
+  padding: 15px 15px 25px;
+  border-radius: 0;
+}
+
+.tooltip.bottom:after {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(255, 255, 255, 0);
+  border-top-color: #FFFBF6;
+  border-width: 15px;
+  margin-left: -15px;
+}
+
+.tooltip.top:after {
+  bottom: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(255, 255, 255, 0);
+  border-bottom-color: #FFFBF6;
+  border-width: 15px;
+  margin-left: -15px;
 }
