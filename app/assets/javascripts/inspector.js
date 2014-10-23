@@ -483,11 +483,11 @@ var inputs = {
     },
 
     'bpmn.Organization': {
-        description: {
-            type: 'textarea',
-            label: 'Description',
+        name: {
+            type: 'text',
+            label: 'Name',
             group: 'general',
-            index: 3
+            index: 1
         },
         parent: {
             type: 'text',
@@ -495,13 +495,13 @@ var inputs = {
             group: 'general',
             index: 2
         },
+        description: {
+            type: 'textarea',
+            label: 'Description',
+            group: 'general',
+            index: 3
+        },
         attrs: {
-            '.label/text': {
-                type: 'text',
-                label: 'Name',
-                group: 'general',
-                index: 1
-            },
             '.body/fill': {
                 type: 'color',
                 label: 'Body Color',

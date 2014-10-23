@@ -445,10 +445,6 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
         joint.dia.Element.prototype.initialize.apply(this, arguments);
 
-        this.listenTo(this, 'change:eventType', this.onEventTypeChange);
-
-        this.onEventTypeChange(this, this.get('eventType'));
-
         this.listenTo(this, 'change:name', this.setTooltip);
         this.listenTo(this, 'change:pos', this.setTooltip);
         this.listenTo(this, 'change:description', this.setTooltip);
@@ -471,9 +467,9 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         this.tooltip = new joint.ui.Tooltip({
             target: ' [model-id="' + this.id + '"]',
             content: div.innerHTML,
-            bottom: '.connection-wrap',
+            bottom: ' [model-id="' + this.id + '"]',
             direction: 'bottom',
-            padding: 0
+            padding: 20
         });
     },
 
@@ -481,63 +477,10 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         this.tooltip.remove()
     },
 
-    onEventTypeChange: function(cell, type) {
-
-        switch (type) {
-
-        case 'start':
-
-            cell.attr({
-                '.inner': {
-                    visibility: 'hidden'
-                },
-                '.outer': {
-                    'stroke-width': 1
-                }
-            });
-
-            break;
-
-        case 'end':
-
-            cell.attr({
-                '.inner': {
-                    visibility: 'hidden'
-                },
-                '.outer': {
-                    'stroke-width': 5
-                }
-            });
-
-            break;
-
-        case 'intermediate':
-
-            cell.attr({
-                '.inner': {
-                    visibility: 'visible'
-                },
-                '.outer': {
-                    'stroke-width': 1
-                }
-            });
-
-            break;
-
-        default:
-
-            throw "BPMN: Unknown Event Type: " + type;
-
-            break;
-        }
-    }
-
 }).extend(joint.shapes.bpmn.IconInterface);
 
 
-joint.shapes.bpmn.Organization = joint.dia.Element.extend({
-
-    markup: '<g class="rotatable"><g><circle class="body outer"/><circle class="body inner"/><image/></g><text class="label"/></g>',
+joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
 
     defaults: joint.util.deepSupplement({
 
@@ -575,63 +518,33 @@ joint.shapes.bpmn.Organization = joint.dia.Element.extend({
 
         joint.dia.Element.prototype.initialize.apply(this, arguments);
 
-        this.listenTo(this, 'change:eventType', this.onEventTypeChange);
-
-        this.onEventTypeChange(this, this.get('eventType'));
+        this.listenTo(this, 'change:name', this.setTooltip);
+        this.listenTo(this, 'change:parent', this.setTooltip);
+        this.listenTo(this, 'change:description', this.setTooltip);
     },
 
-    onEventTypeChange: function(cell, type) {
+    setTooltip: function() {
+        if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
+        var div = document.createElement("div"); 
+        div.className = 'tooltip-content';
+        var name = document.createElement("div");
+        name.className = 'tooltip-strong';
+        name.appendChild(document.createTextNode(this.get('name') || ''));
+        var parent = document.createElement("div").appendChild(document.createTextNode(this.get('parent') || ''));
+        var description = document.createElement("div").appendChild(document.createTextNode(this.get('description') || ''));
+        description.className = 'tooltip-text';
+        div.appendChild(name);
+        div.appendChild(description);
+        this.tooltip = new joint.ui.Tooltip({
+            target: ' [model-id="' + this.id + '"]',
+            content: div.innerHTML,
+            bottom: ' [model-id="' + this.id + '"]',
+            direction: 'bottom',
+            padding: 20
+        });
+    },
 
-        switch (type) {
-
-        case 'start':
-
-            cell.attr({
-                '.inner': {
-                    visibility: 'hidden'
-                },
-                '.outer': {
-                    'stroke-width': 1
-                }
-            });
-
-            break;
-
-        case 'end':
-
-            cell.attr({
-                '.inner': {
-                    visibility: 'hidden'
-                },
-                '.outer': {
-                    'stroke-width': 5
-                }
-            });
-
-            break;
-
-        case 'intermediate':
-
-            cell.attr({
-                '.inner': {
-                    visibility: 'visible'
-                },
-                '.outer': {
-                    'stroke-width': 1
-                }
-            });
-
-            break;
-
-        default:
-
-            throw "BPMN: Unknown Event Type: " + type;
-
-            break;
-        }
-    }
-
-}).extend(joint.shapes.bpmn.IconInterface);
+});
 
 
 stencil.load([
@@ -851,7 +764,7 @@ $(function () {
 
     //ugly hack for initializing tooltips
     graph.get('cells').each(function(cell) {
-        if (cell instanceof joint.shapes.bpmn.StepLink){
+        if (cell instanceof joint.shapes.bpmn.StepLink || cell instanceof joint.shapes.bpmn.Person || cell instanceof joint.shapes.bpmn.Organization){
             cell.setTooltip();
         }
     });
