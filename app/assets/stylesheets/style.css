@@ -293,3 +293,8 @@ color: #BD10E0;
   border-width: 15px;
   margin-left: -15px;
 }
+
+.tooltip-strong {
+  font-weight: 600;
+  font-size: 16px;
+}
