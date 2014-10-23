@@ -510,4 +510,21 @@ var inputs = {
             }
         }
     },
+
+    'bpmn.GroupOrganization': {
+        attrs: {
+            '.label/text': {
+                type: 'text',
+                label: 'Name',
+                group: 'general',
+                index: 1
+            },
+            '.body/fill': {
+                type: 'color',
+                label: 'Body Color',
+                group: 'appearance',
+                index: 1
+            }
+        }
+    },
 };
