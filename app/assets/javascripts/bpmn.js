@@ -317,18 +317,84 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
     setDivContent: function(cell, content) {
         var titleDiv = document.createElement("div"); 
         var titleText = document.createTextNode(this.get("title"));
-        titleDiv.appendChild(titleText);
-        titleDiv.classList.add("step-title");
+            titleDiv.appendChild(titleText);
+            titleDiv.classList.add("step-title");
+        
         var contentDiv = document.createElement("div"); 
-        var contentText = document.createTextNode(this.get("content"));
-        contentDiv.appendChild(contentText)
-        contentDiv.classList.add("step-content");
+        var the_content = this.get("content");
+        var contentText = document.createTextNode(the_content.substring(0,150));
+            contentDiv.appendChild(contentText);
+            contentDiv.classList.add("step-content");
+
+        var view_more_div = document.createElement("div"); 
+        var view_more_link = '';
+        var main_modal = '';
+        if( the_content.length > 150 )
+        {
+            var view_more_link = document.createElement("a"); 
+                view_more_link.innerHTML = 'ver más';
+                view_more_link.setAttribute('href','#');
+                view_more_link.setAttribute('data-toggle', "modal");
+                view_more_link.setAttribute('data-target', "#myModal"+this.cid);
+            view_more_div.appendChild(view_more_link) ;
+            ///el modal
+            var main_modal = document.createElement('div');
+                main_modal.setAttribute('id', "myModal"+this.cid);
+                main_modal.setAttribute('tabindex', "-1");
+                main_modal.setAttribute('role', "dialog");
+                main_modal.setAttribute('aria-labelledby', "myModalLabel");
+                main_modal.setAttribute('aria-hidden', "true");
+                main_modal.className = 'modal fade';
+
+            var main_modal_dialog = document.createElement('div');
+                main_modal_dialog.className = 'modal-dialog';
+
+            var main_modal_content = document.createElement('div');
+                main_modal_content.className = 'modal-content';
+
+            var main_modal_header = document.createElement('div');
+                main_modal_header.className = 'modal-header';
+
+            var main_modal_header_button = document.createElement('button');
+                main_modal_header_button.setAttribute('data-dismiss',"modal");
+            var main_modal_header_button_span_one = document.createElement('span');
+                main_modal_header_button_span_one.setAttribute('aria-hidden', "true");
+                main_modal_header_button_span_one.innerHTML = '&times;';
+            var main_modal_header_button_span_two = document.createElement('span');
+                main_modal_header_button_span_two.className = 'sr-only';
+                main_modal_header_button_span_two.innerHTML = 'Close;';
+            var main_modal_header_h4 = document.createElement('h4');
+                main_modal_header_h4.setAttribute('id','myModalLabel');
+                main_modal_header_h4.className = 'modal-title';
+                main_modal_header_h4.innerHTML = this.get("title");
+
+            main_modal_header_button.appendChild(main_modal_header_button_span_one);
+            main_modal_header_button.appendChild(main_modal_header_button_span_two);
+            
+            main_modal_header.appendChild(main_modal_header_button);
+            main_modal_header.appendChild(main_modal_header_h4);
+
+
+            var main_modal_body = document.createElement('div');
+                main_modal_body.className = 'modal-body';
+                main_modal_body.innerHTML = the_content;
+            
+            main_modal_content.appendChild(main_modal_header);
+            main_modal_content.appendChild(main_modal_body);
+
+            main_modal_dialog.appendChild(main_modal_content);
+            main_modal.appendChild(main_modal_dialog);
+            document.body.appendChild(main_modal);
+            //fin del modal
+        }
+
+        //console.log( contentText.length );
         // Append the content to div as html.
         cell.attr(
             { div :
                 // {html: this.get('title')+ this.get('content')}
                 // {html: "<div>"+ this.get('title') +"</div>"+"<div>"+ this.get('content') +"</div>"}
-                {html: titleDiv.outerHTML + contentDiv.outerHTML}
+                {html: titleDiv.outerHTML + contentDiv.outerHTML + view_more_div.outerHTML  }
             }
         );
     }
@@ -445,10 +511,6 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
         joint.dia.Element.prototype.initialize.apply(this, arguments);
 
-        this.listenTo(this, 'change:eventType', this.onEventTypeChange);
-
-        this.onEventTypeChange(this, this.get('eventType'));
-
         this.listenTo(this, 'change:name', this.setTooltip);
         this.listenTo(this, 'change:pos', this.setTooltip);
         this.listenTo(this, 'change:description', this.setTooltip);
@@ -471,9 +533,9 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         this.tooltip = new joint.ui.Tooltip({
             target: ' [model-id="' + this.id + '"]',
             content: div.innerHTML,
-            bottom: '.connection-wrap',
+            bottom: ' [model-id="' + this.id + '"]',
             direction: 'bottom',
-            padding: 0
+            padding: 20
         });
     },
 
@@ -481,63 +543,10 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         this.tooltip.remove()
     },
 
-    onEventTypeChange: function(cell, type) {
-
-        switch (type) {
-
-        case 'start':
-
-            cell.attr({
-                '.inner': {
-                    visibility: 'hidden'
-                },
-                '.outer': {
-                    'stroke-width': 1
-                }
-            });
-
-            break;
-
-        case 'end':
-
-            cell.attr({
-                '.inner': {
-                    visibility: 'hidden'
-                },
-                '.outer': {
-                    'stroke-width': 5
-                }
-            });
-
-            break;
-
-        case 'intermediate':
-
-            cell.attr({
-                '.inner': {
-                    visibility: 'visible'
-                },
-                '.outer': {
-                    'stroke-width': 1
-                }
-            });
-
-            break;
-
-        default:
-
-            throw "BPMN: Unknown Event Type: " + type;
-
-            break;
-        }
-    }
-
 }).extend(joint.shapes.bpmn.IconInterface);
 
 
-joint.shapes.bpmn.Organization = joint.dia.Element.extend({
-
-    markup: '<g class="rotatable"><g><circle class="body outer"/><circle class="body inner"/><image/></g><text class="label"/></g>',
+joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
 
     defaults: joint.util.deepSupplement({
 
@@ -575,63 +584,33 @@ joint.shapes.bpmn.Organization = joint.dia.Element.extend({
 
         joint.dia.Element.prototype.initialize.apply(this, arguments);
 
-        this.listenTo(this, 'change:eventType', this.onEventTypeChange);
-
-        this.onEventTypeChange(this, this.get('eventType'));
+        this.listenTo(this, 'change:name', this.setTooltip);
+        this.listenTo(this, 'change:parent', this.setTooltip);
+        this.listenTo(this, 'change:description', this.setTooltip);
     },
 
-    onEventTypeChange: function(cell, type) {
+    setTooltip: function() {
+        if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
+        var div = document.createElement("div"); 
+        div.className = 'tooltip-content';
+        var name = document.createElement("div");
+        name.className = 'tooltip-strong';
+        name.appendChild(document.createTextNode(this.get('name') || ''));
+        var parent = document.createElement("div").appendChild(document.createTextNode(this.get('parent') || ''));
+        var description = document.createElement("div").appendChild(document.createTextNode(this.get('description') || ''));
+        description.className = 'tooltip-text';
+        div.appendChild(name);
+        div.appendChild(description);
+        this.tooltip = new joint.ui.Tooltip({
+            target: ' [model-id="' + this.id + '"]',
+            content: div.innerHTML,
+            bottom: ' [model-id="' + this.id + '"]',
+            direction: 'bottom',
+            padding: 20
+        });
+    },
 
-        switch (type) {
-
-        case 'start':
-
-            cell.attr({
-                '.inner': {
-                    visibility: 'hidden'
-                },
-                '.outer': {
-                    'stroke-width': 1
-                }
-            });
-
-            break;
-
-        case 'end':
-
-            cell.attr({
-                '.inner': {
-                    visibility: 'hidden'
-                },
-                '.outer': {
-                    'stroke-width': 5
-                }
-            });
-
-            break;
-
-        case 'intermediate':
-
-            cell.attr({
-                '.inner': {
-                    visibility: 'visible'
-                },
-                '.outer': {
-                    'stroke-width': 1
-                }
-            });
-
-            break;
-
-        default:
-
-            throw "BPMN: Unknown Event Type: " + type;
-
-            break;
-        }
-    }
-
-}).extend(joint.shapes.bpmn.IconInterface);
+});
 
 
 stencil.load([
@@ -851,7 +830,7 @@ $(function () {
 
     //ugly hack for initializing tooltips
     graph.get('cells').each(function(cell) {
-        if (cell instanceof joint.shapes.bpmn.StepLink){
+        if (cell instanceof joint.shapes.bpmn.StepLink || cell instanceof joint.shapes.bpmn.Person || cell instanceof joint.shapes.bpmn.Organization){
             cell.setTooltip();
         }
     });
