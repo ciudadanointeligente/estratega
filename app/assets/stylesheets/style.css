@@ -416,3 +416,15 @@ color: #BD10E0;
   font-weight: 600;
   font-size: 16px;
 }
+
+/*Group*/
+
+.GroupOrganization rect {
+  opacity: 0.15;
+}
+
+.label {
+  font-size: 85%;
+  font-weight: 400;
+  text-transform: uppercase;
+}
