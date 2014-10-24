@@ -1109,16 +1109,17 @@ var toolbar = {
 
 $(function () {
 
-    var graph_data_json = $("#graph_data").html();
-    var graph_data     = $.parseJSON(graph_data_json);
-
-    graph.fromJSON(graph_data)
-
-    //ugly hack for initializing tooltips
-    graph.get('cells').each(function(cell) {
-        if (cell instanceof joint.shapes.bpmn.StepLink || cell instanceof joint.shapes.bpmn.Person || cell instanceof joint.shapes.bpmn.Organization){
-            cell.setTooltip();
-        }
-    });
+    var graph_data_json = $("#graph_data").html().trim();
+    if(graph_data_json){
+        console.log("in if")
+        var graph_data     = $.parseJSON(graph_data_json);
+        graph.fromJSON(graph_data);
+        //ugly hack for initializing tooltips
+        graph.get('cells').each(function(cell) {
+            if (cell instanceof joint.shapes.bpmn.StepLink || cell instanceof joint.shapes.bpmn.Person || cell instanceof joint.shapes.bpmn.Organization){
+                cell.setTooltip();
+            }
+        });
+    }
 
 });
