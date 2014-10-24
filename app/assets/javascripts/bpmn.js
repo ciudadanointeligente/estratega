@@ -495,7 +495,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                 transform: 'translate(30,30)'
             },
             '.inner': {
-                'stroke-width': 1, r: 16,
+                'stroke-width': 0, r: 16,
                 transform: 'translate(30,30)'
             },
             image: {
@@ -568,7 +568,7 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
                 transform: 'translate(30,30)'
             },
             '.inner': {
-                'stroke-width': 1, r: 16,
+                'stroke-width': 0, r: 16,
                 transform: 'translate(30,30)'
             },
             image: {
