@@ -836,12 +836,11 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
             '.body': {
                 width: 200,
                 height: 200,
-                stroke: '#000000',
                 'stroke-dasharray': '6,6',
                 'stroke-width': 2,
-                fill: 'transparent',
-                rx: 5,
-                ry: 5,
+                fill: '#50E3C2',
+                rx: 0,
+                ry: 0,
                 'pointer-events': 'stroke'
             },
             '.label-rect': {
@@ -852,8 +851,7 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
                 rx: 2,
                 ry: 2,
                 height: 20,
-                fill: '#ffffff',
-                stroke: '#000000'
+                fill: '#000000'
             },
             '.label-group': {
                 ref: '.label-rect',
@@ -870,9 +868,8 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
                 x: '50%',
                 dy: 5,
                 'text-anchor': 'middle',
-                'font-family': 'Arial',
-                'font-size': 13,
-                fill: '#000000'
+                'font-size': 14,
+                fill: '#ffffff'
             }
         }
 
