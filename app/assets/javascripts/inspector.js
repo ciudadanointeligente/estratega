@@ -472,6 +472,12 @@ var inputs = {
             group: 'general',
             index: 3
         },
+        image: {
+            type: 'text',
+            label: 'URL image',
+            group: 'general',
+            index: 4
+        },
         attrs: {
             '.body/fill': {
                 type: 'color',
