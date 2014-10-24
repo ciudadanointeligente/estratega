@@ -41,10 +41,6 @@ a {
 
 /*Step halo*/
 
-text.label {
-  display: none;
-}
-
 .halo {
   padding: 0px;
   margin: -2px;
@@ -254,7 +250,88 @@ color: #BD10E0;
 
 /*Tooltip*/
 
-.tooltip {
+.joint-tooltip {
+   position: fixed;
+   z-index: 100;
+   border-radius: 5px;
+   background-color: #333;
+   border: 2px solid rgb(36, 36, 36);
+   color: #bcbcbc;
+   pointer-events: none;
+   padding: 10px;
+   font-size: 14px;
+   text-shadow: 0 -1px 0 #000;
+}
+.joint-tooltip.small {
+   padding: 5px;
+   font-size: 10px;
+}
+.joint-tooltip:after, .joint-tooltip:before {
+   border: solid transparent;
+   content: " ";
+   height: 0;
+   width: 0;
+   position: absolute;
+   pointer-events: none;
+}
+.joint-tooltip.left:after, .joint-tooltip.left:before {
+   right: 100%;
+   top: 50%;
+}
+.joint-tooltip.right:after, .joint-tooltip.right:before {
+   top: 50%;
+   left: 100%;
+}
+.joint-tooltip.top:after, .joint-tooltip.top:before {
+   left: 50%;
+   bottom: 100%;
+}
+.joint-tooltip.bottom:after, .joint-tooltip.bottom:before {
+   left: 50%;
+   top: 100%;
+}
+
+.joint-tooltip:after {
+   border-width: 6px;
+}
+.joint-tooltip.left:after {
+   border-right-color: #333;
+   margin-top: -6px;
+}
+.joint-tooltip.right:after {
+   border-left-color: #333;
+   margin-top: -6px;
+}
+.joint-tooltip.top:after {
+   border-bottom-color: #333;
+   margin-left: -6px;
+}
+.joint-tooltip.bottom:after {
+   border-top-color: #333;
+   margin-left: -6px;
+}
+
+.joint-tooltip:before {
+   border-width: 8px;
+}
+.joint-tooltip.left:before {
+   border-right-color: rgb(36, 36, 36);
+   margin-top: -8px;
+}
+.joint-tooltip.right:before {
+   border-left-color: rgb(36, 36, 36);
+   margin-top: -8px;
+}
+.joint-tooltip.top:before {
+   border-bottom-color: rgb(36, 36, 36);
+   margin-left: -8px;
+}
+.joint-tooltip.bottom:before {
+   border-top-color: rgb(36, 36, 36);
+   margin-left: -8px;
+}
+
+.joint-tooltip {
   max-width: 800px;
   background: #FFFBF6;
   border: none;
@@ -264,7 +341,7 @@ color: #BD10E0;
   border-radius: 0;
 }
 
-.tooltip.bottom:after {
+.joint-tooltip.bottom:after {
   top: 100%;
   left: 50%;
   border: solid transparent;
@@ -279,7 +356,7 @@ color: #BD10E0;
   margin-left: -15px;
 }
 
-.tooltip.top:after {
+.joint-tooltip.top:after {
   bottom: 100%;
   left: 50%;
   border: solid transparent;
@@ -294,7 +371,19 @@ color: #BD10E0;
   margin-left: -15px;
 }
 
-.tooltip-strong {
+.joint-tooltip-strong {
   font-weight: 600;
   font-size: 16px;
+}
+
+/*Group*/
+
+.GroupOrganization rect {
+  opacity: 0.15;
+}
+
+.label {
+  font-size: 85%;
+  font-weight: 400;
+  text-transform: uppercase;
 }

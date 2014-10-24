@@ -7,7 +7,7 @@
         </div>
         <div id="sidebar-left" role="sidebar" class="sidebar">
           <div id="toolbar-container">
-            <input id="fileName" type="text" value="Process Mapping"/>
+            <div id="fileName"><%= link_to truncate(@sandbox.name, length: 40, omission: "..."), [:edit, @sandbox] %></div>
             <button class="btn-drive-save" onclick="toolbar.saveGraph()" data-tooltip="Save"><i class="fa fa-floppy-o fa-lg"></i></button>
             <button class="btn-print" onclick="paper.print()" data-tooltip="Print"><i class="fa fa-print fa-lg"></i></button>
             <button class="btn-json" onclick="toolbar.toJSON()" data-tooltip="Open As JSON"><i class="fa fa-file-code-o fa-lg"></i></button>

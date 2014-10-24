@@ -19,12 +19,18 @@ var graph = new joint.dia.Graph({ type: 'bpmn' }).on({
         var x = { 'bpmn.Pool': 5, 'bpmn.Choreography': 2 }[type];
 
         if (cell instanceof joint.shapes.bpmn.Step) {
-            var size = cell.get('size');
             cell.set('size', {
                 width: 240,
                 height: 210
             }, { silent: true });
             cell.setForeignObjectSize(cell, {width: 240, height: 210});
+        }
+
+        if (cell instanceof joint.shapes.bpmn.GroupOrganization) {
+            cell.set('size', {
+                width: 280,
+                height: 190
+            }, { silent: true });
         }
     }
 
@@ -33,6 +39,209 @@ var graph = new joint.dia.Graph({ type: 'bpmn' }).on({
 var commandManager = new joint.dia.CommandManager({ graph: this.graph });
 
 /* PAPER + SCROLLER */
+
+joint.ui.Tooltip = Backbone.View.extend({
+
+    className: 'joint-tooltip',
+
+    options: {
+        // `left` allows you to set a selector (or DOM element) that
+        // will be used as the left edge of the tooltip. This is useful when configuring a tooltip
+        // that should be shown "after" some other element. Other sides are analogous.
+        left: undefined,
+        right: undefined,
+        top: undefined,
+        bottom: undefined,
+        padding: 10,
+        target: undefined,
+        rootTarget: undefined
+    },
+
+    initialize: function(options) {
+
+    this.options = _.extend({}, _.result(this, 'options'), options || {});
+
+        _.bindAll(this, 'render', 'hide', 'position');
+
+        if (this.options.rootTarget) {
+            
+            this.$rootTarget = $(this.options.rootTarget);
+            
+            this.$rootTarget.on('mouseover', this.options.target, this.render);
+            this.$rootTarget.on('mouseout', this.options.target, this.hide);
+            this.$rootTarget.on('mousedown', this.options.target, this.hide);
+
+        } else {
+        
+            this.$target = $(this.options.target);
+            
+            this.$target.on('mouseover', this.render);
+            this.$target.on('mouseout', this.hide);
+            this.$target.on('mousedown', this.hide);
+        }
+
+        this.$el.addClass(this.options.direction);
+    },
+
+    remove: function() {
+
+        this.$target.off('mouseover', this.render);
+        this.$target.off('mouseout', this.hide);
+        this.$target.off('mousedown', this.hide);
+        
+        Backbone.View.prototype.remove.apply(this, arguments);
+    },
+
+    hide: function() {
+
+        Backbone.View.prototype.remove.apply(this, arguments);
+    },
+    
+    render: function(evt) {
+
+        var target;
+        var isPoint = !_.isUndefined(evt.x) && !_.isUndefined(evt.y);
+        
+        if (isPoint) {
+            
+            target = evt;
+            
+        } else {
+
+            this.$target = $(evt.target).closest(this.options.target);
+            target = this.$target[0];
+        }
+        
+        this.$el.html(_.isFunction(this.options.content) ? this.options.content(target) : this.options.content);
+        
+        // Hide the element first so that we don't get a jumping effect during the image loading.
+        this.$el.hide();
+        $(document.body).append(this.$el);
+
+        // If there is an image in the `content`, wait till it's loaded as only after that
+        // we know the dimension of the tooltip.
+        var $images = this.$('img');
+        if ($images.length) {
+
+            $images.on('load', _.bind(function() { this.position(isPoint ? target : undefined); }, this));
+            
+        } else {
+
+            this.position(isPoint ? target : undefined);
+        }
+    },
+
+    getElementBBox: function(el) {
+
+        var $el = $(el);
+        var offset = $el.offset();
+        var bbox;
+
+        // Compensate for the document scroll.
+        // Safari uses `document.body.scrollTop` only while Firefox uses `document.documentElement.scrollTop` only.
+        // Google Chrome is the winner here as it uses both.
+        var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+        var scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft;
+        
+        offset.top -= (scrollTop || 0);
+        offset.left -= (scrollLeft || 0);
+        
+        if (el.ownerSVGElement) {
+
+            // Use Vectorizer to get the dimensions of the element if it is an SVG element.
+            bbox = V(el).bbox();
+
+            // getBoundingClientRect() used in jQuery.fn.offset() takes into account `stroke-width`
+            // in Firefox only. So clientRect width/height and getBBox width/height in FF don't match.
+            // To unify this across all browsers we add the `stroke-width` (left & top) back to
+            // the calculated offset.
+            var crect = el.getBoundingClientRect();
+            var strokeWidthX = (crect.width - bbox.width) / 2;
+            var strokeWidthY = (crect.height - bbox.height) / 2;
+
+            // The `bbox()` returns coordinates relative to the SVG viewport, therefore, use the
+            // ones returned from the `offset()` method that are relative to the document.
+            bbox.x = offset.left + strokeWidthX;
+            bbox.y = offset.top + strokeWidthY;
+            
+        } else {
+            
+            bbox = { x: offset.left, y: offset.top, width: $el.outerWidth(), height: $el.outerHeight() };
+        }
+
+        return bbox;
+    },
+
+    position: function(p) {
+
+        var bbox;
+
+        if (p) {
+            
+            bbox = { x: p.x, y: p.y, width: 1, height: 1 };
+            
+        } else {
+
+            bbox = this.getElementBBox(this.$target[0]);            
+        }
+        
+        var padding = this.options.padding;
+
+        // Show the tooltip. Do this before we ask for its dimension, otherwise they won't be defined yet.
+        this.$el.show();
+        
+        var height = this.$el.outerHeight();
+        var width = this.$el.outerWidth();
+        
+        // If `options.left` selector or DOM element is defined, we use its right coordinate
+        // as a left coordinate for the tooltip. In other words, the `options.left` element
+        // is on the left of the tooltip. This is useful when you want to tooltip to
+        // appear "after" a certain element.
+        if (this.options.left) {
+
+            var $left = $(_.isFunction(this.options.left) ? this.options.left(this.$target[0]) : this.options.left);
+            var leftBbox = this.getElementBBox($left[0]);
+            this.$el.css({
+                left: leftBbox.x + leftBbox.width + padding,
+                top: bbox.y + bbox.height/2 - height/2
+            });
+            
+        } else if (this.options.right) {
+
+            var $right = $(_.isFunction(this.options.right) ? this.options.right(this.$target[0]) : this.options.right);
+            var rightBbox = this.getElementBBox($right[0]);
+            this.$el.css({
+                left: rightBbox.x - width - padding,
+                top: bbox.y + bbox.height/2 - height/2
+            });
+
+        } else if (this.options.top) {
+
+            var $top = $(_.isFunction(this.options.top) ? this.options.top(this.$target[0]) : this.options.top);
+            var topBbox = this.getElementBBox($top[0]);
+            this.$el.css({
+                top: topBbox.y + topBbox.height + padding,
+                left: bbox.x + bbox.width/2 - width/2
+            });
+
+        } else if (this.options.bottom) {
+
+            var $bottom = $(_.isFunction(this.options.bottom) ? this.options.bottom(this.$target[0]) : this.options.bottom);
+            var bottomBbox = this.getElementBBox($bottom[0]);
+            this.$el.css({
+                top: bottomBbox.y - height - padding,
+                left: bbox.x + bbox.width/2 - width/2
+            });
+            
+        } else {
+
+            this.$el.css({
+                left: bbox.x + bbox.width + padding,
+                top: bbox.y + bbox.height/2 - height/2
+            });
+        }
+    }
+});
 
 
 joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
@@ -100,7 +309,7 @@ var paper = new joint.dia.Paper({
     width: 4000,
     height: 1000,
     model: graph,
-    gridSize: 40,
+    gridSize: 45,
     model: graph,
     perpendicularLinks: true,
     // defaultLink: new joint.shapes.bpmn.Flow,
@@ -489,7 +698,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                 transform: 'translate(30,30)'
             },
             '.inner': {
-                'stroke-width': 1, r: 16,
+                'stroke-width': 0, r: 16,
                 transform: 'translate(30,30)'
             },
             image: {
@@ -577,7 +786,7 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
                 transform: 'translate(30,30)'
             },
             '.inner': {
-                'stroke-width': 1, r: 16,
+                'stroke-width': 0, r: 16,
                 transform: 'translate(30,30)'
             },
             image: {
@@ -627,6 +836,61 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
 
 });
 
+joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
+
+    markup: '<g class="rotatable"><g class="scalable"><rect class="body"/></g><rect class="label-rect"/><g class="label-group"><svg overflow="hidden" class="label-wrap"><text class="label"/></svg></g></g>',
+
+    defaults: joint.util.deepSupplement({
+
+        type: 'bpmn.GroupOrganization',
+        size: {
+            width: 200,
+            height: 200
+        },
+        attrs: {
+            '.body': {
+                width: 200,
+                height: 200,
+                'stroke-dasharray': '6,6',
+                'stroke-width': 2,
+                fill: '#50E3C2',
+                rx: 0,
+                ry: 0,
+                'pointer-events': 'stroke'
+            },
+            '.label-rect': {
+                ref: '.body',
+                'ref-width': 0.6,
+                'ref-x': 0.38,
+                'ref-y': 5,
+                rx: 2,
+                ry: 2,
+                height: 20,
+                fill: '#000000'
+            },
+            '.label-group': {
+                ref: '.label-rect',
+                'ref-x': 0,
+                'ref-y': 0
+            },
+            '.label-wrap': {
+                ref: '.label-rect',
+                'ref-width': 1,
+                'ref-height': 1
+            },
+            '.label': {
+                text: '',
+                x: '50%',
+                dy: 5,
+                'text-anchor': 'middle',
+                'font-size': 14,
+                fill: '#ffffff'
+            }
+        }
+
+    }, joint.dia.Element.prototype.defaults)
+});
+
 
 stencil.load([
     new joint.shapes.bpmn.Step,
@@ -634,11 +898,10 @@ stencil.load([
     new joint.shapes.bpmn.Intervention,
     new joint.shapes.bpmn.Person,
     new joint.shapes.bpmn.Organization,
-    new joint.shapes.bpmn.Annotation,
-    new joint.shapes.bpmn.Group({
+    // new joint.shapes.bpmn.Annotation,
+    new joint.shapes.bpmn.GroupOrganization({
         attrs: {
-            '.': { magnet: false },
-            '.label': { text: 'Group' }
+            '.label': { text: 'Organization' }
         }
     }),
 ]);
@@ -742,26 +1005,49 @@ function openIHF(cellView) {
             $('#inspector-container').prepend(inspector.render().el);
         }
 
-        if (cellView.model instanceof joint.dia.Element && !selection.contains(cellView.model)) {
+        if (!selection.contains(cellView.model)) {
+            if (cellView.model instanceof joint.dia.Element && !( cellView.model instanceof joint.shapes.bpmn.GroupOrganization)) {
 
-            // new joint.ui.FreeTransform({ cellView: cellView }).render();
+                // new joint.ui.FreeTransform({ cellView: cellView }).render();
 
-            var halo = new joint.ui.Halo({
-                cellView: cellView,
-                boxContent: function(cellView) {
-                    return cellView.model.get('type');
-                }
-            });
-            halo.render();
-            halo.removeHandle('resize');
-            halo.removeHandle('rotate');
-            halo.removeHandle('clone');
-            halo.removeHandle('unlink');
-            halo.changeHandle('link', { position: 'se' });
-            halo.changeHandle('fork', { position: 's' });
+                var halo = new joint.ui.Halo({
+                    cellView: cellView,
+                    boxContent: function(cellView) {
+                        return cellView.model.get('type');
+                    }
+                });
+                halo.render();
+                halo.removeHandle('resize');
+                halo.removeHandle('rotate');
+                halo.removeHandle('clone');
+                halo.removeHandle('unlink');
+                halo.changeHandle('link', { position: 'se' });
+                halo.changeHandle('fork', { position: 's' });
 
-            selectionView.cancelSelection();
-            selection.reset([cellView.model], { safe: true });
+                selectionView.cancelSelection();
+                selection.reset([cellView.model], { safe: true });
+            }
+            else if (cellView.model instanceof joint.shapes.bpmn.GroupOrganization) {
+
+                new joint.ui.FreeTransform({ cellView: cellView }).render();
+
+                var halo = new joint.ui.Halo({
+                    cellView: cellView,
+                    boxContent: function(cellView) {
+                        return cellView.model.get('type');
+                    }
+                });
+                halo.render();
+                halo.removeHandle('resize');
+                halo.removeHandle('rotate');
+                halo.removeHandle('clone');
+                halo.removeHandle('unlink');
+                halo.changeHandle('link', { position: 'se' });
+                halo.changeHandle('fork', { position: 's' });
+
+                selectionView.cancelSelection();
+                selection.reset([cellView.model], { safe: true });
+            }
         }
 }
 
@@ -838,16 +1124,17 @@ var toolbar = {
 
 $(function () {
 
-    var graph_data_json = $("#graph_data").html();
-    var graph_data     = $.parseJSON(graph_data_json);
-
-    graph.fromJSON(graph_data)
-
-    //ugly hack for initializing tooltips
-    graph.get('cells').each(function(cell) {
-        if (cell instanceof joint.shapes.bpmn.StepLink || cell instanceof joint.shapes.bpmn.Person || cell instanceof joint.shapes.bpmn.Organization){
-            cell.setTooltip();
-        }
-    });
+    var graph_data_json = $("#graph_data").html().trim();
+    if(graph_data_json){
+        console.log("in if")
+        var graph_data     = $.parseJSON(graph_data_json);
+        graph.fromJSON(graph_data);
+        //ugly hack for initializing tooltips
+        graph.get('cells').each(function(cell) {
+            if (cell instanceof joint.shapes.bpmn.StepLink || cell instanceof joint.shapes.bpmn.Person || cell instanceof joint.shapes.bpmn.Organization){
+                cell.setTooltip();
+            }
+        });
+    }
 
 });
