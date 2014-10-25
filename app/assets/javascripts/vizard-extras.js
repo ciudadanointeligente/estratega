@@ -95,11 +95,13 @@ $(function(){
         $(paper_container).css('right','0px');
         $(sidebar_right).css('width','0px');
         $(this).css('width','40px');
+        $('#btn-right').css('-webkit-transform','rotate(180deg)').css('transform','rotate(180deg)');
       } else {
         $(sidebar_right).css('display','block');
         $(paper_container).css('right','300px');
         $(sidebar_right).css('width','300px');
         $(this).css('width','340px');
+        $('#btn-right').css('-webkit-transform','rotate(0deg)').css('transform','rotate(0deg)');
       }
     });
 
@@ -108,10 +110,12 @@ $(function(){
         $(this).css('left','0px');
         $(sidebar_left).css('display','none');
         $(paper_container).css('left','0px');
+        $('#btn-left').css('-webkit-transform','rotate(180deg)').css('transform','rotate(180deg)');
       } else {
         $(this).css('left','300px');
         $(sidebar_left).css('display','block');
         $(paper_container).css('left','300px');
+        $('#btn-left').css('-webkit-transform','rotate(0deg)').css('transform','rotate(0deg)');
       }
     });
 });

@@ -720,14 +720,17 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
     }, joint.dia.Element.prototype.defaults),
 
-    initialize: function() {
-
+    initialize: function() { 
         joint.dia.Element.prototype.initialize.apply(this, arguments);
 
         this.listenTo(this, 'change:name', this.setTooltip);
         this.listenTo(this, 'change:pos', this.setTooltip);
         this.listenTo(this, 'change:description', this.setTooltip);
         this.listenTo(this, 'change:size_type', this.setSize);
+        this.listenTo(this, 'change:image', this.setImage);
+        if( this.attributes.hasOwnProperty('image') ) {
+            this.setImage();
+        }
     },
 
     tooltip: {},
@@ -774,6 +777,17 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                 break;
         }
     },
+    setImage: function() {
+        var main_id = this.id,
+            elem_image = '[model-id='+main_id+'] image',
+            the_image = this.attributes.image;
+
+        $(elem_image).attr('width',40);
+        $(elem_image).attr('height',40);
+        $(elem_image).attr('transform','translate(10,10)');
+        $(elem_image).attr('href',the_image);
+        
+    }
 
 }).extend(joint.shapes.bpmn.IconInterface);
 

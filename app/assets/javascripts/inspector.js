@@ -477,6 +477,11 @@ var inputs = {
             options: ['small','medium','large'],
             group: 'general',
             label: 'Size',
+        },
+        image: {
+            type: 'text',
+            label: 'URL image',
+            group: 'general',
             index: 4
         },
         attrs: {
