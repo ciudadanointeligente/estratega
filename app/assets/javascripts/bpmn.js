@@ -835,6 +835,7 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
         this.listenTo(this, 'change:name', this.setTooltip);
         this.listenTo(this, 'change:parent', this.setTooltip);
         this.listenTo(this, 'change:description', this.setTooltip);
+        this.listenTo(this, 'change:size_type', this.setSize);
     },
 
     setTooltip: function() {
