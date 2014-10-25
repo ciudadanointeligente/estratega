@@ -10,8 +10,10 @@ var graph = new joint.dia.Graph({ type: 'bpmn' }).on({
         var type = cell.get('type');
 
         // Set a low z-index on pools and groups so they always stay under all other elements.
-        var z = { 'bpmn.Pool': -3, 'bpmn.Group': -2, 'bpmn.Flow': -1 }[type];
-        if (z) cell.set('z', z, { silent: true });
+        var z = { 'bpmn.Step': -3, 'bpmn.External': -3, 'bpmn.Intervention': -3, 'bpmn.GroupOrganization': -2, 'bpmn.StepLink': -1 }[type];
+        if (z){
+            cell.set('z', z, { silent: true });
+        }
 
         if (!opt.stencil) return;
 
