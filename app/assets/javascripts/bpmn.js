@@ -309,7 +309,7 @@ var paper = new joint.dia.Paper({
     width: 4000,
     height: 1000,
     model: graph,
-    gridSize: 45,
+    gridSize: 15,
     model: graph,
     perpendicularLinks: true,
     // defaultLink: new joint.shapes.bpmn.Flow,
@@ -371,6 +371,9 @@ var paperScroller = new joint.ui.PaperScroller({
 paperScroller.$el.appendTo('#paper-container');
 
 paperScroller.center();
+
+var snaplines = new joint.ui.Snaplines({ paper: paper })
+snaplines.startListening()
 
 /* SELECTION */
 
