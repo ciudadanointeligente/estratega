@@ -682,12 +682,12 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
 
 joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
-    markup: '<g class="rotatable"><g><circle class="body outer"/><circle class="body inner"/><image/></g><text class="label"/></g>',
+    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image/></g><text class="label"/></g>',
 
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.Person',
-        size: { width: 60, height: 60 },
+        size: { width: 33, height: 33 },
         attrs: {
             '.body': {
                 fill: '#ffffff',
@@ -712,7 +712,8 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
             }
         },
         eventType: "start",
-        icon: 'user'
+        icon: 'user',
+        size_type: 'small'
 
     }, joint.dia.Element.prototype.defaults),
 
@@ -723,6 +724,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         this.listenTo(this, 'change:name', this.setTooltip);
         this.listenTo(this, 'change:pos', this.setTooltip);
         this.listenTo(this, 'change:description', this.setTooltip);
+        this.listenTo(this, 'change:size_type', this.setSize);
     },
 
     tooltip: {},
@@ -750,6 +752,24 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
     removePreviousTooltip: function() {
         this.tooltip.remove()
+    },
+
+    setSize: function() {
+        var size = this.get('size_type')
+
+        switch (size) {
+            case 'small':
+                this.set('size', { width: 33, height: 33 });
+                break;
+
+            case 'medium':
+                this.set('size', { width: 44, height: 44 });
+                break;
+
+            case 'large':
+                this.set('size', { width: 55, height: 55 });
+                break;
+        }
     },
 
 }).extend(joint.shapes.bpmn.IconInterface);
@@ -819,7 +839,7 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
         });
     },
 
-});
+}).extend(joint.shapes.bpmn.IconInterface);;
 
 joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
 
@@ -1023,7 +1043,7 @@ function openIHF(cellView) {
                     }
                 });
                 halo.render();
-                halo.removeHandle('resize');
+                // halo.removeHandle('resize');
                 halo.removeHandle('rotate');
                 halo.removeHandle('clone');
                 halo.removeHandle('unlink');
@@ -1111,7 +1131,6 @@ $(function () {
 
     var graph_data_json = $("#graph_data").html().trim();
     if(graph_data_json){
-        console.log("in if")
         var graph_data     = $.parseJSON(graph_data_json);
         graph.fromJSON(graph_data);
         //ugly hack for initializing tooltips

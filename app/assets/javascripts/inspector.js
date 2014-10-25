@@ -472,6 +472,13 @@ var inputs = {
             group: 'general',
             index: 3
         },
+        size_type: {
+            type: 'select',
+            options: ['small','medium','large'],
+            group: 'general',
+            label: 'Size',
+            index: 4
+        },
         attrs: {
             '.body/fill': {
                 type: 'color',
