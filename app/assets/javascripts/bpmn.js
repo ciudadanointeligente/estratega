@@ -10,8 +10,10 @@ var graph = new joint.dia.Graph({ type: 'bpmn' }).on({
         var type = cell.get('type');
 
         // Set a low z-index on pools and groups so they always stay under all other elements.
-        var z = { 'bpmn.Pool': -3, 'bpmn.Group': -2, 'bpmn.Flow': -1 }[type];
-        if (z) cell.set('z', z, { silent: true });
+        var z = { 'bpmn.Step': -3, 'bpmn.External': -3, 'bpmn.Intervention': -3, 'bpmn.GroupOrganization': -2, 'bpmn.StepLink': -1 }[type];
+        if (z){
+            cell.set('z', z, { silent: true });
+        }
 
         if (!opt.stencil) return;
 
@@ -309,7 +311,7 @@ var paper = new joint.dia.Paper({
     width: 4000,
     height: 1000,
     model: graph,
-    gridSize: 45,
+    gridSize: 15,
     model: graph,
     perpendicularLinks: true,
     // defaultLink: new joint.shapes.bpmn.Flow,
@@ -371,6 +373,9 @@ var paperScroller = new joint.ui.PaperScroller({
 paperScroller.$el.appendTo('#paper-container');
 
 paperScroller.center();
+
+var snaplines = new joint.ui.Snaplines({ paper: paper })
+snaplines.startListening()
 
 /* SELECTION */
 
@@ -682,12 +687,12 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
 
 joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
-    markup: '<g class="rotatable"><g><circle class="body outer"/><circle class="body inner"/><image/></g><text class="label"/></g>',
+    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image/></g><text class="label"/></g>',
 
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.Person',
-        size: { width: 60, height: 60 },
+        size: { width: 33, height: 33 },
         attrs: {
             '.body': {
                 fill: '#ffffff',
@@ -712,17 +717,22 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
             }
         },
         eventType: "start",
-        icon: 'user'
+        icon: 'user',
+        size_type: 'small'
 
     }, joint.dia.Element.prototype.defaults),
 
-    initialize: function() {
-
+    initialize: function() { 
         joint.dia.Element.prototype.initialize.apply(this, arguments);
 
         this.listenTo(this, 'change:name', this.setTooltip);
         this.listenTo(this, 'change:pos', this.setTooltip);
         this.listenTo(this, 'change:description', this.setTooltip);
+        this.listenTo(this, 'change:size_type', this.setSize);
+        this.listenTo(this, 'change:image', this.setImage);
+        if( this.attributes.hasOwnProperty('image') ) {
+            this.setImage();
+        }
     },
 
     tooltip: {},
@@ -751,6 +761,35 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
     removePreviousTooltip: function() {
         this.tooltip.remove()
     },
+
+    setSize: function() {
+        var size = this.get('size_type')
+
+        switch (size) {
+            case 'small':
+                this.set('size', { width: 33, height: 33 });
+                break;
+
+            case 'medium':
+                this.set('size', { width: 44, height: 44 });
+                break;
+
+            case 'large':
+                this.set('size', { width: 55, height: 55 });
+                break;
+        }
+    },
+    setImage: function() {
+        var main_id = this.id,
+            elem_image = '[model-id='+main_id+'] image',
+            the_image = this.attributes.image;
+
+        $(elem_image).attr('width',40);
+        $(elem_image).attr('height',40);
+        $(elem_image).attr('transform','translate(10,10)');
+        $(elem_image).attr('href',the_image);
+        
+    }
 
 }).extend(joint.shapes.bpmn.IconInterface);
 
@@ -796,6 +835,7 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
         this.listenTo(this, 'change:name', this.setTooltip);
         this.listenTo(this, 'change:parent', this.setTooltip);
         this.listenTo(this, 'change:description', this.setTooltip);
+        this.listenTo(this, 'change:size_type', this.setSize);
     },
 
     setTooltip: function() {
@@ -819,7 +859,7 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
         });
     },
 
-});
+}).extend(joint.shapes.bpmn.IconInterface);;
 
 joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
 
@@ -1023,7 +1063,7 @@ function openIHF(cellView) {
                     }
                 });
                 halo.render();
-                halo.removeHandle('resize');
+                // halo.removeHandle('resize');
                 halo.removeHandle('rotate');
                 halo.removeHandle('clone');
                 halo.removeHandle('unlink');
@@ -1109,16 +1149,16 @@ var toolbar = {
 
 $(function () {
 
-    var graph_data_json = $("#graph_data").html();
-    var graph_data     = $.parseJSON(graph_data_json);
-
-    graph.fromJSON(graph_data)
-
-    //ugly hack for initializing tooltips
-    graph.get('cells').each(function(cell) {
-        if (cell instanceof joint.shapes.bpmn.StepLink || cell instanceof joint.shapes.bpmn.Person || cell instanceof joint.shapes.bpmn.Organization){
-            cell.setTooltip();
-        }
-    });
+    var graph_data_json = $("#graph_data").html().trim();
+    if(graph_data_json){
+        var graph_data     = $.parseJSON(graph_data_json);
+        graph.fromJSON(graph_data);
+        //ugly hack for initializing tooltips
+        graph.get('cells').each(function(cell) {
+            if (cell instanceof joint.shapes.bpmn.StepLink || cell instanceof joint.shapes.bpmn.Person || cell instanceof joint.shapes.bpmn.Organization){
+                cell.setTooltip();
+            }
+        });
+    }
 
 });

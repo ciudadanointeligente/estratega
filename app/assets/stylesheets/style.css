@@ -194,34 +194,13 @@ color: #BD10E0;
   left: 300px;
   width: 40px;
   background: #F2F2F2;
-  height: 70px;
+  height: 55px;
   cursor: pointer;
-  top: 45px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.12);
 }
 
-.stencil-trigger::before, .stencil-trigger::after {
-  content: '';
-  position: absolute;
-  width: 30px;
-  height: 1px;
-  background: #888;
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-.stencil-trigger::before {
-  top: 64%;
-  right: 5px;
-}
-
-.stencil-trigger::after {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  top: 36%;
-  right: 5px;
+.stencil-trigger i {
+  margin-top: 2px;
 }
 
 /*Inspector*/
@@ -260,33 +239,13 @@ color: #BD10E0;
   right: 0;
   width: 340px;
   background: #F2F2F2;
-  height: 70px;
+  height: 55px;
   cursor: pointer;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12);
 }
 
-.inspector-trigger::before, .inspector-trigger::after {
-  content: '';
-  position: absolute;
-  width: 30px;
-  height: 1px;
-  background: #888;
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-.inspector-trigger::before {
-  top: 36%;
-  left: 5px;
-}
-
-.inspector-trigger::after {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  top: 64%;
-  left: 5px;
+.inspector-trigger i {
+  margin-top: 2px;
 }
 
 /*Tooltip*/
