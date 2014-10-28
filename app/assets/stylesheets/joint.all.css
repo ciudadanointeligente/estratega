@@ -1260,12 +1260,10 @@ unmatched elements opaque instead of completely invisible which is the default.
     }
 
     body:before {
-        content: 'JointJS';
         font-size: 15mm;
         position: absolute;
-        top: 5mm;
+        top: 2mm;
         right: 5mm;
-        z-index: 100000;
     }
 
     /* Do not display the above for foreign object bodies */

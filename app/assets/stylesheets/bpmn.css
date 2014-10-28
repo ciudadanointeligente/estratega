@@ -644,7 +644,6 @@
 @media print {
 
     body:before {
-        content: 'JointJS : Business Process Model and Notation';
-        font-size: 6mm;
+        font-size: 3mm;
     }
 }
