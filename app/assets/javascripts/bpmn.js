@@ -750,23 +750,26 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
     setTooltip: function() {
         if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
-        var div = document.createElement("div"); 
-        div.className = 'tooltip-content';
-        var name = document.createElement("div");
-        name.className = 'tooltip-strong';
-        name.appendChild(document.createTextNode(this.get('name') || ''));
-        var pos = document.createElement("div").appendChild(document.createTextNode(this.get('pos') || ''));
-        var description = document.createElement("div").appendChild(document.createTextNode(this.get('description') || ''));
-        description.className = 'tooltip-text';
-        div.appendChild(name);
-        div.appendChild(description);
-        this.tooltip = new joint.ui.Tooltip({
-            target: ' [model-id="' + this.id + '"]',
-            content: div.innerHTML,
-            bottom: ' [model-id="' + this.id + '"]',
-            direction: 'bottom',
-            padding: 20
-        });
+        
+        if( (this.has('name') && this.get('name').length>0) || (this.has('description') && this.get('description').length>0) ) {
+            var div = document.createElement("div"); 
+                div.className = 'tooltip-content';
+            var name = document.createElement("div");
+                name.className = 'tooltip-strong';
+                name.appendChild(document.createTextNode(this.get('name') || ''));
+            var pos = document.createElement("div").appendChild(document.createTextNode(this.get('pos') || ''));
+            var description = document.createElement("div").appendChild(document.createTextNode(this.get('description') || ''));
+                description.className = 'tooltip-text';
+            div.appendChild(name);
+            div.appendChild(description);
+            this.tooltip = new joint.ui.Tooltip({
+                target: ' [model-id="' + this.id + '"]',
+                content: div.innerHTML,
+                bottom: ' [model-id="' + this.id + '"]',
+                direction: 'bottom',
+                padding: 20
+            });
+        }
     },
 
     removePreviousTooltip: function() {
@@ -851,23 +854,25 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
 
     setTooltip: function() {
         if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
-        var div = document.createElement("div"); 
-        div.className = 'tooltip-content';
-        var name = document.createElement("div");
-        name.className = 'tooltip-strong';
-        name.appendChild(document.createTextNode(this.get('name') || ''));
-        var parent = document.createElement("div").appendChild(document.createTextNode(this.get('parent') || ''));
-        var description = document.createElement("div").appendChild(document.createTextNode(this.get('description') || ''));
-        description.className = 'tooltip-text';
-        div.appendChild(name);
-        div.appendChild(description);
-        this.tooltip = new joint.ui.Tooltip({
-            target: ' [model-id="' + this.id + '"]',
-            content: div.innerHTML,
-            bottom: ' [model-id="' + this.id + '"]',
-            direction: 'bottom',
-            padding: 20
-        });
+        if( (this.has('name') && this.get('name').length>0) || (this.has('description') && this.get('description').length>0) ) {
+            var div = document.createElement("div"); 
+                div.className = 'tooltip-content';
+            var name = document.createElement("div");
+                name.className = 'tooltip-strong';
+                name.appendChild(document.createTextNode(this.get('name') || ''));
+            var parent = document.createElement("div").appendChild(document.createTextNode(this.get('parent') || ''));
+            var description = document.createElement("div").appendChild(document.createTextNode(this.get('description') || ''));
+                description.className = 'tooltip-text';
+            div.appendChild(name);
+            div.appendChild(description);
+            this.tooltip = new joint.ui.Tooltip({
+                target: ' [model-id="' + this.id + '"]',
+                content: div.innerHTML,
+                bottom: ' [model-id="' + this.id + '"]',
+                direction: 'bottom',
+                padding: 20
+            });
+        }
     },
 
 }).extend(joint.shapes.bpmn.IconInterface);;
