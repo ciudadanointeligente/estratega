@@ -5,8 +5,8 @@ FactoryGirl.define do
     name "MyString"
     description "MyString"
     graph_data "MyString"
-    
-    factory :invalid_sandbox do 
+
+    factory :invalid_sandbox do
       name ""
       description "MyString"
       graph_data "MyString"
