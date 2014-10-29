@@ -106,7 +106,7 @@ a {
 
 .halo.tiny .handle.s {
   bottom: -16px;
-  left: -4px;
+  left: 34px;
 }
 
 /*Halo small*/
@@ -114,7 +114,7 @@ a {
 .halo.small {
   border-radius: 30px;
   padding: 0px;
-  margin: 0px;
+  margin: 1px;
   border: none;
 }
 
@@ -125,18 +125,18 @@ a {
 }
 
 .halo.small .handle.nw {
-  top: -17px;
-  left: 39px;
+  top: -12px;
+  left: 51px;
 }
 
 .halo.small .handle.se {
-  bottom: 9px;
+  bottom: 15px;
   right: -29px;
 }
 
 .halo.small .handle.s {
-  bottom: -18px;
-  margin-left: -7px;
+  bottom: -12px;
+  margin-left: 5px;
 }
 
 
