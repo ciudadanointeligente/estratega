@@ -266,6 +266,7 @@ color: #BD10E0;
 
 .inspector input[type=text] {
   width: 93%;
+  min-height: 35px;
 }
 
 .inspector input, .inspector .toggle, .inspector select, .inspector .list-item .btn-list-del {
