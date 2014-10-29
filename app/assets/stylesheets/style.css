@@ -76,7 +76,7 @@ a {
 
 .halo .handle.s {
   bottom: -15px;
-  left: 85%;
+  left: 83%;
 }
 
 /*halo tiny*/
@@ -106,7 +106,7 @@ a {
 
 .halo.tiny .handle.s {
   bottom: -16px;
-  margin-left: -4px;
+  left: -4px;
 }
 
 /*Halo small*/
