@@ -43,10 +43,17 @@ a {
 
 .halo {
   padding: 0px;
-  margin: -2px;
-  border: 1px solid #0091EA;
+  margin: 0px;
   box-shadow: 0px 0px 6px #0091EA;
+  /*border-radius: 40px;*/
 }
+
+.halo > div {
+  width: 30px;
+  height: 30px;
+  background-size: 30px 30px;
+}
+
 
 .halo .box {
   display: none;
@@ -56,23 +63,10 @@ a {
   border: none;
 }
 
-.halo.small {
-  border-radius: 30px;
-  padding: 0px;
-  margin: 0px;
-  border: none;
-}
 
-.halo > div {
-  width: 30px;
-  height: 30px;
-  background-size: 30px 30px;
-}
-
-.halo.small > div {
-  width: 20px;
-  height: 20px;
-  background-size: 20px 20px;
+.halo .handle.nw {
+  top: -18px;
+  left: -17px;
 }
 
 .halo .handle.se {
@@ -80,25 +74,73 @@ a {
   right: -15px;
 }
 
-.halo.small .handle.se {
-  bottom: -27px;
-  right: -19px;
-}
-
 .halo .handle.s {
   bottom: -15px;
-  left: 80%;
+  left: 85%;
+}
+
+/*halo tiny*/
+
+.halo.tiny {
+  border-radius: 30px;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+
+.halo.tiny > div {
+  width: 20px;
+  height: 20px;
+  background-size: 20px 20px;
+}
+
+.halo.tiny .handle.nw {
+  top: -15px;
+  left: 30px;
+}
+
+.halo.tiny .handle.se {
+  bottom: 6px;
+  right: -26px;
+}
+
+.halo.tiny .handle.s {
+  bottom: -16px;
+  margin-left: -4px;
+}
+
+/*Halo small*/
+
+.halo.small {
+  border-radius: 30px;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+
+.halo.small > div {
+  width: 25px;
+  height: 25px;
+  background-size: 25px 25px;
+}
+
+.halo.small .handle.nw {
+  top: -17px;
+  left: 39px;
+}
+
+.halo.small .handle.se {
+  bottom: 9px;
+  right: -29px;
 }
 
 .halo.small .handle.s {
-  bottom: -27px;
-  margin-left: -17px;
+  bottom: -18px;
+  margin-left: -7px;
 }
 
-.halo .handle.nw {
-  top: -15px;
-  left: -15px;
-}
+
+/*Halo icons*/
 
 .halo .link {
   background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/arrow-right.svg);
@@ -224,6 +266,7 @@ color: #BD10E0;
 
 .inspector input[type=text] {
   width: 93%;
+  min-height: 35px;
 }
 
 .inspector input, .inspector .toggle, .inspector select, .inspector .list-item .btn-list-del {
