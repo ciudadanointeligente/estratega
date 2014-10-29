@@ -775,7 +775,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                 break;
 
             case 'large':
-                this.set('size', { width: 55, height: 55 });
+                this.set('size', { width: 60, height: 60 });
                 break;
         }
     },
