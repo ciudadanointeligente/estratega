@@ -118,4 +118,9 @@ $(function(){
         $('#btn-left').css('-webkit-transform','rotate(0deg)').css('transform','rotate(0deg)');
       }
     });
+
+    $(document).ready(function() {
+        var doc_name = $('#fileName a').html();
+        $('<style>@media print { body:before { content: "'+doc_name+'" } }</style>').appendTo('head');
+    });
 });

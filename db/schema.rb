@@ -11,7 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141013223623) do
+ActiveRecord::Schema.define(version: 20141022201627) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "other_names", force: true do |t|
+    t.string   "name"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string   "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "people_id"
+  end
+
+  add_index "other_names", ["people_id"], name: "index_other_names_on_people_id", using: :btree
+
+  create_table "people", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "gender"
+    t.datetime "birth_date"
+    t.datetime "death_date"
+    t.string   "image"
+    t.string   "summary"
+    t.text     "biography"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sandboxes", force: true do |t|
     t.string   "name"
