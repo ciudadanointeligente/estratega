@@ -698,7 +698,7 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
 
 joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
-    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image/></g><text class="label"/></g>',
+    markup: '<g class="rotatable"><defs><clipPath id="myClip"><circle cx="20" cy="20" r="20"/></clipPath></defs><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image clip-path="url(#myClip)"/></g><text class="label"/></g>',
 
     defaults: joint.util.deepSupplement({
 
@@ -1046,11 +1046,6 @@ function openIHF(cellView) {
     $(sidebar_right).css('width','300px');
     $(btn_sidebar_right).css('width','340px');
     $('#btn-right').css('-webkit-transform','rotate(0deg)').css('transform','rotate(0deg)');
-
-    var x = cellView.model.get('position').x;
-        y = cellView.model.get('position').y;
-    
-    paperScroller.center(x,y);
 
         // No need to re-render inspector if the cellView didn't change.
         if (!inspector || inspector.options.cellView !== cellView) {
