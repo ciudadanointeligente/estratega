@@ -474,7 +474,7 @@ var inputs = {
         },
         size_type: {
             type: 'select',
-            options: ['small','large'],
+            options: ['small','medium','large'],
             group: 'general',
             label: 'Size',
         },

@@ -475,7 +475,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         attrs: {
             rect: {
                 fill: '#ffffff',
-                stroke: '#E9E9E9',
+                stroke: '#CFCFCF',
                 width: 240,
                 height: 210
             },
