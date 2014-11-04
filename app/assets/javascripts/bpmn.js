@@ -1035,6 +1035,23 @@ $('#toolbar-container [data-tooltip]').each(function() {
 });
 
 function openIHF(cellView) {
+    var btn_sidebar_right = "#btn-inspector-container",
+        sidebar_right = "#inspector-container",
+        btn_sidebar_left = "#btn-sidebar-left", 
+        sidebar_left = "#sidebar-left",
+        paper_container = "#paper-container";
+
+    $(sidebar_right).css('display','block');
+    $(paper_container).css('right','300px');
+    $(sidebar_right).css('width','300px');
+    $(btn_sidebar_right).css('width','340px');
+    $('#btn-right').css('-webkit-transform','rotate(0deg)').css('transform','rotate(0deg)');
+
+    var x = cellView.model.get('position').x;
+        y = cellView.model.get('position').y;
+    
+    paperScroller.center(x,y);
+
         // No need to re-render inspector if the cellView didn't change.
         if (!inspector || inspector.options.cellView !== cellView) {
 
@@ -1184,6 +1201,9 @@ $(function () {
         graph.get('cells').each(function(cell) {
             if (cell instanceof joint.shapes.bpmn.StepLink || cell instanceof joint.shapes.bpmn.Person || cell instanceof joint.shapes.bpmn.Organization){
                 cell.setTooltip();
+            }
+            if(cell instanceof joint.shapes.bpmn.Person) {
+                cell.setImage();
             }
         });
     }

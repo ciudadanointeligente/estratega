@@ -119,8 +119,14 @@ $(function(){
       }
     });
 
-    $(document).ready(function() {
-        var doc_name = $('#fileName a').html();
-        $('<style>@media print { body:before { content: "'+doc_name+'" } }</style>').appendTo('head');
-    });
+    $(sidebar_right).css('display','none');
+    $(paper_container).css('right','0px');
+    $(sidebar_right).css('width','0px');
+    $(btn_sidebar_right).css('width','40px');
+    $('#btn-right').css('-webkit-transform','rotate(180deg)').css('transform','rotate(180deg)');
+
+    //$(document).ready(function() {
+    var doc_name = $('#fileName a').html();
+    $('<style>@media print { body:before { content: "'+doc_name+'" } }</style>').appendTo('head');
+    //});
 });
