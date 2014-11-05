@@ -18,8 +18,10 @@
       <!-- <%= render 'layouts/navigation' %> -->
     </header>
     <main role="main">
-       <!-- <%= render 'layouts/messages' %> -->
-       <%= yield %>
+      <div class="container">
+        <!-- <%= render 'layouts/messages' %> -->
+        <%= yield %>
+      </div>
     </main>
 
     <%= javascript_include_tag 'sandboxes', 'data-turbolinks-track' => true %>
