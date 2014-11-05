@@ -475,7 +475,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         attrs: {
             rect: {
                 fill: '#ffffff',
-                stroke: '#CFCFCF',
+                stroke: '#E0E0E0',
                 width: 240,
                 height: 210
             },
@@ -637,7 +637,7 @@ joint.shapes.bpmn.External = joint.shapes.bpmn.Step.extend({
         attrs: {
             rect: {
                 fill: '#EAF4FD',
-                stroke: '#C2DFF7',
+                stroke: '#A8CDEC',
                 width: 240 ,
                 height: 210
             },
@@ -945,11 +945,7 @@ stencil.load([
     new joint.shapes.bpmn.Step,
     new joint.shapes.bpmn.External,
     new joint.shapes.bpmn.Intervention,
-    new joint.shapes.bpmn.Person({
-        attrs: {
-            '.label': { text: 'Persona' }
-        }
-    }),
+    new joint.shapes.bpmn.Person,
     new joint.shapes.bpmn.Organization,
     // new joint.shapes.bpmn.Annotation,
     new joint.shapes.bpmn.GroupOrganization({
