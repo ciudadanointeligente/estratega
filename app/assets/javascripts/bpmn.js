@@ -732,10 +732,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                 text: '',
                 fill: '#000000',
                 ref: '.outer', 
-                'ref-x': .5, 
-                'ref-dy': 20,
-                'x-alignment': 'middle', 
-                'y-alignment': 'middle'
+                transform: 'translate(15,20)'
             }
         },
         eventType: "start",
@@ -855,8 +852,8 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
             '.label': {
                 text: '',
                 fill: '#000000',
-                ref: '.outer', 'ref-x': .5, 'ref-dy': 20,
-                'x-alignment': 'middle', 'y-alignment': 'middle'
+                ref: '.outer', 
+                transform: 'translate(15,20)'
             }
         },
         eventType: "start", 
@@ -959,7 +956,11 @@ stencil.load([
     new joint.shapes.bpmn.Step,
     new joint.shapes.bpmn.External,
     new joint.shapes.bpmn.Intervention,
-    new joint.shapes.bpmn.Person,
+    new joint.shapes.bpmn.Person({
+        attrs: {
+            '.label': { text: 'Persona' }
+        }
+    }),
     new joint.shapes.bpmn.Organization,
     // new joint.shapes.bpmn.Annotation,
     new joint.shapes.bpmn.GroupOrganization({
