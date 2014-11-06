@@ -39,6 +39,12 @@ a {
   font-size: 14px;
 }
 
+.element .fobj div.step-date {
+  font-size: 10px;
+  text-align: right;
+  width: 218px;
+}
+
 /*Step halo*/
 
 .halo {
