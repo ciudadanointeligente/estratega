@@ -1,5 +1,5 @@
 function adjustVertices(graph, cell) {
-
+// debugger
     // If the cell is a view, find its model.
     cell = cell.model || cell;
 
@@ -17,8 +17,17 @@ function adjustVertices(graph, cell) {
     }
 
     // The cell is a link. Let's find its source and target models.
-    var srcId = cell.get('source').id || cell.previous('source').id;
-    var trgId = cell.get('target').id || cell.previous('target').id;
+    var previous = cell.previous()
+    var srcId
+    var trgId
+    if(previous){
+        var srcId = cell.get('source').id || cell.previous('source').id;
+        var trgId = cell.get('target').id || cell.previous('target').id;
+    }
+    else{
+        var srcId = cell.get('source').id;
+        var trgId = cell.get('target').id;
+    }
 
     // If one of the ends is not a model, the link has no siblings.
     if (!srcId || !trgId) return;
@@ -81,6 +90,13 @@ function adjustVertices(graph, cell) {
         });
     }
 };
+
+var myAdjustVertices = _.partial(adjustVertices, graph);
+
+// adjust vertices when a cell is removed or its source/target was changed
+graph.on('add remove change:source change:target', myAdjustVertices);
+// also when an user stops interacting with an element.
+paper.on('cell:pointerup', myAdjustVertices);
 
 $(function(){
     var btn_sidebar_right = "#btn-inspector-container",
