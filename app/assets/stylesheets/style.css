@@ -15,7 +15,7 @@ a {
 /*Paper*/
 
 .paper-scroller > .paper {
-  background: #F8F9FA;
+  background: #F0F0F0;
 }
 
 #paper-container {
@@ -296,15 +296,10 @@ color: #BD10E0;
 .joint-tooltip {
    position: fixed;
    z-index: 100;
-   border-radius: 5px;
-   background-color: #333;
-   border: 2px solid rgb(36, 36, 36);
-   color: #bcbcbc;
    pointer-events: none;
    padding: 10px;
-   font-size: 14px;
-   text-shadow: 0 -1px 0 #000;
 }
+
 .joint-tooltip.small {
    padding: 5px;
    font-size: 10px;
@@ -376,7 +371,8 @@ color: #BD10E0;
 
 .joint-tooltip {
   max-width: 800px;
-  background: #FFFBF6;
+  background: #4A4A4A;
+  color: #FFFFFF;
   border: none;
   box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.22);
   font-size: 13px;
@@ -394,7 +390,7 @@ color: #BD10E0;
   position: absolute;
   pointer-events: none;
   border-color: rgba(255, 255, 255, 0);
-  border-top-color: #FFFBF6;
+  border-top-color: #4A4A4A;
   border-width: 15px;
   margin-left: -15px;
 }
@@ -409,7 +405,7 @@ color: #BD10E0;
   position: absolute;
   pointer-events: none;
   border-color: rgba(255, 255, 255, 0);
-  border-bottom-color: #FFFBF6;
+  border-bottom-color: #4A4A4A;
   border-width: 15px;
   margin-left: -15px;
 }
@@ -422,7 +418,7 @@ color: #BD10E0;
 /*Group*/
 
 .GroupOrganization rect {
-  opacity: 0.15;
+  opacity: 0.1;
 }
 
 .label {

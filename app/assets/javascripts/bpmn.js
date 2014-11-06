@@ -475,7 +475,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         attrs: {
             rect: {
                 fill: '#ffffff',
-                stroke: '#E9E9E9',
+                stroke: '#CFCFCF',
                 width: 240,
                 height: 210
             },
@@ -698,7 +698,7 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
 
 joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
-    markup: '<g class="rotatable"><defs><clipPath id="myClip"><circle cx="20" cy="20" r="20"/></clipPath></defs><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image clip-path="url(#myClip)"/></g><text class="label"/></g>',
+    markup: '<g class="rotatable"><defs><clipPath id="myClip"><circle cx="20" cy="20" r="20"/></clipPath></defs><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image clip-path="url(#myClip)"/></g><text class="label user-label"/></g>',
 
     defaults: joint.util.deepSupplement({
 
@@ -732,10 +732,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                 text: '',
                 fill: '#000000',
                 ref: '.outer', 
-                'ref-x': .5, 
-                'ref-dy': 20,
-                'x-alignment': 'middle', 
-                'y-alignment': 'middle'
+                transform: 'translate(15,20)'
             }
         },
         eventType: "start",
@@ -761,8 +758,19 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
     setTooltip: function() {
         if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
-        
+
         if( (this.has('name') && this.get('name').length>0) || (this.has('description') && this.get('description').length>0) ) {
+            var model_id = this.get('id'),
+                the_name = this.get('name').split(" "),
+                first_vowel = the_name[0].substr(0,1),
+                second_vowel = '';
+
+            if( the_name.length > 1) {
+                second_vowel = the_name[1].substr(0,1);
+            }
+
+            $('[model-id='+model_id+'] g text').html( first_vowel + second_vowel );
+
             var div = document.createElement("div"); 
                 div.className = 'tooltip-content';
             var name = document.createElement("div");
@@ -844,8 +852,8 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
             '.label': {
                 text: '',
                 fill: '#000000',
-                ref: '.outer', 'ref-x': .5, 'ref-dy': 20,
-                'x-alignment': 'middle', 'y-alignment': 'middle'
+                ref: '.outer', 
+                transform: 'translate(15,20)'
             }
         },
         eventType: "start", 
@@ -948,7 +956,11 @@ stencil.load([
     new joint.shapes.bpmn.Step,
     new joint.shapes.bpmn.External,
     new joint.shapes.bpmn.Intervention,
-    new joint.shapes.bpmn.Person,
+    new joint.shapes.bpmn.Person({
+        attrs: {
+            '.label': { text: 'Persona' }
+        }
+    }),
     new joint.shapes.bpmn.Organization,
     // new joint.shapes.bpmn.Annotation,
     new joint.shapes.bpmn.GroupOrganization({
