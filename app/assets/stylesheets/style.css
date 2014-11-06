@@ -39,6 +39,12 @@ a {
   font-size: 14px;
 }
 
+.element .fobj div.step-date {
+  font-size: 10px;
+  text-align: right;
+  width: 218px;
+}
+
 /*Step halo*/
 
 .halo {
@@ -114,7 +120,7 @@ a {
 .halo.small {
   border-radius: 30px;
   padding: 0px;
-  margin: 1px;
+  margin: 0px;
   border: none;
 }
 
@@ -125,18 +131,42 @@ a {
 }
 
 .halo.small .handle.nw {
-  top: -12px;
-  left: 51px;
+  top: -19px;
+  left: 38px;
 }
 
 .halo.small .handle.se {
-  bottom: 15px;
+  bottom: 11px;
   right: -29px;
 }
 
 .halo.small .handle.s {
-  bottom: -12px;
-  margin-left: 5px;
+  bottom: -16px;
+  margin-left: 2px;
+}
+
+/*Halo medium*/
+
+.halo.medium {
+  border-radius: 30px;
+  padding: 0px;
+  margin: 1px;
+  border: none;
+}
+
+.halo.medium .handle.nw {
+  top: -20px;
+  left: 48px;
+}
+
+.halo.medium .handle.se {
+  bottom: 12px;
+  right: -37px;
+}
+
+.halo.medium .handle.s {
+  bottom: -20px;
+  left: 105%;
 }
 
 
@@ -412,7 +442,7 @@ color: #BD10E0;
 
 .joint-tooltip-strong {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 24px;
 }
 
 /*Group*/
@@ -425,4 +455,11 @@ color: #BD10E0;
   font-size: 85%;
   font-weight: 400;
   text-transform: uppercase;
+}
+
+/*Person*/
+
+.Person .label {
+  font-size: 100%;
+  font-weight: 600;
 }
