@@ -732,7 +732,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                 text: '',
                 fill: '#0091EA',
                 ref: '.outer', 
-                transform: 'translate(15,20)'
+                transform: 'translate(14,19)'
             }
         },
         eventType: "start",
