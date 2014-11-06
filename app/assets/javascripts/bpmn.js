@@ -468,7 +468,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
 
     defaults: joint.util.deepSupplement({
 
-        size: { width: 240, height: 210 },
+        size: { width: 228, height: 210 },
         type: 'bpmn.Step',
 
         // see joint.css for more element styles
