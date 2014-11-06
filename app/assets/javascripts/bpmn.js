@@ -698,7 +698,7 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
 
 joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
-    markup: '<g class="rotatable"><defs><clipPath id="myClip"><circle cx="20" cy="20" r="20"/></clipPath></defs><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image clip-path="url(#myClip)"/></g><text class="label user-label"/></g>',
+    markup: '<g class="rotatable"><defs><clipPath ><circle /></clipPath></defs><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image /></g><text class="label user-label"/></g>',
 
     defaults: joint.util.deepSupplement({
 
@@ -811,13 +811,17 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
     },
     setImage: function() {
         var main_id = this.id,
+            elem_image_circle = '[model-id='+main_id+'] g defs clippath circle',
             elem_image = '[model-id='+main_id+'] image',
             the_image = this.get('image');
 
         this.set('image',the_image);
-        $(elem_image).attr('width',40);
-        $(elem_image).attr('height',40);
-        $(elem_image).attr('transform','translate(10,10)');
+        if(the_image.length>0) {
+            console.log( $(elem_image_circle).attr('id','lol') );
+            $(elem_image).attr('width',40);
+            $(elem_image).attr('height',40);
+            $(elem_image).attr('transform','translate(10,10)');
+        }
         $(elem_image).attr('href',the_image);
 
         this.setInitialName();
@@ -826,7 +830,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         var model_id = this.get('id');
 
         if( this.get('type') == 'bpmn.Person') {
-            if( !(this.has('name')) || !(this.has('image')) ) {
+            if( !(this.has('name')) && !(this.has('image')) ) {
                 $('[model-id='+model_id+'] g g image').attr( 'href', 'https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/icon-user.svg' );
             }
         }
