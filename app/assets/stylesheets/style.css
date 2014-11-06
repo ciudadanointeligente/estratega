@@ -120,7 +120,7 @@ a {
 .halo.small {
   border-radius: 30px;
   padding: 0px;
-  margin: 1px;
+  margin: 0px;
   border: none;
 }
 
@@ -131,18 +131,42 @@ a {
 }
 
 .halo.small .handle.nw {
-  top: -12px;
-  left: 51px;
+  top: -19px;
+  left: 38px;
 }
 
 .halo.small .handle.se {
-  bottom: 15px;
+  bottom: 11px;
   right: -29px;
 }
 
 .halo.small .handle.s {
-  bottom: -12px;
-  margin-left: 5px;
+  bottom: -16px;
+  margin-left: 2px;
+}
+
+/*Halo medium*/
+
+.halo.medium {
+  border-radius: 30px;
+  padding: 0px;
+  margin: 1px;
+  border: none;
+}
+
+.halo.medium .handle.nw {
+  top: -20px;
+  left: 48px;
+}
+
+.halo.medium .handle.se {
+  bottom: 12px;
+  right: -37px;
+}
+
+.halo.medium .handle.s {
+  bottom: -20px;
+  left: 105%;
 }
 
 
