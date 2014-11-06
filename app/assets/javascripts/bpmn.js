@@ -1296,7 +1296,7 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
 
 joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
-    markup: '<g class="rotatable"><defs><clipPath ><circle /></clipPath></defs><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image /></g><text class="label user-label"/></g>',
+    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image /></g><text class="label user-label"/></g>',
 
     defaults: joint.util.deepSupplement({
 
@@ -1411,16 +1411,16 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         var main_id = this.id,
             elem_image_circle = '[model-id='+main_id+'] g defs clippath circle',
             elem_image = '[model-id='+main_id+'] image',
-            the_image = this.get('image');
+            the_image = this.get('image') || '';
 
         this.set('image',the_image);
         if(the_image.length>0) {
-            console.log( $(elem_image_circle).attr('id','lol') );
+            this.markup = '<g class="rotatable"><defs><clipPath id="circle-'+main_id+'"><circle cx="20" cy="20" r="20"/></clipPath></defs><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image clip-path="url(#circle-'+main_id+')" /></g><text class="label user-label"/></g>'
             $(elem_image).attr('width',40);
             $(elem_image).attr('height',40);
             $(elem_image).attr('transform','translate(10,10)');
+            $(elem_image).attr('href',the_image);
         }
-        $(elem_image).attr('href',the_image);
 
         this.setInitialName();
     },
