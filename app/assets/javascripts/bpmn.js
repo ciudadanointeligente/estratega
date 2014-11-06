@@ -698,7 +698,7 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
 
 joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
-    markup: '<g class="rotatable"><defs><clipPath id="myClip"><circle cx="20" cy="20" r="20"/></clipPath></defs><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image clip-path="url(#myClip)"/></g><text class="label"/></g>',
+    markup: '<g class="rotatable"><defs><clipPath id="myClip"><circle cx="20" cy="20" r="20"/></clipPath></defs><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image clip-path="url(#myClip)"/></g><text class="label user-label"/></g>',
 
     defaults: joint.util.deepSupplement({
 
@@ -758,8 +758,19 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
     setTooltip: function() {
         if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
-        
+
         if( (this.has('name') && this.get('name').length>0) || (this.has('description') && this.get('description').length>0) ) {
+            var model_id = this.get('id'),
+                the_name = this.get('name').split(" "),
+                first_vowel = the_name[0].substr(0,1),
+                second_vowel = '';
+
+            if( the_name.length > 1) {
+                second_vowel = the_name[1].substr(0,1);
+            }
+
+            $('[model-id='+model_id+'] g text').html( first_vowel + second_vowel );
+
             var div = document.createElement("div"); 
                 div.className = 'tooltip-content';
             var name = document.createElement("div");
