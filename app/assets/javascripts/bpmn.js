@@ -985,7 +985,7 @@ stencil.load([
     new joint.shapes.bpmn.Person,
     new joint.shapes.bpmn.Organization,
     // new joint.shapes.bpmn.Annotation,
-    new joint.shapes.bpmn.GroupOrganization
+    new joint.shapes.bpmn.GroupOrganization,
 ]);
 
 joint.layout.GridLayout.layout(stencil.getGraph(), {
