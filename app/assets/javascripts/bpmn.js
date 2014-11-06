@@ -759,17 +759,11 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
     setTooltip: function() {
         if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
 
+        $('[model-id='+this.get('id')+'] g text').html( '' );
+
+        this.setInitialName();
+
         if( (this.has('name') && this.get('name').length>0) || (this.has('description') && this.get('description').length>0) ) {
-            var model_id = this.get('id'),
-                the_name = this.get('name').split(" "),
-                first_vowel = the_name[0].substr(0,1),
-                second_vowel = '';
-
-            if( the_name.length > 1) {
-                second_vowel = the_name[1].substr(0,1);
-            }
-
-            $('[model-id='+model_id+'] g text').html( first_vowel + second_vowel );
 
             var div = document.createElement("div"); 
                 div.className = 'tooltip-content';
@@ -811,6 +805,9 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                 this.set('size', { width: 55, height: 55 });
                 break;
         }
+
+        this.setImage();
+        this.setInitialName();
     },
     setImage: function() {
         var main_id = this.id,
@@ -822,6 +819,35 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         $(elem_image).attr('height',40);
         $(elem_image).attr('transform','translate(10,10)');
         $(elem_image).attr('href',the_image);
+
+        this.setInitialName();
+    },
+    setInitialName: function() {
+        var model_id = this.get('id');
+
+        if( this.get('type') == 'bpmn.Person') {
+            if( !(this.has('name')) || !(this.has('image')) ) {
+                $('[model-id='+model_id+'] g g image').attr( 'href', 'https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/icon-user.svg' );
+            }
+        }
+
+        if( (this.has('name') && this.get('name').length>0) ) {
+            var the_name = this.get('name').split(" "),
+                first_vowel = the_name[0].substr(0,1),
+                second_vowel = '';
+
+            if( the_name.length > 1) {
+                second_vowel = the_name[1].substr(0,1);
+            }
+
+            if( !this.get('image')) {
+                $('[model-id='+model_id+'] g g image').attr( 'href', '' );
+                $('[model-id='+model_id+'] g text').html( first_vowel + second_vowel );
+            } else {
+                $('[model-id='+model_id+'] g text').html( '' );
+            }
+
+        }
     }
 
 }).extend(joint.shapes.bpmn.IconInterface);
@@ -956,18 +982,10 @@ stencil.load([
     new joint.shapes.bpmn.Step,
     new joint.shapes.bpmn.External,
     new joint.shapes.bpmn.Intervention,
-    new joint.shapes.bpmn.Person({
-        attrs: {
-            '.label': { text: 'Persona' }
-        }
-    }),
+    new joint.shapes.bpmn.Person,
     new joint.shapes.bpmn.Organization,
     // new joint.shapes.bpmn.Annotation,
-    new joint.shapes.bpmn.GroupOrganization({
-        attrs: {
-            '.label': { text: 'Organization' }
-        }
-    }),
+    new joint.shapes.bpmn.GroupOrganization
 ]);
 
 joint.layout.GridLayout.layout(stencil.getGraph(), {
