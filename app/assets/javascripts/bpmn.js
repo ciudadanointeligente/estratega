@@ -475,7 +475,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         attrs: {
             rect: {
                 fill: '#ffffff',
-                stroke: '#CFCFCF',
+                stroke: '#E0E0E0',
                 width: 240,
                 height: 210
             },
@@ -637,7 +637,7 @@ joint.shapes.bpmn.External = joint.shapes.bpmn.Step.extend({
         attrs: {
             rect: {
                 fill: '#EAF4FD',
-                stroke: '#C2DFF7',
+                stroke: '#A8CDEC',
                 width: 240 ,
                 height: 210
             },
@@ -730,9 +730,9 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
             },
             '.label': {
                 text: '',
-                fill: '#000000',
+                fill: '#0091EA',
                 ref: '.outer', 
-                transform: 'translate(15,20)'
+                transform: 'translate(14,19)'
             }
         },
         eventType: "start",
@@ -803,9 +803,9 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                 this.set('size', { width: 33, height: 33 });
                 break;
 
-            // case 'medium':
-            //     this.set('size', { width: 44, height: 44 });
-            //     break;
+            case 'medium':
+                this.set('size', { width: 44, height: 44 });
+                break;
 
             case 'large':
                 this.set('size', { width: 55, height: 55 });
@@ -956,11 +956,7 @@ stencil.load([
     new joint.shapes.bpmn.Step,
     new joint.shapes.bpmn.External,
     new joint.shapes.bpmn.Intervention,
-    new joint.shapes.bpmn.Person({
-        attrs: {
-            '.label': { text: 'Persona' }
-        }
-    }),
+    new joint.shapes.bpmn.Person,
     new joint.shapes.bpmn.Organization,
     // new joint.shapes.bpmn.Annotation,
     new joint.shapes.bpmn.GroupOrganization({

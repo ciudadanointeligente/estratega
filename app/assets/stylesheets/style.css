@@ -412,7 +412,7 @@ color: #BD10E0;
 
 .joint-tooltip-strong {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 24px;
 }
 
 /*Group*/
@@ -425,4 +425,11 @@ color: #BD10E0;
   font-size: 85%;
   font-weight: 400;
   text-transform: uppercase;
+}
+
+/*Person*/
+
+.Person .label {
+  font-size: 100%;
+  font-weight: 600;
 }
