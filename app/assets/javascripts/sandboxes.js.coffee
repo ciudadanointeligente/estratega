@@ -6,5 +6,4 @@
 //= require inspector.js
 //= require keyboard.js
 //= require bpmn.js
-//= require link_adjuster.js
 //= require vizard-extras.js
