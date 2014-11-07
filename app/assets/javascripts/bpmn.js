@@ -1839,6 +1839,7 @@ $(function () {
             }
             if(cell instanceof joint.shapes.bpmn.Person) {
                 cell.setImage();
+                cell.setSize();
             }
         });
     }
