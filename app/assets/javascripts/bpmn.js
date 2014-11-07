@@ -1296,7 +1296,7 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
 
 joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
-    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image /></g><text class="label user-label"/></g>',
+    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image /></g><text text-anchor="middle" class="user-label label"/></g>',
 
     defaults: joint.util.deepSupplement({
 
@@ -1326,11 +1326,11 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                 'xlink:href': '', 
                 transform: 'translate(20,20)'
             },
-            '.label': {
+            '.user-label': {
                 text: '',
                 fill: '#0091EA',
                 ref: '.outer', 
-                transform: 'translate(14,19)'
+                transform: 'translate(24,20)',
             }
         },
         eventType: "start",
@@ -1388,18 +1388,26 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
     },
 
     setSize: function() {
-        var size = this.get('size_type')
+        var size = this.get('size_type'),
+            element_text = '[model-id='+this.id+'] g text';
 
         switch (size) {
             case 'small':
+                $(element_text).attr('class','user-label label user-label-small');
+                this.attr('.user-label').transform = 'translate(24,20)';
+                this.attr('.user-label')['font-size'] = '24px';
                 this.set('size', { width: 33, height: 33 });
                 break;
 
             case 'medium':
+                $(element_text).attr('class','user-label label user-label-medium');
+                this.attr('.user-label').transform = 'translate(32,26)'
                 this.set('size', { width: 44, height: 44 });
                 break;
 
             case 'large':
+                $(element_text).attr('class','user-label label user-label-large');
+                this.attr('.user-label').transform = 'translate(41,35)'
                 this.set('size', { width: 55, height: 55 });
                 break;
         }
