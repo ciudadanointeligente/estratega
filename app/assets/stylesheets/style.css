@@ -452,14 +452,22 @@ color: #BD10E0;
 }
 
 .label {
-  font-size: 85%;
   font-weight: 400;
   text-transform: uppercase;
 }
 
 /*Person*/
 
-.Person .label {
-  font-size: 100%;
-  font-weight: 600;
+.user-label, .user-label-small {
+  font-size: 12px;
+}
+
+.user-label-medium {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.user-label-large {
+  font-size: 18px;
+  font-weight: 300;
 }
