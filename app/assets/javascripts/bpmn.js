@@ -358,7 +358,7 @@ var paper = new joint.dia.Paper({
 
     'cell:pointerup': function(cellView) {
 
-        embedInPool(cellView.model);
+        embedInGroup(cellView.model);
         openIHF(cellView);
     }
 
@@ -1552,7 +1552,7 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
                 fill: '#50E3C2',
                 rx: 0,
                 ry: 0,
-                'pointer-events': 'stroke'
+                // 'pointer-events': 'stroke'
             },
             '.label-rect': {
                 ref: '.body',
@@ -1755,7 +1755,7 @@ function openIHF(cellView) {
         }
 }
 
-function embedInPool(cell) {
+function embedInGroup(cell) {
 
     if (cell instanceof joint.dia.Link) return;
 
@@ -1763,13 +1763,13 @@ function embedInPool(cell) {
 
     if (!_.isEmpty(cellsBelow)) {
         // Note that the findViewsFromPoint() returns the view for the `cell` itself.
-        var cellBelow = _.find(cellsBelow, function(c) {
-            return (c instanceof joint.shapes.bpmn.Pool) && (c.id !== cell.id);
+        var groupCell = _.find(cellsBelow, function(c) {
+            return (c instanceof joint.shapes.bpmn.GroupOrganization) && (c.id !== cell.id);
         });
 
         // Prevent recursive embedding.
-        if (cellBelow && cellBelow.get('parent') !== cell.id) {
-            cellBelow.embed(cell);
+        if (groupCell && groupCell.get('parent') !== cell.id) {
+            groupCell.embed(cell);
         }
     }
 }
