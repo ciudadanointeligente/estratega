@@ -485,9 +485,29 @@ var inputs = {
             index: 4
         },
         attrs: {
-            '.body/fill': {
-                type: 'color',
-                label: 'Body Color',
+            'path/fill': {
+                type: 'select',
+                options: [
+                    { value: '#0091EA', content: 'blue' },
+                    { value: '#16D4AA', content: 'green' },
+                    { value: '#4A4A4A', content: 'grey' },
+                    { value: '#F5A623', content: 'orange' },
+                    { value: '#F55923', content: 'red' }
+                ],
+                label: 'Color',
+                group: 'appearance',
+                index: 1
+            },
+            '.body/stroke': {
+                type: 'select',
+                options: [
+                    { value: '#0091EA', content: 'blue' },
+                    { value: '#16D4AA', content: 'green' },
+                    { value: '#4A4A4A', content: 'grey' },
+                    { value: '#F5A623', content: 'orange' },
+                    { value: '#F55923', content: 'red' }
+                ],
+                label: 'Color',
                 group: 'appearance',
                 index: 1
             }
