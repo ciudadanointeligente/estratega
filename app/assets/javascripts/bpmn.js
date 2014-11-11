@@ -1420,6 +1420,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
             $(elem_image).attr('height',40);
             $(elem_image).attr('transform','translate(10,10)');
             $(elem_image).attr('href',the_image);
+            $(elem_image).attr('clip-path','url(#circle-'+main_id+')');
         }
 
         this.setInitialName();
