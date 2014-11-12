@@ -1824,6 +1824,13 @@ var toolbar = {
             data: JSON.stringify({sandbox: {graph_data: JSON.stringify(graph.toJSON())}}),
             beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
         });
+    },
+
+    centerGraph: function() {
+        paperScroller.zoomToFit({
+            minScale: 0.2,
+            maxScale: 2
+        });
     }
 };
 
