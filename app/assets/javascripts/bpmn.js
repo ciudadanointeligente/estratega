@@ -311,7 +311,7 @@ var paper = new joint.dia.Paper({
     width: 4000,
     height: 1000,
     model: graph,
-    gridSize: 15,
+    gridSize: 1,
     model: graph,
     perpendicularLinks: true,
     // defaultLink: new joint.shapes.bpmn.Flow,
@@ -1111,6 +1111,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             this.listenTo(this, 'change:content', this.setDivContent);
             this.listenTo(this, 'change:title', this.setDivContent);
             this.listenTo(this, 'change:date', this.setDivContent);
+            this.listenTo(this, 'change:position', this.fixEmbeddedPosition);
 
         }
 
@@ -1126,6 +1127,16 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             div: { style: _.clone(size) }
         });
     },
+
+    fixEmbeddedPosition: function(){
+        if (!this.getEmbeddedCells().length) return;
+        var children = this.getEmbeddedCells(),
+            yPosition = this.get('position').y + this.get('size').height - children[0].get('size').height;
+        for (i=0; i < children.length; i++){
+            xPosition = this.get('position').x + children[i].get('size').width * i;
+            children[i].set('position', {x:xPosition, y:yPosition});
+        }
+    }, 
 
 
     setDivContent: function(cell, content) {
@@ -1767,9 +1778,19 @@ function embedInGroup(cell) {
             return (c instanceof joint.shapes.bpmn.GroupOrganization) && (c.id !== cell.id);
         });
 
+        var stepCell = _.find(cellsBelow, function(c) {
+            return (c instanceof joint.shapes.bpmn.Step) && (c.id !== cell.id);
+        });
+
         // Prevent recursive embedding.
         if (groupCell && groupCell.get('parent') !== cell.id) {
             groupCell.embed(cell);
+        }
+
+        // Prevent recursive embedding.
+        else if ((stepCell && stepCell.get('parent') !== cell.id) && (cell instanceof joint.shapes.bpmn.Person)) {
+            stepCell.embed(cell);
+            stepCell.fixEmbeddedPosition()
         }
     }
 }
