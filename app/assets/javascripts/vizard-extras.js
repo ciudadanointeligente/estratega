@@ -146,3 +146,7 @@ $(function(){
     $('<style>@media print { body:before { content: "'+doc_name+'" } }</style>').appendTo('head');
     //});
 });
+
+window.onbeforeunload = function(e) {
+    return 'Remember save before exit'
+};
