@@ -27,6 +27,7 @@ group :development do
   gem 'rb-fchange', :require=>false
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
+  gem 'mysql2'
 end
 
 group :development, :test do

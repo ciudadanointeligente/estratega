@@ -251,7 +251,7 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
     defaults: {
 
         type: "bpmn.StepLink",
-
+        bpmn_name: 'Step Link',
         attrs: {
 
             '.marker-source': {
@@ -1230,7 +1230,7 @@ joint.shapes.bpmn.External = joint.shapes.bpmn.Step.extend({
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.External',
-
+        bpmn_name: 'External',
         // see joint.css for more element styles
         attrs: {
             rect: {
@@ -1264,7 +1264,7 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.Intervention',
-
+        bpmn_name: 'Intervention',
         // see joint.css for more element styles
         attrs: {
             rect: {
@@ -1301,6 +1301,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.Person',
+        bpmn_name: 'Person',
         size: { 
             width: 33, 
             height: 33 
@@ -1471,6 +1472,7 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.Organization',
+        bpmn_name: 'Organization',
         size: { width: 60, height: 60 },
         attrs: {
             '.body': {
@@ -1523,6 +1525,7 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
                 description.className = 'tooltip-text';
             div.appendChild(name);
             div.appendChild(description);
+            console.log( this.id );
             this.tooltip = new joint.ui.Tooltip({
                 target: ' [model-id="' + this.id + '"]',
                 content: div.innerHTML,
@@ -1542,6 +1545,7 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.GroupOrganization',
+        bpmn_name: 'Group Organization',
         size: {
             width: 200,
             height: 200
@@ -1699,17 +1703,21 @@ function openIHF(cellView) {
             }
 
             var type = cellView.model.get('type');
+            var name = cellView.model.get('bpmn_name');
 
             inspector = new joint.ui.Inspector({
                 cellView: cellView,
                 inputs: inputs[type],
                 groups: {
-                    general: { label: type, index: 1 },
+                    general: { label: name, index: 1 },
                     appearance: { index: 2 }
-                }
+                },
+                events: {
+                    'click .group-label': ''
+                },
             });
 
-            $('#inspector-container').prepend(inspector.render().el);
+            $('#inspector-container').html(inspector.render().el);
         }
 
         if (!selection.contains(cellView.model)) {
