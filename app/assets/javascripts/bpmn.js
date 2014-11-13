@@ -1397,20 +1397,16 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         switch (size) {
             case 'small':
                 $(element_text).attr('class','user-label label user-label-small');
-                this.attr('.user-label').transform = 'translate(24,20)';
-                this.attr('.user-label')['font-size'] = '24px';
                 this.set('size', { width: 33, height: 33 });
                 break;
 
             case 'medium':
                 $(element_text).attr('class','user-label label user-label-medium');
-                this.attr('.user-label').transform = 'translate(32,26)'
                 this.set('size', { width: 44, height: 44 });
                 break;
 
             case 'large':
                 $(element_text).attr('class','user-label label user-label-large');
-                this.attr('.user-label').transform = 'translate(41,35)'
                 this.set('size', { width: 55, height: 55 });
                 break;
         }
