@@ -1336,7 +1336,8 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         },
         eventType: "start",
         icon: 'user',
-        size_type: 'small'
+        size_type: 'small',
+        color: 'blue'
 
     }, joint.dia.Element.prototype.defaults),
 
@@ -1416,6 +1417,23 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
         this.setImage();
         this.setInitialName();
+    },
+    setColor: function() {
+        var color = this.get('color'),
+            attrs = {
+            '.body': {
+                fill: '#ffffff',
+                stroke: color
+            },
+            path: {
+                width:  20, 
+                height: 20, 
+                'xlink:href': '', 
+                transform: 'translate(7,11)',
+                fill: color
+            },
+        }
+        this.attr(_.merge({}, this.defaults.attrs, attrs));
     },
     setImage: function() {
         var main_id = this.id,
