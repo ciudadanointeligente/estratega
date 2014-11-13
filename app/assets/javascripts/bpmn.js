@@ -1230,7 +1230,7 @@ joint.shapes.bpmn.External = joint.shapes.bpmn.Step.extend({
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.External',
-        bpmn_name: 'External',
+        bpmn_name: 'Internal Step',
         // see joint.css for more element styles
         attrs: {
             rect: {
@@ -1621,7 +1621,7 @@ stencil.getGraph().get('cells').each(function(cell) {
     new joint.ui.Tooltip({
         target: '.stencil [model-id="' + cell.id + '"]',
         //hack for getting the type without the bpmn
-        content: cell.get('type').split(".")[1],
+        content: cell.get('bpmn_name'),
         bottom: '.stencil',
         direction: 'bottom',
         padding: 0
@@ -1713,8 +1713,12 @@ function openIHF(cellView) {
                     appearance: { index: 2 }
                 },
                 events: {
-                    'click .group-label': ''
-                },
+                    'mousedown': 'startBatchCommand',
+                    'change': 'onChangeInput',
+                    'click .group-label': '',
+                    'click .btn-list-add': 'addListItem',
+                    'click .btn-list-del': 'deleteListItem'
+                }
             });
 
             $('#inspector-container').html(inspector.render().el);
