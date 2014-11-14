@@ -251,7 +251,7 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
     defaults: {
 
         type: "bpmn.StepLink",
-
+        bpmn_name: 'Step Link',
         attrs: {
 
             '.marker-source': {
@@ -1249,7 +1249,7 @@ joint.shapes.bpmn.External = joint.shapes.bpmn.Step.extend({
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.External',
-
+        bpmn_name: 'Internal Step',
         // see joint.css for more element styles
         attrs: {
             rect: {
@@ -1283,7 +1283,7 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.Intervention',
-
+        bpmn_name: 'Intervention',
         // see joint.css for more element styles
         attrs: {
             rect: {
@@ -1320,6 +1320,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.Person',
+        bpmn_name: 'Person',
         size: { 
             width: 33, 
             height: 33 
@@ -1355,7 +1356,8 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         },
         eventType: "start",
         icon: 'user',
-        size_type: 'small'
+        size_type: 'small',
+        color: 'blue'
 
     }, joint.dia.Element.prototype.defaults),
 
@@ -1415,26 +1417,39 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         switch (size) {
             case 'small':
                 $(element_text).attr('class','user-label label user-label-small');
-                this.attr('.user-label').transform = 'translate(24,20)';
-                this.attr('.user-label')['font-size'] = '24px';
                 this.set('size', { width: 33, height: 33 });
                 break;
 
             case 'medium':
                 $(element_text).attr('class','user-label label user-label-medium');
-                this.attr('.user-label').transform = 'translate(32,26)'
                 this.set('size', { width: 44, height: 44 });
                 break;
 
             case 'large':
                 $(element_text).attr('class','user-label label user-label-large');
-                this.attr('.user-label').transform = 'translate(41,35)'
                 this.set('size', { width: 55, height: 55 });
                 break;
         }
 
         this.setImage();
         this.setInitialName();
+    },
+    setColor: function() {
+        var color = this.get('color'),
+            attrs = {
+            '.body': {
+                fill: '#ffffff',
+                stroke: color
+            },
+            path: {
+                width:  20, 
+                height: 20, 
+                'xlink:href': '', 
+                transform: 'translate(7,11)',
+                fill: color
+            },
+        }
+        this.attr(_.merge({}, this.defaults.attrs, attrs));
     },
     setImage: function() {
         var main_id = this.id,
@@ -1449,6 +1464,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
             $(elem_image).attr('height',40);
             $(elem_image).attr('transform','translate(10,10)');
             $(elem_image).attr('href',the_image);
+            $(elem_image).attr('clip-path','url(#circle-'+main_id+')');
         }
 
         this.setInitialName();
@@ -1489,6 +1505,7 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.Organization',
+        bpmn_name: 'Organization',
         size: { width: 60, height: 60 },
         attrs: {
             '.body': {
@@ -1541,6 +1558,7 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
                 description.className = 'tooltip-text';
             div.appendChild(name);
             div.appendChild(description);
+            console.log( this.id );
             this.tooltip = new joint.ui.Tooltip({
                 target: ' [model-id="' + this.id + '"]',
                 content: div.innerHTML,
@@ -1560,6 +1578,7 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.GroupOrganization',
+        bpmn_name: 'Group Organization',
         size: {
             width: 200,
             height: 200
@@ -1635,7 +1654,7 @@ stencil.getGraph().get('cells').each(function(cell) {
     new joint.ui.Tooltip({
         target: '.stencil [model-id="' + cell.id + '"]',
         //hack for getting the type without the bpmn
-        content: cell.get('type').split(".")[1],
+        content: cell.get('bpmn_name'),
         bottom: '.stencil',
         direction: 'bottom',
         padding: 0
@@ -1717,17 +1736,25 @@ function openIHF(cellView) {
             }
 
             var type = cellView.model.get('type');
+            var name = cellView.model.get('bpmn_name');
 
             inspector = new joint.ui.Inspector({
                 cellView: cellView,
                 inputs: inputs[type],
                 groups: {
-                    general: { label: type, index: 1 },
+                    general: { label: name, index: 1 },
                     appearance: { index: 2 }
+                },
+                events: {
+                    'mousedown': 'startBatchCommand',
+                    'change': 'onChangeInput',
+                    'click .group-label': '',
+                    'click .btn-list-add': 'addListItem',
+                    'click .btn-list-del': 'deleteListItem'
                 }
             });
 
-            $('#inspector-container').prepend(inspector.render().el);
+            $('#inspector-container').html(inspector.render().el);
         }
 
         if (!selection.contains(cellView.model)) {
@@ -1841,6 +1868,13 @@ var toolbar = {
             contentType: "application/json",
             data: JSON.stringify({sandbox: {graph_data: JSON.stringify(graph.toJSON())}}),
             beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        });
+    },
+
+    centerGraph: function() {
+        paperScroller.zoomToFit({
+            minScale: 0.2,
+            maxScale: 2
         });
     }
 };
