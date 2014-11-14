@@ -1419,21 +1419,50 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
     setColor: function() {
         var color = this.get('color'),
             attrs = {
-            '.body': {
-                fill: '#ffffff',
-                stroke: color
-            },
-            path: {
-                width:  20, 
-                height: 20, 
-                'xlink:href': '', 
-                transform: 'translate(7,11)',
-                fill: color
-            },
+                '.body': {
+                    fill: '#ffffff',
+                    stroke: color
+                },
+                path: {
+                    width:  20, 
+                    height: 20, 
+                    'xlink:href': '', 
+                    transform: 'translate(7,11)',
+                    fill: color
+                },
+            }
+        if( (this.has('name') && this.get('name').length>0) ) {
+            attrs = {
+                path: {
+                    display: 'none',
+                    fill: color
+                },
+                circle: {
+                    stroke: color
+                },
+                text: {
+                    display: 'block',
+                    fill: color
+                }
+            }
         }
+
         this.attr(_.merge({}, this.defaults.attrs, attrs));
+        this.setInitialName();
     },
     setImage: function() {
+        var url_image = this.get('image');
+        attrs = {
+            image: {
+                'href' : url_image
+            },
+            clippath: {
+                'display': 'none'
+            }
+        }
+        
+        this.attr(_.merge({}, this.defaults.attrs, attrs));
+
         var main_id = this.id,
             elem_image_circle = '[model-id='+main_id+'] g defs clippath circle',
             elem_image = '[model-id='+main_id+'] image',
@@ -1450,7 +1479,20 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         this.setInitialName();
     },
     setInitialName: function() {
-        var model_id = this.get('id');
+        var model_id = this.get('id'),
+            url_image = this.get('image');
+        if( (this.has('name') && this.get('name').length>0) ) {
+            attrs = {
+                image: {
+                    'href' : url_image
+                },
+                path: {
+                    'display': 'none'
+                }
+            }
+            
+            this.attr(_.merge({}, this.defaults.attrs, attrs));
+        }
 
         if( this.get('type') == 'bpmn.Person') {
             if( !(this.has('name')) && !(this.has('image')) ) {
