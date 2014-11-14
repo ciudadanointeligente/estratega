@@ -265,7 +265,7 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
             '.connection': {
                 'stroke-dasharray': ' ',
                 stroke: '#4A90E2', 
-                'stroke-width': 1
+                'stroke-width': 2
             },
             '.connection-wrap': {
                 style: '',
@@ -286,6 +286,7 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
         this.setTooltip();
 
         this.listenTo(this, 'change:description', this.setTooltip);
+        this.listenTo(this, 'change:description', this.arrowActive);
     },
 
     tooltip: {},
@@ -299,10 +300,28 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
             direction: 'bottom',
             padding: 30
         });
+        if (this.attributes.description) {
+            var element_text = '[model-id='+this.id+']';
+            $(element_text).attr('class','active-arrow bpmn StepLink link');
+        }
     },
 
     removePreviousTooltip: function() {
         this.tooltip.remove()
+    },
+
+    arrowActive: function(cell, type) {
+
+        var attrs = {
+                '.marker-source': {
+                    d: 'M 0 4 m -5, 0 a 5,5 0 1,0 10,0 a 5,5 0 1,0 -10,0',
+                    stroke: '#0091EA',
+                    transform: 'translate(1945,546)',
+                    fill: '#0091EA'
+                }
+            };
+
+        cell.attr(_.merge({}, this.defaults.attrs, attrs));
     }
 
 });
