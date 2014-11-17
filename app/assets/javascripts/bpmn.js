@@ -265,7 +265,7 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
             '.connection': {
                 'stroke-dasharray': ' ',
                 stroke: '#4A90E2', 
-                'stroke-width': 1
+                'stroke-width': 2
             },
             '.connection-wrap': {
                 style: '',
@@ -286,6 +286,7 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
         this.setTooltip();
 
         this.listenTo(this, 'change:description', this.setTooltip);
+        this.listenTo(this, 'change:description', this.arrowActive);
     },
 
     tooltip: {},
@@ -299,10 +300,28 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
             direction: 'bottom',
             padding: 30
         });
+        if (this.attributes.description) {
+            var element_text = '[model-id='+this.id+']';
+            $(element_text).attr('class','active-arrow bpmn StepLink link');
+        }
     },
 
     removePreviousTooltip: function() {
         this.tooltip.remove()
+    },
+
+    arrowActive: function(cell, type) {
+
+        var attrs = {
+                '.marker-source': {
+                    d: 'M 0 4 m -5, 0 a 5,5 0 1,0 10,0 a 5,5 0 1,0 -10,0',
+                    stroke: '#0091EA',
+                    transform: 'translate(1945,546)',
+                    fill: '#0091EA'
+                }
+            };
+
+        cell.attr(_.merge({}, this.defaults.attrs, attrs));
     }
 
 });
@@ -311,7 +330,7 @@ var paper = new joint.dia.Paper({
     width: 4000,
     height: 1000,
     model: graph,
-    gridSize: 15,
+    gridSize: 5,
     model: graph,
     perpendicularLinks: true,
     // defaultLink: new joint.shapes.bpmn.Flow,
@@ -358,7 +377,7 @@ var paper = new joint.dia.Paper({
 
     'cell:pointerup': function(cellView) {
 
-        embedInPool(cellView.model);
+        embedInGroup(cellView.model);
         openIHF(cellView);
     }
 
@@ -374,8 +393,8 @@ paperScroller.$el.appendTo('#paper-container');
 
 paperScroller.center();
 
-var snaplines = new joint.ui.Snaplines({ paper: paper })
-snaplines.startListening()
+// var snaplines = new joint.ui.Snaplines({ paper: paper })
+// snaplines.startListening()
 
 /* SELECTION */
 
@@ -1037,7 +1056,7 @@ joint.shapes.bpmn.icons = {
 
     none: '',
 
-    message: 'https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/icon-org.svg',
+    message: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOC4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgMzguOSAzNyIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMzguOSAzNyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8Zz4NCgk8cGF0aCBmaWxsPSIjMDA5MUVBIiBkPSJNMTkuNCwxMi42bDUuNCwyLjF2MC43aC0wLjdjMCwwLjEsMCwwLjItMC4xLDAuM2MtMC4xLDAuMS0wLjIsMC4xLTAuMywwLjFoLTguNWMtMC4xLDAtMC4yLDAtMC4zLTAuMQ0KCQljLTAuMS0wLjEtMC4xLTAuMi0wLjEtMC4zaC0wLjd2LTAuN0wxOS40LDEyLjZ6IE0yNC40LDIxLjVjMC4xLDAsMC4yLDAsMC4zLDAuMWMwLjEsMC4xLDAuMSwwLjIsMC4xLDAuM3YwLjdIMTQuMXYtMC43DQoJCWMwLTAuMSwwLTAuMiwwLjEtMC4zYzAuMS0wLjEsMC4yLTAuMSwwLjMtMC4xSDI0LjR6IE0xNS41LDE2LjFoMS40djQuM2gwLjd2LTQuM2gxLjR2NC4zaDAuN3YtNC4zaDEuNHY0LjNoMC43di00LjNoMS40djQuM2gwLjMNCgkJYzAuMSwwLDAuMiwwLDAuMywwLjFjMC4xLDAuMSwwLjEsMC4yLDAuMSwwLjN2MC40aC05LjN2LTAuNGMwLTAuMSwwLTAuMiwwLjEtMC4zYzAuMS0wLjEsMC4yLTAuMSwwLjMtMC4xaDAuM1YxNi4xeiIvPg0KPC9nPg0KPC9zdmc+DQo=',
 
     cross: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI0IDI0IiBoZWlnaHQ9IjI0cHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0cHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik0yMi4yNDUsNC4wMTVjMC4zMTMsMC4zMTMsMC4zMTMsMC44MjYsMCwxLjEzOWwtNi4yNzYsNi4yN2MtMC4zMTMsMC4zMTItMC4zMTMsMC44MjYsMCwxLjE0bDYuMjczLDYuMjcyICBjMC4zMTMsMC4zMTMsMC4zMTMsMC44MjYsMCwxLjE0bC0yLjI4NSwyLjI3N2MtMC4zMTQsMC4zMTItMC44MjgsMC4zMTItMS4xNDIsMGwtNi4yNzEtNi4yNzFjLTAuMzEzLTAuMzEzLTAuODI4LTAuMzEzLTEuMTQxLDAgIGwtNi4yNzYsNi4yNjdjLTAuMzEzLDAuMzEzLTAuODI4LDAuMzEzLTEuMTQxLDBsLTIuMjgyLTIuMjhjLTAuMzEzLTAuMzEzLTAuMzEzLTAuODI2LDAtMS4xNGw2LjI3OC02LjI2OSAgYzAuMzEzLTAuMzEyLDAuMzEzLTAuODI2LDAtMS4xNEwxLjcwOSw1LjE0N2MtMC4zMTQtMC4zMTMtMC4zMTQtMC44MjcsMC0xLjE0bDIuMjg0LTIuMjc4QzQuMzA4LDEuNDE3LDQuODIxLDEuNDE3LDUuMTM1LDEuNzMgIEwxMS40MDUsOGMwLjMxNCwwLjMxNCwwLjgyOCwwLjMxNCwxLjE0MSwwLjAwMWw2LjI3Ni02LjI2N2MwLjMxMi0wLjMxMiwwLjgyNi0wLjMxMiwxLjE0MSwwTDIyLjI0NSw0LjAxNXoiLz48L3N2Zz4=',
 
@@ -1126,7 +1145,6 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             div: { style: _.clone(size) }
         });
     },
-
 
     setDivContent: function(cell, content) {
         var the_date = '';
@@ -1323,6 +1341,9 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                 r: 16,
                 transform: 'translate(30,30)'
             },
+            image: {
+                width:  20, height: 20, 'xlink:href': '', transform: 'translate(20,20)'
+            },
             path: {
                 width:  20, 
                 height: 20, 
@@ -1338,7 +1359,6 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
             }
         },
         eventType: "start",
-        icon: 'user',
         size_type: 'small',
         color: 'blue'
 
@@ -1541,7 +1561,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
 joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
 
-    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><path class="ong-img" d="M1,18.2779262 L18.8090878,18.2779262 L18.8090878,17.0509364 C18.8090878,16.8785112 18.7594514,16.7399552 18.6260999,16.6191037 C18.4934893,16.4982521 18.3438393,16.4289741 18.17715,16.4289741 L1.64823627,16.4289741 C1.46524843,16.4289741 1.31559846,16.4982521 1.18298784,16.6191037 C1.06667573,16.7399552 1,16.8785112 1,17.0509364 L1,18.2779262 L1,18.2779262 Z M2.19719979,5.94182867 C2.19719979,6.09731923 2.26387553,6.25280979 2.38018763,6.37366136 C2.51279825,6.49451294 2.66244823,6.54608654 2.82913756,6.54608654 L16.9969896,6.54608654 C17.1629381,6.54608654 17.312588,6.49451294 17.4459395,6.37366136 C17.5622516,6.25280979 17.6289273,6.09731923 17.6289273,5.94182867 L18.8090878,5.94182867 L18.8090878,4.69713444 L9.91306357,1 L1.01629851,4.69713444 L1.01629851,5.94182867 L2.19719979,5.94182867 L2.19719979,5.94182867 Z M17.6289273,15.8070119 L17.6289273,15.1850497 C17.6289273,15.0295591 17.5622516,14.8910031 17.4459395,14.7701516 C17.312588,14.6493 17.1629381,14.580022 16.9969896,14.580022 L16.4480261,14.580022 L16.4480261,7.16804878 L14.069925,7.16804878 L14.069925,14.580022 L12.8727252,14.580022 L12.8727252,7.16804878 L10.4946241,7.16804878 L10.4946241,14.580022 L9.31446367,14.580022 L9.31446367,7.16804878 L6.93636259,7.16804878 L6.93636259,14.580022 L5.75546131,14.580022 L5.75546131,7.16804878 L3.37810108,7.16804878 L3.37810108,14.580022 L2.82913756,14.580022 C2.66244823,14.580022 2.51279825,14.6493 2.38018763,14.7701516 C2.26387553,14.8910031 2.19719979,15.0295591 2.19719979,15.1850497 L2.19719979,15.8070119 L17.6289273,15.8070119 L17.6289273,15.8070119 Z"/><image /></g><text text-anchor="middle" class="user-label label"/></g>',
+    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image /><path class="user-img" d="M18.7,9.3l9.1,3.6v1.2h-1.2c0,0.2-0.1,0.3-0.2,0.4c-0.1,0.1-0.3,0.2-0.5,0.2H11.5c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.4H9.6v-1.2L18.7,9.3z M27.2,24.5c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.4v1.2H9.6v-1.2c0-0.2,0.1-0.3,0.2-0.4c0.1-0.1,0.3-0.2,0.5-0.2H27.2z M12,15.4h2.4v7.3h1.2v-7.3h2.4v7.3h1.2v-7.3h2.4v7.3H23v-7.3h2.4v7.3h0.6c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.4v0.6H10.8v-0.6c0-0.2,0.1-0.3,0.2-0.4c0.1-0.1,0.3-0.2,0.5-0.2H12V15.4z"/></g><text text-anchor="middle" class="user-label label"/></g>',
 
     defaults: joint.util.deepSupplement({
 
@@ -1565,8 +1585,14 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
                 width:  20, 
                 height: 20, 
                 'xlink:href': '', 
-                transform: 'translate(20,20)',
+                transform: 'translate(11,12)',
                 fill: "#0091EA"
+            },
+            image: {
+                width:  20, 
+                height: 20, 
+                'xlink:href': '', 
+                transform: 'translate(20,20)'
             },
             '.label': {
                 text: '',
@@ -1575,8 +1601,7 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
                 transform: 'translate(15,20)'
             }
         },
-        eventType: "start", 
-        icon: 'message'
+        eventType: "start"
 
     }, joint.dia.Element.prototype.defaults),
 
@@ -1674,7 +1699,7 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
                 fill: '#50E3C2',
                 rx: 0,
                 ry: 0,
-                'pointer-events': 'stroke'
+                // 'pointer-events': 'stroke'
             },
             '.label-rect': {
                 ref: '.body',
@@ -1885,7 +1910,7 @@ function openIHF(cellView) {
         }
 }
 
-function embedInPool(cell) {
+function embedInGroup(cell) {
 
     if (cell instanceof joint.dia.Link) return;
 
@@ -1893,13 +1918,22 @@ function embedInPool(cell) {
 
     if (!_.isEmpty(cellsBelow)) {
         // Note that the findViewsFromPoint() returns the view for the `cell` itself.
-        var cellBelow = _.find(cellsBelow, function(c) {
-            return (c instanceof joint.shapes.bpmn.Pool) && (c.id !== cell.id);
+        var groupCell = _.find(cellsBelow, function(c) {
+            return (c instanceof joint.shapes.bpmn.GroupOrganization) && (c.id !== cell.id);
+        });
+
+        var stepCell = _.find(cellsBelow, function(c) {
+            return (c instanceof joint.shapes.bpmn.Step) && (c.id !== cell.id);
         });
 
         // Prevent recursive embedding.
-        if (cellBelow && cellBelow.get('parent') !== cell.id) {
-            cellBelow.embed(cell);
+        if (groupCell && groupCell.get('parent') !== cell.id) {
+            groupCell.embed(cell);
+        }
+
+        // Prevent recursive embedding.
+        else if ((stepCell && stepCell.get('parent') !== cell.id) && (cell instanceof joint.shapes.bpmn.Person)) {
+            stepCell.embed(cell);
         }
     }
 }
