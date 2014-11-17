@@ -1497,8 +1497,10 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
             $(elem_image).attr('transform','translate(10,10)');
             $(elem_image).attr('href',the_image);
         }
+        else{
+            this.setInitialName();
+        }
 
-        this.setInitialName();
     },
     setInitialName: function() {
         var model_id = this.get('id'),
