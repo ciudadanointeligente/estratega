@@ -1358,7 +1358,6 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
             }
         },
         eventType: "start",
-        icon: 'user',
         size_type: 'small',
         color: 'blue'
 
