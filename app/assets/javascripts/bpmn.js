@@ -311,7 +311,7 @@ var paper = new joint.dia.Paper({
     width: 4000,
     height: 1000,
     model: graph,
-    gridSize: 1,
+    gridSize: 5,
     model: graph,
     perpendicularLinks: true,
     // defaultLink: new joint.shapes.bpmn.Flow,
@@ -374,8 +374,8 @@ paperScroller.$el.appendTo('#paper-container');
 
 paperScroller.center();
 
-var snaplines = new joint.ui.Snaplines({ paper: paper })
-snaplines.startListening()
+// var snaplines = new joint.ui.Snaplines({ paper: paper })
+// snaplines.startListening()
 
 /* SELECTION */
 
@@ -1111,7 +1111,6 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             this.listenTo(this, 'change:content', this.setDivContent);
             this.listenTo(this, 'change:title', this.setDivContent);
             this.listenTo(this, 'change:date', this.setDivContent);
-            this.listenTo(this, 'change:position', this.fixEmbeddedPosition);
 
         }
 
@@ -1127,17 +1126,6 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             div: { style: _.clone(size) }
         });
     },
-
-    fixEmbeddedPosition: function(){
-        if (!this.getEmbeddedCells().length) return;
-        var children = this.getEmbeddedCells(),
-            yPosition = this.get('position').y + this.get('size').height - children[0].get('size').height;
-        for (i=0; i < children.length; i++){
-            xPosition = this.get('position').x + children[i].get('size').width * i;
-            children[i].set('position', {x:xPosition, y:yPosition});
-        }
-    }, 
-
 
     setDivContent: function(cell, content) {
         var the_date = '';
@@ -1790,7 +1778,6 @@ function embedInGroup(cell) {
         // Prevent recursive embedding.
         else if ((stepCell && stepCell.get('parent') !== cell.id) && (cell instanceof joint.shapes.bpmn.Person)) {
             stepCell.embed(cell);
-            stepCell.fixEmbeddedPosition()
         }
     }
 }
