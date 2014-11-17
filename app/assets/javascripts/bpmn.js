@@ -1314,7 +1314,143 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
     }, joint.shapes.basic.Generic.prototype.defaults),
 });
 
-joint.shapes.bpmn.Person = joint.dia.Element.extend({
+joint.shapes.bpmn.Organization = joint.dia.Element.extend({
+
+    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><path class="user-img" d="M18.7,9.3l9.1,3.6v1.2h-1.2c0,0.2-0.1,0.3-0.2,0.4c-0.1,0.1-0.3,0.2-0.5,0.2H11.5c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.4H9.6v-1.2L18.7,9.3z M27.2,24.5c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.4v1.2H9.6v-1.2c0-0.2,0.1-0.3,0.2-0.4c0.1-0.1,0.3-0.2,0.5-0.2H27.2z M12,15.4h2.4v7.3h1.2v-7.3h2.4v7.3h1.2v-7.3h2.4v7.3H23v-7.3h2.4v7.3h0.6c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.4v0.6H10.8v-0.6c0-0.2,0.1-0.3,0.2-0.4c0.1-0.1,0.3-0.2,0.5-0.2H12V15.4z"/><image /></g><text text-anchor="middle" class="user-label label"/></g>',
+
+    defaults: joint.util.deepSupplement({
+
+        type: 'bpmn.Organization',
+        bpmn_name: 'Organization',
+        size: { width: 60, height: 60 },
+        attrs: {
+            '.body': {
+                fill: '#ffffff',
+                stroke: '#0091EA'
+            },
+            '.outer': {
+                'stroke-width': 1, r:20,
+                transform: 'translate(30,30)'
+            },
+            '.inner': {
+                'stroke-width': 0, r: 16,
+                transform: 'translate(30,30)'
+            },
+            path: {
+                width:  20, 
+                height: 20, 
+                'xlink:href': '', 
+                transform: 'translate(11,12)',
+                fill: "#0091EA"
+            },
+            image: {
+                width:  20, 
+                height: 20, 
+                'xlink:href': '', 
+                transform: 'translate(20,20)'
+            },
+            '.label': {
+                text: '',
+                fill: '#000000',
+                ref: '.outer', 
+                transform: 'translate(15,20)'
+            }
+        },
+        eventType: "start"
+
+    }, joint.dia.Element.prototype.defaults),
+
+    initialize: function() {
+
+        joint.dia.Element.prototype.initialize.apply(this, arguments);
+
+        this.listenTo(this, 'change:name', this.setTooltip);
+        this.listenTo(this, 'change:parent', this.setTooltip);
+        this.listenTo(this, 'change:description', this.setTooltip);
+        this.listenTo(this, 'change:size_type', this.setSize);
+        this.listenTo(this, 'change:color', this.setColor);
+    },
+
+    setTooltip: function() {
+        debugger
+        if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
+        if( (this.has('name') && this.get('name').length>0) || (this.has('description') && this.get('description').length>0) ) {
+            var div = document.createElement("div"); 
+                div.className = 'tooltip-content';
+            var name = document.createElement("div");
+                name.className = 'tooltip-strong';
+                name.appendChild(document.createTextNode(this.get('name') || ''));
+            var parent = document.createElement("div").appendChild(document.createTextNode(this.get('parent') || ''));
+            var description = document.createElement("div").appendChild(document.createTextNode(this.get('description') || ''));
+                description.className = 'tooltip-text';
+            div.appendChild(name);
+            div.appendChild(description);
+            
+            this.tooltip = new joint.ui.Tooltip({
+                target: ' [model-id="' + this.id + '"]',
+                content: div.innerHTML,
+                bottom: ' [model-id="' + this.id + '"]',
+                direction: 'bottom',
+                padding: 20
+            });
+        }
+    },
+    setColor: function() {
+        var color = this.get('color'),
+            attrs = {
+                '.body': {
+                    fill: '#ffffff',
+                    stroke: color
+                },
+                path: {
+                    width:  20, 
+                    height: 20, 
+                    'xlink:href': '',
+                    fill: color
+                },
+            }
+        this.attr(_.merge({}, this.defaults.attrs, attrs));        
+    },
+    setInitialName: function() {
+        var color = this.get('color');
+
+        //if( (this.has('name') && this.get('name').length>0) ) {
+            attrs = {
+                '.body': {
+                    stroke: color
+                },
+                text: {
+                    fill: color
+                },
+                path: {
+                    fill: color
+                }
+            }
+
+            this.attr(_.merge({}, this.defaults.attrs, attrs));
+        //}
+    },
+    setSize: function() {
+        var size = this.get('size_type');
+
+        switch (size) {
+            case 'small':
+                this.set('size', { width: 33, height: 33 });
+                break;
+
+            case 'medium':
+                this.set('size', { width: 44, height: 44 });
+                break;
+
+            case 'large':
+                this.set('size', { width: 55, height: 55 });
+                break;
+        }
+    }
+
+}).extend(joint.shapes.bpmn.IconInterface);;
+
+joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
 
     markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image /><path class="user-img" d="M30.1,24.2c0,0.8-0.2,1.4-0.7,1.9c-0.5,0.5-1.1,0.7-1.9,0.7h-8.8c-0.8,0-1.5-0.2-1.9-0.7c-0.5-0.5-0.7-1.1-0.7-1.9c0-0.4,0-0.7,0.1-1.1c0-0.3,0.1-0.7,0.1-1.1c0.1-0.4,0.2-0.7,0.2-1.1c0.1-0.3,0.2-0.7,0.4-1c0.2-0.3,0.4-0.6,0.6-0.8c0.2-0.2,0.5-0.4,0.9-0.6c0.3-0.1,0.7-0.2,1.1-0.2c0.1,0,0.2,0.1,0.4,0.2c0.2,0.1,0.5,0.3,0.7,0.5c0.2,0.2,0.6,0.3,1.1,0.5c0.4,0.1,0.9,0.2,1.4,0.2c0.4,0,0.9-0.1,1.4-0.2c0.4-0.1,0.8-0.3,1.1-0.5c0.2-0.2,0.6-0.3,0.7-0.5c0.2-0.1,0.4-0.2,0.4-0.2c0.4,0,0.8,0.1,1.1,0.2c0.3,0.1,0.6,0.3,0.9,0.6c0.2,0.2,0.4,0.5,0.6,0.8c0.2,0.3,0.3,0.6,0.4,1c0.1,0.3,0.2,0.7,0.2,1.1c0.1,0.4,0.1,0.7,0.1,1.1C30.1,23.5,30.1,23.8,30.1,24.2z M25.7,12.4c0.7,0.7,1.1,1.7,1.1,2.7s-0.4,2-1.1,2.7S24.1,19,23,19s-2-0.4-2.7-1.1s-1.1-1.7-1.1-2.7s0.4-2,1.1-2.7s1.7-1.1,2.7-1.1C24.1,11.3,25,11.7,25.7,12.4z"/></g><text text-anchor="middle" class="user-label label"/></g>',
 
@@ -1559,126 +1695,6 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
     }
 
 }).extend(joint.shapes.bpmn.IconInterface);
-
-
-joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
-
-    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image /><path class="user-img" d="M18.7,9.3l9.1,3.6v1.2h-1.2c0,0.2-0.1,0.3-0.2,0.4c-0.1,0.1-0.3,0.2-0.5,0.2H11.5c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.4H9.6v-1.2L18.7,9.3z M27.2,24.5c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.4v1.2H9.6v-1.2c0-0.2,0.1-0.3,0.2-0.4c0.1-0.1,0.3-0.2,0.5-0.2H27.2z M12,15.4h2.4v7.3h1.2v-7.3h2.4v7.3h1.2v-7.3h2.4v7.3H23v-7.3h2.4v7.3h0.6c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.4v0.6H10.8v-0.6c0-0.2,0.1-0.3,0.2-0.4c0.1-0.1,0.3-0.2,0.5-0.2H12V15.4z"/></g><text text-anchor="middle" class="user-label label"/></g>',
-
-    defaults: joint.util.deepSupplement({
-
-        type: 'bpmn.Organization',
-        bpmn_name: 'Organization',
-        size: { width: 60, height: 60 },
-        attrs: {
-            '.body': {
-                fill: '#ffffff',
-                stroke: '#0091EA'
-            },
-            '.outer': {
-                'stroke-width': 1, r:20,
-                transform: 'translate(30,30)'
-            },
-            '.inner': {
-                'stroke-width': 0, r: 16,
-                transform: 'translate(30,30)'
-            },
-            path: {
-                width:  20, 
-                height: 20, 
-                'xlink:href': '', 
-                transform: 'translate(11,12)',
-                fill: "#0091EA"
-            },
-            image: {
-                width:  20, 
-                height: 20, 
-                'xlink:href': '', 
-                transform: 'translate(20,20)'
-            },
-            '.label': {
-                text: '',
-                fill: '#000000',
-                ref: '.outer', 
-                transform: 'translate(15,20)'
-            }
-        },
-        eventType: "start"
-
-    }, joint.dia.Element.prototype.defaults),
-
-    initialize: function() {
-
-        joint.dia.Element.prototype.initialize.apply(this, arguments);
-
-        this.listenTo(this, 'change:name', this.setTooltip);
-        this.listenTo(this, 'change:parent', this.setTooltip);
-        this.listenTo(this, 'change:description', this.setTooltip);
-        this.listenTo(this, 'change:size_type', this.setSize);
-        this.listenTo(this, 'change:color', this.setColor);
-    },
-
-    setTooltip: function() {
-        if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
-        if( (this.has('name') && this.get('name').length>0) || (this.has('description') && this.get('description').length>0) ) {
-            var div = document.createElement("div"); 
-                div.className = 'tooltip-content';
-            var name = document.createElement("div");
-                name.className = 'tooltip-strong';
-                name.appendChild(document.createTextNode(this.get('name') || ''));
-            var parent = document.createElement("div").appendChild(document.createTextNode(this.get('parent') || ''));
-            var description = document.createElement("div").appendChild(document.createTextNode(this.get('description') || ''));
-                description.className = 'tooltip-text';
-            div.appendChild(name);
-            div.appendChild(description);
-            
-            this.tooltip = new joint.ui.Tooltip({
-                target: ' [model-id="' + this.id + '"]',
-                content: div.innerHTML,
-                bottom: ' [model-id="' + this.id + '"]',
-                direction: 'bottom',
-                padding: 20
-            });
-        }
-    },
-    setColor: function() {
-        var color = this.get('color'),
-            attrs = {
-                '.body': {
-                    fill: '#ffffff',
-                    stroke: color
-                },
-                path: {
-                    width:  20, 
-                    height: 20, 
-                    'xlink:href': '', 
-                    transform: 'translate(20,20)',
-                    fill: color
-                },
-            }
-        this.attr(_.merge({}, this.defaults.attrs, attrs));        
-    },
-    setInitialName: function() {
-        var color = this.get('color');
-
-        if( (this.has('name') && this.get('name').length>0) ) {
-            attrs = {
-                '.body': {
-                    stroke: color
-                },
-                text: {
-                    fill: color
-                },
-                path: {
-                    fill: color
-                }
-            }
-
-            this.attr(_.merge({}, this.defaults.attrs, attrs));
-        }
-    }
-
-}).extend(joint.shapes.bpmn.IconInterface);;
 
 joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
 
