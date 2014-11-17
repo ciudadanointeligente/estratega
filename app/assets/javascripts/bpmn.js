@@ -1372,7 +1372,6 @@ joint.shapes.bpmn.Organization = joint.dia.Element.extend({
     },
 
     setTooltip: function() {
-        debugger
         if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
         if( (this.has('name') && this.get('name').length>0) || (this.has('description') && this.get('description').length>0) ) {
             var div = document.createElement("div"); 
@@ -1558,18 +1557,35 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
             case 'small':
                 $(element_text).attr('class','user-label label user-label-small');
                 this.set('size', { width: 33, height: 33 });
+                attrs = {
+                    text: {
+                        'transform' : 'translate(25,20)'
+                    }
+                }
                 break;
 
             case 'medium':
                 $(element_text).attr('class','user-label label user-label-medium');
                 this.set('size', { width: 44, height: 44 });
+                attrs = {
+                    text: {
+                        'transform' : 'translate(33,26)'
+                    }
+                }
                 break;
 
             case 'large':
                 $(element_text).attr('class','user-label label user-label-large');
                 this.set('size', { width: 55, height: 55 });
+                attrs = {
+                    text: {
+                        'transform' : 'translate(40,35)'
+                    }
+                }
                 break;
         }
+
+        this.attr(_.merge({}, this.defaults.attrs, attrs));
 
         this.setImage();
         this.setInitialName();
