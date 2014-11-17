@@ -455,6 +455,19 @@ color: #BD10E0;
   font-size: 24px;
 }
 
+/*Arrow*/
+
+/*.active-arrow {
+  position: relative;
+}
+
+.active-arrow:before {
+  content: url(https://s3.amazonaws.com/uifaces/faces/twitter/whale/128.jpg);
+  height: 10px;
+  width: 10px;
+  background: red;
+}*/
+
 /*Group*/
 
 .GroupOrganization rect {

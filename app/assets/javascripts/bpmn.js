@@ -265,7 +265,7 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
             '.connection': {
                 'stroke-dasharray': ' ',
                 stroke: '#4A90E2', 
-                'stroke-width': 1
+                'stroke-width': 2
             },
             '.connection-wrap': {
                 style: '',
@@ -286,6 +286,7 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
         this.setTooltip();
 
         this.listenTo(this, 'change:description', this.setTooltip);
+        this.listenTo(this, 'change:description', this.arrowActive);
     },
 
     tooltip: {},
@@ -299,10 +300,28 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
             direction: 'bottom',
             padding: 30
         });
+        if (this.attributes.description) {
+            var element_text = '[model-id='+this.id+']';
+            $(element_text).attr('class','active-arrow bpmn StepLink link');
+        }
     },
 
     removePreviousTooltip: function() {
         this.tooltip.remove()
+    },
+
+    arrowActive: function(cell, type) {
+
+        var attrs = {
+                '.marker-source': {
+                    d: 'M 0 4 m -5, 0 a 5,5 0 1,0 10,0 a 5,5 0 1,0 -10,0',
+                    stroke: '#0091EA',
+                    transform: 'translate(1945,546)',
+                    fill: '#0091EA'
+                }
+            };
+
+        cell.attr(_.merge({}, this.defaults.attrs, attrs));
     }
 
 });
@@ -1037,7 +1056,7 @@ joint.shapes.bpmn.icons = {
 
     none: '',
 
-    message: 'https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/icon-org.svg',
+    message: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOC4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgMzguOSAzNyIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMzguOSAzNyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8Zz4NCgk8cGF0aCBmaWxsPSIjMDA5MUVBIiBkPSJNMTkuNCwxMi42bDUuNCwyLjF2MC43aC0wLjdjMCwwLjEsMCwwLjItMC4xLDAuM2MtMC4xLDAuMS0wLjIsMC4xLTAuMywwLjFoLTguNWMtMC4xLDAtMC4yLDAtMC4zLTAuMQ0KCQljLTAuMS0wLjEtMC4xLTAuMi0wLjEtMC4zaC0wLjd2LTAuN0wxOS40LDEyLjZ6IE0yNC40LDIxLjVjMC4xLDAsMC4yLDAsMC4zLDAuMWMwLjEsMC4xLDAuMSwwLjIsMC4xLDAuM3YwLjdIMTQuMXYtMC43DQoJCWMwLTAuMSwwLTAuMiwwLjEtMC4zYzAuMS0wLjEsMC4yLTAuMSwwLjMtMC4xSDI0LjR6IE0xNS41LDE2LjFoMS40djQuM2gwLjd2LTQuM2gxLjR2NC4zaDAuN3YtNC4zaDEuNHY0LjNoMC43di00LjNoMS40djQuM2gwLjMNCgkJYzAuMSwwLDAuMiwwLDAuMywwLjFjMC4xLDAuMSwwLjEsMC4yLDAuMSwwLjN2MC40aC05LjN2LTAuNGMwLTAuMSwwLTAuMiwwLjEtMC4zYzAuMS0wLjEsMC4yLTAuMSwwLjMtMC4xaDAuM1YxNi4xeiIvPg0KPC9nPg0KPC9zdmc+DQo=',
 
     cross: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI0IDI0IiBoZWlnaHQ9IjI0cHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0cHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik0yMi4yNDUsNC4wMTVjMC4zMTMsMC4zMTMsMC4zMTMsMC44MjYsMCwxLjEzOWwtNi4yNzYsNi4yN2MtMC4zMTMsMC4zMTItMC4zMTMsMC44MjYsMCwxLjE0bDYuMjczLDYuMjcyICBjMC4zMTMsMC4zMTMsMC4zMTMsMC44MjYsMCwxLjE0bC0yLjI4NSwyLjI3N2MtMC4zMTQsMC4zMTItMC44MjgsMC4zMTItMS4xNDIsMGwtNi4yNzEtNi4yNzFjLTAuMzEzLTAuMzEzLTAuODI4LTAuMzEzLTEuMTQxLDAgIGwtNi4yNzYsNi4yNjdjLTAuMzEzLDAuMzEzLTAuODI4LDAuMzEzLTEuMTQxLDBsLTIuMjgyLTIuMjhjLTAuMzEzLTAuMzEzLTAuMzEzLTAuODI2LDAtMS4xNGw2LjI3OC02LjI2OSAgYzAuMzEzLTAuMzEyLDAuMzEzLTAuODI2LDAtMS4xNEwxLjcwOSw1LjE0N2MtMC4zMTQtMC4zMTMtMC4zMTQtMC44MjcsMC0xLjE0bDIuMjg0LTIuMjc4QzQuMzA4LDEuNDE3LDQuODIxLDEuNDE3LDUuMTM1LDEuNzMgIEwxMS40MDUsOGMwLjMxNCwwLjMxNCwwLjgyOCwwLjMxNCwxLjE0MSwwLjAwMWw2LjI3Ni02LjI2N2MwLjMxMi0wLjMxMiwwLjgyNi0wLjMxMiwxLjE0MSwwTDIyLjI0NSw0LjAxNXoiLz48L3N2Zz4=',
 
@@ -1321,6 +1340,9 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                 r: 16,
                 transform: 'translate(30,30)'
             },
+            image: {
+                width:  20, height: 20, 'xlink:href': '', transform: 'translate(20,20)'
+            },
             path: {
                 width:  20, 
                 height: 20, 
@@ -1531,6 +1553,8 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
 joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
 
+    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image /><path class="user-img" d="M18.7,9.3l9.1,3.6v1.2h-1.2c0,0.2-0.1,0.3-0.2,0.4c-0.1,0.1-0.3,0.2-0.5,0.2H11.5c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.4H9.6v-1.2L18.7,9.3z M27.2,24.5c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.4v1.2H9.6v-1.2c0-0.2,0.1-0.3,0.2-0.4c0.1-0.1,0.3-0.2,0.5-0.2H27.2z M12,15.4h2.4v7.3h1.2v-7.3h2.4v7.3h1.2v-7.3h2.4v7.3H23v-7.3h2.4v7.3h0.6c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.4v0.6H10.8v-0.6c0-0.2,0.1-0.3,0.2-0.4c0.1-0.1,0.3-0.2,0.5-0.2H12V15.4z"/></g><text text-anchor="middle" class="user-label label"/></g>',
+
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.Organization',
@@ -1552,6 +1576,13 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
             image: {
                 width:  20, height: 20, 'xlink:href': '', transform: 'translate(20,20)'
             },
+            path: {
+                width:  20, 
+                height: 20, 
+                'xlink:href': '', 
+                transform: 'translate(11,12)',
+                fill: "#0091EA"
+            },
             '.label': {
                 text: '',
                 fill: '#000000',
@@ -1559,8 +1590,7 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
                 transform: 'translate(15,20)'
             }
         },
-        eventType: "start", 
-        icon: 'message'
+        eventType: "start"
 
     }, joint.dia.Element.prototype.defaults),
 
