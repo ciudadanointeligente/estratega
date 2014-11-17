@@ -330,7 +330,7 @@ var paper = new joint.dia.Paper({
     width: 4000,
     height: 1000,
     model: graph,
-    gridSize: 15,
+    gridSize: 5,
     model: graph,
     perpendicularLinks: true,
     // defaultLink: new joint.shapes.bpmn.Flow,
@@ -377,7 +377,7 @@ var paper = new joint.dia.Paper({
 
     'cell:pointerup': function(cellView) {
 
-        embedInPool(cellView.model);
+        embedInGroup(cellView.model);
         openIHF(cellView);
     }
 
@@ -393,8 +393,8 @@ paperScroller.$el.appendTo('#paper-container');
 
 paperScroller.center();
 
-var snaplines = new joint.ui.Snaplines({ paper: paper })
-snaplines.startListening()
+// var snaplines = new joint.ui.Snaplines({ paper: paper })
+// snaplines.startListening()
 
 /* SELECTION */
 
@@ -1146,7 +1146,6 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         });
     },
 
-
     setDivContent: function(cell, content) {
         var the_date = '';
         if( this.has('date'))
@@ -1358,7 +1357,6 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
             }
         },
         eventType: "start",
-        icon: 'user',
         size_type: 'small',
         color: 'blue'
 
@@ -1659,7 +1657,7 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
                 fill: '#50E3C2',
                 rx: 0,
                 ry: 0,
-                'pointer-events': 'stroke'
+                // 'pointer-events': 'stroke'
             },
             '.label-rect': {
                 ref: '.body',
@@ -1870,7 +1868,7 @@ function openIHF(cellView) {
         }
 }
 
-function embedInPool(cell) {
+function embedInGroup(cell) {
 
     if (cell instanceof joint.dia.Link) return;
 
@@ -1878,13 +1876,22 @@ function embedInPool(cell) {
 
     if (!_.isEmpty(cellsBelow)) {
         // Note that the findViewsFromPoint() returns the view for the `cell` itself.
-        var cellBelow = _.find(cellsBelow, function(c) {
-            return (c instanceof joint.shapes.bpmn.Pool) && (c.id !== cell.id);
+        var groupCell = _.find(cellsBelow, function(c) {
+            return (c instanceof joint.shapes.bpmn.GroupOrganization) && (c.id !== cell.id);
+        });
+
+        var stepCell = _.find(cellsBelow, function(c) {
+            return (c instanceof joint.shapes.bpmn.Step) && (c.id !== cell.id);
         });
 
         // Prevent recursive embedding.
-        if (cellBelow && cellBelow.get('parent') !== cell.id) {
-            cellBelow.embed(cell);
+        if (groupCell && groupCell.get('parent') !== cell.id) {
+            groupCell.embed(cell);
+        }
+
+        // Prevent recursive embedding.
+        else if ((stepCell && stepCell.get('parent') !== cell.id) && (cell instanceof joint.shapes.bpmn.Person)) {
+            stepCell.embed(cell);
         }
     }
 }
