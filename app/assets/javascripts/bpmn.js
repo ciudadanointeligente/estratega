@@ -1480,14 +1480,22 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
     },
     setInitialName: function() {
         var model_id = this.get('id'),
-            url_image = this.get('image');
+            url_image = this.get('image'),
+            color = this.get('color');
         if( (this.has('name') && this.get('name').length>0) ) {
             attrs = {
+                '.body': {
+                    stroke: color
+                },
                 image: {
                     'href' : url_image
                 },
                 path: {
-                    'display': 'none'
+                    'display': 'none',
+                    fill: color
+                },
+                text: {
+                    fill: color
                 }
             }
             
