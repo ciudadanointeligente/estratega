@@ -1152,10 +1152,12 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         var view_more_div = document.createElement("div"); 
         var view_more_link = '';
         var main_modal = '';
-        if( the_content.length > 150 )
+        var count = the_content.replace(/[^\n]/g, '').length;
+        
+        if( the_content.length > 150 || count > 6 )
         {
             var view_more_link = document.createElement("a"); 
-                view_more_link.innerHTML = 'ver más';
+                view_more_link.innerHTML = 'read more';
                 view_more_link.setAttribute('href','#');
                 view_more_link.setAttribute('data-toggle', "modal");
                 view_more_link.setAttribute('data-target', "#myModal"+this.cid);
@@ -1498,7 +1500,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                     fill: color
                 }
             }
-            
+
             this.attr(_.merge({}, this.defaults.attrs, attrs));
         }
 
