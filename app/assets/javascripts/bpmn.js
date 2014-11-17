@@ -1541,6 +1541,8 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
 joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
 
+    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><path class="ong-img" d="M1,18.2779262 L18.8090878,18.2779262 L18.8090878,17.0509364 C18.8090878,16.8785112 18.7594514,16.7399552 18.6260999,16.6191037 C18.4934893,16.4982521 18.3438393,16.4289741 18.17715,16.4289741 L1.64823627,16.4289741 C1.46524843,16.4289741 1.31559846,16.4982521 1.18298784,16.6191037 C1.06667573,16.7399552 1,16.8785112 1,17.0509364 L1,18.2779262 L1,18.2779262 Z M2.19719979,5.94182867 C2.19719979,6.09731923 2.26387553,6.25280979 2.38018763,6.37366136 C2.51279825,6.49451294 2.66244823,6.54608654 2.82913756,6.54608654 L16.9969896,6.54608654 C17.1629381,6.54608654 17.312588,6.49451294 17.4459395,6.37366136 C17.5622516,6.25280979 17.6289273,6.09731923 17.6289273,5.94182867 L18.8090878,5.94182867 L18.8090878,4.69713444 L9.91306357,1 L1.01629851,4.69713444 L1.01629851,5.94182867 L2.19719979,5.94182867 L2.19719979,5.94182867 Z M17.6289273,15.8070119 L17.6289273,15.1850497 C17.6289273,15.0295591 17.5622516,14.8910031 17.4459395,14.7701516 C17.312588,14.6493 17.1629381,14.580022 16.9969896,14.580022 L16.4480261,14.580022 L16.4480261,7.16804878 L14.069925,7.16804878 L14.069925,14.580022 L12.8727252,14.580022 L12.8727252,7.16804878 L10.4946241,7.16804878 L10.4946241,14.580022 L9.31446367,14.580022 L9.31446367,7.16804878 L6.93636259,7.16804878 L6.93636259,14.580022 L5.75546131,14.580022 L5.75546131,7.16804878 L3.37810108,7.16804878 L3.37810108,14.580022 L2.82913756,14.580022 C2.66244823,14.580022 2.51279825,14.6493 2.38018763,14.7701516 C2.26387553,14.8910031 2.19719979,15.0295591 2.19719979,15.1850497 L2.19719979,15.8070119 L17.6289273,15.8070119 L17.6289273,15.8070119 Z"/><image /></g><text text-anchor="middle" class="user-label label"/></g>',
+
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.Organization',
@@ -1559,8 +1561,12 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
                 'stroke-width': 0, r: 16,
                 transform: 'translate(30,30)'
             },
-            image: {
-                width:  20, height: 20, 'xlink:href': '', transform: 'translate(20,20)'
+            path: {
+                width:  20, 
+                height: 20, 
+                'xlink:href': '', 
+                transform: 'translate(20,20)',
+                fill: "#0091EA"
             },
             '.label': {
                 text: '',
@@ -1582,6 +1588,7 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
         this.listenTo(this, 'change:parent', this.setTooltip);
         this.listenTo(this, 'change:description', this.setTooltip);
         this.listenTo(this, 'change:size_type', this.setSize);
+        this.listenTo(this, 'change:color', this.setColor);
     },
 
     setTooltip: function() {
@@ -1597,7 +1604,7 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
                 description.className = 'tooltip-text';
             div.appendChild(name);
             div.appendChild(description);
-            console.log( this.id );
+            
             this.tooltip = new joint.ui.Tooltip({
                 target: ' [model-id="' + this.id + '"]',
                 content: div.innerHTML,
@@ -1607,6 +1614,42 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
             });
         }
     },
+    setColor: function() {
+        var color = this.get('color'),
+            attrs = {
+                '.body': {
+                    fill: '#ffffff',
+                    stroke: color
+                },
+                path: {
+                    width:  20, 
+                    height: 20, 
+                    'xlink:href': '', 
+                    transform: 'translate(20,20)',
+                    fill: color
+                },
+            }
+        this.attr(_.merge({}, this.defaults.attrs, attrs));        
+    },
+    setInitialName: function() {
+        var color = this.get('color');
+
+        if( (this.has('name') && this.get('name').length>0) ) {
+            attrs = {
+                '.body': {
+                    stroke: color
+                },
+                text: {
+                    fill: color
+                },
+                path: {
+                    fill: color
+                }
+            }
+
+            this.attr(_.merge({}, this.defaults.attrs, attrs));
+        }
+    }
 
 }).extend(joint.shapes.bpmn.IconInterface);;
 
