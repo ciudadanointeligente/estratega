@@ -1510,12 +1510,19 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
             }
 
             if( !this.get('image')) {
+                $('[model-id='+model_id+'] g g path').attr( 'display', 'none' );
                 $('[model-id='+model_id+'] g g image').attr( 'href', '' );
                 $('[model-id='+model_id+'] g text').html( first_vowel + second_vowel );
             } else {
                 $('[model-id='+model_id+'] g text').html( '' );
             }
 
+        }
+
+        if( (this.has('name') && this.get('name').length==0) ) {
+            if( !this.get('image')) {
+                $('[model-id='+model_id+'] g g path').attr( 'display', 'block' );
+            }
         }
     }
 
