@@ -1439,22 +1439,9 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         this.setInitialName();
     },
     setColor: function() {
-        var color = this.get('color'),
-            attrs = {
-                '.body': {
-                    fill: '#ffffff',
-                    stroke: color
-                },
-                path: {
-                    width:  20, 
-                    height: 20, 
-                    'xlink:href': '', 
-                    transform: 'translate(7,11)',
-                    fill: color
-                },
-            }
+        var color = this.get('color')
         if( (this.has('name') && this.get('name').length>0) ) {
-            attrs = {
+            var attrs = {
                 path: {
                     display: 'none',
                     fill: color
@@ -1467,10 +1454,28 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                     fill: color
                 }
             }
+
+            this.attr(_.merge({}, this.defaults.attrs, attrs));
+            this.setInitialName();
         }
 
-        this.attr(_.merge({}, this.defaults.attrs, attrs));
-        this.setInitialName();
+        else{
+            var attrs = {
+                '.body': {
+                    fill: '#ffffff',
+                    stroke: color
+                },
+                path: {
+                    width:  20, 
+                    height: 20, 
+                    'xlink:href': '', 
+                    transform: 'translate(7,11)',
+                    fill: color
+                },
+            }
+
+            this.attr(_.merge({}, this.defaults.attrs, attrs));
+        }
     },
     setImage: function() {
         var url_image = this.get('image');
@@ -1524,15 +1529,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
             }
 
             this.attr(_.merge({}, this.defaults.attrs, attrs));
-        }
 
-        if( this.get('type') == 'bpmn.Person') {
-            if( !(this.has('name')) && !(this.has('image')) ) {
-                $('[model-id='+model_id+'] g g image').attr( 'href', 'https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/icon-user.svg' );
-            }
-        }
-
-        if( (this.has('name') && this.get('name').length>0) ) {
             var the_name = this.get('name').split(" "),
                 first_vowel = the_name[0].substr(0,1),
                 second_vowel = '';
@@ -1554,6 +1551,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         if( (this.has('name') && this.get('name').length==0) ) {
             if( !this.get('image')) {
                 $('[model-id='+model_id+'] g g path').attr( 'display', 'block' );
+                this.setColor();
             }
         }
     }
