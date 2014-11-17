@@ -196,6 +196,16 @@ a {
   background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/copy-h.svg);
 }
 
+/*Selection box*/
+
+.selection-box {
+  border: 1px dashed #BD10E0;
+  margin-top: 0px;
+  margin-left: 0px;
+  border-radius: 0px;
+  background-color: rgba(189, 16, 224, 0.08);
+}
+
 /*Sidebar*/
 
 .sidebar {
@@ -444,6 +454,19 @@ color: #BD10E0;
   font-weight: 600;
   font-size: 24px;
 }
+
+/*Arrow*/
+
+/*.active-arrow {
+  position: relative;
+}
+
+.active-arrow:before {
+  content: url(https://s3.amazonaws.com/uifaces/faces/twitter/whale/128.jpg);
+  height: 10px;
+  width: 10px;
+  background: red;
+}*/
 
 /*Group*/
 

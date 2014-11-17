@@ -251,7 +251,7 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
     defaults: {
 
         type: "bpmn.StepLink",
-
+        bpmn_name: 'Step Link',
         attrs: {
 
             '.marker-source': {
@@ -265,7 +265,7 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
             '.connection': {
                 'stroke-dasharray': ' ',
                 stroke: '#4A90E2', 
-                'stroke-width': 1
+                'stroke-width': 2
             },
             '.connection-wrap': {
                 style: '',
@@ -286,6 +286,7 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
         this.setTooltip();
 
         this.listenTo(this, 'change:description', this.setTooltip);
+        this.listenTo(this, 'change:description', this.arrowActive);
     },
 
     tooltip: {},
@@ -299,10 +300,28 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
             direction: 'bottom',
             padding: 30
         });
+        if (this.attributes.description) {
+            var element_text = '[model-id='+this.id+']';
+            $(element_text).attr('class','active-arrow bpmn StepLink link');
+        }
     },
 
     removePreviousTooltip: function() {
         this.tooltip.remove()
+    },
+
+    arrowActive: function(cell, type) {
+
+        var attrs = {
+                '.marker-source': {
+                    d: 'M 0 4 m -5, 0 a 5,5 0 1,0 10,0 a 5,5 0 1,0 -10,0',
+                    stroke: '#0091EA',
+                    transform: 'translate(1945,546)',
+                    fill: '#0091EA'
+                }
+            };
+
+        cell.attr(_.merge({}, this.defaults.attrs, attrs));
     }
 
 });
@@ -1037,11 +1056,11 @@ joint.shapes.bpmn.icons = {
 
     none: '',
 
-    message: 'https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/icon-org.svg',
+    message: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOC4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgMzguOSAzNyIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMzguOSAzNyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8Zz4NCgk8cGF0aCBmaWxsPSIjMDA5MUVBIiBkPSJNMTkuNCwxMi42bDUuNCwyLjF2MC43aC0wLjdjMCwwLjEsMCwwLjItMC4xLDAuM2MtMC4xLDAuMS0wLjIsMC4xLTAuMywwLjFoLTguNWMtMC4xLDAtMC4yLDAtMC4zLTAuMQ0KCQljLTAuMS0wLjEtMC4xLTAuMi0wLjEtMC4zaC0wLjd2LTAuN0wxOS40LDEyLjZ6IE0yNC40LDIxLjVjMC4xLDAsMC4yLDAsMC4zLDAuMWMwLjEsMC4xLDAuMSwwLjIsMC4xLDAuM3YwLjdIMTQuMXYtMC43DQoJCWMwLTAuMSwwLTAuMiwwLjEtMC4zYzAuMS0wLjEsMC4yLTAuMSwwLjMtMC4xSDI0LjR6IE0xNS41LDE2LjFoMS40djQuM2gwLjd2LTQuM2gxLjR2NC4zaDAuN3YtNC4zaDEuNHY0LjNoMC43di00LjNoMS40djQuM2gwLjMNCgkJYzAuMSwwLDAuMiwwLDAuMywwLjFjMC4xLDAuMSwwLjEsMC4yLDAuMSwwLjN2MC40aC05LjN2LTAuNGMwLTAuMSwwLTAuMiwwLjEtMC4zYzAuMS0wLjEsMC4yLTAuMSwwLjMtMC4xaDAuM1YxNi4xeiIvPg0KPC9nPg0KPC9zdmc+DQo=',
 
     cross: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI0IDI0IiBoZWlnaHQ9IjI0cHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0cHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik0yMi4yNDUsNC4wMTVjMC4zMTMsMC4zMTMsMC4zMTMsMC44MjYsMCwxLjEzOWwtNi4yNzYsNi4yN2MtMC4zMTMsMC4zMTItMC4zMTMsMC44MjYsMCwxLjE0bDYuMjczLDYuMjcyICBjMC4zMTMsMC4zMTMsMC4zMTMsMC44MjYsMCwxLjE0bC0yLjI4NSwyLjI3N2MtMC4zMTQsMC4zMTItMC44MjgsMC4zMTItMS4xNDIsMGwtNi4yNzEtNi4yNzFjLTAuMzEzLTAuMzEzLTAuODI4LTAuMzEzLTEuMTQxLDAgIGwtNi4yNzYsNi4yNjdjLTAuMzEzLDAuMzEzLTAuODI4LDAuMzEzLTEuMTQxLDBsLTIuMjgyLTIuMjhjLTAuMzEzLTAuMzEzLTAuMzEzLTAuODI2LDAtMS4xNGw2LjI3OC02LjI2OSAgYzAuMzEzLTAuMzEyLDAuMzEzLTAuODI2LDAtMS4xNEwxLjcwOSw1LjE0N2MtMC4zMTQtMC4zMTMtMC4zMTQtMC44MjcsMC0xLjE0bDIuMjg0LTIuMjc4QzQuMzA4LDEuNDE3LDQuODIxLDEuNDE3LDUuMTM1LDEuNzMgIEwxMS40MDUsOGMwLjMxNCwwLjMxNCwwLjgyOCwwLjMxNCwxLjE0MSwwLjAwMWw2LjI3Ni02LjI2N2MwLjMxMi0wLjMxMiwwLjgyNi0wLjMxMiwxLjE0MSwwTDIyLjI0NSw0LjAxNXoiLz48L3N2Zz4=',
 
-    user: 'https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/icon-user.svg',
+    user: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOC4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgMjkuMyAzMy40IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyOS4zIDMzLjQiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPHBhdGggZmlsbD0iIzAwOTFFQSIgZD0iTTI2LjUsMjUuNGMwLDEuMy0wLjQsMi4zLTEuMiwzLjFjLTAuOCwwLjgtMS44LDEuMS0zLjEsMS4xSDhjLTEuMywwLTIuNC0wLjQtMy4xLTEuMQ0KCQljLTAuOC0wLjgtMS4yLTEuOC0xLjItMy4xYzAtMC42LDAtMS4xLDAuMS0xLjdjMC0wLjUsMC4xLTEuMSwwLjItMS44YzAuMS0wLjYsMC4zLTEuMiwwLjQtMS44YzAuMi0wLjUsMC40LTEuMSwwLjctMS42DQoJCWMwLjMtMC41LDAuNi0xLDEtMS4zYzAuNC0wLjQsMC44LTAuNywxLjQtMC45YzAuNS0wLjIsMS4xLTAuMywxLjgtMC4zYzAuMSwwLDAuMywwLjEsMC43LDAuM2MwLjQsMC4yLDAuOCwwLjUsMS4yLDAuOA0KCQljMC40LDAuMywxLDAuNSwxLjgsMC44YzAuNywwLjIsMS40LDAuMywyLjIsMC4zYzAuNywwLDEuNC0wLjEsMi4yLTAuM2MwLjctMC4yLDEuMy0wLjUsMS44LTAuOGMwLjQtMC4zLDAuOS0wLjUsMS4yLTAuOA0KCQljMC40LTAuMiwwLjYtMC4zLDAuNy0wLjNjMC43LDAsMS4zLDAuMSwxLjgsMC4zYzAuNSwwLjIsMSwwLjUsMS40LDAuOWMwLjQsMC40LDAuNywwLjgsMSwxLjNjMC4zLDAuNSwwLjUsMSwwLjcsMS42DQoJCWMwLjIsMC41LDAuMywxLjEsMC40LDEuOGMwLjEsMC42LDAuMiwxLjIsMC4yLDEuOEMyNi41LDI0LjMsMjYuNSwyNC44LDI2LjUsMjUuNHogTTE5LjUsNi41YzEuMiwxLjIsMS44LDIuNywxLjgsNC40DQoJCXMtMC42LDMuMi0xLjgsNC40Yy0xLjIsMS4yLTIuNywxLjgtNC40LDEuOHMtMy4yLTAuNi00LjQtMS44cy0xLjgtMi43LTEuOC00LjRzMC42LTMuMiwxLjgtNC40czIuNy0xLjgsNC40LTEuOFMxOC4zLDUuMywxOS41LDYuNQ0KCQl6Ii8+DQo8L2c+DQo8L3N2Zz4NCg==',
 
     circle: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gULEBE3DEP64QAAAwlJREFUaN7dmktrU0EUx38ZmmBbfEIL2hSjkYKC1EW6EDFudC+404/gE6WKSvGxERQfIH4AX1T9EOKrCrYurVrbgsZWoaBVixDbpC6ci+Fyz9ybZG478cBs7syc+Z+5c86c+c8ksCPrgW1ADtgEbARafG1+AW+AYWAIGADGWUTZAJwHxoD5GssocA7ILiTwLcADoFQHcH8pAfeB7jiBtwO3gLJF4P5S1mO02wa/C5iMEbi/TAI7bYE/Y3m5VLOs+sLAJULqrgKHIxhZBp4DT4FX2jkLGoinq1M7fg7YDmwFVATd14CjFboiy5UIs/QBOAmka/izaeCU1hE2zuVqlZ8IUfgVOAA0WViiTcBBrdM0Zm9UhTuAOYOiRzXOeJh0Ak8M484B+TAlK4BPBiU3gWSMoTqpw6g0fgFYblJww9D5dojT25IEcMeA47rUsdsQLp9FmPmURSNSOqpJS2lzUKd+ocN3IBNx5mz+oXXADwHTXX/jjMFxjy1iwtgrYJoF1lY27BMafozZaaMspYKA7XRlw7f1xt4Y5biA7bXXIGv4TW0OGNCmsQRhzCidlwTJADDlgAFTwAuhLq+AHqHyMe6IhKVHAV1C5ZBDBkhYupThPPreIQNGJTJBGXKLLw4Z8NmQu/Fb8PCkQwakBIxFRWPLvAJmhMpWh4AuFb7PKGBaqFzjkAGrhe/TSjNrQZJ1yAAJy5gCRoTKnEMGSFhGFDBoOBu7IhKWQe8wLRFLHQ6A7zCcFNNK59vvAjoqYK8DBuwTCLBhTUD8Hweahj9S2jjU297VqzrU26BVmi2yEjXRKg1PbHnpqYla7AeWxAi+GbhHHdSit2mYyN2XQQ5kQTJ6Y6qL3PUkCr2+H7v0+jcs0eueRLngGNeKa9mxY73g8JzpEtHusorAQ/7e+e7WUWIl//jSVTrK7QEu6KgW9d7tYr3B44iBWPJfkZZ8pZ4r2VngkC0HywMTLNwN5YSBcKtZWoGzernEBbyox2iJc6Np2KcGfnHisYet1CDouc2yCjbhp07MrD+3+QNxi4JkAscRswAAAABJRU5ErkJggg=='
 
@@ -1230,7 +1249,7 @@ joint.shapes.bpmn.External = joint.shapes.bpmn.Step.extend({
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.External',
-
+        bpmn_name: 'Internal Step',
         // see joint.css for more element styles
         attrs: {
             rect: {
@@ -1264,7 +1283,7 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.Intervention',
-
+        bpmn_name: 'Intervention',
         // see joint.css for more element styles
         attrs: {
             rect: {
@@ -1296,11 +1315,12 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
 
 joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
-    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image /></g><text text-anchor="middle" class="user-label label"/></g>',
+    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image /><path class="user-img" d="M30.1,24.2c0,0.8-0.2,1.4-0.7,1.9c-0.5,0.5-1.1,0.7-1.9,0.7h-8.8c-0.8,0-1.5-0.2-1.9-0.7c-0.5-0.5-0.7-1.1-0.7-1.9c0-0.4,0-0.7,0.1-1.1c0-0.3,0.1-0.7,0.1-1.1c0.1-0.4,0.2-0.7,0.2-1.1c0.1-0.3,0.2-0.7,0.4-1c0.2-0.3,0.4-0.6,0.6-0.8c0.2-0.2,0.5-0.4,0.9-0.6c0.3-0.1,0.7-0.2,1.1-0.2c0.1,0,0.2,0.1,0.4,0.2c0.2,0.1,0.5,0.3,0.7,0.5c0.2,0.2,0.6,0.3,1.1,0.5c0.4,0.1,0.9,0.2,1.4,0.2c0.4,0,0.9-0.1,1.4-0.2c0.4-0.1,0.8-0.3,1.1-0.5c0.2-0.2,0.6-0.3,0.7-0.5c0.2-0.1,0.4-0.2,0.4-0.2c0.4,0,0.8,0.1,1.1,0.2c0.3,0.1,0.6,0.3,0.9,0.6c0.2,0.2,0.4,0.5,0.6,0.8c0.2,0.3,0.3,0.6,0.4,1c0.1,0.3,0.2,0.7,0.2,1.1c0.1,0.4,0.1,0.7,0.1,1.1C30.1,23.5,30.1,23.8,30.1,24.2z M25.7,12.4c0.7,0.7,1.1,1.7,1.1,2.7s-0.4,2-1.1,2.7S24.1,19,23,19s-2-0.4-2.7-1.1s-1.1-1.7-1.1-2.7s0.4-2,1.1-2.7s1.7-1.1,2.7-1.1C24.1,11.3,25,11.7,25.7,12.4z"/></g><text text-anchor="middle" class="user-label label"/></g>',
 
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.Person',
+        bpmn_name: 'Person',
         size: { 
             width: 33, 
             height: 33 
@@ -1321,10 +1341,14 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                 transform: 'translate(30,30)'
             },
             image: {
+                width:  20, height: 20, 'xlink:href': '', transform: 'translate(20,20)'
+            },
+            path: {
                 width:  20, 
                 height: 20, 
                 'xlink:href': '', 
-                transform: 'translate(20,20)'
+                transform: 'translate(7,11)',
+                fill: "#0091EA"
             },
             '.user-label': {
                 text: '',
@@ -1335,18 +1359,21 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         },
         eventType: "start",
         icon: 'user',
-        size_type: 'small'
+        size_type: 'small',
+        color: 'blue'
 
     }, joint.dia.Element.prototype.defaults),
 
     initialize: function() { 
         joint.dia.Element.prototype.initialize.apply(this, arguments);
+        this.markup = '<g class="rotatable"><defs><clipPath id="circle-'+this.id+'"><circle cx="20" cy="20" r="20"/></clipPath></defs><g class="scalable"><circle class="body outer"/><circle class="body inner"/><path class="user-img" d="M30.1,24.2c0,0.8-0.2,1.4-0.7,1.9c-0.5,0.5-1.1,0.7-1.9,0.7h-8.8c-0.8,0-1.5-0.2-1.9-0.7c-0.5-0.5-0.7-1.1-0.7-1.9c0-0.4,0-0.7,0.1-1.1c0-0.3,0.1-0.7,0.1-1.1c0.1-0.4,0.2-0.7,0.2-1.1c0.1-0.3,0.2-0.7,0.4-1c0.2-0.3,0.4-0.6,0.6-0.8c0.2-0.2,0.5-0.4,0.9-0.6c0.3-0.1,0.7-0.2,1.1-0.2c0.1,0,0.2,0.1,0.4,0.2c0.2,0.1,0.5,0.3,0.7,0.5c0.2,0.2,0.6,0.3,1.1,0.5c0.4,0.1,0.9,0.2,1.4,0.2c0.4,0,0.9-0.1,1.4-0.2c0.4-0.1,0.8-0.3,1.1-0.5c0.2-0.2,0.6-0.3,0.7-0.5c0.2-0.1,0.4-0.2,0.4-0.2c0.4,0,0.8,0.1,1.1,0.2c0.3,0.1,0.6,0.3,0.9,0.6c0.2,0.2,0.4,0.5,0.6,0.8c0.2,0.3,0.3,0.6,0.4,1c0.1,0.3,0.2,0.7,0.2,1.1c0.1,0.4,0.1,0.7,0.1,1.1C30.1,23.5,30.1,23.8,30.1,24.2z M25.7,12.4c0.7,0.7,1.1,1.7,1.1,2.7s-0.4,2-1.1,2.7S24.1,19,23,19s-2-0.4-2.7-1.1s-1.1-1.7-1.1-2.7s0.4-2,1.1-2.7s1.7-1.1,2.7-1.1C24.1,11.3,25,11.7,25.7,12.4z"/><image clip-path="url(#circle-'+this.id+')"/></g><text text-anchor="middle" class="user-label label"/></g>'
 
         this.listenTo(this, 'change:name', this.setTooltip);
         this.listenTo(this, 'change:pos', this.setTooltip);
         this.listenTo(this, 'change:description', this.setTooltip);
         this.listenTo(this, 'change:size_type', this.setSize);
         this.listenTo(this, 'change:image', this.setImage);
+        this.listenTo(this, 'change:color', this.setColor);
         if( this.attributes.hasOwnProperty('image') ) {
             this.setImage();
         }
@@ -1394,20 +1421,16 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         switch (size) {
             case 'small':
                 $(element_text).attr('class','user-label label user-label-small');
-                this.attr('.user-label').transform = 'translate(24,20)';
-                this.attr('.user-label')['font-size'] = '24px';
                 this.set('size', { width: 33, height: 33 });
                 break;
 
             case 'medium':
                 $(element_text).attr('class','user-label label user-label-medium');
-                this.attr('.user-label').transform = 'translate(32,26)'
                 this.set('size', { width: 44, height: 44 });
                 break;
 
             case 'large':
                 $(element_text).attr('class','user-label label user-label-large');
-                this.attr('.user-label').transform = 'translate(41,35)'
                 this.set('size', { width: 55, height: 55 });
                 break;
         }
@@ -1415,7 +1438,53 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         this.setImage();
         this.setInitialName();
     },
+    setColor: function() {
+        var color = this.get('color'),
+            attrs = {
+                '.body': {
+                    fill: '#ffffff',
+                    stroke: color
+                },
+                path: {
+                    width:  20, 
+                    height: 20, 
+                    'xlink:href': '', 
+                    transform: 'translate(7,11)',
+                    fill: color
+                },
+            }
+        if( (this.has('name') && this.get('name').length>0) ) {
+            attrs = {
+                path: {
+                    display: 'none',
+                    fill: color
+                },
+                circle: {
+                    stroke: color
+                },
+                text: {
+                    display: 'block',
+                    fill: color
+                }
+            }
+        }
+
+        this.attr(_.merge({}, this.defaults.attrs, attrs));
+        this.setInitialName();
+    },
     setImage: function() {
+        var url_image = this.get('image');
+        attrs = {
+            image: {
+                'href' : url_image
+            },
+            clippath: {
+                'display': 'none'
+            }
+        }
+        
+        this.attr(_.merge({}, this.defaults.attrs, attrs));
+
         var main_id = this.id,
             elem_image_circle = '[model-id='+main_id+'] g defs clippath circle',
             elem_image = '[model-id='+main_id+'] image',
@@ -1423,7 +1492,6 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
         this.set('image',the_image);
         if(the_image.length>0) {
-            this.markup = '<g class="rotatable"><defs><clipPath id="circle-'+main_id+'"><circle cx="20" cy="20" r="20"/></clipPath></defs><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image clip-path="url(#circle-'+main_id+')" /></g><text class="label user-label"/></g>'
             $(elem_image).attr('width',40);
             $(elem_image).attr('height',40);
             $(elem_image).attr('transform','translate(10,10)');
@@ -1433,7 +1501,28 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         this.setInitialName();
     },
     setInitialName: function() {
-        var model_id = this.get('id');
+        var model_id = this.get('id'),
+            url_image = this.get('image'),
+            color = this.get('color');
+        if( (this.has('name') && this.get('name').length>0) ) {
+            attrs = {
+                '.body': {
+                    stroke: color
+                },
+                image: {
+                    'href' : url_image
+                },
+                path: {
+                    'display': 'none',
+                    fill: color
+                },
+                text: {
+                    fill: color
+                }
+            }
+            
+            this.attr(_.merge({}, this.defaults.attrs, attrs));
+        }
 
         if( this.get('type') == 'bpmn.Person') {
             if( !(this.has('name')) && !(this.has('image')) ) {
@@ -1451,12 +1540,19 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
             }
 
             if( !this.get('image')) {
+                $('[model-id='+model_id+'] g g path').attr( 'display', 'none' );
                 $('[model-id='+model_id+'] g g image').attr( 'href', '' );
                 $('[model-id='+model_id+'] g text').html( first_vowel + second_vowel );
             } else {
                 $('[model-id='+model_id+'] g text').html( '' );
             }
 
+        }
+
+        if( (this.has('name') && this.get('name').length==0) ) {
+            if( !this.get('image')) {
+                $('[model-id='+model_id+'] g g path').attr( 'display', 'block' );
+            }
         }
     }
 
@@ -1465,9 +1561,12 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
 
 joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
 
+    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image /><path class="user-img" d="M18.7,9.3l9.1,3.6v1.2h-1.2c0,0.2-0.1,0.3-0.2,0.4c-0.1,0.1-0.3,0.2-0.5,0.2H11.5c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.4H9.6v-1.2L18.7,9.3z M27.2,24.5c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.4v1.2H9.6v-1.2c0-0.2,0.1-0.3,0.2-0.4c0.1-0.1,0.3-0.2,0.5-0.2H27.2z M12,15.4h2.4v7.3h1.2v-7.3h2.4v7.3h1.2v-7.3h2.4v7.3H23v-7.3h2.4v7.3h0.6c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.4v0.6H10.8v-0.6c0-0.2,0.1-0.3,0.2-0.4c0.1-0.1,0.3-0.2,0.5-0.2H12V15.4z"/></g><text text-anchor="middle" class="user-label label"/></g>',
+
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.Organization',
+        bpmn_name: 'Organization',
         size: { width: 60, height: 60 },
         attrs: {
             '.body': {
@@ -1485,6 +1584,13 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
             image: {
                 width:  20, height: 20, 'xlink:href': '', transform: 'translate(20,20)'
             },
+            path: {
+                width:  20, 
+                height: 20, 
+                'xlink:href': '', 
+                transform: 'translate(11,12)',
+                fill: "#0091EA"
+            },
             '.label': {
                 text: '',
                 fill: '#000000',
@@ -1492,8 +1598,7 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
                 transform: 'translate(15,20)'
             }
         },
-        eventType: "start", 
-        icon: 'message'
+        eventType: "start"
 
     }, joint.dia.Element.prototype.defaults),
 
@@ -1520,6 +1625,7 @@ joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
                 description.className = 'tooltip-text';
             div.appendChild(name);
             div.appendChild(description);
+            console.log( this.id );
             this.tooltip = new joint.ui.Tooltip({
                 target: ' [model-id="' + this.id + '"]',
                 content: div.innerHTML,
@@ -1539,6 +1645,7 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.GroupOrganization',
+        bpmn_name: 'Group Organization',
         size: {
             width: 200,
             height: 200
@@ -1614,7 +1721,7 @@ stencil.getGraph().get('cells').each(function(cell) {
     new joint.ui.Tooltip({
         target: '.stencil [model-id="' + cell.id + '"]',
         //hack for getting the type without the bpmn
-        content: cell.get('type').split(".")[1],
+        content: cell.get('bpmn_name'),
         bottom: '.stencil',
         direction: 'bottom',
         padding: 0
@@ -1696,17 +1803,25 @@ function openIHF(cellView) {
             }
 
             var type = cellView.model.get('type');
+            var name = cellView.model.get('bpmn_name');
 
             inspector = new joint.ui.Inspector({
                 cellView: cellView,
                 inputs: inputs[type],
                 groups: {
-                    general: { label: type, index: 1 },
+                    general: { label: name, index: 1 },
                     appearance: { index: 2 }
+                },
+                events: {
+                    'mousedown': 'startBatchCommand',
+                    'change': 'onChangeInput',
+                    'click .group-label': '',
+                    'click .btn-list-add': 'addListItem',
+                    'click .btn-list-del': 'deleteListItem'
                 }
             });
 
-            $('#inspector-container').prepend(inspector.render().el);
+            $('#inspector-container').html(inspector.render().el);
         }
 
         if (!selection.contains(cellView.model)) {
@@ -1820,6 +1935,13 @@ var toolbar = {
             contentType: "application/json",
             data: JSON.stringify({sandbox: {graph_data: JSON.stringify(graph.toJSON())}}),
             beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        });
+    },
+
+    centerGraph: function() {
+        paperScroller.zoomToFit({
+            minScale: 0.2,
+            maxScale: 2
         });
     }
 };
