@@ -1240,7 +1240,17 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
                 {html: dateDiv.outerHTML + titleDiv.outerHTML + contentDiv.outerHTML + view_more_div.outerHTML  }
             }
         );
-    }
+    },
+
+    fixEmbeddedPosition: function(){
+        if (!this.getEmbeddedCells().length) return;
+        var children = this.getEmbeddedCells(),
+            yPosition = this.get('position').y + this.get('size').height - children[0].get('size').height;
+        for (i=0; i < children.length; i++){
+            xPosition = this.get('position').x + children[i].get('size').width * i;
+            children[i].set('position', {x:xPosition, y:yPosition});
+        }
+    },
 
 });
 
@@ -1958,6 +1968,7 @@ function embedInGroup(cell) {
         // Prevent recursive embedding.
         else if ((stepCell && stepCell.get('parent') !== cell.id) && (cell instanceof joint.shapes.bpmn.Person)) {
             stepCell.embed(cell);
+            stepCell.fixEmbeddedPosition();
         }
     }
 }
