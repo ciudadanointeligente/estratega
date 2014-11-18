@@ -1163,7 +1163,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         
         var contentDiv = document.createElement("div"); 
         var the_content = this.get("content");
-        var contentText = document.createTextNode(the_content.substring(0,150));
+        var contentText = document.createTextNode(the_content.substring(0,140));
             contentDiv.appendChild(contentText);
             contentDiv.classList.add("step-content");
 
@@ -1171,8 +1171,8 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         var view_more_link = '';
         var main_modal = '';
         var count = the_content.replace(/[^\n]/g, '').length;
-        
-        if( the_content.length > 150 || count > 6 )
+        console.log(count)
+        if( the_content.length > 140 || count > 4 )
         {
             var view_more_link = document.createElement("a"); 
                 view_more_link.innerHTML = 'read more';
@@ -1245,9 +1245,9 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
     fixEmbeddedPosition: function(){
         if (!this.getEmbeddedCells().length) return;
         var children = this.getEmbeddedCells(),
-            yPosition = this.get('position').y + this.get('size').height - children[0].get('size').height;
+            yPosition = this.get('position').y + this.get('size').height - children[0].get('size').height*1.6;
         for (i=0; i < children.length; i++){
-            xPosition = this.get('position').x + children[i].get('size').width * i;
+            xPosition = this.get('position').x + children[i].get('size').width * i + 5*i + 8;
             children[i].set('position', {x:xPosition, y:yPosition});
         }
     },
@@ -1505,7 +1505,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
         },
         eventType: "start",
         size_type: 'small',
-        color: 'blue'
+        color: '#0091EA'
 
     }, joint.dia.Element.prototype.defaults),
 
@@ -1967,6 +1967,7 @@ function embedInGroup(cell) {
 
         // Prevent recursive embedding.
         else if ((stepCell && stepCell.get('parent') !== cell.id) && (cell instanceof joint.shapes.bpmn.Person)) {
+            cell.set('size_type', 'small')
             stepCell.embed(cell);
             stepCell.fixEmbeddedPosition();
         }
