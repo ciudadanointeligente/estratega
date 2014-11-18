@@ -295,12 +295,11 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
         if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
         this.tooltip = new joint.ui.Tooltip({
             target: ' [model-id="' + this.id + '"]',
-            content: this.attributes.description,
+            content: this.get('description'),
             bottom: '.connection-wrap',
-            direction: 'bottom',
-            padding: 30
+            direction: 'bottom'
         });
-        if (this.attributes.description) {
+        if (this.has('description')) {
             var element_text = '[model-id='+this.id+']';
             $(element_text).attr('class','active-arrow bpmn StepLink link');
         }
@@ -1172,7 +1171,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         var main_modal = '';
         var count = the_content.replace(/[^\n]/g, '').length;
         
-        if( the_content.length > 150 || count > 6 )
+        if( the_content.length >= 130 || count >= 4 )
         {
             var view_more_link = document.createElement("a"); 
                 view_more_link.innerHTML = 'read more';
