@@ -1087,7 +1087,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
 
         size: { width: 228, height: 210 },
         type: 'bpmn.Step',
-
+        bpmn_name : 'Step',
         // see joint.css for more element styles
         attrs: {
             rect: {
