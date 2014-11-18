@@ -1579,7 +1579,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
                 this.set('size', { width: 55, height: 55 });
                 attrs = {
                     text: {
-                        'transform' : 'translate(40,35)'
+                        'transform' : 'translate(41,35)'
                     }
                 }
                 break;
