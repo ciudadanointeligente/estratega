@@ -523,14 +523,20 @@ var inputs = {
             group: 'general',
             label: 'Size',
         },
-        attrs: {
-            '.body/fill': {
-                type: 'color',
-                label: 'Body Color',
-                group: 'appearance',
-                index: 1
-            }
-        }
+        
+        color: {
+            type: 'select',
+            label: 'Color',
+            group: 'other',
+            options: [
+                { value: '#0091EA', content: 'blue' },
+                { value: '#16D4AA', content: 'green' },
+                { value: '#4A4A4A', content: 'grey' },
+                { value: '#F5A623', content: 'orange' },
+                { value: '#F55923', content: 'red' }
+            ],
+            index: 5
+        }        
     },
 
     'bpmn.GroupOrganization': {
