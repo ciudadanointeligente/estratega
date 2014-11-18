@@ -1087,7 +1087,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
 
         size: { width: 228, height: 210 },
         type: 'bpmn.Step',
-
+        bpmn_name : 'Step',
         // see joint.css for more element styles
         attrs: {
             rect: {
@@ -1240,7 +1240,17 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
                 {html: dateDiv.outerHTML + titleDiv.outerHTML + contentDiv.outerHTML + view_more_div.outerHTML  }
             }
         );
-    }
+    },
+
+    fixEmbeddedPosition: function(){
+        if (!this.getEmbeddedCells().length) return;
+        var children = this.getEmbeddedCells(),
+            yPosition = this.get('position').y + this.get('size').height - children[0].get('size').height;
+        for (i=0; i < children.length; i++){
+            xPosition = this.get('position').x + children[i].get('size').width * i;
+            children[i].set('position', {x:xPosition, y:yPosition});
+        }
+    },
 
 });
 
@@ -1591,6 +1601,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
         this.setInitialName();
     },
     setColor: function() {
+        if( (this.has('image') && this.get('image').length>0) ) return
         var color = this.get('color')
         if( (this.has('name') && this.get('name').length>0) ) {
             var attrs = {
@@ -1622,48 +1633,52 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
                     height: 20, 
                     'xlink:href': '', 
                     transform: 'translate(7,11)',
-                    fill: color
+                    fill: color,
+                    display: 'block'
                 },
+                image:{
+                    display: 'none'
+                }
             }
 
             this.attr(_.merge({}, this.defaults.attrs, attrs));
         }
     },
+
     setImage: function() {
-        var url_image = this.get('image');
-        attrs = {
-            image: {
-                'href' : url_image
-            },
-            clippath: {
-                'display': 'none'
-            }
+        if (!this.has('image') || this.get('image').length==0){
+            this.setInitialName();
+            return;
         }
+        var elem_image_circle = '[model-id='+this.id+'] g defs clippath circle',
+            elem_image = '[model-id='+this.id+'] image',
+            the_image = this.get('image') || '',
+            attrs = {
+                image: {
+                    'href' : the_image,
+                    display: 'block'
+                },
+                clippath: {
+                    'display': 'none'
+                }
+            }
         
         this.attr(_.merge({}, this.defaults.attrs, attrs));
-
-        var main_id = this.id,
-            elem_image_circle = '[model-id='+main_id+'] g defs clippath circle',
-            elem_image = '[model-id='+main_id+'] image',
-            the_image = this.get('image') || '';
-
-        this.set('image',the_image);
-        if(the_image.length>0) {
-            $(elem_image).attr('width',40);
-            $(elem_image).attr('height',40);
-            $(elem_image).attr('transform','translate(10,10)');
-            $(elem_image).attr('href',the_image);
-        }
-        else{
-            this.setInitialName();
-        }
-
+        $(elem_image).attr('width',40);
+        $(elem_image).attr('height',40);
+        $(elem_image).attr('transform','translate(10,10)');
+        $(elem_image).attr('href',the_image);
     },
     setInitialName: function() {
+        if( (this.has('image') && this.get('image').length>0) ) return
+        if(!this.has('name') || this.get('name').length==0) {
+            this.setColor();
+            return;
+        }
+
         var model_id = this.get('id'),
             url_image = this.get('image'),
-            color = this.get('color');
-        if( (this.has('name') && this.get('name').length>0) ) {
+            color = this.get('color'),
             attrs = {
                 '.body': {
                     stroke: color
@@ -1680,32 +1695,19 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
                 }
             }
 
-            this.attr(_.merge({}, this.defaults.attrs, attrs));
+        this.attr(_.merge({}, this.defaults.attrs, attrs));
 
-            var the_name = this.get('name').split(" "),
-                first_vowel = the_name[0].substr(0,1),
-                second_vowel = '';
+        var the_name = this.get('name').split(" "),
+            first_vowel = the_name[0].substr(0,1),
+            second_vowel = '';
 
-            if( the_name.length > 1) {
-                second_vowel = the_name[1].substr(0,1);
-            }
-
-            if( !this.get('image')) {
-                $('[model-id='+model_id+'] g g path').attr( 'display', 'none' );
-                $('[model-id='+model_id+'] g g image').attr( 'href', '' );
-                $('[model-id='+model_id+'] g text').html( first_vowel + second_vowel );
-            } else {
-                $('[model-id='+model_id+'] g text').html( '' );
-            }
-
+        if( the_name.length > 1) {
+            second_vowel = the_name[1].substr(0,1);
         }
 
-        if( (this.has('name') && this.get('name').length==0) ) {
-            if( !this.get('image')) {
-                $('[model-id='+model_id+'] g g path').attr( 'display', 'block' );
-                this.setColor();
-            }
-        }
+        $('[model-id='+model_id+'] g g path').attr( 'display', 'none' );
+        $('[model-id='+model_id+'] g g image').attr( 'href', '' );
+        $('[model-id='+model_id+'] g text').html( first_vowel + second_vowel );
     }
 
 }).extend(joint.shapes.bpmn.IconInterface);
@@ -1966,6 +1968,7 @@ function embedInGroup(cell) {
         // Prevent recursive embedding.
         else if ((stepCell && stepCell.get('parent') !== cell.id) && (cell instanceof joint.shapes.bpmn.Person)) {
             stepCell.embed(cell);
+            stepCell.fixEmbeddedPosition();
         }
     }
 }
