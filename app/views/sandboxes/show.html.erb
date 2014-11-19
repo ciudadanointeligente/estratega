@@ -3,11 +3,12 @@
         <div id="paper-container"></div>
           
         <div id="btn-sidebar-left" class="btn-toggleStencil stencil-trigger" style="">
-          <i id="btn-left" class="fa fa-chevron-left fa-4x"></i>
+          <i id="btn-left" class="fa fa-chevron-left fa-2x"></i>
         </div>
         <div id="sidebar-left" role="sidebar" class="sidebar">
           <div id="toolbar-container">
-            <div id="fileName"><%= link_to truncate(@sandbox.name, length: 40, omission: "..."), [:edit, @sandbox] %></div>
+            <div id="fileName"><%= truncate(@sandbox.name, length: 40, omission: "...") %></div>
+            <div id="fileEdit"><%= link_to('<i class="fa fa-pencil"></i>'.html_safe, [:edit, @sandbox]) %></div>
             <button class="btn-drive-save" onclick="toolbar.saveGraph()" data-tooltip="Save"><i class="fa fa-floppy-o fa-lg"></i></button>
             <button class="btn-print" onclick="paper.print()" data-tooltip="Print"><i class="fa fa-print fa-lg"></i></button>
             <button class="btn-json" onclick="toolbar.toJSON()" data-tooltip="Open As JSON"><i class="fa fa-file-code-o fa-lg"></i></button>
@@ -24,7 +25,7 @@
         <div>
           <div class="container-of-inspector-and-trigger">
             <div id="btn-inspector-container" class="btn-toggleInspector inspector-trigger">
-              <i id="btn-right" class="fa fa-chevron-right fa-4x"></i>
+              <i id="btn-right" class="fa fa-chevron-right fa-2x"></i>
             </div>
             <div id="inspector-container">
               <div class="about">

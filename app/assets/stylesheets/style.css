@@ -5,7 +5,12 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #BD10E0;
+}
+
+a:hover {
+  color: #9009AB;
+  text-decoration: none;
 }
 
 .event-content {
@@ -224,15 +229,22 @@ a {
 
 #fileName {
   position: relative;
-  border: 1px solid #FFF;
+  border: none;
   border-radius: 0px;
-  color: #666;
   top: 0%;
   width: 90%;
   text-align: left;
   outline: none;
-  padding: 5px;
+  padding: 0px 8px;
   font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  text-transform: capitalize;
+  float: left;
+}
+
+div#fileEdit {
+  float: left;
 }
 
 #stencil-container {
@@ -279,6 +291,8 @@ color: #BD10E0;
   height: 55px;
   cursor: pointer;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.12);
+  padding: 14px 9px;
+  color: #CFCFCF;
 }
 
 .stencil-trigger i {
@@ -325,10 +339,36 @@ color: #BD10E0;
   height: 55px;
   cursor: pointer;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12);
+  padding: 15px 12px;
+  color: #CFCFCF;
 }
 
 .inspector-trigger i {
   margin-top: 2px;
+}
+
+.inspector .group > .group-label {
+  background: none;
+  color: #000;
+  font-weight: 100;
+  text-align: left;
+  text-transform: none;
+  font-size: 21px;
+  padding: 0 10px;
+  box-shadow: none;
+  margin-bottom: 0px;
+}
+
+.inspector .group > .group-label:before {
+  content: none;
+}
+
+.inspector label {
+  display: inline-block;
+  font-weight: 400;
+  color: #000000;
+  font-family: 'Open Sans', sans-serif;
+  text-transform: none;
 }
 
 /*Tooltip*/
@@ -452,21 +492,8 @@ color: #BD10E0;
 
 .joint-tooltip-strong {
   font-weight: 600;
-  font-size: 24px;
+  font-size: 18px;
 }
-
-/*Arrow*/
-
-/*.active-arrow {
-  position: relative;
-}
-
-.active-arrow:before {
-  content: url(https://s3.amazonaws.com/uifaces/faces/twitter/whale/128.jpg);
-  height: 10px;
-  width: 10px;
-  background: red;
-}*/
 
 /*Group*/
 
