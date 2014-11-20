@@ -1761,8 +1761,6 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
     },
 
     zoom_out: function(){
-        // console.log("zoom out")
-        console.log(this.id)
         attrs = {
             'text.person-name' : {
                 display: 'none'
@@ -1771,7 +1769,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
                 display: 'none'
             }
         }
-        console.log(this.defaults.attrs)
+        
         this.attr(_.merge({}, this.defaults.attrs, attrs));
         // $('[model-id='+this.id+'] g text.person-name').attr('display', 'none');
         // $('[model-id='+this.id+'] g text.person-position').attr('display', 'none');
