@@ -245,6 +245,28 @@ joint.ui.Tooltip = Backbone.View.extend({
     }
 });
 
+joint.connectors.normal = function(sourcePoint, targetPoint, vertices) {
+
+    // Construct the `d` attribute of the `<path>` element.
+    var r = 5;
+    var d = ['M', sourcePoint.x, sourcePoint.y];
+
+    midPointX = (sourcePoint.x + targetPoint.x)/2;
+    midPointY = (sourcePoint.y + targetPoint.y)/2;
+
+    d.push(midPointX, midPointY);
+    d.push("m "+ -r + ", 0 a "+r+","+r+" 0 1,0 "+2*r+",0 a "+r+","+r+" 0 1,0 "+(-2*r)+",0");
+    d.push("M", midPointX, midPointY);
+
+    _.each(vertices, function(vertex) {
+
+        d.push(vertex.x, vertex.y);
+    });
+
+    d.push(targetPoint.x, targetPoint.y);
+
+    return d.join(' ');
+};
 
 joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
 
@@ -311,17 +333,15 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
     },
 
     arrowActive: function(cell, type) {
+        if (this.has('description') && this.get('description').length > 0){
+            var link_body = '[model-id='+this.id+'] path.connection';
+            $(link_body).attr('class','active-arrow connection');
+        }
+        else{
+            var link_body = '[model-id='+this.id+'] path.connection';
+            $(link_body).attr('class','connection');   
+        }
 
-        var attrs = {
-                '.marker-source': {
-                    d: 'M 0 4 m -5, 0 a 5,5 0 1,0 10,0 a 5,5 0 1,0 -10,0',
-                    stroke: '#0091EA',
-                    transform: 'translate(1945,546)',
-                    fill: '#0091EA'
-                }
-            };
-
-        cell.attr(_.merge({}, this.defaults.attrs, attrs));
     }
 
 });
@@ -1087,7 +1107,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
 
         size: { width: 228, height: 210 },
         type: 'bpmn.Step',
-
+        bpmn_name : 'Step',
         // see joint.css for more element styles
         attrs: {
             rect: {
@@ -1163,17 +1183,19 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         
         var contentDiv = document.createElement("div"); 
         var the_content = this.get("content");
-        var contentText = document.createTextNode(the_content.substring(0,150));
+        var contentText = document.createTextNode(the_content.substring(0,140));
             contentDiv.appendChild(contentText);
             contentDiv.classList.add("step-content");
 
         var view_more_div = document.createElement("div"); 
         var view_more_link = '';
         var main_modal = '';
-        if( the_content.length > 150 )
+        var count = the_content.replace(/[^\n]/g, '').length;
+        console.log(count)
+        if( the_content.length > 140 || count > 4 )
         {
             var view_more_link = document.createElement("a"); 
-                view_more_link.innerHTML = 'ver más';
+                view_more_link.innerHTML = 'read more';
                 view_more_link.setAttribute('href','#');
                 view_more_link.setAttribute('data-toggle', "modal");
                 view_more_link.setAttribute('data-target', "#myModal"+this.cid);
@@ -1238,7 +1260,17 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
                 {html: dateDiv.outerHTML + titleDiv.outerHTML + contentDiv.outerHTML + view_more_div.outerHTML  }
             }
         );
-    }
+    },
+
+    fixEmbeddedPosition: function(){
+        if (!this.getEmbeddedCells().length) return;
+        var children = this.getEmbeddedCells(),
+            yPosition = this.get('position').y + this.get('size').height - children[0].get('size').height*1.6;
+        for (i=0; i < children.length; i++){
+            xPosition = this.get('position').x + children[i].get('size').width * i + 5*i + 8;
+            children[i].set('position', {x:xPosition, y:yPosition});
+        }
+    },
 
 });
 
@@ -1312,7 +1344,142 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
     }, joint.shapes.basic.Generic.prototype.defaults),
 });
 
-joint.shapes.bpmn.Person = joint.dia.Element.extend({
+joint.shapes.bpmn.Organization = joint.dia.Element.extend({
+
+    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><path class="user-img" d="M18.7,9.3l9.1,3.6v1.2h-1.2c0,0.2-0.1,0.3-0.2,0.4c-0.1,0.1-0.3,0.2-0.5,0.2H11.5c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.4H9.6v-1.2L18.7,9.3z M27.2,24.5c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.4v1.2H9.6v-1.2c0-0.2,0.1-0.3,0.2-0.4c0.1-0.1,0.3-0.2,0.5-0.2H27.2z M12,15.4h2.4v7.3h1.2v-7.3h2.4v7.3h1.2v-7.3h2.4v7.3H23v-7.3h2.4v7.3h0.6c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.4v0.6H10.8v-0.6c0-0.2,0.1-0.3,0.2-0.4c0.1-0.1,0.3-0.2,0.5-0.2H12V15.4z"/><image /></g><text text-anchor="middle" class="user-label label"/></g>',
+
+    defaults: joint.util.deepSupplement({
+
+        type: 'bpmn.Organization',
+        bpmn_name: 'Organization',
+        size: { width: 60, height: 60 },
+        attrs: {
+            '.body': {
+                fill: '#ffffff',
+                stroke: '#0091EA'
+            },
+            '.outer': {
+                'stroke-width': 1, r:20,
+                transform: 'translate(30,30)'
+            },
+            '.inner': {
+                'stroke-width': 0, r: 16,
+                transform: 'translate(30,30)'
+            },
+            path: {
+                width:  20, 
+                height: 20, 
+                'xlink:href': '', 
+                transform: 'translate(11,12)',
+                fill: "#0091EA"
+            },
+            image: {
+                width:  20, 
+                height: 20, 
+                'xlink:href': '', 
+                transform: 'translate(20,20)'
+            },
+            '.label': {
+                text: '',
+                fill: '#000000',
+                ref: '.outer', 
+                transform: 'translate(15,20)'
+            }
+        },
+        eventType: "start"
+
+    }, joint.dia.Element.prototype.defaults),
+
+    initialize: function() {
+
+        joint.dia.Element.prototype.initialize.apply(this, arguments);
+
+        this.listenTo(this, 'change:name', this.setTooltip);
+        this.listenTo(this, 'change:parent', this.setTooltip);
+        this.listenTo(this, 'change:description', this.setTooltip);
+        this.listenTo(this, 'change:size_type', this.setSize);
+        this.listenTo(this, 'change:color', this.setColor);
+    },
+
+    setTooltip: function() {
+        if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
+        if( (this.has('name') && this.get('name').length>0) || (this.has('description') && this.get('description').length>0) ) {
+            var div = document.createElement("div"); 
+                div.className = 'tooltip-content';
+            var name = document.createElement("div");
+                name.className = 'tooltip-strong';
+                name.appendChild(document.createTextNode(this.get('name') || ''));
+            var parent = document.createElement("div").appendChild(document.createTextNode(this.get('parent') || ''));
+            var description = document.createElement("div").appendChild(document.createTextNode(this.get('description') || ''));
+                description.className = 'tooltip-text';
+            div.appendChild(name);
+            div.appendChild(description);
+            
+            this.tooltip = new joint.ui.Tooltip({
+                target: ' [model-id="' + this.id + '"]',
+                content: div.innerHTML,
+                bottom: ' [model-id="' + this.id + '"]',
+                direction: 'bottom',
+                padding: 20
+            });
+        }
+    },
+    setColor: function() {
+        var color = this.get('color'),
+            attrs = {
+                '.body': {
+                    fill: '#ffffff',
+                    stroke: color
+                },
+                path: {
+                    width:  20, 
+                    height: 20, 
+                    'xlink:href': '',
+                    fill: color
+                },
+            }
+        this.attr(_.merge({}, this.defaults.attrs, attrs));        
+    },
+    setInitialName: function() {
+        var color = this.get('color');
+
+        //if( (this.has('name') && this.get('name').length>0) ) {
+            attrs = {
+                '.body': {
+                    stroke: color
+                },
+                text: {
+                    fill: color
+                },
+                path: {
+                    fill: color
+                }
+            }
+
+            this.attr(_.merge({}, this.defaults.attrs, attrs));
+        //}
+    },
+    setSize: function() {
+        var size = this.get('size_type');
+
+        switch (size) {
+            case 'small':
+                this.set('size', { width: 33, height: 33 });
+                break;
+
+            case 'medium':
+                this.set('size', { width: 44, height: 44 });
+                break;
+
+            case 'large':
+                this.set('size', { width: 55, height: 55 });
+                break;
+        }
+    }
+
+}).extend(joint.shapes.bpmn.IconInterface);;
+
+joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
 
     markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image /><path class="user-img" d="M30.1,24.2c0,0.8-0.2,1.4-0.7,1.9c-0.5,0.5-1.1,0.7-1.9,0.7h-8.8c-0.8,0-1.5-0.2-1.9-0.7c-0.5-0.5-0.7-1.1-0.7-1.9c0-0.4,0-0.7,0.1-1.1c0-0.3,0.1-0.7,0.1-1.1c0.1-0.4,0.2-0.7,0.2-1.1c0.1-0.3,0.2-0.7,0.4-1c0.2-0.3,0.4-0.6,0.6-0.8c0.2-0.2,0.5-0.4,0.9-0.6c0.3-0.1,0.7-0.2,1.1-0.2c0.1,0,0.2,0.1,0.4,0.2c0.2,0.1,0.5,0.3,0.7,0.5c0.2,0.2,0.6,0.3,1.1,0.5c0.4,0.1,0.9,0.2,1.4,0.2c0.4,0,0.9-0.1,1.4-0.2c0.4-0.1,0.8-0.3,1.1-0.5c0.2-0.2,0.6-0.3,0.7-0.5c0.2-0.1,0.4-0.2,0.4-0.2c0.4,0,0.8,0.1,1.1,0.2c0.3,0.1,0.6,0.3,0.9,0.6c0.2,0.2,0.4,0.5,0.6,0.8c0.2,0.3,0.3,0.6,0.4,1c0.1,0.3,0.2,0.7,0.2,1.1c0.1,0.4,0.1,0.7,0.1,1.1C30.1,23.5,30.1,23.8,30.1,24.2z M25.7,12.4c0.7,0.7,1.1,1.7,1.1,2.7s-0.4,2-1.1,2.7S24.1,19,23,19s-2-0.4-2.7-1.1s-1.1-1.7-1.1-2.7s0.4-2,1.1-2.7s1.7-1.1,2.7-1.1C24.1,11.3,25,11.7,25.7,12.4z"/></g><text text-anchor="middle" class="user-label label"/></g>',
 
@@ -1358,7 +1525,7 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
         },
         eventType: "start",
         size_type: 'small',
-        color: 'blue'
+        color: '#0091EA'
 
     }, joint.dia.Element.prototype.defaults),
 
@@ -1420,39 +1587,44 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
             case 'small':
                 $(element_text).attr('class','user-label label user-label-small');
                 this.set('size', { width: 33, height: 33 });
+                attrs = {
+                    text: {
+                        'transform' : 'translate(25,20)'
+                    }
+                }
                 break;
 
             case 'medium':
                 $(element_text).attr('class','user-label label user-label-medium');
                 this.set('size', { width: 44, height: 44 });
+                attrs = {
+                    text: {
+                        'transform' : 'translate(33,26)'
+                    }
+                }
                 break;
 
             case 'large':
                 $(element_text).attr('class','user-label label user-label-large');
                 this.set('size', { width: 55, height: 55 });
+                attrs = {
+                    text: {
+                        'transform' : 'translate(41,35)'
+                    }
+                }
                 break;
         }
+
+        this.attr(_.merge({}, this.defaults.attrs, attrs));
 
         this.setImage();
         this.setInitialName();
     },
     setColor: function() {
-        var color = this.get('color'),
-            attrs = {
-                '.body': {
-                    fill: '#ffffff',
-                    stroke: color
-                },
-                path: {
-                    width:  20, 
-                    height: 20, 
-                    'xlink:href': '', 
-                    transform: 'translate(7,11)',
-                    fill: color
-                },
-            }
+        if( (this.has('image') && this.get('image').length>0) ) return
+        var color = this.get('color')
         if( (this.has('name') && this.get('name').length>0) ) {
-            attrs = {
+            var attrs = {
                 path: {
                     display: 'none',
                     fill: color
@@ -1465,44 +1637,68 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                     fill: color
                 }
             }
+
+            this.attr(_.merge({}, this.defaults.attrs, attrs));
+            this.setInitialName();
         }
 
-        this.attr(_.merge({}, this.defaults.attrs, attrs));
-        this.setInitialName();
-    },
-    setImage: function() {
-        var url_image = this.get('image');
-        attrs = {
-            image: {
-                'href' : url_image
-            },
-            clippath: {
-                'display': 'none'
+        else{
+            var attrs = {
+                '.body': {
+                    fill: '#ffffff',
+                    stroke: color
+                },
+                path: {
+                    width:  20, 
+                    height: 20, 
+                    'xlink:href': '', 
+                    transform: 'translate(7,11)',
+                    fill: color,
+                    display: 'block'
+                },
+                image:{
+                    display: 'none'
+                }
             }
+
+            this.attr(_.merge({}, this.defaults.attrs, attrs));
         }
+    },
+
+    setImage: function() {
+        if (!this.has('image') || this.get('image').length==0){
+            this.setInitialName();
+            return;
+        }
+        var elem_image_circle = '[model-id='+this.id+'] g defs clippath circle',
+            elem_image = '[model-id='+this.id+'] image',
+            the_image = this.get('image') || '',
+            attrs = {
+                image: {
+                    'href' : the_image,
+                    display: 'block'
+                },
+                clippath: {
+                    'display': 'none'
+                }
+            }
         
         this.attr(_.merge({}, this.defaults.attrs, attrs));
-
-        var main_id = this.id,
-            elem_image_circle = '[model-id='+main_id+'] g defs clippath circle',
-            elem_image = '[model-id='+main_id+'] image',
-            the_image = this.get('image') || '';
-
-        this.set('image',the_image);
-        if(the_image.length>0) {
-            $(elem_image).attr('width',40);
-            $(elem_image).attr('height',40);
-            $(elem_image).attr('transform','translate(10,10)');
-            $(elem_image).attr('href',the_image);
-        }
-
-        this.setInitialName();
+        $(elem_image).attr('width',40);
+        $(elem_image).attr('height',40);
+        $(elem_image).attr('transform','translate(10,10)');
+        $(elem_image).attr('href',the_image);
     },
     setInitialName: function() {
+        if( (this.has('image') && this.get('image').length>0) ) return
+        if(!this.has('name') || this.get('name').length==0) {
+            this.setColor();
+            return;
+        }
+
         var model_id = this.get('id'),
             url_image = this.get('image'),
-            color = this.get('color');
-        if( (this.has('name') && this.get('name').length>0) ) {
+            color = this.get('color'),
             attrs = {
                 '.body': {
                     stroke: color
@@ -1518,123 +1714,23 @@ joint.shapes.bpmn.Person = joint.dia.Element.extend({
                     fill: color
                 }
             }
-            
-            this.attr(_.merge({}, this.defaults.attrs, attrs));
+
+        this.attr(_.merge({}, this.defaults.attrs, attrs));
+
+        var the_name = this.get('name').split(" "),
+            first_vowel = the_name[0].substr(0,1),
+            second_vowel = '';
+
+        if( the_name.length > 1) {
+            second_vowel = the_name[1].substr(0,1);
         }
 
-        if( this.get('type') == 'bpmn.Person') {
-            if( !(this.has('name')) && !(this.has('image')) ) {
-                $('[model-id='+model_id+'] g g image').attr( 'href', 'https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/icon-user.svg' );
-            }
-        }
-
-        if( (this.has('name') && this.get('name').length>0) ) {
-            var the_name = this.get('name').split(" "),
-                first_vowel = the_name[0].substr(0,1),
-                second_vowel = '';
-
-            if( the_name.length > 1) {
-                second_vowel = the_name[1].substr(0,1);
-            }
-
-            if( !this.get('image')) {
-                $('[model-id='+model_id+'] g g path').attr( 'display', 'none' );
-                $('[model-id='+model_id+'] g g image').attr( 'href', '' );
-                $('[model-id='+model_id+'] g text').html( first_vowel + second_vowel );
-            } else {
-                $('[model-id='+model_id+'] g text').html( '' );
-            }
-
-        }
-
-        if( (this.has('name') && this.get('name').length==0) ) {
-            if( !this.get('image')) {
-                $('[model-id='+model_id+'] g g path').attr( 'display', 'block' );
-            }
-        }
+        $('[model-id='+model_id+'] g g path').attr( 'display', 'none' );
+        $('[model-id='+model_id+'] g g image').attr( 'href', '' );
+        $('[model-id='+model_id+'] g text').html( first_vowel + second_vowel );
     }
 
 }).extend(joint.shapes.bpmn.IconInterface);
-
-
-joint.shapes.bpmn.Organization = joint.shapes.bpmn.Person.extend({
-
-    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/><image /><path class="user-img" d="M18.7,9.3l9.1,3.6v1.2h-1.2c0,0.2-0.1,0.3-0.2,0.4c-0.1,0.1-0.3,0.2-0.5,0.2H11.5c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.4H9.6v-1.2L18.7,9.3z M27.2,24.5c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.4v1.2H9.6v-1.2c0-0.2,0.1-0.3,0.2-0.4c0.1-0.1,0.3-0.2,0.5-0.2H27.2z M12,15.4h2.4v7.3h1.2v-7.3h2.4v7.3h1.2v-7.3h2.4v7.3H23v-7.3h2.4v7.3h0.6c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.4v0.6H10.8v-0.6c0-0.2,0.1-0.3,0.2-0.4c0.1-0.1,0.3-0.2,0.5-0.2H12V15.4z"/></g><text text-anchor="middle" class="user-label label"/></g>',
-
-    defaults: joint.util.deepSupplement({
-
-        type: 'bpmn.Organization',
-        bpmn_name: 'Organization',
-        size: { width: 60, height: 60 },
-        attrs: {
-            '.body': {
-                fill: '#ffffff',
-                stroke: '#0091EA'
-            },
-            '.outer': {
-                'stroke-width': 1, r:20,
-                transform: 'translate(30,30)'
-            },
-            '.inner': {
-                'stroke-width': 0, r: 16,
-                transform: 'translate(30,30)'
-            },
-            image: {
-                width:  20, height: 20, 'xlink:href': '', transform: 'translate(20,20)'
-            },
-            path: {
-                width:  20, 
-                height: 20, 
-                'xlink:href': '', 
-                transform: 'translate(11,12)',
-                fill: "#0091EA"
-            },
-            '.label': {
-                text: '',
-                fill: '#000000',
-                ref: '.outer', 
-                transform: 'translate(15,20)'
-            }
-        },
-        eventType: "start"
-
-    }, joint.dia.Element.prototype.defaults),
-
-    initialize: function() {
-
-        joint.dia.Element.prototype.initialize.apply(this, arguments);
-
-        this.listenTo(this, 'change:name', this.setTooltip);
-        this.listenTo(this, 'change:parent', this.setTooltip);
-        this.listenTo(this, 'change:description', this.setTooltip);
-        this.listenTo(this, 'change:size_type', this.setSize);
-    },
-
-    setTooltip: function() {
-        if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
-        if( (this.has('name') && this.get('name').length>0) || (this.has('description') && this.get('description').length>0) ) {
-            var div = document.createElement("div"); 
-                div.className = 'tooltip-content';
-            var name = document.createElement("div");
-                name.className = 'tooltip-strong';
-                name.appendChild(document.createTextNode(this.get('name') || ''));
-            var parent = document.createElement("div").appendChild(document.createTextNode(this.get('parent') || ''));
-            var description = document.createElement("div").appendChild(document.createTextNode(this.get('description') || ''));
-                description.className = 'tooltip-text';
-            div.appendChild(name);
-            div.appendChild(description);
-            console.log( this.id );
-            this.tooltip = new joint.ui.Tooltip({
-                target: ' [model-id="' + this.id + '"]',
-                content: div.innerHTML,
-                bottom: ' [model-id="' + this.id + '"]',
-                direction: 'bottom',
-                padding: 20
-            });
-        }
-    },
-
-}).extend(joint.shapes.bpmn.IconInterface);;
 
 joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
 
@@ -1891,7 +1987,9 @@ function embedInGroup(cell) {
 
         // Prevent recursive embedding.
         else if ((stepCell && stepCell.get('parent') !== cell.id) && (cell instanceof joint.shapes.bpmn.Person)) {
+            cell.set('size_type', 'small')
             stepCell.embed(cell);
+            stepCell.fixEmbeddedPosition();
         }
     }
 }
@@ -1965,6 +2063,7 @@ $(function () {
         graph.get('cells').each(function(cell) {
             if (cell instanceof joint.shapes.bpmn.StepLink || cell instanceof joint.shapes.bpmn.Person || cell instanceof joint.shapes.bpmn.Organization){
                 cell.setTooltip();
+                cell.arrowActive();
             }
             if(cell instanceof joint.shapes.bpmn.Person) {
                 cell.setImage();
