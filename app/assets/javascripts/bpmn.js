@@ -2065,11 +2065,13 @@ $(function () {
         graph.get('cells').each(function(cell) {
             if (cell instanceof joint.shapes.bpmn.StepLink || cell instanceof joint.shapes.bpmn.Person || cell instanceof joint.shapes.bpmn.Organization){
                 cell.setTooltip();
-                cell.arrowActive();
             }
             if(cell instanceof joint.shapes.bpmn.Person) {
                 cell.setImage();
                 cell.setSize();
+            }
+            if(cell instanceof joint.shapes.bpmn.StepLink) {
+                cell.arrowActive();
             }
         });
     }
