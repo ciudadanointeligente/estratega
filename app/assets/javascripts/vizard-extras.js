@@ -151,7 +151,12 @@ $(function(){
 
     el_zoomin.addEventListener('click', function(){
         if( paperScroller._sy == '1.4') {
-            console.log('zoomin: '+paperScroller._sy)
+            // console.log('zoomin: '+paperScroller._sy)
+            graph.get('cells').each(function(cell) {
+                if(cell instanceof joint.shapes.bpmn.Person) {
+                    cell.zoom();
+                }
+            });
         }
     })
 

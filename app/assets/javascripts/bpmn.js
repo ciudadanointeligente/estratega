@@ -1726,6 +1726,10 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
         $('[model-id='+model_id+'] g g path').attr( 'display', 'none' );
         $('[model-id='+model_id+'] g g image').attr( 'href', '' );
         $('[model-id='+model_id+'] g text').html( first_vowel + second_vowel );
+    },
+
+    zoom: function(){
+        console.log('holi');
     }
 
 }).extend(joint.shapes.bpmn.IconInterface);
