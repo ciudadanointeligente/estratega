@@ -245,6 +245,28 @@ joint.ui.Tooltip = Backbone.View.extend({
     }
 });
 
+joint.connectors.normal = function(sourcePoint, targetPoint, vertices) {
+
+    // Construct the `d` attribute of the `<path>` element.
+    var r = 5;
+    var d = ['M', sourcePoint.x, sourcePoint.y];
+
+    midPointX = (sourcePoint.x + targetPoint.x)/2;
+    midPointY = (sourcePoint.y + targetPoint.y)/2;
+
+    d.push(midPointX, midPointY);
+    d.push("m "+ -r + ", 0 a "+r+","+r+" 0 1,0 "+2*r+",0 a "+r+","+r+" 0 1,0 "+(-2*r)+",0");
+    d.push("M", midPointX, midPointY);
+
+    _.each(vertices, function(vertex) {
+
+        d.push(vertex.x, vertex.y);
+    });
+
+    d.push(targetPoint.x, targetPoint.y);
+
+    return d.join(' ');
+};
 
 joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
 
@@ -311,17 +333,15 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
     },
 
     arrowActive: function(cell, type) {
+        if (this.has('description') && this.get('description').length > 0){
+            var link_body = '[model-id='+this.id+'] path.connection';
+            $(link_body).attr('class','active-arrow connection');
+        }
+        else{
+            var link_body = '[model-id='+this.id+'] path.connection';
+            $(link_body).attr('class','connection');   
+        }
 
-        var attrs = {
-                '.marker-source': {
-                    d: 'M 0 4 m -5, 0 a 5,5 0 1,0 10,0 a 5,5 0 1,0 -10,0',
-                    stroke: '#0091EA',
-                    transform: 'translate(1945,546)',
-                    fill: '#0091EA'
-                }
-            };
-
-        cell.attr(_.merge({}, this.defaults.attrs, attrs));
     }
 
 });
@@ -2043,6 +2063,7 @@ $(function () {
         graph.get('cells').each(function(cell) {
             if (cell instanceof joint.shapes.bpmn.StepLink || cell instanceof joint.shapes.bpmn.Person || cell instanceof joint.shapes.bpmn.Organization){
                 cell.setTooltip();
+                cell.arrowActive();
             }
             if(cell instanceof joint.shapes.bpmn.Person) {
                 cell.setImage();
