@@ -150,14 +150,25 @@ $(function(){
         el_zoomout = document.getElementById('btn-zoom-out');
 
     el_zoomin.addEventListener('click', function(){
-        if( paperScroller._sy == '1.4') {
+        if( paperScroller._sy > '1.2') {
             console.log('zoomin: '+paperScroller._sy)
+            graph.get('cells').each(function(cell) {
+                if(cell instanceof joint.shapes.bpmn.Person) {
+                    cell.zoom_in();
+                }
+            });
         }
     })
 
+    console.log(paperScroller._sy)
     el_zoomout.addEventListener('click', function(){
-        if( paperScroller._sy == '1.2') {
+        if( paperScroller._sy <= '1.2') {
             console.log('zoomout: '+paperScroller._sy)
+            graph.get('cells').each(function(cell) {
+                if(cell instanceof joint.shapes.bpmn.Person) {
+                    cell.zoom_out();
+                }
+            });
         }
     })
 

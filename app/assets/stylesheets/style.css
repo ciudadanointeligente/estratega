@@ -5,7 +5,12 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #BD10E0;
+}
+
+a:hover {
+  color: #9009AB;
+  text-decoration: none;
 }
 
 .event-content {
@@ -224,15 +229,25 @@ a {
 
 #fileName {
   position: relative;
-  border: 1px solid #FFF;
+  border: none;
   border-radius: 0px;
-  color: #666;
   top: 0%;
-  width: 90%;
   text-align: left;
   outline: none;
-  padding: 5px;
   font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  text-transform: capitalize;
+  color: #555555;
+}
+
+#fileEdit a {
+  font-size: 16px;
+  color: #555555;
+}
+
+#fileEdit a:hover {
+  color: #BD10E0;
 }
 
 #stencil-container {
@@ -244,20 +259,23 @@ a {
 #toolbar-container {
   position: relative;
   width: 100%;
-  float: left;
   background: transparent;
   border: none;
-  padding: 0;
+  padding: 15px;
   height: 80px;
+  left: 0;
+  top: 0;
 }
 
 #toolbar-container button {
-  width: 30px;
+  width: 20px;
   height: 40px;
   border: none;
-  color: #4A4A4A;
+  color: #555555;
   font-weight: 300;
   background: transparent;
+  padding: 0;
+  margin: 0 8px 0 0;
 }
 
 #toolbar-container button:active, #toolbar-container button:hover {
@@ -279,6 +297,8 @@ color: #BD10E0;
   height: 55px;
   cursor: pointer;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.12);
+  padding: 14px 9px;
+  color: #CFCFCF;
 }
 
 .stencil-trigger i {
@@ -325,10 +345,36 @@ color: #BD10E0;
   height: 55px;
   cursor: pointer;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12);
+  padding: 15px 12px;
+  color: #CFCFCF;
 }
 
 .inspector-trigger i {
   margin-top: 2px;
+}
+
+.inspector .group > .group-label {
+  background: none;
+  color: #555555;
+  font-weight: 100;
+  text-align: left;
+  text-transform: none;
+  font-size: 21px;
+  padding: 0 10px;
+  box-shadow: none;
+  margin-bottom: 0px;
+}
+
+.inspector .group > .group-label:before {
+  content: none;
+}
+
+.inspector label {
+  display: inline-block;
+  font-weight: 400;
+  color: #555555;
+  font-family: 'Open Sans', sans-serif;
+  text-transform: none;
 }
 
 /*Tooltip*/
@@ -452,22 +498,9 @@ color: #BD10E0;
 
 .joint-tooltip-strong {
   font-weight: 600;
-  font-size: 24px;
+  font-size: 18px;
 }
-
-/*Arrow*/
-
-.active-arrow {
-  fill: #4A90E2;
-}
-
-/*.active-arrow:before {
-  content: url(https://s3.amazonaws.com/uifaces/faces/twitter/whale/128.jpg);
-  height: 10px;
-  width: 10px;
-  background: red;
-}*/
-
+ 
 /*Group*/
 
 .GroupOrganization rect {
