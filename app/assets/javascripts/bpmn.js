@@ -1191,7 +1191,6 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         var view_more_link = '';
         var main_modal = '';
         var count = the_content.replace(/[^\n]/g, '').length;
-        console.log(count)
         if( the_content.length > 140 || count > 4 )
         {
             var view_more_link = document.createElement("a"); 
@@ -2063,11 +2062,13 @@ $(function () {
         graph.get('cells').each(function(cell) {
             if (cell instanceof joint.shapes.bpmn.StepLink || cell instanceof joint.shapes.bpmn.Person || cell instanceof joint.shapes.bpmn.Organization){
                 cell.setTooltip();
-                cell.arrowActive();
             }
             if(cell instanceof joint.shapes.bpmn.Person) {
                 cell.setImage();
                 cell.setSize();
+            }
+            if(cell instanceof joint.shapes.bpmn.StepLink) {
+                cell.arrowActive();
             }
         });
     }
