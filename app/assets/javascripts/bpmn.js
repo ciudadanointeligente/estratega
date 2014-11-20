@@ -1505,7 +1505,11 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
                 transform: 'translate(30,30)'
             },
             image: {
-                width:  20, height: 20, 'xlink:href': '', transform: 'translate(20,20)', display: 'none'
+                width:  20, 
+                height: 20, 
+                'xlink:href': '', 
+                transform: 'translate(20,20)', 
+                display: 'none'
             },
             path: {
                 width:  20, 
@@ -1683,20 +1687,18 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
             elem_image = '[model-id='+this.id+'] image',
             the_image = this.get('image') || '',
             attrs = {
-                image: {
-                    'href' : the_image,
-                    display: 'block'
-                },
                 clippath: {
                     'display': 'none'
                 }
             }
         
         this.attr(_.merge({}, this.defaults.attrs, attrs));
+
         $(elem_image).attr('width',40);
         $(elem_image).attr('height',40);
         $(elem_image).attr('transform','translate(10,10)');
         $(elem_image).attr('href',the_image);
+        $(elem_image).attr('display','block');
     },
     setInitialName: function() {
         $('[model-id='+this.id+'] g text.person-name').html(this.get('name') || '');
@@ -1768,6 +1770,9 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
             'text.person-position' : {
                 display: 'none'
             }
+        }
+        if( this.has('image') && this.get('image').length>0 ) {
+            this.setImage();
         }
         
         this.attr(_.merge({}, this.defaults.attrs, attrs));
