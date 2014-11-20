@@ -317,12 +317,11 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
         if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
         this.tooltip = new joint.ui.Tooltip({
             target: ' [model-id="' + this.id + '"]',
-            content: this.attributes.description,
+            content: this.get('description'),
             bottom: '.connection-wrap',
-            direction: 'bottom',
-            padding: 30
+            direction: 'bottom'
         });
-        if (this.attributes.description) {
+        if (this.has('description')) {
             var element_text = '[model-id='+this.id+']';
             $(element_text).attr('class','active-arrow bpmn StepLink link');
         }
