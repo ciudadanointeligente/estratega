@@ -1403,13 +1403,13 @@ joint.shapes.bpmn.Organization = joint.dia.Element.extend({
         if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
         if( (this.has('name') && this.get('name').length>0) || (this.has('description') && this.get('description').length>0) ) {
             var div = document.createElement("div"); 
-                div.className = 'tooltip-content';
+                div.className = 'joint-tooltip-content';
             var name = document.createElement("div");
-                name.className = 'tooltip-strong';
+                name.className = 'joint-tooltip-strong';
                 name.appendChild(document.createTextNode(this.get('name') || ''));
             var parent = document.createElement("div").appendChild(document.createTextNode(this.get('parent') || ''));
             var description = document.createElement("div").appendChild(document.createTextNode(this.get('description') || ''));
-                description.className = 'tooltip-text';
+                description.className = 'joint-tooltip-text';
             div.appendChild(name);
             div.appendChild(description);
             
@@ -1555,13 +1555,13 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
         if( (this.has('name') && this.get('name').length>0) || (this.has('description') && this.get('description').length>0) ) {
 
             var div = document.createElement("div"); 
-                div.className = 'tooltip-content';
+                div.className = 'joint-tooltip-content';
             var name = document.createElement("div");
-                name.className = 'tooltip-strong';
+                name.className = 'joint-tooltip-strong';
                 name.appendChild(document.createTextNode(this.get('name') || ''));
             var pos = document.createElement("div").appendChild(document.createTextNode(this.get('pos') || ''));
             var description = document.createElement("div").appendChild(document.createTextNode(this.get('description') || ''));
-                description.className = 'tooltip-text';
+                description.className = 'joint-tooltip-text';
             div.appendChild(name);
             div.appendChild(description);
             this.tooltip = new joint.ui.Tooltip({
