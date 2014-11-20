@@ -232,19 +232,22 @@ a:hover {
   border: none;
   border-radius: 0px;
   top: 0%;
-  width: 90%;
   text-align: left;
   outline: none;
-  padding: 0px 8px;
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
   font-weight: 300;
   text-transform: capitalize;
-  float: left;
+  color: #555555;
 }
 
-div#fileEdit {
-  float: left;
+#fileEdit a {
+  font-size: 16px;
+  color: #555555;
+}
+
+#fileEdit a:hover {
+  color: #BD10E0;
 }
 
 #stencil-container {
@@ -256,20 +259,23 @@ div#fileEdit {
 #toolbar-container {
   position: relative;
   width: 100%;
-  float: left;
   background: transparent;
   border: none;
-  padding: 0;
+  padding: 15px;
   height: 80px;
+  left: 0;
+  top: 0;
 }
 
 #toolbar-container button {
-  width: 30px;
+  width: 20px;
   height: 40px;
   border: none;
-  color: #4A4A4A;
+  color: #555555;
   font-weight: 300;
   background: transparent;
+  padding: 0;
+  margin: 0 8px 0 0;
 }
 
 #toolbar-container button:active, #toolbar-container button:hover {
@@ -349,7 +355,7 @@ color: #BD10E0;
 
 .inspector .group > .group-label {
   background: none;
-  color: #000;
+  color: #555555;
   font-weight: 100;
   text-align: left;
   text-transform: none;
@@ -366,7 +372,7 @@ color: #BD10E0;
 .inspector label {
   display: inline-block;
   font-weight: 400;
-  color: #000000;
+  color: #555555;
   font-family: 'Open Sans', sans-serif;
   text-transform: none;
 }
