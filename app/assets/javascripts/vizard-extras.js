@@ -145,8 +145,25 @@ $(function(){
     var doc_name = $('#fileName a').html();
     $('<style>@media print { body:before { content: "'+doc_name+'" } }</style>').appendTo('head');
     //});
+
+    var el_zoomin = document.getElementById('btn-zoom-in'),
+        el_zoomout = document.getElementById('btn-zoom-out');
+
+    el_zoomin.addEventListener('click', function(){
+        if( paperScroller._sy == '1.4') {
+            console.log('zoomin: '+paperScroller._sy)
+        }
+    })
+
+    el_zoomout.addEventListener('click', function(){
+        if( paperScroller._sy == '1.2') {
+            console.log('zoomout: '+paperScroller._sy)
+        }
+    })
+
 });
 
-window.onbeforeunload = function(e) {
-    return 'Remember save before exit'
-};
+
+//window.onbeforeunload = function(e) {
+//    return 'Remember save before exit'
+//};
