@@ -245,6 +245,28 @@ joint.ui.Tooltip = Backbone.View.extend({
     }
 });
 
+joint.connectors.normal = function(sourcePoint, targetPoint, vertices) {
+
+    // Construct the `d` attribute of the `<path>` element.
+    var r = 5;
+    var d = ['M', sourcePoint.x, sourcePoint.y];
+
+    midPointX = (sourcePoint.x + targetPoint.x)/2;
+    midPointY = (sourcePoint.y + targetPoint.y)/2;
+
+    d.push(midPointX, midPointY);
+    d.push("m "+ -r + ", 0 a "+r+","+r+" 0 1,0 "+2*r+",0 a "+r+","+r+" 0 1,0 "+(-2*r)+",0");
+    d.push("M", midPointX, midPointY);
+
+    _.each(vertices, function(vertex) {
+
+        d.push(vertex.x, vertex.y);
+    });
+
+    d.push(targetPoint.x, targetPoint.y);
+
+    return d.join(' ');
+};
 
 joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
 
@@ -310,17 +332,15 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
     },
 
     arrowActive: function(cell, type) {
+        if (this.has('description') && this.get('description').length > 0){
+            var link_body = '[model-id='+this.id+'] path.connection';
+            $(link_body).attr('class','active-arrow connection');
+        }
+        else{
+            var link_body = '[model-id='+this.id+'] path.connection';
+            $(link_body).attr('class','connection');   
+        }
 
-        var attrs = {
-                '.marker-source': {
-                    d: 'M 0 4 m -5, 0 a 5,5 0 1,0 10,0 a 5,5 0 1,0 -10,0',
-                    stroke: '#0091EA',
-                    transform: 'translate(1945,546)',
-                    fill: '#0091EA'
-                }
-            };
-
-        cell.attr(_.merge({}, this.defaults.attrs, attrs));
     }
 
 });
@@ -1162,7 +1182,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         
         var contentDiv = document.createElement("div"); 
         var the_content = this.get("content");
-        var contentText = document.createTextNode(the_content.substring(0,150));
+        var contentText = document.createTextNode(the_content.substring(0,140));
             contentDiv.appendChild(contentText);
             contentDiv.classList.add("step-content");
 
@@ -1170,8 +1190,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         var view_more_link = '';
         var main_modal = '';
         var count = the_content.replace(/[^\n]/g, '').length;
-        
-        if( the_content.length >= 130 || count >= 4 )
+        if( the_content.length > 140 || count > 4 )
         {
             var view_more_link = document.createElement("a"); 
                 view_more_link.innerHTML = 'read more';
@@ -1239,7 +1258,17 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
                 {html: dateDiv.outerHTML + titleDiv.outerHTML + contentDiv.outerHTML + view_more_div.outerHTML  }
             }
         );
-    }
+    },
+
+    fixEmbeddedPosition: function(){
+        if (!this.getEmbeddedCells().length) return;
+        var children = this.getEmbeddedCells(),
+            yPosition = this.get('position').y + this.get('size').height - children[0].get('size').height*1.6;
+        for (i=0; i < children.length; i++){
+            xPosition = this.get('position').x + children[i].get('size').width * i + 5*i + 8;
+            children[i].set('position', {x:xPosition, y:yPosition});
+        }
+    },
 
 });
 
@@ -1494,7 +1523,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
         },
         eventType: "start",
         size_type: 'small',
-        color: 'blue'
+        color: '#0091EA'
 
     }, joint.dia.Element.prototype.defaults),
 
@@ -1578,7 +1607,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
                 this.set('size', { width: 55, height: 55 });
                 attrs = {
                     text: {
-                        'transform' : 'translate(40,35)'
+                        'transform' : 'translate(41,35)'
                     }
                 }
                 break;
@@ -1956,7 +1985,9 @@ function embedInGroup(cell) {
 
         // Prevent recursive embedding.
         else if ((stepCell && stepCell.get('parent') !== cell.id) && (cell instanceof joint.shapes.bpmn.Person)) {
+            cell.set('size_type', 'small')
             stepCell.embed(cell);
+            stepCell.fixEmbeddedPosition();
         }
     }
 }
@@ -2030,6 +2061,7 @@ $(function () {
         graph.get('cells').each(function(cell) {
             if (cell instanceof joint.shapes.bpmn.StepLink || cell instanceof joint.shapes.bpmn.Person || cell instanceof joint.shapes.bpmn.Organization){
                 cell.setTooltip();
+                cell.arrowActive();
             }
             if(cell instanceof joint.shapes.bpmn.Person) {
                 cell.setImage();

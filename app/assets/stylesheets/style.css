@@ -457,11 +457,11 @@ color: #BD10E0;
 
 /*Arrow*/
 
-/*.active-arrow {
-  position: relative;
+.active-arrow {
+  fill: #4A90E2;
 }
 
-.active-arrow:before {
+/*.active-arrow:before {
   content: url(https://s3.amazonaws.com/uifaces/faces/twitter/whale/128.jpg);
   height: 10px;
   width: 10px;
