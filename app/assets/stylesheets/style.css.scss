@@ -178,27 +178,27 @@ a:hover {
 /*Halo icons*/
 
 .halo .link {
-  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/arrow-right.svg);
+  background-image: image-url("arrow-right.svg");
 }
 
 .halo .remove {
-  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/delete.svg);
+  background-image: image-url("delete.svg");
 }
 
 .halo .fork {
-  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/copy.svg);
+  background-image: image-url("copy.svg");
 }
 
 .halo .link:hover {
-  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/arrow-right-h.svg);
+  background-image: image-url("arrow-right-h.svg");
 }
 
 .halo .remove:hover {
-  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/delete-h.svg);
+  background-image: image-url("delete-h.svg");
 }
 
 .halo .fork:hover {
-  background-image: url(https://googledrive.com/host/0B6QQVPLH_F8Xck14OEtVN0dTYXM/copy-h.svg);
+  background-image: image-url("copy-h.svg");
 }
 
 /*Selection box*/
@@ -375,6 +375,19 @@ color: #BD10E0;
   color: #555555;
   font-family: 'Open Sans', sans-serif;
   text-transform: none;
+}
+
+/*Arrow*/
+
+.active-arrow {
+  fill: #4A90E2;
+}
+
+/*Alert*/
+
+#alert {
+  display: none;
+  float: right;
 }
 
 /*Tooltip*/
