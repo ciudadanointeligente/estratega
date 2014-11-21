@@ -150,8 +150,12 @@ $(function(){
         el_zoomout = document.getElementById('btn-zoom-out');
 
     el_zoomin.addEventListener('click', function(){
+<<<<<<< HEAD
         if( paperScroller._sy >= '1.4') {
             // console.log('zoomin: '+paperScroller._sy)
+=======
+        if( paperScroller._sy > '1.2') {
+>>>>>>> FETCH_HEAD
             graph.get('cells').each(function(cell) {
                 if(cell instanceof joint.shapes.bpmn.Person) {
                     cell.zoom_in();
@@ -162,8 +166,11 @@ $(function(){
 
     el_zoomout.addEventListener('click', function(){
         if( paperScroller._sy <= '1.2') {
+<<<<<<< HEAD
             console.log(paperScroller._sy)
             // console.log('zoomout: '+paperScroller._sy)
+=======
+>>>>>>> FETCH_HEAD
             graph.get('cells').each(function(cell) {
                 if(cell instanceof joint.shapes.bpmn.Person) {
                     cell.zoom_out();
