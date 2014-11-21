@@ -1743,9 +1743,11 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
         attrs = {
             'text.person-name' : {
                 display: 'block',
+                transform: 'translate(11,22)',
             },
             'text.person-position' : {
                 display: 'block',
+                transform: 'translate(10,30)',
             }
         }
         this.attr(_.merge({}, this.defaults.attrs, attrs));
