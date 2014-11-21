@@ -1505,15 +1505,11 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
                 transform: 'translate(30,30)'
             },
             image: {
-<<<<<<< HEAD
-                width:  20, height: 20, 'xlink:href': '', transform: 'translate(20,20)', display: 'none'
-=======
                 width:  20, 
                 height: 20, 
                 'xlink:href': '', 
                 transform: 'translate(20,20)', 
                 display: 'none'
->>>>>>> FETCH_HEAD
             },
             path: {
                 width:  20, 
