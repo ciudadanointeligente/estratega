@@ -1525,10 +1525,12 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
                 transform: 'translate(24,20)',
             },
             'text.person-name': {
-                display: 'none'
+                display: 'none',
+                'text-anchor': "middle"
             },
             'text.person-position': {
-                display: 'none'
+                display: 'none',
+                'text-anchor': "middle"
             }
         },
         eventType: "start",
@@ -1751,11 +1753,11 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
         attrs = {
             'text.person-name' : {
                 display: 'block',
-                transform: 'translate(11,22)',
+                transform: 'translate(25,22)',
             },
             'text.person-position' : {
                 display: 'block',
-                transform: 'translate(10,30)',
+                transform: 'translate(25,30)',
             }
         }
         this.attr(_.merge({}, this.defaults.attrs, attrs));
