@@ -10,6 +10,7 @@
             <div class="clearfix">
               <span id="fileName"><%= truncate(@sandbox.name, length: 40, omission: "...") %></span>
               <span id="fileEdit"><%= link_to('<i class="fa fa-pencil"></i>'.html_safe, [:edit, @sandbox]) %></span>
+              <span id="alert"></span>
             </div>
             <button class="btn-drive-save" onclick="toolbar.saveGraph()" data-tooltip="Save"><i class="fa fa-floppy-o fa-lg"></i></button>
             <button class="btn-print" onclick="paper.print()" data-tooltip="Print"><i class="fa fa-print fa-lg"></i></button>
