@@ -367,6 +367,12 @@ var inputs = {
             group: 'general',
             index: 2
         },
+        tags: {
+            type: 'text',
+            label: 'Tags',
+            group: 'general',
+            index: 3
+        },
         // actors: {
         //     type: 'textarea',
         //     label: 'Actors Involved',
