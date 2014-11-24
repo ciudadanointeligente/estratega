@@ -1599,7 +1599,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
                 $(element_text).attr('class','user-label label user-label-small');
                 this.set('size', { width: 33, height: 33 });
                 attrs = {
-                    'text.user-label': {
+                    'text.user-label-small': {
                         'transform' : 'translate(25,20)'
                     }
                 }
@@ -1609,7 +1609,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
                 $(element_text).attr('class','user-label label user-label-medium');
                 this.set('size', { width: 44, height: 44 });
                 attrs = {
-                    'text.user-label': {
+                    'text.user-label-medium': {
                         'transform' : 'translate(33,26)'
                     }
                 }
@@ -1619,7 +1619,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
                 $(element_text).attr('class','user-label label user-label-large');
                 this.set('size', { width: 55, height: 55 });
                 attrs = {
-                    'text.user-label': {
+                    'text.user-label-large': {
                         'transform' : 'translate(41,35)'
                     }
                 }
@@ -2096,10 +2096,10 @@ var toolbar = {
             data: JSON.stringify({sandbox: {graph_data: JSON.stringify(graph.toJSON())}}),
             beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
             success: function(data) {
-                $('#alert').html('Saved').fadeIn().delay(1000).fadeOut();
+                $('.alert').removeClass('alertError').addClass('alertSuccess').html('Saved').fadeIn().delay(1000).fadeOut();
             },
             error: function(data) {
-                $('#alert').html('Not Saved').fadeIn().delay(1000).fadeOut();
+                $('.alert').removeClass('alertSuccess').addClass('alertError').html('Not Saved').fadeIn().delay(1000).fadeOut();
             }
         });
     },
