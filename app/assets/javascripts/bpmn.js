@@ -1153,6 +1153,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             this.listenTo(this, 'change:title', this.setDivContent);
             this.listenTo(this, 'change:date', this.setDivContent);
             this.listenTo(this, 'change:tags', this.setDivContent);
+            this.listenTo(this, 'change:tags_color', this.setDivContent);
 
         }
 
@@ -1185,7 +1186,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             rightSpan.appendChild(dateText);
             leftSpan.classList.add("step-tags");
             leftSpan.classList.add("label");
-            leftSpan.classList.add("label-default");
+            leftSpan.classList.add(this.get("tags_color") || "label-default");
             rightSpan.classList.add("step-date");
 
         var titleDiv = document.createElement("div"); 
