@@ -385,9 +385,24 @@ color: #BD10E0;
 
 /*Alert*/
 
-#alert {
-  display: none;
+#sidebar-left .alert {
   float: right;
+  margin: 0;
+  padding: 7px;
+}
+
+.alert {
+  display: none;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+#sidebar-left  .alertSuccess {
+  color: #50E3C2;
+}
+
+#sidebar-left  .alertError {
+  color: #F58D23;
 }
 
 /*Tooltip*/

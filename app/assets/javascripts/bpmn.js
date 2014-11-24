@@ -2039,10 +2039,10 @@ var toolbar = {
             data: JSON.stringify({sandbox: {graph_data: JSON.stringify(graph.toJSON())}}),
             beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
             success: function(data) {
-                $('#alert').html('Saved').fadeIn().delay(1000).fadeOut();
+                $('.alert').removeClass('alertError').addClass('alertSuccess').html('Saved').fadeIn().delay(1000).fadeOut();
             },
             error: function(data) {
-                $('#alert').html('Not Saved').fadeIn().delay(1000).fadeOut();
+                $('.alert').removeClass('alertSuccess').addClass('alertError').html('Not Saved').fadeIn().delay(1000).fadeOut();
             }
         });
     },
