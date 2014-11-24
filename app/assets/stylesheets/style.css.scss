@@ -259,19 +259,19 @@ a:hover {
 #toolbar-container {
   position: relative;
   width: 100%;
-  background: transparent;
+  background: #0091EA;
   border: none;
-  padding: 15px;
-  height: 80px;
+  padding: 0px 10px;
+  height: 32px;
   left: 0;
   top: 0;
 }
 
 #toolbar-container button {
   width: 20px;
-  height: 40px;
+  height: 30px;
   border: none;
-  color: #555555;
+  color: #FFFFFF;
   font-weight: 300;
   background: transparent;
   padding: 0;
@@ -393,7 +393,7 @@ color: #BD10E0;
 #sidebar-left .alert {
   float: right;
   margin: 0;
-  padding: 7px;
+  padding: 4px 0;
 }
 
 .alert {
