@@ -1152,6 +1152,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             this.listenTo(this, 'change:content', this.setDivContent);
             this.listenTo(this, 'change:title', this.setDivContent);
             this.listenTo(this, 'change:date', this.setDivContent);
+            this.listenTo(this, 'change:tags', this.setDivContent);
 
         }
 
@@ -1186,11 +1187,6 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             leftSpan.classList.add("label");
             leftSpan.classList.add("label-default");
             rightSpan.classList.add("step-date");
-
-        // var dateDiv = document.createElement("div");
-        //     dateText =  document.createTextNode(the_date),
-        //     dateDiv.appendChild(dateText);
-        //     dateDiv.classList.add("step-date");
 
         var titleDiv = document.createElement("div"); 
         var titleText = document.createTextNode(this.get("title"));
@@ -1318,7 +1314,7 @@ joint.shapes.bpmn.External = joint.shapes.bpmn.Step.extend({
                 'x-alignment': 'middle'
             }
         },
-
+        tags: '',
         content: '',
         title: ''
 
@@ -1352,7 +1348,7 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
                 'x-alignment': 'middle'
             }
         },
-
+        tags: '',
         content: '',
         title: ''
 
