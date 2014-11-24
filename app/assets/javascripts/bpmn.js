@@ -1133,7 +1133,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
 
             }
         },
-
+        tags: '',
         content: '',
         title: ''
 
@@ -1183,6 +1183,8 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             leftSpan.appendChild(tagsText);
             rightSpan.appendChild(dateText);
             leftSpan.classList.add("step-tags");
+            leftSpan.classList.add("label");
+            leftSpan.classList.add("label-default");
             rightSpan.classList.add("step-date");
 
         // var dateDiv = document.createElement("div");
