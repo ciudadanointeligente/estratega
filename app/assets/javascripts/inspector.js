@@ -384,11 +384,11 @@ var inputs = {
             label: 'Tags Color',
             group: 'Tags',
             options: [
-                { value: 'label-default', content: 'grey' },
-                { value: 'label-primary', content: 'blue' },
-                { value: 'label-success', content: 'green' },
-                { value: 'label-warning', content: 'orange' },
-                { value: 'label-danger', content: 'red' }
+                { value: 'label-default', content: 'default' },
+                { value: 'label-primary', content: 'primary' },
+                { value: 'label-success', content: 'success' },
+                { value: 'label-warning', content: 'important' },
+                { value: 'label-danger', content: 'danger' }
             ],
             index: 2
         }
@@ -424,11 +424,11 @@ var inputs = {
             label: 'Tags Color',
             group: 'Tags',
             options: [
-                { value: 'label-default', content: 'grey' },
-                { value: 'label-primary', content: 'blue' },
-                { value: 'label-success', content: 'green' },
-                { value: 'label-warning', content: 'orange' },
-                { value: 'label-danger', content: 'red' }
+                { value: 'label-default', content: 'default' },
+                { value: 'label-primary', content: 'primary' },
+                { value: 'label-success', content: 'success' },
+                { value: 'label-warning', content: 'important' },
+                { value: 'label-danger', content: 'danger' }
             ],
             index: 2
         }
@@ -464,11 +464,11 @@ var inputs = {
             label: 'Tags Color',
             group: 'Tags',
             options: [
-                { value: 'label-default', content: 'grey' },
-                { value: 'label-primary', content: 'blue' },
-                { value: 'label-success', content: 'green' },
-                { value: 'label-warning', content: 'orange' },
-                { value: 'label-danger', content: 'red' }
+                { value: 'label-default', content: 'default' },
+                { value: 'label-primary', content: 'primary' },
+                { value: 'label-success', content: 'success' },
+                { value: 'label-warning', content: 'important' },
+                { value: 'label-danger', content: 'danger' }
             ],
             index: 2
         }
