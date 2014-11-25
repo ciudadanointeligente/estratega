@@ -35,7 +35,7 @@ a:hover {
   text-align: left;
   font-size: 13px;
   float: left;
-  width: 200px;
+  width: 218px;
 }
 
 .element .fobj div.step-title {
@@ -44,10 +44,9 @@ a:hover {
   font-size: 14px;
 }
 
-.element .fobj div.step-date {
+.step-date {
   font-size: 10px;
-  text-align: right;
-  width: 218px;
+  float: right;
 }
 
 /*Step halo*/

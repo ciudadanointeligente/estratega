@@ -1128,9 +1128,12 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
                 'ref-y': .5,
                 'y-alignment': 'middle',
                 'x-alignment': 'middle'
+            },
+            '.tags': {
+
             }
         },
-
+        tags: '',
         content: '',
         title: ''
 
@@ -1149,6 +1152,8 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             this.listenTo(this, 'change:content', this.setDivContent);
             this.listenTo(this, 'change:title', this.setDivContent);
             this.listenTo(this, 'change:date', this.setDivContent);
+            this.listenTo(this, 'change:tags', this.setDivContent);
+            this.listenTo(this, 'change:tags_color', this.setDivContent);
 
         }
 
@@ -1170,10 +1175,19 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         if( this.has('date'))
             the_date = this.get("date")
         
-        var dateDiv = document.createElement("div");
+        var topDiv = document.createElement("div"),
+            rightSpan = document.createElement("span"),
+            leftSpan = document.createElement("span"),
             dateText =  document.createTextNode(the_date);
-            dateDiv.appendChild(dateText);
-            dateDiv.classList.add("step-date");
+            tagsText =  document.createTextNode(this.get("tags"));
+            topDiv.appendChild(leftSpan);
+            topDiv.appendChild(rightSpan);
+            leftSpan.appendChild(tagsText);
+            rightSpan.appendChild(dateText);
+            leftSpan.classList.add("step-tags");
+            leftSpan.classList.add("label");
+            leftSpan.classList.add(this.get("tags_color") || "label-default");
+            rightSpan.classList.add("step-date");
 
         var titleDiv = document.createElement("div"); 
         var titleText = document.createTextNode(this.get("title"));
@@ -1255,7 +1269,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             { div :
                 // {html: this.get('title')+ this.get('content')}
                 // {html: "<div>"+ this.get('title') +"</div>"+"<div>"+ this.get('content') +"</div>"}
-                {html: dateDiv.outerHTML + titleDiv.outerHTML + contentDiv.outerHTML + view_more_div.outerHTML  }
+                {html: topDiv.outerHTML + titleDiv.outerHTML + contentDiv.outerHTML + view_more_div.outerHTML  }
             }
         );
     },
@@ -1301,7 +1315,7 @@ joint.shapes.bpmn.External = joint.shapes.bpmn.Step.extend({
                 'x-alignment': 'middle'
             }
         },
-
+        tags: '',
         content: '',
         title: ''
 
@@ -1335,7 +1349,7 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
                 'x-alignment': 'middle'
             }
         },
-
+        tags: '',
         content: '',
         title: ''
 

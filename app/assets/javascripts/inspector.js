@@ -367,24 +367,31 @@ var inputs = {
             group: 'general',
             index: 2
         },
-        // actors: {
-        //     type: 'textarea',
-        //     label: 'Actors Involved',
-        //     group: 'general',
-        //     index: 3
-        // },
         date: {
             type: 'text',
-            label: 'Date',
+            label: 'Date or Timing',
             group: 'general',
             index: 4
         },
-        // description: {
-        //     type: 'textarea',
-        //     label: 'Description',
-        //     group: 'general',
-        //     index: 2
-        // },
+        tags: {
+            type: 'text',
+            label: 'Tags',
+            group: 'Tags',
+            index: 1
+        },
+        tags_color: {
+            type: 'select',
+            label: 'Tags Color',
+            group: 'Tags',
+            options: [
+                { value: 'label-default', content: 'grey' },
+                { value: 'label-primary', content: 'blue' },
+                { value: 'label-success', content: 'green' },
+                { value: 'label-warning', content: 'orange' },
+                { value: 'label-danger', content: 'red' }
+            ],
+            index: 2
+        }
     },
 
     'bpmn.External': {
@@ -400,24 +407,31 @@ var inputs = {
             group: 'general',
             index: 2
         },
-        // actors: {
-        //     type: 'textarea',
-        //     label: 'Actors Involved',
-        //     group: 'general',
-        //     index: 3
-        // },
         date: {
             type: 'text',
-            label: 'Date',
+            label: 'Date or Timing',
             group: 'general',
             index: 4
         },
-        // description: {
-        //     type: 'textarea',
-        //     label: 'Description',
-        //     group: 'general',
-        //     index: 2
-        // },
+        tags: {
+            type: 'text',
+            label: 'Tags',
+            group: 'Tags',
+            index: 1
+        },
+        tags_color: {
+            type: 'select',
+            label: 'Tags Color',
+            group: 'Tags',
+            options: [
+                { value: 'label-default', content: 'grey' },
+                { value: 'label-primary', content: 'blue' },
+                { value: 'label-success', content: 'green' },
+                { value: 'label-warning', content: 'orange' },
+                { value: 'label-danger', content: 'red' }
+            ],
+            index: 2
+        }
     },
 
     'bpmn.Intervention': {
@@ -433,24 +447,31 @@ var inputs = {
             group: 'general',
             index: 2
         },
-        // actors: {
-        //     type: 'textarea',
-        //     label: 'Actors Involved',
-        //     group: 'general',
-        //     index: 3
-        // },
         date: {
             type: 'text',
-            label: 'Date',
+            label: 'Date or Timing',
             group: 'general',
             index: 4
         },
-        // description: {
-        //     type: 'textarea',
-        //     label: 'Description',
-        //     group: 'general',
-        //     index: 2
-        // },
+        tags: {
+            type: 'text',
+            label: 'Tags',
+            group: 'Tags',
+            index: 1
+        },
+        tags_color: {
+            type: 'select',
+            label: 'Tags Color',
+            group: 'Tags',
+            options: [
+                { value: 'label-default', content: 'grey' },
+                { value: 'label-primary', content: 'blue' },
+                { value: 'label-success', content: 'green' },
+                { value: 'label-warning', content: 'orange' },
+                { value: 'label-danger', content: 'red' }
+            ],
+            index: 2
+        }
     },
 
     'bpmn.Person': {
