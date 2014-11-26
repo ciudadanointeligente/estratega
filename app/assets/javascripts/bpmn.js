@@ -2034,16 +2034,15 @@ function openIHF(cellView) {
 }
 
 function embedInGroup(cell) {
-
     if (cell instanceof joint.dia.Link) return;
 
     var cellsBelow = graph.findModelsInArea(cell.getBBox());
 
     if (!_.isEmpty(cellsBelow)) {
         // Note that the findViewsFromPoint() returns the view for the `cell` itself.
-        var groupCell = _.find(cellsBelow, function(c) {
+        var groupCell = _.filter(cellsBelow, function(c) {
             return (c instanceof joint.shapes.bpmn.GroupOrganization) && (c.id !== cell.id);
-        });
+        }).pop();
 
         var stepCell = _.find(cellsBelow, function(c) {
             return (c instanceof joint.shapes.bpmn.Step) && (c.id !== cell.id);
