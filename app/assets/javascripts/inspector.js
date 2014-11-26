@@ -384,11 +384,11 @@ var inputs = {
             label: 'Tags Color',
             group: 'Tags',
             options: [
-                { value: 'label-default', content: 'grey' },
-                { value: 'label-primary', content: 'blue' },
-                { value: 'label-success', content: 'green' },
-                { value: 'label-warning', content: 'orange' },
-                { value: 'label-danger', content: 'red' }
+                { value: 'label-default', content: 'default' },
+                { value: 'label-primary', content: 'primary' },
+                { value: 'label-success', content: 'success' },
+                { value: 'label-warning', content: 'important' },
+                { value: 'label-danger', content: 'danger' }
             ],
             index: 2
         }
@@ -424,11 +424,11 @@ var inputs = {
             label: 'Tags Color',
             group: 'Tags',
             options: [
-                { value: 'label-default', content: 'grey' },
-                { value: 'label-primary', content: 'blue' },
-                { value: 'label-success', content: 'green' },
-                { value: 'label-warning', content: 'orange' },
-                { value: 'label-danger', content: 'red' }
+                { value: 'label-default', content: 'default' },
+                { value: 'label-primary', content: 'primary' },
+                { value: 'label-success', content: 'success' },
+                { value: 'label-warning', content: 'important' },
+                { value: 'label-danger', content: 'danger' }
             ],
             index: 2
         }
@@ -464,11 +464,11 @@ var inputs = {
             label: 'Tags Color',
             group: 'Tags',
             options: [
-                { value: 'label-default', content: 'grey' },
-                { value: 'label-primary', content: 'blue' },
-                { value: 'label-success', content: 'green' },
-                { value: 'label-warning', content: 'orange' },
-                { value: 'label-danger', content: 'red' }
+                { value: 'label-default', content: 'default' },
+                { value: 'label-primary', content: 'primary' },
+                { value: 'label-success', content: 'success' },
+                { value: 'label-warning', content: 'important' },
+                { value: 'label-danger', content: 'danger' }
             ],
             index: 2
         }
@@ -493,17 +493,18 @@ var inputs = {
             group: 'general',
             index: 3
         },
-        size_type: {
-            type: 'select',
-            options: ['small','medium','large'],
-            group: 'general',
-            label: 'Size',
-        },
         image: {
             type: 'text',
             label: 'URL image',
             group: 'general',
             index: 4
+        },
+        size_type: {
+            type: 'select',
+            options: ['small','medium','large'],
+            group: 'general',
+            label: 'Size',
+            index: 5
         },
         color: {
             type: 'select',
@@ -515,7 +516,8 @@ var inputs = {
                 { value: '#F5A623', content: 'orange' },
                 { value: '#F55923', content: 'red' }
             ],
-            index: 5
+            group: 'general',
+            index: 6
         }
     },
 
@@ -543,12 +545,12 @@ var inputs = {
             options: ['small','medium','large'],
             group: 'general',
             label: 'Size',
+            index: 4
         },
-        
         color: {
             type: 'select',
             label: 'Color',
-            group: 'other',
+            group: 'general',
             options: [
                 { value: '#0091EA', content: 'blue' },
                 { value: '#16D4AA', content: 'green' },
@@ -570,9 +572,9 @@ var inputs = {
             },
             '.body/fill': {
                 type: 'color',
-                label: 'Body Color',
-                group: 'appearance',
-                index: 1
+                label: 'Color',
+                group: 'general',
+                index: 2
             }
         }
     },
