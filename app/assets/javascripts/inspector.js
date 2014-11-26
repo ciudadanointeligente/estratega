@@ -371,7 +371,7 @@ var inputs = {
             type: 'text',
             label: 'Date or Timing',
             group: 'general',
-            index: 4
+            index: 3
         },
         tags: {
             type: 'text',

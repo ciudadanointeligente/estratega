@@ -518,7 +518,7 @@ joint.ui.Halo = Backbone.View.extend({
             { name: 'link', position: 'e', events: { pointerdown: 'startLinking', pointermove: 'doLink', pointerup: 'stopLinking' } },
             { name: 'fork', position: 'ne', events: { pointerdown: 'startForking', pointermove: 'doFork', pointerup: 'stopBatch' } },
             { name: 'unlink', position: 'w', events: { pointerdown: 'unlinkElement' } },
-            { name: 'rotate', position: 'sw', events: { pointerdown: 'startRotating', pointermove: 'doRotate', pointerup: 'stopBatch' } }
+            { name: 'rotate', position: 'sw', events: { pointerdown: 'startRotating', pointermove: 'doRotate', pointerup: 'stopBatch' } },
         ]
     },
 
@@ -1189,8 +1189,11 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             leftSpan.classList.add(this.get("tags_color") || "label-default");
             rightSpan.classList.add("step-date");
 
-        var titleDiv = document.createElement("div"); 
-        var titleText = document.createTextNode(this.get("title"));
+        var titleDiv = document.createElement("div"),
+            readmore = '';
+        if( this.get("title").length > 53 )
+            readmore = '...';
+        var titleText = document.createTextNode(this.get("title").substring(0,53)+readmore);
             titleDiv.appendChild(titleText);
             titleDiv.classList.add("step-title");
         
