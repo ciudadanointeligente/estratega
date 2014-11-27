@@ -381,6 +381,28 @@ color: #BD10E0;
   text-transform: none;
 }
 
+/*Labels*/
+
+.label-default {
+  background-color: #CACACA;
+}
+
+.label-warning {
+  background-color: #F5A623;
+}
+
+.label-primary {
+background-color: #0091EA;
+}
+
+.label-success {
+background-color: #50E3C2;
+}
+
+.label-danger {
+background-color: #F55923;
+}
+
 /*Arrow*/
 
 .active-arrow {
@@ -542,6 +564,7 @@ color: #BD10E0;
 .label {
   font-weight: 400;
   text-transform: uppercase;
+  padding: 0.3em .6em .3em;
 }
 
 /*Person*/
