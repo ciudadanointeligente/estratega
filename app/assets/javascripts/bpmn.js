@@ -1835,7 +1835,8 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
                 rx: 2,
                 ry: 2,
                 height: 20,
-                fill: '#000000'
+                fill: '#000000',
+                display: 'none'
             },
             '.label-group': {
                 ref: '.label-rect',
@@ -1857,7 +1858,68 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
             }
         }
 
-    }, joint.dia.Element.prototype.defaults)
+    }, joint.dia.Element.prototype.defaults),
+
+    initialize: function() { 
+        joint.dia.Element.prototype.initialize.apply(this, arguments);
+
+        this.listenTo(this, 'change:name', this.setName);
+        this.listenTo(this, 'change:color', this.setColor);
+    },
+
+    setName: function() {
+        the_name = this.get('name');
+        
+        if( the_name ) {
+            attrs = {
+                '.label-rect': {
+                    'display' : 'block'
+                },
+                '.label-wrap text': {
+                    'display': 'block',
+                    'text': the_name
+                }
+            }
+        } else {
+            attrs = {
+                '.label-rect': {
+                    'display' : 'none'
+                },
+                '.label-wrap text': {
+                    'display': 'none'
+                }
+            }
+        }
+
+        this.attr(_.merge({}, this.defaults.attrs, attrs));
+    },
+
+    setColor: function() {
+        the_color = this.get('color');
+        the_name = this.get('name');
+
+        if(the_color && the_name) {
+            attrs = {
+                'rect': {
+                    'fill' : the_color
+                },
+                '.label-rect': {
+                    'display' : 'block'
+                },
+                '.label-wrap text': {
+                    'display': 'block',
+                    'text': the_name
+                }
+            }  
+        } else {
+            attrs = {
+                'rect': {
+                    'fill' : the_color
+                }
+            }
+        }
+        this.attr(_.merge({}, this.defaults.attrs, attrs));
+    }
 });
 
 

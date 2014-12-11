@@ -121,8 +121,14 @@ a:hover {
 
 /*Halo small*/
 
-.halo.small {
+[data-type="bpmn.Person"].small {
   border-radius: 30px;
+}
+[data-type="bpmn.Organization"].small {
+  border-radius: 30px;
+}
+
+.halo.small {
   padding: 0px;
   margin: 0px;
   border: none;
@@ -150,9 +156,15 @@ a:hover {
 }
 
 /*Halo medium*/
+[data-type="bpmn.Person"].medium {
+  border-radius: 30px;
+}
+
+[data-type="bpmn.Organization"].medium {
+  border-radius: 30px;
+}
 
 .halo.medium {
-  border-radius: 30px;
   padding: 0px;
   margin: 1px;
   border: none;

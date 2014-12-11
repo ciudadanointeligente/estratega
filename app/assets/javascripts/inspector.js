@@ -563,19 +563,18 @@ var inputs = {
     },
 
     'bpmn.GroupOrganization': {
-        attrs: {
-            '.label/text': {
-                type: 'text',
-                label: 'Name',
-                group: 'general',
-                index: 1
-            },
-            '.body/fill': {
-                type: 'color',
-                label: 'Color',
-                group: 'general',
-                index: 2
-            }
+        name: {
+            type: 'text',
+            label: 'Name',
+            group: 'general',
+            index: 1
+        },
+        color: {
+            type: 'color',
+            label: 'Color',
+            group: 'general',
+            index: 2
         }
+        
     },
 };
