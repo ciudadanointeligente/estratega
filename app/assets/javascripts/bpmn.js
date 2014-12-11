@@ -1995,6 +1995,34 @@ function openIHF(cellView) {
 
                 // new joint.ui.FreeTransform({ cellView: cellView }).render();
 
+                if ( cellView.model instanceof joint.shapes.bpmn.Step) {
+                    var group = document.createElement("div"),
+                        field = document.createElement("div"),
+                        header = document.createElement("h3"),
+                        persons_list = document.createElement("ul"),
+                        persons_text =  document.createTextNode("Persons"),
+                        // text1 =  document.createTextNode("Hello World"),
+                        cells = cellView.model.getEmbeddedCells();
+
+                    group.classList.add("group")
+                    field.classList.add("field")
+                    header.classList.add("group-label")
+                    header.appendChild(persons_text)
+                    field.appendChild(persons_list)
+                    group.appendChild(header)
+                    group.appendChild(field)
+                    for(var i = 0; i < cells.length; i++){
+                        cell = cells[i]
+                        cell.get("name")
+                        person = document.createElement("li"),
+                        name =  document.createTextNode(cell.get("name"))
+                        person.appendChild(name)
+                        persons_list.appendChild(person)
+                    }
+                }
+
+                $(".inspector").append(group)
+
                 var halo = new joint.ui.Halo({
                     cellView: cellView,
                     boxContent: function(cellView) {
