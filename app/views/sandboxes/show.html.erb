@@ -1,4 +1,6 @@
-        <title><%= @sandbox.name %></title>
+        <% content_for :title do %>
+          <%= @sandbox.name %>
+        <% end %>
     
         <div id="paper-container"></div>
           
