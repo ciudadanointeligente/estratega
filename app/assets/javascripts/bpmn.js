@@ -2108,7 +2108,7 @@ function openIHF(cellView) {
                         cell = cells[i]
                         cell.get("name")
                         person = document.createElement("li"),
-                        name =  document.createTextNode(cell.get("name"))
+                        name =  document.createTextNode(cell.get("name")||'Person')
                         person.appendChild(name)
                         persons_list.appendChild(person)
                     }
