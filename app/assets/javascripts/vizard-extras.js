@@ -147,41 +147,44 @@ $(function(){
     var el_zoomin = document.getElementById('btn-zoom-in'),
         el_zoomout = document.getElementById('btn-zoom-out');
 
-    el_zoomin.addEventListener('click', function(){
-        if( paperScroller._sy > '1.2') {
-            graph.get('cells').each(function(cell) {
-                if(cell instanceof joint.shapes.bpmn.Person) {
-                    cell.zoom_in();
-                }
-            });
-        }
+    if( el_zoomin ) {
 
-        if( paperScroller._sy >= '0.8') {
-            graph.get('cells').each(function(cell) {
-                if(cell instanceof joint.shapes.bpmn.Step) {
-                    cell.zoom_in();
-                }
-            })
-        }
-    })
+        el_zoomin.addEventListener('click', function(){
+            if( paperScroller._sy > '1.2') {
+                graph.get('cells').each(function(cell) {
+                    if(cell instanceof joint.shapes.bpmn.Person) {
+                        cell.zoom_in();
+                    }
+                });
+            }
 
-    el_zoomout.addEventListener('click', function(){
-        if( paperScroller._sy <= '1.2') {
-            graph.get('cells').each(function(cell) {
-                if(cell instanceof joint.shapes.bpmn.Person) {
-                    cell.zoom_out();
-                }
-            });
-        }
+            if( paperScroller._sy >= '0.8') {
+                graph.get('cells').each(function(cell) {
+                    if(cell instanceof joint.shapes.bpmn.Step) {
+                        cell.zoom_in();
+                    }
+                })
+            }
+        })
 
-        if( paperScroller._sy < '0.8') {
-            graph.get('cells').each(function(cell) {
-                if(cell instanceof joint.shapes.bpmn.Step) {
-                    cell.zoom_out();
-                }
-            })
-        }
-    })
+        el_zoomout.addEventListener('click', function(){
+            if( paperScroller._sy <= '1.2') {
+                graph.get('cells').each(function(cell) {
+                    if(cell instanceof joint.shapes.bpmn.Person) {
+                        cell.zoom_out();
+                    }
+                });
+            }
+
+            if( paperScroller._sy < '0.8') {
+                graph.get('cells').each(function(cell) {
+                    if(cell instanceof joint.shapes.bpmn.Step) {
+                        cell.zoom_out();
+                    }
+                })
+            }
+        })
+    }
 
 });
 
