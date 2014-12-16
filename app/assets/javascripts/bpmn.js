@@ -1207,7 +1207,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         
         var contentDiv = document.createElement("div"); 
         var the_content = this.get("content");
-        var contentText = document.createTextNode(the_content.substring(0,140));
+        var contentText = document.createTextNode(the_content.substring(0,100));
             contentDiv.appendChild(contentText);
             contentDiv.classList.add("step-content");
 
@@ -1218,7 +1218,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         var view_more_link = '';
         var main_modal = '';
         var count = the_content.replace(/[^\n]/g, '').length;
-        if( the_content.length > 140 || count > 4 )
+        if( the_content.length > 100 || count >= 3 )
         {
             var view_more_link = document.createElement("a"); 
                 view_more_link.innerHTML = 'read more';
