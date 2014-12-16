@@ -752,6 +752,16 @@ joint.ui.Halo = Backbone.View.extend({
         
         this._clone = this.options.cellView.model.clone();
         this._clone.unset('z');
+        //for Person
+        this._clone.unset('name');
+        this._clone.unset('pos');
+        this._clone.unset('description');
+        this._clone.unset('image');
+        //for Step
+        this._clone.unset('title');
+        this._clone.unset('content');
+        this._clone.unset('date');
+
         this.options.graph.addCell(this._clone, { halo: this.cid });
 
         var link = this.options.paper.getDefaultLink(this.options.cellView);
@@ -1195,10 +1205,12 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             }
 
         var titleDiv = document.createElement("div"),
-            readmore = '';
-        if( this.get("title").length > 53 )
+            readmore = '',
+            title = this.get("title") || '';
+
+        if( title.length > 53 )
             readmore = '...';
-        var titleText = document.createTextNode(this.get("title").substring(0,53)+readmore);
+        var titleText = document.createTextNode(title.substring(0,53)+readmore);
             titleDiv.appendChild(titleText);
             titleDiv.classList.add("step-title");
 
@@ -1206,7 +1218,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             titleDiv.classList.add("step-zoom-out");
         
         var contentDiv = document.createElement("div"); 
-        var the_content = this.get("content");
+        var the_content = this.get("content") || '';
         var contentText = document.createTextNode(the_content.substring(0,100));
             contentDiv.appendChild(contentText);
             contentDiv.classList.add("step-content");
