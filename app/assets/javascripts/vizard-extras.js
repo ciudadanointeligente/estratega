@@ -157,7 +157,6 @@ $(function(){
         }
 
         if( paperScroller._sy >= '0.8') {
-            console.log(paperScroller._sy);
             graph.get('cells').each(function(cell) {
                 if(cell instanceof joint.shapes.bpmn.Step) {
                     cell.zoom_in();

@@ -1189,6 +1189,11 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             leftSpan.classList.add(this.get("tags_color") || "label-default");
             rightSpan.classList.add("step-date");
 
+            if( paperScroller._sy < '0.8' ) {
+                leftSpan.classList.add("step-zoom-out");
+                rightSpan.classList.add("step-zoom-out");
+            }
+
         var titleDiv = document.createElement("div"),
             readmore = '';
         if( this.get("title").length > 53 )
@@ -1196,12 +1201,18 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         var titleText = document.createTextNode(this.get("title").substring(0,53)+readmore);
             titleDiv.appendChild(titleText);
             titleDiv.classList.add("step-title");
+
+        if( paperScroller._sy < '0.8' )
+            titleDiv.classList.add("step-zoom-out");
         
         var contentDiv = document.createElement("div"); 
         var the_content = this.get("content");
         var contentText = document.createTextNode(the_content.substring(0,140));
             contentDiv.appendChild(contentText);
             contentDiv.classList.add("step-content");
+
+        if( paperScroller._sy < '0.8' )
+            contentDiv.classList.add("step-zoom-out");
 
         var view_more_div = document.createElement("div"); 
         var view_more_link = '';
@@ -1287,14 +1298,24 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         }
     },
 
-    zoom_out: function(){
-        $('.step-title').css('font-size', '20px');
-        $('.step-content').css('display', 'none');
+    zoom_out: function() {
+        $('.label').removeClass('step-zoom-in');
+        $('.step-title').removeClass('step-zoom-in');
+        $('.step-content').removeClass('step-zoom-in');
+
+        $('.label').addClass('step-zoom-out');
+        $('.step-title').addClass('step-zoom-out');
+        $('.step-content').addClass('step-zoom-out');
     },
 
     zoom_in: function() {
-        $('.step-title').css('font-size', '14px');
-        $('.step-content').css('display', 'initial');  
+        $('.label').removeClass('step-zoom-out');
+        $('.step-title').removeClass('step-zoom-out');
+        $('.step-content').removeClass('step-zoom-out');
+
+        $('.label').addClass('step-zoom-in');
+        $('.step-title').addClass('step-zoom-in');
+        $('.step-content').addClass('step-zoom-in');
     }
 
 });

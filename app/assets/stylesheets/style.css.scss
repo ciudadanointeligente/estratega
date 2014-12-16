@@ -38,7 +38,7 @@ a:hover {
   width: 218px;
 }
 
-.element .fobj div.step-title {
+.step-title {
   font-weight: 600;
   margin-bottom: 10px;
   font-size: 14px;
@@ -48,6 +48,29 @@ a:hover {
 .step-date {
   font-size: 10px;
   float: right;
+}
+
+.label.step-zoom-in {
+  font-weight: 400 !important;
+  font-size: 75% !important;
+}
+.step-title.step-zoom-in {
+  font-size: 13px !important;
+}
+.step-content.step-zoom-in {
+  display: initial !important;
+}
+
+
+.label.step-zoom-out {
+  font-weight: 600 !important;
+  font-size: 100% !important;
+}
+.step-title.step-zoom-out {
+  font-size: 20px !important;
+}
+.step-content.step-zoom-out {
+  display: none !important;
 }
 
 /*Step halo*/
