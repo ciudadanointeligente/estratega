@@ -141,11 +141,9 @@ $(function(){
     $(btn_sidebar_right).css('width','40px');
     $('#btn-right').css('-webkit-transform','rotate(180deg)').css('transform','rotate(180deg)');
 
-    //$(document).ready(function() {
     var doc_name = $('#fileName a').html();
     $('<style>@media print { body:before { content: "'+doc_name+'" } }</style>').appendTo('head');
-    //});
-
+    
     var el_zoomin = document.getElementById('btn-zoom-in'),
         el_zoomout = document.getElementById('btn-zoom-out');
 
@@ -157,6 +155,15 @@ $(function(){
                 }
             });
         }
+
+        if( paperScroller._sy >= '0.8') {
+            console.log(paperScroller._sy);
+            graph.get('cells').each(function(cell) {
+                if(cell instanceof joint.shapes.bpmn.Step) {
+                    cell.zoom_in();
+                }
+            })
+        }
     })
 
     el_zoomout.addEventListener('click', function(){
@@ -166,6 +173,14 @@ $(function(){
                     cell.zoom_out();
                 }
             });
+        }
+
+        if( paperScroller._sy < '0.8') {
+            graph.get('cells').each(function(cell) {
+                if(cell instanceof joint.shapes.bpmn.Step) {
+                    cell.zoom_out();
+                }
+            })
         }
     })
 

@@ -559,7 +559,7 @@ joint.ui.Halo = Backbone.View.extend({
 
         this.$el.append(joint.templates.halo['box.html']());
 
-    this.renderMagnets();
+        this.renderMagnets();
 
         this.update();
 
@@ -619,12 +619,12 @@ joint.ui.Halo = Backbone.View.extend({
  
     this.$el.css({
 
-            width: bbox.width,
-            height: bbox.height,
-            left: bbox.x,
-            top: bbox.y
+        width: bbox.width,
+        height: bbox.height,
+        left: bbox.x,
+        top: bbox.y
 
-        }).show();
+    }).show();
 
     this.updateMagnets();
 
@@ -756,10 +756,10 @@ joint.ui.Halo = Backbone.View.extend({
 
         var link = this.options.paper.getDefaultLink(this.options.cellView);
 
-    link.set('source', { id: this.options.cellView.model.id });
+        link.set('source', { id: this.options.cellView.model.id });
         link.set('target', { id: this._clone.id });
 
-    link.attr(this.options.linkAttributes);
+        link.attr(this.options.linkAttributes);
         if (_.isBoolean(this.options.smoothLinks)) {
             link.set('smooth', this.options.smoothLinks);
         }
@@ -1286,6 +1286,16 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             children[i].set('position', {x:xPosition, y:yPosition});
         }
     },
+
+    zoom_out: function(){
+        $('.step-title').css('font-size', '20px');
+        $('.step-content').css('display', 'none');
+    },
+
+    zoom_in: function() {
+        $('.step-title').css('font-size', '14px');
+        $('.step-content').css('display', 'initial');  
+    }
 
 });
 
@@ -2242,10 +2252,7 @@ $(function () {
                     cell.zoom_in()
             }
             if(cell instanceof joint.shapes.bpmn.StepLink) {
-                cell.arrowActive();
-            }
-            if(cell instanceof joint.shapes.bpmn.StepLink) {
-                cell.arrowActive();
+                cell.arrowActive();                
             }
         });
     }
