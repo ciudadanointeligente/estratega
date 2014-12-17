@@ -188,6 +188,9 @@ $(function(){
 
 });
 
+//https://www.reddit.com/r/chrome/comments/27mft7/how_do_i_prevent_backspace_from_going_back_a_page/
+window.addEventListener('keydown',function(e){if(e.keyIdentifier=='U+0008'||e.keyIdentifier=='Backspace'){if(e.target==document.body){e.preventDefault();}}},true);
+
 
 //window.onbeforeunload = function(e) {
 //    return 'Remember save before exit'
