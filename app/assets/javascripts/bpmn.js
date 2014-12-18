@@ -1962,6 +1962,18 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
             }
         }
         this.attr(_.merge({}, this.defaults.attrs, attrs));
+    },
+
+    zoom_out: function() {
+        var element_id = this.id; console.log( 'out: ' + this.id ),
+            the_styles = 'font-size: 16px; font-weight: 600';
+
+        $('[model-id='+element_id+'] .label-group text').attr('style',the_styles);
+    },
+
+    zoom_in: function() {
+        var element_id = this.id;
+        $('[model-id='+element_id+'] .label-group text').attr('style','');
     }
 });
 

@@ -163,6 +163,9 @@ $(function(){
                     if(cell instanceof joint.shapes.bpmn.Step) {
                         cell.zoom_in();
                     }
+                    if(cell instanceof joint.shapes.bpmn.GroupOrganization) {
+                        cell.zoom_in()
+                    }
                 })
             }
         })
@@ -180,6 +183,9 @@ $(function(){
                 graph.get('cells').each(function(cell) {
                     if(cell instanceof joint.shapes.bpmn.Step) {
                         cell.zoom_out();
+                    }
+                    if(cell instanceof joint.shapes.bpmn.GroupOrganization) {
+                        cell.zoom_out()
                     }
                 })
             }
