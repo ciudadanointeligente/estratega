@@ -1460,7 +1460,7 @@ joint.shapes.bpmn.Organization = joint.dia.Element.extend({
     },
 
     setTooltip: function() {
-        if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
+        if (this.tooltip instanceof joint.ui.Tooltip) this.tooltip.remove();
         if( (this.has('name') && this.get('name').length>0) || (this.has('description') && this.get('description').length>0) ) {
             var div = document.createElement("div"); 
                 div.className = 'joint-tooltip-content';
