@@ -341,7 +341,7 @@ span.tagline{
 #toolbar-container {
   position: relative;
   width: 100%;
-  background: #0091EA;
+  background: none;
   border: none;
   padding: 0px 10px;
   height: 32px;
@@ -522,6 +522,7 @@ background-color: #F55923;
   display: none;
   font-size: 10px;
   text-transform: uppercase;
+  color: green;
 }
 
 #sidebar-left  .alertSuccess {
@@ -691,6 +692,23 @@ background-color: #F55923;
 .person-position {
   font-size: 60%;
 }
+
+.nav{
+	float: left;
+	padding: 10px 0 0 20px;
+}
+
+.edit{
+	background: none;
+
+}
+
+.dropdown-toggle{
+	background: none;
+	color: #fff;
+	border: 1px solid #666;
+}
+
 
 
 /* -------------------- Clearfix -------------------- */
