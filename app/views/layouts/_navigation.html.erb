@@ -1,7 +1,11 @@
 <%# navigation styled for Bootstrap 3.0 %>
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<a class="company-logo" href="#">Vizard</a><span class="tagline">beta</span>
-        <%= render 'layouts/navigation_links' %>
-      <div class="container">
-	 </div>
+    <%= render 'layouts/navigation_links' %>
+    <div class="container">
+        <div class="clearfix toolbarName">
+            <%= yield(:navbar) %>
+            <% puts "in navigation" %>
+        </div>
+    </div>
 </nav>
