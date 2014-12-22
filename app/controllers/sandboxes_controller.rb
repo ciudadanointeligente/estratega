@@ -5,6 +5,7 @@ class SandboxesController < ApplicationController
   # GET /sandboxes.json
   def index
     @sandboxes = Sandbox.all.order(id: :desc)
+    render :layout => "application"
   end
 
   # GET /sandboxes/1
