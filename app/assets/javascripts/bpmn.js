@@ -559,7 +559,7 @@ joint.ui.Halo = Backbone.View.extend({
 
         this.$el.append(joint.templates.halo['box.html']());
 
-    this.renderMagnets();
+        this.renderMagnets();
 
         this.update();
 
@@ -619,12 +619,12 @@ joint.ui.Halo = Backbone.View.extend({
 
     this.$el.css({
 
-            width: bbox.width,
-            height: bbox.height,
-            left: bbox.x,
-            top: bbox.y
+        width: bbox.width,
+        height: bbox.height,
+        left: bbox.x,
+        top: bbox.y
 
-        }).show();
+    }).show();
 
     this.updateMagnets();
 
@@ -752,14 +752,24 @@ joint.ui.Halo = Backbone.View.extend({
 
         this._clone = this.options.cellView.model.clone();
         this._clone.unset('z');
+        //for Person
+        this._clone.unset('name');
+        this._clone.unset('pos');
+        this._clone.unset('description');
+        this._clone.unset('image');
+        //for Step
+        this._clone.unset('title');
+        this._clone.unset('content');
+        this._clone.unset('date');
+
         this.options.graph.addCell(this._clone, { halo: this.cid });
 
         var link = this.options.paper.getDefaultLink(this.options.cellView);
 
-    link.set('source', { id: this.options.cellView.model.id });
+        link.set('source', { id: this.options.cellView.model.id });
         link.set('target', { id: this._clone.id });
 
-    link.attr(this.options.linkAttributes);
+        link.attr(this.options.linkAttributes);
         if (_.isBoolean(this.options.smoothLinks)) {
             link.set('smooth', this.options.smoothLinks);
         }
@@ -1189,25 +1199,38 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             leftSpan.classList.add(this.get("tags_color") || "label-default");
             rightSpan.classList.add("step-date");
 
+            if( paperScroller._sy < '0.8' ) {
+                leftSpan.classList.add("step-zoom-out");
+                rightSpan.classList.add("step-zoom-out");
+            }
+
         var titleDiv = document.createElement("div"),
-            readmore = '';
-        if( this.get("title").length > 53 )
+            readmore = '',
+            title = this.get("title") || '';
+
+        if( title.length > 53 )
             readmore = '...';
-        var titleText = document.createTextNode(this.get("title").substring(0,53)+readmore);
+        var titleText = document.createTextNode(title.substring(0,53)+readmore);
             titleDiv.appendChild(titleText);
             titleDiv.classList.add("step-title");
 
-        var contentDiv = document.createElement("div");
-        var the_content = this.get("content");
-        var contentText = document.createTextNode(the_content.substring(0,140));
+        if( paperScroller._sy < '0.8' )
+            titleDiv.classList.add("step-zoom-out");
+        
+        var contentDiv = document.createElement("div"); 
+        var the_content = this.get("content") || '';
+        var contentText = document.createTextNode(the_content.substring(0,100));
             contentDiv.appendChild(contentText);
             contentDiv.classList.add("step-content");
 
-        var view_more_div = document.createElement("div");
+        if( paperScroller._sy < '0.8' )
+            contentDiv.classList.add("step-zoom-out");
+
+        var view_more_div = document.createElement("div"); 
         var view_more_link = '';
         var main_modal = '';
         var count = the_content.replace(/[^\n]/g, '').length;
-        if( the_content.length > 140 || count > 4 )
+        if( the_content.length > 100 || count >= 3 )
         {
             var view_more_link = document.createElement("a");
                 view_more_link.innerHTML = 'read more';
@@ -1286,6 +1309,26 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             children[i].set('position', {x:xPosition, y:yPosition});
         }
     },
+
+    zoom_out: function() {
+        $('.label').removeClass('step-zoom-in');
+        $('.step-title').removeClass('step-zoom-in');
+        $('.step-content').removeClass('step-zoom-in');
+
+        $('.label').addClass('step-zoom-out');
+        $('.step-title').addClass('step-zoom-out');
+        $('.step-content').addClass('step-zoom-out');
+    },
+
+    zoom_in: function() {
+        $('.label').removeClass('step-zoom-out');
+        $('.step-title').removeClass('step-zoom-out');
+        $('.step-content').removeClass('step-zoom-out');
+
+        $('.label').addClass('step-zoom-in');
+        $('.step-title').addClass('step-zoom-in');
+        $('.step-content').addClass('step-zoom-in');
+    }
 
 });
 
@@ -1919,6 +1962,18 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
             }
         }
         this.attr(_.merge({}, this.defaults.attrs, attrs));
+    },
+
+    zoom_out: function() {
+        var element_id = this.id; console.log( 'out: ' + this.id ),
+            the_styles = 'font-size: 16px; font-weight: 600';
+
+        $('[model-id='+element_id+'] .label-group text').attr('style',the_styles);
+    },
+
+    zoom_in: function() {
+        var element_id = this.id;
+        $('[model-id='+element_id+'] .label-group text').attr('style','');
     }
 });
 
@@ -2077,7 +2132,7 @@ function openIHF(cellView) {
                         cell = cells[i]
                         cell.get("name")
                         person = document.createElement("li"),
-                        name =  document.createTextNode(cell.get("name"))
+                        name =  document.createTextNode(cell.get("name")||'Person')
                         person.appendChild(name)
                         persons_list.appendChild(person)
                     }
@@ -2242,10 +2297,7 @@ $(function () {
                     cell.zoom_in()
             }
             if(cell instanceof joint.shapes.bpmn.StepLink) {
-                cell.arrowActive();
-            }
-            if(cell instanceof joint.shapes.bpmn.StepLink) {
-                cell.arrowActive();
+                cell.arrowActive();                
             }
         });
     }

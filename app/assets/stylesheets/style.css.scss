@@ -57,7 +57,7 @@ span.tagline{
 
 }
 
-.element .fobj div.step-title {
+.step-title {
   font-weight: 600;
   margin-bottom: 10px;
   font-size: 14px;
@@ -67,6 +67,29 @@ span.tagline{
 .step-date {
   font-size: 10px;
   float: right;
+}
+
+.label.step-zoom-in {
+  font-weight: 400 !important;
+  font-size: 75% !important;
+}
+.step-title.step-zoom-in {
+  font-size: 13px !important;
+}
+.step-content.step-zoom-in {
+  display: initial !important;
+}
+
+
+.label.step-zoom-out {
+  font-weight: 600 !important;
+  font-size: 100% !important;
+}
+.step-title.step-zoom-out {
+  font-size: 20px !important;
+}
+.step-content.step-zoom-out {
+  display: none !important;
 }
 
 /*Step halo*/
@@ -404,7 +427,7 @@ color: #F2F2F2;
 
 .inspector input, .inspector .toggle, .inspector select, .inspector .list-item .btn-list-del {
   float: none;
-  color: #fff;
+  //color: #fff;
   box-shadow: none;
   border:1px solid #cecece;
   border-radius: 3px;
