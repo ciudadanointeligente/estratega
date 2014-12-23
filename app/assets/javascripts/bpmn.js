@@ -570,7 +570,7 @@ joint.ui.Halo = Backbone.View.extend({
         // on the type of the cell.
         this.$el.attr('data-type', this.options.cellView.model.get('type'));
 
-    this.toggleFork();
+        this.toggleFork();
 
         return this;
     },
@@ -613,11 +613,11 @@ joint.ui.Halo = Backbone.View.extend({
             bbox = this.options.cellView.getBBox();
         }
 
-    this.$el.toggleClass('tiny', bbox.width < this.options.tinyTreshold && bbox.height < this.options.tinyTreshold);
-    this.$el.toggleClass('small', !this.$el.hasClass('tiny') && (bbox.width < this.options.smallTreshold && bbox.height < this.options.smallTreshold));
-    this.$el.toggleClass('medium', !this.$el.hasClass('small') && !this.$el.hasClass('tiny') && (bbox.width < this.options.mediumTreshold && bbox.height < this.options.mediumTreshold));
+        this.$el.toggleClass('tiny', bbox.width < this.options.tinyTreshold && bbox.height < this.options.tinyTreshold);
+        this.$el.toggleClass('small', !this.$el.hasClass('tiny') && (bbox.width < this.options.smallTreshold && bbox.height < this.options.smallTreshold));
+        this.$el.toggleClass('medium', !this.$el.hasClass('small') && !this.$el.hasClass('tiny') && (bbox.width < this.options.mediumTreshold && bbox.height < this.options.mediumTreshold));
 
-    this.$el.css({
+        this.$el.css({
 
         width: bbox.width,
         height: bbox.height,
@@ -714,7 +714,7 @@ joint.ui.Halo = Backbone.View.extend({
 
     startCloning: function(evt) {
 
-    this.options.graph.trigger('batch:start');
+        this.options.graph.trigger('batch:start');
 
         this._clone = this.options.cellView.model.clone();
         this._clone.unset('z');
@@ -723,21 +723,21 @@ joint.ui.Halo = Backbone.View.extend({
 
     startLinking: function(evt) {
 
-    this.options.graph.trigger('batch:start');
+        this.options.graph.trigger('batch:start');
 
         var cellView = this.options.cellView;
         var selector = $.data(evt.target, 'selector');
         var link = this.options.paper.getDefaultLink(cellView, selector && cellView.el.querySelector(selector));
 
-    link.set('source', { id: cellView.model.id, selector: selector });
+        link.set('source', { id: cellView.model.id, selector: selector });
         link.set('target', { x: evt.clientX, y: evt.clientY });
 
-    link.attr(this.options.linkAttributes);
+        link.attr(this.options.linkAttributes);
         if (_.isBoolean(this.options.smoothLinks)) {
             link.set('smooth', this.options.smoothLinks);
         }
 
-    // add link to graph but don't validate
+        // add link to graph but don't validate
         this.options.graph.addCell(link, { validation: false, halo: this.cid });
 
         link.set('target', this.options.paper.snapToGrid({ x: evt.clientX, y: evt.clientY }));
@@ -748,7 +748,7 @@ joint.ui.Halo = Backbone.View.extend({
 
     startForking: function(evt) {
 
-    this.options.graph.trigger('batch:start');
+        this.options.graph.trigger('batch:start');
 
         this._clone = this.options.cellView.model.clone();
         this._clone.unset('z');
@@ -779,7 +779,7 @@ joint.ui.Halo = Backbone.View.extend({
 
     startResizing: function(evt) {
 
-    this.options.graph.trigger('batch:start');
+        this.options.graph.trigger('batch:start');
 
         // determine whether to flip x,y mouse coordinates while resizing or not
         this._flip = [1,0,0,1,1,0,0,1][
@@ -789,18 +789,18 @@ joint.ui.Halo = Backbone.View.extend({
 
     startRotating: function(evt) {
 
-    this.options.graph.trigger('batch:start');
+        this.options.graph.trigger('batch:start');
 
         var bbox = this.options.cellView.getBBox();
 
         this._center = g.rect(bbox).center();
 
-    //mousemove event in firefox has undefined offsetX and offsetY
-    if (typeof evt.offsetX === 'undefined' || typeof evt.offsetY === 'undefined') {
-        var targetOffset = $(evt.target).offset();
-        evt.offsetX = evt.pageX - targetOffset.left;
-        evt.offsetY = evt.pageY - targetOffset.top;
-    }
+        //mousemove event in firefox has undefined offsetX and offsetY
+        if (typeof evt.offsetX === 'undefined' || typeof evt.offsetY === 'undefined') {
+            var targetOffset = $(evt.target).offset();
+            evt.offsetX = evt.pageX - targetOffset.left;
+            evt.offsetY = evt.pageY - targetOffset.top;
+        }
 
         this._rotationStart = g.point(evt.offsetX + evt.target.parentNode.offsetLeft, evt.offsetY + evt.target.parentNode.offsetTop + evt.target.parentNode.offsetHeight);
 
@@ -865,13 +865,19 @@ joint.ui.Halo = Backbone.View.extend({
         var sourceId = this._linkView.model.get('source').id;
         var targetId = this._linkView.model.get('target').id;
 
-    if (sourceId && targetId && (sourceId === targetId)) {
-        this.makeLoopLink(this._linkView.model);
-    }
+        if( targetId ) {
+            if (sourceId && targetId && (sourceId === targetId)) {
+                this.makeLoopLink(this._linkView.model);
+            }
 
-        this.stopBatch();
+            this.stopBatch();
 
-    delete this._linkView;
+            delete this._linkView;
+            toolbar.saveGraph()
+        } else {
+            this._linkView.model.remove()
+        }
+
     },
 
     pointermove: function(evt) {
@@ -909,8 +915,7 @@ joint.ui.Halo = Backbone.View.extend({
     },
 
     remove: function(evt) {
-
-    Backbone.View.prototype.remove.apply(this, arguments);
+        Backbone.View.prototype.remove.apply(this, arguments);
 
         $(document.body).off('mousemove touchmove', this.pointermove);
         $(document).off('mouseup touchend', this.pointerup);
@@ -919,6 +924,7 @@ joint.ui.Halo = Backbone.View.extend({
     removeElement: function(evt) {
 
         this.options.cellView.model.remove();
+        toolbar.saveGraph()
     },
 
     unlinkElement: function(evt) {
@@ -928,11 +934,11 @@ joint.ui.Halo = Backbone.View.extend({
 
     toggleUnlink: function() {
 
-    if (this.options.graph.getConnectedLinks(this.options.cellView.model).length > 0) {
-        this.$('.unlink').show()
-    } else {
-        this.$('.unlink').hide()
-    }
+        if (this.options.graph.getConnectedLinks(this.options.cellView.model).length > 0) {
+            this.$('.unlink').show()
+        } else {
+            this.$('.unlink').hide()
+        }
     },
 
     toggleFork: function() {
@@ -1965,7 +1971,7 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
     },
 
     zoom_out: function() {
-        var element_id = this.id; console.log( 'out: ' + this.id ),
+        var element_id = this.id,
             the_styles = 'font-size: 16px; font-weight: 600';
 
         $('[model-id='+element_id+'] .label-group text').attr('style',the_styles);
@@ -2019,21 +2025,15 @@ graph.on('add', function(cell, collection, opt) {
     // must be 3,1,2) in one batch. Can't be done silently either (becoming an attribute
     // of an element being added) because redo action of `add` (=remove) won't reset the parent embeds.
     // --embedInPool(cell);
+    if (!(cell instanceof joint.shapes.bpmn.StepLink)) {
+        toolbar.saveGraph()
 
-    $.ajax({
-        type: "PUT",
-        dataType: 'json',
-        url: document.URL,
-        contentType: "application/json",
-        data: JSON.stringify({sandbox: {graph_data: JSON.stringify(graph.toJSON())}}),
-        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-    });
+    }
+        if (!opt.stencil) return;
 
-    if (!opt.stencil) return;
-
-    // open inspector after a new element dropped from stencil
-    var view = paper.findViewByModel(cell);
-    if (view) openIHF(view);
+        // open inspector after a new element dropped from stencil
+        var view = paper.findViewByModel(cell);
+        if (view) openIHF(view);
 });
 
 /* KEYBOARD */
