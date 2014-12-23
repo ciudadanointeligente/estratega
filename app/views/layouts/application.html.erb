@@ -2,19 +2,25 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Vizard Rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Vizard" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Vizard Rails" %>">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
   <body>
     <header>
-      <%= render 'layouts/navigation' %>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+      <a class="company-logo" href="#">Vizard</a><span class="tagline">beta</span>
+        <div class="container">
+            <div class="clearfix toolbarName"></div>
+        </div>
+    </nav>
     </header>
-    <main role="main">
-       <%= render 'layouts/messages' %>
-       <%= yield %>
-    </main>
+    <div role="main" class="container">
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+    </div>
   </body>
 </html>

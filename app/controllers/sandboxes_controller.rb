@@ -17,6 +17,7 @@ class SandboxesController < ApplicationController
   # GET /sandboxes/new
   def new
     @sandbox = Sandbox.new
+    render :layout => "application"
   end
 
   # GET /sandboxes/1/edit

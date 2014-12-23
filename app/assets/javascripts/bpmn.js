@@ -2278,7 +2278,7 @@ var toolbar = {
 $(function () {
 
     var graph_data_json = $("#graph_data").html().trim();
-    if(graph_data_json){
+    if(graph_data_json && $("#graph_data").length){
         var graph_data     = $.parseJSON(graph_data_json);
         graph.fromJSON(graph_data);
         //ugly hack for initializing tooltips
