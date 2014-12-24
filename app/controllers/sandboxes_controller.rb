@@ -22,6 +22,7 @@ class SandboxesController < ApplicationController
 
   # GET /sandboxes/1/edit
   def edit
+    render :layout => "application"
   end
 
   # POST /sandboxes
