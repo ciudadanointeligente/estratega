@@ -141,6 +141,9 @@ $(function(){
     $(btn_sidebar_right).css('width','40px');
     $('#btn-right').css('-webkit-transform','rotate(180deg)').css('transform','rotate(180deg)');
 
+    $('#stencil-container .element.bpmn.Person').attr('transform','translate(12,198.5)');
+    $('#stencil-container .element.bpmn.Organization').attr('transform','translate(12,258.5)');
+
     var doc_name = $('#fileName a').html();
     $('<style>@media print { body:before { content: "'+doc_name+'" } }</style>').appendTo('head');
     
