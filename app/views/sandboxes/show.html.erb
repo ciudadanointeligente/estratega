@@ -1,4 +1,7 @@
             <!-- <title><%= @sandbox.name %></title> -->
+<% content_for :title do %>
+<%= @sandbox.name %>
+<% end %>
    		<div class="full clearfix">
 				<div class="pull-left left">
 					 <div id="stencil-container"></div>
