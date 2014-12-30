@@ -10,7 +10,7 @@ var graph = new joint.dia.Graph({ type: 'bpmn' }).on({
         var type = cell.get('type');
 
         // Set a low z-index on pools and groups so they always stay under all other elements.
-        var z = { 'bpmn.GroupOrganization': -3, 'bpmn.Step': -2, 'bpmn.External': -2, 'bpmn.Intervention': -2, 'bpmn.StepLink': -1 }[type];
+        var z = { 'bpmn.GroupOrganization': -3000, 'bpmn.Step': -2000, 'bpmn.External': -2000, 'bpmn.Intervention': -2000, 'bpmn.StepLink': -1000, 'bpmn.Person': 1000, 'bpmn.MorePersons': 2000 }[type];
         if (z){
             cell.set('z', z, { silent: true });
         }
@@ -1154,6 +1154,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             this.listenTo(this, 'change:date', this.setDivContent);
             this.listenTo(this, 'change:tags', this.setDivContent);
             this.listenTo(this, 'change:tags_color', this.setDivContent);
+            this.listenTo(this, 'change:embeds', this.setMorePersons);
 
         }
 
@@ -1282,10 +1283,55 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         var children = this.getEmbeddedCells(),
             yPosition = this.get('position').y + this.get('size').height - children[0].get('size').height*1.6;
         for (i=0; i < children.length; i++){
-            xPosition = this.get('position').x + children[i].get('size').width * i + 5*i + 8;
-            children[i].set('position', {x:xPosition, y:yPosition});
+            if (i < this.max_persons_embedded ){
+                xPosition = this.get('position').x + children[i].get('size').width * i + 5*i + 8;
+                children[i].set('position', {x:xPosition, y:yPosition});
+            }
+            else {
+                xPosition = this.get('position').x + children[i].get('size').width * (this.max_persons_embedded -1) + 5*(this.max_persons_embedded -1)+ 8;
+                children[i].set('position', {x:xPosition, y:yPosition});
+            }
         }
     },
+
+    morePersons: {},
+
+    max_persons_embedded: 5,
+
+    setMorePersons: function(){
+        if (this.getEmbeddedCells().length > this.max_persons_embedded){
+            if (this.morePersons instanceof joint.shapes.bpmn.MorePersons){
+                console.log('update number in morePersons')
+                var extra_persons_label = "+" + (this.getEmbeddedCells().length - this.max_persons_embedded),
+                    attrs = {
+                        '.label': {
+                            text: extra_persons_label,
+                            fill: '#000000',
+                            ref: '.outer', 
+                            transform: 'translate(23,20)',
+                            'text-anchor': 'middle'
+                        }
+                    }
+                this.morePersons.attr(_.merge({}, this.morePersons.defaults.attrs, attrs));
+            }
+            else{
+                //create morePersons
+                console.log('create more persons')
+                this.morePersons = new joint.shapes.bpmn.MorePersons;
+                graph.addCell(this.morePersons)
+                this.embed(this.morePersons)
+                xPosition = this.get('position').x + this.morePersons.get('size').width * (this.max_persons_embedded -1) + 5*(this.max_persons_embedded -1)+ 8;
+                yPosition = this.get('position').y + this.get('size').height - this.morePersons.get('size').height*1.6;
+                this.morePersons.set('position', {x:xPosition, y:yPosition});
+            }
+        }
+        else {
+            if (this.morePersons instanceof joint.shapes.bpmn.MorePersons){
+                console.log('remove morePersons')
+            }
+        }
+
+    }
 
 });
 
@@ -1803,6 +1849,58 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
     }
 
 }).extend(joint.shapes.bpmn.IconInterface);
+
+joint.shapes.bpmn.MorePersons = joint.dia.Element.extend({
+
+    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/></g><text text-anchor="middle" class="user-label label"/></g>',
+
+    defaults: joint.util.deepSupplement({
+
+        type: 'bpmn.MorePersons',
+        bpmn_name: 'MorePersons',
+        size: { width: 33, height: 33 },
+        attrs: {
+            '.body': {
+                fill: '#ffffff',
+                stroke: '#0091EA'
+            },
+            '.outer': {
+                'stroke-width': 1, r:20,
+                transform: 'translate(30,30)'
+            },
+            '.inner': {
+                'stroke-width': 0, r: 16,
+                transform: 'translate(30,30)'
+            },
+            path: {
+                width:  20, 
+                height: 20, 
+                'xlink:href': '', 
+                transform: 'translate(11,12)',
+                fill: "#0091EA"
+            },
+            image: {
+                width:  20, 
+                height: 20, 
+                'xlink:href': '', 
+                transform: 'translate(20,20)'
+            },
+            '.label': {
+                text: '',
+                fill: '#000000',
+                ref: '.outer', 
+                transform: 'translate(15,20)'
+            }
+        },
+        eventType: "start"
+
+    }, joint.dia.Element.prototype.defaults),
+
+    initialize: function() {
+        joint.dia.Element.prototype.initialize.apply(this, arguments);
+    }
+
+}).extend(joint.shapes.bpmn.IconInterface);;
 
 joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
 
