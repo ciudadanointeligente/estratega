@@ -222,7 +222,7 @@ joint.ui.Tooltip = Backbone.View.extend({
             var $top = $(_.isFunction(this.options.top) ? this.options.top(this.$target[0]) : this.options.top);
             var topBbox = this.getElementBBox($top[0]);
             this.$el.css({
-                top: topBbox.y + topBbox.height + padding,
+                top: topBbox.y + topBbox.height/2 + padding,
                 left: bbox.x + bbox.width/2 - width/2
             });
 
@@ -305,8 +305,6 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
 
         joint.dia.Link.prototype.initialize.apply(this, arguments);
 
-        this.setTooltip();
-
         this.listenTo(this, 'change:description', this.setTooltip);
         this.listenTo(this, 'change:description', this.arrowActive);
     },
@@ -316,14 +314,14 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
     setTooltip: function() {
         if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
         this.tooltip = new joint.ui.Tooltip({
-            target: ' [model-id="' + this.id + '"]',
+            target: '[model-id="' + this.id + '"] .connection-wrap',
             content: this.get('description'),
-            bottom: '.connection-wrap',
-            direction: 'bottom'
+            top: '[model-id="' + this.id + '"] .connection-wrap',
+            direction: 'top'
         });
         if (this.has('description')) {
             var element_text = '[model-id='+this.id+']';
-            $(element_text).attr('class','active-arrow bpmn StepLink link');
+            $(element_text).attr('class','bpmn StepLink link');
         }
     },
 
@@ -334,7 +332,7 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
     arrowActive: function(cell, type) {
         if (this.has('description') && this.get('description').length > 0){
             var link_body = '[model-id='+this.id+'] path.connection';
-            $(link_body).attr('class','active-arrow connection');
+            $(link_body).attr('class','content-arrow connection');
         }
         else{
             var link_body = '[model-id='+this.id+'] path.connection';
