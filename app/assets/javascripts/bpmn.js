@@ -389,6 +389,18 @@ var paper = new joint.dia.Paper({
 
         var cell = cellView.model;
 
+        if (cell instanceof joint.shapes.bpmn.MorePersons){
+            return;
+        }
+
+        else if (cell instanceof joint.shapes.bpmn.Person){
+            if (cell.get('parent')) {
+                parent = graph.getCell(cell.get('parent'))
+                parent.unembed(cell);
+                parent.updatePersons();
+            }
+        }
+
         if (cell.get('parent')) {
             graph.getCell(cell.get('parent')).unembed(cell);
         }
@@ -1154,7 +1166,8 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             this.listenTo(this, 'change:date', this.setDivContent);
             this.listenTo(this, 'change:tags', this.setDivContent);
             this.listenTo(this, 'change:tags_color', this.setDivContent);
-            this.listenTo(this, 'change:embeds', this.setMorePersons);
+
+            this.morePersons = {};
 
         }
 
@@ -1278,31 +1291,66 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         );
     },
 
+    updatePersons: function(person){
+        // person added
+        if (person){
+            var embedded_persons = _.filter(this.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.Person})
+            console.log('added')
+            embedded_persons.push(person)
+            this.embed(person);
+            this.fixEmbeddedPosition();
+            this.setMorePersons();
+        }
+        // person removed
+        else{
+            console.log("removed")
+            this.fixEmbeddedPosition()
+            this.setMorePersons();
+        }
+    },
+
     fixEmbeddedPosition: function(){
-        if (!this.getEmbeddedCells().length) return;
-        var children = this.getEmbeddedCells(),
-            yPosition = this.get('position').y + this.get('size').height - children[0].get('size').height*1.6;
-        for (i=0; i < children.length; i++){
+        // draw people in alphabetical order
+        var embedded_persons = _.filter(this.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.Person})
+        if (!embedded_persons.length) return;
+        var yPosition = this.get('position').y + this.get('size').height - embedded_persons[0].get('size').height*1.6;
+        var ordered_persons = embedded_persons.sort(function(a,b){
+            if(b.get("name") == undefined){
+                return 1
+            }
+            else if(a.get("name") > b.get("name")){
+                return 1
+            }
+            else if (a.get("name") < b.get("name")){
+                return -1
+            }
+            return 0
+        })
+        console.log(ordered_persons[0].get('name'))
+        for (i=0; i < ordered_persons.length; i++){
             if (i < this.max_persons_embedded ){
-                xPosition = this.get('position').x + children[i].get('size').width * i + 5*i + 8;
-                children[i].set('position', {x:xPosition, y:yPosition});
+                xPosition = this.get('position').x + embedded_persons[i].get('size').width * i + 5*i + 8;
+                embedded_persons[i].set('position', {x:xPosition, y:yPosition});
             }
             else {
-                xPosition = this.get('position').x + children[i].get('size').width * (this.max_persons_embedded -1) + 5*(this.max_persons_embedded -1)+ 8;
-                children[i].set('position', {x:xPosition, y:yPosition});
+                xPosition = this.get('position').x + embedded_persons[i].get('size').width * (this.max_persons_embedded -1) + 5*(this.max_persons_embedded -1)+ 8;
+                embedded_persons[i].set('position', {x:xPosition, y:yPosition});
             }
         }
     },
 
-    morePersons: {},
+    // morePersons: {},
+
+    // person_list: [],
 
     max_persons_embedded: 5,
 
     setMorePersons: function(){
-        if (this.getEmbeddedCells().length > this.max_persons_embedded){
+        var embedded_persons = _.filter(this.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.Person})
+        if (embedded_persons.length > this.max_persons_embedded){
             if (this.morePersons instanceof joint.shapes.bpmn.MorePersons){
                 console.log('update number in morePersons')
-                var extra_persons_label = "+" + (this.getEmbeddedCells().length - this.max_persons_embedded),
+                var extra_persons_label = "+" + (embedded_persons.length - this.max_persons_embedded),
                     attrs = {
                         '.label': {
                             text: extra_persons_label,
@@ -1315,19 +1363,40 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
                 this.morePersons.attr(_.merge({}, this.morePersons.defaults.attrs, attrs));
             }
             else{
+                // created from a saved graph
+                var more_persons = _.filter(this.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.MorePersons})[0]
+                if(more_persons)
+                    this.morePersons = more_persons;
+                else{
+                    this.morePersons = new joint.shapes.bpmn.MorePersons;
+                    console.log('create more persons')
+                    graph.addCell(this.morePersons)
+                    this.embed(this.morePersons)
+                    xPosition = this.get('position').x + this.morePersons.get('size').width * (this.max_persons_embedded -1) + 5*(this.max_persons_embedded -1)+ 8;
+                    yPosition = this.get('position').y + this.get('size').height - this.morePersons.get('size').height*1.6;
+                    this.morePersons.set('position', {x:xPosition, y:yPosition});
+                }
                 //create morePersons
-                console.log('create more persons')
-                this.morePersons = new joint.shapes.bpmn.MorePersons;
-                graph.addCell(this.morePersons)
-                this.embed(this.morePersons)
-                xPosition = this.get('position').x + this.morePersons.get('size').width * (this.max_persons_embedded -1) + 5*(this.max_persons_embedded -1)+ 8;
-                yPosition = this.get('position').y + this.get('size').height - this.morePersons.get('size').height*1.6;
-                this.morePersons.set('position', {x:xPosition, y:yPosition});
+                var mp_view = paper.findViewByModel(this.morePersons);
+                mp_view.options.interactive = false;
             }
+            var extra_persons_label = "+" + (embedded_persons.length - this.max_persons_embedded),
+                attrs = {
+                    '.label': {
+                        text: extra_persons_label,
+                        fill: '#000000',
+                        ref: '.outer', 
+                        transform: 'translate(23,20)',
+                        'text-anchor': 'middle'
+                    }
+                }
+            this.morePersons.attr(_.merge({}, this.morePersons.defaults.attrs, attrs));
         }
         else {
             if (this.morePersons instanceof joint.shapes.bpmn.MorePersons){
                 console.log('remove morePersons')
+                this.morePersons.remove();
+                this.morePersons = {};
             }
         }
 
@@ -2151,6 +2220,9 @@ function openIHF(cellView) {
         }
 
         if (!selection.contains(cellView.model)) {
+            if (cellView.model instanceof joint.shapes.bpmn.MorePersons) {
+                return;
+            }
             if (cellView.model instanceof joint.dia.Element && !( cellView.model instanceof joint.shapes.bpmn.GroupOrganization)) {
 
                 // new joint.ui.FreeTransform({ cellView: cellView }).render();
@@ -2247,8 +2319,9 @@ function embedInGroup(cell) {
         // Prevent recursive embedding.
         else if ((stepCell && stepCell.get('parent') !== cell.id) && (cell instanceof joint.shapes.bpmn.Person)) {
             cell.set('size_type', 'small')
-            stepCell.embed(cell);
-            stepCell.fixEmbeddedPosition();
+            stepCell.updatePersons(cell)
+            // stepCell.embed(cell);
+            // stepCell.fixEmbeddedPosition();
         }
     }
 }
@@ -2342,8 +2415,8 @@ $(function () {
             if(cell instanceof joint.shapes.bpmn.StepLink) {
                 cell.arrowActive();
             }
-            if(cell instanceof joint.shapes.bpmn.StepLink) {
-                cell.arrowActive();
+            if(cell instanceof joint.shapes.bpmn.Step) {
+                cell.setMorePersons();
             }
         });
     }
