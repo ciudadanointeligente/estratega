@@ -1371,21 +1371,8 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
     setMorePersons: function(){
         var embedded_persons = _.filter(this.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.Person})
         if (embedded_persons.length > this.max_persons_embedded){
-            if (this.morePersons instanceof joint.shapes.bpmn.MorePersons){
-                console.log('update number in morePersons')
-                var extra_persons_label = "+" + (embedded_persons.length - this.max_persons_embedded),
-                    attrs = {
-                        '.label': {
-                            text: extra_persons_label,
-                            fill: '#000000',
-                            ref: '.outer', 
-                            transform: 'translate(23,20)',
-                            'text-anchor': 'middle'
-                        }
-                    }
-                this.morePersons.attr(_.merge({}, this.morePersons.defaults.attrs, attrs));
-            }
-            else{
+            if (! (this.morePersons instanceof joint.shapes.bpmn.MorePersons)){
+                console.log("creating new more persons")
                 // created from a saved graph
                 var more_persons = _.filter(this.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.MorePersons})[0]
                 if(more_persons)
@@ -1403,7 +1390,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
                 var mp_view = paper.findViewByModel(this.morePersons);
                 mp_view.options.interactive = false;
             }
-            var extra_persons_label = "+" + (embedded_persons.length - this.max_persons_embedded),
+            var extra_persons_label = "+" + (embedded_persons.length - this.max_persons_embedded + 1),
                 attrs = {
                     '.label': {
                         text: extra_persons_label,
