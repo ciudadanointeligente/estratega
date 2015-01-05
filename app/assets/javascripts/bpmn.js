@@ -66,17 +66,17 @@ joint.ui.Tooltip = Backbone.View.extend({
         _.bindAll(this, 'render', 'hide', 'position');
 
         if (this.options.rootTarget) {
-            
+
             this.$rootTarget = $(this.options.rootTarget);
-            
+
             this.$rootTarget.on('mouseover', this.options.target, this.render);
             this.$rootTarget.on('mouseout', this.options.target, this.hide);
             this.$rootTarget.on('mousedown', this.options.target, this.hide);
 
         } else {
-        
+
             this.$target = $(this.options.target);
-            
+
             this.$target.on('mouseover', this.render);
             this.$target.on('mouseout', this.hide);
             this.$target.on('mousedown', this.hide);
@@ -90,7 +90,7 @@ joint.ui.Tooltip = Backbone.View.extend({
         this.$target.off('mouseover', this.render);
         this.$target.off('mouseout', this.hide);
         this.$target.off('mousedown', this.hide);
-        
+
         Backbone.View.prototype.remove.apply(this, arguments);
     },
 
@@ -98,24 +98,24 @@ joint.ui.Tooltip = Backbone.View.extend({
 
         Backbone.View.prototype.remove.apply(this, arguments);
     },
-    
+
     render: function(evt) {
 
         var target;
         var isPoint = !_.isUndefined(evt.x) && !_.isUndefined(evt.y);
-        
+
         if (isPoint) {
-            
+
             target = evt;
-            
+
         } else {
 
             this.$target = $(evt.target).closest(this.options.target);
             target = this.$target[0];
         }
-        
+
         this.$el.html(_.isFunction(this.options.content) ? this.options.content(target) : this.options.content);
-        
+
         // Hide the element first so that we don't get a jumping effect during the image loading.
         this.$el.hide();
         $(document.body).append(this.$el);
@@ -126,7 +126,7 @@ joint.ui.Tooltip = Backbone.View.extend({
         if ($images.length) {
 
             $images.on('load', _.bind(function() { this.position(isPoint ? target : undefined); }, this));
-            
+
         } else {
 
             this.position(isPoint ? target : undefined);
@@ -144,10 +144,10 @@ joint.ui.Tooltip = Backbone.View.extend({
         // Google Chrome is the winner here as it uses both.
         var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
         var scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft;
-        
+
         offset.top -= (scrollTop || 0);
         offset.left -= (scrollLeft || 0);
-        
+
         if (el.ownerSVGElement) {
 
             // Use Vectorizer to get the dimensions of the element if it is an SVG element.
@@ -165,9 +165,9 @@ joint.ui.Tooltip = Backbone.View.extend({
             // ones returned from the `offset()` method that are relative to the document.
             bbox.x = offset.left + strokeWidthX;
             bbox.y = offset.top + strokeWidthY;
-            
+
         } else {
-            
+
             bbox = { x: offset.left, y: offset.top, width: $el.outerWidth(), height: $el.outerHeight() };
         }
 
@@ -179,22 +179,22 @@ joint.ui.Tooltip = Backbone.View.extend({
         var bbox;
 
         if (p) {
-            
+
             bbox = { x: p.x, y: p.y, width: 1, height: 1 };
-            
+
         } else {
 
-            bbox = this.getElementBBox(this.$target[0]);            
+            bbox = this.getElementBBox(this.$target[0]);
         }
-        
+
         var padding = this.options.padding;
 
         // Show the tooltip. Do this before we ask for its dimension, otherwise they won't be defined yet.
         this.$el.show();
-        
+
         var height = this.$el.outerHeight();
         var width = this.$el.outerWidth();
-        
+
         // If `options.left` selector or DOM element is defined, we use its right coordinate
         // as a left coordinate for the tooltip. In other words, the `options.left` element
         // is on the left of the tooltip. This is useful when you want to tooltip to
@@ -207,7 +207,7 @@ joint.ui.Tooltip = Backbone.View.extend({
                 left: leftBbox.x + leftBbox.width + padding,
                 top: bbox.y + bbox.height/2 - height/2
             });
-            
+
         } else if (this.options.right) {
 
             var $right = $(_.isFunction(this.options.right) ? this.options.right(this.$target[0]) : this.options.right);
@@ -222,7 +222,7 @@ joint.ui.Tooltip = Backbone.View.extend({
             var $top = $(_.isFunction(this.options.top) ? this.options.top(this.$target[0]) : this.options.top);
             var topBbox = this.getElementBBox($top[0]);
             this.$el.css({
-                top: topBbox.y + topBbox.height + padding,
+                top: topBbox.y + topBbox.height/2 + padding,
                 left: bbox.x + bbox.width/2 - width/2
             });
 
@@ -234,7 +234,7 @@ joint.ui.Tooltip = Backbone.View.extend({
                 top: bottomBbox.y - height - padding,
                 left: bbox.x + bbox.width/2 - width/2
             });
-            
+
         } else {
 
             this.$el.css({
@@ -281,12 +281,12 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
             },
             '.marker-target': {
                 d: 'M 12 -2 L 0 5 L 12 12 z',
-                stroke: '#4A90E2', 
+                stroke: '#4A90E2',
                 fill: '#4A90E2'
             },
             '.connection': {
                 'stroke-dasharray': ' ',
-                stroke: '#4A90E2', 
+                stroke: '#4A90E2',
                 'stroke-width': 2
             },
             '.connection-wrap': {
@@ -305,8 +305,6 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
 
         joint.dia.Link.prototype.initialize.apply(this, arguments);
 
-        this.setTooltip();
-
         this.listenTo(this, 'change:description', this.setTooltip);
         this.listenTo(this, 'change:description', this.arrowActive);
     },
@@ -316,14 +314,14 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
     setTooltip: function() {
         if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
         this.tooltip = new joint.ui.Tooltip({
-            target: ' [model-id="' + this.id + '"]',
+            target: '[model-id="' + this.id + '"] .connection-wrap',
             content: this.get('description'),
-            bottom: '.connection-wrap',
-            direction: 'bottom'
+            top: '[model-id="' + this.id + '"] .connection-wrap',
+            direction: 'top'
         });
         if (this.has('description')) {
             var element_text = '[model-id='+this.id+']';
-            $(element_text).attr('class','active-arrow bpmn StepLink link');
+            $(element_text).attr('class','bpmn StepLink link');
         }
     },
 
@@ -334,11 +332,11 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
     arrowActive: function(cell, type) {
         if (this.has('description') && this.get('description').length > 0){
             var link_body = '[model-id='+this.id+'] path.connection';
-            $(link_body).attr('class','active-arrow connection');
+            $(link_body).attr('class','content-arrow connection');
         }
         else{
             var link_body = '[model-id='+this.id+'] path.connection';
-            $(link_body).attr('class','connection');   
+            $(link_body).attr('class','connection');
         }
 
     }
@@ -491,7 +489,7 @@ joint.ui.Halo = Backbone.View.extend({
     className: 'halo',
 
     events: {
-        
+
         'mousedown .handle': 'onHandlePointerDown',
         'touchstart .handle': 'onHandlePointerDown'
     },
@@ -571,18 +569,18 @@ joint.ui.Halo = Backbone.View.extend({
 
         this.$el.append(joint.templates.halo['box.html']());
 
-    this.renderMagnets();
+        this.renderMagnets();
 
         this.update();
 
         this.$el.addClass('animate');
-        
+
         // Add the `data-type` attribute with the `type` of the cell to the root element.
         // This makes it possible to style the halo (including hiding/showing actions) based
         // on the type of the cell.
         this.$el.attr('data-type', this.options.cellView.model.get('type'));
 
-    this.toggleFork();
+        this.toggleFork();
 
         return this;
     },
@@ -590,7 +588,7 @@ joint.ui.Halo = Backbone.View.extend({
     update: function() {
 
         if (this.options.cellView.model instanceof joint.dia.Link) return;
-        
+
         if (_.isFunction(this.options.boxContent)) {
 
             var $box = this.$('.box');
@@ -625,18 +623,18 @@ joint.ui.Halo = Backbone.View.extend({
             bbox = this.options.cellView.getBBox();
         }
 
-    this.$el.toggleClass('tiny', bbox.width < this.options.tinyTreshold && bbox.height < this.options.tinyTreshold);
-    this.$el.toggleClass('small', !this.$el.hasClass('tiny') && (bbox.width < this.options.smallTreshold && bbox.height < this.options.smallTreshold));
-    this.$el.toggleClass('medium', !this.$el.hasClass('small') && !this.$el.hasClass('tiny') && (bbox.width < this.options.mediumTreshold && bbox.height < this.options.mediumTreshold));
- 
-    this.$el.css({
+        this.$el.toggleClass('tiny', bbox.width < this.options.tinyTreshold && bbox.height < this.options.tinyTreshold);
+        this.$el.toggleClass('small', !this.$el.hasClass('tiny') && (bbox.width < this.options.smallTreshold && bbox.height < this.options.smallTreshold));
+        this.$el.toggleClass('medium', !this.$el.hasClass('small') && !this.$el.hasClass('tiny') && (bbox.width < this.options.mediumTreshold && bbox.height < this.options.mediumTreshold));
 
-            width: bbox.width,
-            height: bbox.height,
-            left: bbox.x,
-            top: bbox.y
+        this.$el.css({
 
-        }).show();
+        width: bbox.width,
+        height: bbox.height,
+        left: bbox.x,
+        top: bbox.y
+
+    }).show();
 
     this.updateMagnets();
 
@@ -646,7 +644,7 @@ joint.ui.Halo = Backbone.View.extend({
     addHandle: function(opt) {
 
         this.handles.push(opt);
-        
+
         this.$el.append(joint.templates.halo['handle.html'](opt));
 
         _.each(opt.events, function(method, event) {
@@ -654,15 +652,15 @@ joint.ui.Halo = Backbone.View.extend({
             if (_.isString(method)) {
 
                 this.on('action:' + opt.name + ':' + event, this[method], this);
-                
+
             } else {
                 // Otherwise, it must be a function.
 
                 this.on('action:' + opt.name + ':' + event, method);
             }
-            
+
         }, this);
-        
+
         return this;
     },
 
@@ -671,13 +669,13 @@ joint.ui.Halo = Backbone.View.extend({
         var handleIdx = _.findIndex(this.handles, { name: name });
         var handle = this.handles[handleIdx];
         if (handle) {
-            
+
             _.each(handle.events, function(method, event) {
-                
+
                 this.off('action:' + name + ':' + event);
-                
+
             }, this);
-            
+
             this.$('.handle.' + name).remove();
 
             this.handles.splice(handleIdx, 1);
@@ -690,11 +688,11 @@ joint.ui.Halo = Backbone.View.extend({
 
         var handle = _.findWhere(this.handles, { name: name });
         if (handle) {
-            
+
             this.removeHandle(name);
             this.addHandle(_.merge({ name: name }, handle, opt));
         }
-        
+
         return this;
     },
 
@@ -719,15 +717,15 @@ joint.ui.Halo = Backbone.View.extend({
     // Trigger an action on the Halo object. `evt` is a DOM event, `eventName` is an abstracted
     // JointJS event name (poiterdown, pointermove, pointerup).
     triggerAction: function(action, eventName, evt) {
-        
+
         var args = ['action:' + action + ':' + eventName].concat(_.rest(_.toArray(arguments), 2));
         this.trigger.apply(this, args);
     },
 
     startCloning: function(evt) {
 
-    this.options.graph.trigger('batch:start');
-        
+        this.options.graph.trigger('batch:start');
+
         this._clone = this.options.cellView.model.clone();
         this._clone.unset('z');
         this.options.graph.addCell(this._clone, { halo: this.cid });
@@ -735,21 +733,21 @@ joint.ui.Halo = Backbone.View.extend({
 
     startLinking: function(evt) {
 
-    this.options.graph.trigger('batch:start');
+        this.options.graph.trigger('batch:start');
 
         var cellView = this.options.cellView;
         var selector = $.data(evt.target, 'selector');
         var link = this.options.paper.getDefaultLink(cellView, selector && cellView.el.querySelector(selector));
 
-    link.set('source', { id: cellView.model.id, selector: selector });
+        link.set('source', { id: cellView.model.id, selector: selector });
         link.set('target', { x: evt.clientX, y: evt.clientY });
 
-    link.attr(this.options.linkAttributes);
+        link.attr(this.options.linkAttributes);
         if (_.isBoolean(this.options.smoothLinks)) {
             link.set('smooth', this.options.smoothLinks);
         }
 
-    // add link to graph but don't validate
+        // add link to graph but don't validate
         this.options.graph.addCell(link, { validation: false, halo: this.cid });
 
         link.set('target', this.options.paper.snapToGrid({ x: evt.clientX, y: evt.clientY }));
@@ -760,18 +758,28 @@ joint.ui.Halo = Backbone.View.extend({
 
     startForking: function(evt) {
 
-    this.options.graph.trigger('batch:start');
-        
+        this.options.graph.trigger('batch:start');
+
         this._clone = this.options.cellView.model.clone();
         this._clone.unset('z');
+        //for Person
+        this._clone.unset('name');
+        this._clone.unset('pos');
+        this._clone.unset('description');
+        this._clone.unset('image');
+        //for Step
+        this._clone.unset('title');
+        this._clone.unset('content');
+        this._clone.unset('date');
+
         this.options.graph.addCell(this._clone, { halo: this.cid });
 
         var link = this.options.paper.getDefaultLink(this.options.cellView);
 
-    link.set('source', { id: this.options.cellView.model.id });
+        link.set('source', { id: this.options.cellView.model.id });
         link.set('target', { id: this._clone.id });
 
-    link.attr(this.options.linkAttributes);
+        link.attr(this.options.linkAttributes);
         if (_.isBoolean(this.options.smoothLinks)) {
             link.set('smooth', this.options.smoothLinks);
         }
@@ -781,8 +789,8 @@ joint.ui.Halo = Backbone.View.extend({
 
     startResizing: function(evt) {
 
-    this.options.graph.trigger('batch:start');
-        
+        this.options.graph.trigger('batch:start');
+
         // determine whether to flip x,y mouse coordinates while resizing or not
         this._flip = [1,0,0,1,1,0,0,1][
             Math.floor(g.normalizeAngle(this.options.cellView.model.get('angle')) / 45)
@@ -791,18 +799,18 @@ joint.ui.Halo = Backbone.View.extend({
 
     startRotating: function(evt) {
 
-    this.options.graph.trigger('batch:start');
-        
+        this.options.graph.trigger('batch:start');
+
         var bbox = this.options.cellView.getBBox();
-        
+
         this._center = g.rect(bbox).center();
 
-    //mousemove event in firefox has undefined offsetX and offsetY
-    if (typeof evt.offsetX === 'undefined' || typeof evt.offsetY === 'undefined') {
-        var targetOffset = $(evt.target).offset();
-        evt.offsetX = evt.pageX - targetOffset.left;
-        evt.offsetY = evt.pageY - targetOffset.top;
-    }
+        //mousemove event in firefox has undefined offsetX and offsetY
+        if (typeof evt.offsetX === 'undefined' || typeof evt.offsetY === 'undefined') {
+            var targetOffset = $(evt.target).offset();
+            evt.offsetX = evt.pageX - targetOffset.left;
+            evt.offsetY = evt.pageY - targetOffset.top;
+        }
 
         this._rotationStart = g.point(evt.offsetX + evt.target.parentNode.offsetLeft, evt.offsetY + evt.target.parentNode.offsetTop + evt.target.parentNode.offsetHeight);
 
@@ -835,11 +843,11 @@ joint.ui.Halo = Backbone.View.extend({
         if (sign <= 0) {
             _angle = -_angle;
         }
-        
+
         var angleDiff = -g.toDeg(_angle);
 
         angleDiff = g.snapToGrid(angleDiff, this.options.rotateAngleGrid);
-        
+
         this.options.cellView.model.rotate(angleDiff + this._rotationStartAngle, true);
     },
 
@@ -856,26 +864,32 @@ joint.ui.Halo = Backbone.View.extend({
     doLink: function(evt) {
 
         var clientCoords = this.options.paper.snapToGrid({ x: evt.clientX, y: evt.clientY });
-        
+
         this._linkView.pointermove(evt, clientCoords.x, clientCoords.y);
     },
 
     stopLinking: function(evt) {
-        
+
         this._linkView.pointerup(evt);
 
         var sourceId = this._linkView.model.get('source').id;
         var targetId = this._linkView.model.get('target').id;
 
-    if (sourceId && targetId && (sourceId === targetId)) {
-        this.makeLoopLink(this._linkView.model);
-    }
+        if( targetId ) {
+            if (sourceId && targetId && (sourceId === targetId)) {
+                this.makeLoopLink(this._linkView.model);
+            }
 
-        this.stopBatch();
+            this.stopBatch();
 
-    delete this._linkView;
+            delete this._linkView;
+            toolbar.saveGraph()
+        } else {
+            this._linkView.model.remove()
+        }
+
     },
-    
+
     pointermove: function(evt) {
 
         if (!this._action) return;
@@ -886,12 +900,12 @@ joint.ui.Halo = Backbone.View.extend({
 
         var clientCoords = this.options.paper.snapToGrid({ x: evt.clientX, y: evt.clientY });
         var oldClientCoords = this.options.paper.snapToGrid({ x: this._clientX, y: this._clientY });
-        
+
         var dx = clientCoords.x - oldClientCoords.x;
         var dy = clientCoords.y - oldClientCoords.y;
 
         this.triggerAction(this._action, 'pointermove', evt, dx, dy, evt.clientX - this._startClientX, evt.clientY - this._startClientY);
-        
+
         this._clientX = evt.clientX;
         this._clientY = evt.clientY;
     },
@@ -906,13 +920,12 @@ joint.ui.Halo = Backbone.View.extend({
     },
 
     stopBatch: function() {
-        
+
         this.options.graph.trigger('batch:stop');
     },
 
     remove: function(evt) {
-
-    Backbone.View.prototype.remove.apply(this, arguments);
+        Backbone.View.prototype.remove.apply(this, arguments);
 
         $(document.body).off('mousemove touchmove', this.pointermove);
         $(document).off('mouseup touchend', this.pointerup);
@@ -921,6 +934,7 @@ joint.ui.Halo = Backbone.View.extend({
     removeElement: function(evt) {
 
         this.options.cellView.model.remove();
+        toolbar.saveGraph()
     },
 
     unlinkElement: function(evt) {
@@ -930,11 +944,11 @@ joint.ui.Halo = Backbone.View.extend({
 
     toggleUnlink: function() {
 
-    if (this.options.graph.getConnectedLinks(this.options.cellView.model).length > 0) {
-        this.$('.unlink').show()
-    } else {
-        this.$('.unlink').hide()
-    }
+        if (this.options.graph.getConnectedLinks(this.options.cellView.model).length > 0) {
+            this.$('.unlink').show()
+        } else {
+            this.$('.unlink').hide()
+        }
     },
 
     toggleFork: function() {
@@ -1129,7 +1143,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             },
             text: {
                 fill: '#000000',
-                ref: '.inner', 
+                ref: '.inner',
                  'ref-x': .5, 'ref-dy': -25,
                 'x-alignment': 'right', 'y-alignment': 'top'
             },
@@ -1188,7 +1202,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         var the_date = '';
         if( this.has('date'))
             the_date = this.get("date")
-        
+
         var topDiv = document.createElement("div"),
             rightSpan = document.createElement("span"),
             leftSpan = document.createElement("span"),
@@ -1203,27 +1217,40 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             leftSpan.classList.add(this.get("tags_color") || "label-default");
             rightSpan.classList.add("step-date");
 
+            if( paperScroller._sy < '0.8' ) {
+                leftSpan.classList.add("step-zoom-out");
+                rightSpan.classList.add("step-zoom-out");
+            }
+
         var titleDiv = document.createElement("div"),
-            readmore = '';
-        if( this.get("title").length > 53 )
+            readmore = '',
+            title = this.get("title") || '';
+
+        if( title.length > 53 )
             readmore = '...';
-        var titleText = document.createTextNode(this.get("title").substring(0,53)+readmore);
+        var titleText = document.createTextNode(title.substring(0,53)+readmore);
             titleDiv.appendChild(titleText);
             titleDiv.classList.add("step-title");
+
+        if( paperScroller._sy < '0.8' )
+            titleDiv.classList.add("step-zoom-out");
         
         var contentDiv = document.createElement("div"); 
-        var the_content = this.get("content");
-        var contentText = document.createTextNode(the_content.substring(0,140));
+        var the_content = this.get("content") || '';
+        var contentText = document.createTextNode(the_content.substring(0,100));
             contentDiv.appendChild(contentText);
             contentDiv.classList.add("step-content");
+
+        if( paperScroller._sy < '0.8' )
+            contentDiv.classList.add("step-zoom-out");
 
         var view_more_div = document.createElement("div"); 
         var view_more_link = '';
         var main_modal = '';
         var count = the_content.replace(/[^\n]/g, '').length;
-        if( the_content.length > 140 || count > 4 )
+        if( the_content.length > 100 || count >= 3 )
         {
-            var view_more_link = document.createElement("a"); 
+            var view_more_link = document.createElement("a");
                 view_more_link.innerHTML = 'read more';
                 view_more_link.setAttribute('href','#');
                 view_more_link.setAttribute('data-toggle', "modal");
@@ -1262,7 +1289,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
 
             main_modal_header_button.appendChild(main_modal_header_button_span_one);
             main_modal_header_button.appendChild(main_modal_header_button_span_two);
-            
+
             main_modal_header.appendChild(main_modal_header_button);
             main_modal_header.appendChild(main_modal_header_h4);
 
@@ -1270,7 +1297,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             var main_modal_body = document.createElement('div');
                 main_modal_body.className = 'modal-body';
                 main_modal_body.innerHTML = the_content;
-            
+
             main_modal_content.appendChild(main_modal_header);
             main_modal_content.appendChild(main_modal_body);
 
@@ -1339,10 +1366,6 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         }
     },
 
-    // morePersons: {},
-
-    // person_list: [],
-
     max_persons_embedded: 5,
 
     setMorePersons: function(){
@@ -1399,7 +1422,26 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
                 this.morePersons = {};
             }
         }
+    },
 
+    zoom_out: function() {
+        $('.label').removeClass('step-zoom-in');
+        $('.step-title').removeClass('step-zoom-in');
+        $('.step-content').removeClass('step-zoom-in');
+
+        $('.label').addClass('step-zoom-out');
+        $('.step-title').addClass('step-zoom-out');
+        $('.step-content').addClass('step-zoom-out');
+    },
+
+    zoom_in: function() {
+        $('.label').removeClass('step-zoom-out');
+        $('.step-title').removeClass('step-zoom-out');
+        $('.step-content').removeClass('step-zoom-out');
+
+        $('.label').addClass('step-zoom-in');
+        $('.step-title').addClass('step-zoom-in');
+        $('.step-content').addClass('step-zoom-in');
     }
 
 });
@@ -1497,22 +1539,22 @@ joint.shapes.bpmn.Organization = joint.dia.Element.extend({
                 transform: 'translate(30,30)'
             },
             path: {
-                width:  20, 
-                height: 20, 
-                'xlink:href': '', 
+                width:  20,
+                height: 20,
+                'xlink:href': '',
                 transform: 'translate(11,12)',
                 fill: "#0091EA"
             },
             image: {
-                width:  20, 
-                height: 20, 
-                'xlink:href': '', 
+                width:  20,
+                height: 20,
+                'xlink:href': '',
                 transform: 'translate(20,20)'
             },
             '.label': {
                 text: '',
                 fill: '#000000',
-                ref: '.outer', 
+                ref: '.outer',
                 transform: 'translate(15,20)'
             }
         },
@@ -1532,9 +1574,9 @@ joint.shapes.bpmn.Organization = joint.dia.Element.extend({
     },
 
     setTooltip: function() {
-        if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
+        if (this.tooltip instanceof joint.ui.Tooltip) this.tooltip.remove();
         if( (this.has('name') && this.get('name').length>0) || (this.has('description') && this.get('description').length>0) ) {
-            var div = document.createElement("div"); 
+            var div = document.createElement("div");
                 div.className = 'joint-tooltip-content';
             var name = document.createElement("div");
                 name.className = 'joint-tooltip-strong';
@@ -1544,7 +1586,7 @@ joint.shapes.bpmn.Organization = joint.dia.Element.extend({
                 description.className = 'joint-tooltip-text';
             div.appendChild(name);
             div.appendChild(description);
-            
+
             this.tooltip = new joint.ui.Tooltip({
                 target: ' [model-id="' + this.id + '"]',
                 content: div.innerHTML,
@@ -1562,13 +1604,13 @@ joint.shapes.bpmn.Organization = joint.dia.Element.extend({
                     stroke: color
                 },
                 path: {
-                    width:  20, 
-                    height: 20, 
+                    width:  20,
+                    height: 20,
                     'xlink:href': '',
                     fill: color
                 },
             }
-        this.attr(_.merge({}, this.defaults.attrs, attrs));        
+        this.attr(_.merge({}, this.defaults.attrs, attrs));
     },
     setInitialName: function() {
         var color = this.get('color');
@@ -1617,9 +1659,9 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
 
         type: 'bpmn.Person',
         bpmn_name: 'Person',
-        size: { 
-            width: 33, 
-            height: 33 
+        size: {
+            width: 33,
+            height: 33
         },
         attrs: {
             '.body': {
@@ -1627,33 +1669,33 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
                 stroke: '#0091EA'
             },
             '.outer': {
-                'stroke-width': 1, 
+                'stroke-width': 1,
                 r:20,
                 transform: 'translate(30,30)'
             },
             '.inner': {
-                'stroke-width': 0, 
+                'stroke-width': 0,
                 r: 16,
                 transform: 'translate(30,30)'
             },
             image: {
-                width:  20, 
-                height: 20, 
-                'xlink:href': '', 
-                transform: 'translate(20,20)', 
+                width:  20,
+                height: 20,
+                'xlink:href': '',
+                transform: 'translate(20,20)',
                 display: 'none'
             },
             path: {
-                width:  20, 
-                height: 20, 
-                'xlink:href': '', 
+                width:  20,
+                height: 20,
+                'xlink:href': '',
                 transform: 'translate(7,11)',
                 fill: "#0091EA"
             },
             'text.user-label': {
                 text: '',
                 fill: '#0091EA',
-                ref: '.outer', 
+                ref: '.outer',
                 transform: 'translate(24,20)',
             },
             'text.person-name': {
@@ -1671,7 +1713,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
 
     }, joint.dia.Element.prototype.defaults),
 
-    initialize: function() { 
+    initialize: function() {
         joint.dia.Element.prototype.initialize.apply(this, arguments);
         this.markup = '<g class="rotatable"><defs><clipPath id="circle-'+this.id+'"><circle cx="20" cy="20" r="20"/></clipPath></defs><g class="scalable"><circle class="body outer"/><circle class="body inner"/><path class="user-img" d="M30.1,24.2c0,0.8-0.2,1.4-0.7,1.9c-0.5,0.5-1.1,0.7-1.9,0.7h-8.8c-0.8,0-1.5-0.2-1.9-0.7c-0.5-0.5-0.7-1.1-0.7-1.9c0-0.4,0-0.7,0.1-1.1c0-0.3,0.1-0.7,0.1-1.1c0.1-0.4,0.2-0.7,0.2-1.1c0.1-0.3,0.2-0.7,0.4-1c0.2-0.3,0.4-0.6,0.6-0.8c0.2-0.2,0.5-0.4,0.9-0.6c0.3-0.1,0.7-0.2,1.1-0.2c0.1,0,0.2,0.1,0.4,0.2c0.2,0.1,0.5,0.3,0.7,0.5c0.2,0.2,0.6,0.3,1.1,0.5c0.4,0.1,0.9,0.2,1.4,0.2c0.4,0,0.9-0.1,1.4-0.2c0.4-0.1,0.8-0.3,1.1-0.5c0.2-0.2,0.6-0.3,0.7-0.5c0.2-0.1,0.4-0.2,0.4-0.2c0.4,0,0.8,0.1,1.1,0.2c0.3,0.1,0.6,0.3,0.9,0.6c0.2,0.2,0.4,0.5,0.6,0.8c0.2,0.3,0.3,0.6,0.4,1c0.1,0.3,0.2,0.7,0.2,1.1c0.1,0.4,0.1,0.7,0.1,1.1C30.1,23.5,30.1,23.8,30.1,24.2z M25.7,12.4c0.7,0.7,1.1,1.7,1.1,2.7s-0.4,2-1.1,2.7S24.1,19,23,19s-2-0.4-2.7-1.1s-1.1-1.7-1.1-2.7s0.4-2,1.1-2.7s1.7-1.1,2.7-1.1C24.1,11.3,25,11.7,25.7,12.4z"/><image clip-path="url(#circle-'+this.id+')"/></g><text text-anchor="middle" class="user-label label"/><text class="person-name" display="none">'+this.get('name')+'</text><text class="person-position" display="none">'+this.get('name')+'</text></g>'
 
@@ -1698,7 +1740,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
 
         if( (this.has('name') && this.get('name').length>0) || (this.has('description') && this.get('description').length>0) ) {
 
-            var div = document.createElement("div"); 
+            var div = document.createElement("div");
                 div.className = 'joint-tooltip-content';
             var name = document.createElement("div");
                 name.className = 'joint-tooltip-strong';
@@ -1764,7 +1806,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
         this.setInitialName();
     },
     setColor: function() {
-        if( paperScroller._sy > '1.2' ) 
+        if( paperScroller._sy > '1.2' )
             return;
         if( (this.has('image') && this.get('image').length>0) ) return
         var color = this.get('color')
@@ -1794,9 +1836,9 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
                     stroke: color
                 },
                 path: {
-                    width:  20, 
-                    height: 20, 
-                    'xlink:href': '', 
+                    width:  20,
+                    height: 20,
+                    'xlink:href': '',
                     transform: 'translate(7,11)',
                     fill: color,
                     display: 'block'
@@ -1811,7 +1853,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
     },
 
     setImage: function() {
-        if( paperScroller._sy > '1.2' ) 
+        if( paperScroller._sy > '1.2' )
             return;
         if (!this.has('image') || this.get('image').length==0){
             this.setInitialName();
@@ -1825,7 +1867,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
                     'display': 'none'
                 }
             }
-        
+
         this.attr(_.merge({}, this.defaults.attrs, attrs));
 
         $(elem_image).attr('width',40);
@@ -1910,7 +1952,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
         if( this.has('image') && this.get('image').length>0 ) {
             this.setImage();
         }
-        
+
         this.attr(_.merge({}, this.defaults.attrs, attrs));
         // $('[model-id='+this.id+'] g text.person-name').attr('display', 'none');
         // $('[model-id='+this.id+'] g text.person-position').attr('display', 'none');
@@ -2027,7 +2069,7 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
 
     }, joint.dia.Element.prototype.defaults),
 
-    initialize: function() { 
+    initialize: function() {
         joint.dia.Element.prototype.initialize.apply(this, arguments);
 
         this.listenTo(this, 'change:name', this.setName);
@@ -2036,7 +2078,7 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
 
     setName: function() {
         the_name = this.get('name');
-        
+
         if( the_name ) {
             attrs = {
                 '.label-rect': {
@@ -2077,7 +2119,7 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
                     'display': 'block',
                     'text': the_name
                 }
-            }  
+            }
         } else {
             attrs = {
                 'rect': {
@@ -2086,6 +2128,18 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
             }
         }
         this.attr(_.merge({}, this.defaults.attrs, attrs));
+    },
+
+    zoom_out: function() {
+        var element_id = this.id,
+            the_styles = 'font-size: 16px; font-weight: 600';
+
+        $('[model-id='+element_id+'] .label-group text').attr('style',the_styles);
+    },
+
+    zoom_in: function() {
+        var element_id = this.id;
+        $('[model-id='+element_id+'] .label-group text').attr('style','');
     }
 });
 
@@ -2101,7 +2155,7 @@ stencil.load([
 ]);
 
 joint.layout.GridLayout.layout(stencil.getGraph(), {
-    columns: 5,
+    columns: 1,
     columnWidth: 53,
     rowHeight: 60,
     dy: 5,
@@ -2131,21 +2185,15 @@ graph.on('add', function(cell, collection, opt) {
     // must be 3,1,2) in one batch. Can't be done silently either (becoming an attribute
     // of an element being added) because redo action of `add` (=remove) won't reset the parent embeds.
     // --embedInPool(cell);
+    if (!(cell instanceof joint.shapes.bpmn.StepLink)) {
+        toolbar.saveGraph()
 
-    $.ajax({
-        type: "PUT",
-        dataType: 'json',
-        url: document.URL,
-        contentType: "application/json",
-        data: JSON.stringify({sandbox: {graph_data: JSON.stringify(graph.toJSON())}}),
-        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-    });
+    }
+        if (!opt.stencil) return;
 
-    if (!opt.stencil) return;
-    
-    // open inspector after a new element dropped from stencil
-    var view = paper.findViewByModel(cell);
-    if (view) openIHF(view);
+        // open inspector after a new element dropped from stencil
+        var view = paper.findViewByModel(cell);
+        if (view) openIHF(view);
 });
 
 /* KEYBOARD */
@@ -2179,7 +2227,7 @@ $('#toolbar-container [data-tooltip]').each(function() {
 function openIHF(cellView) {
     var btn_sidebar_right = "#btn-inspector-container",
         sidebar_right = "#inspector-container",
-        btn_sidebar_left = "#btn-sidebar-left", 
+        btn_sidebar_left = "#btn-sidebar-left",
         sidebar_left = "#sidebar-left",
         paper_container = "#paper-container";
 
@@ -2247,7 +2295,7 @@ function openIHF(cellView) {
                         cell = cells[i]
                         cell.get("name")
                         person = document.createElement("li"),
-                        name =  document.createTextNode(cell.get("name"))
+                        name =  document.createTextNode(cell.get("name")||'Person')
                         person.appendChild(name)
                         persons_list.appendChild(person)
                     }
@@ -2394,7 +2442,7 @@ var toolbar = {
 $(function () {
 
     var graph_data_json = $("#graph_data").html().trim();
-    if(graph_data_json){
+    if(graph_data_json && $("#graph_data").length){
         var graph_data     = $.parseJSON(graph_data_json);
         graph.fromJSON(graph_data);
         //ugly hack for initializing tooltips

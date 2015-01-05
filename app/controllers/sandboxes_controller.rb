@@ -5,6 +5,7 @@ class SandboxesController < ApplicationController
   # GET /sandboxes.json
   def index
     @sandboxes = Sandbox.all.order(id: :desc)
+    render :layout => "application"
   end
 
   # GET /sandboxes/1
@@ -16,10 +17,12 @@ class SandboxesController < ApplicationController
   # GET /sandboxes/new
   def new
     @sandbox = Sandbox.new
+    render :layout => "application"
   end
 
   # GET /sandboxes/1/edit
   def edit
+    render :layout => "application"
   end
 
   # POST /sandboxes
@@ -42,15 +45,10 @@ class SandboxesController < ApplicationController
   # PATCH/PUT /sandboxes/1.json
   def update
     respond_to do |format|
-      puts "data"
-      puts sandbox_params
-      puts "/data"
       if @sandbox.update(sandbox_params)
-        puts "updated!!!"
         format.html { redirect_to @sandbox, notice: 'Sandbox was successfully updated.' }
         format.json { render :show, status: :ok, location: @sandbox }
       else
-        puts "NOT updated!!!"
         format.html { render :edit }
         format.json { render json: @sandbox.errors, status: :unprocessable_entity }
       end

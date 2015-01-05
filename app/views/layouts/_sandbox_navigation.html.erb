@@ -1,0 +1,6 @@
+<% content_for :navbar do %>
+    <span id="fileName"><%= truncate(@sandbox.name, length: 40, omission: "...") %></span>
+    <span id="fileEdit"><%= link_to('<i class="fa fa-pencil"></i>'.html_safe, [:edit, @sandbox]) %></span>
+    <span class="alert"></span>
+<% end %>
+<%= render 'layouts/navigation' %>

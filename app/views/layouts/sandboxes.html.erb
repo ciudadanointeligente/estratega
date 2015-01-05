@@ -2,12 +2,13 @@
 <html>
   <head>
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <title><%= content_for?(:title) ? yield(:title) : "Vizard Rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) + " - " : "" %>Vizard</title>
     <!-- <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Vizard Rails" %>"> -->
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'joint.all', media: 'all', 'data-turbolinks-track' => true %>
     <%= stylesheet_link_tag 'bpmn', media: 'all', 'data-turbolinks-track' => true %>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Asap:400,700' rel='stylesheet' type='text/css'>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -15,13 +16,11 @@
   </head>
   <body>
     <header>
-      <!-- <%= render 'layouts/navigation' %> -->
+      <%= render 'layouts/sandbox_navigation' %>
     </header>
     <main role="main">
-      <div class="container">
         <!-- <%= render 'layouts/messages' %> -->
         <%= yield %>
-      </div>
     </main>
 
     <%= javascript_include_tag 'sandboxes', 'data-turbolinks-track' => true %>

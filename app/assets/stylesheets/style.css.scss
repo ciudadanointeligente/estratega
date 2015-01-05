@@ -1,7 +1,7 @@
-body {
-  padding: 15px 6px;
+html, body {
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
+  background: #f6f6f6;
 }
 
 a {
@@ -11,6 +11,21 @@ a {
 a:hover {
   color: #9009AB;
   text-decoration: none;
+}
+
+a.company-logo{
+	font-family: 'Asap', sans-serif;
+	color: #fff;
+	font-weight: 700;
+	padding: 5px 0 0 15px;
+	float: left;
+	font-size: 24px;
+}
+
+span.tagline{
+	padding: 17px 0 0 5px;
+	color: #E9A75B;
+	float: left;
 }
 
 .event-content {
@@ -24,9 +39,11 @@ a:hover {
 }
 
 #paper-container {
-  right: 300px;
-  left: 300px;
-  bottom: 0px;
+	padding: 0;
+	margin: 0;
+	top: 0;
+	bottom: 0;
+	height: 100%;
 }
 
 /*Step*/
@@ -36,17 +53,43 @@ a:hover {
   font-size: 13px;
   float: left;
   width: 218px;
+  padding: 5px 5px 0 5px;
+
 }
 
-.element .fobj div.step-title {
+.step-title {
   font-weight: 600;
   margin-bottom: 10px;
   font-size: 14px;
+  margin-top: 10px;
 }
 
 .step-date {
   font-size: 10px;
   float: right;
+}
+
+.label.step-zoom-in {
+  font-weight: 400 !important;
+  font-size: 75% !important;
+}
+.step-title.step-zoom-in {
+  font-size: 13px !important;
+}
+.step-content.step-zoom-in {
+  display: initial !important;
+}
+
+
+.label.step-zoom-out {
+  font-weight: 600 !important;
+  font-size: 100% !important;
+}
+.step-title.step-zoom-out {
+  font-size: 20px !important;
+}
+.step-content.step-zoom-out {
+  display: none !important;
 }
 
 /*Step halo*/
@@ -220,9 +263,37 @@ a:hover {
   margin-left: 0px;
   border-radius: 0px;
   background-color: rgba(189, 16, 224, 0.08);
+  padding: 15px;
+}
+
+/*header*/
+
+.navbar-inverse{
+	position: relative;
+	margin: 0;
+
 }
 
 /*Sidebar*/
+
+.right{
+	width: auto;
+	height: 100%;
+	background: #fff;
+	margin: 0;
+	padding: 0;
+}
+
+.left{
+	min-width: 75px;
+	height: 100%;
+	background: #fff;
+	margin: 0;
+	padding: 0;
+	z-index: 200;
+	position: absolute;
+	border-right: 1px solid #cecece;
+}
 
 .sidebar {
   position: absolute;
@@ -231,7 +302,7 @@ a:hover {
   height: 100%;
   width: 300px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.12);
-  background: #F2F2F2;
+  top: 50px;
 }
 
 .stencil {
@@ -246,7 +317,7 @@ a:hover {
   text-align: left;
   outline: none;
   font-family: 'Open Sans', sans-serif;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 300;
   text-transform: capitalize;
   color: #FFFFFF;
@@ -264,13 +335,13 @@ a:hover {
 #stencil-container {
   width: 100%;
   position: relative;
-  float: left;
+  height: 100%;
 }
 
 #toolbar-container {
   position: relative;
   width: 100%;
-  background: #0091EA;
+  background: none;
   border: none;
   padding: 0px 10px;
   height: 32px;
@@ -293,7 +364,7 @@ a:hover {
 -moz-box-shadow: none;
 -webkit-box-shadow: none;
 box-shadow: none;
-color: #BD10E0;
+color: #F2F2F2;
 }
 
 .stencil .elements {
@@ -310,6 +381,7 @@ color: #BD10E0;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.12);
   padding: 14px 9px;
   color: #CFCFCF;
+  top: 50px;
 }
 
 .stencil-trigger i {
@@ -318,15 +390,23 @@ color: #BD10E0;
 
 /*Inspector*/
 
+.inspector{
+	position: relative;
+	top: 0;
+	height: 100%;
+	bottom: 0;
+}
+
 #inspector-container {
-  background: #F2F2F2;
-  width: 300px;
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12);
+  background: #fff;
+  top: 50px;
+  bottom: 0;
+  height: 100%;
 }
 
 .clearfix.toolbarName {
   padding: 10px 15px;
-  background: #333;
+  text-align: center;
 }
 
 .inspector input, .inspector textarea {
@@ -347,10 +427,18 @@ color: #BD10E0;
 
 .inspector input, .inspector .toggle, .inspector select, .inspector .list-item .btn-list-del {
   float: none;
+  //color: #fff;
+  box-shadow: none;
+  border:1px solid #cecece;
+  border-radius: 3px;
 }
 
 .inspector textarea {
   min-height: 210px;
+}
+
+.inspector select{
+	border:none;
 }
 
 .inspector-trigger {
@@ -371,14 +459,15 @@ color: #BD10E0;
 
 .inspector .group > .group-label {
   background: none;
-  color: #555555;
-  font-weight: 100;
+  color: #222;
+  font-weight: bold;
   text-align: left;
   text-transform: none;
-  font-size: 21px;
+  font-size: 18px;
   padding: 0 10px;
   box-shadow: none;
   margin-bottom: 0px;
+
 }
 
 .inspector .group > .group-label:before {
@@ -417,7 +506,7 @@ background-color: #F55923;
 
 /*Arrow*/
 
-.active-arrow {
+.content-arrow {
   fill: #4A90E2;
 }
 
@@ -433,6 +522,7 @@ background-color: #F55923;
   display: none;
   font-size: 10px;
   text-transform: uppercase;
+  color: green;
 }
 
 #sidebar-left  .alertSuccess {
@@ -566,7 +656,7 @@ background-color: #F55923;
   font-weight: 600;
   font-size: 18px;
 }
- 
+
 /*Group*/
 
 .GroupOrganization rect {
@@ -601,4 +691,32 @@ background-color: #F55923;
 
 .person-position {
   font-size: 60%;
+}
+
+.nav{
+	float: left;
+	padding: 10px 0 0 20px;
+}
+
+.edit{
+	background: none;
+
+}
+
+.dropdown-toggle{
+	background: none;
+	color: #fff;
+	border: 1px solid #666;
+}
+
+
+
+/* -------------------- Clearfix -------------------- */
+
+.clearfix {
+	overflow: hidden;
+}
+
+* html .clearfix {
+	height: 1%;
 }
