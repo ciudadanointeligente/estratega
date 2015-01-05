@@ -1307,7 +1307,6 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             //fin del modal
         }
 
-        //console.log( contentText.length );
         // Append the content to div as html.
         cell.attr(
             { div :
@@ -1322,7 +1321,6 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         // person added
         if (person){
             var embedded_persons = _.filter(this.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.Person})
-            console.log('added')
             embedded_persons.push(person)
             this.embed(person);
             this.fixEmbeddedPosition();
@@ -1330,7 +1328,6 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         }
         // person removed
         else{
-            console.log("removed")
             this.fixEmbeddedPosition()
             this.setMorePersons();
         }
@@ -1353,7 +1350,6 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             }
             return 0
         })
-        console.log(ordered_persons[0].get('name'))
         for (i=0; i < ordered_persons.length; i++){
             if (i < this.max_persons_embedded ){
                 xPosition = this.get('position').x + embedded_persons[i].get('size').width * i + 5*i + 8;
@@ -1372,14 +1368,12 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         var embedded_persons = _.filter(this.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.Person})
         if (embedded_persons.length > this.max_persons_embedded){
             if (! (this.morePersons instanceof joint.shapes.bpmn.MorePersons)){
-                console.log("creating new more persons")
                 // created from a saved graph
                 var more_persons = _.filter(this.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.MorePersons})[0]
                 if(more_persons)
                     this.morePersons = more_persons;
                 else{
                     this.morePersons = new joint.shapes.bpmn.MorePersons;
-                    console.log('create more persons')
                     graph.addCell(this.morePersons)
                     this.embed(this.morePersons)
                     xPosition = this.get('position').x + this.morePersons.get('size').width * (this.max_persons_embedded -1) + 5*(this.max_persons_embedded -1)+ 8;
@@ -1404,7 +1398,6 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         }
         else {
             if (this.morePersons instanceof joint.shapes.bpmn.MorePersons){
-                console.log('remove morePersons')
                 this.morePersons.remove();
                 this.morePersons = {};
             }
