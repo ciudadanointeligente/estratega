@@ -141,6 +141,9 @@ $(function(){
     $(btn_sidebar_right).css('width','40px');
     $('#btn-right').css('-webkit-transform','rotate(180deg)').css('transform','rotate(180deg)');
 
+    $('#stencil-container .element.bpmn.Person').attr('transform','translate(12,198.5)');
+    $('#stencil-container .element.bpmn.Organization').attr('transform','translate(12,258.5)');
+
     var doc_name = $('#fileName a').html();
     $('<style>@media print { body:before { content: "'+doc_name+'" } }</style>').appendTo('head');
     
@@ -192,6 +195,16 @@ $(function(){
         })
     }
 
+    //https://browser-update.org/
+    var $buoop = {c:2}; 
+    function $buo_f(){ 
+        var e = document.createElement("script"); 
+        e.src = "//browser-update.org/update.js"; 
+        document.body.appendChild(e);
+    };
+    try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+    catch(e){window.attachEvent("onload", $buo_f)}
+    //end
 });
 
 //https://www.reddit.com/r/chrome/comments/27mft7/how_do_i_prevent_backspace_from_going_back_a_page/

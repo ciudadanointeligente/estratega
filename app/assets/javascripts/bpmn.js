@@ -10,7 +10,7 @@ var graph = new joint.dia.Graph({ type: 'bpmn' }).on({
         var type = cell.get('type');
 
         // Set a low z-index on pools and groups so they always stay under all other elements.
-        var z = { 'bpmn.GroupOrganization': -3, 'bpmn.Step': -2, 'bpmn.External': -2, 'bpmn.Intervention': -2, 'bpmn.StepLink': -1 }[type];
+        var z = { 'bpmn.GroupOrganization': -3000, 'bpmn.Step': -2000, 'bpmn.External': -2000, 'bpmn.Intervention': -2000, 'bpmn.StepLink': -1000, 'bpmn.Person': 1000, 'bpmn.MorePersons': 2000 }[type];
         if (z){
             cell.set('z', z, { silent: true });
         }
@@ -222,7 +222,7 @@ joint.ui.Tooltip = Backbone.View.extend({
             var $top = $(_.isFunction(this.options.top) ? this.options.top(this.$target[0]) : this.options.top);
             var topBbox = this.getElementBBox($top[0]);
             this.$el.css({
-                top: topBbox.y + topBbox.height + padding,
+                top: topBbox.y + topBbox.height/2 + padding,
                 left: bbox.x + bbox.width/2 - width/2
             });
 
@@ -305,8 +305,6 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
 
         joint.dia.Link.prototype.initialize.apply(this, arguments);
 
-        this.setTooltip();
-
         this.listenTo(this, 'change:description', this.setTooltip);
         this.listenTo(this, 'change:description', this.arrowActive);
     },
@@ -316,14 +314,14 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
     setTooltip: function() {
         if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
         this.tooltip = new joint.ui.Tooltip({
-            target: ' [model-id="' + this.id + '"]',
+            target: '[model-id="' + this.id + '"] .connection-wrap',
             content: this.get('description'),
-            bottom: '.connection-wrap',
-            direction: 'bottom'
+            top: '[model-id="' + this.id + '"] .connection-wrap',
+            direction: 'top'
         });
         if (this.has('description')) {
             var element_text = '[model-id='+this.id+']';
-            $(element_text).attr('class','active-arrow bpmn StepLink link');
+            $(element_text).attr('class','bpmn StepLink link');
         }
     },
 
@@ -334,7 +332,7 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
     arrowActive: function(cell, type) {
         if (this.has('description') && this.get('description').length > 0){
             var link_body = '[model-id='+this.id+'] path.connection';
-            $(link_body).attr('class','active-arrow connection');
+            $(link_body).attr('class','content-arrow connection');
         }
         else{
             var link_body = '[model-id='+this.id+'] path.connection';
@@ -388,6 +386,18 @@ var paper = new joint.dia.Paper({
         }
 
         var cell = cellView.model;
+
+        if (cell instanceof joint.shapes.bpmn.MorePersons){
+            return;
+        }
+
+        else if (cell instanceof joint.shapes.bpmn.Person){
+            if (cell.get('parent')) {
+                parent = graph.getCell(cell.get('parent'))
+                parent.unembed(cell);
+                parent.updatePersons();
+            }
+        }
 
         if (cell.get('parent')) {
             graph.getCell(cell.get('parent')).unembed(cell);
@@ -570,7 +580,7 @@ joint.ui.Halo = Backbone.View.extend({
         // on the type of the cell.
         this.$el.attr('data-type', this.options.cellView.model.get('type'));
 
-    this.toggleFork();
+        this.toggleFork();
 
         return this;
     },
@@ -613,11 +623,11 @@ joint.ui.Halo = Backbone.View.extend({
             bbox = this.options.cellView.getBBox();
         }
 
-    this.$el.toggleClass('tiny', bbox.width < this.options.tinyTreshold && bbox.height < this.options.tinyTreshold);
-    this.$el.toggleClass('small', !this.$el.hasClass('tiny') && (bbox.width < this.options.smallTreshold && bbox.height < this.options.smallTreshold));
-    this.$el.toggleClass('medium', !this.$el.hasClass('small') && !this.$el.hasClass('tiny') && (bbox.width < this.options.mediumTreshold && bbox.height < this.options.mediumTreshold));
+        this.$el.toggleClass('tiny', bbox.width < this.options.tinyTreshold && bbox.height < this.options.tinyTreshold);
+        this.$el.toggleClass('small', !this.$el.hasClass('tiny') && (bbox.width < this.options.smallTreshold && bbox.height < this.options.smallTreshold));
+        this.$el.toggleClass('medium', !this.$el.hasClass('small') && !this.$el.hasClass('tiny') && (bbox.width < this.options.mediumTreshold && bbox.height < this.options.mediumTreshold));
 
-    this.$el.css({
+        this.$el.css({
 
         width: bbox.width,
         height: bbox.height,
@@ -714,7 +724,7 @@ joint.ui.Halo = Backbone.View.extend({
 
     startCloning: function(evt) {
 
-    this.options.graph.trigger('batch:start');
+        this.options.graph.trigger('batch:start');
 
         this._clone = this.options.cellView.model.clone();
         this._clone.unset('z');
@@ -723,21 +733,21 @@ joint.ui.Halo = Backbone.View.extend({
 
     startLinking: function(evt) {
 
-    this.options.graph.trigger('batch:start');
+        this.options.graph.trigger('batch:start');
 
         var cellView = this.options.cellView;
         var selector = $.data(evt.target, 'selector');
         var link = this.options.paper.getDefaultLink(cellView, selector && cellView.el.querySelector(selector));
 
-    link.set('source', { id: cellView.model.id, selector: selector });
+        link.set('source', { id: cellView.model.id, selector: selector });
         link.set('target', { x: evt.clientX, y: evt.clientY });
 
-    link.attr(this.options.linkAttributes);
+        link.attr(this.options.linkAttributes);
         if (_.isBoolean(this.options.smoothLinks)) {
             link.set('smooth', this.options.smoothLinks);
         }
 
-    // add link to graph but don't validate
+        // add link to graph but don't validate
         this.options.graph.addCell(link, { validation: false, halo: this.cid });
 
         link.set('target', this.options.paper.snapToGrid({ x: evt.clientX, y: evt.clientY }));
@@ -748,7 +758,7 @@ joint.ui.Halo = Backbone.View.extend({
 
     startForking: function(evt) {
 
-    this.options.graph.trigger('batch:start');
+        this.options.graph.trigger('batch:start');
 
         this._clone = this.options.cellView.model.clone();
         this._clone.unset('z');
@@ -779,7 +789,7 @@ joint.ui.Halo = Backbone.View.extend({
 
     startResizing: function(evt) {
 
-    this.options.graph.trigger('batch:start');
+        this.options.graph.trigger('batch:start');
 
         // determine whether to flip x,y mouse coordinates while resizing or not
         this._flip = [1,0,0,1,1,0,0,1][
@@ -789,18 +799,18 @@ joint.ui.Halo = Backbone.View.extend({
 
     startRotating: function(evt) {
 
-    this.options.graph.trigger('batch:start');
+        this.options.graph.trigger('batch:start');
 
         var bbox = this.options.cellView.getBBox();
 
         this._center = g.rect(bbox).center();
 
-    //mousemove event in firefox has undefined offsetX and offsetY
-    if (typeof evt.offsetX === 'undefined' || typeof evt.offsetY === 'undefined') {
-        var targetOffset = $(evt.target).offset();
-        evt.offsetX = evt.pageX - targetOffset.left;
-        evt.offsetY = evt.pageY - targetOffset.top;
-    }
+        //mousemove event in firefox has undefined offsetX and offsetY
+        if (typeof evt.offsetX === 'undefined' || typeof evt.offsetY === 'undefined') {
+            var targetOffset = $(evt.target).offset();
+            evt.offsetX = evt.pageX - targetOffset.left;
+            evt.offsetY = evt.pageY - targetOffset.top;
+        }
 
         this._rotationStart = g.point(evt.offsetX + evt.target.parentNode.offsetLeft, evt.offsetY + evt.target.parentNode.offsetTop + evt.target.parentNode.offsetHeight);
 
@@ -865,13 +875,19 @@ joint.ui.Halo = Backbone.View.extend({
         var sourceId = this._linkView.model.get('source').id;
         var targetId = this._linkView.model.get('target').id;
 
-    if (sourceId && targetId && (sourceId === targetId)) {
-        this.makeLoopLink(this._linkView.model);
-    }
+        if( targetId ) {
+            if (sourceId && targetId && (sourceId === targetId)) {
+                this.makeLoopLink(this._linkView.model);
+            }
 
-        this.stopBatch();
+            this.stopBatch();
 
-    delete this._linkView;
+            delete this._linkView;
+            toolbar.saveGraph()
+        } else {
+            this._linkView.model.remove()
+        }
+
     },
 
     pointermove: function(evt) {
@@ -909,8 +925,7 @@ joint.ui.Halo = Backbone.View.extend({
     },
 
     remove: function(evt) {
-
-    Backbone.View.prototype.remove.apply(this, arguments);
+        Backbone.View.prototype.remove.apply(this, arguments);
 
         $(document.body).off('mousemove touchmove', this.pointermove);
         $(document).off('mouseup touchend', this.pointerup);
@@ -919,6 +934,7 @@ joint.ui.Halo = Backbone.View.extend({
     removeElement: function(evt) {
 
         this.options.cellView.model.remove();
+        toolbar.saveGraph()
     },
 
     unlinkElement: function(evt) {
@@ -928,11 +944,11 @@ joint.ui.Halo = Backbone.View.extend({
 
     toggleUnlink: function() {
 
-    if (this.options.graph.getConnectedLinks(this.options.cellView.model).length > 0) {
-        this.$('.unlink').show()
-    } else {
-        this.$('.unlink').hide()
-    }
+        if (this.options.graph.getConnectedLinks(this.options.cellView.model).length > 0) {
+            this.$('.unlink').show()
+        } else {
+            this.$('.unlink').hide()
+        }
     },
 
     toggleFork: function() {
@@ -1165,6 +1181,8 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             this.listenTo(this, 'change:tags', this.setDivContent);
             this.listenTo(this, 'change:tags_color', this.setDivContent);
 
+            this.morePersons = {};
+
         }
 
         joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
@@ -1289,7 +1307,6 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
             //fin del modal
         }
 
-        //console.log( contentText.length );
         // Append the content to div as html.
         cell.attr(
             { div :
@@ -1300,13 +1317,90 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         );
     },
 
+    updatePersons: function(person){
+        // person added
+        if (person){
+            var embedded_persons = _.filter(this.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.Person})
+            embedded_persons.push(person)
+            this.embed(person);
+            this.fixEmbeddedPosition();
+            this.setMorePersons();
+        }
+        // person removed
+        else{
+            this.fixEmbeddedPosition()
+            this.setMorePersons();
+        }
+    },
+
     fixEmbeddedPosition: function(){
-        if (!this.getEmbeddedCells().length) return;
-        var children = this.getEmbeddedCells(),
-            yPosition = this.get('position').y + this.get('size').height - children[0].get('size').height*1.6;
-        for (i=0; i < children.length; i++){
-            xPosition = this.get('position').x + children[i].get('size').width * i + 5*i + 8;
-            children[i].set('position', {x:xPosition, y:yPosition});
+        // draw people in alphabetical order
+        var embedded_persons = _.filter(this.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.Person})
+        if (!embedded_persons.length) return;
+        var yPosition = this.get('position').y + this.get('size').height - embedded_persons[0].get('size').height*1.6;
+        var ordered_persons = embedded_persons.sort(function(a,b){
+            if(b.get("name") == undefined){
+                return 1
+            }
+            else if(a.get("name") > b.get("name")){
+                return 1
+            }
+            else if (a.get("name") < b.get("name")){
+                return -1
+            }
+            return 0
+        })
+        for (i=0; i < ordered_persons.length; i++){
+            if (i < this.max_persons_embedded ){
+                xPosition = this.get('position').x + embedded_persons[i].get('size').width * i + 5*i + 8;
+                embedded_persons[i].set('position', {x:xPosition, y:yPosition});
+            }
+            else {
+                xPosition = this.get('position').x + embedded_persons[i].get('size').width * (this.max_persons_embedded -1) + 5*(this.max_persons_embedded -1)+ 8;
+                embedded_persons[i].set('position', {x:xPosition, y:yPosition});
+            }
+        }
+    },
+
+    max_persons_embedded: 5,
+
+    setMorePersons: function(){
+        var embedded_persons = _.filter(this.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.Person})
+        if (embedded_persons.length > this.max_persons_embedded){
+            if (! (this.morePersons instanceof joint.shapes.bpmn.MorePersons)){
+                // created from a saved graph
+                var more_persons = _.filter(this.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.MorePersons})[0]
+                if(more_persons)
+                    this.morePersons = more_persons;
+                else{
+                    this.morePersons = new joint.shapes.bpmn.MorePersons;
+                    graph.addCell(this.morePersons)
+                    this.embed(this.morePersons)
+                    xPosition = this.get('position').x + this.morePersons.get('size').width * (this.max_persons_embedded -1) + 5*(this.max_persons_embedded -1)+ 8;
+                    yPosition = this.get('position').y + this.get('size').height - this.morePersons.get('size').height*1.6;
+                    this.morePersons.set('position', {x:xPosition, y:yPosition});
+                }
+                //create morePersons
+                var mp_view = paper.findViewByModel(this.morePersons);
+                mp_view.options.interactive = false;
+            }
+            var extra_persons_label = "+" + (embedded_persons.length - this.max_persons_embedded + 1),
+                attrs = {
+                    '.label': {
+                        text: extra_persons_label,
+                        fill: '#000000',
+                        ref: '.outer', 
+                        transform: 'translate(23,20)',
+                        'text-anchor': 'middle'
+                    }
+                }
+            this.morePersons.attr(_.merge({}, this.morePersons.defaults.attrs, attrs));
+        }
+        else {
+            if (this.morePersons instanceof joint.shapes.bpmn.MorePersons){
+                this.morePersons.remove();
+                this.morePersons = {};
+            }
         }
     },
 
@@ -1460,7 +1554,7 @@ joint.shapes.bpmn.Organization = joint.dia.Element.extend({
     },
 
     setTooltip: function() {
-        if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
+        if (this.tooltip instanceof joint.ui.Tooltip) this.tooltip.remove();
         if( (this.has('name') && this.get('name').length>0) || (this.has('description') && this.get('description').length>0) ) {
             var div = document.createElement("div");
                 div.className = 'joint-tooltip-content';
@@ -1847,6 +1941,58 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
 
 }).extend(joint.shapes.bpmn.IconInterface);
 
+joint.shapes.bpmn.MorePersons = joint.dia.Element.extend({
+
+    markup: '<g class="rotatable"><g class="scalable"><circle class="body outer"/><circle class="body inner"/></g><text text-anchor="middle" class="user-label label"/></g>',
+
+    defaults: joint.util.deepSupplement({
+
+        type: 'bpmn.MorePersons',
+        bpmn_name: 'MorePersons',
+        size: { width: 33, height: 33 },
+        attrs: {
+            '.body': {
+                fill: '#ffffff',
+                stroke: '#0091EA'
+            },
+            '.outer': {
+                'stroke-width': 1, r:20,
+                transform: 'translate(30,30)'
+            },
+            '.inner': {
+                'stroke-width': 0, r: 16,
+                transform: 'translate(30,30)'
+            },
+            path: {
+                width:  20, 
+                height: 20, 
+                'xlink:href': '', 
+                transform: 'translate(11,12)',
+                fill: "#0091EA"
+            },
+            image: {
+                width:  20, 
+                height: 20, 
+                'xlink:href': '', 
+                transform: 'translate(20,20)'
+            },
+            '.label': {
+                text: '',
+                fill: '#000000',
+                ref: '.outer', 
+                transform: 'translate(15,20)'
+            }
+        },
+        eventType: "start"
+
+    }, joint.dia.Element.prototype.defaults),
+
+    initialize: function() {
+        joint.dia.Element.prototype.initialize.apply(this, arguments);
+    }
+
+}).extend(joint.shapes.bpmn.IconInterface);;
+
 joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
 
     markup: '<g class="rotatable"><g class="scalable"><rect class="body"/></g><rect class="label-rect"/><g class="label-group"><svg overflow="hidden" class="label-wrap"><text class="label"/></svg></g></g>',
@@ -1965,7 +2111,7 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
     },
 
     zoom_out: function() {
-        var element_id = this.id; console.log( 'out: ' + this.id ),
+        var element_id = this.id,
             the_styles = 'font-size: 16px; font-weight: 600';
 
         $('[model-id='+element_id+'] .label-group text').attr('style',the_styles);
@@ -2019,21 +2165,15 @@ graph.on('add', function(cell, collection, opt) {
     // must be 3,1,2) in one batch. Can't be done silently either (becoming an attribute
     // of an element being added) because redo action of `add` (=remove) won't reset the parent embeds.
     // --embedInPool(cell);
+    if (!(cell instanceof joint.shapes.bpmn.StepLink)) {
+        toolbar.saveGraph()
 
-    $.ajax({
-        type: "PUT",
-        dataType: 'json',
-        url: document.URL,
-        contentType: "application/json",
-        data: JSON.stringify({sandbox: {graph_data: JSON.stringify(graph.toJSON())}}),
-        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-    });
+    }
+        if (!opt.stencil) return;
 
-    if (!opt.stencil) return;
-
-    // open inspector after a new element dropped from stencil
-    var view = paper.findViewByModel(cell);
-    if (view) openIHF(view);
+        // open inspector after a new element dropped from stencil
+        var view = paper.findViewByModel(cell);
+        if (view) openIHF(view);
 });
 
 /* KEYBOARD */
@@ -2108,6 +2248,9 @@ function openIHF(cellView) {
         }
 
         if (!selection.contains(cellView.model)) {
+            if (cellView.model instanceof joint.shapes.bpmn.MorePersons) {
+                return;
+            }
             if (cellView.model instanceof joint.dia.Element && !( cellView.model instanceof joint.shapes.bpmn.GroupOrganization)) {
 
                 // new joint.ui.FreeTransform({ cellView: cellView }).render();
@@ -2204,8 +2347,9 @@ function embedInGroup(cell) {
         // Prevent recursive embedding.
         else if ((stepCell && stepCell.get('parent') !== cell.id) && (cell instanceof joint.shapes.bpmn.Person)) {
             cell.set('size_type', 'small')
-            stepCell.embed(cell);
-            stepCell.fixEmbeddedPosition();
+            stepCell.updatePersons(cell)
+            // stepCell.embed(cell);
+            // stepCell.fixEmbeddedPosition();
         }
     }
 }
@@ -2278,7 +2422,7 @@ var toolbar = {
 $(function () {
 
     var graph_data_json = $("#graph_data").html().trim();
-    if(graph_data_json){
+    if(graph_data_json && $("#graph_data").length){
         var graph_data     = $.parseJSON(graph_data_json);
         graph.fromJSON(graph_data);
         //ugly hack for initializing tooltips
@@ -2297,7 +2441,10 @@ $(function () {
                     cell.zoom_in()
             }
             if(cell instanceof joint.shapes.bpmn.StepLink) {
-                cell.arrowActive();                
+                cell.arrowActive();
+            }
+            if(cell instanceof joint.shapes.bpmn.Step) {
+                cell.setMorePersons();
             }
         });
     }
