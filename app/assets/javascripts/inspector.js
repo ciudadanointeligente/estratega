@@ -411,18 +411,18 @@ var inputs = {
             type: 'text',
             label: 'Date or Timing',
             group: 'general',
-            index: 4
+            index: 3
         },
         tags: {
             type: 'text',
             label: 'Tags',
-            group: 'Tags',
-            index: 1
+            group: 'general',
+            index: 4
         },
         tags_color: {
             type: 'select',
             label: 'Tags Color',
-            group: 'Tags',
+            group: 'general',
             options: [
                 { value: 'label-default', content: 'default' },
                 { value: 'label-primary', content: 'primary' },
@@ -430,7 +430,7 @@ var inputs = {
                 { value: 'label-warning', content: 'important' },
                 { value: 'label-danger', content: 'danger' }
             ],
-            index: 2
+            index: 5
         }
     },
 
@@ -559,7 +559,7 @@ var inputs = {
                 { value: '#F55923', content: 'red' }
             ],
             index: 5
-        }        
+        }
     },
 
     'bpmn.GroupOrganization': {
@@ -575,6 +575,6 @@ var inputs = {
             group: 'general',
             index: 2
         }
-        
+
     },
 };
