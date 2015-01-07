@@ -2255,7 +2255,7 @@ function openIHF(cellView) {
 
                 // new joint.ui.FreeTransform({ cellView: cellView }).render();
 
-                if ( cellView.model instanceof joint.shapes.bpmn.Step) {
+                if ( cellView.model instanceof joint.shapes.bpmn.Step && !($('.person-group').length) ) {
                     var group = document.createElement("div"),
                         field = document.createElement("div"),
                         header = document.createElement("h3"),
@@ -2265,6 +2265,7 @@ function openIHF(cellView) {
                         cells = cellView.model.getEmbeddedCells();
 
                     group.classList.add("group")
+                    group.classList.add("person-group")
                     field.classList.add("field")
                     header.classList.add("group-label")
                     header.appendChild(persons_text)
