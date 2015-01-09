@@ -2256,8 +2256,24 @@ function openViewBar(cellView){
                 }
             });
 
-            // $('#inspector-container').html(inspector.render().el);
-            $('#inspector-container').html(viewBar.html);
+            $('#inspector-container').html(
+
+                function() {
+
+                inspector.$el.empty();
+                
+                _.each(inspector.groupedFlatAttributes, function(options) {
+                    var $field = $('<div class="field"></div>').attr('data-field', options.path);
+                    var value = inspector.getCellAttributeValue(options.path, options);
+                    if(value){
+                        var value_text =  document.createTextNode(value)
+                        $field.append(value_text);
+                        inspector.$el.append($field);
+                    }
+                }, inspector);
+
+                return inspector.el;
+            }());
         }
 
         if (!selection.contains(cellView.model)) {
