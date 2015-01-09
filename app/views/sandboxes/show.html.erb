@@ -2,6 +2,7 @@
 <% content_for :title do %>
 <%= @sandbox.name %>
 <% end %>
+<span class="alert"></span>
    		<div class="full clearfix">
 				<div class="pull-left left">
 					 <div id="stencil-container"></div>
@@ -16,7 +17,6 @@
 			            </div>
 				</div>
    		</div>
-
         <script type="text/javascript" src="//apis.google.com/js/client.js"></script>
         <script id="graph_data" type="text/json">
           <%= @sandbox.graph_data.html_safe %>
