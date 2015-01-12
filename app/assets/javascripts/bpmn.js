@@ -2272,6 +2272,7 @@ function openViewBar(cellView){
                     }
                 }, inspector);
 
+                inspector.trigger('render');
                 return inspector.el;
             }());
         }
