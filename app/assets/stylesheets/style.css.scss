@@ -386,7 +386,7 @@ color: #F2F2F2;
 /*Inspector*/
 
 .inspector{
-	top: 0;
+	top: 10px;
 	height: 100%;
 	bottom: 0;
 	text-transform: none;
@@ -734,6 +734,26 @@ background-color: #F55923;
 	padding: 6px 15px;
 }
 
+.ContentBar-tags{
+	margin: 20px;
+}
+
+.ContentBar-title{
+	font-size: 24px;
+	margin-left: 20px;
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+.ContentBar-content{
+	padding: 20px;
+}
+
+.ContentBar-date{
+	top: 0;
+	position: absolute;
+	right: 33px;
+}
 
 
 /* -------------------- Clearfix -------------------- */

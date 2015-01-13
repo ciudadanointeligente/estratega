@@ -2263,9 +2263,20 @@ function openViewBar(cellView){
                 inspector.$el.empty();
 
                 _.each(inspector.groupedFlatAttributes, function(options) {
-                    var $field = $('<div class="field hola-'+options.path+'"></div>').attr('data-field', options.path);
-                    var value = inspector.getCellAttributeValue(options.path, options);
-                    if(value){
+                	var value = inspector.getCellAttributeValue(options.path, options);
+                    if(value && options.path == 'tags'){
+                    	var $field = $('<span class="ContentBar-'+options.path+'"></div>').attr('data-field', options.path);
+                    	var value_text =  document.createTextNode(value)
+                        $field.append(value_text);
+                        $field.addClass( "label");
+                        $field.addClass(cellView.model.get("tags_color") || "label-default");
+                        inspector.$el.prepend($field);
+                    }
+                    else if(value && options.path == 'tags_color'){
+
+                    }
+                    else if(value){
+                    	var $field = $('<div class="ContentBar-'+options.path+'"></div>').attr('data-field', options.path);
                         var value_text =  document.createTextNode(value)
                         $field.append(value_text);
                         inspector.$el.append($field);
