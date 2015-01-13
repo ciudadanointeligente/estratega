@@ -2261,9 +2261,9 @@ function openViewBar(cellView){
                 function() {
 
                 inspector.$el.empty();
-                
+
                 _.each(inspector.groupedFlatAttributes, function(options) {
-                    var $field = $('<div class="field"></div>').attr('data-field', options.path);
+                    var $field = $('<div class="field hola-'+options.path+'"></div>').attr('data-field', options.path);
                     var value = inspector.getCellAttributeValue(options.path, options);
                     if(value){
                         var value_text =  document.createTextNode(value)
