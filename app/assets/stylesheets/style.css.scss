@@ -8,11 +8,6 @@ a {
   color: #BD10E0;
 }
 
-a:hover {
-  color: #9009AB;
-  text-decoration: none;
-}
-
 a.company-logo{
 	font-family: 'Asap', sans-serif;
 	color: #fff;
@@ -394,6 +389,7 @@ color: #F2F2F2;
 	top: 0;
 	height: 100%;
 	bottom: 0;
+	text-transform: none;
 }
 
 .inspector .group {
@@ -488,6 +484,8 @@ color: #F2F2F2;
   text-transform: none;
   margin-right: 10px;
 }
+/*Inspector ViewBar*/
+
 
 /*Labels*/
 
@@ -722,9 +720,18 @@ background-color: #F55923;
 .dropdown-toggle{
 	background: none;
 	color: #fff;
-	border: 1px solid #666;
 }
 
+.dropdown-toggle:hover{
+	background: none!important;
+}
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus{
+	background: none!important;
+}
+
+.nav>li>a{
+	padding: 6px 15px;
+}
 
 
 /* -------------------- Clearfix -------------------- */
