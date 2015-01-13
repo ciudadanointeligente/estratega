@@ -12,6 +12,7 @@
   </thead>
 
   <tbody>
+    <% if( ! @sandboxes.blank? ) %>
     <% @sandboxes.each do |sandbox| %>
       <tr>
         <td><%= sandbox.id %></td>
@@ -38,6 +39,7 @@
           <% end %>
         </td>
       </tr>
+    <% end %>
     <% end %>
   </tbody>
 </table>

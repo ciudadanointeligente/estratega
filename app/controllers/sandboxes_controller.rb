@@ -1,10 +1,11 @@
 class SandboxesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_sandbox, only: [:show, :edit, :update, :destroy]
 
   # GET /sandboxes
   # GET /sandboxes.json
   def index
-    @sandboxes = Sandbox.all.order(id: :desc)
+    @sandboxes = Sandbox.all.order(id: :desc).find_by(user_id: current_user)
     render :layout => "application"
   end
 

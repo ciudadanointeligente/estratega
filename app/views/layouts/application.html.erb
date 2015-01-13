@@ -14,7 +14,11 @@
       <nav class="navbar navbar-inverse navbar-fixed-top">
       <a class="company-logo" href="/">Vizard</a><span class="tagline">beta</span>
         <div class="container">
-            <div class="clearfix toolbarName"></div>
+            <div class="clearfix toolbarName">
+              <% if( user_signed_in? ) %>
+              <%= current_user.email %>
+              <% end %>
+            </div>
         </div>
     </nav>
     </header>
