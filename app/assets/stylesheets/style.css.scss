@@ -8,11 +8,6 @@ a {
   color: #BD10E0;
 }
 
-a:hover {
-  color: #9009AB;
-  text-decoration: none;
-}
-
 a.company-logo{
 	font-family: 'Asap', sans-serif;
 	color: #fff;
@@ -59,8 +54,8 @@ span.tagline{
 
 .step-title {
   font-weight: 600;
-  margin-bottom: 10px;
-  font-size: 14px;
+  margin-bottom: 5px;
+  font-size: 15px!important;
   margin-top: 10px;
 }
 
@@ -391,10 +386,15 @@ color: #F2F2F2;
 /*Inspector*/
 
 .inspector{
-	position: relative;
-	top: 0;
+	top: 10px;
 	height: 100%;
 	bottom: 0;
+	text-transform: none;
+}
+
+.inspector .group {
+	overflow: hidden;
+	padding: 10px 10px 10px 20px;
 }
 
 #inspector-container {
@@ -402,6 +402,7 @@ color: #F2F2F2;
   top: 50px;
   bottom: 0;
   height: 100%;
+  border-left: 1px solid #cecece;
 }
 
 .clearfix.toolbarName {
@@ -410,14 +411,14 @@ color: #F2F2F2;
 }
 
 .inspector input, .inspector textarea {
-  border: none;
-  border-radius: 0px;
+  border: 1px solid #cecece;
   font-family: 'Open Sans', sans-serif;
   background: #FFFFFF;
   font-size: 14px;
   font-weight: 300;
   padding: 10px 3%;
   width: 93%;
+  box-shadow: none;
 }
 
 .inspector input[type=text] {
@@ -439,6 +440,7 @@ color: #F2F2F2;
 
 .inspector select{
 	border:none;
+	color: #fff;
 }
 
 .inspector-trigger {
@@ -476,11 +478,15 @@ color: #F2F2F2;
 
 .inspector label {
   display: inline-block;
-  font-weight: 400;
-  color: #555555;
+  font-weight: bold;
+  color: #222;
   font-family: 'Open Sans', sans-serif;
   text-transform: none;
+  margin-right: 10px;
 }
+/*Inspector ViewBar*/
+
+
 
 /*Labels*/
 
@@ -512,6 +518,7 @@ background-color: #F55923;
 
 /*Alert*/
 
+
 #sidebar-left .alert {
   float: right;
   margin: 0;
@@ -522,7 +529,15 @@ background-color: #F55923;
   display: none;
   font-size: 10px;
   text-transform: uppercase;
-  color: green;
+  background: #98E22D;
+  color: #fff;
+  width: 100%;
+  position: absolute;
+  z-index: 2000;
+  text-align: center;
+  opacity: 0.7;
+  border-radius: 0!important;
+  padding: 5px;
 }
 
 #sidebar-left  .alertSuccess {
@@ -706,9 +721,39 @@ background-color: #F55923;
 .dropdown-toggle{
 	background: none;
 	color: #fff;
-	border: 1px solid #666;
 }
 
+.dropdown-toggle:hover{
+	background: none!important;
+}
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus{
+	background: none!important;
+}
+
+.nav>li>a{
+	padding: 6px 15px;
+}
+
+.ContentBar-tags{
+	margin: 20px;
+}
+
+.ContentBar-title{
+	font-size: 24px;
+	margin-left: 20px;
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+.ContentBar-content{
+	padding: 20px;
+}
+
+.ContentBar-date{
+	top: 0;
+	position: absolute;
+	right: 33px;
+}
 
 
 /* -------------------- Clearfix -------------------- */

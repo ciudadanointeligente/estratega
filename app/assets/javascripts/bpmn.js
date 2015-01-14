@@ -1234,8 +1234,8 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
 
         if( paperScroller._sy < '0.8' )
             titleDiv.classList.add("step-zoom-out");
-        
-        var contentDiv = document.createElement("div"); 
+
+        var contentDiv = document.createElement("div");
         var the_content = this.get("content") || '';
         var contentText = document.createTextNode(the_content.substring(0,100));
             contentDiv.appendChild(contentText);
@@ -1244,7 +1244,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
         if( paperScroller._sy < '0.8' )
             contentDiv.classList.add("step-zoom-out");
 
-        var view_more_div = document.createElement("div"); 
+        var view_more_div = document.createElement("div");
         var view_more_link = '';
         var main_modal = '';
         var count = the_content.replace(/[^\n]/g, '').length;
@@ -1389,7 +1389,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
                     '.label': {
                         text: extra_persons_label,
                         fill: '#000000',
-                        ref: '.outer', 
+                        ref: '.outer',
                         transform: 'translate(23,20)',
                         'text-anchor': 'middle'
                     }
@@ -1964,22 +1964,22 @@ joint.shapes.bpmn.MorePersons = joint.dia.Element.extend({
                 transform: 'translate(30,30)'
             },
             path: {
-                width:  20, 
-                height: 20, 
-                'xlink:href': '', 
+                width:  20,
+                height: 20,
+                'xlink:href': '',
                 transform: 'translate(11,12)',
                 fill: "#0091EA"
             },
             image: {
-                width:  20, 
-                height: 20, 
-                'xlink:href': '', 
+                width:  20,
+                height: 20,
+                'xlink:href': '',
                 transform: 'translate(20,20)'
             },
             '.label': {
                 text: '',
                 fill: '#000000',
-                ref: '.outer', 
+                ref: '.outer',
                 transform: 'translate(15,20)'
             }
         },
@@ -2270,19 +2270,30 @@ function openViewBar(cellView){
 
                     inspector.$el.empty();
                     inspector.$el.append(btn_edit);
-                    
-                    _.each(inspector.groupedFlatAttributes, function(options) {
-                        var $field = $('<div class="field"></div>').attr('data-field', options.path);
-                        var value = inspector.getCellAttributeValue(options.path, options);
-                        if(value){
-                            var value_text =  document.createTextNode(value)
-                            $field.append(value_text);
-                            inspector.$el.append($field);
-                        }
-                    }, inspector);
 
-                    inspector.trigger('render');
-                    return inspector.el;
+                _.each(inspector.groupedFlatAttributes, function(options) {
+                	var value = inspector.getCellAttributeValue(options.path, options);
+                    if(value && options.path == 'tags'){
+                    	var $field = $('<span class="ContentBar-'+options.path+'"></div>').attr('data-field', options.path);
+                    	var value_text =  document.createTextNode(value)
+                        $field.append(value_text);
+                        $field.addClass( "label");
+                        $field.addClass(cellView.model.get("tags_color") || "label-default");
+                        inspector.$el.prepend($field);
+                    }
+                    else if(value && options.path == 'tags_color'){
+
+                    }
+                    else if(value){
+                    	var $field = $('<div class="ContentBar-'+options.path+'"></div>').attr('data-field', options.path);
+                        var value_text =  document.createTextNode(value)
+                        $field.append(value_text);
+                        inspector.$el.append($field);
+                    }
+                }, inspector);
+
+                inspector.trigger('render');
+                return inspector.el;
             }());
         }
 
