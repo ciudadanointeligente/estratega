@@ -2260,20 +2260,29 @@ function openViewBar(cellView){
 
                 function() {
 
-                inspector.$el.empty();
-                
-                _.each(inspector.groupedFlatAttributes, function(options) {
-                    var $field = $('<div class="field"></div>').attr('data-field', options.path);
-                    var value = inspector.getCellAttributeValue(options.path, options);
-                    if(value){
-                        var value_text =  document.createTextNode(value)
-                        $field.append(value_text);
-                        inspector.$el.append($field);
-                    }
-                }, inspector);
+                    var btn_edit = document.createElement("button"),
+                        btn_text = document.createTextNode("edit");
 
-                inspector.trigger('render');
-                return inspector.el;
+                    btn_edit.appendChild(btn_text);
+                    btn_edit.addEventListener('click', function(){
+                        openIHF(cellView);
+                    });
+
+                    inspector.$el.empty();
+                    inspector.$el.append(btn_edit);
+                    
+                    _.each(inspector.groupedFlatAttributes, function(options) {
+                        var $field = $('<div class="field"></div>').attr('data-field', options.path);
+                        var value = inspector.getCellAttributeValue(options.path, options);
+                        if(value){
+                            var value_text =  document.createTextNode(value)
+                            $field.append(value_text);
+                            inspector.$el.append($field);
+                        }
+                    }, inspector);
+
+                    inspector.trigger('render');
+                    return inspector.el;
             }());
         }
 
@@ -2370,7 +2379,7 @@ function openIHF(cellView) {
     $('#btn-right').css('-webkit-transform','rotate(0deg)').css('transform','rotate(0deg)');
 
         // No need to re-render inspector if the cellView didn't change.
-        if (!inspector || inspector.options.cellView !== cellView) {
+        // if (!inspector || inspector.options.cellView !== cellView) {
 
             if (inspector) {
                 // Clean up the old inspector if there was one.
@@ -2397,7 +2406,7 @@ function openIHF(cellView) {
             });
 
             $('#inspector-container').html(inspector.render().el);
-        }
+        // }
 
         if (!selection.contains(cellView.model)) {
             if (cellView.model instanceof joint.shapes.bpmn.MorePersons) {
