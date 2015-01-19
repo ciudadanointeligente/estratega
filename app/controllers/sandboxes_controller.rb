@@ -5,7 +5,8 @@ class SandboxesController < ApplicationController
   # GET /sandboxes
   # GET /sandboxes.json
   def index
-    @sandboxes = Sandbox.all.order(id: :desc).find_by(user_id: current_user)
+    @sandboxes = Sandbox.order(id: :desc).where(user_id: current_user)
+    @public_sandboxes = Sandbox.order(id: :desc).where("public = ? AND user_id != ?", true, current_user)
     render :layout => "application"
   end
 
@@ -30,7 +31,8 @@ class SandboxesController < ApplicationController
   # POST /sandboxes.json
   def create
     @sandbox = Sandbox.new(sandbox_params)
-
+    @sandbox.user_id = current_user.id
+    
     respond_to do |format|
       if @sandbox.save
         format.html { redirect_to @sandbox, notice: 'Sandbox was successfully created.' }
@@ -74,6 +76,6 @@ class SandboxesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sandbox_params
-      params.require(:sandbox).permit(:name, :description, :graph_data)
+      params.require(:sandbox).permit(:name, :description, :graph_data, :public)
     end
 end
