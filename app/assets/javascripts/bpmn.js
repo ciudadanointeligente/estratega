@@ -407,7 +407,7 @@ var paper = new joint.dia.Paper({
     'cell:pointerup': function(cellView) {
 
         embedInGroup(cellView.model);
-        openDisplayBar(cellView);
+        openIHF(cellView);
     }
 
 });
@@ -1165,6 +1165,8 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
 
     }, joint.shapes.basic.Generic.prototype.defaults),
 
+    invisible_attrs: ['tags_color'],
+
     initialize: function() {
 
         if (typeof SVGForeignObjectElement !== 'undefined') {
@@ -1693,6 +1695,8 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
 
     }, joint.dia.Element.prototype.defaults),
 
+    invisible_attrs: ['color', 'size_type'],
+
     initialize: function() {
         joint.dia.Element.prototype.initialize.apply(this, arguments);
         this.markup = '<g class="rotatable"><defs><clipPath id="circle-'+this.id+'"><circle cx="20" cy="20" r="20"/></clipPath></defs><g class="scalable"><circle class="body outer"/><circle class="body inner"/><path class="user-img" d="M30.1,24.2c0,0.8-0.2,1.4-0.7,1.9c-0.5,0.5-1.1,0.7-1.9,0.7h-8.8c-0.8,0-1.5-0.2-1.9-0.7c-0.5-0.5-0.7-1.1-0.7-1.9c0-0.4,0-0.7,0.1-1.1c0-0.3,0.1-0.7,0.1-1.1c0.1-0.4,0.2-0.7,0.2-1.1c0.1-0.3,0.2-0.7,0.4-1c0.2-0.3,0.4-0.6,0.6-0.8c0.2-0.2,0.5-0.4,0.9-0.6c0.3-0.1,0.7-0.2,1.1-0.2c0.1,0,0.2,0.1,0.4,0.2c0.2,0.1,0.5,0.3,0.7,0.5c0.2,0.2,0.6,0.3,1.1,0.5c0.4,0.1,0.9,0.2,1.4,0.2c0.4,0,0.9-0.1,1.4-0.2c0.4-0.1,0.8-0.3,1.1-0.5c0.2-0.2,0.6-0.3,0.7-0.5c0.2-0.1,0.4-0.2,0.4-0.2c0.4,0,0.8,0.1,1.1,0.2c0.3,0.1,0.6,0.3,0.9,0.6c0.2,0.2,0.4,0.5,0.6,0.8c0.2,0.3,0.3,0.6,0.4,1c0.1,0.3,0.2,0.7,0.2,1.1c0.1,0.4,0.1,0.7,0.1,1.1C30.1,23.5,30.1,23.8,30.1,24.2z M25.7,12.4c0.7,0.7,1.1,1.7,1.1,2.7s-0.4,2-1.1,2.7S24.1,19,23,19s-2-0.4-2.7-1.1s-1.1-1.7-1.1-2.7s0.4-2,1.1-2.7s1.7-1.1,2.7-1.1C24.1,11.3,25,11.7,25.7,12.4z"/><image clip-path="url(#circle-'+this.id+')"/></g><text text-anchor="middle" class="user-label label"/><text class="person-name" display="none">'+this.get('name')+'</text><text class="person-position" display="none">'+this.get('name')+'</text></g>'
@@ -1789,7 +1793,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
         if( paperScroller._sy > '1.2' )
             return;
         if( (this.has('image') && this.get('image').length>0) ) return
-        var color = this.get('color')
+        var color = (this.get('color') != '') ? this.get('color') : '#0091EA'
         if( (this.has('name') && this.get('name').length>0) ) {
             var attrs = {
                 path: {
@@ -2173,7 +2177,7 @@ graph.on('add', function(cell, collection, opt) {
 
         // open inspector after a new element dropped from stencil
         var view = paper.findViewByModel(cell);
-        if (view) openDisplayBar(view);
+        if (view) openIHF(view);
 });
 
 /* KEYBOARD */
@@ -2205,33 +2209,24 @@ $('#toolbar-container [data-tooltip]').each(function() {
 });
 
 
-function openDisplayBar(cellView){
-    model = cellView.model
-    if(model.get("title") == "")
-        openIHF(cellView);
-    else
-        openViewBar(cellView)
-}
+function openIHF(cellView, edit){
 
-function openViewBar(cellView){
-    var viewBar = document.createElement("div");
-    var btn_sidebar_right = "#btn-inspector-container",
-        sidebar_right = "#inspector-container",
-        btn_sidebar_left = "#btn-sidebar-left",
-        sidebar_left = "#sidebar-left",
-        paper_container = "#paper-container";
+        var model = cellView.model
 
-    $(sidebar_right).css('display','block');
-    $(paper_container).css('right','300px');
-    $(sidebar_right).css('width','300px');
-    $(btn_sidebar_right).css('width','340px');
-    $('#btn-right').css('-webkit-transform','rotate(0deg)').css('transform','rotate(0deg)');
+        var btn_sidebar_right = "#btn-inspector-container",
+            sidebar_right = "#inspector-container",
+            btn_sidebar_left = "#btn-sidebar-left",
+            sidebar_left = "#sidebar-left",
+            paper_container = "#paper-container";
 
-
-
-        // No need to re-render inspector if the cellView didn't change.
-        if (!inspector || inspector.options.cellView !== cellView) {
-
+        $(sidebar_right).css('display','block');
+        $(paper_container).css('right','300px');
+        $(sidebar_right).css('width','300px');
+        $(btn_sidebar_right).css('width','340px');
+        $('#btn-right').css('-webkit-transform','rotate(0deg)').css('transform','rotate(0deg)');
+        
+         // No need to re-render inspector if the cellView didn't change.
+        // if (!inspector || inspector.options.cellView !== cellView) {
             if (inspector) {
                 // Clean up the old inspector if there was one.
                 inspector.remove();
@@ -2241,21 +2236,45 @@ function openViewBar(cellView){
             var name = cellView.model.get('bpmn_name');
 
             inspector = new joint.ui.Inspector({
-                cellView: cellView,
-                inputs: inputs[type],
-                groups: {
-                    general: { label: name, index: 1 },
-                    appearance: { index: 2 }
-                },
-                events: {
-                    'mousedown': 'startBatchCommand',
-                    'change': 'onChangeInput',
-                    'click .group-label': '',
-                    'click .btn-list-add': 'addListItem',
-                    'click .btn-list-del': 'deleteListItem'
-                }
+                    cellView: cellView,
+                    inputs: inputs[type],
+                    groups: {
+                        general: { label: name, index: 1 },
+                        appearance: { index: 2 }
+                    },
+                    events: {
+                        'mousedown': 'startBatchCommand',
+                        'change': 'onChangeInput',
+                        'click .group-label': '',
+                        'click .btn-list-add': 'addListItem',
+                        'click .btn-list-del': 'deleteListItem'
+                    }
             });
 
+    if (edit)
+        $('#inspector-container').html(inspector.render().el);
+
+    else {
+        // }
+        if ( function(){
+            var edit = true;
+              _.each(inspector.groupedFlatAttributes, function(options) {
+                    var value = inspector.getCellAttributeValue(options.path, options);
+                    // if the changed attrs are visible, open the view bar 
+                    if(model.__proto__.hasOwnProperty("invisible_attrs") && model.invisible_attrs.indexOf(options.path) == -1){
+                        if(value!="" && value != undefined){
+                            edit = false;
+                        }
+                    }
+                }, inspector);
+                return edit;
+            }()
+        ){
+            // openIHF(cellView);
+            $('#inspector-container').html(inspector.render().el);
+        }
+        else {
+            // openViewBar(cellView)
             $('#inspector-container').html(
 
                 function() {
@@ -2268,236 +2287,118 @@ function openViewBar(cellView){
 
                     btn_edit.appendChild(btn_text);
                     btn_edit.addEventListener('click', function(){
-                        openIHF(cellView);
+                        openIHF(cellView, true)
                     });
 
                     inspector.$el.empty();
                     inspector.$el.append(btn_edit);
 
-                _.each(inspector.groupedFlatAttributes, function(options) {
-                	var value = inspector.getCellAttributeValue(options.path, options);
-                    if(value && options.path == 'tags'){
-                    	var $field = $('<span class="ContentBar-'+options.path+'"></div>').attr('data-field', options.path);
-                    	var value_text =  document.createTextNode(value)
-                        $field.append(value_text);
-                        $field.addClass( "label");
-                        $field.addClass(cellView.model.get("tags_color") || "label-default");
-                        inspector.$el.prepend($field);
-                    }
-                    else if(value && options.path == 'tags_color'){
+                    _.each(inspector.groupedFlatAttributes, function(options) {
+                        var value = inspector.getCellAttributeValue(options.path, options);
+                        if(cellView.model.invisible_attrs.indexOf(options.path) == -1){
+                            if(value && options.path == 'tags'){
+                                var $field = $('<span class="ContentBar-'+options.path+'"></div>').attr('data-field', options.path);
+                                var value_text =  document.createTextNode(value)
+                                $field.append(value_text);
+                                $field.addClass( "label");
+                                $field.addClass(cellView.model.get("tags_color") || "label-default");
+                                inspector.$el.prepend($field);
+                            }
+                            else if(value){
+                                var $field = $('<div class="ContentBar-'+options.path+'"></div>').attr('data-field', options.path);
+                                var value_text =  document.createTextNode(value)
+                                $field.append(value_text);
+                                inspector.$el.append($field);
+                            }
+                        }
+                    }, inspector);
 
-                    }
-                    else if(value){
-                    	var $field = $('<div class="ContentBar-'+options.path+'"></div>').attr('data-field', options.path);
-                        var value_text =  document.createTextNode(value)
-                        $field.append(value_text);
-                        inspector.$el.append($field);
-                    }
-                }, inspector);
-
-                inspector.trigger('render');
-                return inspector.el;
-            }());
-        }
-
-        if (!selection.contains(cellView.model)) {
-            if (cellView.model instanceof joint.shapes.bpmn.MorePersons) {
-                return;
-            }
-            if (cellView.model instanceof joint.dia.Element && !( cellView.model instanceof joint.shapes.bpmn.GroupOrganization)) {
-
-                // new joint.ui.FreeTransform({ cellView: cellView }).render();
-
-                if ( cellView.model instanceof joint.shapes.bpmn.Step && !($('.person-group').length) ) {
-                    var group = document.createElement("div"),
-                        field = document.createElement("div"),
-                        header = document.createElement("h3"),
-                        persons_list = document.createElement("ul"),
-                        persons_text =  document.createTextNode("Persons"),
-                        // text1 =  document.createTextNode("Hello World"),
-                        cells = cellView.model.getEmbeddedCells();
-
-                    group.classList.add("group")
-                    group.classList.add("person-group")
-                    field.classList.add("field")
-                    header.classList.add("group-label")
-                    header.appendChild(persons_text)
-                    field.appendChild(persons_list)
-                    group.appendChild(header)
-                    group.appendChild(field)
-                    for(var i = 0; i < cells.length; i++){
-                        cell = cells[i]
-                        cell.get("name")
-                        person = document.createElement("li"),
-                        name =  document.createTextNode(cell.get("name")||'Person')
-                        person.appendChild(name)
-                        persons_list.appendChild(person)
-                    }
+                    inspector.trigger('render');
+                    return inspector.el;
                 }
+            );
+        }
+    }
 
+
+
+    if (cellView.model instanceof joint.shapes.bpmn.MorePersons) {
+        return;
+    }
+
+    if (cellView.model instanceof joint.dia.Element && !( cellView.model instanceof joint.shapes.bpmn.GroupOrganization)) {
+
+        // new joint.ui.FreeTransform({ cellView: cellView }).render();
+
+        if ( cellView.model instanceof joint.shapes.bpmn.Step ) {
+            var embedded_persons = _.filter(cellView.model.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.Person})
+            if (embedded_persons.length) {
+                var group = document.createElement("div"),
+                    field = document.createElement("div"),
+                    header = document.createElement("h3"),
+                    persons_list = document.createElement("ul"),
+                    persons_text =  document.createTextNode("Persons")
+                    // text1 =  document.createTextNode("Hello World"),
+
+                group.classList.add("group")
+                group.classList.add("person-group")
+                field.classList.add("field")
+                header.classList.add("group-label")
+                header.appendChild(persons_text)
+                field.appendChild(persons_list)
+                group.appendChild(header)
+                group.appendChild(field)
+                for(var i = 0; i < embedded_persons.length; i++){
+                    var person = embedded_persons[i],
+                        person_elem = document.createElement("li"),
+                        name =  document.createTextNode(person.get("name")||'Person');
+                    person_elem.appendChild(name)
+                    persons_list.appendChild(person_elem)
+                }
                 $(".inspector").append(group)
-
-                var halo = new joint.ui.Halo({
-                    cellView: cellView,
-                    boxContent: function(cellView) {
-                        return cellView.model.get('type');
-                    }
-                });
-                halo.render();
-                halo.removeHandle('resize');
-                halo.removeHandle('rotate');
-                halo.removeHandle('clone');
-                halo.removeHandle('unlink');
-                halo.changeHandle('link', { position: 'se' });
-                halo.changeHandle('fork', { position: 's' });
-
-                selectionView.cancelSelection();
-                selection.reset([cellView.model], { safe: true });
-            }
-            else if (cellView.model instanceof joint.shapes.bpmn.GroupOrganization) {
-
-                new joint.ui.FreeTransform({ cellView: cellView }).render();
-
-                var halo = new joint.ui.Halo({
-                    cellView: cellView,
-                    boxContent: function(cellView) {
-                        return cellView.model.get('type');
-                    }
-                });
-                halo.render();
-                // halo.removeHandle('resize');
-                halo.removeHandle('rotate');
-                halo.removeHandle('clone');
-                halo.removeHandle('unlink');
-                halo.changeHandle('link', { position: 'se' });
-                halo.changeHandle('fork', { position: 's' });
-
-                selectionView.cancelSelection();
-                selection.reset([cellView.model], { safe: true });
             }
         }
-}
 
-function openIHF(cellView) {
 
-    var btn_sidebar_right = "#btn-inspector-container",
-        sidebar_right = "#inspector-container",
-        btn_sidebar_left = "#btn-sidebar-left",
-        sidebar_left = "#sidebar-left",
-        paper_container = "#paper-container";
-
-    $(sidebar_right).css('display','block');
-    $(paper_container).css('right','300px');
-    $(sidebar_right).css('width','300px');
-    $(btn_sidebar_right).css('width','340px');
-    $('#btn-right').css('-webkit-transform','rotate(0deg)').css('transform','rotate(0deg)');
-
-        // No need to re-render inspector if the cellView didn't change.
-        // if (!inspector || inspector.options.cellView !== cellView) {
-
-            if (inspector) {
-                // Clean up the old inspector if there was one.
-                inspector.remove();
+        var halo = new joint.ui.Halo({
+            cellView: cellView,
+            boxContent: function(cellView) {
+                return cellView.model.get('type');
             }
+        });
+        halo.render();
+        halo.removeHandle('resize');
+        halo.removeHandle('rotate');
+        halo.removeHandle('clone');
+        halo.removeHandle('unlink');
+        halo.changeHandle('link', { position: 'se' });
+        halo.changeHandle('fork', { position: 's' });
 
-            var type = cellView.model.get('type');
-            var name = cellView.model.get('bpmn_name');
+        selectionView.cancelSelection();
+        selection.reset([cellView.model], { safe: true });
+    }
 
-            inspector = new joint.ui.Inspector({
-                cellView: cellView,
-                inputs: inputs[type],
-                groups: {
-                    general: { label: name, index: 1 },
-                    appearance: { index: 2 }
-                },
-                events: {
-                    'mousedown': 'startBatchCommand',
-                    'change': 'onChangeInput',
-                    'click .group-label': '',
-                    'click .btn-list-add': 'addListItem',
-                    'click .btn-list-del': 'deleteListItem'
-                }
-            });
+    else if (cellView.model instanceof joint.shapes.bpmn.GroupOrganization) {
 
-            $('#inspector-container').html(inspector.render().el);
-        // }
+        new joint.ui.FreeTransform({ cellView: cellView }).render();
 
-        if (!selection.contains(cellView.model)) {
-            if (cellView.model instanceof joint.shapes.bpmn.MorePersons) {
-                return;
+        var halo = new joint.ui.Halo({
+            cellView: cellView,
+            boxContent: function(cellView) {
+                return cellView.model.get('type');
             }
-            if (cellView.model instanceof joint.dia.Element && !( cellView.model instanceof joint.shapes.bpmn.GroupOrganization)) {
+        });
+        halo.render();
+        // halo.removeHandle('resize');
+        halo.removeHandle('rotate');
+        halo.removeHandle('clone');
+        halo.removeHandle('unlink');
+        halo.changeHandle('link', { position: 'se' });
+        halo.changeHandle('fork', { position: 's' });
 
-                // new joint.ui.FreeTransform({ cellView: cellView }).render();
-
-                if ( cellView.model instanceof joint.shapes.bpmn.Step && !($('.person-group').length) ) {
-                    var group = document.createElement("div"),
-                        field = document.createElement("div"),
-                        header = document.createElement("h3"),
-                        persons_list = document.createElement("ul"),
-                        persons_text =  document.createTextNode("Persons"),
-                        // text1 =  document.createTextNode("Hello World"),
-                        cells = cellView.model.getEmbeddedCells();
-
-                    group.classList.add("group")
-                    group.classList.add("person-group")
-                    field.classList.add("field")
-                    header.classList.add("group-label")
-                    header.appendChild(persons_text)
-                    field.appendChild(persons_list)
-                    group.appendChild(header)
-                    group.appendChild(field)
-                    for(var i = 0; i < cells.length; i++){
-                        cell = cells[i]
-                        cell.get("name")
-                        person = document.createElement("li"),
-                        name =  document.createTextNode(cell.get("name")||'Person')
-                        person.appendChild(name)
-                        persons_list.appendChild(person)
-                    }
-                }
-
-                $(".inspector").append(group)
-
-                var halo = new joint.ui.Halo({
-                    cellView: cellView,
-                    boxContent: function(cellView) {
-                        return cellView.model.get('type');
-                    }
-                });
-                halo.render();
-                halo.removeHandle('resize');
-                halo.removeHandle('rotate');
-                halo.removeHandle('clone');
-                halo.removeHandle('unlink');
-                halo.changeHandle('link', { position: 'se' });
-                halo.changeHandle('fork', { position: 's' });
-
-                selectionView.cancelSelection();
-                selection.reset([cellView.model], { safe: true });
-            }
-            else if (cellView.model instanceof joint.shapes.bpmn.GroupOrganization) {
-
-                new joint.ui.FreeTransform({ cellView: cellView }).render();
-
-                var halo = new joint.ui.Halo({
-                    cellView: cellView,
-                    boxContent: function(cellView) {
-                        return cellView.model.get('type');
-                    }
-                });
-                halo.render();
-                // halo.removeHandle('resize');
-                halo.removeHandle('rotate');
-                halo.removeHandle('clone');
-                halo.removeHandle('unlink');
-                halo.changeHandle('link', { position: 'se' });
-                halo.changeHandle('fork', { position: 's' });
-
-                selectionView.cancelSelection();
-                selection.reset([cellView.model], { safe: true });
-            }
-        }
+        selectionView.cancelSelection();
+        selection.reset([cellView.model], { safe: true });
+    }
 }
 
 function embedInGroup(cell) {
