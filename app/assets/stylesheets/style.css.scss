@@ -486,7 +486,12 @@ color: #F2F2F2;
 }
 /*Inspector ViewBar*/
 
-
+.btnEdit{
+	padding: 2px 10px;
+	background: #F0EFEF;
+	float: right;
+	margin-right: 10px;
+}
 
 /*Labels*/
 
@@ -750,9 +755,9 @@ background-color: #F55923;
 }
 
 .ContentBar-date{
-	top: 0;
+	top: 3px;
 	position: absolute;
-	right: 33px;
+	right: 70px;
 }
 
 
