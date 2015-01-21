@@ -2281,6 +2281,9 @@ function openIHF(cellView, edit){
 
                     var btn_edit = document.createElement("button"),
                         btn_text = document.createTextNode("edit");
+                        btn_edit.classList.add('btn')
+                        btn_edit.classList.add('btnEdit')
+
 
                     btn_edit.appendChild(btn_text);
                     btn_edit.addEventListener('click', function(){
