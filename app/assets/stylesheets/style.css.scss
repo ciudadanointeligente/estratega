@@ -51,6 +51,10 @@ span.tagline{
 	right: 0!important;
 }
 
+.FullPage{
+	margin: 50px auto 0;
+}
+
 /*Step*/
 
 .element .fobj div {
@@ -697,6 +701,14 @@ background-color: #F55923;
   font-weight: 400;
   text-transform: uppercase;
   padding: 0.3em .6em .3em;
+}
+
+.form-actions{
+	margin: 10px 0;
+}
+
+.control-group{
+	margin: 20px 0;
 }
 
 /*Person*/
