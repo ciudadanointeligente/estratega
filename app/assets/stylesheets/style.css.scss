@@ -30,15 +30,25 @@ span.tagline{
 /*Paper*/
 
 .paper-scroller > .paper {
-  background: #F0F0F0;
+  background-image: none;
+  background-repeat: no-repeat;
+  border: none;
 }
 
+.paper-scroller{
+  background-image: none;
+  background-repeat: no-repeat;
+  border: none;
+  padding: 0;
+  height: 100%;
+}
 #paper-container {
 	padding: 0;
 	margin: 0;
 	top: 0;
 	bottom: 0;
 	height: 100%;
+	right: 0!important;
 }
 
 /*Step*/
@@ -264,7 +274,7 @@ span.tagline{
 /*header*/
 
 .navbar-inverse{
-	position: relative;
+	position: fixed;
 	margin: 0;
 
 }
@@ -386,10 +396,10 @@ color: #F2F2F2;
 /*Inspector*/
 
 .inspector{
-	top: 10px;
 	height: 100%;
 	bottom: 0;
 	text-transform: none;
+	padding: 60px 0 0 0;
 }
 
 .inspector .group {
@@ -399,7 +409,7 @@ color: #F2F2F2;
 
 #inspector-container {
   background: #fff;
-  top: 50px;
+  top: 0;
   bottom: 0;
   height: 100%;
   border-left: 1px solid #cecece;
