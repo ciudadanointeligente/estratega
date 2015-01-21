@@ -13,6 +13,8 @@ class SandboxesController < ApplicationController
   # GET /sandboxes/1
   # GET /sandboxes/1.json
   def show
+    sandbox = Sandbox.find(params[:id])
+    @owner = sandbox.user_id == current_user.id ? true : false
     render :layout => "sandboxes"
   end
 
