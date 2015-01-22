@@ -392,7 +392,7 @@ var paper = new joint.dia.Paper({
         }
 
         else if (cell instanceof joint.shapes.bpmn.Person){
-            if (cell.get('parent')) {
+            if (cell.get('parent') instanceof joint.shapes.bpmn.Step) {
                 parent = graph.getCell(cell.get('parent'))
                 parent.unembed(cell);
                 parent.updatePersons();
@@ -1544,6 +1544,8 @@ joint.shapes.bpmn.Organization = joint.dia.Element.extend({
 
     }, joint.dia.Element.prototype.defaults),
 
+    invisible_attrs: [],
+
     initialize: function() {
 
         joint.dia.Element.prototype.initialize.apply(this, arguments);
@@ -2053,6 +2055,8 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
 
     }, joint.dia.Element.prototype.defaults),
 
+    invisible_attrs: [],
+
     initialize: function() {
         joint.dia.Element.prototype.initialize.apply(this, arguments);
 
@@ -2261,7 +2265,7 @@ function openIHF(cellView, edit){
               _.each(inspector.groupedFlatAttributes, function(options) {
                     var value = inspector.getCellAttributeValue(options.path, options);
                     // if the changed attrs are visible, open the view bar 
-                    if(model.__proto__.hasOwnProperty("invisible_attrs") && model.invisible_attrs.indexOf(options.path) == -1){
+                    if(model.invisible_attrs.indexOf(options.path) == -1){
                         if(value!="" && value != undefined){
                             edit = false;
                         }
