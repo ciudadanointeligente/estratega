@@ -405,7 +405,6 @@ var paper = new joint.dia.Paper({
     },
 
     'cell:pointerup': function(cellView) {
-
         embedInGroup(cellView.model);
         openIHF(cellView);
     }
@@ -2179,6 +2178,7 @@ graph.on('add', function(cell, collection, opt) {
     }
         if (!opt.stencil) return;
 
+        embedInGroup(cell);
         // open inspector after a new element dropped from stencil
         var view = paper.findViewByModel(cell);
         if (view) openIHF(view);
