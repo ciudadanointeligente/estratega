@@ -865,13 +865,6 @@ var stencil = new joint.ui.Stencil({
                                 });
 stencil.render().$el.appendTo('#stencil-container');
 
-if(!interactive_status) {
-    // $('.stencil > .content').attr('style','display:none')
-}
-
-
-
-
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -2782,9 +2775,9 @@ function openIHF(cellView, edit){
 
     else if (cellView.model instanceof joint.shapes.bpmn.GroupOrganization) {
 
-        new joint.ui.FreeTransform({ cellView: cellView }).render();
-
         if( interactive_status ) {
+            new joint.ui.FreeTransform({ cellView: cellView }).render();
+
             var halo = new joint.ui.Halo({
                 cellView: cellView,
                 boxContent: function(cellView) {
