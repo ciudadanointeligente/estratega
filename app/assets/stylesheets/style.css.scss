@@ -30,15 +30,29 @@ span.tagline{
 /*Paper*/
 
 .paper-scroller > .paper {
-  background: #F0F0F0;
+  background-image: none;
+  background-repeat: no-repeat;
+  border: none;
 }
 
+.paper-scroller{
+  background-image: none;
+  background-repeat: no-repeat;
+  border: none;
+  padding: 0;
+  height: 100%;
+}
 #paper-container {
 	padding: 0;
 	margin: 0;
 	top: 0;
 	bottom: 0;
 	height: 100%;
+	right: 0!important;
+}
+
+.FullPage{
+	margin: 50px auto 0;
 }
 
 /*Step*/
@@ -264,7 +278,7 @@ span.tagline{
 /*header*/
 
 .navbar-inverse{
-	position: relative;
+	position: fixed;
 	margin: 0;
 
 }
@@ -386,10 +400,10 @@ color: #F2F2F2;
 /*Inspector*/
 
 .inspector{
-	top: 0;
 	height: 100%;
 	bottom: 0;
 	text-transform: none;
+	padding: 60px 0 0 0;
 }
 
 .inspector .group {
@@ -399,7 +413,7 @@ color: #F2F2F2;
 
 #inspector-container {
   background: #fff;
-  top: 50px;
+  top: 0;
   bottom: 0;
   height: 100%;
   border-left: 1px solid #cecece;
@@ -486,6 +500,13 @@ color: #F2F2F2;
 }
 /*Inspector ViewBar*/
 
+.btnEdit{
+	padding: 2px 10px;
+	background: #5E869A;
+	float: right;
+	margin-right: 10px;
+	color: #fff;
+}
 
 /*Labels*/
 
@@ -554,6 +575,7 @@ background-color: #F55923;
    z-index: 100;
    pointer-events: none;
    padding: 10px;
+   border-radius: 5px;
 }
 
 .joint-tooltip.small {
@@ -683,6 +705,14 @@ background-color: #F55923;
   padding: 0.3em .6em .3em;
 }
 
+.form-actions{
+	margin: 10px 0;
+}
+
+.control-group{
+	margin: 20px 0;
+}
+
 /*Person*/
 
 .user-label, .user-label-small {
@@ -733,6 +763,34 @@ background-color: #F55923;
 	padding: 6px 15px;
 }
 
+.ContentBar-tags{
+	margin: 20px;
+}
+
+.ContentBar-title, .ContentBar-name{
+	font-size: 20px;
+	margin-left: 20px;
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+.ContentBar-content, .ContentBar-description{
+	padding: 20px;
+}
+
+.ContentBar-date{
+	top: 3px;
+	position: absolute;
+	right: 70px;
+}
+
+.ContentBar-pos {
+	font-size: 18px;
+	margin-left: 20px;
+	margin-top: 10px;
+	font-weight: bold;
+	color: #0091EA;
+}
 
 /* -------------------- Clearfix -------------------- */
 

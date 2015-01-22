@@ -11,22 +11,13 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-inverse navbar-fixed-top">
+      <nav class="navbar navbar-inverse navbar-fixed-top clearfix">
         <a class="company-logo" href="/">Vizard</a><span class="tagline">beta</span>
         <% if( user_signed_in? ) %>
         <ul class="nav navbar-right top-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Bienvenido, <%= current_user.email %> <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <!-- <li>
-              <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-              </li>
-              <li>
-              <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-              </li>
-              <li>
-              <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-              </li> -->
               <li>
                 <a href="/sandboxes"><i class="fa fa-fw fa-inbox"></i> Sandboxes</a>
               </li>
@@ -42,11 +33,9 @@
             <div class="clearfix toolbarName">
             </div>
         </div>
-
-    </nav>
-
+      </nav>
     </header>
-    <div role="main" class="container">
+    <div role="main" class="container FullPage">
       <%= render 'layouts/messages' %>
       <%= yield %>
     </div>

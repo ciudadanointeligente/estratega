@@ -375,7 +375,7 @@ var inputs = {
         },
         tags: {
             type: 'text',
-            label: 'Tags',
+            label: '',
             group: 'Tags',
             index: 1
         },
