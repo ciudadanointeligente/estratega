@@ -15,6 +15,8 @@ gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
 gem 'unicorn'
 gem 'unicorn-rails'
+gem 'devise'
+gem 'cancancan', '~> 1.10'
 
 group :development do
   gem 'better_errors'

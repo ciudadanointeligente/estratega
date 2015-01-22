@@ -1,16 +1,20 @@
 class SandboxesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_sandbox, only: [:show, :edit, :update, :destroy]
 
   # GET /sandboxes
   # GET /sandboxes.json
   def index
-    @sandboxes = Sandbox.all.order(id: :desc)
+    @sandboxes = Sandbox.order(id: :desc).where(user_id: current_user)
+    @public_sandboxes = Sandbox.order(id: :desc).where("public = ? AND user_id != ?", true, current_user)
     render :layout => "application"
   end
 
   # GET /sandboxes/1
   # GET /sandboxes/1.json
   def show
+    sandbox = Sandbox.find(params[:id])
+    @owner = sandbox.user_id == current_user.id ? true : false
     render :layout => "sandboxes"
   end
 
@@ -29,7 +33,8 @@ class SandboxesController < ApplicationController
   # POST /sandboxes.json
   def create
     @sandbox = Sandbox.new(sandbox_params)
-
+    @sandbox.user_id = current_user.id
+    
     respond_to do |format|
       if @sandbox.save
         format.html { redirect_to @sandbox, notice: 'Sandbox was successfully created.' }
@@ -44,13 +49,17 @@ class SandboxesController < ApplicationController
   # PATCH/PUT /sandboxes/1
   # PATCH/PUT /sandboxes/1.json
   def update
-    respond_to do |format|
-      if @sandbox.update(sandbox_params)
-        format.html { redirect_to @sandbox, notice: 'Sandbox was successfully updated.' }
-        format.json { render :show, status: :ok, location: @sandbox }
-      else
-        format.html { render :edit }
-        format.json { render json: @sandbox.errors, status: :unprocessable_entity }
+    sandbox = Sandbox.find(params[:id])
+    owner = sandbox.user_id == current_user.id ? true : false
+    if(owner)
+      respond_to do |format|
+        if @sandbox.update(sandbox_params)
+          format.html { redirect_to @sandbox, notice: 'Sandbox was successfully updated.' }
+          format.json { render :show, status: :ok, location: @sandbox }
+        else
+          format.html { render :edit }
+          format.json { render json: @sandbox.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -73,6 +82,6 @@ class SandboxesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sandbox_params
-      params.require(:sandbox).permit(:name, :description, :graph_data)
+      params.require(:sandbox).permit(:name, :description, :graph_data, :public)
     end
 end

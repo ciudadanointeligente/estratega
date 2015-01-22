@@ -1,27 +1,23 @@
 <%# navigation styled for Bootstrap 3.0 %>
 <nav class="navbar navbar-inverse navbar-fixed-top clearfix">
 	<a class="company-logo" href="/">Vizard</a><span class="tagline">beta</span>
-	 <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Bienvenido, John Smith <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>
+	<!-- Top Menu Items -->
+    <% if( user_signed_in? ) %>
+    <ul class="nav navbar-right top-nav">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Bienvenido, <%= current_user.email %> <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="/sandboxes"><i class="fa fa-fw fa-inbox"></i> Sandboxes</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
                 </li>
             </ul>
+        </li>
+    </ul>
+    <% end %>
     <%= render 'layouts/navigation_links' %>
     <div class="container">
         <div class="clearfix toolbarName">

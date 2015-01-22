@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125193933) do
+ActiveRecord::Schema.define(version: 20150119134455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,7 +47,11 @@ ActiveRecord::Schema.define(version: 20141125193933) do
     t.text     "graph_data"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.boolean  "public"
   end
+
+  add_index "sandboxes", ["user_id"], name: "index_sandboxes_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
