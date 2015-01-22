@@ -502,9 +502,10 @@ color: #F2F2F2;
 
 .btnEdit{
 	padding: 2px 10px;
-	background: #F0EFEF;
+	background: #5E869A;
 	float: right;
 	margin-right: 10px;
+	color: #fff;
 }
 
 /*Labels*/
@@ -574,6 +575,7 @@ background-color: #F55923;
    z-index: 100;
    pointer-events: none;
    padding: 10px;
+   border-radius: 5px;
 }
 
 .joint-tooltip.small {
@@ -765,14 +767,14 @@ background-color: #F55923;
 	margin: 20px;
 }
 
-.ContentBar-title{
-	font-size: 24px;
+.ContentBar-title, .ContentBar-name{
+	font-size: 20px;
 	margin-left: 20px;
 	margin-top: 10px;
 	font-weight: bold;
 }
 
-.ContentBar-content{
+.ContentBar-content, .ContentBar-description{
 	padding: 20px;
 }
 
@@ -782,6 +784,13 @@ background-color: #F55923;
 	right: 70px;
 }
 
+.ContentBar-pos {
+	font-size: 18px;
+	margin-left: 20px;
+	margin-top: 10px;
+	font-weight: bold;
+	color: #0091EA;
+}
 
 /* -------------------- Clearfix -------------------- */
 

@@ -2228,7 +2228,7 @@ function openIHF(cellView, edit){
         $(sidebar_right).css('width','300px');
         $(btn_sidebar_right).css('width','340px');
         $('#btn-right').css('-webkit-transform','rotate(0deg)').css('transform','rotate(0deg)');
-        
+
          // No need to re-render inspector if the cellView didn't change.
         // if (!inspector || inspector.options.cellView !== cellView) {
             if (inspector) {
@@ -2264,7 +2264,7 @@ function openIHF(cellView, edit){
             var edit = true;
               _.each(inspector.groupedFlatAttributes, function(options) {
                     var value = inspector.getCellAttributeValue(options.path, options);
-                    // if the changed attrs are visible, open the view bar 
+                    // if the changed attrs are visible, open the view bar
                     if(model.invisible_attrs.indexOf(options.path) == -1){
                         if(value!="" && value != undefined){
                             edit = false;
