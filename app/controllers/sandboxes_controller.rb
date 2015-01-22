@@ -49,13 +49,17 @@ class SandboxesController < ApplicationController
   # PATCH/PUT /sandboxes/1
   # PATCH/PUT /sandboxes/1.json
   def update
-    respond_to do |format|
-      if @sandbox.update(sandbox_params)
-        format.html { redirect_to @sandbox, notice: 'Sandbox was successfully updated.' }
-        format.json { render :show, status: :ok, location: @sandbox }
-      else
-        format.html { render :edit }
-        format.json { render json: @sandbox.errors, status: :unprocessable_entity }
+    sandbox = Sandbox.find(params[:id])
+    owner = sandbox.user_id == current_user.id ? true : false
+    if(owner)
+      respond_to do |format|
+        if @sandbox.update(sandbox_params)
+          format.html { redirect_to @sandbox, notice: 'Sandbox was successfully updated.' }
+          format.json { render :show, status: :ok, location: @sandbox }
+        else
+          format.html { render :edit }
+          format.json { render json: @sandbox.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
