@@ -16,6 +16,13 @@
     <script>
         <%= 'var interactive_status = ' + @owner.to_s %>
     </script>
+    <% if(!@owner) %>
+    <style>
+        .link-tools {
+            display: none;
+        }
+    </style>
+    <% end %>
   </head>
   <body>
     <header>
