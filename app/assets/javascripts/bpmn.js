@@ -301,6 +301,8 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
         flowType: "normal"
     },
 
+    invisible_attrs: [],
+
     initialize: function() {
 
         joint.dia.Link.prototype.initialize.apply(this, arguments);
