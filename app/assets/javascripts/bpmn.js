@@ -18,20 +18,11 @@ var graph = new joint.dia.Graph({ type: 'bpmn' }).on({
         if (!opt.stencil) return;
 
         // some types of the elements need resizing after they are dropped
-        var x = { 'bpmn.Pool': 5, 'bpmn.Choreography': 2 }[type];
-
-        if (cell instanceof joint.shapes.bpmn.Step) {
+        var x = { 'bpmn.Step': {width: 240, height: 210}, 'bpmn.External': {width: 240, height: 210}, 'bpmn.Intervention': {width: 240, height: 210}, 'bpmn.GroupOrganization': {width: 280, height: 190} }[type];
+        if (x) {
             cell.set('size', {
-                width: 240,
-                height: 210
-            }, { silent: true });
-            cell.setForeignObjectSize(cell, {width: 240, height: 210});
-        }
-
-        if (cell instanceof joint.shapes.bpmn.GroupOrganization) {
-            cell.set('size', {
-                width: 280,
-                height: 190
+                width: x.width,
+                height: x.height
             }, { silent: true });
         }
     }
