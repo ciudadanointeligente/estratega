@@ -33,137 +33,9 @@ var commandManager = new joint.dia.CommandManager({ graph: this.graph });
 
 /* PAPER + SCROLLER */
 
-joint.ui.Tooltip = Backbone.View.extend({
+joint.ui.JointTooltip = joint.ui.Tooltip.extend({
 
     className: 'joint-tooltip',
-
-    options: {
-        // `left` allows you to set a selector (or DOM element) that
-        // will be used as the left edge of the tooltip. This is useful when configuring a tooltip
-        // that should be shown "after" some other element. Other sides are analogous.
-        left: undefined,
-        right: undefined,
-        top: undefined,
-        bottom: undefined,
-        padding: 10,
-        target: undefined,
-        rootTarget: undefined
-    },
-
-    initialize: function(options) {
-
-    this.options = _.extend({}, _.result(this, 'options'), options || {});
-
-        _.bindAll(this, 'render', 'hide', 'position');
-
-        if (this.options.rootTarget) {
-
-            this.$rootTarget = $(this.options.rootTarget);
-
-            this.$rootTarget.on('mouseover', this.options.target, this.render);
-            this.$rootTarget.on('mouseout', this.options.target, this.hide);
-            this.$rootTarget.on('mousedown', this.options.target, this.hide);
-
-        } else {
-
-            this.$target = $(this.options.target);
-
-            this.$target.on('mouseover', this.render);
-            this.$target.on('mouseout', this.hide);
-            this.$target.on('mousedown', this.hide);
-        }
-
-        this.$el.addClass(this.options.direction);
-    },
-
-    remove: function() {
-
-        this.$target.off('mouseover', this.render);
-        this.$target.off('mouseout', this.hide);
-        this.$target.off('mousedown', this.hide);
-
-        Backbone.View.prototype.remove.apply(this, arguments);
-    },
-
-    hide: function() {
-
-        Backbone.View.prototype.remove.apply(this, arguments);
-    },
-
-    render: function(evt) {
-
-        var target;
-        var isPoint = !_.isUndefined(evt.x) && !_.isUndefined(evt.y);
-
-        if (isPoint) {
-
-            target = evt;
-
-        } else {
-
-            this.$target = $(evt.target).closest(this.options.target);
-            target = this.$target[0];
-        }
-
-        this.$el.html(_.isFunction(this.options.content) ? this.options.content(target) : this.options.content);
-
-        // Hide the element first so that we don't get a jumping effect during the image loading.
-        this.$el.hide();
-        $(document.body).append(this.$el);
-
-        // If there is an image in the `content`, wait till it's loaded as only after that
-        // we know the dimension of the tooltip.
-        var $images = this.$('img');
-        if ($images.length) {
-
-            $images.on('load', _.bind(function() { this.position(isPoint ? target : undefined); }, this));
-
-        } else {
-
-            this.position(isPoint ? target : undefined);
-        }
-    },
-
-    getElementBBox: function(el) {
-
-        var $el = $(el);
-        var offset = $el.offset();
-        var bbox;
-
-        // Compensate for the document scroll.
-        // Safari uses `document.body.scrollTop` only while Firefox uses `document.documentElement.scrollTop` only.
-        // Google Chrome is the winner here as it uses both.
-        var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-        var scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft;
-
-        offset.top -= (scrollTop || 0);
-        offset.left -= (scrollLeft || 0);
-
-        if (el.ownerSVGElement) {
-
-            // Use Vectorizer to get the dimensions of the element if it is an SVG element.
-            bbox = V(el).bbox();
-
-            // getBoundingClientRect() used in jQuery.fn.offset() takes into account `stroke-width`
-            // in Firefox only. So clientRect width/height and getBBox width/height in FF don't match.
-            // To unify this across all browsers we add the `stroke-width` (left & top) back to
-            // the calculated offset.
-            var crect = el.getBoundingClientRect();
-            var strokeWidthX = (crect.width - bbox.width) / 2;
-            var strokeWidthY = (crect.height - bbox.height) / 2;
-
-            // The `bbox()` returns coordinates relative to the SVG viewport, therefore, use the
-            // ones returned from the `offset()` method that are relative to the document.
-            bbox.x = offset.left + strokeWidthX;
-            bbox.y = offset.top + strokeWidthY;
-
-        } else {
-
-            bbox = { x: offset.left, y: offset.top, width: $el.outerWidth(), height: $el.outerHeight() };
-        }
-
-        return bbox;
-    },
 
     position: function(p) {
 
@@ -305,8 +177,8 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
     tooltip: {},
 
     setTooltip: function() {
-        if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
-        this.tooltip = new joint.ui.Tooltip({
+        if (this.tooltip instanceof joint.ui.JointTooltip) this.removePreviousTooltip();
+        this.tooltip = new joint.ui.JointTooltip({
             target: '[model-id="' + this.id + '"] .connection-wrap',
             content: this.get('description'),
             top: '[model-id="' + this.id + '"] .connection-wrap',
@@ -1944,7 +1816,7 @@ joint.shapes.bpmn.Organization = joint.dia.Element.extend({
     },
 
     setTooltip: function() {
-        if (this.tooltip instanceof joint.ui.Tooltip) this.tooltip.remove();
+        if (this.tooltip instanceof joint.ui.JointTooltip) this.tooltip.remove();
         if( (this.has('name') && this.get('name').length>0) || (this.has('description') && this.get('description').length>0) ) {
             var div = document.createElement("div");
                 div.className = 'joint-tooltip-content';
@@ -1957,7 +1829,7 @@ joint.shapes.bpmn.Organization = joint.dia.Element.extend({
             div.appendChild(name);
             div.appendChild(description);
 
-            this.tooltip = new joint.ui.Tooltip({
+            this.tooltip = new joint.ui.JointTooltip({
                 target: ' [model-id="' + this.id + '"]',
                 content: div.innerHTML,
                 bottom: ' [model-id="' + this.id + '"]',
@@ -2104,7 +1976,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
     tooltip: {},
 
     setTooltip: function() {
-        if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
+        if (this.tooltip instanceof joint.ui.JointTooltip) this.removePreviousTooltip();
 
         $('[model-id='+this.get('id')+'] g text').html( '' );
 
@@ -2122,7 +1994,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
                 description.className = 'joint-tooltip-text';
             div.appendChild(name);
             div.appendChild(description);
-            this.tooltip = new joint.ui.Tooltip({
+            this.tooltip = new joint.ui.JointTooltip({
                 target: ' [model-id="' + this.id + '"]',
                 content: div.innerHTML,
                 bottom: ' [model-id="' + this.id + '"]',
@@ -2541,7 +2413,7 @@ stencil.getPaper().fitToContent(0, 0, 10);
 
 // Create tooltips for all the shapes in stencil.
 stencil.getGraph().get('cells').each(function(cell) {
-    new joint.ui.Tooltip({
+    new joint.ui.JointTooltip({
         target: '.stencil [model-id="' + cell.id + '"]',
         //hack for getting the type without the bpmn
         content: cell.get('bpmn_name'),
@@ -2591,7 +2463,7 @@ paper.el.oncontextmenu = function(evt) { evt.preventDefault(); };
 
 $('#toolbar-container [data-tooltip]').each(function() {
 
-    new joint.ui.Tooltip({
+    new joint.ui.JointTooltip({
         target: $(this),
         content: $(this).data('tooltip'),
         top: '#toolbar-container',
