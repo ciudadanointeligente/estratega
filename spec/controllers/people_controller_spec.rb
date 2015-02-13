@@ -109,19 +109,5 @@ RSpec.describe PeopleController, :type => :controller do
         expect(response).to redirect_to(person)
       end
     end
-
-    describe "with invalid params" do
-      xit "assigns the person as @person" do
-        person = Person.create! valid_attributes
-        put :update, {:id => person.to_param, :person => invalid_attributes}, valid_session
-        expect(assigns(:person)).to eq(person)
-      end
-
-      xit "re-renders the 'edit' template" do
-        person = Person.create! valid_attributes
-        put :update, {:id => person.to_param, :person => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
-      end
-    end
   end
 end

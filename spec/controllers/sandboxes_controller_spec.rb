@@ -156,19 +156,5 @@ RSpec.describe SandboxesController, :type => :controller do
         expect(response).to redirect_to(sandbox)
       end
     end
-
-    describe "with invalid params" do
-      xit "assigns the sandbox as @sandbox" do
-        sandbox = Sandbox.create! valid_attributes
-        put :update, {:id => sandbox.to_param, :sandbox => invalid_attributes}, valid_session
-        expect(assigns(:sandbox)).to eq(sandbox)
-      end
-
-      xit "re-renders the 'edit' template" do
-        sandbox = Sandbox.create! valid_attributes
-        put :update, {:id => sandbox.to_param, :sandbox => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
-      end
-    end
   end
 end
