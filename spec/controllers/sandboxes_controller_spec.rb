@@ -148,8 +148,10 @@ RSpec.describe SandboxesController, :type => :controller do
         expect(assigns(:sandbox)).to eq(sandbox)
       end
 
-      it "redirects to the sandbox" do
+      it "redirects to the sandbox if is the owner who does the change" do
         sandbox = FactoryGirl.create(:sandbox)
+        sandbox.user_id = @logged_in_user.id
+        sandbox.save
         put :update, {:id => sandbox.to_param, :sandbox => FactoryGirl.attributes_for(:sandbox)}
         expect(response).to redirect_to(sandbox)
       end
