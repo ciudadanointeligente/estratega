@@ -8,9 +8,9 @@ RSpec.describe SandboxesController, :type => :controller do
       my_sandbox.user_id = @logged_in_user.id
       my_sandbox.save
 
-      other_user = FactoryGirl.create(:user)
+      fierita = FactoryGirl.create(:user)
       other_sandbox = FactoryGirl.create(:sandbox)
-      other_sandbox.user_id = other_user.id
+      other_sandbox.user_id = fierita.id
       other_sandbox.save()
 
       get :index
@@ -22,10 +22,23 @@ RSpec.describe SandboxesController, :type => :controller do
       my_public_sandbox.public = true
       my_public_sandbox.save
 
+      fierita = FactoryGirl.create(:user)
+      fieras_public_sandbox = FactoryGirl.create(:sandbox)
+      fieras_public_sandbox.user_id = fierita.id
+      fieras_public_sandbox.public = true
+      fieras_public_sandbox.save()
+
+      fieras_private_sandbox = FactoryGirl.create(:sandbox)
+      fieras_private_sandbox.user_id = fierita.id
+      fieras_private_sandbox.public = false
+      fieras_private_sandbox.save()
+
       get :index
       # assigns(:sandboxes).should eq([my_sandbox])
       # Mis instancias publicas no deberían estar en @public_sandboxes
       assigns(:public_sandboxes).should_not include my_public_sandbox
+      assigns(:public_sandboxes).should include fieras_public_sandbox
+      assigns(:public_sandboxes).should_not include fieras_private_sandbox
 
     end
     it "renders the :index view" do

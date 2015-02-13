@@ -6,8 +6,7 @@ class SandboxesController < ApplicationController
   # GET /sandboxes.json
   def index
     @sandboxes = Sandbox.where(user_id: current_user)
-    @public_sandboxes = []
-    # @public_sandboxes = Sandbox.order(id: :desc).where("public = ? AND user_id != ?", true, current_user)
+    @public_sandboxes = Sandbox.where("public = ? AND user_id != ?", true, current_user)
     render :layout => "application"
   end
 
