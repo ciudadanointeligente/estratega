@@ -104,19 +104,5 @@ RSpec.describe OtherNamesController, :type => :controller do
         expect(response).to redirect_to(other_name)
       end
     end
-
-    describe "with invalid params" do
-      xit "assigns the other_name as @other_name" do
-        other_name = OtherName.create! valid_attributes
-        put :update, {:id => other_name.to_param, :other_name => invalid_attributes}, valid_session
-        expect(assigns(:other_name)).to eq(other_name)
-      end
-
-      xit "re-renders the 'edit' template" do
-        other_name = OtherName.create! valid_attributes
-        put :update, {:id => other_name.to_param, :other_name => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
-      end
-    end
   end
 end
