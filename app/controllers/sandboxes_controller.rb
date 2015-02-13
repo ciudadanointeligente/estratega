@@ -5,8 +5,8 @@ class SandboxesController < ApplicationController
   # GET /sandboxes
   # GET /sandboxes.json
   def index
-    @sandboxes = Sandbox.order(id: :desc).where(user_id: current_user)
-    @public_sandboxes = Sandbox.order(id: :desc).where("public = ? AND user_id != ?", true, current_user)
+    @sandboxes = Sandbox.all
+    # @public_sandboxes = Sandbox.order(id: :desc).where("public = ? AND user_id != ?", true, current_user)
     render :layout => "application"
   end
 
@@ -50,7 +50,8 @@ class SandboxesController < ApplicationController
   # PATCH/PUT /sandboxes/1.json
   def update
     sandbox = Sandbox.find(params[:id])
-    owner = sandbox.user_id == current_user.id ? true : false
+    # owner = sandbox.user_id == current_user.id ? true : false
+    owner = true
     if(owner)
       respond_to do |format|
         if @sandbox.update(sandbox_params)

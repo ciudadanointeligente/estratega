@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe PeopleController, :type => :controller do
+  login_user
   describe "GET #index" do
     it "populates an array of people" do
       person = FactoryGirl.create(:person)
