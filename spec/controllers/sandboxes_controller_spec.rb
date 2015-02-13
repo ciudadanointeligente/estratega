@@ -7,7 +7,7 @@ RSpec.describe SandboxesController, :type => :controller do
       my_sandbox = FactoryGirl.create(:sandbox)
       my_sandbox.user_id = @logged_in_user.id
       my_sandbox.save
-      
+
       other_user = FactoryGirl.create(:user)
       other_sandbox = FactoryGirl.create(:sandbox)
       other_sandbox.user_id = other_user.id
@@ -15,6 +15,18 @@ RSpec.describe SandboxesController, :type => :controller do
 
       get :index
       assigns(:sandboxes).should eq([my_sandbox])
+    end
+    it "displays all public sandboxes but not mine" do
+      my_public_sandbox = FactoryGirl.create(:sandbox)
+      my_public_sandbox.user_id = @logged_in_user.id
+      my_public_sandbox.public = true
+      my_public_sandbox.save
+
+      get :index
+      # assigns(:sandboxes).should eq([my_sandbox])
+      # Mis instancias publicas no deberían estar en @public_sandboxes
+      assigns(:public_sandboxes).should_not include my_public_sandbox
+
     end
     it "renders the :index view" do
       get :index
