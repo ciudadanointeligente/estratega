@@ -3,10 +3,18 @@ require 'spec_helper'
 RSpec.describe SandboxesController, :type => :controller do
   login_user
   describe "GET #index" do
-    it "populates an array of sandboxes" do
-      sandbox = FactoryGirl.create(:sandbox)
+    it "populates an array with my sandboxes" do
+      my_sandbox = FactoryGirl.create(:sandbox)
+      my_sandbox.user_id = @logged_in_user.id
+      my_sandbox.save
+      
+      other_user = FactoryGirl.create(:user)
+      other_sandbox = FactoryGirl.create(:sandbox)
+      other_sandbox.user_id = other_user.id
+      other_sandbox.save()
+
       get :index
-      assigns(:sandboxes).should eq([sandbox])
+      assigns(:sandboxes).should eq([my_sandbox])
     end
     it "renders the :index view" do
       get :index
