@@ -115,15 +115,31 @@ RSpec.describe SandboxesController, :type => :controller do
   end
 
   describe "PUT update" do
-    describe "with valid params" do
+    describe "with valid params and being the owner" do
       it "updates the requested sandbox" do
         sandbox = FactoryGirl.create(:sandbox)
+        sandbox.user_id = @logged_in_user.id
+        sandbox.save
         new_data = "NewData"
         put :update, {:id => sandbox.to_param, :sandbox => {"graph_data"=>new_data}}
         sandbox.reload
         expect(sandbox.graph_data).to eq(new_data)
         # It shouldn't modify other parameters
         expect(sandbox.name).to eq(FactoryGirl.attributes_for(:sandbox)[:name])
+      end
+      it "does not update the requested sandbox if not the owner" do
+        fierita = FactoryGirl.create(:user)
+        sandbox = FactoryGirl.create(:sandbox)
+        sandbox.user_id = fierita.id
+        sandbox.save
+
+        new_data = "NewData"
+        put :update, {:id => sandbox.to_param, :sandbox => {"graph_data"=>new_data}}
+        sandbox.reload
+        expect(sandbox.graph_data).to_not eq(new_data)
+        # It shouldn't modify other parameters
+        expect(sandbox.name).to eq(FactoryGirl.attributes_for(:sandbox)[:name])
+
       end
 
       it "assigns the requested sandbox as @sandbox" do

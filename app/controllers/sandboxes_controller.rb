@@ -50,8 +50,7 @@ class SandboxesController < ApplicationController
   # PATCH/PUT /sandboxes/1.json
   def update
     sandbox = Sandbox.find(params[:id])
-    # owner = sandbox.user_id == current_user.id ? true : false
-    owner = true
+    owner = sandbox.user_id == current_user.id ? true : false
     if(owner)
       respond_to do |format|
         if @sandbox.update(sandbox_params)
