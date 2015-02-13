@@ -1,11 +1,45 @@
 require 'spec_helper'
 
 RSpec.describe SandboxesController, :type => :controller do
+  login_user
   describe "GET #index" do
-    it "populates an array of sandboxes" do
-      sandbox = FactoryGirl.create(:sandbox)
+    it "populates an array with my sandboxes" do
+      my_sandbox = FactoryGirl.create(:sandbox)
+      my_sandbox.user_id = @logged_in_user.id
+      my_sandbox.save
+
+      fierita = FactoryGirl.create(:user)
+      other_sandbox = FactoryGirl.create(:sandbox)
+      other_sandbox.user_id = fierita.id
+      other_sandbox.save()
+
       get :index
-      assigns(:sandboxes).should eq([sandbox])
+      assigns(:sandboxes).should eq([my_sandbox])
+    end
+    it "displays all public sandboxes but not mine" do
+      my_public_sandbox = FactoryGirl.create(:sandbox)
+      my_public_sandbox.user_id = @logged_in_user.id
+      my_public_sandbox.public = true
+      my_public_sandbox.save
+
+      fierita = FactoryGirl.create(:user)
+      fieras_public_sandbox = FactoryGirl.create(:sandbox)
+      fieras_public_sandbox.user_id = fierita.id
+      fieras_public_sandbox.public = true
+      fieras_public_sandbox.save()
+
+      fieras_private_sandbox = FactoryGirl.create(:sandbox)
+      fieras_private_sandbox.user_id = fierita.id
+      fieras_private_sandbox.public = false
+      fieras_private_sandbox.save()
+
+      get :index
+      # assigns(:sandboxes).should eq([my_sandbox])
+      # Mis instancias publicas no deberían estar en @public_sandboxes
+      assigns(:public_sandboxes).should_not include my_public_sandbox
+      assigns(:public_sandboxes).should include fieras_public_sandbox
+      assigns(:public_sandboxes).should_not include fieras_private_sandbox
+
     end
     it "renders the :index view" do
       get :index
@@ -81,15 +115,31 @@ RSpec.describe SandboxesController, :type => :controller do
   end
 
   describe "PUT update" do
-    describe "with valid params" do
+    describe "with valid params and being the owner" do
       it "updates the requested sandbox" do
         sandbox = FactoryGirl.create(:sandbox)
+        sandbox.user_id = @logged_in_user.id
+        sandbox.save
         new_data = "NewData"
         put :update, {:id => sandbox.to_param, :sandbox => {"graph_data"=>new_data}}
         sandbox.reload
         expect(sandbox.graph_data).to eq(new_data)
         # It shouldn't modify other parameters
         expect(sandbox.name).to eq(FactoryGirl.attributes_for(:sandbox)[:name])
+      end
+      it "does not update the requested sandbox if not the owner" do
+        fierita = FactoryGirl.create(:user)
+        sandbox = FactoryGirl.create(:sandbox)
+        sandbox.user_id = fierita.id
+        sandbox.save
+
+        new_data = "NewData"
+        put :update, {:id => sandbox.to_param, :sandbox => {"graph_data"=>new_data}}
+        sandbox.reload
+        expect(sandbox.graph_data).to_not eq(new_data)
+        # It shouldn't modify other parameters
+        expect(sandbox.name).to eq(FactoryGirl.attributes_for(:sandbox)[:name])
+
       end
 
       it "assigns the requested sandbox as @sandbox" do
@@ -98,24 +148,12 @@ RSpec.describe SandboxesController, :type => :controller do
         expect(assigns(:sandbox)).to eq(sandbox)
       end
 
-      it "redirects to the sandbox" do
+      it "redirects to the sandbox if is the owner who does the change" do
         sandbox = FactoryGirl.create(:sandbox)
+        sandbox.user_id = @logged_in_user.id
+        sandbox.save
         put :update, {:id => sandbox.to_param, :sandbox => FactoryGirl.attributes_for(:sandbox)}
         expect(response).to redirect_to(sandbox)
-      end
-    end
-
-    describe "with invalid params" do
-      xit "assigns the sandbox as @sandbox" do
-        sandbox = Sandbox.create! valid_attributes
-        put :update, {:id => sandbox.to_param, :sandbox => invalid_attributes}, valid_session
-        expect(assigns(:sandbox)).to eq(sandbox)
-      end
-
-      xit "re-renders the 'edit' template" do
-        sandbox = Sandbox.create! valid_attributes
-        put :update, {:id => sandbox.to_param, :sandbox => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
       end
     end
   end

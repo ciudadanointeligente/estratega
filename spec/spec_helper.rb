@@ -15,6 +15,8 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'coveralls'
+require 'devise'
+require 'support/controller_macros'
 Coveralls.wear!('rails')
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
@@ -84,4 +86,6 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+  config.include Devise::TestHelpers, :type => :controller
+  config.extend ControllerMacros, :type => :controller
 end

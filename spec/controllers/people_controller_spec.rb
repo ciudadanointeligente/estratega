@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe PeopleController, :type => :controller do
+  login_user
   describe "GET #index" do
     it "populates an array of people" do
       person = FactoryGirl.create(:person)
@@ -106,20 +107,6 @@ RSpec.describe PeopleController, :type => :controller do
         person = FactoryGirl.create(:person)
         put :update, {:id => person.to_param, :person => FactoryGirl.attributes_for(:person)}
         expect(response).to redirect_to(person)
-      end
-    end
-
-    describe "with invalid params" do
-      xit "assigns the person as @person" do
-        person = Person.create! valid_attributes
-        put :update, {:id => person.to_param, :person => invalid_attributes}, valid_session
-        expect(assigns(:person)).to eq(person)
-      end
-
-      xit "re-renders the 'edit' template" do
-        person = Person.create! valid_attributes
-        put :update, {:id => person.to_param, :person => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
       end
     end
   end
