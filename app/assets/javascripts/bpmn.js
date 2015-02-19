@@ -18,20 +18,11 @@ var graph = new joint.dia.Graph({ type: 'bpmn' }).on({
         if (!opt.stencil) return;
 
         // some types of the elements need resizing after they are dropped
-        var x = { 'bpmn.Pool': 5, 'bpmn.Choreography': 2 }[type];
-
-        if (cell instanceof joint.shapes.bpmn.Step) {
+        var x = { 'bpmn.Step': {width: 240, height: 210}, 'bpmn.External': {width: 240, height: 210}, 'bpmn.Intervention': {width: 240, height: 210}, 'bpmn.GroupOrganization': {width: 280, height: 190} }[type];
+        if (x) {
             cell.set('size', {
-                width: 240,
-                height: 210
-            }, { silent: true });
-            cell.setForeignObjectSize(cell, {width: 240, height: 210});
-        }
-
-        if (cell instanceof joint.shapes.bpmn.GroupOrganization) {
-            cell.set('size', {
-                width: 280,
-                height: 190
+                width: x.width,
+                height: x.height
             }, { silent: true });
         }
     }
@@ -42,137 +33,9 @@ var commandManager = new joint.dia.CommandManager({ graph: this.graph });
 
 /* PAPER + SCROLLER */
 
-joint.ui.Tooltip = Backbone.View.extend({
+joint.ui.JointTooltip = joint.ui.Tooltip.extend({
 
     className: 'joint-tooltip',
-
-    options: {
-        // `left` allows you to set a selector (or DOM element) that
-        // will be used as the left edge of the tooltip. This is useful when configuring a tooltip
-        // that should be shown "after" some other element. Other sides are analogous.
-        left: undefined,
-        right: undefined,
-        top: undefined,
-        bottom: undefined,
-        padding: 10,
-        target: undefined,
-        rootTarget: undefined
-    },
-
-    initialize: function(options) {
-
-    this.options = _.extend({}, _.result(this, 'options'), options || {});
-
-        _.bindAll(this, 'render', 'hide', 'position');
-
-        if (this.options.rootTarget) {
-
-            this.$rootTarget = $(this.options.rootTarget);
-
-            this.$rootTarget.on('mouseover', this.options.target, this.render);
-            this.$rootTarget.on('mouseout', this.options.target, this.hide);
-            this.$rootTarget.on('mousedown', this.options.target, this.hide);
-
-        } else {
-
-            this.$target = $(this.options.target);
-
-            this.$target.on('mouseover', this.render);
-            this.$target.on('mouseout', this.hide);
-            this.$target.on('mousedown', this.hide);
-        }
-
-        this.$el.addClass(this.options.direction);
-    },
-
-    remove: function() {
-
-        this.$target.off('mouseover', this.render);
-        this.$target.off('mouseout', this.hide);
-        this.$target.off('mousedown', this.hide);
-
-        Backbone.View.prototype.remove.apply(this, arguments);
-    },
-
-    hide: function() {
-
-        Backbone.View.prototype.remove.apply(this, arguments);
-    },
-
-    render: function(evt) {
-
-        var target;
-        var isPoint = !_.isUndefined(evt.x) && !_.isUndefined(evt.y);
-
-        if (isPoint) {
-
-            target = evt;
-
-        } else {
-
-            this.$target = $(evt.target).closest(this.options.target);
-            target = this.$target[0];
-        }
-
-        this.$el.html(_.isFunction(this.options.content) ? this.options.content(target) : this.options.content);
-
-        // Hide the element first so that we don't get a jumping effect during the image loading.
-        this.$el.hide();
-        $(document.body).append(this.$el);
-
-        // If there is an image in the `content`, wait till it's loaded as only after that
-        // we know the dimension of the tooltip.
-        var $images = this.$('img');
-        if ($images.length) {
-
-            $images.on('load', _.bind(function() { this.position(isPoint ? target : undefined); }, this));
-
-        } else {
-
-            this.position(isPoint ? target : undefined);
-        }
-    },
-
-    getElementBBox: function(el) {
-
-        var $el = $(el);
-        var offset = $el.offset();
-        var bbox;
-
-        // Compensate for the document scroll.
-        // Safari uses `document.body.scrollTop` only while Firefox uses `document.documentElement.scrollTop` only.
-        // Google Chrome is the winner here as it uses both.
-        var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-        var scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft;
-
-        offset.top -= (scrollTop || 0);
-        offset.left -= (scrollLeft || 0);
-
-        if (el.ownerSVGElement) {
-
-            // Use Vectorizer to get the dimensions of the element if it is an SVG element.
-            bbox = V(el).bbox();
-
-            // getBoundingClientRect() used in jQuery.fn.offset() takes into account `stroke-width`
-            // in Firefox only. So clientRect width/height and getBBox width/height in FF don't match.
-            // To unify this across all browsers we add the `stroke-width` (left & top) back to
-            // the calculated offset.
-            var crect = el.getBoundingClientRect();
-            var strokeWidthX = (crect.width - bbox.width) / 2;
-            var strokeWidthY = (crect.height - bbox.height) / 2;
-
-            // The `bbox()` returns coordinates relative to the SVG viewport, therefore, use the
-            // ones returned from the `offset()` method that are relative to the document.
-            bbox.x = offset.left + strokeWidthX;
-            bbox.y = offset.top + strokeWidthY;
-
-        } else {
-
-            bbox = { x: offset.left, y: offset.top, width: $el.outerWidth(), height: $el.outerHeight() };
-        }
-
-        return bbox;
-    },
 
     position: function(p) {
 
@@ -314,8 +177,8 @@ joint.shapes.bpmn.StepLink = joint.dia.Link.extend({
     tooltip: {},
 
     setTooltip: function() {
-        if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
-        this.tooltip = new joint.ui.Tooltip({
+        if (this.tooltip instanceof joint.ui.JointTooltip) this.removePreviousTooltip();
+        this.tooltip = new joint.ui.JointTooltip({
             target: '[model-id="' + this.id + '"] .connection-wrap',
             content: this.get('description'),
             top: '[model-id="' + this.id + '"] .connection-wrap',
@@ -468,21 +331,7 @@ var selectionView = new joint.ui.SelectionView({
 });
 
 /* STENCIL */
-joint.ui.Stencil = Backbone.View.extend({
-
-    className: 'stencil',
-
-    events: {
-        
-        'click .group-label': 'onGroupLabelClick',
-        'touchstart .group-label': 'onGroupLabelClick',
-        'input .search': 'onSearch'
-    },
-
-    options: {
-        width: 200,
-        height: 800
-    },
+joint.ui.VizStencil = joint.ui.Stencil.extend({
 
     initialize: function(options) {
 
@@ -503,364 +352,9 @@ joint.ui.Stencil = Backbone.View.extend({
 
         this.onSearch = _.debounce(this.onSearch, 200);
     },
-    
-    render: function() {
-
-        this.$el.html(joint.templates.stencil['stencil.html'](this.template));
-        this.$content = this.$('.content');
-
-        if (this.options.search) {
-            this.$el.addClass('searchable').prepend(joint.templates.stencil['search.html']());
-        }
-
-        var paperOptions = {
-            width: this.options.width,
-            height: this.options.height,
-            interactive: false
-        };
-
-        if (this.options.groups) {
-            // Render as many papers as there are groups and put them inside the `'group.html'` template.
-            
-            var sortedGroups = _.sortBy(_.pairs(this.options.groups), function(pair) { return pair[1].index });
-            _.each(sortedGroups, function(groupArray) {
-
-                var name = groupArray[0];
-                var group = groupArray[1];
-                
-                var $group = $(joint.templates.stencil['group.html']({ label: group.label || name }));
-                $group.attr('data-name', name);
-                if (group.closed) $group.addClass('closed');
-                $group.append($(joint.templates.stencil['elements.html']()));
-                this.$content.append($group);
-                this.$groups[name] = $group;
-                
-                var graph = new joint.dia.Graph;
-                this.graphs[name] = graph;
-                var paper = new joint.dia.Paper(_.extend({}, paperOptions, {
-                    el: $group.find('.elements'),
-                    model: graph,
-                    width: group.width || paperOptions.width,
-                    height: group.height || paperOptions.height
-                }));
-                this.papers[name] = paper;
-                
-            }, this);
-            
-        } else {
-            // Groups are not used. Render just one paper for the whole stencil.
-
-            this.$content.append($(joint.templates.stencil['elements.html']()));
-            var graph = new joint.dia.Graph;
-            // `this.graphs` object contains only one graph in this case that we store under the key `'__default__'`.
-            this.graphs['__default__'] = graph;
-            var paper = new joint.dia.Paper(_.extend(paperOptions, {
-                el: this.$('.elements'),
-                model: graph
-            }));
-            this.papers['__default__'] = paper;
-        }
-
-        // Create graph and paper objects for the, temporary, dragging phase.
-        // Elements travel the following way when the user drags an element from the stencil and drops
-        // it into the main, associated, paper: `[One of the Stencil graphs] -> [_graphDrag] -> [this.options.graph]`.
-        this._graphDrag = new joint.dia.Graph;
-        this._paperDrag = new joint.dia.Paper({
-
-            el: this.$('.stencil-paper-drag'),
-            width: 1,
-            height: 1,
-            model: this._graphDrag
-        });
-
-        // `cell:pointerdown` on any of the Stencil papers triggers element dragging.
-        _.each(this.papers, function(paper) {
-            this.listenTo(paper, 'cell:pointerdown', this.onDragStart);
-        }, this);
-
-        return this;
-    },
-
-    // @public Populate stencil with `cells`. If `group` is passed, only the graph in the named group
-    // will be populated.
-    load: function(cells, group) {
-
-        var graph = this.graphs[group || '__default__'];
-        if (graph) {
-            graph.resetCells(cells);
-            // If height is not defined in neither the global `options.height` or local
-            // `height` for this specific group, fit the paper to the content automatically.
-            var paperHeight = this.options.height;
-            if (group && this.options.groups[group]) {
-                paperHeight = this.options.groups[group].height;
-            }
-            if (!paperHeight) {
-                this.papers[group || '__default__'].fitToContent(1, 1, this.options.paperPadding || 10);
-            }
-        } else {
-            throw new Error('Stencil: group ' + group + ' does not exist.');
-        }
-    },
-
-    getGraph: function(group) {
-        
-        return this.graphs[group || '__default__'];
-    },
-
-    getPaper: function(group) {
-        
-        return this.papers[group || '__default__'];
-    },
-    
-    onDragStart: function(cellView, evt) {
-        
-        this.$el.addClass('dragging');
-        this._paperDrag.$el.addClass('dragging');
-        // Move the .stencil-paper-drag element to the document body so that even though
-        // the stencil is set to overflow: hidden or auto, the .stencil-paper-drag will
-        // be visible.
-        $(document.body).append(this._paperDrag.$el);
-        
-        this._clone = cellView.model.clone();
-        this._cloneBbox = cellView.getBBox();
-
-        // Leave some padding so that e.g. the cell shadow or thick border is visible.
-        // This workaround can be removed once browsers start supporting getStrokeBBox() (http://www.w3.org/TR/SVG2/types.html#__svg__SVGGraphicsElement__getStrokeBBox).
-        var padding = 5;
-
-        // Compute the difference between the real (view) bounding box and the model bounding box position.
-        // This makes sure that elements that are outside the model bounding box get accounted for too.
-        var shift = g.point(this._cloneBbox.x - this._clone.get('position').x, this._cloneBbox.y - this._clone.get('position').y);
-
-        this._clone.set('position', { x: -shift.x + padding, y: -shift.y + padding });
-        this._graphDrag.addCell(this._clone);
-        this._paperDrag.setDimensions(this._cloneBbox.width + 2*padding, this._cloneBbox.height + 2*padding);
-
-        // Safari uses `document.body.scrollTop` only while Firefox uses `document.documentElement.scrollTop` only.
-        // Google Chrome is the winner here as it uses both.
-        var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-
-        // Offset the paper so that the mouse cursor points to the center of the stencil element.
-        this._paperDrag.$el.offset({
-            left: evt.clientX - this._cloneBbox.width/2,
-            top: evt.clientY + scrollTop - this._cloneBbox.height/2
-        });
-    },
-
-    onDrag: function(evt) { 
-
-        evt = joint.util.normalizeEvent(evt);
-        
-        if (this._clone) {
-
-            var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-
-            // Offset the paper so that the mouse cursor points to the center of the stencil element.
-            this._paperDrag.$el.offset({
-                left: evt.clientX - this._cloneBbox.width/2,
-                top: evt.clientY + scrollTop - this._cloneBbox.height/2
-            });
-        }
-    },
-
-    onDragEnd: function(evt) { 
-        
-        evt = joint.util.normalizeEvent(evt);
-
-        if (this._clone && this._cloneBbox) {
-
-            this.drop(evt, this._clone.clone(), this._cloneBbox);
-
-            // Move the .stencil-paper-drag from the document body back to the stencil element.
-            this.$el.append(this._paperDrag.$el);
-            
-            this.$el.removeClass('dragging');
-            this._paperDrag.$el.removeClass('dragging');
-            
-            this._clone.remove();
-            this._clone = undefined;
-        }
-    },
-
-    drop: function(evt, cell, cellViewBBox) {
-
-        var paper = this.options.paper;
-        var graph = this.options.graph;
-        
-        var paperPosition = paper.$el.offset();
-        var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-        var scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft;
-        
-        var paperArea = g.rect(
-            paperPosition.left + parseInt(paper.$el.css("border-left-width"),10) - scrollLeft,
-            paperPosition.top + parseInt(paper.$el.css("border-top-width"),10) - scrollTop,
-            paper.$el.innerWidth(),
-            paper.$el.innerHeight()
-        );
-
-    var p = paper.svg.createSVGPoint();
-        p.x = evt.clientX;
-        p.y = evt.clientY;
-
-        // Check if the cell is dropped inside the paper.
-        if (paperArea.containsPoint(p)) {
-
-            // This is a hack for Firefox! If there wasn't a fake (non-visible) rectangle covering the
-            // whole SVG area, `$(paper.svg).offset()` used below won't work.
-            var fakeRect = V('rect', { width: paper.options.width, height: paper.options.height, x: 0, y: 0, opacity: 0 });
-            V(paper.svg).prepend(fakeRect);
-            
-            var paperOffset = $(paper.svg).offset();
-
-            // Clean up the fake rectangle once we have the offset of the SVG document.
-            fakeRect.remove();
-
-        p.x += scrollLeft - paperOffset.left;
-        p.y += scrollTop - paperOffset.top;
-
-        // Transform point into the viewport coordinate system.
-        var pointTransformed = p.matrixTransform(paper.viewport.getCTM().inverse());
-
-        var cellBBox = cell.getBBox();
-        pointTransformed.x += cellBBox.x - cellViewBBox.width / 2;
-        pointTransformed.y += cellBBox.y - cellViewBBox.height / 2;
-
-            cell.set('position', {
-        x: g.snapToGrid(pointTransformed.x, paper.options.gridSize),
-        y: g.snapToGrid(pointTransformed.y, paper.options.gridSize)
-        });
-
-            // `z` level will be set automatically in the `this.graph.addCell()` method.
-            // We don't want the cell to have the same `z` level as it had in the temporary paper.
-            cell.unset('z');
-
-            graph.addCell(cell, { stencil: this.cid });
-        }
-    },
-
-    filter: function(keyword, cellAttributesMap) {
-
-        // a searching mode when the keyword consists of lowercase only
-        // e.g 'keyword' matches 'Keyword' but not other way round
-        var lowerCaseOnly = keyword.toLowerCase() == keyword;
-
-        // We go through each paper.model, filter its cells and watch whether we found a match
-        // yet or not.
-        var match = _.reduce(this.papers, function(wasMatch, paper, group) {
-
-            // an array of cells that matches a search criteria
-            var matchedCells = paper.model.get('cells').filter(function(cell) {
-
-                var cellView = paper.findViewByModel(cell);
-
-                // check whether the currect cell matches a search criteria
-                var cellMatch = !keyword || _.some(cellAttributesMap, function(paths, type) {
-
-                    if (type != '*' && cell.get('type') != type) {
-                        // type is not universal and doesn't match the current cell
-                        return false;
-                    }
-
-                    // find out if any of specific cell attributes matches a search criteria
-                    var attributeMatch = _.some(paths, function(path) {
-
-                        var value = joint.util.getByPath(cell.attributes, path, '/');
-
-                        if (_.isUndefined(value) || _.isNull(value)) {
-                            // if value undefined than current attribute doesn't match
-                            return false;
-                        }
-
-                        // convert values to string first (e.g value could be a number)
-                        value = value.toString();
-
-                        if (lowerCaseOnly) {
-                            value = value.toLowerCase();
-                        }
-
-                        return value.indexOf(keyword) >= 0;
-                    });
-
-                    return attributeMatch;
-                });
-
-                // each element that does not match a search has 'unmatched' css class
-                V(cellView.el).toggleClass('unmatched', !cellMatch);
-
-                return cellMatch;
-
-            }, this);
-
-            var isMatch = !_.isEmpty(matchedCells);
-
-            // create a graph contains only filtered elements.
-            var filteredGraph = (new joint.dia.Graph).resetCells(matchedCells);
-
-            // let the outside world know that the group was filtered
-            this.trigger('filter', filteredGraph, group);
-
-            if (this.$groups[group]) {
-                // add 'unmatched' class when filter matches no elements in the group
-                this.$groups[group].toggleClass('unmatched', !isMatch);
-            }
-
-            paper.fitToContent(1, 1, this.options.paperPadding || 10);
-
-            return wasMatch || isMatch;
-
-        }, false, this);
-
-        // When no match found we add 'not-found' class on the stencil element
-        this.$el.toggleClass('not-found', !match);
-    },
-
-    onSearch: function(evt) {
-
-        this.filter(evt.target.value, this.options.search);
-    },
-
-    onGroupLabelClick: function(evt) {
-
-        // Prevent default action for iPad not to handle this event twice.
-        evt.preventDefault();
-        
-        var $group = $(evt.target).closest('.group');
-        this.toggleGroup($group.data('name'));
-    },
-
-    toggleGroup: function(name) {
-
-        this.$('.group[data-name="' + name + '"]').toggleClass('closed');
-    },
-
-    closeGroup: function(name) {
-        
-        this.$('.group[data-name="' + name + '"]').addClass('closed');
-    },
-
-    openGroup: function(name) {
-        
-        this.$('.group[data-name="' + name + '"]').removeClass('closed');
-    },
-
-    closeGroups: function() {
-
-        this.$('.group').addClass('closed');
-    },
-
-    openGroups: function() {
-
-        this.$('.group').removeClass('closed');
-    },
-
-    remove: function() {
-
-        Backbone.View.prototype.remove.apply(this, arguments);
-        $(document.body).off('.stencil', this.onDrag).off('.stencil', this.onDragEnd);
-    }
 });
 
-var stencil = new joint.ui.Stencil({ 
+var stencil = new joint.ui.VizStencil({ 
                                     graph: graph, 
                                     paper: paper
                                 });
@@ -879,15 +373,7 @@ stencil.render().$el.appendTo('#stencil-container');
 
 // Halo
 
-joint.ui.Halo = Backbone.View.extend({
-
-    className: 'halo',
-
-    events: {
-
-        'mousedown .handle': 'onHandlePointerDown',
-        'touchstart .handle': 'onHandlePointerDown'
-    },
+joint.ui.VizHalo = joint.ui.Halo.extend({
 
     options: {
     tinyTreshold: 40,
@@ -925,59 +411,6 @@ joint.ui.Halo = Backbone.View.extend({
             { name: 'unlink', position: 'w', events: { pointerdown: 'unlinkElement' } },
             { name: 'rotate', position: 'sw', events: { pointerdown: 'startRotating', pointermove: 'doRotate', pointerup: 'stopBatch' } },
         ]
-    },
-
-    initialize: function(options) {
-
-    this.options = _.extend({}, _.result(this, 'options'), options || {});
-
-        _.defaults(this.options, {
-            paper: this.options.cellView.paper,
-            graph: this.options.cellView.paper.model
-        });
-
-        _.bindAll(this, 'pointermove', 'pointerup', 'render', 'update', 'remove');
-
-        // Clear a previous halo if there was one for the paper.
-        joint.ui.Halo.clear(this.options.paper);
-
-        // Add handles.
-        this.handles = [];
-        _.each(this.options.handles, this.addHandle, this);
-
-    // Update halo when the graph changed.
-        this.listenTo(this.options.graph, 'reset', this.remove);
-        this.listenTo(this.options.graph, 'all', this.update);
-        // Hide Halo when the user clicks anywhere in the paper or a new halo is created.
-        this.listenTo(this.options.paper, 'blank:pointerdown halo:create', this.remove);
-        this.listenTo(this.options.paper, 'scale translate', this.update);
-
-        $(document.body).on('mousemove touchmove', this.pointermove);
-        $(document).on('mouseup touchend', this.pointerup);
-
-        this.options.paper.$el.append(this.$el);
-    },
-
-    render: function() {
-
-        this.options.cellView.model.on('remove', this.remove);
-
-        this.$el.append(joint.templates.halo['box.html']());
-
-        this.renderMagnets();
-
-        this.update();
-
-        this.$el.addClass('animate');
-
-        // Add the `data-type` attribute with the `type` of the cell to the root element.
-        // This makes it possible to style the halo (including hiding/showing actions) based
-        // on the type of the cell.
-        this.$el.attr('data-type', this.options.cellView.model.get('type'));
-
-        this.toggleFork();
-
-        return this;
     },
 
     update: function() {
@@ -1036,121 +469,6 @@ joint.ui.Halo = Backbone.View.extend({
     this.toggleUnlink();
     },
 
-    addHandle: function(opt) {
-
-        this.handles.push(opt);
-
-        this.$el.append(joint.templates.halo['handle.html'](opt));
-
-        _.each(opt.events, function(method, event) {
-
-            if (_.isString(method)) {
-
-                this.on('action:' + opt.name + ':' + event, this[method], this);
-
-            } else {
-                // Otherwise, it must be a function.
-
-                this.on('action:' + opt.name + ':' + event, method);
-            }
-
-        }, this);
-
-        return this;
-    },
-
-    removeHandle: function(name) {
-
-        var handleIdx = _.findIndex(this.handles, { name: name });
-        var handle = this.handles[handleIdx];
-        if (handle) {
-
-            _.each(handle.events, function(method, event) {
-
-                this.off('action:' + name + ':' + event);
-
-            }, this);
-
-            this.$('.handle.' + name).remove();
-
-            this.handles.splice(handleIdx, 1);
-        }
-
-        return this;
-    },
-
-    changeHandle: function(name, opt) {
-
-        var handle = _.findWhere(this.handles, { name: name });
-        if (handle) {
-
-            this.removeHandle(name);
-            this.addHandle(_.merge({ name: name }, handle, opt));
-        }
-
-        return this;
-    },
-
-    onHandlePointerDown: function(evt) {
-
-        this._action = $(evt.target).closest('.handle').attr('data-action');
-        if (this._action) {
-
-            evt.preventDefault();
-            evt.stopPropagation();
-            evt = joint.util.normalizeEvent(evt);
-
-            this._clientX = evt.clientX;
-            this._clientY = evt.clientY;
-            this._startClientX = this._clientX;
-            this._startClientY = this._clientY;
-
-            this.triggerAction(this._action, 'pointerdown', evt);
-        }
-    },
-
-    // Trigger an action on the Halo object. `evt` is a DOM event, `eventName` is an abstracted
-    // JointJS event name (poiterdown, pointermove, pointerup).
-    triggerAction: function(action, eventName, evt) {
-
-        var args = ['action:' + action + ':' + eventName].concat(_.rest(_.toArray(arguments), 2));
-        this.trigger.apply(this, args);
-    },
-
-    startCloning: function(evt) {
-
-        this.options.graph.trigger('batch:start');
-
-        this._clone = this.options.cellView.model.clone();
-        this._clone.unset('z');
-        this.options.graph.addCell(this._clone, { halo: this.cid });
-    },
-
-    startLinking: function(evt) {
-
-        this.options.graph.trigger('batch:start');
-
-        var cellView = this.options.cellView;
-        var selector = $.data(evt.target, 'selector');
-        var link = this.options.paper.getDefaultLink(cellView, selector && cellView.el.querySelector(selector));
-
-        link.set('source', { id: cellView.model.id, selector: selector });
-        link.set('target', { x: evt.clientX, y: evt.clientY });
-
-        link.attr(this.options.linkAttributes);
-        if (_.isBoolean(this.options.smoothLinks)) {
-            link.set('smooth', this.options.smoothLinks);
-        }
-
-        // add link to graph but don't validate
-        this.options.graph.addCell(link, { validation: false, halo: this.cid });
-
-        link.set('target', this.options.paper.snapToGrid({ x: evt.clientX, y: evt.clientY }));
-
-        this._linkView = this.options.paper.findViewByModel(link);
-        this._linkView.startArrowheadMove('target');
-    },
-
     startForking: function(evt) {
 
         this.options.graph.trigger('batch:start');
@@ -1182,87 +500,6 @@ joint.ui.Halo = Backbone.View.extend({
         this.options.graph.addCell(link, { halo: this.cid });
     },
 
-    startResizing: function(evt) {
-
-        this.options.graph.trigger('batch:start');
-
-        // determine whether to flip x,y mouse coordinates while resizing or not
-        this._flip = [1,0,0,1,1,0,0,1][
-            Math.floor(g.normalizeAngle(this.options.cellView.model.get('angle')) / 45)
-        ];
-    },
-
-    startRotating: function(evt) {
-
-        this.options.graph.trigger('batch:start');
-
-        var bbox = this.options.cellView.getBBox();
-
-        this._center = g.rect(bbox).center();
-
-        //mousemove event in firefox has undefined offsetX and offsetY
-        if (typeof evt.offsetX === 'undefined' || typeof evt.offsetY === 'undefined') {
-            var targetOffset = $(evt.target).offset();
-            evt.offsetX = evt.pageX - targetOffset.left;
-            evt.offsetY = evt.pageY - targetOffset.top;
-        }
-
-        this._rotationStart = g.point(evt.offsetX + evt.target.parentNode.offsetLeft, evt.offsetY + evt.target.parentNode.offsetTop + evt.target.parentNode.offsetHeight);
-
-        var angle = this.options.cellView.model.get('angle');
-
-        this._rotationStartAngle = angle || 0;
-    },
-
-    doResize: function(evt, dx, dy) {
-
-        var size = this.options.cellView.model.get('size');
-
-        var width = Math.max(size.width + ((this._flip ? dx : dy)), 1);
-        var height = Math.max(size.height + ((this._flip ? dy : dx)), 1);
-
-        this.options.cellView.model.resize(width, height, { absolute: true });
-    },
-
-    doRotate: function(evt, dx, dy, tx, ty) {
-
-        var p = g.point(this._rotationStart).offset(tx, ty);
-        var a = p.distance(this._center);
-        var b = this._center.distance(this._rotationStart);
-        var c = this._rotationStart.distance(p);
-        var sign = (this._center.x - this._rotationStart.x) * (p.y - this._rotationStart.y) - (this._center.y - this._rotationStart.y) * (p.x - this._rotationStart.x);
-
-        var _angle = Math.acos((a*a + b*b - c*c) / (2*a*b));
-
-        // Quadrant correction.
-        if (sign <= 0) {
-            _angle = -_angle;
-        }
-
-        var angleDiff = -g.toDeg(_angle);
-
-        angleDiff = g.snapToGrid(angleDiff, this.options.rotateAngleGrid);
-
-        this.options.cellView.model.rotate(angleDiff + this._rotationStartAngle, true);
-    },
-
-    doClone: function(evt, dx, dy) {
-
-        this._clone.translate(dx, dy);
-    },
-
-    doFork: function(evt, dx, dy) {
-
-        this._clone.translate(dx, dy);
-    },
-
-    doLink: function(evt) {
-
-        var clientCoords = this.options.paper.snapToGrid({ x: evt.clientX, y: evt.clientY });
-
-        this._linkView.pointermove(evt, clientCoords.x, clientCoords.y);
-    },
-
     stopLinking: function(evt) {
 
         this._linkView.pointerup(evt);
@@ -1285,202 +522,11 @@ joint.ui.Halo = Backbone.View.extend({
 
     },
 
-    pointermove: function(evt) {
-
-        if (!this._action) return;
-
-        evt.preventDefault();
-        evt.stopPropagation();
-        evt = joint.util.normalizeEvent(evt);
-
-        var clientCoords = this.options.paper.snapToGrid({ x: evt.clientX, y: evt.clientY });
-        var oldClientCoords = this.options.paper.snapToGrid({ x: this._clientX, y: this._clientY });
-
-        var dx = clientCoords.x - oldClientCoords.x;
-        var dy = clientCoords.y - oldClientCoords.y;
-
-        this.triggerAction(this._action, 'pointermove', evt, dx, dy, evt.clientX - this._startClientX, evt.clientY - this._startClientY);
-
-        this._clientX = evt.clientX;
-        this._clientY = evt.clientY;
-    },
-
-    pointerup: function(evt) {
-
-        if (!this._action) return;
-
-        this.triggerAction(this._action, 'pointerup', evt);
-
-        delete this._action;
-    },
-
-    stopBatch: function() {
-
-        this.options.graph.trigger('batch:stop');
-    },
-
-    remove: function(evt) {
-        Backbone.View.prototype.remove.apply(this, arguments);
-
-        $(document.body).off('mousemove touchmove', this.pointermove);
-        $(document).off('mouseup touchend', this.pointerup);
-    },
-
     removeElement: function(evt) {
 
         this.options.cellView.model.remove();
         toolbar.saveGraph()
     },
-
-    unlinkElement: function(evt) {
-
-        this.options.graph.removeLinks(this.options.cellView.model);
-    },
-
-    toggleUnlink: function() {
-
-        if (this.options.graph.getConnectedLinks(this.options.cellView.model).length > 0) {
-            this.$('.unlink').show()
-        } else {
-            this.$('.unlink').hide()
-        }
-    },
-
-    toggleFork: function() {
-
-        // temporary create a clone model and its view
-        var clone = this.options.cellView.model.clone();
-        var cloneView = this.options.paper.createViewForModel(clone);
-
-        // if a connection after forking would not be valid, hide the fork icon
-        if (!this.options.paper.options.validateConnection(this.options.cellView,null,cloneView,null,'target')) {
-        this.$('.fork').hide();
-        }
-
-        cloneView.remove();
-        clone = null;
-    },
-
-    makeLoopLink: function(link) {
-
-    var linkWidth = this.options.loopLinkWidth;
-    var paperOpt = this.options.paper.options;
-    var paperRect = g.rect({x: 0, y: 0, width: paperOpt.width, height: paperOpt.height});
-    var bbox = V(this.options.cellView.el).bbox(false, this.options.paper.viewport);
-    var p1, p2;
-
-    var sides = _.uniq([this.options.loopLinkPreferredSide, 'top', 'bottom', 'left', 'right']);
-    var sideFound = _.find(sides, function(side) {
-
-        var centre, dx = 0, dy = 0;
-
-        switch (side) {
-
-        case 'top':
-        centre = g.point(bbox.x + bbox.width / 2, bbox.y - linkWidth);
-        dx = linkWidth / 2;
-        break;
-
-        case 'bottom':
-        centre = g.point(bbox.x + bbox.width / 2, bbox.y + bbox.height + linkWidth);
-        dx = linkWidth / 2;
-        break;
-
-        case 'left':
-        centre = g.point(bbox.x - linkWidth, bbox.y + bbox.height / 2);
-        dy = linkWidth / 2;
-        break;
-
-        case 'right':
-        centre = g.point(bbox.x + bbox.width + linkWidth, bbox.y + bbox.height / 2);
-        dy = linkWidth / 2;
-        break;
-        };
-
-        p1 = g.point(centre).offset(-dx, -dy);
-        p2 = g.point(centre).offset(dx, dy);
-
-        return paperRect.containsPoint(p1) && paperRect.containsPoint(p2);
-    }, this);
-
-    if (sideFound) link.set('vertices', [p1,p2]);
-    },
-
-    // Magnet functions
-
-    renderMagnets: function() {
-
-    this._magnets = [];
-
-    var $link = this.$('.link');
-    var magnetElements = this.options.cellView.$('[magnet="true"]');
-
-    if (this.options.magnetFilter) {
-
-        if (_.isFunction(this.options.magnetFilter)) {
-
-        // We want function to be called with a magnet element as the first parameter. Not an index
-        // as jQuery.filter would do it.
-        magnetElements = _.filter(magnetElements, this.options.magnetFilter);
-
-        } else {
-
-        // Every other case runs jQuery.filter method
-        magnetElements = magnetElements.filter(this.options.magnetFilter);
-        }
-    }
-
-    if ($link.length && magnetElements.length) {
-
-        var linkWidth = $link.width();
-        var linkHeight = $link.height();
-
-        _.each(magnetElements, function(magnetElement) {
-
-        var magnetClientRect = magnetElement.getBoundingClientRect();
-
-        var $haloElement = $link.clone()
-            .addClass('halo-magnet')
-            .css({
-            width: Math.min(magnetClientRect.width, linkWidth),
-            height: Math.min(magnetClientRect.height, linkHeight),
-            'background-size': 'contain'
-            })
-            .data('selector', this.options.cellView.getSelector(magnetElement))
-            .appendTo(this.$el);
-
-        this._magnets.push({ $halo: $haloElement, el: magnetElement });
-
-        }, this);
-    }
-
-    // disable linking & forking from the element itself if is it not a magnet
-    if (this.options.cellView.$el.attr('magnet') == 'false') {
-        $link.hide();
-        this.$('.fork').hide();
-    }
-    },
-
-    updateMagnets: function() {
-
-    if (this._magnets.length) {
-
-        var hClientRect = this.el.getBoundingClientRect();
-
-        // adjust position of each halo magnet
-        _.each(this._magnets, function(magnet) {
-
-        var mClientRect = magnet.el.getBoundingClientRect();
-
-        magnet.$halo.css({
-            left: mClientRect.left - hClientRect.left + (mClientRect.width - magnet.$halo.width())/2,
-            top: mClientRect.top - hClientRect.top + (mClientRect.height - magnet.$halo.height())/2
-        });
-
-        }, this);
-    }
-    }
-
 }, {
 
     // removes a halo from a paper
@@ -1508,19 +554,9 @@ joint.shapes.bpmn.icons = {
 
 joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
     markup: ['<g class="rotatable"><g class="scalable"><rect/></g><switch>',
-
-             // if foreignObject supported
-
-             // '<foreignObject requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" class="title">',
-             // '<body xmlns="http://www.w3.org/1999/xhtml"><div/></body>',
-             // '</foreignObject>',
              '<foreignObject requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" class="fobj">',
              '<body xmlns="http://www.w3.org/1999/xhtml"><div/></body>',
              '</foreignObject>',
-
-             // else foreignObject is not supported (fallback for IE)
-             // '<text class="content"/>',
-
              '</switch></g>'].join(''),
 
     defaults: joint.util.deepSupplement({
@@ -1823,14 +859,11 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
 
 });
 
-joint.shapes.bpmn.StepView = joint.shapes.basic.TextBlockView;
-
 joint.shapes.bpmn.External = joint.shapes.bpmn.Step.extend({
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.External',
         bpmn_name: 'Internal Step',
-        // see joint.css for more element styles
         attrs: {
             rect: {
                 fill: '#EAF4FD',
@@ -1864,7 +897,6 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
 
         type: 'bpmn.Intervention',
         bpmn_name: 'Intervention',
-        // see joint.css for more element styles
         attrs: {
             rect: {
                 fill: '#FFF6E8',
@@ -1953,7 +985,7 @@ joint.shapes.bpmn.Organization = joint.dia.Element.extend({
     },
 
     setTooltip: function() {
-        if (this.tooltip instanceof joint.ui.Tooltip) this.tooltip.remove();
+        if (this.tooltip instanceof joint.ui.JointTooltip) this.tooltip.remove();
         if( (this.has('name') && this.get('name').length>0) || (this.has('description') && this.get('description').length>0) ) {
             var div = document.createElement("div");
                 div.className = 'joint-tooltip-content';
@@ -1966,7 +998,7 @@ joint.shapes.bpmn.Organization = joint.dia.Element.extend({
             div.appendChild(name);
             div.appendChild(description);
 
-            this.tooltip = new joint.ui.Tooltip({
+            this.tooltip = new joint.ui.JointTooltip({
                 target: ' [model-id="' + this.id + '"]',
                 content: div.innerHTML,
                 bottom: ' [model-id="' + this.id + '"]',
@@ -2113,7 +1145,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
     tooltip: {},
 
     setTooltip: function() {
-        if (this.tooltip instanceof joint.ui.Tooltip) this.removePreviousTooltip();
+        if (this.tooltip instanceof joint.ui.JointTooltip) this.removePreviousTooltip();
 
         $('[model-id='+this.get('id')+'] g text').html( '' );
 
@@ -2131,7 +1163,7 @@ joint.shapes.bpmn.Person = joint.shapes.bpmn.Organization.extend({
                 description.className = 'joint-tooltip-text';
             div.appendChild(name);
             div.appendChild(description);
-            this.tooltip = new joint.ui.Tooltip({
+            this.tooltip = new joint.ui.JointTooltip({
                 target: ' [model-id="' + this.id + '"]',
                 content: div.innerHTML,
                 bottom: ' [model-id="' + this.id + '"]',
@@ -2533,7 +1565,6 @@ stencil.load([
     new joint.shapes.bpmn.Intervention,
     new joint.shapes.bpmn.Person,
     new joint.shapes.bpmn.Organization,
-    // new joint.shapes.bpmn.Annotation,
     new joint.shapes.bpmn.GroupOrganization,
 ]);
 
@@ -2550,7 +1581,7 @@ stencil.getPaper().fitToContent(0, 0, 10);
 
 // Create tooltips for all the shapes in stencil.
 stencil.getGraph().get('cells').each(function(cell) {
-    new joint.ui.Tooltip({
+    new joint.ui.JointTooltip({
         target: '.stencil [model-id="' + cell.id + '"]',
         //hack for getting the type without the bpmn
         content: cell.get('bpmn_name'),
@@ -2563,11 +1594,6 @@ stencil.getGraph().get('cells').each(function(cell) {
 /* CELL ADDED: after the view of the model was added into the paper */
 graph.on('add', function(cell, collection, opt) {
 
-    // TODO: embedding after an element is dropped from the stencil. There is a problem with
-    // the command manager and wrong order of actions (embeding, parenting, adding and as it
-    // must be 3,1,2) in one batch. Can't be done silently either (becoming an attribute
-    // of an element being added) because redo action of `add` (=remove) won't reset the parent embeds.
-    // --embedInPool(cell);
     if (!(cell instanceof joint.shapes.bpmn.StepLink)) {
         toolbar.saveGraph()
 
@@ -2600,7 +1626,7 @@ paper.el.oncontextmenu = function(evt) { evt.preventDefault(); };
 
 $('#toolbar-container [data-tooltip]').each(function() {
 
-    new joint.ui.Tooltip({
+    new joint.ui.JointTooltip({
         target: $(this),
         content: $(this).data('tooltip'),
         top: '#toolbar-container',
@@ -2755,7 +1781,7 @@ function openIHF(cellView, edit){
         }
 
         if( interactive_status ) {
-            var halo = new joint.ui.Halo({
+            var halo = new joint.ui.VizHalo({
                 cellView: cellView,
                 boxContent: function(cellView) {
                     return cellView.model.get('type');
@@ -2780,7 +1806,7 @@ function openIHF(cellView, edit){
         if( interactive_status ) {
             new joint.ui.FreeTransform({ cellView: cellView }).render();
 
-            var halo = new joint.ui.Halo({
+            var halo = new joint.ui.VizHalo({
                 cellView: cellView,
                 boxContent: function(cellView) {
                     return cellView.model.get('type');
