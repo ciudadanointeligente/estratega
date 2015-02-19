@@ -554,19 +554,9 @@ joint.shapes.bpmn.icons = {
 
 joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
     markup: ['<g class="rotatable"><g class="scalable"><rect/></g><switch>',
-
-             // if foreignObject supported
-
-             // '<foreignObject requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" class="title">',
-             // '<body xmlns="http://www.w3.org/1999/xhtml"><div/></body>',
-             // '</foreignObject>',
              '<foreignObject requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" class="fobj">',
              '<body xmlns="http://www.w3.org/1999/xhtml"><div/></body>',
              '</foreignObject>',
-
-             // else foreignObject is not supported (fallback for IE)
-             // '<text class="content"/>',
-
              '</switch></g>'].join(''),
 
     defaults: joint.util.deepSupplement({
@@ -869,14 +859,11 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
 
 });
 
-joint.shapes.bpmn.StepView = joint.shapes.basic.TextBlockView;
-
 joint.shapes.bpmn.External = joint.shapes.bpmn.Step.extend({
     defaults: joint.util.deepSupplement({
 
         type: 'bpmn.External',
         bpmn_name: 'Internal Step',
-        // see joint.css for more element styles
         attrs: {
             rect: {
                 fill: '#EAF4FD',
@@ -910,7 +897,6 @@ joint.shapes.bpmn.Intervention = joint.shapes.bpmn.Step.extend({
 
         type: 'bpmn.Intervention',
         bpmn_name: 'Intervention',
-        // see joint.css for more element styles
         attrs: {
             rect: {
                 fill: '#FFF6E8',
@@ -1579,7 +1565,6 @@ stencil.load([
     new joint.shapes.bpmn.Intervention,
     new joint.shapes.bpmn.Person,
     new joint.shapes.bpmn.Organization,
-    // new joint.shapes.bpmn.Annotation,
     new joint.shapes.bpmn.GroupOrganization,
 ]);
 
@@ -1609,11 +1594,6 @@ stencil.getGraph().get('cells').each(function(cell) {
 /* CELL ADDED: after the view of the model was added into the paper */
 graph.on('add', function(cell, collection, opt) {
 
-    // TODO: embedding after an element is dropped from the stencil. There is a problem with
-    // the command manager and wrong order of actions (embeding, parenting, adding and as it
-    // must be 3,1,2) in one batch. Can't be done silently either (becoming an attribute
-    // of an element being added) because redo action of `add` (=remove) won't reset the parent embeds.
-    // --embedInPool(cell);
     if (!(cell instanceof joint.shapes.bpmn.StepLink)) {
         toolbar.saveGraph()
 
