@@ -5,7 +5,6 @@ RSpec.describe TestsController, :type => :controller do
         it "gets an html where I can run Qunit" do
             get :index
             response.should render_template :index
-            response.should render_template ('layouts/sandboxes')
         end
     end
 end
