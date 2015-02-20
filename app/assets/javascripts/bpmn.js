@@ -1953,7 +1953,7 @@ $(function () {
     }
 
     if(!interactive_status) {
-        $('.left').attr('style','display:none')
+        $('.sidebar-left').attr('style','display:none')
     }
 
     generateStencilTutorial();
