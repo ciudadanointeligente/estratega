@@ -1841,17 +1841,18 @@ function embedInGroup(cell) {
             return (c instanceof joint.shapes.bpmn.Step) && (c.id !== cell.id);
         });
 
-        // Prevent recursive embedding.
-        if (groupCell && groupCell.get('parent') !== cell.id) {
-            groupCell.embed(cell);
-        }
+        if (cell instanceof joint.shapes.bpmn.Person) {
+            if (stepCell) {
+                cell.set('size_type', 'small')
+                stepCell.updatePersons(cell)
+            }
+            else if (groupCell)
+                groupCell.embed(cell);
+        }       
 
         // Prevent recursive embedding.
-        else if ((stepCell && stepCell.get('parent') !== cell.id) && (cell instanceof joint.shapes.bpmn.Person)) {
-            cell.set('size_type', 'small')
-            stepCell.updatePersons(cell)
-            // stepCell.embed(cell);
-            // stepCell.fixEmbeddedPosition();
+        else if (groupCell && groupCell.get('parent') !== cell.id) {
+            groupCell.embed(cell);
         }
     }
 }
