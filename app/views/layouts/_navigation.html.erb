@@ -3,7 +3,7 @@
 	<a class="company-logo" href="/">Vizard</a><span class="tagline">beta</span>
 	<!-- Top Menu Items -->
     <% if( user_signed_in? ) %>
-    <ul class="nav navbar-right top-nav">
+    <ul class="nav navbar-right top-nav" data-step="3" data-intro="This is the user navigation menu">
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Bienvenido, <%= current_user.email %> <b class="caret"></b></a>
             <ul class="dropdown-menu">

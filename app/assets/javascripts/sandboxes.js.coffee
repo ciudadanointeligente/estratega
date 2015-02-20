@@ -8,3 +8,4 @@
 //= require keyboard.js
 //= require bpmn.js
 //= require vizard-extras.js
+//= require intro.min.js

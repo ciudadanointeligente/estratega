@@ -1956,4 +1956,13 @@ $(function () {
         $('.left').attr('style','display:none')
     }
 
+    generateStencilTutorial();
 });
+
+function generateStencilTutorial() {
+
+    var step = document.getElementById("stencil-container");
+    step.setAttribute("data-step", "4");
+    step.setAttribute("data-intro", "This is the stencil, where new elements can be dragged and dropped into the sandbox <li>Step: element of an external process</li> <li>Internal Step: step of a process within your organization</li> <li>Intervention: action that means to create change in a step, usually also linked to an internal step</li> <li>Actor: person, organization or position</li> <li>Internal Step: element that groups steps or actors (structural, temporal, social, etc.)</li>");
+    step.setAttribute("data-position", "right");
+}
