@@ -18,8 +18,9 @@ a.company-logo{
 }
 
 span.tagline{
-	padding: 17px 0 0 5px;
-	color: #E9A75B;
+	padding: 15px 0 0 5px;
+	color: #FCE634;
+  font-weight: bold;
 	float: left;
 }
 
@@ -277,8 +278,8 @@ span.tagline{
 .navbar-inverse{
 	margin: 0;
 	position: relative;
-
-
+  background-color: #01bff4;
+  border-color: #01bff4;
 }
 
 .navbar-right .dropdown-menu{
@@ -807,4 +808,15 @@ background-color: #F55923;
 
 * html .clearfix {
 	height: 1%;
+}
+/* -------------------- estilos propios -------------------- */
+.mb40 {
+  margin-bottom: 40px;
+}
+.mtb40 {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.mb20 {
+  margin-bottom: 20px;
 }
