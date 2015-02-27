@@ -1,5 +1,5 @@
-html, body {
-  font-family: 'Open Sans', sans-serif;
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   font-size: 13px;
   background: #f6f6f6;
 }
@@ -278,8 +278,8 @@ span.tagline{
 .navbar-inverse{
 	margin: 0;
 	position: relative;
-  background-color: #01bff4;
-  border-color: #01bff4;
+  background-color: #2c3e50;
+  border-color: #34495e;
 }
 
 .navbar-right .dropdown-menu{
@@ -819,4 +819,20 @@ background-color: #F55923;
 }
 .mb20 {
   margin-bottom: 20px;
+}
+.banner {
+background-color: #3498db;
+color: #fff;
+height: 300px;
+}
+.banner h2, .banner p {
+  text-shadow: 0 1px 0 rgba(0,0,0,.1);
+}
+.banner h2 {
+  text-shadow: 0 1px 0 rgba(0,0,0,.1);
+  font-size: 50px;
+}
+.banner p {
+  font-size: 16px;
+  line-height: 1.5;
 }
