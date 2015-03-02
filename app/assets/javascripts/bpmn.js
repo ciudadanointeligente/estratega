@@ -246,11 +246,11 @@ var paper = new joint.dia.Paper({
     },
 
     'cell:pointerdown': function(cellView, evt) {
-
         // Select an element if CTRL/Meta key is pressed while the element is clicked.
         if ((evt.ctrlKey || evt.metaKey) && cellView.model instanceof joint.dia.Element) {
             selection.add(cellView.model);
             selectionView.createSelectionBox(cellView);
+            return;
         }
 
         var cell = cellView.model;
@@ -272,7 +272,10 @@ var paper = new joint.dia.Paper({
         }
     },
 
-    'cell:pointerup': function(cellView) {
+    'cell:pointerup': function(cellView, evt) {
+        if ((evt.ctrlKey || evt.metaKey) && cellView.model instanceof joint.dia.Element) {
+            return;
+        }
         embedInGroup(cellView.model);
         openIHF(cellView);
     }
