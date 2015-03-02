@@ -13,8 +13,8 @@
     <header>
       <nav class="navbar navbar-inverse navbar-fixed-top clearfix">
         <div class="container">
-          <a class="company-logo" href="/">Wizard</a><span class="tagline">beta</span>
           <% if( user_signed_in? ) %>
+          <a class="company-logo" href="/sandboxes">Wizard</a><span class="tagline">beta</span>
           <ul class="nav navbar-right top-nav">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Bienvenido, <%= current_user.email %> <b class="caret"></b></a>
@@ -29,6 +29,8 @@
               </ul>
             </li>
           </ul>
+          <% else %>
+          <a class="company-logo" href="/">Wizard</a><span class="tagline">beta</span>
           <% end %>
           <div class="container">
               <div class="clearfix toolbarName">
@@ -37,7 +39,8 @@
         </div>
       </nav>
     </header>
-<!-- acÃ¡ agregar el div con la imagen -->
+
+<% if( !user_signed_in? ) %>
     <div class="row banner">
       <div class="container">
         <div class="col-md-6 mtb40">
@@ -46,20 +49,25 @@
         </div>
       </div>
     </div>
-<!-- fin -->
+<% end %>
     <div role="main" class="container FullPage">
       <%= render 'layouts/messages' %>
       <%= yield %>
     </div>
-    <div class="row footer">
-      <div class="container mtb40">
-        <div class="col-md-8">
-          <h3>Developed by</h3>
-        </div>
-        <div class="col-md-4">
-          <h3>Contact</h3>
+    <footer>
+      <div class="row">
+        <div class="container mtb40">
+          <div class="col-md-8">
+            <h3 class="mb20">Developed by</h3>
+          </div>
+          <div class="col-md-4">
+            <h3 class="mb20">Contact</h3>
+            <p><i class="fa fa-phone"></i> +56 2 2419 2770</p>
+            <p><i class="fa fa-envelope"></i> <a href="#">Contacto Prensa</a></p>
+            <p><i class="fa fa-map-marker"></i>Holanda 895, Providencia</p>
+          </div>
         </div>
       </div>
-    </div>
+    </footer>
   </body>
 </html>
