@@ -259,7 +259,7 @@ var paper = new joint.dia.Paper({
             return;
         }
 
-        else if (cell instanceof joint.shapes.bpmn.Person){
+        else if (cell instanceof joint.shapes.bpmn.Organization){
             if (cell.get('parent') instanceof joint.shapes.bpmn.Step) {
                 parent = graph.getCell(cell.get('parent'))
                 parent.unembed(cell);
@@ -753,7 +753,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
     updatePersons: function(person){
         // person added
         if (person){
-            var embedded_persons = _.filter(this.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.Person})
+            var embedded_persons = _.filter(this.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.Organization})
             embedded_persons.push(person)
             this.embed(person);
             this.fixEmbeddedPosition();
@@ -768,7 +768,7 @@ joint.shapes.bpmn.Step = joint.shapes.basic.Generic.extend({
 
     fixEmbeddedPosition: function(){
         // draw people in alphabetical order
-        var embedded_persons = _.filter(this.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.Person})
+        var embedded_persons = _.filter(this.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.Organization})
         if (!embedded_persons.length) return;
         var yPosition = this.get('position').y + this.get('size').height - embedded_persons[0].get('size').height*1.6;
         var ordered_persons = embedded_persons.sort(function(a,b){
@@ -971,7 +971,7 @@ joint.shapes.bpmn.Organization = joint.dia.Element.extend({
 
     }, joint.dia.Element.prototype.defaults),
 
-    invisible_attrs: [],
+    invisible_attrs: ['size_type', 'color', 'parent_org'],
 
     initialize: function() {
 
@@ -1482,7 +1482,7 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
 
     }, joint.dia.Element.prototype.defaults),
 
-    invisible_attrs: [],
+    invisible_attrs: ['color'],
 
     initialize: function() {
         joint.dia.Element.prototype.initialize.apply(this, arguments);
@@ -1753,7 +1753,7 @@ function openIHF(cellView, edit){
     if (cellView.model instanceof joint.dia.Element && !( cellView.model instanceof joint.shapes.bpmn.GroupOrganization)) {
 
         if ( cellView.model instanceof joint.shapes.bpmn.Step ) {
-            var embedded_persons = _.filter(cellView.model.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.Person})
+            var embedded_persons = _.filter(cellView.model.getEmbeddedCells(), function(x){return x instanceof joint.shapes.bpmn.Organization})
             if (embedded_persons.length) {
                 var group = document.createElement("div"),
                     field = document.createElement("div"),
@@ -1841,7 +1841,7 @@ function embedInGroup(cell) {
             return (c instanceof joint.shapes.bpmn.Step) && (c.id !== cell.id);
         });
 
-        if (cell instanceof joint.shapes.bpmn.Person) {
+        if (cell instanceof joint.shapes.bpmn.Organization) {
             if (stepCell) {
                 cell.set('size_type', 'small')
                 stepCell.updatePersons(cell)

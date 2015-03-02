@@ -528,7 +528,7 @@ var inputs = {
             group: 'general',
             index: 1
         },
-        parent: {
+        parent_org: {
             type: 'text',
             label: 'Parent Organization',
             group: 'general',
