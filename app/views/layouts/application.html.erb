@@ -43,10 +43,11 @@ $(document).ready(function(){
               <li class="dropdown">
               <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-user"></i> Sign In <strong class="caret"></strong></a>
                 <div class="dropdown-menu" style="padding: 15px; right: 0; left: initial;">
-                  <form method="post" action="login" accept-charset="UTF-8">
-                    <input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="username">
-                    <input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password">
-                    <p><input style="float: left; margin-right: 10px;" type="checkbox" name="remember-me" id="remember-me" value="1">Remember me</p>
+                  <form method="post" action="/users/sign_in" accept-charset="UTF-8">
+                    <div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="ON2V8XPajVLj0IlToPxGL0jFmBhLA8U6ESrPk+AW0VQ="></div>
+                    <input style="margin-bottom: 15px;" type="email" placeholder="Email" id="user_email" name="user[email]">
+                    <input style="margin-bottom: 15px;" type="password" placeholder="Password" id="user_password" name="user[password]">
+                    <p><input style="float: left; margin-right: 10px;" type="checkbox" name="user[remember_me]" id="user_remember_me" value="1">Remember me</p>
                     <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In">
                   </form>
                 </div>
