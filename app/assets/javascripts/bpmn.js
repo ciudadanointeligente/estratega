@@ -1445,8 +1445,8 @@ joint.shapes.bpmn.GroupOrganization = joint.dia.Element.extend({
             '.body': {
                 width: 200,
                 height: 200,
-                'stroke-dasharray': '6,6',
-                'stroke-width': 2,
+                stroke: '#00472C',
+                'stroke-width': 1,
                 fill: '#50E3C2',
                 rx: 0,
                 ry: 0,
