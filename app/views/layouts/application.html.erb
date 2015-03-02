@@ -8,6 +8,14 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <script type="text/javascript">
+$(document).ready(function(){
+    //Handles menu drop down
+    $('.dropdown-menu').find('form').click(function (e) {
+        e.stopPropagation();
+    });
+});
+    </script>
   </head>
   <body>
     <header>
@@ -30,7 +38,24 @@
             </li>
           </ul>
           <% else %>
-          <a class="company-logo" href="/">Wizard</a><span class="tagline">beta</span>
+          <a class="company-logo" href="/sandboxes">Wizard</a><span class="tagline">beta</span>
+            <ul class="nav pull-right">
+              <li class="dropdown">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-user"></i> Sign In <strong class="caret"></strong></a>
+                <div class="dropdown-menu" style="padding: 15px; right: 0; left: initial;">
+                  <form method="post" action="login" accept-charset="UTF-8">
+                    <input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="username">
+                    <input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password">
+                    <p><input style="float: left; margin-right: 10px;" type="checkbox" name="remember-me" id="remember-me" value="1">Remember me</p>
+                    <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In">
+                  </form>
+                </div>
+              </li>
+          </ul>
+      </div>
+            </div>
+      </div>
+      <!--/.nav-collapse -->
           <% end %>
           <div class="container">
               <div class="clearfix toolbarName">
@@ -59,6 +84,7 @@
         <div class="container mtb40">
           <div class="col-md-8">
             <h3 class="mb20">Developed by</h3>
+            <%= image_tag "UNICEF.png" %><%= image_tag "FCI.png" %>
           </div>
           <div class="col-md-4">
             <h3 class="mb20">Contact</h3>
