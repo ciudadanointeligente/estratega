@@ -2,42 +2,99 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Vizard" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Wizard" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Vizard Rails" %>">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <script type="text/javascript">
+$(document).ready(function(){
+    //Handles menu drop down
+    $('.dropdown-menu').find('form').click(function (e) {
+        e.stopPropagation();
+    });
+});
+    </script>
   </head>
   <body>
     <header>
       <nav class="navbar navbar-inverse navbar-fixed-top">
-        <a class="company-logo" href="/">Vizard</a><span class="tagline">beta</span>
-        <% if( user_signed_in? ) %>
-        <ul class="nav navbar-right top-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Bienvenido, <%= current_user.email %> <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="/sandboxes"><i class="fa fa-fw fa-inbox"></i> Sandboxes</a>
-              </li>
-              <li class="divider"></li>
-              <li>
-                <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <% end %>
         <div class="container">
-            <div class="clearfix toolbarName">
+          <% if( user_signed_in? ) %>
+          <a class="company-logo" href="/sandboxes">Wizard</a><span class="tagline">beta</span>
+          <ul class="nav navbar-right top-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Bienvenido, <%= current_user.email %> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="/sandboxes"><i class="fa fa-fw fa-inbox"></i> Sandboxes</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <% else %>
+          <a class="company-logo" href="/sandboxes">Wizard</a><span class="tagline">beta</span>
+            <ul class="nav pull-right">
+              <li class="dropdown">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-user"></i> Sign In <strong class="caret"></strong></a>
+                <div class="dropdown-menu" style="padding: 15px; right: 0; left: initial;">
+                  <form method="post" action="/users/sign_in" accept-charset="UTF-8">
+                    <div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="ON2V8XPajVLj0IlToPxGL0jFmBhLA8U6ESrPk+AW0VQ="></div>
+                    <input style="margin-bottom: 15px;" type="email" placeholder="Email" id="user_email" name="user[email]">
+                    <input style="margin-bottom: 15px;" type="password" placeholder="Password" id="user_password" name="user[password]">
+                    <p><input style="float: left; margin-right: 10px;" type="checkbox" name="user[remember_me]" id="user_remember_me" value="1">Remember me</p>
+                    <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In">
+                  </form>
+                </div>
+              </li>
+          </ul>
+      </div>
             </div>
+      </div>
+      <!--/.nav-collapse -->
+          <% end %>
+          <div class="container">
+              <div class="clearfix toolbarName">
+              </div>
+          </div>
         </div>
       </nav>
     </header>
+
+<% if( !user_signed_in? ) %>
+    <div class="row banner">
+      <div class="container">
+        <div class="col-md-6 mtb40">
+          <h2>What is Sandbox?</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis congue purus. Aenean pharetra arcu nibh, non aliquam leo laoreet sit amet.</p>
+        </div>
+      </div>
+    </div>
+<% end %>
     <div role="main" class="container FullPage">
       <%= render 'layouts/messages' %>
       <%= yield %>
     </div>
+    <footer>
+      <div class="row">
+        <div class="container mtb40">
+          <div class="col-md-8">
+            <h3 class="mb20">Developed by</h3>
+            <%= image_tag "UNICEF.png" %><%= image_tag "FCI.png" %>
+          </div>
+          <div class="col-md-4">
+            <h3 class="mb20">Contact</h3>
+            <p><i class="fa fa-phone"></i> +56 2 2419 2770</p>
+            <p><i class="fa fa-envelope"></i> <a href="#">Contacto Prensa</a></p>
+            <p><i class="fa fa-map-marker"></i>Holanda 895, Providencia</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

@@ -1,5 +1,5 @@
-html, body {
-  font-family: 'Open Sans', sans-serif;
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   font-size: 13px;
   background: #f6f6f6;
 }
@@ -18,8 +18,9 @@ a.company-logo{
 }
 
 span.tagline{
-	padding: 17px 0 0 5px;
-	color: #E9A75B;
+	padding: 15px 0 0 5px;
+	color: #FCE634;
+  font-weight: bold;
 	float: left;
 }
 
@@ -277,8 +278,8 @@ span.tagline{
 .navbar-inverse{
 	margin: 0;
 	position: relative;
-
-
+  background-color: #2c3e50;
+  border-color: #34495e;
 }
 
 .navbar-right .dropdown-menu{
@@ -754,9 +755,9 @@ background-color: #F55923;
 
 }
 
-.dropdown-toggle{
+a.dropdown-toggle{
 	background: none;
-	color: #fff;
+	color: #fff !important;
 }
 
 .dropdown-toggle:hover{
@@ -807,4 +808,46 @@ background-color: #F55923;
 
 * html .clearfix {
 	height: 1%;
+}
+/* -------------------- estilos propios -------------------- */
+.mb40 {
+  margin-bottom: 40px;
+}
+.mtb40 {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.mb20 {
+  margin-bottom: 20px;
+}
+.banner {
+background-color: #3498db;
+color: #fff;
+height: 300px;
+}
+.banner h2, .banner p {
+  text-shadow: 0 1px 0 rgba(0,0,0,.1);
+}
+.banner h2 {
+  text-shadow: 0 1px 0 rgba(0,0,0,.1);
+  font-size: 50px;
+}
+.banner p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+footer {
+  background-color: #2c3e50;
+  color: #FFFFFF;
+  font-weight: normal;
+}
+footer a {
+  color: #FFFFFF !important;
+}
+footer .fa-map-marker {
+  margin-right: 10px;
+}
+footer img {
+  float: left;
+  margin-right: 15px;
 }
