@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Vizard" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Wizard" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Vizard Rails" %>">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -13,7 +13,7 @@
     <header>
       <nav class="navbar navbar-inverse navbar-fixed-top clearfix">
         <div class="container">
-          <a class="company-logo" href="/">Vizard</a><span class="tagline">beta</span>
+          <a class="company-logo" href="/">Wizard</a><span class="tagline">beta</span>
           <% if( user_signed_in? ) %>
           <ul class="nav navbar-right top-nav">
             <li class="dropdown">
