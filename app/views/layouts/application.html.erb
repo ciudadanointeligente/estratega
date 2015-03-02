@@ -12,26 +12,28 @@
   <body>
     <header>
       <nav class="navbar navbar-inverse navbar-fixed-top clearfix">
-        <a class="company-logo" href="/">Vizard</a><span class="tagline">beta</span>
-        <% if( user_signed_in? ) %>
-        <ul class="nav navbar-right top-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Bienvenido, <%= current_user.email %> <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="/sandboxes"><i class="fa fa-fw fa-inbox"></i> Sandboxes</a>
-              </li>
-              <li class="divider"></li>
-              <li>
-                <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <% end %>
         <div class="container">
-            <div class="clearfix toolbarName">
-            </div>
+          <a class="company-logo" href="/">Vizard</a><span class="tagline">beta</span>
+          <% if( user_signed_in? ) %>
+          <ul class="nav navbar-right top-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Bienvenido, <%= current_user.email %> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="/sandboxes"><i class="fa fa-fw fa-inbox"></i> Sandboxes</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <% end %>
+          <div class="container">
+              <div class="clearfix toolbarName">
+              </div>
+          </div>
         </div>
       </nav>
     </header>
@@ -48,6 +50,16 @@
     <div role="main" class="container FullPage">
       <%= render 'layouts/messages' %>
       <%= yield %>
+    </div>
+    <div class="row footer">
+      <div class="container mtb40">
+        <div class="col-md-8">
+          <h3>Developed by</h3>
+        </div>
+        <div class="col-md-4">
+          <h3>Contact</h3>
+        </div>
+      </div>
     </div>
   </body>
 </html>
