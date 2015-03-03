@@ -65,6 +65,25 @@
           <h2>What is Sandbox?</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis congue purus. Aenean pharetra arcu nibh, non aliquam leo laoreet sit amet.</p>
         </div>
+        <div class="col-md-4 col-md-offset-2 bg-info mtb40">
+          <h3>Sign Up</h3>
+            <form accept-charset="UTF-8" action="/users" class="new_user mb20" id="new_user" method="post">
+            <div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="Tc8B3F9TrlzWOtz8rNY7eWmdxPrpqv9TqoDfVg2U4wc="></div>
+            <div class="form-group">
+              <label for="user_email">Email</label>
+              <input type="email" class="form-control" id="user_email" placeholder="Enter email" name="user[email]">
+            </div>
+            <div class="form-group">
+              <label for="user_password">Password <span>(8 characters minimum)</span></label>
+              <input type="password" class="form-control" id="user_password" placeholder="Password" autocomplete="off" name="user[password]">
+            </div>
+            <div class="form-group">
+              <label for="user_password_confirmation">Password <span>(8 characters minimum)</span></label>
+              <input type="password" class="form-control" id="user_password_confirmation" placeholder="Password Confirmation" autocomplete="off" name="user[password_confirmation]">
+            </div>
+            <button type="submit" class="btn btn-default">Sign Up</button>
+          </form>
+        </div>
       </div>
     </div>
 <% end %>

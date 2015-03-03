@@ -823,7 +823,6 @@ a.dropdown-toggle{
 .banner {
 background-color: #3498db;
 color: #fff;
-height: 300px;
 }
 .banner h2, .banner p {
   text-shadow: 0 1px 0 rgba(0,0,0,.1);
@@ -835,6 +834,9 @@ height: 300px;
 .banner p {
   font-size: 16px;
   line-height: 1.5;
+}
+.banner .bg-info {
+color: #333;
 }
 footer {
   background-color: #2c3e50;
