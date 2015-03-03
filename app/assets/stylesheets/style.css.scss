@@ -417,7 +417,8 @@ color: #F2F2F2;
 
 .inspector .group {
 	overflow: hidden;
-	padding: 10px 10px 10px 20px;
+	/*padding: 10px 10px 10px 20px;*/
+  padding-left: 0px;
 }
 
 #inspector-container {
@@ -861,4 +862,11 @@ footer img {
   box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
   background-color: #449d44 !important;
   border-color: #398439;
+}
+div.inspector div {
+  margin-left: 20px;
+  padding-left: 0px;
+}
+.inspector .field {
+  margin-left: 0px;
 }
