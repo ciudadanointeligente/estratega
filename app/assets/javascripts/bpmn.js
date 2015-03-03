@@ -1907,7 +1907,7 @@ var toolbar = {
             data: JSON.stringify({sandbox: {graph_data: JSON.stringify(graph.toJSON())}}),
             beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
             success: function(data) {
-                $('.alert').removeClass('alertError').addClass('alertSuccess').html('Saved').fadeIn().delay(1000).fadeOut();
+                $('.alert').removeClass('alertError').addClass('alertSuccess').html('<i class="fa fa-check-circle"></i> Saved').fadeIn().delay(1000).fadeOut();
             },
             error: function(data) {
                 $('.alert').removeClass('alertSuccess').addClass('alertError').html('Not Saved').fadeIn().delay(1000).fadeOut();
