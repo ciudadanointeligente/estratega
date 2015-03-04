@@ -802,11 +802,11 @@ a.dropdown-toggle{
 }
 
 .ContentBar-pos {
-	font-size: 18px;
+	font-size: 14px;
 	margin-left: 20px;
-	margin-top: 10px;
+	/*margin-top: 10px;*/
 	font-weight: bold;
-	color: #0091EA;
+	color: #333;
 }
 
 /* -------------------- Clearfix -------------------- */
@@ -883,4 +883,7 @@ background-color: #12181F;
 }
 .navbar-inverse .navbar-nav > li > a {
   color: #FFFFFF;
+}
+.person-group ul {
+    padding-left: 15px;
 }
