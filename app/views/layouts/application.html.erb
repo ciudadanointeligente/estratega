@@ -16,7 +16,7 @@
           <% if( user_signed_in? ) %>
           <a class="company-logo" href="/sandboxes">Wizard</a><span class="tagline">beta</span>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Sandboxes</a></li>
+            <li class="active"><a href="#">Sandboxs</a></li>
             <li><a href="#">Templates</a></li>
             <li><a href="#">Tutorials</a></li>
           </ul>
@@ -35,8 +35,9 @@
             </li>
           </ul>
           <% else %>
-          <a class="company-logo" href="/sandboxes">Wizard</a><span class="tagline">beta</span>
-            <div class="nav pull-right pt15">
+          <div class="pt15">
+          <a class="company-logo" href="#">Wizard</a><span class="tagline">beta</span></div>
+            <div class="nav pull-right">
               <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
               Sign in <span class="caret"></span>
               </button>
