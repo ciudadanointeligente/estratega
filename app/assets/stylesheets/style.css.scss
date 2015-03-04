@@ -754,7 +754,8 @@ background-color: #F55923;
 
 .nav{
 	float: left;
-	padding: 10px 0 0 20px;
+	/*padding: 10px 0 0 20px;*/
+  margin-left: 30px;
 }
 
 .edit{
@@ -775,7 +776,7 @@ a.dropdown-toggle{
 }
 
 .nav>li>a{
-	padding: 6px 15px;
+	padding: 15px;
 }
 
 .ContentBar-tags{
@@ -872,4 +873,10 @@ div.inspector div {
 }
 .inspector .field {
   margin-left: 0px;
+}
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+background-color: #12181F;
+}
+.navbar-inverse .navbar-nav > li > a {
+  color: #FFFFFF;
 }
