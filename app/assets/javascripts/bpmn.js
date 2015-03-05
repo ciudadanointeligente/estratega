@@ -1643,45 +1643,45 @@ $('#toolbar-container [data-tooltip]').each(function() {
 
 function openIHF(cellView, edit){
 
-        var model = cellView.model
+    var model = cellView.model
 
-        var btn_sidebar_right = "#btn-inspector-container",
-            sidebar_right = "#inspector-container",
-            btn_sidebar_left = "#btn-sidebar-left",
-            sidebar_left = "#sidebar-left",
-            paper_container = "#paper-container";
+    var btn_sidebar_right = "#btn-inspector-container",
+        sidebar_right = "#inspector-container",
+        btn_sidebar_left = "#btn-sidebar-left",
+        sidebar_left = "#sidebar-left",
+        paper_container = "#paper-container";
 
-        $(sidebar_right).css('display','block');
-        $(paper_container).css('right','300px');
-        $(sidebar_right).css('width','300px');
-        $(btn_sidebar_right).css('width','340px');
-        $('#btn-right').css('-webkit-transform','rotate(0deg)').css('transform','rotate(0deg)');
+    $(sidebar_right).css('display','block');
+    $(paper_container).css('right','300px');
+    $(sidebar_right).css('width','300px');
+    $(btn_sidebar_right).css('width','340px');
+    $('#btn-right').css('-webkit-transform','rotate(0deg)').css('transform','rotate(0deg)');
 
-         // No need to re-render inspector if the cellView didn't change.
-        // if (!inspector || inspector.options.cellView !== cellView) {
-            if (inspector) {
-                // Clean up the old inspector if there was one.
-                inspector.remove();
+    // No need to re-render inspector if the cellView didn't change.
+    // if (!inspector || inspector.options.cellView !== cellView) {
+    if (inspector) {
+        // Clean up the old inspector if there was one.
+        inspector.remove();
+    }
+
+    var type = cellView.model.get('type');
+    var name = cellView.model.get('bpmn_name');
+
+    inspector = new joint.ui.Inspector({
+            cellView: cellView,
+            inputs: inputs[type],
+            groups: {
+                general: { label: name, index: 1 },
+                appearance: { index: 2 }
+            },
+            events: {
+                'mousedown': 'startBatchCommand',
+                'change': 'onChangeInput',
+                'click .group-label': '',
+                'click .btn-list-add': 'addListItem',
+                'click .btn-list-del': 'deleteListItem'
             }
-
-            var type = cellView.model.get('type');
-            var name = cellView.model.get('bpmn_name');
-
-            inspector = new joint.ui.Inspector({
-                    cellView: cellView,
-                    inputs: inputs[type],
-                    groups: {
-                        general: { label: name, index: 1 },
-                        appearance: { index: 2 }
-                    },
-                    events: {
-                        'mousedown': 'startBatchCommand',
-                        'change': 'onChangeInput',
-                        'click .group-label': '',
-                        'click .btn-list-add': 'addListItem',
-                        'click .btn-list-del': 'deleteListItem'
-                    }
-            });
+    });
 
     if (edit)
         $('#inspector-container').html(inspector.render().el);
@@ -1724,7 +1724,6 @@ function openIHF(cellView, edit){
                         inspector.$el.append(btn_edit);
                     }
 
-
                     _.each(inspector.groupedFlatAttributes, function(options) {
                         var value = inspector.getCellAttributeValue(options.path, options);
                         if(cellView.model.invisible_attrs.indexOf(options.path) == -1){
@@ -1751,6 +1750,17 @@ function openIHF(cellView, edit){
             );
         }
     }
+        var btn_close = document.createElement("button"),
+                        btn_text = document.createTextNode("✖");
+                        btn_close.classList.add('btn')
+                        btn_close.classList.add('btnClose')
+
+                    btn_close.appendChild(btn_text);
+                    btn_close.addEventListener('click', function(){
+                        $("#inspector-container").css('display','none');
+                    });
+                    // inspector.$el.prepend(btn_close);
+                    $("#inspector-container").append(btn_close)
 
     if (cellView.model instanceof joint.shapes.bpmn.MorePersons) {
         return;
