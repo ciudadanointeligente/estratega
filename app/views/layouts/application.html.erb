@@ -8,14 +8,6 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-    <script type="text/javascript">
-$(document).ready(function(){
-    //Handles menu drop down
-    $('.dropdown-menu').find('form').click(function (e) {
-        e.stopPropagation();
-    });
-});
-    </script>
   </head>
   <body>
     <header>
@@ -23,12 +15,17 @@ $(document).ready(function(){
         <div class="container">
           <% if( user_signed_in? ) %>
           <a class="company-logo" href="/sandboxes">Wizard</a><span class="tagline">beta</span>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Sandboxs</a></li>
+            <li><a href="#">Templates</a></li>
+            <li><a href="#">Tutorials</a></li>
+          </ul>
           <ul class="nav navbar-right top-nav">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Bienvenido, <%= current_user.email %> <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>
-                  <a href="/sandboxes"><i class="fa fa-fw fa-inbox"></i> Sandboxes</a>
+                  <a href="/users/edit">My Account</a>
                 </li>
                 <li class="divider"></li>
                 <li>
@@ -38,21 +35,22 @@ $(document).ready(function(){
             </li>
           </ul>
           <% else %>
-          <a class="company-logo" href="/sandboxes">Wizard</a><span class="tagline">beta</span>
-            <ul class="nav pull-right">
-              <li class="dropdown">
-              <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-user"></i> Sign In <strong class="caret"></strong></a>
-                <div class="dropdown-menu" style="padding: 15px; right: 0; left: initial;">
+          <div class="pt15">
+          <a class="company-logo" href="#">Wizard</a><span class="tagline">beta</span></div>
+            <div class="nav pull-right">
+              <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              Sign in <span class="caret"></span>
+              </button>
+                <ul class="dropdown-menu" style="padding: 15px; right: 0; left: initial;" role="menu">
                   <form method="post" action="/users/sign_in" accept-charset="UTF-8">
                     <div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="ON2V8XPajVLj0IlToPxGL0jFmBhLA8U6ESrPk+AW0VQ="></div>
-                    <input style="margin-bottom: 15px;" type="email" placeholder="Email" id="user_email" name="user[email]">
+                    <input style="margin-bottom: 15px;" type="email" placeholder="Email" id="user_email" name="user[email]"><br>
                     <input style="margin-bottom: 15px;" type="password" placeholder="Password" id="user_password" name="user[password]">
                     <p><input style="float: left; margin-right: 10px;" type="checkbox" name="user[remember_me]" id="user_remember_me" value="1">Remember me</p>
                     <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In">
                   </form>
-                </div>
-              </li>
-          </ul>
+                </ul>
+          </div>
       </div>
             </div>
       </div>
@@ -73,6 +71,25 @@ $(document).ready(function(){
           <h2>What is Sandbox?</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis congue purus. Aenean pharetra arcu nibh, non aliquam leo laoreet sit amet.</p>
         </div>
+        <div class="col-md-4 col-md-offset-2 bg-info mtb40">
+          <h3>Sign Up</h3>
+            <form accept-charset="UTF-8" action="/users" class="new_user mb20" id="new_user" method="post">
+            <div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="Tc8B3F9TrlzWOtz8rNY7eWmdxPrpqv9TqoDfVg2U4wc="></div>
+            <div class="form-group">
+              <label for="user_email">Email</label>
+              <input type="email" class="form-control" id="user_email" placeholder="Enter email" name="user[email]">
+            </div>
+            <div class="form-group">
+              <label for="user_password">Password <span>(8 characters minimum)</span></label>
+              <input type="password" class="form-control" id="user_password" placeholder="Password" autocomplete="off" name="user[password]">
+            </div>
+            <div class="form-group">
+              <label for="user_password_confirmation">Password Confirmation</label>
+              <input type="password" class="form-control" id="user_password_confirmation" placeholder="Password Confirmation" autocomplete="off" name="user[password_confirmation]">
+            </div>
+            <button type="submit" class="btn btn-default">Sign Up</button>
+          </form>
+        </div>
       </div>
     </div>
 <% end %>
@@ -85,7 +102,7 @@ $(document).ready(function(){
         <div class="container mtb40">
           <div class="col-md-8">
             <h3 class="mb20">Developed by</h3>
-            <%= image_tag "UNICEF.png" %><%= image_tag "FCI.png" %>
+            <a href="http://www.unicef.org/" target="_blank" alt="UNICEF Website"><%= image_tag "UNICEF.png" %></a><a href="http://ciudadanointeligente.org/" target="_blank" alt="Fundación Ciudadano Inteligente Website"><%= image_tag "FCI.png" %></a> 
           </div>
           <div class="col-md-4">
             <h3 class="mb20">Contact</h3>
