@@ -313,6 +313,9 @@ span.tagline{
 	position: absolute;
 	border-right: 1px solid #cecece;
 }
+.sidebar-left:hover{
+  width: 150px;
+}
 
 .sidebar {
   position: absolute;
@@ -363,6 +366,7 @@ span.tagline{
   background: none;
   border: none;
   padding: 0px 10px;
+  margin-top: 10px;
   height: 32px;
   left: 0;
   top: 0;
@@ -417,7 +421,8 @@ color: #F2F2F2;
 
 .inspector .group {
 	overflow: hidden;
-	padding: 10px 10px 10px 20px;
+	/*padding: 10px 10px 10px 20px;*/
+  padding-left: 0px;
 }
 
 #inspector-container {
@@ -556,17 +561,20 @@ background-color: #F55923;
 
 .alert {
   display: none;
-  font-size: 10px;
+  font-size: 40px;
   text-transform: uppercase;
-  background: #98E22D;
+  background: #1fa67a;
   color: #fff;
-  width: 100%;
+  /*width: 100%;*/
   position: absolute;
   z-index: 2000;
   text-align: center;
-  opacity: 0.7;
+  opacity: 1;
   border-radius: 0!important;
-  padding: 5px;
+  padding: 50px;
+  top: 200px;
+  width: 300px;
+  margin: 1em 40%;
 }
 
 #sidebar-left  .alertSuccess {
@@ -747,7 +755,8 @@ background-color: #F55923;
 
 .nav{
 	float: left;
-	padding: 10px 0 0 20px;
+	/*padding: 10px 0 0 20px;*/
+  margin-left: 30px;
 }
 
 .edit{
@@ -768,7 +777,7 @@ a.dropdown-toggle{
 }
 
 .nav>li>a{
-	padding: 6px 15px;
+	padding: 15px;
 }
 
 .ContentBar-tags{
@@ -793,11 +802,11 @@ a.dropdown-toggle{
 }
 
 .ContentBar-pos {
-	font-size: 18px;
+	font-size: 14px;
 	margin-left: 20px;
-	margin-top: 10px;
+	/*margin-top: 10px;*/
 	font-weight: bold;
-	color: #0091EA;
+	color: #333;
 }
 
 /* -------------------- Clearfix -------------------- */
@@ -820,10 +829,12 @@ a.dropdown-toggle{
 .mb20 {
   margin-bottom: 20px;
 }
+.pt15 {
+  padding-top: 15px;
+}
 .banner {
 background-color: #3498db;
 color: #fff;
-height: 300px;
 }
 .banner h2, .banner p {
   text-shadow: 0 1px 0 rgba(0,0,0,.1);
@@ -835,6 +846,9 @@ height: 300px;
 .banner p {
   font-size: 16px;
   line-height: 1.5;
+}
+.banner .bg-info {
+color: #333;
 }
 footer {
   background-color: #2c3e50;
@@ -850,4 +864,26 @@ footer .fa-map-marker {
 footer img {
   float: left;
   margin-right: 15px;
+}
+.pull-right.open .btn-success, .btn-success:hover {
+  -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  background-color: #449d44 !important;
+  border-color: #398439;
+}
+div.inspector div {
+  margin-left: 20px;
+  padding-left: 0px;
+}
+.inspector .field {
+  margin-left: 0px;
+}
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+background-color: #12181F;
+}
+.navbar-inverse .navbar-nav > li > a {
+  color: #FFFFFF;
+}
+.person-group ul {
+    padding-left: 15px;
 }
