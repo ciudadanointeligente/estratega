@@ -24,8 +24,10 @@ var graph = new joint.dia.Graph({ type: 'bpmn' }).on({
                 width: x.width,
                 height: x.height
             }, { silent: true });
-            cell.setForeignObjectSize(cell, {width: x.width, height: x.height});
         }
+        
+        if(['bpmn.Step', 'bpmn.External', 'bpmn.Intervention'].indexOf(type) != -1)
+            cell.setForeignObjectSize(cell, {width: x.width, height: x.height});
     }
 
 });
