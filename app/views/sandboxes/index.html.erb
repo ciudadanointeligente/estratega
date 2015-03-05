@@ -1,11 +1,10 @@
 <h3 class="page-header">Sandboxes</h3>
 
 <div class="addNew">
-          <%= link_to new_sandbox_path, class: 'btn btn-default' do %>
-              <i class="fa fa-plus-square-o"></i> New Sandbox
-          <% end %>
-      </div>
-
+  <%= link_to new_sandbox_path, class: 'btn btn-default' do %>
+      <i class="fa fa-plus-square-o"></i> New Sandbox
+  <% end %>
+</div>
 <div role="tabpanel">
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active">
@@ -15,12 +14,9 @@
       <a href="#public" aria-controls="public" role="tab" data-toggle="tab">Public</a>
     </li>
   </ul>
-
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="private">
-      
-
-      <table id="private_sandboxes" class="table table-striped">
+      <table id="private_sandboxes" class="table table-striped link-color">
         <thead>
           <tr>
             <th>id</th>
@@ -32,7 +28,6 @@
             <th>Actions</th>
           </tr>
         </thead>
-
         <tbody>
           <% if( ! @sandboxes.blank? ) %>
             <% @sandboxes.each do |sandbox| %>
@@ -73,11 +68,9 @@
           <% end %>
         </tbody>
       </table>
-
     </div>
-
     <div role="tabpanel" class="tab-pane" id="public">
-      <table id="public_sandboxes" class="table table-striped">
+      <table id="public_sandboxes" class="table table-striped link-color">
         <thead>
           <tr>
             <th>id</th>
@@ -86,7 +79,6 @@
             <th>Last update</th>
           </tr>
         </thead>
-
         <tbody>
           <% if( ! @public_sandboxes.blank? ) %>
             <% @public_sandboxes.each do |sandbox| %>
