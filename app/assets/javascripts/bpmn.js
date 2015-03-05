@@ -1773,7 +1773,7 @@ function openIHF(cellView, edit){
                     field = document.createElement("div"),
                     header = document.createElement("h3"),
                     persons_list = document.createElement("ul"),
-                    persons_text =  document.createTextNode("Persons")
+                    persons_text =  document.createTextNode("Participants")
 
                 group.classList.add("group")
                 group.classList.add("person-group")
