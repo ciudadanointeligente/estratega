@@ -1693,8 +1693,10 @@ function openIHF(cellView, edit){
             $("#inspector-container").css('display','none');
         });
 
-    if (edit)
+    if (edit){
         $('#inspector-container').html(inspector.render().el);
+        inspector.$el.prepend(btn_close);
+    }
 
     else {
         if ( function(){
