@@ -1683,6 +1683,17 @@ function openIHF(cellView, edit){
             }
     });
 
+    var btn_close = document.createElement("button"),
+        btn_text = document.createTextNode("✖");
+        
+        btn_close.classList.add('btn')
+        btn_close.classList.add('btnClose')
+
+        btn_close.appendChild(btn_text);
+        btn_close.addEventListener('click', function(){
+            $("#inspector-container").css('display','none');
+        });
+
     if (edit)
         $('#inspector-container').html(inspector.render().el);
 
@@ -1704,6 +1715,7 @@ function openIHF(cellView, edit){
             }()
         ){
             $('#inspector-container').html(inspector.render().el);
+            inspector.$el.prepend(btn_close);
         }
         else {
             $('#inspector-container').html(
@@ -1723,6 +1735,8 @@ function openIHF(cellView, edit){
                         });
                         inspector.$el.append(btn_edit);
                     }
+
+                    inspector.$el.append(btn_close);
 
                     _.each(inspector.groupedFlatAttributes, function(options) {
                         var value = inspector.getCellAttributeValue(options.path, options);
@@ -1750,17 +1764,6 @@ function openIHF(cellView, edit){
             );
         }
     }
-        var btn_close = document.createElement("button"),
-                        btn_text = document.createTextNode("✖");
-                        btn_close.classList.add('btn')
-                        btn_close.classList.add('btnClose')
-
-                    btn_close.appendChild(btn_text);
-                    btn_close.addEventListener('click', function(){
-                        $("#inspector-container").css('display','none');
-                    });
-                    // inspector.$el.prepend(btn_close);
-                    $("#inspector-container").append(btn_close)
 
     if (cellView.model instanceof joint.shapes.bpmn.MorePersons) {
         return;
