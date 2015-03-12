@@ -27,6 +27,9 @@ var graph = new joint.dia.Graph({ type: 'bpmn' }).on({
             if( ! cell instanceof joint.shapes.bpmn.GroupOrganization )
                 cell.setForeignObjectSize(cell, {width: x.width, height: x.height});
         }
+        
+        if(['bpmn.Step', 'bpmn.External', 'bpmn.Intervention'].indexOf(type) != -1)
+            cell.setForeignObjectSize(cell, {width: x.width, height: x.height});
     }
 
 });
@@ -1924,10 +1927,10 @@ var toolbar = {
             data: JSON.stringify({sandbox: {graph_data: JSON.stringify(graph.toJSON())}}),
             beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
             success: function(data) {
-                $('.alert').removeClass('alertError').addClass('alertSuccess').html('<i class="fa fa-check-circle"></i> Saved').fadeIn().delay(1000).fadeOut();
+                $('.alert-sandbox').removeClass('alertError').addClass('alertSuccess').html('<i class="fa fa-check-circle"></i> Saved').fadeIn().delay(1000).fadeOut();
             },
             error: function(data) {
-                $('.alert').removeClass('alertSuccess').addClass('alertError').html('Not Saved').fadeIn().delay(1000).fadeOut();
+                $('.alert-sandbox').removeClass('alertSuccess').addClass('alertError').html('Not Saved').fadeIn().delay(1000).fadeOut();
             }
         });
     },
