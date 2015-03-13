@@ -22,7 +22,7 @@
           </ul>
           <ul class="nav navbar-right top-nav">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Bienvenido, <%= current_user.email %> <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Welcome, <%= current_user.email %> <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>
                   <a href="/users/edit">My Account</a>
@@ -42,14 +42,14 @@
               Sign in <span class="caret"></span>
               </button>
                 <ul class="dropdown-menu" style="padding: 15px; right: 0; left: initial;" role="menu">
-                  <form method="post" action="/users/sign_in" accept-charset="UTF-8">
-                    <div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="ON2V8XPajVLj0IlToPxGL0jFmBhLA8U6ESrPk+AW0VQ="></div>
-                    <input style="margin-bottom: 15px;" type="email" placeholder="Email" id="user_email" name="user[email]"><br>
-                    <input style="margin-bottom: 15px;" type="password" placeholder="Password" id="user_password" name="user[password]">
-                    <p><input style="float: left; margin-right: 10px;" type="checkbox" name="user[remember_me]" id="user_remember_me" value="1">Remember me</p>
-                    <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In">
-                  </form>
+                  <%= render 'layouts/signin' %>
                 </ul>
+                <!-- this prevent close the dropdown menu http://stackoverflow.com/a/16050828 -->
+                <script type="text/javascript">
+                  $('.dropdown-menu input').click(function(e) {
+                      e.stopPropagation();
+                  });
+                </script>
           </div>
       </div>
             </div>
@@ -105,7 +105,7 @@
         <div class="container mtb40">
           <div class="col-md-8">
             <h3 class="mb20">Developed by</h3>
-            <a href="http://www.unicef.org/" target="_blank" alt="UNICEF Website"><%= image_tag "UNICEF.png" %></a><a href="http://ciudadanointeligente.org/" target="_blank" alt="Fundación Ciudadano Inteligente Website"><%= image_tag "FCI.png" %></a> 
+            <a href="//www.unicef.org/" target="_blank" alt="UNICEF Website"><%= image_tag "UNICEF.png" %></a><a href="//ciudadanointeligente.org/" target="_blank" alt="Fundación Ciudadano Inteligente Website"><%= image_tag "FCI.png" %></a> 
           </div>
           <div class="col-md-4">
             <h3 class="mb20">Contact</h3>
