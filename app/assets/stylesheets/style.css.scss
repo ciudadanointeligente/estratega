@@ -552,14 +552,22 @@ background-color: #F55923;
 
 /*Alert*/
 
-
-#sidebar-left .alert {
-  float: right;
-  margin: 0;
-  padding: 4px 0;
+.alert {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  background: #98E22D;
+  color: #fff;
+  width: 100%;
+  position: absolute;
+  z-index: 2000;
+  text-align: center;
+  opacity: 0.7;
+  border-radius: 0!important;
+  padding: 5px;
 }
 
-.alert {
+.alert-sandbox {
   display: none;
   font-size: 40px;
   text-transform: uppercase;
@@ -577,12 +585,12 @@ background-color: #F55923;
   margin: 1em 40%;
 }
 
-#sidebar-left  .alertSuccess {
-  color: #50E3C2;
+.alert-sandbox .alertSuccess {
+  background: #1fa67a;
 }
 
-#sidebar-left  .alertError {
-  color: #F58D23;
+.alert-sandbox .alertError {
+  background: #F58D23;
 }
 
 /*Tooltip*/
@@ -753,7 +761,7 @@ background-color: #F55923;
   font-size: 60%;
 }
 
-.nav{
+header .nav{
 	float: left;
 	/*padding: 10px 0 0 20px;*/
   margin-left: 30px;
@@ -886,4 +894,8 @@ background-color: #12181F;
 }
 .person-group ul {
     padding-left: 15px;
+}
+form.new_user ul.list-inline {
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
