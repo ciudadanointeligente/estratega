@@ -899,3 +899,24 @@ form.new_user ul.list-inline {
   margin-top: 10px;
   margin-bottom: 20px;
 }
+/*----datatable----*/
+.dataTables_wrapper {
+  padding-top: 20px;
+}
+.dataTables_length {
+  width: 50%;
+}
+.dataTables_length {
+  @extend .dataTables_length;
+  float: left;
+}
+.dataTables_info {
+  text-align: center;
+}
+.dataTables_paginate {
+  @extend .dataTables_info;
+  span {
+    padding: 0px 2px;
+  }
+}
+/*----datatable----*/
