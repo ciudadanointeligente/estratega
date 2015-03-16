@@ -1,99 +1,114 @@
-<h3 class="page-header">Private sandboxes</h3>
-<div class="addNew">
-    <%= link_to new_sandbox_path, class: 'btn btn-default' do %>
-        <i class="fa fa-plus-square-o"></i> New Sandbox
-    <% end %>
+<h3 class="page-header">Sandboxes</h3>
+
+
+<div role="tabpanel">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#private" aria-controls="private" role="tab" data-toggle="tab">Private</a>
+    </li>
+    <li role="presentation">
+      <a href="#public" aria-controls="public" role="tab" data-toggle="tab">Public</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="private">
+      
+
+      <table id="private_sandboxes" class="table table-striped">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Last update</th>
+            <th>Public</th>
+            <th>Edit</th>
+            <th>Conf</th>
+            <th>Drop</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% if( ! @sandboxes.blank? ) %>
+            <% @sandboxes.each do |sandbox| %>
+              <tr>
+                <td><%= sandbox.id %></td>
+                <td>
+                  <%= link_to sandbox do %>
+                    <%= sandbox.name %>
+                  <% end %>
+                </td>
+                <td><%= sandbox.description %></td>
+                <td><%= sandbox.updated_at %></td>
+                <td>
+                  <% if(sandbox.public?) %>
+                    <i class="fa fa-globe" title="Public"></i>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to sandbox do %>
+                    <i class="fa fa-edit" title="Edit"></i>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to edit_sandbox_path(sandbox) do %>
+                    <i class="fa fa-cog" title="Edit Configuration"></i>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to sandbox, method: :delete, data: { confirm: 'Are you sure you want to permanently delete this sandbox?' } do %>
+                    <i class="fa fa-trash" title="Delete"></i>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="addNew">
+          <%= link_to new_sandbox_path, class: 'btn btn-default' do %>
+              <i class="fa fa-plus-square-o"></i> New Sandbox
+          <% end %>
+      </div>
+
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="public">
+      <table id="public_sandboxes" class="table table-striped">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Last update</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% if( ! @public_sandboxes.blank? ) %>
+            <% @public_sandboxes.each do |sandbox| %>
+              <tr>
+                <td><%= sandbox.id %></td>
+                <td>
+                  <%= link_to sandbox do %>
+                    <%= sandbox.name %>
+                  <% end %>
+                </td>
+                <td><%= sandbox.description %></td>
+                <td><%= sandbox.updated_at %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Last update</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% if( ! @sandboxes.blank? ) %>
-    <% @sandboxes.each do |sandbox| %>
-      <tr>
-        <td><%= sandbox.id %></td>
-        <td>
-          <%= link_to sandbox do %>
-            <%= sandbox.name %>
-          <% end %>
-        </td>
-        <td><%= sandbox.description %></td>
-        <td><%= sandbox.updated_at %></td>
-        <td>
-          <% if(sandbox.public?) %>
-            <i class="fa fa-globe" title="Public"></i>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to sandbox do %>
-            <i class="fa fa-edit" title="Edit"></i>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to edit_sandbox_path(sandbox) do %>
-            <i class="fa fa-cog" title="Edit Configuration"></i>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to sandbox, method: :delete, data: { confirm: 'Are you sure you want to permanently delete this sandbox?' } do %>
-            <i class="fa fa-trash" title="Delete"></i>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-    <% else %>
-      <tr>
-        <td colspan="8">
-          <p class="text-center">no records</p>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<h3 class="page-header">Public sandboxes</h3>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Last update</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% if( ! @public_sandboxes.blank? ) %>
-    <% @public_sandboxes.each do |sandbox| %>
-      <tr>
-        <td><%= sandbox.id %></td>
-        <td>
-          <%= link_to sandbox do %>
-            <%= sandbox.name %>
-          <% end %>
-        </td>
-        <td><%= sandbox.description %></td>
-        <td><%= sandbox.updated_at %></td>
-      </tr>
-    <% end %>
-    <% else %>
-      <tr>
-        <td colspan="8">
-          <p class="text-center">no records</p>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#private_sandboxes').DataTable();
+    $('#public_sandboxes').DataTable();
+});
+</script>
