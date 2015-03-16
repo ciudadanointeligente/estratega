@@ -10,15 +10,23 @@
           <h3>Sign Up</h3>
             <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
               <% flash.each do |name, msg| %>
-                <%= content_tag :div, msg, class: name if msg.is_a?(String) %>
+                <%= content_tag :div, msg, class: 'error' if msg.is_a?(String) %>
               <% end %>
-              <div><%= f.label :email %><br />
-              <%= f.email_field :email %></div>
-              <div><%= f.label :password %><br />
-              <%= f.password_field :password %></div>
-              <div><%= f.label :password_confirmation %><br />
-              <%= f.password_field :password_confirmation %></div>
-              <div><%= f.submit "Sign up" %></div>
+              <div class="form-group">
+                <%= f.label :email %>
+                <%= f.email_field :email, required: true, class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :password %><br />
+                <%= f.password_field :password, required: true, class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :password_confirmation %><br />
+                <%= f.password_field :password_confirmation, required: true, class: "form-control" %>
+              </div>
+              <div>
+                <%= f.submit "Sign up", class: "btn btn-success" %>
+              </div>
             <% end %>
             <%= render "devise/shared/links" %>
         </div>
