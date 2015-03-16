@@ -25,6 +25,7 @@
             <th>Public</th>
             <th>Edit</th>
             <th>Conf</th>
+            <th>Clone</th>
             <th>Drop</th>
           </tr>
         </thead>
@@ -54,6 +55,11 @@
                 <td>
                   <%= link_to edit_sandbox_path(sandbox) do %>
                     <i class="fa fa-cog" title="Edit Configuration"></i>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to clone_sandbox_path(sandbox) do %>
+                    <i class="fa fa-copy" title="Clone"></i>
                   <% end %>
                 </td>
                 <td>

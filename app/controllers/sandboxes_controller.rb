@@ -74,6 +74,28 @@ class SandboxesController < ApplicationController
     end
   end
 
+  def clone
+    sandbox = Sandbox.find(params[:id])
+    data_title = '[copy of] ' + sandbox.name
+    data_clone = sandbox.graph_data
+
+    @sandbox = Sandbox.new()
+    @sandbox.name = data_title
+    @sandbox.graph_data = data_clone
+    @sandbox.user_id = current_user.id
+    # @sandbox.save()
+
+    respond_to do |format|
+      if @sandbox.save
+        format.html { redirect_to edit_sandbox_path(@sandbox), notice: 'Sandbox was successfully created.' }
+        format.json { render :show, status: :created, location: @sandbox }
+      else
+        format.html { render :new }
+        format.json { render json: @sandbox.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sandbox
