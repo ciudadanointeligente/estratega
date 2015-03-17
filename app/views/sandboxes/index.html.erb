@@ -1,5 +1,10 @@
 <h3 class="page-header">Sandboxes</h3>
 
+<div class="addNew">
+          <%= link_to new_sandbox_path, class: 'btn btn-default' do %>
+              <i class="fa fa-plus-square-o"></i> New Sandbox
+          <% end %>
+      </div>
 
 <div role="tabpanel">
   <ul class="nav nav-tabs" role="tablist">
@@ -68,12 +73,6 @@
           <% end %>
         </tbody>
       </table>
-
-      <div class="addNew">
-          <%= link_to new_sandbox_path, class: 'btn btn-default' do %>
-              <i class="fa fa-plus-square-o"></i> New Sandbox
-          <% end %>
-      </div>
 
     </div>
 
