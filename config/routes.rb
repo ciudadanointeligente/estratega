@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'proyects/index'
+
+  get 'proyect/index'
+
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :people
   resources :other_names
