@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   resources :other_names
   resources :sandboxes do
   	member do
-  		get 'clone'
-  	end
+      get 'clone'
+    end
+    member do
+  		get 'export'
+    end
   end
   resources :tests
 

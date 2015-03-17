@@ -56,6 +56,9 @@
                   <%= link_to clone_sandbox_path(sandbox) do %>
                     <i class="fa fa-copy" title="Clone"></i>
                   <% end %>
+                  <%= link_to export_sandbox_path(sandbox) do %>
+                    <i class="fa fa-download" title="Export to JSON"></i>
+                  <% end %>
                   <%= link_to sandbox, method: :delete, data: { confirm: 'Are you sure you want to permanently delete this sandbox?' } do %>
                     <i class="fa fa-trash" title="Delete"></i>
                   <% end %>
