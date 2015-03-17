@@ -34,7 +34,6 @@ class SandboxesController < ApplicationController
   def create
     @sandbox = Sandbox.new(sandbox_params)
     @sandbox.user_id = current_user.id
-    @sandbox.graph_data = ''
     
     respond_to do |format|
       if @sandbox.save
@@ -95,6 +94,12 @@ class SandboxesController < ApplicationController
         format.json { render json: @sandbox.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def export
+    sandbox = Sandbox.find(params[:id])
+    
+    send_data sandbox.graph_data, :type => 'text/json; charset=UTF-8;', :disposition => "attachment; filename=export.json"    
   end
 
   private
