@@ -96,6 +96,12 @@ class SandboxesController < ApplicationController
     end
   end
 
+  def export
+    sandbox = Sandbox.find(params[:id])
+    
+    send_data sandbox.graph_data, :type => 'text/json; charset=UTF-8;', :disposition => "attachment; filename=export.json"    
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sandbox
