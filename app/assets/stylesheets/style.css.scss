@@ -931,7 +931,6 @@ form.new_user ul.list-inline {
     padding: 0px 2px;
   }
 }
-/*----datatable----*/
 .actions a {
   margin-left: 10px;
 }
@@ -968,7 +967,6 @@ form.new_user ul.list-inline {
 .paging_simple_numbers {
   display: inline-block;
   padding-left: 0;
-  margin: 20px 0;
   border: 1px solid #dddddd;
   border-radius: 4px;
 }
@@ -983,3 +981,7 @@ form.new_user ul.list-inline {
   background-color: #fff;
   border: 1px solid #ddd;
 }
+.dataTables_info {
+  display: inline-block;
+}
+/*----datatable----*/
