@@ -105,7 +105,13 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-    $('#private_sandboxes').DataTable();
-    $('#public_sandboxes').DataTable();
+    $('#private_sandboxes').DataTable({
+        "dom": '<"toolbar">frtip',
+        "pagingType": "simple_numbers"
+    } );
+    $('#public_sandboxes').DataTable({
+        "dom": '<"toolbar">frtip'
+    } );
 });
+
 </script>
