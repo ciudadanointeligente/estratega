@@ -1,2 +1,79 @@
-<h1>Projects#index</h1>
-<p>Find me in app/views/projects/index.html.erb</p>
+<h3>Projects</h3>
+
+<div class="addNew">
+             <a href="#" class="btn btn-default"><i class="fa fa-plus-square-o"></i> New Project</a>
+      </div>
+
+<div role="tabpanel">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#private" aria-controls="private" role="tab" data-toggle="tab">Private</a>
+    </li>
+    <li role="presentation">
+      <a href="#public" aria-controls="public" role="tab" data-toggle="tab">Public</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="private">
+      <table id="private_projects" class="table table-striped">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Description</th>
+            
+            <th>Public</th>
+            <th>Last update</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td>1</td>
+              <td>Project 1</td>
+              <td>Hard project</td>
+              <td>
+              	<i class="fa fa-globe" title="Public"></i>
+              </td>
+              <td>2015-03-05 13:02:30 UTC</td>
+                <td>
+                    <i class="fa fa-edit" title="Edit"></i>
+                    <i class="fa fa-cog" title="Edit Configuration"></i>
+                    <i class="fa fa-copy" title="Clone"></i>
+                    <i class="fa fa-download" title="Export to JSON"></i>
+                    <i class="fa fa-trash" title="Delete"></i>
+                </td>
+              </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="public">
+      <table id="public_projects" class="table table-striped">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Last update</th>
+          </tr>
+        </thead>
+        <tbody>
+              <tr>
+                <td>1</td>
+                <td>Project 1</td>
+                <td>Prety Project</td>
+                <td>2015-03-05 13:02:30 UTC</td>
+              </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#private_projects').DataTable();
+    $('#public_projects').DataTable();
+});
+</script>
