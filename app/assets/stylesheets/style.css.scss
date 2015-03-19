@@ -999,5 +999,7 @@ table.dataTable thead .sorting_asc {
 table.dataTable thead .sorting_desc {
   background: image-url("sort_desc.png") no-repeat center right;
 }
-
 /*----datatable----*/
+.clearfix {
+  clear: both;
+}

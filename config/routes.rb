@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'resources/index'
+
   get 'projects/index'
 
   get 'proyects/index'
