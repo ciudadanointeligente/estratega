@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :resources
-
   resources :projects
+
+  resources :resources
 
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :people
