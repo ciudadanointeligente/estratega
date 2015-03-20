@@ -1005,3 +1005,10 @@ table.dataTable thead .sorting_desc {
 .clearfix {
   clear: both;
 }
+
+.tags-group, .users-group {
+  margin: 40px 0;
+}
+.tags-group .tags, .tags-users .users {
+  margin: 20px 0;
+}
