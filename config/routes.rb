@@ -1,11 +1,7 @@
 Rails.application.routes.draw do
   get 'resources/index'
 
-  get 'projects/index'
-
-  get 'proyects/index'
-
-  get 'proyect/index'
+  resources :projects
 
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :people
