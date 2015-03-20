@@ -1,0 +1,46 @@
+<h3>New Project</h3>
+
+<form>
+	<div class="form-group">
+	    <label for="name">Project Name</label>
+	    <input type="text" class="form-control" id="name">
+	</div>
+	<div class="form-group">
+	    <label for="name">Dependent Project</label>
+		<select class="form-control" id="name">
+			<option>Select Dependent Project</option>
+			<option>Project 1</option>
+			<option>Project 2</option>
+			<option>Project 3</option>
+			<option>Project 4</option>
+		</select>
+	</div>
+	<div class="form-group">
+	    <label for="description">Description</label>
+	    <textarea class="form-control" rows="3"  id="description"></textarea>
+	</div>
+	<div class="form-group users-group">
+		<h4>Add Users</h4>
+		<div class="input-group">
+		    <input type="text" class="form-control" placeholder="User" id="user">
+		    <span class="input-group-btn">
+		    	<button class="btn btn-default" type="button">Add</button>
+		    </span>
+	    </div>
+	    <div class="users">
+	    	<span class="label label-default">User 1</span>
+	    	<span class="label label-default">User 2</span>
+	    	<span class="label label-default">User 3</span>
+	    	<span class="label label-default">User 4</span>
+	    </div>
+	</div>
+    <div class="form-group checkbox">
+		<label>
+			<input type="checkbox"><b>Public</b>
+		</label>
+	</div>
+	<div class="form-actions">
+		<button type="button" class="btn btn-success">Create Project</button>
+    	<%= link_to 'Cancel', projects_path %>
+  </div>
+</form>
