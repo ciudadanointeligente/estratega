@@ -67,3 +67,29 @@ div {
     list-style: square;
   }
 }
+
+.table-striped{
+	margin: 20px 0;
+}
+
+.page-header{
+	border: 0;
+}
+
+h2.page-header{
+	float: left;
+}
+
+.addNew{
+	float: right;
+	/*margin: 40px 0 0 0;*/
+}
+
+a.company-logo {
+	font-family: 'Asap', sans-serif;
+	color: #fff;
+	font-weight: 700;
+	padding: 14px 0 0 15px;
+	float: left;
+	font-size: 24px;
+}

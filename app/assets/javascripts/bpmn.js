@@ -24,6 +24,8 @@ var graph = new joint.dia.Graph({ type: 'bpmn' }).on({
                 width: x.width,
                 height: x.height
             }, { silent: true });
+            if( ! cell instanceof joint.shapes.bpmn.GroupOrganization )
+                cell.setForeignObjectSize(cell, {width: x.width, height: x.height});
         }
         
         if(['bpmn.Step', 'bpmn.External', 'bpmn.Intervention'].indexOf(type) != -1)
@@ -1780,7 +1782,7 @@ function openIHF(cellView, edit){
                     field = document.createElement("div"),
                     header = document.createElement("h3"),
                     persons_list = document.createElement("ul"),
-                    persons_text =  document.createTextNode("Persons")
+                    persons_text =  document.createTextNode("Participants")
 
                 group.classList.add("group")
                 group.classList.add("person-group")
