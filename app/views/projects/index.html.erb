@@ -1,8 +1,9 @@
 <h3>Projects</h3>
 
 <div class="addNew">
-  <%= link_to 'New Project', new_project_path %>
-  <a href="#" class="btn btn-default"><i class="fa fa-plus-square-o"></i> New Project</a>
+  <%= link_to new_project_path, class: 'btn btn-default' do %>
+      <i class="fa fa-plus-square-o"></i> New Project
+  <% end %>
 </div>
 
 <div role="tabpanel">
@@ -30,134 +31,26 @@
           </tr>
         </thead>
         <tbody>
+            <% @projects.each do | p | %>
             <tr>
-              <td>1</td>
-              <td><a href="#">Project 1</a></td>
-              <td>Hard project</td>
-              <td class="text-center">
-              	<i class="fa fa-globe" title="Public"></i>
-              </td>
-              <td>2015-03-05 13:02:30 UTC</td>
+                <td><%= p.id %></td>
+                <td><a href="#"><%= p.title %></a></td>
+                <td><%= p.description %></td>
+                <td class="text-center">
+                    <i class="fa fa-globe" title="Public"></i>
+                </td>
+                <td><%= p.updated_at %></td>
                 <td class="text-right actions">
-                   <a href="#"><i class="fa fa-edit" title="Edit"></i></a>
+                  <%= link_to edit_project_path(p) do %>
+                      <i class="fa fa-edit" title="Edit"></i>
+                  <% end %>
                     <a href="#"><i class="fa fa-home" title="Vist Home"></i></a>
-                    <a href="#"><i class="fa fa-cog" title="Edit Configuration"></i></a>
+
                     <a href="#"><i class="fa fa-copy" title="Clone"></i></a>
                     <a href="#"><i class="fa fa-trash" title="Delete"></i></a>
                 </td>
-              </tr>
-              <tr>
-              <td>2</td>
-              <td><a href="#">Project 2</a></td>
-              <td>Hard project</td>
-              <td class="text-center">
-              	<i class="fa fa-globe" title="Public"></i>
-              </td>
-              <td>2015-03-05 13:02:30 UTC</td>
-                <td class="text-right actions">
-                   <a href="#"><i class="fa fa-edit" title="Edit"></i></a>
-                    <a href="#"><i class="fa fa-home" title="Vist Home"></i></a>
-                    <a href="#"><i class="fa fa-cog" title="Edit Configuration"></i></a>
-                    <a href="#"><i class="fa fa-copy" title="Clone"></i></a>
-                    <a href="#"><i class="fa fa-trash" title="Delete"></i></a>
-                </td>
-              </tr>
-              <tr>
-              <td>3</td>
-              <td><a href="#">Project 3</a></td>
-              <td>Hard project</td>
-              <td class="text-center">
-              	<i class="fa fa-globe" title="Public"></i>
-              </td>
-              <td>2015-03-05 13:02:30 UTC</td>
-                <td class="text-right actions">
-                   <a href="#"><i class="fa fa-edit" title="Edit"></i></a>
-                    <a href="#"><i class="fa fa-home" title="Vist Home"></i></a>
-                    <a href="#"><i class="fa fa-cog" title="Edit Configuration"></i></a>
-                    <a href="#"><i class="fa fa-copy" title="Clone"></i></a>
-                    <a href="#"><i class="fa fa-trash" title="Delete"></i></a>
-                </td>
-              </tr>
-              <tr>
-              <td>4</td>
-              <td><a href="#">Project 4</a></td>
-              <td>Hard project</td>
-              <td class="text-center">
-              	<i class="fa fa-globe" title="Public"></i>
-              </td>
-              <td>2015-03-05 13:02:30 UTC</td>
-                <td class="text-right actions">
-                   <a href="#"><i class="fa fa-edit" title="Edit"></i></a>
-                    <a href="#"><i class="fa fa-home" title="Vist Home"></i></a>
-                    <a href="#"><i class="fa fa-cog" title="Edit Configuration"></i></a>
-                    <a href="#"><i class="fa fa-copy" title="Clone"></i></a>
-                    <a href="#"><i class="fa fa-trash" title="Delete"></i></a>
-                </td>
-              </tr>
-              <tr>
-              <td>5</td>
-              <td><a href="#">Project 6</a></td>
-              <td>Hard project</td>
-              <td class="text-center">
-              	<i class="fa fa-globe" title="Public"></i>
-              </td>
-              <td>2015-03-05 13:02:30 UTC</td>
-                <td class="text-right actions">
-                   <a href="#"><i class="fa fa-edit" title="Edit"></i></a>
-                    <a href="#"><i class="fa fa-home" title="Vist Home"></i></a>
-                    <a href="#"><i class="fa fa-cog" title="Edit Configuration"></i></a>
-                    <a href="#"><i class="fa fa-copy" title="Clone"></i></a>
-                    <a href="#"><i class="fa fa-trash" title="Delete"></i></a>
-                </td>
-              </tr>
-              <tr>
-              <td>7</td>
-              <td><a href="#">Project 8</a></td>
-              <td>Hard project</td>
-              <td class="text-center">
-              	<i class="fa fa-globe" title="Public"></i>
-              </td>
-              <td>2015-03-05 13:02:30 UTC</td>
-                <td class="text-right actions">
-                   <a href="#"><i class="fa fa-edit" title="Edit"></i></a>
-                    <a href="#"><i class="fa fa-home" title="Vist Home"></i></a>
-                    <a href="#"><i class="fa fa-cog" title="Edit Configuration"></i></a>
-                    <a href="#"><i class="fa fa-copy" title="Clone"></i></a>
-                    <a href="#"><i class="fa fa-trash" title="Delete"></i></a>
-                </td>
-              </tr>
-              <tr>
-              <td>9</td>
-              <td><a href="#">Project 9</a></td>
-              <td>Hard project</td>
-              <td class="text-center">
-              	<i class="fa fa-globe" title="Public"></i>
-              </td>
-              <td>2015-03-05 13:02:30 UTC</td>
-                <td class="text-right actions">
-                   <a href="#"><i class="fa fa-edit" title="Edit"></i></a>
-                    <a href="#"><i class="fa fa-home" title="Vist Home"></i></a>
-                    <a href="#"><i class="fa fa-cog" title="Edit Configuration"></i></a>
-                    <a href="#"><i class="fa fa-copy" title="Clone"></i></a>
-                    <a href="#"><i class="fa fa-trash" title="Delete"></i></a>
-                </td>
-              </tr>
-              <tr>
-              <td>10</td>
-              <td><a href="#">Project 10</a></td>
-              <td>Hard project</td>
-              <td class="text-center">
-              	<i class="fa fa-globe" title="Public"></i>
-              </td>
-              <td>2015-03-05 13:02:30 UTC</td>
-                <td class="text-right actions">
-                   <a href="#"><i class="fa fa-edit" title="Edit"></i></a>
-                    <a href="#"><i class="fa fa-home" title="Vist Home"></i></a>
-                    <a href="#"><i class="fa fa-cog" title="Edit Configuration"></i></a>
-                    <a href="#"><i class="fa fa-copy" title="Clone"></i></a>
-                    <a href="#"><i class="fa fa-trash" title="Delete"></i></a>
-                </td>
-              </tr>
+            </tr>
+            <% end %>
         </tbody>
       </table>
     </div>
