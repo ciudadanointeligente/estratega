@@ -1001,6 +1001,21 @@ table.dataTable thead .sorting_asc {
 table.dataTable thead .sorting_desc {
   background: image-url("sort_desc.png") no-repeat center right;
 }
+table.dataTable tbody td a, table.dataTable tbody td a:visited, table.dataTable tbody td a:hover  {
+  color: #337ab7;
+  background-color: #fff;
+}
+table.dataTable tbody td a i, table.dataTable tbody td a:visited i, table.dataTable tbody td a:hover i {
+  color: #333;
+  background-color: #fff;
+}
+.paging_simple_numbers > a:hover, .paging_simple_numbers > span:hover, .paging_simple_numbers a:hover {
+  background-color: #CACACA;
+}
+.paging_simple_numbers a.disabled {
+  background-color: #fff;
+    color: #337ab7;
+}
 /*----datatable----*/
 .clearfix {
   clear: both;
