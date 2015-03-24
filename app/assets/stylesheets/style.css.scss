@@ -948,6 +948,7 @@ form.new_user ul.list-inline {
   -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 5px rgba(0,0,0,.075);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 5px rgba(0,0,0,.075);
   padding: 15px;
+  border: 1px solid #dddddd;
 }
 .dataTables_filter input[type="search"] {
   height: 34px;
@@ -1026,4 +1027,7 @@ table.dataTable tbody td a i, table.dataTable tbody td a:visited i, table.dataTa
 }
 .tags-group .tags, .tags-users .users {
   margin: 20px 0;
+}
+.btn-default {
+  color: #333333 !important;
 }
