@@ -77,6 +77,7 @@ $(document).ready(function () {
                             <h4>Descrption</h4>
                             <p>A real-world problem is the negative situation children face that UNICEF would like to change.</p>
                             <p>When describing the problem be as concise as possible. You may want to use or refer to the formulation of problems used in planning documents that have already been discussed with and/or approved by the team.</p>
+                            <hr>
                             <h4>Example</h4>
                             <p>20 per cent of children in country XX live below the poverty line</p>
                         </div>
@@ -84,30 +85,31 @@ $(document).ready(function () {
                             <form>
                                 <div class="form-group">
                                     <label for="problem">Problem</label>
-                                    <input type="text" class="form-control" id="problem" placeholder="Enter problem">
+                                    <input type="text" required="required" class="form-control" id="problem" placeholder="Enter problem">
                                 </div>
                                 <div class="form-group">
                                     <label for="explanation">Explanation</label>
-                                    <textarea class="form-control" rows="3" id="explanation" placeholder="Enter problem"></textarea>
+                                    <textarea class="form-control" rows="3" id="explanation" placeholder="Enter explanation"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="focus-area">Focus Area</label>
                                     <select class="form-control" id="focus-area">
-                                      <option>1</option>
-                                      <option>2</option>
-                                      <option>3</option>
-                                      <option>4</option>
-                                      <option>5</option>
-                                      <option>6</option>
-                                      <option>7</option>
-                                      <option>8</option>
+                                      <option>Select focus area</option>
+                                      <option>Poverty and hunger</option>
+                                      <option>Universal primary education</option>
+                                      <option>Gender equality and empowerment of women</option>
+                                      <option>Child mortality</option>
+                                      <option>Maternal health</option>
+                                      <option>HIV/AIDS, malaria and other diseases</option>
+                                      <option>Environmental sustainability</option>
+                                      <option>Global partnership for development</option>
                                     </select>
                                 </div>
                                 <button class="btn btn-success" type="button" >Save</button>
-                                <button class="btn btn-success nextBtn btn-lg pull-right" type="button" >Save & Next</button>
+                                <button class="btn btn-success nextBtn" type="button" >Save & Next</button>
                             </form>
                         </div>
-                    </div>
+                    </div></div>
             </div>
         </div>
     </div>
