@@ -1,0 +1,29 @@
+<h1>Listing policy_problems</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Real problem</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @policy_problems.each do |policy_problem| %>
+      <tr>
+        <td><%= policy_problem.title %></td>
+        <td><%= policy_problem.description %></td>
+        <td><%= policy_problem.real_problem %></td>
+        <td><%= link_to 'Show', policy_problem %></td>
+        <td><%= link_to 'Edit', edit_policy_problem_path(policy_problem) %></td>
+        <td><%= link_to 'Destroy', policy_problem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Policy problem', new_policy_problem_path %>

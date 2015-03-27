@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150119134455) do
+ActiveRecord::Schema.define(version: 20150327142001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,33 @@ ActiveRecord::Schema.define(version: 20150119134455) do
     t.string   "image"
     t.string   "summary"
     t.text     "biography"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "policy_problems", force: true do |t|
+    t.text     "title"
+    t.text     "description"
+    t.integer  "real_problem_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "policy_problems", ["real_problem_id"], name: "index_policy_problems_on_real_problem_id", using: :btree
+
+  create_table "policy_solutions", force: true do |t|
+    t.text     "title"
+    t.text     "description"
+    t.integer  "policy_problem_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "policy_solutions", ["policy_problem_id"], name: "index_policy_solutions_on_policy_problem_id", using: :btree
+
+  create_table "real_problems", force: true do |t|
+    t.text     "title"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

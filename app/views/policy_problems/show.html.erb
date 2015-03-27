@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @policy_problem.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @policy_problem.description %>
+</p>
+
+<p>
+  <strong>Real problem:</strong>
+  <%= @policy_problem.real_problem %>
+</p>
+
+<%= link_to 'Edit', edit_policy_problem_path(@policy_problem) %> |
+<%= link_to 'Back', policy_problems_path %>

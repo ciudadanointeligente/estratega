@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :policy_solutions
+
+  resources :policy_problems
+
+  resources :real_problems
+
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :people
   resources :other_names
