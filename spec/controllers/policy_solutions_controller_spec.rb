@@ -24,11 +24,11 @@ RSpec.describe PolicySolutionsController, :type => :controller do
   # PolicySolution. As you add validations to PolicySolution, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {title: "a title", description: "a description"}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {title: "", description: ""}
   }
 
   # This should return the minimal set of values that should be in the session
