@@ -935,7 +935,7 @@ form.new_user ul.list-inline {
 
 /*----datatable----*/
 .actions a {
-  margin-left: 10px;
+  margin-left: 8px;
 }
 .dataTables_filter {
   background-image: -webkit-linear-gradient(top,#fff 0,#f8f8f8 100%);
@@ -1029,12 +1029,6 @@ table.dataTable tbody td a i, table.dataTable tbody td a:visited i, table.dataTa
 .tags-group .tags, .tags-users .users {
   margin: 20px 0;
 }
-.btn-default {
-  color: #333333 !important;
-}
-div.well ol {
-  padding-left: 25px;
-}
 /*----Wizard----*/
 .stepwizard-step p {
     margin-top: 10px;
@@ -1081,4 +1075,14 @@ div.well ol {
   font-size: 12px;
   line-height: 1.428571429;
   border-radius: 15px;
+}
+/*----Wizard End----*/
+.nav-tabs {
+  margin: 30px 0;
+}
+.btn-default {
+  color: #333333 !important;
+}
+div.well ol {
+  padding-left: 25px;
 }
