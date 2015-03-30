@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'steps/index'
+  get 'steps/step1'
+  resources :projects
+
+  resources :resources
+
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :people
   resources :other_names
