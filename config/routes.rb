@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   resources :policy_solutions
-
   resources :policy_problems
-
   resources :real_problems
+  
+  get 'steps/index'
+  get 'steps/step1'
+  resources :projects
+  resources :resources
 
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :people

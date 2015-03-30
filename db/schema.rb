@@ -61,12 +61,31 @@ ActiveRecord::Schema.define(version: 20150327142001) do
 
   add_index "policy_solutions", ["policy_problem_id"], name: "index_policy_solutions_on_policy_problem_id", using: :btree
 
+  create_table "projects", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "public"
+  end
+
   create_table "real_problems", force: true do |t|
     t.text     "title"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "resources", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "project_id"
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "public"
+  end
+
+  add_index "resources", ["project_id"], name: "index_resources_on_project_id", using: :btree
 
   create_table "sandboxes", force: true do |t|
     t.string   "name"

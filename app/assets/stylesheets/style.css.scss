@@ -50,7 +50,7 @@ span.tagline{
 }
 
 .FullPage{
-	margin: 50px auto 0;
+	margin: 50px auto 40px;
 }
 
 /*Step*/
@@ -437,6 +437,7 @@ color: #F2F2F2;
 .clearfix.toolbarName {
   padding: 10px 15px;
   text-align: center;
+  clear: none;
 }
 
 .inspector input, .inspector textarea {
@@ -896,6 +897,17 @@ background-color: #12181F;
 .person-group ul {
     padding-left: 15px;
 }
+.btnClose {
+  float: right;
+  margin-right: 8px;
+}
+#fileName:hover {
+  color: #FFFFFF;
+}
+table.link-color a {
+  color: #2c3e50;
+  text-decoration: underline;
+}
 form.new_user ul.list-inline {
   margin-top: 10px;
   margin-bottom: 20px;
@@ -920,15 +932,157 @@ form.new_user ul.list-inline {
     padding: 0px 2px;
   }
 }
+
 /*----datatable----*/
-.btnClose {
-  float: right;
-  margin-right: 8px;
+.actions a {
+  margin-left: 8px;
 }
-#fileName:hover {
-  color: #FFFFFF;
+.dataTables_filter {
+  background-image: -webkit-linear-gradient(top,#fff 0,#f8f8f8 100%);
+  background-image: -o-linear-gradient(top,#fff 0,#f8f8f8 100%);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#f8f8f8));
+  background-image: linear-gradient(to bottom,#fff 0,#f8f8f8 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff8f8f8', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  background-repeat: repeat-x;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 5px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 5px rgba(0,0,0,.075);
+  padding: 15px;
+  border: 1px solid #dddddd;
 }
-table.link-color a {
-  color: #2c3e50;
-  text-decoration: underline;
+.dataTables_filter input[type="search"] {
+  height: 34px;
+  padding: 6px 12px;
+  margin-left: 20px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.paging_simple_numbers {
+  display: inline-block;
+  padding-left: 0;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+}
+.paging_simple_numbers>a, .paging_simple_numbers>span {
+  /*position: relative;
+  float: left;*/
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #337ab7;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+/*.dataTables_info {
+  display: inline-block;
+}*/
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc,
+table.dataTable thead .sorting {
+  cursor: pointer;
+  *cursor: hand;
+}
+table.dataTable thead .sorting {
+  background: image-url("sort_both.png") no-repeat center right;
+}
+table.dataTable thead .sorting_asc {
+  background: image-url("sort_asc.png") no-repeat center right;
+}
+table.dataTable thead .sorting_desc {
+  background: image-url("sort_desc.png") no-repeat center right;
+}
+table.dataTable tbody td a, table.dataTable tbody td a:visited, table.dataTable tbody td a:hover  {
+  color: #337ab7;
+  background-color: #fff;
+}
+table.dataTable tbody td a i, table.dataTable tbody td a:visited i, table.dataTable tbody td a:hover i {
+  color: #333;
+  background-color: #fff;
+}
+.paging_simple_numbers > a:hover, .paging_simple_numbers > span:hover, .paging_simple_numbers a:hover {
+  background-color: #CACACA;
+}
+.paging_simple_numbers a.disabled {
+  background-color: #fff;
+    color: #337ab7;
+}
+/*----datatable----*/
+.clearfix {
+  clear: both;
+}
+
+.tags-group, .users-group {
+  margin: 40px 0;
+}
+.tags-group .tags, .tags-users .users {
+  margin: 20px 0;
+}
+/*----Wizard----*/
+.stepwizard-step p {
+    margin-top: 10px;
+}
+
+.stepwizard-row {
+    display: table-row;
+}
+
+.stepwizard {
+    display: table;
+    width: 100%;
+    position: relative;
+}
+
+.stepwizard-step button[disabled] {
+    opacity: 1 !important;
+    filter: alpha(opacity=100) !important;
+}
+
+.stepwizard-row:before {
+    top: 14px;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    z-order: 0;
+
+}
+
+.stepwizard-step {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+/*----Wizard End----*/
+.nav-tabs {
+  margin: 30px 0;
+}
+.btn-default {
+  color: #333333 !important;
+}
+div.well ol {
+  padding-left: 25px;
 }
