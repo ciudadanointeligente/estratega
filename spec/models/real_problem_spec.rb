@@ -6,7 +6,7 @@ RSpec.describe RealProblem, :type => :model do
     it "returns a RealProblem in json format" do
       problem = RealProblem.new
       problem.title = "a real world problem" 
-      json = { "company" => { "name" => "a real world problem", "styleprop" => { "activity_rounded" => true } }, "projects" => [] }.to_json
+      json = { "real_problem" => { "title" => "a real world problem" }, "policy_problems" => [] }.to_json
       expect(problem.to_graph_json).to eq(json)
     end
 
@@ -18,29 +18,15 @@ RSpec.describe RealProblem, :type => :model do
       policy_problem_2 = PolicyProblem.new
       policy_problem_2.title = "another policy problem"
       real_problem.policy_problems = [policy_problem_1, policy_problem_2]
-      json = { "company" => { "name" => "a real world problem", "styleprop" => { "activity_rounded" => true } },
-        "projects" => [
+      json = { "real_problem" => { "title" => "a real world problem" },
+        "policy_problems" => [
           {
-            "title" => {
-                "name" => "a policy problem",
-                "styleprop" => {
-                  "activity_rounded" => true
-                }
-            },
-            "subitems" => {
-                "teams" => []
-            }
+            "title" =>  "a policy problem",
+            "policy_solutions" => []
           },
           {
-            "title" => {
-              "name" => "another policy problem",
-              "styleprop" => {
-                "activity_rounded" => true
-              }
-            },
-            "subitems" => {
-                "teams" => []
-            }
+            "title" =>  "another policy problem",
+            "policy_solutions" => []
           }
         ]
       }.to_json
@@ -62,50 +48,22 @@ RSpec.describe RealProblem, :type => :model do
       policy_problem_1.policy_solutions = [policy_solution_1, policy_solution_2]
       policy_problem_2.policy_solutions = []
 
-      json = { "company" => { "name" => "a real world problem", "styleprop" => { "activity_rounded" => true } },
-        "projects" => [
+      json = { "real_problem" => { "title" => "a real world problem" } ,
+        "policy_problems" => [
           {
-            "title" => {
-                "name" => "a policy problem",
-                "styleprop" => {
-                  "activity_rounded" => true
-                }
-            },
-            "subitems" => {
-                "teams" => [
+            "title" => "a policy problem",
+            "policy_solutions" => [
                     {
-                        "team" => [
-                            {
-                                "head" => {
-                                    "name" => "a solution for policy problem 1",
-                                    "styleprop" => {}
-                                }
-                            }
-                        ]
+                        "title" => "a solution for policy problem 1"
                     },
                     {
-                        "team" => [
-                            {
-                                "head" => {
-                                    "name" => "another solution for policy problem 1",
-                                    "styleprop" => {}
-                                }
-                            }
-                        ]
+                        "title" => "another solution for policy problem 1"
                     }
                 ]
-            }
           },
           {
-            "title" => {
-                "name" => "another policy problem",
-                "styleprop" => {
-                  "activity_rounded" => true
-                }
-            },
-            "subitems" => {
-                "teams" => []
-            }
+            "title" => "another policy problem",
+            "policy_solutions" => []
           }
         ]
       }.to_json

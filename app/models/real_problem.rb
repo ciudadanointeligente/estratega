@@ -9,36 +9,22 @@ class RealProblem < ActiveRecord::Base
       policy_problem.policy_solutions.each do |policy_solution|
         policy_solution_hash =
         {
-          "team" => [
-              {
-                  "head" => {
-                      "name" => policy_solution.title,
-                      "styleprop" => {}
-                  }
-              }
-          ]
+          "title" => policy_solution.title
         }
         policy_solution_list.append policy_solution_hash
       end
       policy_problem_hash =
         {
-          "title" => {
-            "name" => policy_problem.title,
-            "styleprop" => {
-              "activity_rounded" => true
-            }
-          },
-          "subitems" => {
-            "teams" => policy_solution_list
-          }
+          "title" => policy_problem.title,
+          "policy_solutions" => policy_solution_list
         }
       policy_problem_list.append policy_problem_hash
     end
     
-    
-    json = { "company" => { "name" => self.title, "styleprop" => { "activity_rounded" => true } },
-        "projects" => policy_problem_list
+    json = { "real_problem" => { "title" => self.title },
+        "policy_problems" => policy_problem_list
       }.to_json
+    
     return json
   end
 end
