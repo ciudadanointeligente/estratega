@@ -64,7 +64,7 @@
                                                         'main': [
                                                                     { "tag": "ul", "class": "main", "children": 
                                                                         [
-                                                                            { "tag": "li", "html": "${title}", "children": 
+                                                                            { "tag": "li", "html": "<p>${title}</p>", "children": 
                                                                                 [
                                                                                     { 
                                                                                         "tag": "ul", "class": "second_level", "children":function() { return( json2html.transform(this.policy_problems, transform.second_level) ) }
@@ -75,7 +75,7 @@
                                                                     }
                                                                 ],
                                                         'second_level': [
-                                                                            { "tag": "li", "html": "${title}", "children":
+                                                                            { "tag": "li", "html": "<p>${title}</p>", "children":
                                                                                 [
                                                                                     {
                                                                                         "tag": "ul", "class": "third_level", "children":function() { return( json2html.transform(this.policy_solutions, transform.third_level) ) } 
@@ -84,7 +84,7 @@
                                                                             }
                                                                         ],
                                                         'third_level': [
-                                                                            { "tag": "li", "html": "${title}" }
+                                                                            { "tag": "li", "html": "<p>${title}</p>" }
                                                                         ]
                                                     }
 
@@ -105,7 +105,29 @@
                                                                         },
                                                                         {
                                                                             "title": "a policy problem 02",
+                                                                            "policy_solutions": [
+                                                                                {
+                                                                                    "title": "a policy solution 01"
+                                                                                },
+                                                                                {
+                                                                                    "title": "a policy solution 02"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "title": "a policy problem 03",
                                                                             "policy_solutions": []
+                                                                        },
+                                                                        {
+                                                                            "title": "a policy problem 04",
+                                                                            "policy_solutions": [
+                                                                                {
+                                                                                    "title": "a policy solution 01"
+                                                                                },
+                                                                                {
+                                                                                    "title": "a policy solution 02"
+                                                                                }
+                                                                            ]
                                                                         }
                                                                     ]
                                                                 }

@@ -1,7 +1,75 @@
 <%= javascript_include_tag "steps" %>
 <%= javascript_include_tag "json2html.js" %>
 <%= javascript_include_tag "jquery.json2html.js" %>
-
+<style type="text/css">
+.main {
+    text-align:center;
+    padding:0;
+    margin:0;
+    list-style:none;
+}
+.main:after {
+    content:'';
+    display:block;
+    clear:both;
+}
+.main ul {
+    position:relative;
+    float:left;
+    padding:0;
+    margin:10px 0 0;
+    list-style:none;
+    min-height:20px;
+}
+ul.main li p {
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+ul.second-level li p {
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+ul.third-level li p {
+    border: 1px solid #eee;
+    font-size: 12px;
+}
+.main ul:after, .main li:after {
+    content:'';
+    display:block;
+    clear:both;
+}
+.main li {
+    position:relative;
+    margin:0 0 10px 0;
+}
+.main ul li {
+    top:auto;
+    left:0;
+    display:inline;
+    width:110px;
+    margin-right:10px;
+    float:left;
+}
+.main ul ul {
+    width:110px;
+}
+.main ul ul li {
+    width:97px;
+    margin-right:0;
+    margin-left:13px;
+}
+.main ul ul ul {
+    width:97px;
+}
+.main ul ul ul li {
+    width:82px;
+    margin-right:0;
+    margin-left:15px;
+}
+.main ul ul ul {
+    text-align:left;
+}
+</style>
 <div class="container">
     <!-- -->
     <%= render 'steps_breadcrumb' %>
