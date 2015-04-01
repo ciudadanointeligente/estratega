@@ -57,7 +57,43 @@
                                             <button class="btn btn-success nextBtn" type="button" >Save & Next</button>
                                         </div>
                                         <div class="col-md-6">
+                                            <!-- [graph] -->
+                                            <div id="jorg-step-three"></div>
+                                            <script type="text/javascript">
+                                                var json_three = {
+                                                                    "real_problem": {
+                                                                        "title": "main problem",
+                                                                        "policy_problems": [
+                                                                            {
+                                                                                "title": "a policy problem 01",
+                                                                                "policy_solutions": []
+                                                                            },
+                                                                            {
+                                                                                "title": "a policy problem 02",
+                                                                                "policy_solutions": []
+                                                                            },
+                                                                            {
+                                                                                "title": "a policy problem 03",
+                                                                                "policy_solutions": []
+                                                                            },
+                                                                            {
+                                                                                "title": "a policy problem 04",
+                                                                                "policy_solutions": []
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                }
+                                                
+                                                function generateStepThree(json_three) {
+                                                    if(json_three) $('#jorg-step-three').json2html(json_three.real_problem, transform.main);
+                                                }
 
+                                                $(document).ready(function(){
+                                                    generateStepThree(json_three);
+                                                });
+
+                                                </script>
+                                            <!-- end graph -->
                                         </div>
                                     </div>
                                 </div>

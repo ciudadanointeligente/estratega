@@ -57,88 +57,21 @@
                                         </div>
                                         <div class="col-md-6">
                                             <!-- [graph] -->
-                                            <div id="jorg"></div>
+                                            <div id="jorg-step-two"></div>
                                             <script type="text/javascript">
-                                                var transform =
-                                                    {
-                                                        'main': [
-                                                                    { "tag": "ul", "class": "main", "children": 
-                                                                        [
-                                                                            { "tag": "li", "html": "<p>${title}</p>", "children": 
-                                                                                [
-                                                                                    { 
-                                                                                        "tag": "ul", "class": "second_level", "children":function() { return( json2html.transform(this.policy_problems, transform.second_level) ) }
-                                                                                    }
-                                                                                ] 
-                                                                            }
-                                                                        ]
+                                                var json_two = {
+                                                                    "real_problem": {
+                                                                        "title": "main problem",
+                                                                        "policy_problems": []
                                                                     }
-                                                                ],
-                                                        'second_level': [
-                                                                            { "tag": "li", "html": "<p>${title}</p>", "children":
-                                                                                [
-                                                                                    {
-                                                                                        "tag": "ul", "class": "third_level", "children":function() { return( json2html.transform(this.policy_solutions, transform.third_level) ) } 
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ],
-                                                        'third_level': [
-                                                                            { "tag": "li", "html": "<p>${title}</p>" }
-                                                                        ]
-                                                    }
-
-                                                var json = {
-                                                                "real_problem": {
-                                                                    "title": "main problem",
-                                                                    "policy_problems": [
-                                                                        {
-                                                                            "title": "a policy problem 01",
-                                                                            "policy_solutions": [
-                                                                                {
-                                                                                    "title": "a policy solution 01"
-                                                                                },
-                                                                                {
-                                                                                    "title": "a policy solution 02"
-                                                                                }
-                                                                            ]
-                                                                        },
-                                                                        {
-                                                                            "title": "a policy problem 02",
-                                                                            "policy_solutions": [
-                                                                                {
-                                                                                    "title": "a policy solution 01"
-                                                                                },
-                                                                                {
-                                                                                    "title": "a policy solution 02"
-                                                                                }
-                                                                            ]
-                                                                        },
-                                                                        {
-                                                                            "title": "a policy problem 03",
-                                                                            "policy_solutions": []
-                                                                        },
-                                                                        {
-                                                                            "title": "a policy problem 04",
-                                                                            "policy_solutions": [
-                                                                                {
-                                                                                    "title": "a policy solution 01"
-                                                                                },
-                                                                                {
-                                                                                    "title": "a policy solution 02"
-                                                                                }
-                                                                            ]
-                                                                        }
-                                                                    ]
                                                                 }
-                                                            }
                                                 
-                                                function generateGraph(json) {
-                                                    if(json) $('#jorg').json2html(json.real_problem, transform.main);
+                                                function generateStepTwo(json_two) {
+                                                    if(json_two) $('#jorg-step-two').json2html(json_two.real_problem, transform.main);
                                                 }
 
                                                 $(document).ready(function(){
-                                                    generateGraph(json);
+                                                    generateStepTwo(json_two);
                                                 });
 
                                                 </script>

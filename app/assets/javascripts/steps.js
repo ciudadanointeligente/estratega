@@ -45,3 +45,34 @@ $('#myTab a').click(function (e) {
   e.preventDefault()
   $('#myTab a:first').tab('show') // Select first tab
 })
+
+////
+var transform =
+    {
+        'main': [
+                    { "tag": "ul", "class": "main", "children": 
+                        [
+                            { "tag": "li", "html": "<p>${title}</p>", "children": 
+                                [
+                                    { 
+                                        "tag": "ul", "class": "second_level", "children":function() { return( json2html.transform(this.policy_problems, transform.second_level) ) }
+                                    }
+                                ] 
+                            }
+                        ]
+                    }
+                ],
+        'second_level': [
+                            { "tag": "li", "html": "<p>${title}</p>", "children":
+                                [
+                                    {
+                                        "tag": "ul", "class": "third_level", "children":function() { return( json2html.transform(this.policy_solutions, transform.third_level) ) } 
+                                    }
+                                ]
+                            }
+                        ],
+        'third_level': [
+                            { "tag": "li", "html": "<p>${title}</p>" }
+                        ]
+    }
+////
