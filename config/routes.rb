@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   		get 'export'
     end
   end
-  resources :tests
+  get '/javascript_test/:script' => 'javascript_test#render_test', :as => 'javascript_test'
 
   root to: 'visitors#index'
 end
