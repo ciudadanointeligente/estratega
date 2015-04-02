@@ -21,8 +21,8 @@ class PolicyProblemsController < ApplicationController
   end
 
   def create
-    @policy_problem = PolicyProblem.new(policy_problem_params)
-    @policy_problem.save
+    @real_problem = RealProblem.find(policy_problem_params[:real_problem_id])
+    @policy_problem = @real_problem.policy_problems.create(policy_problem_params)
     respond_with(@policy_problem)
   end
 

@@ -70,31 +70,43 @@ RSpec.describe PolicyProblemsController, :type => :controller do
   describe "POST create" do
     describe "with valid params" do
       it "creates a new PolicyProblem" do
+        real_problem = RealProblem.create(title: "asdf")
         expect {
-          post :create, {:policy_problem => valid_attributes}, valid_session
+          post :create, {:policy_problem => valid_attributes.merge(real_problem_id: real_problem.id)}, valid_session
         }.to change(PolicyProblem, :count).by(1)
       end
 
       it "assigns a newly created policy_problem as @policy_problem" do
-        post :create, {:policy_problem => valid_attributes}, valid_session
+        real_problem = RealProblem.create(title: "asdf")
+        post :create, {:policy_problem => valid_attributes.merge(real_problem_id: real_problem.id)}, valid_session
         expect(assigns(:policy_problem)).to be_a(PolicyProblem)
         expect(assigns(:policy_problem)).to be_persisted
       end
 
       it "redirects to the created policy_problem" do
-        post :create, {:policy_problem => valid_attributes}, valid_session
+        real_problem = RealProblem.create(title: "asdf")
+        post :create, {:policy_problem => valid_attributes.merge(real_problem_id: real_problem.id)}, valid_session
         expect(response).to redirect_to(PolicyProblem.last)
+      end
+
+      it "creates a new Policy Problem, related to a RealProblem" do
+        real_problem = RealProblem.create(title: "asdf")
+        post :create, {:policy_problem => valid_attributes.merge(real_problem_id: real_problem.id)}, valid_session
+        expect(assigns(:policy_problem).real_problem_id).to eq(real_problem.id)
+        expect(assigns(:real_problem).policy_problems.count).to eq(1)
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved policy_problem as @policy_problem" do
-        post :create, {:policy_problem => invalid_attributes}, valid_session
+        real_problem = RealProblem.create(title: "asdf")
+        post :create, {:policy_problem => invalid_attributes.merge(real_problem_id: real_problem.id)}, valid_session
         expect(assigns(:policy_problem)).to be_a_new(PolicyProblem)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:policy_problem => invalid_attributes}, valid_session
+        real_problem = RealProblem.create(title: "asdf")
+        post :create, {:policy_problem => invalid_attributes.merge(real_problem_id: real_problem.id)}, valid_session
         expect(response).to render_template("new")
       end
     end
