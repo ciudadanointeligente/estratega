@@ -1,0 +1,94 @@
+<script type="text/javascript">
+$('#myTab a').click(function (e) {
+  e.preventDefault()
+  $('#myTab a:first').tab('show') // Select first tab
+})
+</script>
+<h3>Develop your  asks, messages and narrative</h3>
+<p>Decide what you will monitor and evaluate and define indicators. Agree on how you will share knowledge</p>
+<ul class="nav nav-tabs" role="tablist">
+  <li role="presentation" class="active"><a href="#explication" aria-controls="home" role="tab" data-toggle="tab">Explication</a></li>
+  <li role="presentation"><a href="#data-entry" aria-controls="profile" role="tab" data-toggle="tab">Data Entry</a></li>
+</ul>
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="explication">
+    <h4>Description</h4>
+    <p>To keep relevant and ensure the best use of the resources available, the advocacy strategies have to evolve in response to changes circumstances and conditions. Furthermore we learn by doing and we may need to adjust our plan based on what we have learned during the implementation.</p>
+    <p>Your team should agree on mechanisms to revisit periodically the strategy. Your discussions should cover both internal and external elements. Some examples of guiding questions are as follows: Internal (What worked well and what did not work? Why? What could be improved? What lessons are drawn for the next time?. External: Has there been any important change in the context?; are there new opportunities/threats? And how are we going to react to them?; Is there any new critical player?; has there been any change in the target audience´s position/interest?,etc.</p>
+    <hr>
+    <h4>Example</h4>
+    <p><strong>Minister of Health</strong></p>
+    <p>To support the review of the policy framework on HI and recommend extension of coverage for informal workers in the report submitted to the NA by the Government</p>
+  </div>
+  <div role="tabpanel" class="tab-pane" id="data-entry">
+    <div class="row">
+      <div class="col-md-12">
+        <form>
+      	  <div class="form-group">
+            <label for="target-audience">Target Audience (Actors)</label>
+            <select class="form-control" id="target-audience">
+              <option>Select Target Audience</option>
+              <option>Minister of Health</option>
+              <option>Members of Parliament</option>
+              <option>Director of the Department</option>
+              <option>INGO “X”</option>
+              <option>UN Agencies</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="ask">Ask</label>
+            <textarea class="form-control" rows="3" id="ask" placeholder="Write Ask"></textarea>
+          </div>
+          <button class="btn btn-default" type="button" ><i class="fa fa-plus-square-o"></i> Add Ask</button>
+    	 </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <hr>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Target Audience</th>
+              <th>Ask</th>
+              <th class="text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Minister of Health</td>
+              <td>To support the review of the policy framework on HI and recommend extension of coverage for informal workers in the report submitted to the NA by the Government</td>
+              <td class="text-right actions">
+                    <a href="#"><i class="fa fa-edit" title="Edit"></i></a> <a data-confirm="Are you sure you want to permanently delete this sandbox?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-trash" title="Delete"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td>Members of Parliament</td>
+              <td>To support the review of the policy framework on HI and recommend extension of coverage for informal workers in the report on the 5 year review of the Law</td>
+              <td class="text-right actions">
+                    <a href="#"><i class="fa fa-edit" title="Edit"></i></a> <a data-confirm="Are you sure you want to permanently delete this sandbox?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-trash" title="Delete"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td>Members of Parliament</td>
+              <td>To invite UNICEF or partners to prepare and deliver report on the issue</td>
+              <td class="text-right actions">
+                    <a href="#"><i class="fa fa-edit" title="Edit"></i></a> <a data-confirm="Are you sure you want to permanently delete this sandbox?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-trash" title="Delete"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td>Director of the Department</td>
+              <td>To publicly advocate for the issue. </td>
+              <td class="text-right actions">
+                    <a href="#"><i class="fa fa-edit" title="Edit"></i></a> <a data-confirm="Are you sure you want to permanently delete this sandbox?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-trash" title="Delete"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <hr>
+          <button class="btn btn-success" type="button">Save</button> 
+          <button class="btn btn-success" type="button">Save & Finish</button>
+      </div>
+    </div>
+  </div>
+</div>
