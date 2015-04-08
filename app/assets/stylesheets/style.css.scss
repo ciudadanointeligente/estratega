@@ -1097,6 +1097,12 @@ div.well ol {
   background-color: #f5f5f5;
   border-color: #ddd;
 }
-.collapse .table {
+.collapse.steps .table {
   margin-bottom: 0px;
+}
+h4.panel-title a .fa-check-circle {
+  color: #3c763d;
+}
+h4.panel-title a .fa-times-circle {
+  color: #a94442;
 }
