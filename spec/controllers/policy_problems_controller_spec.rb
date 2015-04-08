@@ -76,24 +76,24 @@ RSpec.describe PolicyProblemsController, :type => :controller do
     describe "with valid params" do
       it "creates a new PolicyProblem" do
         expect {
-          post :create, {:policy_problem => attributes_for(:policy_problem), real_problem_id: @real_problem}, valid_session
+          post :create, {policy_problem: attributes_for(:policy_problem), real_problem_id: @real_problem}, valid_session
         }.to change(PolicyProblem, :count).by(1)
       end
 
       it "assigns a newly created policy_problem as @policy_problem" do
-        post :create, {:policy_problem => attributes_for(:policy_problem), real_problem_id: @real_problem}, valid_session
+        post :create, {policy_problem: attributes_for(:policy_problem), real_problem_id: @real_problem}, valid_session
         expect(assigns(:policy_problem)).to be_a(PolicyProblem)
         expect(assigns(:policy_problem)).to be_persisted
       end
 
       it "redirects to the created policy_problem" do
-        post :create, {:policy_problem => attributes_for(:policy_problem), real_problem_id: @real_problem}, valid_session
+        post :create, {policy_problem: attributes_for(:policy_problem), real_problem_id: @real_problem}, valid_session
         expect(response).to redirect_to real_problem_policy_problem_path(@real_problem, PolicyProblem.last)
       end
 
       it "creates a new Policy Problem, related to a RealProblem" do
         expect{
-          post :create, {:policy_problem => attributes_for(:policy_problem), real_problem_id: @real_problem}, valid_session
+          post :create, {policy_problem: attributes_for(:policy_problem), real_problem_id: @real_problem}, valid_session
         }.to change(@real_problem.policy_problems, :count).by(1)
         expect(assigns(:policy_problem).real_problem_id).to eq(@real_problem.id)
       end
@@ -152,9 +152,9 @@ RSpec.describe PolicyProblemsController, :type => :controller do
       }.to change(PolicyProblem, :count).by(-1)
     end
 
-    it "redirects to the policy_problems list" do
+    it "redirects to the policy_problems list within a real_problem" do
       delete :destroy, {id: @policy_problem, real_problem_id: @real_problem}, valid_session
-      expect(response).to redirect_to(real_problem_policy_problems_url)
+      expect(response).to redirect_to(real_problem_url(@real_problem))
     end
   end
 

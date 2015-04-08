@@ -34,7 +34,7 @@ class PolicyProblemsController < ApplicationController
 
   def destroy
     @policy_problem.destroy
-    respond_with(@real_problem, @policy_problem)
+    respond_with(@real_problem)
   end
 
   private
