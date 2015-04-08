@@ -36,34 +36,42 @@ RSpec.describe PolicySolutionsController, :type => :controller do
   # PolicySolutionsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before(:each) do
+    @real_problem = create(:real_problem)
+    @policy_problem = create(:policy_problem)
+    @policy_solution = create(:policy_solution)
+    @policy_problem.policy_solutions.append @policy_solution
+    @real_problem.policy_problems.append @policy_problem
+    @policy_problem.save
+    @real_problem.save
+  end
+
   describe "GET index" do
-    it "assigns all policy_solutions as @policy_solutions" do
-      policy_solution = PolicySolution.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:policy_solutions)).to eq([policy_solution])
+    it "assigns all policy_solutions of a policy_problem as @policy_solutions" do
+      create(:policy_solution)
+      get :index, {real_problem_id: @real_problem, policy_problem_id: @policy_problem}, valid_session
+      expect(assigns(:policy_solutions)).to eq([@policy_solution])
     end
   end
 
   describe "GET show" do
     it "assigns the requested policy_solution as @policy_solution" do
-      policy_solution = PolicySolution.create! valid_attributes
-      get :show, {:id => policy_solution.to_param}, valid_session
-      expect(assigns(:policy_solution)).to eq(policy_solution)
+      get :show, {real_problem_id: @real_problem, policy_problem_id: @policy_problem, id: @policy_solution}, valid_session
+      expect(assigns(:policy_solution)).to eq(@policy_solution)
     end
   end
 
   describe "GET new" do
     it "assigns a new policy_solution as @policy_solution" do
-      get :new, {}, valid_session
+      get :new, {real_problem_id: @real_problem, policy_problem_id: @policy_problem}, valid_session
       expect(assigns(:policy_solution)).to be_a_new(PolicySolution)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested policy_solution as @policy_solution" do
-      policy_solution = PolicySolution.create! valid_attributes
-      get :edit, {:id => policy_solution.to_param}, valid_session
-      expect(assigns(:policy_solution)).to eq(policy_solution)
+      get :edit, {real_problem_id: @real_problem, policy_problem_id: @policy_problem, id: @policy_solution}, valid_session
+      expect(assigns(:policy_solution)).to eq(@policy_solution)
     end
   end
 
@@ -71,30 +79,37 @@ RSpec.describe PolicySolutionsController, :type => :controller do
     describe "with valid params" do
       it "creates a new PolicySolution" do
         expect {
-          post :create, {:policy_solution => valid_attributes}, valid_session
+          post :create, {real_problem_id: @real_problem, policy_problem_id: @policy_problem, policy_solution: attributes_for(:policy_solution)}, valid_session
         }.to change(PolicySolution, :count).by(1)
       end
 
       it "assigns a newly created policy_solution as @policy_solution" do
-        post :create, {:policy_solution => valid_attributes}, valid_session
+        post :create, {real_problem_id: @real_problem, policy_problem_id: @policy_problem, policy_solution: attributes_for(:policy_solution)}, valid_session
         expect(assigns(:policy_solution)).to be_a(PolicySolution)
         expect(assigns(:policy_solution)).to be_persisted
       end
 
       it "redirects to the created policy_solution" do
-        post :create, {:policy_solution => valid_attributes}, valid_session
-        expect(response).to redirect_to(PolicySolution.last)
+        post :create, {real_problem_id: @real_problem, policy_problem_id: @policy_problem, policy_solution: attributes_for(:policy_solution)}, valid_session
+        expect(response).to redirect_to real_problem_policy_problem_policy_solution_path(@real_problem, @policy_problem, PolicySolution.last)
+      end
+
+      it "links policy_solution to a policy_problem" do
+        expect{
+          post :create, {real_problem_id: @real_problem, policy_problem_id: @policy_problem, policy_solution: attributes_for(:policy_solution)}, valid_session
+        }.to change(@policy_problem.policy_solutions, :count).by(1)
+        expect(assigns(:policy_solution).policy_problem_id).to eq(@policy_problem.id)
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved policy_solution as @policy_solution" do
-        post :create, {:policy_solution => invalid_attributes}, valid_session
+        post :create, {real_problem_id: @real_problem, policy_problem_id: @policy_problem, policy_solution: attributes_for(:invalid_policy_solution)}, valid_session
         expect(assigns(:policy_solution)).to be_a_new(PolicySolution)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:policy_solution => invalid_attributes}, valid_session
+        post :create, {real_problem_id: @real_problem, policy_problem_id: @policy_problem, policy_solution: attributes_for(:invalid_policy_solution)}, valid_session
         expect(response).to render_template("new")
       end
     end
@@ -102,40 +117,32 @@ RSpec.describe PolicySolutionsController, :type => :controller do
 
   describe "PUT update" do
     describe "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
 
       it "updates the requested policy_solution" do
-        policy_solution = PolicySolution.create! valid_attributes
-        put :update, {:id => policy_solution.to_param, :policy_solution => new_attributes}, valid_session
-        policy_solution.reload
-        skip("Add assertions for updated state")
+        put :update, {real_problem_id: @real_problem, policy_problem_id: @policy_problem, id: @policy_solution, policy_solution: attributes_for(:edit_policy_solution)}, valid_session
+        @policy_solution.reload
+        expect(assigns(:policy_solution).attributes).to include(attributes_for(:edit_policy_solution).stringify_keys)
       end
 
       it "assigns the requested policy_solution as @policy_solution" do
-        policy_solution = PolicySolution.create! valid_attributes
-        put :update, {:id => policy_solution.to_param, :policy_solution => valid_attributes}, valid_session
-        expect(assigns(:policy_solution)).to eq(policy_solution)
+        put :update, {real_problem_id: @real_problem, policy_problem_id: @policy_problem, id: @policy_solution, policy_solution: attributes_for(:edit_policy_solution)}, valid_session
+        expect(assigns(:policy_solution)).to eq(@policy_solution)
       end
 
       it "redirects to the policy_solution" do
-        policy_solution = PolicySolution.create! valid_attributes
-        put :update, {:id => policy_solution.to_param, :policy_solution => valid_attributes}, valid_session
-        expect(response).to redirect_to(policy_solution)
+        put :update, {real_problem_id: @real_problem, policy_problem_id: @policy_problem, id: @policy_solution, policy_solution: attributes_for(:edit_policy_solution)}, valid_session
+        expect(response).to redirect_to real_problem_policy_problem_policy_solution_path(@real_problem, @policy_problem, @policy_solution)
       end
     end
 
     describe "with invalid params" do
       it "assigns the policy_solution as @policy_solution" do
-        policy_solution = PolicySolution.create! valid_attributes
-        put :update, {:id => policy_solution.to_param, :policy_solution => invalid_attributes}, valid_session
-        expect(assigns(:policy_solution)).to eq(policy_solution)
+        put :update, {real_problem_id: @real_problem, policy_problem_id: @policy_problem, id: @policy_solution, policy_solution: attributes_for(:invalid_policy_solution)}, valid_session
+        expect(assigns(:policy_solution)).to eq(@policy_solution)
       end
 
       it "re-renders the 'edit' template" do
-        policy_solution = PolicySolution.create! valid_attributes
-        put :update, {:id => policy_solution.to_param, :policy_solution => invalid_attributes}, valid_session
+        put :update, {real_problem_id: @real_problem, policy_problem_id: @policy_problem, id: @policy_solution, policy_solution: attributes_for(:invalid_policy_solution)}, valid_session
         expect(response).to render_template("edit")
       end
     end
@@ -143,16 +150,14 @@ RSpec.describe PolicySolutionsController, :type => :controller do
 
   describe "DELETE destroy" do
     it "destroys the requested policy_solution" do
-      policy_solution = PolicySolution.create! valid_attributes
       expect {
-        delete :destroy, {:id => policy_solution.to_param}, valid_session
+        delete :destroy, {real_problem_id: @real_problem, policy_problem_id: @policy_problem, id: @policy_solution}, valid_session
       }.to change(PolicySolution, :count).by(-1)
     end
 
-    it "redirects to the policy_solutions list" do
-      policy_solution = PolicySolution.create! valid_attributes
-      delete :destroy, {:id => policy_solution.to_param}, valid_session
-      expect(response).to redirect_to(policy_solutions_url)
+    it "redirects to the policy_solutions list within a policy_problem" do
+      delete :destroy, {real_problem_id: @real_problem, policy_problem_id: @policy_problem, id: @policy_solution}, valid_session
+      expect(response).to redirect_to real_problem_policy_problem_url(@real_problem, @policy_problem)
     end
   end
 

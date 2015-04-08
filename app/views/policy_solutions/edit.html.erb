@@ -2,5 +2,6 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @policy_solution %> |
-<%= link_to 'Back', policy_solutions_path %>
+<%= link_to 'Back', real_problem_policy_problem_path(@real_problem, @policy_problem) %> |
+<%= link_to 'Show', real_problem_policy_problem_policy_solution_path(@real_problem, @policy_problem, @policy_solution) %>
+

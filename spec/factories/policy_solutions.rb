@@ -4,6 +4,13 @@ FactoryGirl.define do
   factory :policy_solution do
     title "MyText"
     description "MyText"
-    policy_problem nil
+
+    factory :invalid_policy_solution do
+        title ""
+      end
+
+    factory :edit_policy_solution do
+      title "Policy Solution Title"
+    end
   end
 end
