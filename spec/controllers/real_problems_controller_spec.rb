@@ -90,9 +90,6 @@ RSpec.describe RealProblemsController, :type => :controller do
     describe "with invalid params" do
       it "assigns a newly created but unsaved real_problem as @real_problem" do
         post :create, {:real_problem => invalid_attributes}, valid_session
-        puts "<real problem>"
-        puts assigns(:real_problem).title.blank?
-        puts "</real problem>"
         expect(assigns(:real_problem)).to be_a_new(RealProblem)
       end
 
