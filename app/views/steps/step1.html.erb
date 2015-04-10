@@ -56,7 +56,7 @@ $('#myTab a').click(function (e) {
         </div>
         <div class="stepwizard-step">
             <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-            <p>Step 2 - Policy problem(s)</p>
+            <p>Step 2 - Policy dimensions</p>
         </div>
         <div class="stepwizard-step">
             <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
@@ -120,7 +120,7 @@ $('#myTab a').click(function (e) {
     <div class="row setup-content" id="step-2">
         <div class="col-xs-12">
             <div class="col-md-12">
-                <h3>Step 2 - Policy problem(s)</h3>
+                <h3>Step 2 - Policy dimensions</h3>
                 <p>Identify key policy-related causes of the 'real-world' problem</p>
                 <div class="form-group">
                     <div role="tabpanel">
@@ -144,10 +144,10 @@ $('#myTab a').click(function (e) {
                                     <div class=row>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="policy-problem">Policy Problem</label>
-                                                <input type="text" class="form-control" required="required" id="policy-problem" placeholder="Enter policy problem">
+                                                <label for="policy-dimensions">Policy Dimensions</label>
+                                                <input type="text" class="form-control" required="required" id="policy-dimensions" placeholder="Enter policy dimensions">
                                             </div>
-                                            <button class="btn btn-default" type="button" ><i class="fa fa-plus-square-o"></i> Add Policy Problem</button>
+                                            <button class="btn btn-default" type="button" ><i class="fa fa-plus-square-o"></i> Add Policy Dimensions</button>
                                             <hr>
                                             <table class="table table-bordered">
                                               <thead>
@@ -213,8 +213,17 @@ $('#myTab a').click(function (e) {
                                     <div class=row>
                                         <div class="col-md-6">
                                             <div class="form-group">
+                                                <label for="select-policy-dimensions">Policy Dimensions</label>
+                                                <select class="form-control" id="select-policy-dimensions">
+                                                  <option>Select Policy Dimensions</option>
+                                                  <option>Policy Dimensions 1</option>
+                                                  <option>Policy Dimensions 2</option>
+                                                  <option>Policy Dimensions 3</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="policy-solution">Policy Solution</label>
-                                                <input type="text" class="form-control" required="required" id="policy-solution" placeholder="Enter policy solution">
+                                                <textarea class="form-control" rows="3" id="policy-solution" placeholder="Enter Policy Solution"></textarea>
                                             </div>
                                             <button class="btn btn-default" type="button" ><i class="fa fa-plus-square-o"></i> Add Policy Solution</button>
                                             <hr>
