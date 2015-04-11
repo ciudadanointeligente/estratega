@@ -22,11 +22,11 @@ RSpec.describe RealProblem, :type => :model do
         "policy_problems" => [
           {
             "title" =>  "a policy problem",
-            "policy_solutions" => []
+            "solutions" => []
           },
           {
             "title" =>  "another policy problem",
-            "policy_solutions" => []
+            "solutions" => []
           }
         ]
       }.to_json
@@ -41,18 +41,18 @@ RSpec.describe RealProblem, :type => :model do
       policy_problem_2 = PolicyProblem.new
       policy_problem_2.title = "another policy problem"
       real_problem.policy_problems = [policy_problem_1, policy_problem_2]
-      policy_solution_1 = PolicySolution.new
-      policy_solution_1.title = "a solution for policy problem 1"
-      policy_solution_2 = PolicySolution.new
-      policy_solution_2.title = "another solution for policy problem 1"
-      policy_problem_1.policy_solutions = [policy_solution_1, policy_solution_2]
-      policy_problem_2.policy_solutions = []
+      solution_1 = Solution.new
+      solution_1.title = "a solution for policy problem 1"
+      solution_2 = Solution.new
+      solution_2.title = "another solution for policy problem 1"
+      policy_problem_1.solutions = [solution_1, solution_2]
+      policy_problem_2.solutions = []
 
       json = { "real_problem" => { "title" => "a real world problem" } ,
         "policy_problems" => [
           {
             "title" => "a policy problem",
-            "policy_solutions" => [
+            "solutions" => [
                     {
                         "title" => "a solution for policy problem 1"
                     },
@@ -63,7 +63,7 @@ RSpec.describe RealProblem, :type => :model do
           },
           {
             "title" => "another policy problem",
-            "policy_solutions" => []
+            "solutions" => []
           }
         ]
       }.to_json

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+
   resources :real_problems do
     resources :policy_problems do
-      resources :policy_solutions
+      resources :solutions
     end
   end
 

@@ -5,18 +5,18 @@ class RealProblem < ActiveRecord::Base
   def to_graph_json 
     policy_problem_list = []
     policy_problems.each do |policy_problem|
-      policy_solution_list = []
-      policy_problem.policy_solutions.each do |policy_solution|
-        policy_solution_hash =
+      solution_list = []
+      policy_problem.solutions.each do |solution|
+        solution_hash =
         {
-          "title" => policy_solution.title
+          "title" => solution.title
         }
-        policy_solution_list.append policy_solution_hash
+        solution_list.append solution_hash
       end
       policy_problem_hash =
         {
           "title" => policy_problem.title,
-          "policy_solutions" => policy_solution_list
+          "solutions" => solution_list
         }
       policy_problem_list.append policy_problem_hash
     end

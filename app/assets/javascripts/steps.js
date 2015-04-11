@@ -66,7 +66,7 @@ var transform =
                             { "tag": "li", "html": "<p>${title}</p>", "children":
                                 [
                                     {
-                                        "tag": "ul", "class": "third_level", "children":function() { return( json2html.transform(this.policy_solutions, transform.third_level) ) } 
+                                        "tag": "ul", "class": "third_level", "children":function() { return( json2html.transform(this.solutions, transform.third_level) ) } 
                                     }
                                 ]
                             }

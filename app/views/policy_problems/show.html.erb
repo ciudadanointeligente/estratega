@@ -27,18 +27,18 @@
   </thead>
 
   <tbody>
-    <% @policy_problem.policy_solutions.each do |policy_solution| %>
+    <% @policy_problem.solutions.each do |solution| %>
       <tr>
-        <td><%= policy_solution.title %></td>
-        <td><%= policy_solution.description %></td>
-        <td><%= link_to 'Show', [@real_problem, @policy_problem, policy_solution] %></td>
-        <td><%= link_to 'Edit', edit_real_problem_policy_problem_policy_solution_path(@real_problem, @policy_problem, policy_solution) %></td>
-        <td><%= link_to 'Destroy', [@real_problem, @policy_problem, policy_solution], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= solution.title %></td>
+        <td><%= solution.description %></td>
+        <td><%= link_to 'Show', [@real_problem, @policy_problem, solution] %></td>
+        <td><%= link_to 'Edit', edit_real_problem_policy_problem_solution_path(@real_problem, @policy_problem, solution) %></td>
+        <td><%= link_to 'Destroy', [@real_problem, @policy_problem, solution], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to 'New Policy solution', new_real_problem_policy_problem_policy_solution_path(@real_problem, @policy_problem) %>
+<%= link_to 'New Policy solution', new_real_problem_policy_problem_solution_path(@real_problem, @policy_problem) %>
 
 </p>
 
