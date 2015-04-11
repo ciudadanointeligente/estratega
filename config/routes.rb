@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :policy_solutions
   resources :real_problems do
-    resources :policy_problems
+    resources :policy_problems do
+      resources :policy_solutions
+    end
   end
 
   # get 'steps/index'
