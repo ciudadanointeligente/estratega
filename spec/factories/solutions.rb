@@ -1,16 +1,16 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :policy_problem do
+  factory :solution do
     title "MyText"
     description "MyText"
-
-    factory :invalid_policy_problem do
+  
+    factory :invalid_solution do
       title ""
     end
 
-    factory :edit_policy_problem do
-      title "Policy Problem Title"
+    factory :edit_solution do
+      title "Policy Solution Title"
     end
   end
 end

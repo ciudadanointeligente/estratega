@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  resources :policy_solutions
-  resources :policy_problems
-  resources :real_problems
-  
-  get 'steps/index'
-  get 'steps/step1'
+
+  resources :real_problems do
+    resources :policy_problems do
+      resources :solutions
+    end
+  end
+
+  # get 'steps/index'
+  # get 'steps/step1'
+  resources :steps
   resources :projects
   resources :resources
 
@@ -19,7 +23,8 @@ Rails.application.routes.draw do
   		get 'export'
     end
   end
-  resources :tests
+  get '/javascript_test/:script' => 'javascript_test#render_test', :as => 'javascript_test'
 
+  get '/models', to: 'visitors#models'
   root to: 'visitors#index'
 end

@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @policy_problem %> |
-<%= link_to 'Back', policy_problems_path %>
+<%= link_to 'Show', [@real_problem, @policy_problem] %> |
+<%= link_to 'Back', real_problem_path(@real_problem) %>
