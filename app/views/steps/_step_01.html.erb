@@ -19,6 +19,11 @@
                                         <p>20 per cent of children in country XX live below the poverty line</p>
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="data-entry">
+                                        <!-- form init -->
+                                        <%= form_for(@real_problems) do |f| %>
+                                            <%= f.text_field :title %>
+                                        <% end %>
+                                        <!-- end form -->
                                         <div class="form-group">
                                             <label for="problem">Problem</label>
                                             <input type="text" required="required" class="form-control" id="problem" placeholder="Enter problem">
