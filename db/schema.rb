@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150411202931) do
+ActiveRecord::Schema.define(version: 20150413151709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "objectives", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "prioritized"
+  end
+
+  create_table "objectives_solutions", id: false, force: true do |t|
+    t.integer "objective_id", null: false
+    t.integer "solution_id",  null: false
+  end
+
+  add_index "objectives_solutions", ["objective_id", "solution_id"], name: "index_objectives_solutions_on_objective_id_and_solution_id", using: :btree
+  add_index "objectives_solutions", ["solution_id", "objective_id"], name: "index_objectives_solutions_on_solution_id_and_objective_id", using: :btree
 
   create_table "other_names", force: true do |t|
     t.string   "name"

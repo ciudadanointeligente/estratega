@@ -11,6 +11,15 @@
 </p>
 
 <p>
+  <strong>Objectives:</strong>
+  <ul>
+    <% @solution.objectives.each do |objective| %>
+      <li><%= link_to objective.title, objective_path(objective) %></li>
+    <% end %>
+  </ul>
+</p>
+
+<p>
   <strong>Policy problem:</strong>
   <%= link_to @policy_problem.title, real_problem_policy_problem_path(@real_problem, @policy_problem) %>
 </p>
