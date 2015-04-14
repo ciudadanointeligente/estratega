@@ -8,3 +8,4 @@ Rails.application.config.assets.precompile += %w( bpmn.css joint.all.css style.c
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
+Rails.application.config.assets.precompile += %w( steps.js json2html.js jquery.json2html.js)

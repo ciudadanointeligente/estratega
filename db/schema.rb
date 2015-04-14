@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323150318) do
+ActiveRecord::Schema.define(version: 20150411202931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,12 +41,29 @@ ActiveRecord::Schema.define(version: 20150323150318) do
     t.datetime "updated_at"
   end
 
+  create_table "policy_problems", force: true do |t|
+    t.text     "title"
+    t.text     "description"
+    t.integer  "real_problem_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "policy_problems", ["real_problem_id"], name: "index_policy_problems_on_real_problem_id", using: :btree
+
   create_table "projects", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
     t.text     "description"
     t.boolean  "public"
+  end
+
+  create_table "real_problems", force: true do |t|
+    t.text     "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "resources", force: true do |t|
@@ -71,6 +88,16 @@ ActiveRecord::Schema.define(version: 20150323150318) do
   end
 
   add_index "sandboxes", ["user_id"], name: "index_sandboxes_on_user_id", using: :btree
+
+  create_table "solutions", force: true do |t|
+    t.text     "title"
+    t.text     "description"
+    t.integer  "policy_problem_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "solutions", ["policy_problem_id"], name: "index_solutions_on_policy_problem_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

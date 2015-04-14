@@ -1,25 +1,30 @@
 Rails.application.routes.draw do
+  root to: 'visitors#index'
+
+  resources :real_problems do
+    resources :policy_problems do
+      resources :solutions
+    end
+  end
+
   get 'steps/index'
   get 'steps/step1'
-  get 'steps/step1_1'
-  get 'steps/step1_2'
-  get 'steps/step1_3'
+  # resources :steps
   resources :projects
-
   resources :resources
 
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :people
   resources :other_names
   resources :sandboxes do
-  	member do
+    member do
       get 'clone'
     end
     member do
-  		get 'export'
+      get 'export'
     end
   end
-  resources :tests
+  get '/javascript_test/:script' => 'javascript_test#render_test', :as => 'javascript_test'
 
-  root to: 'visitors#index'
+  get '/models', to: 'visitors#models'
 end

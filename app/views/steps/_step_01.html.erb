@@ -1,0 +1,58 @@
+		<div class="row setup-content" id="step-1">
+            <div class="col-xs-12">
+                <div class="col-md-12">
+                    <h3>Step 1 - Real world problem</h3>
+                    <p>Articulate the real world problem children are facing that you want to address.</p>
+                    <div class="form-group">
+                        <div role="tabpanel">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#explication" aria-controls="home" role="tab" data-toggle="tab">Explication</a></li>
+                                <li role="presentation"><a href="#data-entry" aria-controls="profile" role="tab" data-toggle="tab">Data Entry</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="explication">
+                                    <h4>Description</h4>
+                                    <p>A real-world problem is the negative situation children face that UNICEF would like to change.</p>
+                                    <p>When describing the problem be as concise as possible. You may want to use or refer to the formulation of problems used in planning documents that have already been discussed with and/or approved by the team.</p>
+                                    <hr>
+                                    <h4>Example</h4>
+                                    <p>20 per cent of children in country XX live below the poverty line</p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="data-entry">
+                                    <!-- form init -->
+                                    <%= form_for(@real_problems) do |f| %>
+                                    <div class="form-group">
+                                        <%= f.label :title %>:
+                                        <%= f.text_field :title, class: "form-control", placeholder: "Enter a problem", required: "required" %>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <%= f.label :description %>:
+                                        <%= f.text_area :description, class: "form-control", placeholder: "Enter an explanation" %>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="focus-area">Focus Area</label>
+                                        <select class="form-control" id="focus-area">
+                                          <option>Select focus area</option>
+                                          <option>Poverty and hunger</option>
+                                          <option>Universal primary education</option>
+                                          <option>Gender equality and empowerment of women</option>
+                                          <option>Child mortality</option>
+                                          <option>Maternal health</option>
+                                          <option>HIV/AIDS, malaria and other diseases</option>
+                                          <option>Environmental sustainability</option>
+                                          <option>Global partnership for development</option>
+                                        </select>
+                                    </div>
+                                    <!-- <button class="btn btn-success" type="submit" >Save</button> -->
+                                    <button id="btn-step-1" class="btn btn-success nextBtn" type="submit" >Save & Next</button>
+                                    <% end %>
+                                    <!-- end form -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

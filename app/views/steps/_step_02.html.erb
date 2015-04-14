@@ -1,0 +1,87 @@
+        <div class="row setup-content" id="step-2">
+            <div class="col-xs-12">
+                <div class="col-md-12">
+                    <h3>Step 2 - Policy problem(s)</h3>
+                    <p>Identify key policy-related causes of the 'real-world' problem</p>
+                    <div class="form-group">
+                        <div role="tabpanel">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#explication2" aria-controls="home" role="tab" data-toggle="tab">Explication</a></li>
+                                <li role="presentation"><a href="#data-entry2" aria-controls="profile" role="tab" data-toggle="tab">Data Entry</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="explication2">
+                                    <h4>Description</h4>
+                                    <p>Behind those problems there are usually policy related causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships.</p>
+                                    <hr>
+                                    <h4>Example</h4>
+                                    <ul>
+                                        <li>Poor families entitled to very low child care benefits</li>
+                                        <li>High unemployment rates among disadvantaged groups linked to the absence of active employment policies for these groups</li>
+                                        <li>Increasing percentage of families uncovered by unemployment subsidy and exclusively receiving a low "guaranteed minimum income" subsidy.</li>
+                                    </ul>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="data-entry2">
+                                    <div class=row>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="policy-problem">Policy Problem</label>
+                                                <input type="text" class="form-control" required="required" id="policy-problem" placeholder="Enter policy problem">
+                                            </div>
+                                            <button class="btn btn-default" type="button" ><i class="fa fa-plus-square-o"></i> Add Policy Problem</button>
+                                            <hr>
+                                            <table class="table table-bordered">
+                                              <thead>
+                                                <tr>
+                                                  <th>Policy Problem</th>
+                                                  <th>Actions</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                <tr>
+                                                  <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed metus ipsum, condimentum vitae varius non</td>
+                                                  <td class="text-right actions">
+                                                        <a href="#"><i class="fa fa-edit" title="Edit"></i></a>      <a data-confirm="Are you sure you want to permanently delete this sandbox?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-trash" title="Delete"></i></a>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed metus ipsum, condimentum vitae varius non</td>
+                                                  <td class="text-right actions">
+                                                        <a href="#"><i class="fa fa-edit" title="Edit"></i></a>      <a data-confirm="Are you sure you want to permanently delete this sandbox?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-trash" title="Delete"></i></a>
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                            <button class="btn btn-success" type="button" >Save</button> 
+                                            <button class="btn btn-success nextBtn" type="button" >Save & Next</button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- [graph] -->
+                                            <div id="jorg-step-two"></div>
+                                            <script type="text/javascript">
+                                                var json_two = {
+                                                                    "real_problem": {
+                                                                        "title": "main problem",
+                                                                        "policy_problems": []
+                                                                    }
+                                                                }
+                                                
+                                                function generateStepTwo(json_two) {
+                                                    if(json_two) $('#jorg-step-two').json2html(json_two.real_problem, transform.main);
+                                                }
+
+                                                $(document).ready(function(){
+                                                    generateStepTwo(json_two);
+                                                });
+
+                                                </script>
+                                            <!-- end graph -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
