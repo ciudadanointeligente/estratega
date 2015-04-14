@@ -19,5 +19,25 @@
   </ul>
 </p>
 
+<p>
+  <strong>Outcomes:</strong>
+  <table>
+    <thead>
+      <th>Title</th>
+    </thead>
+    <tbody>
+      <% @objective.outcomes.each do |outcome| %>
+        <tr>
+          <td><%= outcome.title %></td>
+          <td><%= link_to 'Show', [@objective, outcome] %></td>
+          <td><%= link_to 'Edit', edit_objective_outcome_path(@objective, outcome) %></td>
+          <td><%= link_to 'Destroy', [@objective, outcome], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to "New Outcome", new_objective_outcome_path(@objective) %>
+</p>
+
 <%= link_to 'Edit', edit_objective_path(@objective) %> |
 <%= link_to 'Back', objectives_path %>
