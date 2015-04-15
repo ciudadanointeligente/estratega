@@ -6,6 +6,9 @@ Rails.application.routes.draw do
       post 'create_ww'
     end
     resources :policy_problems do
+      member do
+        post 'create_ww'
+      end
       resources :solutions
     end
   end

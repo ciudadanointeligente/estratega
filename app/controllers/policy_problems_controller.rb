@@ -27,6 +27,12 @@ class PolicyProblemsController < ApplicationController
     respond_with(@real_problem, @policy_problem)
   end
 
+  def create_ww
+    @policy_problem = @real_problem.policy_problems.create(policy_problem_params)
+    # respond_with(@real_problem, @policy_problem)
+    redirect_to step_path(:step1_2, :rp_id => @real_problem.id)
+  end
+
   def update
     @policy_problem.update(policy_problem_params)
     respond_with(@real_problem, @policy_problem)
