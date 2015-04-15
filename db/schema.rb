@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150414162448) do
+ActiveRecord::Schema.define(version: 20150415133132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: true do |t|
+    t.text     "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "activities_outcomes", id: false, force: true do |t|
+    t.integer "activity_id", null: false
+    t.integer "outcome_id",  null: false
+  end
+
+  add_index "activities_outcomes", ["activity_id", "outcome_id"], name: "index_activities_outcomes_on_activity_id_and_outcome_id", using: :btree
+  add_index "activities_outcomes", ["outcome_id", "activity_id"], name: "index_activities_outcomes_on_outcome_id_and_activity_id", using: :btree
 
   create_table "objectives", force: true do |t|
     t.string   "title"

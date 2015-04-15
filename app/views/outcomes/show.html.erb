@@ -12,7 +12,16 @@
 
 <p>
   <strong>Objective:</strong>
-  <%= @outcome.objective %>
+  <%= link_to @outcome.objective.title, @outcome.objective %>
+</p>
+
+<p>
+  <strong>Activities:</strong>
+  <ul>
+    <% @outcome.activities.each do |activity| %>
+      <li><%= link_to activity.title, activity%></li>
+    <% end %>
+  </ul>
 </p>
 
 <%= link_to 'Edit', edit_objective_outcome_path(@objective, @outcome) %> |
