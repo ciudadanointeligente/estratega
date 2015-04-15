@@ -2,14 +2,15 @@ Rails.application.routes.draw do
   root to: 'visitors#index'
 
   resources :real_problems do
+    member do
+      post 'create_ww'
+    end
     resources :policy_problems do
       resources :solutions
     end
   end
 
-  get 'steps/index'
-  get 'steps/step1'
-  # resources :steps
+  resources :steps
   resources :projects
   resources :resources
 

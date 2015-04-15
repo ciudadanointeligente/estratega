@@ -1,19 +1,9 @@
-class StepsController < ApplicationController
+class StepsController < Wicked::WizardController
 	before_action :authenticate_user!
+  steps :step1_1, :step1_2, :step1_3
 
-  def index
-  end
-  def step1
-  	@real_problems = RealProblem.new
-  	# after process
-  	if !params[:id].blank?
-  		@real_problems = RealProblem.find(params[:id])
-  	end
-  end
-  def step1_1
-  end
-  def step1_2
-  end
-  def step1_3
+  def show
+    @real_problem = RealProblem.new
+    render_wizard
   end
 end

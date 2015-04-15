@@ -22,12 +22,14 @@ class RealProblemsController < ApplicationController
 
   def create
     @real_problem = RealProblem.new(real_problem_params)
-    if @real_problem.save
-      redirect_to steps_step1_path(id: @real_problem.id, step: 2) and return
-    else
-      respond_with(@real_problem)
-      # redirect_to steps_step1_path()
-    end
+    @real_problem.save
+    respond_with(@real_problem)
+  end
+
+  def create_ww
+    @real_problem = RealProblem.new(real_problem_params)
+    @real_problem.save
+    redirect_to step_path(:step1_2, :rp_id => @real_problem.id)
   end
 
   def update
