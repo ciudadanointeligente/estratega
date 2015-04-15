@@ -42,6 +42,6 @@ class ObjectivesController < ApplicationController
     end
 
     def objective_params
-      params.require(:objective).permit(:title, :description, solution_ids: [])
+      params.require(:objective).permit(:title, :description, :prioritized, solution_ids: [])
     end
 end
