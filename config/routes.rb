@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   resources :objectives do
     resources :outcomes
   end
+  
+  get 'steps/index'
+  get 'steps/step1'
+  get 'steps/step2'
 
   resources :real_problems do
     resources :policy_problems do
