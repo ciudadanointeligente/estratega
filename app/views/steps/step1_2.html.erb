@@ -1,15 +1,15 @@
 <div class="stepwizard">
 	<div class="stepwizard-row setup-panel">
 		<div class="stepwizard-step">
-			<a href="step1_1" type="button" class="btn btn-circle btn-default">1</a>
+			<a href="<%= step_path(:step1_1, rp_id: params[:rp_id]) %>" type="button" class="btn btn-circle btn-default">1</a>
 			<p>Step 1 - Real world problem</p>
 		</div>
 		<div class="stepwizard-step">
-			<a href="#step-2" type="button" class="btn btn-default btn-circle btn-primary">2</a>
+			<a href="<%= step_path(:step1_2, rp_id: params[:rp_id]) %>" type="button" class="btn btn-default btn-circle btn-primary">2</a>
 			<p>Step 2 - Policy dimensions</p>
 		</div>
 		<div class="stepwizard-step">
-			<a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+			<a href="<%= step_path(:step1_3) %>" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
 			<p>Step 3 - Policy solutions</p>
 		</div>
 	</div>
@@ -40,7 +40,7 @@
 							<div class="row">
 								<div class="col-md-6">
 									<!-- form init -->
-									<%= form_for([@real_problem, @policy_problem], html: {autocomplete: "off"}, method: :create_eww) do |f| %>
+									<%= form_for([@real_problem, PolicyProblem.new], html: {autocomplete: "off"}, url:  create_ww_real_problem_policy_problems_path(@real_problem) ) do |f| %>
 										<div class="form-group">
 											<div class="form-group">
 												<%= f.label :title %>:

@@ -3,13 +3,10 @@ class StepsController < Wicked::WizardController
   steps :step1_1, :step1_2, :step1_3
 
   def show
-    @real_problem = RealProblem.new
-
+    @real_problem = RealProblem.find_or_initialize_by(id: params[:rp_id])
     case step
     when :step1_2
       @real_problem = RealProblem.find(params[:rp_id])
-      #creating a PP
-      @policy_problem = @real_problem.policy_problems.create()
       #the list of PP
       @policy_problems = @real_problem.policy_problems.all
     end

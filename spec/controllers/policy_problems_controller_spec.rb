@@ -110,6 +110,25 @@ RSpec.describe PolicyProblemsController, :type => :controller do
         expect(response).to render_template("new")
       end
     end
+
+    describe "with create_ww" do
+      it "creates a policy problem" do
+        expect {
+          post :create_ww, {policy_problem: attributes_for(:policy_problem), real_problem_id: @real_problem}, valid_session
+        }.to change(PolicyProblem, :count).by(1)
+      end
+
+      it "is related to a real problem" do
+        post :create_ww, {policy_problem: attributes_for(:policy_problem), real_problem_id: @real_problem}
+        expect(assigns(:policy_problem).real_problem).to eq @real_problem
+        expect(@real_problem.policy_problems).to include(assigns(:policy_problem))
+      end
+
+      it "is redirected to step1_2" do
+        post :create_ww, {policy_problem: attributes_for(:policy_problem), real_problem_id: @real_problem}
+        expect(response).to redirect_to controller: "steps", action: "show", id: "step1_2", rp_id: @real_problem
+      end
+    end
   end
 
   describe "PUT update" do

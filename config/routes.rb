@@ -2,11 +2,12 @@ Rails.application.routes.draw do
   root to: 'visitors#index'
 
   resources :real_problems do
-    member do
+    collection do
       post 'create_ww'
+      put 'update_ww'
     end
     resources :policy_problems do
-      member do
+      collection do
         post 'create_ww'
       end
       resources :solutions
