@@ -1,5 +1,5 @@
 class ObjectivesController < ApplicationController
-  before_action :set_objective, only: [:show, :edit, :update, :destroy]
+  before_action :set_objective, only: [:show, :edit, :update, :update_ww, :destroy, :destroy_ww]
 
   respond_to :html
 
@@ -26,14 +26,31 @@ class ObjectivesController < ApplicationController
     respond_with(@objective)
   end
 
+  def create_ww
+    @objective = Objective.new(objective_params)
+    @objective.save
+    flash[:notice] = "Updated"
+    redirect_to url_for("/steps/step2")
+  end
+
   def update
     @objective.update(objective_params)
     respond_with(@objective)
   end
 
+  def update_ww
+    @objective.update(objective_params)
+    redirect_to url_for(controller: :steps, action: :step2)
+  end
+
   def destroy
     @objective.destroy
     respond_with(@objective)
+  end
+
+  def destroy_ww
+    @objective.destroy
+    redirect_to url_for(controller: :steps, action: :step2)
   end
 
   private

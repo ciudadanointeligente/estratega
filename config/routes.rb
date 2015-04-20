@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   end
 
   resources :objectives do
+    post :create_ww, on: :collection
+    patch :update_ww, on: :member
+    delete :destroy_ww, on: :member
     resources :outcomes
   end
   
