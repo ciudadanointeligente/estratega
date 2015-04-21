@@ -1103,9 +1103,20 @@ div.well ol {
 .collapse.steps .table .status {
   width: 10%;
 }
-h4.panel-title a .fa-check-circle {
-  color: #3c763d;
+h4.panel-title a .fa-chevron-circle-right, .table_goals .fa-chevron-circle-right {
+  color: #F89406;
 }
-h4.panel-title a .fa-times-circle {
-  color: #a94442;
+h4.panel-title a .fa-check-circle, .table_goals .fa-check-circle {
+  color: #26A65B;
+}
+h4.panel-title a .fa-times-circle, .table_goals .fa-times-circle {
+  color: #F22613;
+}
+.td-w-10p {
+  width: 1%;
+  font-size: 16px;
+  vertical-align: text-bottom;
+}
+.table_goals a {
+  color: #333333;
 }
