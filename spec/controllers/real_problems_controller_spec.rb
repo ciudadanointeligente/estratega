@@ -140,12 +140,15 @@ RSpec.describe RealProblemsController, :type => :controller do
       end
 
       describe "with update_ww" do
-        it "update the real problem" do
+        it "updates the real problem" do
           real_problem = RealProblem.create! valid_attributes
           put :update_ww, {id: real_problem, real_problem: new_attributes}
         end
 
         it "redirect to step1_2" do
+          real_problem = RealProblem.create! valid_attributes
+          put :update_ww, {id: real_problem, real_problem: new_attributes}
+          expect(response).to redirect_to(controller: "steps", action: "show", id:"step1_2", rp_id: assigns(:real_problem).id)
         end
       end
     end

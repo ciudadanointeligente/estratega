@@ -73,5 +73,38 @@ RSpec.describe RealProblem, :type => :model do
 
   end
 
+  describe "solutions" do
+    it "returns an array with all real problem solutions" do
+      @real_problem = create(:real_problem)
+      @policy_problem_1 = create(:policy_problem)
+      @policy_problem_2 = create(:policy_problem)
+      @solution_1 = create(:solution)
+      @solution_2 = create(:solution)
+
+      @policy_problem_1.solutions << @solution_1
+      @policy_problem_2.solutions << @solution_2
+      @real_problem.policy_problems << @policy_problem_1 << @policy_problem_2
+
+      expect(@real_problem.get_solutions).kind_of?(Array)
+      expect(@real_problem.get_solutions).to include(@solution_1)
+      expect(@real_problem.get_solutions).to include(@solution_2)
+    end
+  end
+
+  describe "solution" do
+    it "returns a solution" do
+      @real_problem = create(:real_problem)
+      @policy_dimension = create(:policy_problem)
+      @policy_solution_1 = create(:solution)
+
+      @real_problem.policy_problems << @policy_dimension
+      @policy_dimension.solutions << @policy_solution_1
+
+
+      expect(@real_problem.get_solution).to be_a(Solution)
+
+    end
+  end
+
 
 end

@@ -39,7 +39,7 @@ class RealProblemsController < ApplicationController
 
   def update_ww
     @real_problem.update(real_problem_params)
-    respond_with(@real_problem)
+    redirect_to step_path(:step1_2, :rp_id => @real_problem.id)
   end
 
   def destroy

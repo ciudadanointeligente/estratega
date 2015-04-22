@@ -27,4 +27,22 @@ class RealProblem < ActiveRecord::Base
     
     return json
   end
+
+  def get_solutions
+    policy_problem_list = []
+
+    policy_problems.each do |pp|
+      pp.solutions.each do |s|
+        policy_problem_list << s
+      end
+    end
+
+    return policy_problem_list
+  end
+
+  def get_solution
+    pp = policy_problems.first.solutions.first
+
+    return pp
+  end
 end

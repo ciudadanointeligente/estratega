@@ -35,8 +35,8 @@
                     </div>
                     <div role="tabpanel" class="tab-pane" id="data-entry">
                         <!-- form init -->
-                        <% action_path = @real_problem.new_record? ? create_ww_real_problems_path : update_ww_real_problems_path %>
-                        <%= form_for(@real_problem, html: {autocomplete: "off"}, url: action_path) do |f| %>
+                        <% action_path = @real_problem.new_record? ? create_ww_real_problems_path : update_ww_real_problem_path(@real_problem) %>
+                        <%= simple_form_for(@real_problem, html: {autocomplete: "off"}, url: action_path) do |f| %>
                         <div class="form-group">
                             <%= f.label :title %>:
                             <%= f.text_field :title, class: "form-control", placeholder: "Enter a problem", required: "required" %>
