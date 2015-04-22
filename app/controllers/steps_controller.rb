@@ -21,4 +21,8 @@ class StepsController < Wicked::WizardController
     end
     render_wizard
   end
+  def step2
+    @objective = Objective.find_or_initialize_by(id: params[:objective_id])
+    @objectives = Objective.all
+  end
 end
