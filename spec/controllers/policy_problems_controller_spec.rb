@@ -162,6 +162,13 @@ RSpec.describe PolicyProblemsController, :type => :controller do
         expect(response).to render_template("edit")
       end
     end
+
+    describe "with update_ww" do
+      it "updates a policy_problem" do
+        put :update_ww, {id: @policy_problem, policy_problem: attributes_for(:edit_policy_problem), real_problem_id: @real_problem}, valid_session
+        expect(response).to redirect_to controller: "steps", action: "show", id: "step1_2", rp_id: @real_problem
+      end
+    end
   end
 
   describe "DELETE destroy" do
@@ -174,6 +181,19 @@ RSpec.describe PolicyProblemsController, :type => :controller do
     it "redirects to the policy_problems list within a real_problem" do
       delete :destroy, {id: @policy_problem, real_problem_id: @real_problem}, valid_session
       expect(response).to redirect_to(real_problem_url(@real_problem))
+    end
+
+    describe "with destroy_ww" do
+      it "destroy a policy problem" do
+        expect {
+          delete :destroy_ww, {id: @policy_problem, real_problem_id: @real_problem}, valid_session
+        }.to change(PolicyProblem, :count).by(-1)
+      end
+
+      it "redirect to the policy problems list" do
+        delete :destroy_ww, {id: @policy_problem, real_problem_id: @real_problem}, valid_session
+        expect(response).to redirect_to(controller:"steps", action:"show", id: "step1_2", rp_id: @real_problem)
+      end
     end
   end
 
