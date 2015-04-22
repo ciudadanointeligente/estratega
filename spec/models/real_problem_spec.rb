@@ -106,5 +106,4 @@ RSpec.describe RealProblem, :type => :model do
     end
   end
 
-
 end
