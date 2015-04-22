@@ -8,7 +8,16 @@ class StepsController < Wicked::WizardController
     when :step1_2
       @real_problem = RealProblem.find(params[:rp_id])
       #the list of PP
-      @policy_problems = @real_problem.policy_problems.all
+      @policy_problems = @real_problem.policy_problems
+      @policy_problem = PolicyProblem.new
+      if params[:pp_id]
+        @policy_problem = PolicyProblem.find(params[:pp_id])
+      end
+    when :step1_3
+      @real_problem = RealProblem.find(params[:rp_id])
+      #the list of PP
+      @policy_problems = @real_problem.policy_problems
+      # @solutions = @real_problem.policy_problems.solutions
     end
     render_wizard
   end

@@ -2,15 +2,17 @@ Rails.application.routes.draw do
   root to: 'visitors#index'
 
   resources :real_problems do
-    collection do
-      post 'create_ww'
-      put 'update_ww'
-    end
+    post 'create_ww', on: :collection
+    patch 'update_ww',  on: :member
     resources :policy_problems do
-      collection do
-        post 'create_ww'
+      post 'create_ww', on: :collection
+      patch 'update_ww', on: :member
+      delete 'destroy_ww', on: :member
+      resources :solutions do
+        collection do
+          post 'create_ww'
+        end
       end
-      resources :solutions
     end
   end
 
