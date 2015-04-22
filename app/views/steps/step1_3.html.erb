@@ -1,15 +1,15 @@
 <div class="stepwizard">
     <div class="stepwizard-row setup-panel">
         <div class="stepwizard-step">
-            <a href="<%= step_path(:step1_1) %>" type="button" class="btn btn-circle btn-default">1</a>
+            <a href="<%= step_path(:step1_1, rp_id: params[:rp_id]) %>" type="button" class="btn btn-circle btn-default">1</a>
             <p>Step 1 - Real world problem</p>
         </div>
         <div class="stepwizard-step">
-            <a href="<%= step_path(:step1_2) %>" type="button" class="btn btn-default btn-circle">2</a>
+            <a href="<%= step_path(:step1_2, rp_id: params[:rp_id]) %>" type="button" class="btn btn-default btn-circle">2</a>
             <p>Step 2 - Policy dimensions</p>
         </div>
         <div class="stepwizard-step">
-            <a href="<%= step_path(:step1_3) %>" type="button" class="btn btn-default btn-circle btn-primary">3</a>
+            <a href="<%= step_path(:step1_3, rp_id: params[:rp_id]) %>" type="button" class="btn btn-default btn-circle btn-primary">3</a>
             <p>Step 3 - Policy solutions</p>
         </div>
     </div>
@@ -40,60 +40,34 @@
                                 <div role="tabpanel" class="tab-pane" id="data-entry3">
                                     <div class=row>
                                         <div class="col-md-6">
-                                            <form>
-                                                <div class="form-group">
-                                                    <label for="select-policy-dimensions">Policy Dimensions</label>
-                                                    <select class="form-control" id="select-policy-dimensions">
-                                                      <option>Select Policy Dimensions</option>
-                                                      <option>Policy Dimensions 1</option>
-                                                      <option>Policy Dimensions 2</option>
-                                                      <option>Policy Dimensions 3</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="policy-solution">Policy Solution</label>
-                                                    <textarea class="form-control" rows="3" id="policy-solution" placeholder="Enter Policy Solution"></textarea>
-                                                </div>
-                                                <button class="btn btn-default" type="button" ><i class="fa fa-plus-square-o"></i> Add Policy Solution</button>
-                                            </form>
+                                            <%= simple_form_for([@real_problem, @real_problem.policy_problems.first, Solution.new], html: {autocomplete: "off"}, url:  create_ww_real_problem_policy_problems_path(@real_problem) ) do |f| %>
+                                              <%= f.association :policy_problem, as: :select, prompt: "Choose a Policy Dimension", input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' } %>
+                                              <%= f.input :description, input_html: { class: 'form-control' } %>
+                                              <%= f.button :submit, 'Save' %>
+                                            <% end %>
+                                            
                                             <hr>
                                             <table class="table table-bordered">
                                               <thead>
                                                 <tr>
-                                                  <th>Policy Solution</th>
                                                   <th>Policy Dimensions</th>
+                                                  <th>Policy Solution</th>
                                                   <th>Actions</th>
                                                 </tr>
                                               </thead>
                                               <tbody>
+                                                <% @real_problem.policy_problems.each do |pp| %>
                                                 <tr>
-                                                  <td>Amendment to the Penal Code to remove sanctions in the form of detention for sex workers.</td>
-                                                  <td>Women and children not included as target populations of the National Strategic Plan (epidemy historically concentrated in male drug users)</td>
-                                                  <td class="text-right actions">
-                                                        <a href="#"><i class="fa fa-edit" title="Edit"></i></a>      <a data-confirm="Are you sure you want to permanently delete this sandbox?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-trash" title="Delete"></i></a>
-                                                  </td>
+                                                  <td><%= pp.title %></td>
+                                                  <% pp.solutions.each do |s| %>
+                                                    <td><% s.description %></td>
+                                                    <td class="text-right actions">
+                                                      <a href="#"><i class="fa fa-edit" title="Edit"></i></a>      
+                                                      <a data-confirm="Are you sure you want to permanently delete this sandbox?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-trash" title="Delete"></i></a>
+                                                    </td>
+                                                  <% end %>
                                                 </tr>
-                                                <tr>
-                                                  <td>Revision of the National HIV Strategy</td>
-                                                  <td>Health insurance law does not cover informal workers and many women at risk belong to this group. (Therefore, due to limited capacity to cover out-of-pocket expenditures women with little resources do not attend clinics for HIV testing and treatment)</td>
-                                                  <td class="text-right actions">
-                                                        <a href="#"><i class="fa fa-edit" title="Edit"></i></a>      <a data-confirm="Are you sure you want to permanently delete this sandbox?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-trash" title="Delete"></i></a>
-                                                  </td>
-                                                </tr>
-                                                <tr>
-                                                  <td>Health Insurance policy framework revised to cover disadvantaged informal workers.</td>
-                                                  <td>PMTCT not included as a priority in the National Strategic Plan (few resources to improve services, campaigns, etc.)- Few donors paying attention to it.</td>
-                                                  <td class="text-right actions">
-                                                        <a href="#"><i class="fa fa-edit" title="Edit"></i></a>      <a data-confirm="Are you sure you want to permanently delete this sandbox?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-trash" title="Delete"></i></a>
-                                                  </td>
-                                                </tr>
-                                                <tr>
-                                                  <td>Increase donor funding on PMTCT</td>
-                                                  <td>Current legal framework stipulates detention for sex workers (after 3 monetary sanctions), which prevents sex workers to attend health services due to fear of being denounced.</td>
-                                                  <td class="text-right actions">
-                                                        <a href="#"><i class="fa fa-edit" title="Edit"></i></a>      <a data-confirm="Are you sure you want to permanently delete this sandbox?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-trash" title="Delete"></i></a>
-                                                  </td>
-                                                </tr>
+                                                <% end %>
                                               </tbody>
                                             </table>
                                             <button class="btn btn-success" type="button" >Save</button> 
