@@ -15,3 +15,5 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 
+//= require angular/angular
+//= require angular-bootstrap/ui-bootstrap-tpls.js
