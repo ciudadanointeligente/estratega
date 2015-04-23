@@ -18,6 +18,7 @@ gem 'unicorn-rails'
 gem 'devise'
 gem 'cancancan', '~> 1.10'
 gem "bower-rails"
+gem 'wicked'
 
 group :development do
   gem 'better_errors'

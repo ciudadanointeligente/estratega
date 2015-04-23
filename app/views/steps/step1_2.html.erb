@@ -1,0 +1,89 @@
+<div class="stepwizard">
+	<div class="stepwizard-row setup-panel">
+		<div class="stepwizard-step">
+			<a href="<%= step_path(:step1_1, rp_id: params[:rp_id]) %>" type="button" class="btn btn-circle btn-default">1</a>
+			<p>Step 1 - Real world problem</p>
+		</div>
+		<div class="stepwizard-step">
+			<a href="<%= step_path(:step1_2, rp_id: params[:rp_id]) %>" type="button" class="btn btn-default btn-circle btn-primary">2</a>
+			<p>Step 2 - Policy dimensions</p>
+		</div>
+		<div class="stepwizard-step">
+			<a href="<%= step_path(:step1_3) %>" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+			<p>Step 3 - Policy solutions</p>
+		</div>
+	</div>
+</div>
+<div class="col-xs-12">
+	<div class="col-md-12">
+		<h3>Step 2 - Policy dimensions</h3>
+		<p>Identify key policy-related causes of the 'real-world' problem</p>
+		<div class="form-group">
+			<div role="tabpanel">
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation"><a href="#explication2" aria-controls="home" role="tab" data-toggle="tab">Explanation</a></li>
+					<li role="presentation" class="active"><a href="#data-entry2" aria-controls="profile" role="tab" data-toggle="tab">Data Entry</a></li>
+				</ul>
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane" id="explication2">
+							<h4>Description</h4>
+							<p>Behind those problems there are usually policy related causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships.</p>
+							<hr>
+							<h4>Example</h4>
+							<ul>
+								<li>Poor families entitled to very low child care benefits</li>
+								<li>High unemployment rates among disadvantaged groups linked to the absence of active employment policies for these groups</li>
+								<li>Increasing percentage of families uncovered by unemployment subsidy and exclusively receiving a low "guaranteed minimum income" subsidy.</li>
+							</ul>
+						</div>
+						<div role="tabpanel" class="tab-pane active" id="data-entry2">
+							<div class="row">
+								<div class="col-md-6">
+									<!-- form init -->
+									<% form_url_action = params[:pp_id] ? update_ww_real_problem_policy_problem_path(@real_problem, @policy_problem) : create_ww_real_problem_policy_problems_path(@real_problem) %>
+									<%= form_for([@real_problem, @policy_problem], html: {autocomplete: "off"}, url: form_url_action ) do |f| %>
+										<div class="form-group">
+											<div class="form-group">
+												<%= f.label :title %>:
+												<%= f.text_field :title, class: "form-control", placeholder: "Enter a problem", required: "required" %>
+											</div>
+											
+											<div class="form-group">
+												<%= f.label :description %>:
+												<%= f.text_area :description, class: "form-control", placeholder: "Enter an explanation" %>
+											</div>
+										</div>
+										<button class="btn btn-default" type="submit"><i class="fa fa-plus-square-o"></i> <%= params[:pp_id] ? "Update" : "Add" %> Policy Dimensions</button>
+									<% end %>
+									<hr>
+									<table class="table table-bordered">
+									  <thead>
+										<tr>
+										  <th>Policy Dimensions</th>
+										  <th>Actions</th>
+										</tr>
+									  </thead>
+									  <tbody>
+									  	<% @policy_problems.each do |pp| %>
+										<tr>
+										  <td><%= pp.description %></td>
+										  <td class="text-right actions">
+												<%= link_to "Edit", wizard_path(:step1_2, rp_id: params[:rp_id], pp_id: pp.id) %>
+												<%= link_to "Delete", destroy_ww_real_problem_policy_problem_path(real_problem_id: @real_problem, id: pp.id), method: :delete  %>
+										  </td>
+										</tr>
+										<% end %>
+									  </tbody>
+									</table>
+									<%= link_to 'Siguiente', wizard_path(:step1_3, rp_id: params[:rp_id]) %>
+								</div>
+								<div class="col-md-6">
+
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

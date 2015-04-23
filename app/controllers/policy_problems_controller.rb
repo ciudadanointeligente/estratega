@@ -1,5 +1,5 @@
 class PolicyProblemsController < ApplicationController
-  before_action :set_policy_problem, only: [:show, :edit, :update, :destroy]
+  before_action :set_policy_problem, only: [:show, :edit, :update, :update_ww, :destroy, :destroy_ww]
   before_action :set_real_problem
 
   respond_to :html
@@ -27,14 +27,29 @@ class PolicyProblemsController < ApplicationController
     respond_with(@real_problem, @policy_problem)
   end
 
+  def create_ww
+    @policy_problem = @real_problem.policy_problems.create(policy_problem_params)
+    redirect_to step_path(:step1_2, :rp_id => @real_problem.id)
+  end
+
   def update
     @policy_problem.update(policy_problem_params)
     respond_with(@real_problem, @policy_problem)
   end
 
+  def update_ww
+    @policy_problem.update(policy_problem_params)
+    redirect_to step_path(:step1_2, :rp_id => @real_problem.id)
+  end
+
   def destroy
     @policy_problem.destroy
     respond_with(@real_problem)
+  end
+
+  def destroy_ww
+    @policy_problem.destroy
+    redirect_to step_path(:step1_2, :rp_id => @real_problem.id)
   end
 
   private

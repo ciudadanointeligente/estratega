@@ -1,4 +1,34 @@
 <%= javascript_include_tag "steps" %>
+<script type="text/javascript">
+$(document).ready(function () {
+
+<% if params[:step] == "2" %> 
+    $('#step-1').css('display','none');
+    $('[href=#step-1]').removeClass('btn-primary');
+    $('#btn-step-1').attr('disabled','disabled');
+
+    $('#step-2').css('display','block');
+    $('[href=#step-2]').removeAttr('disabled');
+    $('[href=#step-2]').addClass('btn-primary');
+<% end %>
+
+<% if params[:step] == "3" %> 
+    $('#step-1').css('display','none');
+    $('#step-2').css('display','none');
+
+    $('[href=#step-1]').removeClass('btn-primary');
+    $('[href=#step-2]').removeClass('btn-primary');
+    $('[href=#step-2]').removeAttr('disabled');
+    // $('#btn-step-2').attr('disabled','disabled')
+
+    $('#step-3').css('display','block');
+    $('[href=#step-3]').removeAttr('disabled');
+    $('[href=#step-3]').addClass('btn-primary');
+<% end %>
+
+});
+</script>
+
 <%= javascript_include_tag "json2html.js" %>
 <%= javascript_include_tag "jquery.json2html.js" %>
 <style type="text/css">
@@ -71,21 +101,15 @@ ul.third-level li p {
 }
 </style>
 <div class="container">
-    <!-- -->
+    <!-- breadcrumbs -->
     <%= render 'steps_breadcrumb' %>
-    <!-- -->
-    <form role="form">
-        <!-- step 01 -->
-        <%= render 'step_01' %>
-        <!-- step 02 -->
-        <%= render 'step_02' %>
-        <!-- step 03 -->
-        <%= render 'step_03' %>
-        <!-- step 04 -->
-        <%= render 'step_04' %>
-    </form>
+    <!-- eo breadcrumbs -->
+    <!-- step 01 -->
+    <%= render 'step_01' %>
+    <!-- step 02 -->
+    <%= render 'step_02' %>
+    <!-- step 03 -->
+    <%= render 'step_03' %>
+    <!-- step 04 -->
+    <%= render 'step_04' %>
 </div>
-
-<script type="text/javascript">
-
-</script>

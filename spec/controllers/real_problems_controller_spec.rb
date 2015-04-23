@@ -98,19 +98,32 @@ RSpec.describe RealProblemsController, :type => :controller do
         expect(response).to render_template("new")
       end
     end
+
+    describe "with create_www" do
+      it "create a real problem" do
+        count = RealProblem.count
+        post :create_ww, {real_problem: valid_attributes}
+        expect(RealProblem.count).to eq(count+1)
+      end
+
+      it "redirecty to steps1_2" do
+        post :create_ww, {real_problem: valid_attributes}
+        expect(response).to redirect_to(controller: "steps", action: "show", id: "step1_2", rp_id: assigns(:real_problem).id)
+      end
+    end
   end
 
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+        {title: "New Title", description: "Description"}
+      } 
 
       it "updates the requested real_problem" do
         real_problem = RealProblem.create! valid_attributes
         put :update, {:id => real_problem.to_param, :real_problem => new_attributes}, valid_session
         real_problem.reload
-        skip("Add assertions for updated state")
+        expect(real_problem.attributes).to include(new_attributes.stringify_keys)
       end
 
       it "assigns the requested real_problem as @real_problem" do
@@ -123,6 +136,19 @@ RSpec.describe RealProblemsController, :type => :controller do
         real_problem = RealProblem.create! valid_attributes
         put :update, {:id => real_problem.to_param, :real_problem => valid_attributes}, valid_session
         expect(response).to redirect_to(real_problem)
+      end
+
+      describe "with update_ww" do
+        it "updates the real problem" do
+          real_problem = RealProblem.create! valid_attributes
+          put :update_ww, {id: real_problem, real_problem: new_attributes}
+        end
+
+        it "redirect to step1_2" do
+          real_problem = RealProblem.create! valid_attributes
+          put :update_ww, {id: real_problem, real_problem: new_attributes}
+          expect(response).to redirect_to(controller: "steps", action: "show", id:"step1_2", rp_id: assigns(:real_problem).id)
+        end
       end
     end
 

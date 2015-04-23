@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'visitors#index'
   resources :actors
 
   resources :activities do
@@ -12,19 +13,26 @@ Rails.application.routes.draw do
     resources :outcomes
   end
   
-  get 'steps/index'
-  get 'steps/step1'
-  get 'steps/step2'
 
   resources :real_problems do
+    post 'create_ww', on: :collection
+    patch 'update_ww',  on: :member
     resources :policy_problems do
-      resources :solutions
+      post 'create_ww', on: :collection
+      patch 'update_ww', on: :member
+      delete 'destroy_ww', on: :member
+      resources :solutions do
+        collection do
+          post 'create_ww'
+        end
+      end
     end
   end
 
-  # get 'steps/index'
-  # get 'steps/step1'
-  resources :steps
+  resources :steps do
+    get 'step2', on: :collection
+  end
+
   resources :projects
   resources :resources
 
@@ -32,15 +40,14 @@ Rails.application.routes.draw do
   resources :people
   resources :other_names
   resources :sandboxes do
-  	member do
+    member do
       get 'clone'
     end
     member do
-  		get 'export'
+      get 'export'
     end
   end
   get '/javascript_test/:script' => 'javascript_test#render_test', :as => 'javascript_test'
 
   get '/models', to: 'visitors#models'
-  root to: 'visitors#index'
 end
