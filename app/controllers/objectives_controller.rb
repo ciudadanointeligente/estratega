@@ -1,7 +1,7 @@
 class ObjectivesController < ApplicationController
   before_action :set_objective, only: [:show, :edit, :update, :update_ww, :destroy, :destroy_ww]
 
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @objectives = Objective.all

@@ -3,11 +3,11 @@ class SolutionsController < ApplicationController
   before_action :set_policy_problem
   before_action :set_real_problem
 
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @solutions = Solution.where(policy_problem_id: @policy_problem)
-    respond_with(@real_problem, @policy_problem, @solution)
+    respond_with(@real_problem, @policy_problem, @solutions)
   end
 
   def show

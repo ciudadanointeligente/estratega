@@ -17,3 +17,9 @@
 
 //= require angular/angular
 //= require angular-bootstrap/ui-bootstrap-tpls.js
+//= require ng-rails-csrf
+//= require angular-route/angular-route
+
+//= require angular_files/wizard_steps
+//= require angular_files/step1_controller
+//= require angular_files/step2_controller

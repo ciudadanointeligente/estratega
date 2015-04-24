@@ -16,9 +16,9 @@
         <td><%= solution.title %></td>
         <td><%= solution.description %></td>
         <td><%= solution.policy_problem %></td>
-        <td><%= link_to 'Show', solution %></td>
-        <td><%= link_to 'Edit', edit_solution_path(solution) %></td>
-        <td><%= link_to 'Destroy', solution, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', real_problem_policy_problem_solution_path(@real_problem, @policy_problem, solution) %></td>
+        <td><%= link_to 'Edit', edit_real_problem_policy_problem_solution_path(@real_problem, @policy_problem, solution) %></td>
+        <td><%= link_to 'Destroy', real_problem_policy_problem_solution_path(@real_problem, @policy_problem, solution), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Solution', new_solution_path %>
+<%= link_to 'New Solution', new_real_problem_policy_problem_solution_path %>
