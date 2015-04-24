@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :outcomes
   end
   
+  get 'solutions/aside', to: 'solutions#aside'
+  get 'solutions/aside_form', to: 'solutions#aside_form'
 
   resources :real_problems do
     post 'create_ww', on: :collection
@@ -28,6 +30,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
 
   resources :steps do
     get 'step2', on: :collection

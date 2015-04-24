@@ -1,4 +1,4 @@
-app.controller("step1Ctrl", ["$scope", "$http", "$location", "$timeout", function($scope, $http, $location, $timeout){
+app.controller("step1Ctrl", function($scope, $http, $location, $timeout, $aside){
     $scope.current_step = 1;
     $scope.focus_areas = [
         "Poverty and hunger",
@@ -13,8 +13,9 @@ app.controller("step1Ctrl", ["$scope", "$http", "$location", "$timeout", functio
     $scope.problem = {title: "", description: "", focus_area: ""};
     $scope.policies = []
     $scope.current_policy = {title: "", description: ""};
+    $scope.problem_id = $location.search().problem_id
 
-    if($location.search().problem_id){
+    if($scope.problem_id){
         $http.get('/real_problems/'+$location.search().problem_id+'.json')
         .success(function(data){
             $scope.problem = data;
@@ -76,5 +77,47 @@ app.controller("step1Ctrl", ["$scope", "$http", "$location", "$timeout", functio
         save_or_update_policy();
         $scope.current_policy = {title: "", description: ""};
     }
+
+    $scope.add_solution = function(policy){
+        openAside(policy, 'left', true)
+    }
     
-}]);
+// Aside
+
+    $scope.asideState = {
+      open: false
+    };
+    
+    var openAside = function(policy, position, backdrop) {
+      $scope.asideState = {
+        open: true,
+        position: position
+      };
+      
+      function postClose() {
+        $scope.asideState.open = false;
+      }
+      
+      var problem_id = $scope.problem_id;
+
+      $aside.open({
+        templateUrl: '/solutions/aside',
+        placement: position,
+        size: 'sm',
+        backdrop: backdrop,
+        controller: function($scope, $modalInstance) {
+          $scope.policy = policy;
+          $scope.problem_id = problem_id;
+          $scope.ok = function(e) {
+            $modalInstance.close();
+            e.stopPropagation();
+          };
+          $scope.cancel = function(e) {
+            $modalInstance.dismiss();
+            e.stopPropagation();
+          };
+        }
+      }).result.then(postClose, postClose);
+    }
+
+});

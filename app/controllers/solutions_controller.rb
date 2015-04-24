@@ -1,7 +1,7 @@
 class SolutionsController < ApplicationController
   before_action :set_solution, only: [:show, :edit, :update, :destroy]
-  before_action :set_policy_problem
-  before_action :set_real_problem
+  before_action :set_policy_problem, except: [:aside, :aside_form]
+  before_action :set_real_problem, except: [:aside, :aside_form]
 
   respond_to :html, :json
 
@@ -20,6 +20,14 @@ class SolutionsController < ApplicationController
   end
 
   def edit
+  end
+
+  def aside
+    render :aside, layout: false
+  end
+
+  def aside_form
+    render :aside_form, layout: false
   end
 
   def create

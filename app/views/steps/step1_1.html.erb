@@ -113,6 +113,7 @@
                                           <tbody>
                                             <tr ng-repeat="pp in policies">
                                                 <td>{{pp.title}}</td>
+                                                <td><%= button_tag "Add Solution", {:"ng-click" => "add_solution(pp)", type: "button"}%></td>
                                             </tr>
                                             <tr><td>{{current_policy.title}}</td></tr>
                                           </tbody>
