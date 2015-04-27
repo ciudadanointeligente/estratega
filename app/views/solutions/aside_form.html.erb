@@ -1,9 +1,28 @@
-The call works
-
 <%= form_tag do %>
+  <div class="form-group">
     <%= label_tag(:title, "Title") %>
-    <%= text_field_tag :title, nil, {:"ng-model" => "solution.title"}%>
+    <%= text_field_tag :title, nil, {class: "form-control", :"ng-model" => "current_solution.title"}%>
+  </div>
+  <div class="form-group">
     <%= label_tag(:description, "Description") %>
-    <%= text_field_tag :description, nil, {:"ng-model" => "solution.description"}%>
-    <%= button_tag "Add Solution", {:"ng-click" => "save_or_update_solution()", type: "button"} %>
+    <%= text_field_tag :description, nil, {class: "form-control", :"ng-model" => "current_solution.description"}%>
+  </div>
+  <div class="form-group">
+    <%= button_tag "Add Solution", {class: "btn", :"ng-click" => "save_or_update_solution()", type: "button"} %>
+  </div>
 <% end %>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Solutions</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="solution in solutions">
+        <td>{{solution.title}}</td>
+        <td><%= button_tag "Edit", {class: "btn", type: "button"}%></td>
+    </tr>
+    <tr><td>{{current_solution.title}}</td></tr>
+  </tbody>
+</table>
