@@ -1,73 +1,186 @@
-<div class="stepwizard">
-    <div class="stepwizard-row setup-panel">
-        <div class="stepwizard-step">
-            <a href="<%= step_path(:step1_1, rp_id: params[:rp_id]) %>" type="button" class="btn btn-circle btn-default btn-primary">1</a>
-            <p>Step 1 - Real world problem</p>
-        </div>
-        <div class="stepwizard-step">
-            <a href="<%= step_path(:step1_2) %>" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-            <p>Step 2 - Policy dimensions</p>
-        </div>
-        <div class="stepwizard-step">
-            <a href="<%= step_path(:step1_3) %>" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
-            <p>Step 3 - Policy solutions</p>
+<div ng-controller="step1Ctrl">
+    <div class="stepwizard">
+        <div class="stepwizard-row setup-panel">
+            <div class="stepwizard-step">
+                <a ng-click="current_step = 1" type="button" class="btn btn-circle btn-default" ng-class="{'btn-primary': current_step == 1}">1</a>
+                <p>Step 1 - Real world problem</p>
+            </div>
+            <div class="stepwizard-step">
+                <a ng-click="current_step = 2" type="button" class="btn btn-default btn-circle" ng-class="{'btn-primary': current_step == 2}" ng-disabled="!problem.id">2</a>
+                <p>Step 2 - Policy dimensions</p>
+            </div>
+            <div class="stepwizard-step">
+                <a  ng-click="current_step = 3" type="button" class="btn btn-default btn-circle" ng-class="{'btn-primary': current_step == 3}" ng-disabled="current_step != 3">3</a>
+                <p>Step 3 - Policy solutions</p>
+            </div>
         </div>
     </div>
-</div>
-<div class="col-xs-12">
-    <div class="col-md-12">
-        <h3>Step 1 - Real world problem</h3>
-        <p>Articulate the real world problem children are facing that you want to address.</p>
-        <div class="form-group">
-            <div role="tabpanel">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#explication" aria-controls="home" role="tab" data-toggle="tab">Explication</a></li>
-                    <li role="presentation"><a href="#data-entry" aria-controls="profile" role="tab" data-toggle="tab">Data Entry</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="explication">
-                        <h4>Description</h4>
-                        <p>A real-world problem is the negative situation children face that UNICEF would like to change.</p>
-                        <p>When describing the problem be as concise as possible. You may want to use or refer to the formulation of problems used in planning documents that have already been discussed with and/or approved by the team.</p>
-                        <hr>
-                        <h4>Example</h4>
-                        <p>20 per cent of children in country XX live below the poverty line</p>
+
+    <div class="row">
+        <div class="col-md-3">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <i class="fa" ng-class="{'fa-unlock': problem.title, 'fa-lock': !problem.title}"></i>
+                        </td>
+                        <td>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fa" ng-class="{'fa-unlock': policies.length >= 1, 'fa-lock': policies.length == 0 }"></i>
+                        </td>
+                        <td>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fa" ng-class="{'fa-unlock': policies.title, 'fa-lock': !policies.title}"></i>
+                        </td>
+                        <td>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <div ng-if="current_step == 1">
+                <h3>Step 1 - Real world problem</h3>
+                <p>Articulate the real world problem children are facing that you want to address.</p>
+                <div class="form-group">
+                    <div role="tabpanel">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#explication" aria-controls="home" role="tab" data-toggle="tab">Explication</a></li>
+                            <li role="presentation"><a href="#data-entry" aria-controls="profile" role="tab" data-toggle="tab">Data Entry</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane" id="explication">
+                                <h4>Description</h4>
+                                <p>A real-world problem is the negative situation children face that UNICEF would like to change.</p>
+                                <p>When describing the problem be as concise as possible. You may want to use or refer to the formulation of problems used in planning documents that have already been discussed with and/or approved by the team.</p>
+                                <hr>
+                                <h4>Example</h4>
+                                <p>20 per cent of children in country XX live below the poverty line</p>
+                            </div>
+                            <div role="tabpanel" class="tab-pane active" id="data-entry">
+                                <!-- form init -->
+                                <% action_path = @real_problem.new_record? ? create_ww_real_problems_path : update_ww_real_problem_path(@real_problem) %>
+                                <%= simple_form_for(@real_problem, html: {autocomplete: "off"}, url: action_path) do |f| %>
+                                <div class="form-group">
+                                    <%= f.input :title, placeholder: "Enter a problem", required: "required", input_html: {"ng-model" => "problem.title"} %>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <%= f.input :description, placeholder: "Enter an explanation", input_html: {"ng-model" => "problem.description"} %>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="focus-area">Focus Area</label>
+                                    <select class="form-control" id="focus-area" ng-model="problem.focus_area" ng-options="f for f in focus_areas">
+                                      <option value="">Select focus area</option>
+                                    </select>
+                                </div>
+                                <!-- <button class="btn btn-success" type="submit" >Save</button> -->
+                                <button id="btn-step-1" class="btn btn-success nextBtn" type="button" ng-click="current_step = 2">Save & Next</button>
+                                <% end %>
+                                <!-- end form -->
+                            </div>
+                        </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="data-entry">
-                        <!-- form init -->
-                        <% action_path = @real_problem.new_record? ? create_ww_real_problems_path : update_ww_real_problem_path(@real_problem) %>
-                        <%= simple_form_for(@real_problem, html: {autocomplete: "off"}, url: action_path) do |f| %>
-                        <div class="form-group">
-                            <%= f.label :title %>:
-                            <%= f.text_field :title, class: "form-control", placeholder: "Enter a problem", required: "required" %>
+                </div>
+            </div>
+            <div ng-if="current_step == 2">
+                <h3>Step 2 - Policy dimensions</h3>
+                <p>Identify key policy-related causes of the 'real-world' problem</p>
+                <div class="form-group">
+                    <div role="tabpanel">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation"><a href="#explication2" aria-controls="home" role="tab" data-toggle="tab">Explanation</a></li>
+                            <li role="presentation" class="active"><a href="#data-entry2" aria-controls="profile" role="tab" data-toggle="tab">Data Entry</a></li>
+                        </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane" id="explication2">
+                                    <h4>Description</h4>
+                                    <p>Behind those problems there are usually policy related causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships.</p>
+                                    <hr>
+                                    <h4>Example</h4>
+                                    <ul>
+                                        <li>Poor families entitled to very low child care benefits</li>
+                                        <li>High unemployment rates among disadvantaged groups linked to the absence of active employment policies for these groups</li>
+                                        <li>Increasing percentage of families uncovered by unemployment subsidy and exclusively receiving a low "guaranteed minimum income" subsidy.</li>
+                                    </ul>
+                                </div>
+                                <div role="tabpanel" class="tab-pane active" id="data-entry2">
+                                    <div class="row">
+                                        <div>
+                                            <!-- form init -->
+                                            <%= form_tag do %>
+                                                <div class="form-group">
+                                                    <%= label_tag(:title, "Title") %>
+                                                    <%= text_field_tag :title, nil, {class: "form-control", :"ng-model" => "current_policy.title"}%>
+                                                </div>
+                                                <div class="form-group">
+                                                    <%= label_tag(:description, "Description") %>
+                                                    <%= text_area_tag :description, nil, {class: "form-control", :"ng-model" => "current_policy.description"}%>
+                                                </div>
+                                                <div class="form-group">
+                                                    <%= button_tag "Add Policy Porblem", {class: "btn", :"ng-click" => "add_policy()", type: "button"} %>
+                                                </div
+                                            <% end %>
+                                            <hr>
+                                            <table class="table table-bordered">
+                                              <thead>
+                                                <tr>
+                                                  <th>Policy Dimensions</th>
+                                                  <th>Actions</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                <tr ng-repeat="pp in policies">
+                                                    <td>{{pp.title}}</td>
+                                                    <td><%= button_tag "Add Solution", {class: "btn", :"ng-click" => "add_solution(pp)", type: "button"}%></td>
+                                                </tr>
+                                                <tr><td>{{current_policy.title}}</td></tr>
+                                              </tbody>
+                                            </table>
+                                            <%= link_to 'Siguiente', wizard_path(:step1_3, rp_id: params[:rp_id]) %>
+                                        </div>
+                                        <div class="col-md-6">
+
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
-                        
-                        <div class="form-group">
-                            <%= f.label :description %>:
-                            <%= f.text_area :description, class: "form-control", placeholder: "Enter an explanation" %>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="focus-area">Focus Area</label>
-                            <select class="form-control" id="focus-area">
-                              <option>Select focus area</option>
-                              <option>Poverty and hunger</option>
-                              <option>Universal primary education</option>
-                              <option>Gender equality and empowerment of women</option>
-                              <option>Child mortality</option>
-                              <option>Maternal health</option>
-                              <option>HIV/AIDS, malaria and other diseases</option>
-                              <option>Environmental sustainability</option>
-                              <option>Global partnership for development</option>
-                            </select>
-                        </div>
-                        <!-- <button class="btn btn-success" type="submit" >Save</button> -->
-                        <button id="btn-step-1" class="btn btn-success nextBtn" type="submit" >Save & Next</button>
-                        <% end %>
-                        <!-- end form -->
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col-md-5">
+            <ul ng-if="problem.id">
+                <li>
+                    {{problem.title}}
+                    <ul ng-if="policies.length > 0">
+                        <li ng-repeat="pp in policies">
+                            {{pp.title}}
+                            <ul ng-if="false">
+                                <li></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
+
+    
 </div>

@@ -31,17 +31,17 @@ $('#myTab a').click(function (e) {
     <h4>Example</h4>
     <p>By 2017 the Government approves a modification of Decree XX with an increase of 50% in social benefits for poor families</p>
   </div>
-  <div role="tabpanel" class="tab-pane active" id="data-entry">
+  <div role="tabpanel" class="tab-pane active" id="data-entry" ng-controller="step2Ctrl">
     <div class="row">
       <div class="col-md-6">
         <p><%= flash[:notice]%></p>
         <% form_url = @objective.new_record? ? create_ww_objectives_path : update_ww_objective_path(@objective) %>
         <%= simple_form_for(@objective, url: form_url, wrapper: :vertical_input_group) do |f| %>
           <%= f.error_notification %>
-            <%= f.association :solutions, as: :select, multiple: :multiple %>
-            <%= f.input :title, placeholder: "Objective Title" %>
-            <%= f.input :description, placeholder: "Objective Description" %>
-            <%= f.input :prioritized, input_html: { width: "0", heigth: "0" } %>
+            <%= f.association :solutions, as: :select, multiple: :multiple, input_html: {'ng-model' => 'fields.solutions'} %>
+            <%= f.input :title, placeholder: "Objective Title", input_html: {'ng-model' => 'fields.title'} %>
+            <%= f.input :description, placeholder: "Objective Description", input_html: {'ng-model' => 'fields.description'} %>
+            <%= f.input :prioritized, input_html: { width: "0", heigth: "0" }, input_html: {'ng-model' => 'fields.prioritized'} %>
           <div class="form-actions">
             <%= f.button :button, class: "btn-default" do %>
               <i class="fa fa-plus-square-o"></i> <%= @objective.new_record? ? 'Add Objective' : 'Edit Objective' %>
@@ -50,7 +50,7 @@ $('#myTab a').click(function (e) {
         <% end %>
       </div>
       <div class="col-md-6">
-        <h4>Solution 1</h4>
+        <h4>Solution 1 {{fields.title}}</h4>
         <table class="table table-bordered">
           <thead>
             <tr>

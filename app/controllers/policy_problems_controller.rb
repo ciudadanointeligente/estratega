@@ -2,11 +2,11 @@ class PolicyProblemsController < ApplicationController
   before_action :set_policy_problem, only: [:show, :edit, :update, :update_ww, :destroy, :destroy_ww]
   before_action :set_real_problem
 
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @policy_problems = PolicyProblem.where(real_problem_id: @real_problem.id)
-    respond_with(@real_problem, @policy_problems)
+    respond_with([@real_problem, @policy_problems])
   end
 
   def show

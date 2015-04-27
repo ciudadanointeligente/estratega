@@ -1,7 +1,7 @@
 class RealProblemsController < ApplicationController
   before_action :set_real_problem, only: [:show, :edit, :update, :update_ww, :destroy]
 
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @real_problems = RealProblem.all
