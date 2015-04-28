@@ -1,4 +1,4 @@
-app.directive("solutionsForm", function($http){
+app.directive("solutionsForm", function($http, $location){
     return {
         // scope: {
         //     policy: "=",
@@ -8,7 +8,9 @@ app.directive("solutionsForm", function($http){
         restrict: "E",
         templateUrl: "/solutions/aside_form",
         controller: function($scope, $http){
-            // $scope.solutions = [];
+            $scope.solutions = [];
+            $scope.problem_id = $location.search().problem_id
+
             $http.get("/real_problems/"+$scope.problem_id+"/policy_problems/"+$scope.policy.id+"/solutions.json")
             .success(function(data){
                 $scope.solutions = data;
