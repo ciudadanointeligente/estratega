@@ -111,7 +111,7 @@ app.controller("step1Ctrl", function($scope, $http, $location, $timeout, $aside)
       $aside.open({
         templateUrl: '/solutions/aside',
         placement: position,
-        size: 'sm',
+        size: 'lg',
         backdrop: backdrop,
         controller: function($scope, $modalInstance) {
           $scope.solution_button_txt = "Add Solution";
