@@ -81,7 +81,7 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <%= f.input :description, placeholder: "Enter an explanation", input_html: {"ng-model" => "problem.description"} %>
+                                    <%= f.input :description, placeholder: "Enter a description", input_html: {"ng-model" => "problem.description"} %>
                                 </div>
 
                                 <div class="form-group">
@@ -127,11 +127,11 @@
                                         <%= form_tag do %>
                                             <div class="form-group">
                                                 <%= label_tag(:title, "Title") %>
-                                                <%= text_field_tag :title, nil, {class: "form-control", :"ng-model" => "current_policy.title"}%>
+                                                <%= text_field_tag :title, nil, {class: "form-control", :"ng-model" => "current_policy.title", placeholder: "Enter a Policy Dimension title"}%>
                                             </div>
                                             <div class="form-group">
                                                 <%= label_tag(:description, "Description") %>
-                                                <%= text_area_tag :description, nil, {class: "form-control", :"ng-model" => "current_policy.description"}%>
+                                                <%= text_area_tag :description, nil, {class: "form-control", :"ng-model" => "current_policy.description", placeholder: "Enter a Policy Dimension description"}%>
                                             </div>
                                             <div class="form-group">
                                                 <%= button_tag "{{policy_button_txt}}", {class: "btn", :"ng-click" => "add_policy()", type: "button"} %>
@@ -150,7 +150,7 @@
                                                 <td>{{pp.title}}</td>
                                                 <td>
                                                     <%= button_tag "Edit Policy Dimesion", {class: "btn", :"ng-click" => "e_policy_dimension(pp)", type: "button"}%>
-                                                    <%= button_tag "Add Solution", {class: "btn", :"ng-click" => "add_solution(pp)", type: "button"}%>
+                                                    <%= button_tag "Add Solutions", {class: "btn", :"ng-click" => "add_solution(pp)", type: "button"}%>
                                                 </td>
                                             </tr>
                                             <!-- <tr><td>{{current_policy.title}}</td></tr> -->
