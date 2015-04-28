@@ -166,19 +166,13 @@
             </div>
         </div>
         <div class="col-md-5">
-            <ul class="wrapper" ng-if="problem.id">
-                <li class="taxon ">
-                    <div class="label-taxon">{{problem.title}}</div>
-                    <ul class="wrapper" ng-if="policies.length > 0">
-                        <li class="taxon " ng-repeat="pp in policies">
-                            <div class="label-taxon">{{pp.title}}</div>
-
-                                <solutions-list data-policy="pp" data-problem-id="problem.id"></solutions-list>
-                            <!-- <ul class="wrapper" ng-repeat="solution in solutions">
-                                <li class="taxon ">
-                                    <div class="label-taxon">{{solution.title}}</div>
-                                </li>
-                            </ul> -->
+            <ul ng-if="problem.id">
+                <li>
+                    <div class="main-title-list">{{problem.title}}</div>
+                    <ul ng-if="policies.length > 0">
+                        <li ng-repeat="pp in policies">
+                            <div class="main-title-list">{{pp.title}}</div>
+                            <solutions-list data-policy="pp" data-problem-id="problem.id"></solutions-list>
                         </li>
                     </ul>
                 </li>
