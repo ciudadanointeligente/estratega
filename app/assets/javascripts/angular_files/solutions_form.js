@@ -17,12 +17,26 @@ app.directive("solutionsForm", function($http){
 
             $scope.save_or_update_solution = function(){
                 //if
-                $http.post("/real_problems/"+$scope.problem_id+"/policy_problems/"+$scope.policy.id+"/solutions", $scope.current_solution)
-                .success(function(data){
-                    $scope.solutions.push(data)
-                })
+                if($scope.current_solution.id) {
+                    $http.put("/real_problems/"+$scope.problem_id+"/policy_problems/"+$scope.policy.id+"/solutions/"+$scope.current_solution.id, $scope.current_solution).
+                    success(function(data){
+                        $scope.solution_button_txt = "Add Solution";
+                    });
+                } else {
+                    $http.post("/real_problems/"+$scope.problem_id+"/policy_problems/"+$scope.policy.id+"/solutions", $scope.current_solution)
+                    .success(function(data){
+                        $scope.solutions.push(data)
+                    })
+                }
                 $scope.current_solution = {title: "", description: ""};
             }
+
+            // solution
+            $scope.edit_solution = function(solution){
+              $scope.solution_button_txt = "Edit Solution";
+              $scope.current_solution = solution;
+            }
+
         }
     }
 });
@@ -41,7 +55,6 @@ app.directive("solutionsList", function($http){
             .success(function(data){
                 $scope.solutions = data;
             })
-            $scope.current_solution = {title: "", description: ""};
         }
     }
 });

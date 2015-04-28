@@ -135,7 +135,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <%= button_tag "{{policy_button_txt}}", {class: "btn", :"ng-click" => "add_policy()", type: "button"} %>
-                                            </div
+                                            </div>
                                         <% end %>
                                         <hr>
                                         <table class="table table-bordered">
@@ -149,7 +149,7 @@
                                             <tr ng-repeat="pp in policies">
                                                 <td>{{pp.title}}</td>
                                                 <td>
-                                                    <%= button_tag "Edit Policy Dimesion", {class: "btn", :"ng-click" => "e_policy_dimension(pp.id, $index)", type: "button"}%>
+                                                    <%= button_tag "Edit Policy Dimesion", {class: "btn", :"ng-click" => "e_policy_dimension(pp)", type: "button"}%>
                                                     <%= button_tag "Add Solution", {class: "btn", :"ng-click" => "add_solution(pp)", type: "button"}%>
                                                 </td>
                                             </tr>

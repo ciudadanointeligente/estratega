@@ -11,6 +11,7 @@ app.controller("step1Ctrl", function($scope, $http, $location, $timeout, $aside)
         "Global partnership"
     ];
     $scope.policy_button_txt = "Add Policy Problem";
+
     $scope.problem = {title: "", description: "", focus_area: ""};
     $scope.policies = []
     $scope.current_policy = {title: "", description: ""};
@@ -84,21 +85,11 @@ app.controller("step1Ctrl", function($scope, $http, $location, $timeout, $aside)
         openAside(policy, 'left', true)
     }
     // policy dimensions
-    $scope.e_policy_dimension = function(current_policy, index) {
+    $scope.e_policy_dimension = function(current_policy) {
         $scope.policy_button_txt = "Edit Policy Problem";
-        edit_policy_dimension(current_policy, index);
+        $scope.current_policy = current_policy;
     }
 
-    var edit_policy_dimension = function(current_policy, index){
-        if(current_policy){
-            $http.get("/real_problems/"+$scope.problem.id+"/policy_problems/"+current_policy+".json")
-            .success(function(data){
-                $scope.current_policy = data;
-                $scope.policies[index] = data;
-                // 
-            });
-        }
-    }
     // Aside
 
     $scope.asideState = {
@@ -110,11 +101,11 @@ app.controller("step1Ctrl", function($scope, $http, $location, $timeout, $aside)
         open: true,
         position: position
       };
-      
+
       function postClose() {
         $scope.asideState.open = false;
       }
-      
+
       var problem_id = $scope.problem_id;
 
       $aside.open({
@@ -123,6 +114,7 @@ app.controller("step1Ctrl", function($scope, $http, $location, $timeout, $aside)
         size: 'sm',
         backdrop: backdrop,
         controller: function($scope, $modalInstance) {
+          $scope.solution_button_txt = "Add Solution";
           $scope.policy = policy;
           $scope.problem_id = problem_id;
           $scope.ok = function(e) {
