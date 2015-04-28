@@ -108,73 +108,77 @@
                             <li role="presentation"><a href="#explication2" aria-controls="home" role="tab" data-toggle="tab">Explanation</a></li>
                             <li role="presentation" class="active"><a href="#data-entry2" aria-controls="profile" role="tab" data-toggle="tab">Data Entry</a></li>
                         </ul>
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane" id="explication2">
-                                    <h4>Description</h4>
-                                    <p>Behind those problems there are usually policy related causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships.</p>
-                                    <hr>
-                                    <h4>Example</h4>
-                                    <ul>
-                                        <li>Poor families entitled to very low child care benefits</li>
-                                        <li>High unemployment rates among disadvantaged groups linked to the absence of active employment policies for these groups</li>
-                                        <li>Increasing percentage of families uncovered by unemployment subsidy and exclusively receiving a low "guaranteed minimum income" subsidy.</li>
-                                    </ul>
-                                </div>
-                                <div role="tabpanel" class="tab-pane active" id="data-entry2">
-                                    <div class="row">
-                                        <div>
-                                            <!-- form init -->
-                                            <%= form_tag do %>
-                                                <div class="form-group">
-                                                    <%= label_tag(:title, "Title") %>
-                                                    <%= text_field_tag :title, nil, {class: "form-control", :"ng-model" => "current_policy.title"}%>
-                                                </div>
-                                                <div class="form-group">
-                                                    <%= label_tag(:description, "Description") %>
-                                                    <%= text_area_tag :description, nil, {class: "form-control", :"ng-model" => "current_policy.description"}%>
-                                                </div>
-                                                <div class="form-group">
-                                                    <%= button_tag "Add Policy Porblem", {class: "btn", :"ng-click" => "add_policy()", type: "button"} %>
-                                                </div
-                                            <% end %>
-                                            <hr>
-                                            <table class="table table-bordered">
-                                              <thead>
-                                                <tr>
-                                                  <th>Policy Dimensions</th>
-                                                  <th>Actions</th>
-                                                </tr>
-                                              </thead>
-                                              <tbody>
-                                                <tr ng-repeat="pp in policies">
-                                                    <td>{{pp.title}}</td>
-                                                    <td><%= button_tag "Add Solution", {class: "btn", :"ng-click" => "add_solution(pp)", type: "button"}%></td>
-                                                </tr>
-                                                <tr><td>{{current_policy.title}}</td></tr>
-                                              </tbody>
-                                            </table>
-                                            <%= link_to 'Siguiente', wizard_path(:step1_3, rp_id: params[:rp_id]) %>
-                                        </div>
-                                        <div class="col-md-6">
-
-                                        </div>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane" id="explication2">
+                                <h4>Description</h4>
+                                <p>Behind those problems there are usually policy related causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships.</p>
+                                <hr>
+                                <h4>Example</h4>
+                                <ul>
+                                    <li>Poor families entitled to very low child care benefits</li>
+                                    <li>High unemployment rates among disadvantaged groups linked to the absence of active employment policies for these groups</li>
+                                    <li>Increasing percentage of families uncovered by unemployment subsidy and exclusively receiving a low "guaranteed minimum income" subsidy.</li>
+                                </ul>
+                            </div>
+                            <div role="tabpanel" class="tab-pane active" id="data-entry2">
+                                <div class="row">
+                                    <div>
+                                        <!-- form init -->
+                                        <%= form_tag do %>
+                                            <div class="form-group">
+                                                <%= label_tag(:title, "Title") %>
+                                                <%= text_field_tag :title, nil, {class: "form-control", :"ng-model" => "current_policy.title"}%>
+                                            </div>
+                                            <div class="form-group">
+                                                <%= label_tag(:description, "Description") %>
+                                                <%= text_area_tag :description, nil, {class: "form-control", :"ng-model" => "current_policy.description"}%>
+                                            </div>
+                                            <div class="form-group">
+                                                <%= button_tag "{{policy_button_txt}}", {class: "btn", :"ng-click" => "add_policy()", type: "button"} %>
+                                            </div
+                                        <% end %>
+                                        <hr>
+                                        <table class="table table-bordered">
+                                          <thead>
+                                            <tr>
+                                              <th>Policy Dimensions</th>
+                                              <th>Actions</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr ng-repeat="pp in policies">
+                                                <td>{{pp.title}}</td>
+                                                <td>
+                                                    <%= button_tag "Edit Policy Dimesion", {class: "btn", :"ng-click" => "e_policy_dimension(pp.id, $index)", type: "button"}%>
+                                                    <%= button_tag "Add Solution", {class: "btn", :"ng-click" => "add_solution(pp)", type: "button"}%>
+                                                </td>
+                                            </tr>
+                                            <!-- <tr><td>{{current_policy.title}}</td></tr> -->
+                                          </tbody>
+                                        </table>
+                                        
                                     </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-5">
-            <ul ng-if="problem.id">
-                <li>
-                    {{problem.title}}
-                    <ul ng-if="policies.length > 0">
-                        <li ng-repeat="pp in policies">
-                            {{pp.title}}
-                            <ul ng-if="false">
-                                <li></li>
-                            </ul>
+            <ul class="wrapper" ng-if="problem.id">
+                <li class="taxon ">
+                    <div class="label-taxon">{{problem.title}}</div>
+                    <ul class="wrapper" ng-if="policies.length > 0">
+                        <li class="taxon " ng-repeat="pp in policies">
+                            <div class="label-taxon">{{pp.title}}</div>
+
+                                <solutions-list data-policy="pp" data-problem-id="problem.id"></solutions-list>
+                            <!-- <ul class="wrapper" ng-repeat="solution in solutions">
+                                <li class="taxon ">
+                                    <div class="label-taxon">{{solution.title}}</div>
+                                </li>
+                            </ul> -->
                         </li>
                     </ul>
                 </li>

@@ -10,6 +10,7 @@ app.controller("step1Ctrl", function($scope, $http, $location, $timeout, $aside)
         "Environmental sustainability",
         "Global partnership"
     ];
+    $scope.policy_button_txt = "Add Policy Problem";
     $scope.problem = {title: "", description: "", focus_area: ""};
     $scope.policies = []
     $scope.current_policy = {title: "", description: ""};
@@ -52,6 +53,7 @@ app.controller("step1Ctrl", function($scope, $http, $location, $timeout, $aside)
             $http.put("/real_problems/"+$scope.problem.id+"/policy_problems/"+$scope.current_policy.id, $scope.current_policy)
             .success(function(data){
                 // alertar en caso de success o error
+                $scope.policy_button_txt = "Add Policy Problem";
             })
         }else{
             $http.post("/real_problems/"+$scope.problem.id+"/policy_problems", $scope.current_policy)
@@ -81,8 +83,23 @@ app.controller("step1Ctrl", function($scope, $http, $location, $timeout, $aside)
     $scope.add_solution = function(policy){
         openAside(policy, 'left', true)
     }
-    
-// Aside
+    // policy dimensions
+    $scope.e_policy_dimension = function(current_policy, index) {
+        $scope.policy_button_txt = "Edit Policy Problem";
+        edit_policy_dimension(current_policy, index);
+    }
+
+    var edit_policy_dimension = function(current_policy, index){
+        if(current_policy){
+            $http.get("/real_problems/"+$scope.problem.id+"/policy_problems/"+current_policy+".json")
+            .success(function(data){
+                $scope.current_policy = data;
+                $scope.policies[index] = data;
+                // 
+            });
+        }
+    }
+    // Aside
 
     $scope.asideState = {
       open: false

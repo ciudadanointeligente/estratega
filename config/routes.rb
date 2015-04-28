@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   
   get 'solutions/aside', to: 'solutions#aside'
   get 'solutions/aside_form', to: 'solutions#aside_form'
+  get 'solutions/list', to: 'solutions#list'
 
   resources :real_problems do
     post 'create_ww', on: :collection
