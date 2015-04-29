@@ -17,7 +17,9 @@ gem 'unicorn'
 gem 'unicorn-rails'
 gem 'devise'
 gem 'cancancan', '~> 1.10'
+gem "bower-rails"
 gem 'wicked'
+gem 'ng-rails-csrf'
 
 group :development do
   gem 'better_errors'

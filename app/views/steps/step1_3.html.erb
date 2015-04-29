@@ -40,8 +40,8 @@
                                 <div role="tabpanel" class="tab-pane" id="data-entry3">
                                     <div class=row>
                                         <div class="col-md-6">
-                                            <%= simple_form_for([@real_problem, @real_problem.policy_problems.first, Solution.new], html: {autocomplete: "off"}, url:  create_ww_real_problem_policy_problems_path(@real_problem) ) do |f| %>
-                                              <%= f.association :policy_problem, as: :select, prompt: "Choose a Policy Dimension", input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' } %>
+                                            <%= simple_form_for([@real_problem, Solution.new], html: {autocomplete: "off"}, url:  create_ww_real_problem_policy_problems_path(@real_problem) ) do |f| %>
+                                              <%= f.association :policy_problem, collection: @policy_problems, as: :select, prompt: "Choose a Policy Dimension", input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' } %>
                                               <%= f.input :description, input_html: { class: 'form-control' } %>
                                               <%= f.button :submit, 'Save' %>
                                             <% end %>

@@ -38,6 +38,7 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
+    bower-rails (0.9.2)
     builder (3.2.2)
     cancancan (1.10.1)
     capybara (2.4.3)
@@ -131,6 +132,7 @@ GEM
     minitest (5.4.2)
     multi_json (1.10.1)
     netrc (0.7.7)
+    ng-rails-csrf (0.1.0)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     orm_adapter (0.5.0)
@@ -280,6 +282,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
+  bower-rails
   cancancan (~> 1.10)
   capybara
   chromedriver-helper
@@ -295,6 +298,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   launchy
+  ng-rails-csrf
   pg
   pry-rails
   pry-rescue
