@@ -17,6 +17,7 @@ gem 'unicorn'
 gem 'unicorn-rails'
 gem 'devise'
 gem 'cancancan', '~> 1.10'
+gem 'wicked'
 
 group :development do
   gem 'better_errors'
@@ -45,6 +46,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem "chromedriver-helper"
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
