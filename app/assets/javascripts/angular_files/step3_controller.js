@@ -10,13 +10,13 @@ app.controller("step3Ctrl", function($scope, $http){
 	}
 	get_actors();
 
-	$scope.send_actor_form = function(){
+	$scope.send_actor_form = function(place){
+		$scope.current_actor.support = place;
 		save_or_update_actor();
 		$scope.current_actor = { name:"", description:"", actor_type:"", support: 0, influence: 0 };
 	}
 
 	var save_or_update_actor = function(){
-		//console.log('save')
 		if($scope.current_actor.name == "" || $scope.current_actor.actor_type == "" )
             return
 
@@ -28,7 +28,6 @@ app.controller("step3Ctrl", function($scope, $http){
 		      	get_actors();
       		})
 		} else {
-			console.log($scope.current_actor);
 			$http.post("/actors", $scope.current_actor)
 			.success(function(data){
 		      	// alertar en caso de success o error
@@ -42,7 +41,6 @@ app.controller("step3Ctrl", function($scope, $http){
 		$http.get("/actors/"+actor_id+".json")
 			.success(function(data){
 		      	// alertar en caso de success o error
-		      	//console.log(data);
 				$scope.current_actor = data;
       		})
 	}
