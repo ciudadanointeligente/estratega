@@ -122,11 +122,11 @@ $('#myTab a').click(function (e) {
 				<div class="form-group">
 					<div role="tabpanel">
 						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation" class="active"><a href="#explication2" aria-controls="home" role="tab" data-toggle="tab">Explication</a></li>
-							<li role="presentation"><a href="#data-entry2" aria-controls="profile" role="tab" data-toggle="tab">Data Entry</a></li>
+							<li role="presentation"><a href="#explication2" aria-controls="home" role="tab" data-toggle="tab">Explication</a></li>
+							<li role="presentation" class="active"><a href="#data-entry2" aria-controls="profile" role="tab" data-toggle="tab">Data Entry</a></li>
 						</ul>
 						<div class="tab-content">
-							<div role="tabpanel" class="tab-pane active" id="explication2">
+							<div role="tabpanel" class="tab-pane" id="explication2">
 								<h4>Description</h4>
 								<p>At this stage, you need to assess how much power and influence the key stakeholders you have identified have.</p>
 								<ul>
@@ -194,56 +194,7 @@ $('#myTab a').click(function (e) {
 									</tr>
 								</table>
 							</div>
-							<div role="tabpanel" class="tab-pane" id="data-entry2">
-								<div class="row">
-									<div class="col-md-12">
-										<!-- debug -->
-										{{current_actor.actor_type}}
-										{{current_actor.name}}
-										{{current_actor.support}}
-										{{current_actor.influence}}
-										<!-- end debugg -->
-										<%= form_tag do %>
-											<div class="form-group">
-												<label for="actor-type">Actor Type</label>
-												<select class="form-control" id="actor-type" ng-model="current_actor.actor_type">
-													<option>Select actor type</option>
-													<option>Organization</option>
-													<option>Person</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label for="name">Name</label>
-												<input type="text" class="form-control" id="name" placeholder="Enter name" ng-model="current_actor.name">
-											</div>
-											<div class="form-group">
-												<label for="support-level">Support</label>
-												<select class="form-control" id="support-level" ng-model="current_actor.support">
-													<option value="">Select Support level</option>
-													<option value="3">Active supporters</option>
-													<option value="2">Passive supporters</option>
-													<option value="1">Active allies</option>
-													<option value="0" >Neutrals</option>
-													<option value="-1">Active opponents</option>
-													<option value="-2">Passive opponents</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label for="influence-level">Influence</label>
-												<select class="form-control" id="influence-level" ng-model="current_actor.influence">
-													<option value="">Select Influence Level</option>
-													<option value="2">Very influential</option>
-													<option value="1">Significant influence</option>
-													<option value="0">Moderate influence</option>
-													<option value="-1">Low influence</option>
-													<option value="-2">No influence</option>
-												</select>
-											</div>
-											<button class="btn btn-default" ng-click="send_actor_form()" type="button" ><i class="fa fa-plus-square-o"></i> Add Actor</button>
-											<hr>
-										<% end %> <!-- end form -->
-									</div><!-- end col-md-12 -->
-								</div><!-- end row -->
+							<div role="tabpanel" class="tab-pane active" id="data-entry2">
 								<div class="row">
 									<div class="col-md-12">
 										<div class="panel panel-default">
@@ -251,6 +202,7 @@ $('#myTab a').click(function (e) {
 												<h4 class="panel-title"><a data-toggle="collapse" href="#actors1" aria-expanded="false" aria-controls="collapseExample">Active supporters with influence</a></h4>  
 											</div>      
 											<div class="collapse steps in" id="actors1">
+												<%= form_tag do %>
 												<table class="table table-bordered">
 													<thead>
 														<tr>
@@ -262,37 +214,51 @@ $('#myTab a').click(function (e) {
 														</tr>
 													</thead>
 													<tbody>
-														<tr>
-															<td><a href="#"><i class="fa fa-check-square" title="Important"></i></a></td>
-															<td>Person</td>
-															<td>José Garrido</td>
-															<td>Very Influential</td>
+														<tr ng-repeat="actor in actors">
+															<td>
+																<input type="checkbox" ng-checked="actor.description">
+															</td>
+															<td>{{actor.actor_type}}</td>
+															<td>{{actor.name}}</td>
+															<td>{{actor.influence}}</td>
 															<td class="text-right actions">
-															<a href="#"><i class="fa fa-edit" title="Edit"></i></a>      <a data-confirm="Are you sure you want to permanently delete this?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-trash" title="Delete"></i></a>
+																<i class="fa fa-edit" title="Edit" ng-click="edit_actor(actor.id)"></i>
+																<i class="fa fa-trash" title="Delete"></i>
 															</td>
 														</tr>
+														<!--  -->
 														<tr>
-															<td><a href="#"><i class="fa fa-square" title="Normal Importance"></i></a></td>
-															<td>Organization</td>
-															<td>Party XX</td>
-															<td>Significant Influential</td>
-															<td class="text-right actions">
-																<a href="#"><i class="fa fa-edit" title="Edit"></i></a>
-																<a data-confirm="Are you sure you want to permanently delete this?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-trash" title="Delete"></i></a>
+															<td>
+																<input type="checkbox" value="1" ng-model="current_actor.description">
 															</td>
-														</tr>
-														<tr>
-															<td><a href="#"><i class="fa fa-square" title="Normal Importance"></i></a></td>
-															<td>Person</td>
-															<td>Marcel Augsburger</td>
-															<td>Moderate Influential</td>
+															<td>
+																<select class="form-control" id="actor-type" ng-model="current_actor.actor_type">
+																	<option>Select actor type</option>
+																	<option>Organization</option>
+																	<option>Person</option>
+																</select>
+															</td>
+															<td>
+																<input type="text" class="form-control" id="name" placeholder="Enter name" ng-model="current_actor.name">
+															</td>
+															<td>
+																
+																<select class="form-control" id="influence-level" ng-model="current_actor.influence">
+																	<option value="">Select Influence Level</option>
+																	<option value="2">Very influential</option>
+																	<option value="1">Significant influence</option>
+																	<option value="0">Moderate influence</option>
+																	<option value="-1">Low influence</option>
+																	<option value="-2">No influence</option>
+																</select>
+															</td>
 															<td class="text-right actions">
-																<a href="#"><i class="fa fa-edit" title="Edit"></i></a>
-																<a data-confirm="Are you sure you want to permanently delete this?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-trash" title="Delete"></i></a>
+																<i class="fa fa-save" ng-click="send_actor_form()"></i>
 															</td>
 														</tr>
 													</tbody>
 												</table>
+												<% end %>
 											</div>
 										</div>
 										<div class="panel panel-default">
