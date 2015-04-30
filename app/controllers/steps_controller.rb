@@ -1,6 +1,7 @@
-class StepsController < Wicked::WizardController
+class StepsController  < ApplicationController
 	before_action :authenticate_user!
-  steps :step1_1, :step1_2, :step1_3
+  # steps :step1_1, :step1_2, :step1_3
+  respond_to :html
 
   def show
     @real_problem = RealProblem.find_or_initialize_by(id: params[:rp_id])
@@ -24,5 +25,8 @@ class StepsController < Wicked::WizardController
   def step2
     @objective = Objective.find_or_initialize_by(id: params[:objective_id])
     @objectives = Objective.all
+  end
+
+  def step3
   end
 end

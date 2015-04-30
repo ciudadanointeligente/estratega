@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe StepsController, :type => :controller do
 
+  login_user
   # describe "GET index" do
   #   it "returns http success" do
   #     get :index
@@ -25,6 +26,13 @@ RSpec.describe StepsController, :type => :controller do
       objective = create(:objective)
       get :step2, {}
       expect(assigns(:objectives)).to include(objective)
+    end
+  end
+
+  describe "GET step3" do
+    it "render step3 template" do
+      get :step3, {}
+      response.should render_template :step3
     end
   end
 
