@@ -48,12 +48,12 @@ h2, .h2 {
   color: #ffffff;
   background-color: #31a1a2;
 }
-.navbar-default .navbar-brand {
+.navbar-default .navbar-brand, .brand {
   color: #ffffff;
   font-size: 18px;
   font-weight: 700;
 }
-.navbar-default .navbar-brand span {
+.navbar-default .navbar-brand span, .brand span {
   font-size: 14px;
   font-weight: 300;
 }
@@ -87,6 +87,23 @@ h2, .h2 {
   content: ">\00a0";
   padding: 0 5px;
   color: #7f8c8c;
+}
+.main {
+  margin-bottom: 30px;
+}
+footer {
+  background-color: #2dc8c2;
+  color: #ffffff;
+  padding: 40px 0;
+  font-size: 12px;
+}
+footer h5 {
+  color: #12867b;
+  font-size: 20px;
+  font-weight: 600;
+}
+footer a {
+  color: #ffffff;
 }
 .stage_menu h3 {
   font-size: 16px;

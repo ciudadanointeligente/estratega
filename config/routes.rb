@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'steps/step1_1'
   get 'steps/step1_2'
   get 'steps/step1_3'
+  get 'steps/stage1'
   resources :projects
 
   resources :resources
