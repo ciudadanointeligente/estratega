@@ -36,4 +36,11 @@ RSpec.describe StepsController, :type => :controller do
     end
   end
 
+  describe "GET step4" do
+    it "render step4 template" do
+      get :step4, {}
+      response.should render_template :step4
+    end
+  end
+
 end

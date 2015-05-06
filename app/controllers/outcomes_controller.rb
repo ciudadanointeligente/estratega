@@ -2,7 +2,7 @@ class OutcomesController < ApplicationController
   before_action :set_outcome, only: [:show, :edit, :update, :destroy]
   before_action :set_objective
 
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @outcomes = Outcome.all
@@ -46,6 +46,6 @@ class OutcomesController < ApplicationController
     end
 
     def outcome_params
-      params.require(:outcome).permit(:title, :description, :objective_id)
+      params.require(:outcome).permit(:title, :description, :objective_id, :outcome_type_id, :actor_type_id)
     end
 end
