@@ -1,7 +1,18 @@
 <h2>Project 1</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed metus ipsum, condimentum vitae varius non, vulputate eu enim. Etiam non ultrices nulla. Mauris tempus posuere semper.</p>
 <hr>
-<div class="row">
+<div role="tabpanel">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#stages" aria-controls="stages" role="tab" data-toggle="tab">Stages</a></li>
+    <li role="presentation"><a href="#dashboard" aria-controls="dashboard" role="tab" data-toggle="tab">Dashboard</a></li>
+    <li role="presentation"><a href="#documents" aria-controls="documents" role="tab" data-toggle="tab">Documents</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="stages">
+    	
+		<div class="row">
   <div class="col-md-12">
   	<div class="panel panel-default">
 	  	<div class="panel-heading">
@@ -245,4 +256,11 @@
 	  	</div>
   	</div>
   </div>
+</div>
+
+    </div>
+    <div role="tabpanel" class="tab-pane" id="dashboard">...</div>
+    <div role="tabpanel" class="tab-pane" id="documents">...</div>
+  </div>
+
 </div>
