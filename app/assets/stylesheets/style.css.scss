@@ -158,3 +158,23 @@ h4.title_goals {
   color: #859292;
   margin-bottom: 30px;
 }
+.panel-heading .fa-check-circle {
+  color: #26a65b;
+}
+.panel-heading .fa-times-circle {
+  color: #ff0000;
+}
+.table_goals .fa-chevron-circle-right {
+  color: #f89406;
+}
+.td-w-10p {
+  width: 10%;
+}
+.td-w-10p .fa-unlock, .td-w-10p .fa-unlock-alt, .td-w-10p .fa-lock {
+  color: #62b9b0;
+}
+.td-w-3p {
+  width: 20px;
+  vertical-align: text-top;
+  padding-top: 3px;
+}
