@@ -1087,3 +1087,37 @@ table.dataTable tbody td a i, table.dataTable tbody td a:visited i, table.dataTa
 div.well ol {
   padding-left: 25px;
 }
+.panel-heading {
+  background-image: -webkit-linear-gradient(top,#f5f5f5 0,#e8e8e8 100%);
+  background-image: -o-linear-gradient(top,#f5f5f5 0,#e8e8e8 100%);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#f5f5f5),to(#e8e8e8));
+  background-image: linear-gradient(to bottom,#f5f5f5 0,#e8e8e8 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#ffe8e8e8', GradientType=0);
+  background-repeat: repeat-x;
+  color: #333;
+  background-color: #f5f5f5;
+  border-color: #ddd;
+}
+.collapse.steps .table {
+  margin-bottom: 0px;
+}
+.collapse.steps .table .status {
+  width: 10%;
+}
+h4.panel-title a .fa-chevron-circle-right, .table_goals .fa-chevron-circle-right {
+  color: #F89406;
+}
+h4.panel-title a .fa-check-circle, .table_goals .fa-check-circle {
+  color: #26A65B;
+}
+h4.panel-title a .fa-times-circle, .table_goals .fa-times-circle {
+  color: #F22613;
+}
+.td-w-10p {
+  width: 1%;
+  font-size: 16px;
+  vertical-align: text-bottom;
+}
+.table_goals a {
+  color: #333333;
+}

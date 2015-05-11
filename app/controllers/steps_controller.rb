@@ -13,4 +13,6 @@ class StepsController  < ApplicationController
 
   def step3
   end
+  def project_index
+  end
 end

@@ -36,6 +36,8 @@ Rails.application.routes.draw do
     get 'step1', on: :collection
     get 'step2', on: :collection
     get 'step3', on: :collection
+    get 'index', on: :collection
+    get 'project_index', on: :collection
   end
 
   resources :projects
