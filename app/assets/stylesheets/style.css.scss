@@ -22,9 +22,20 @@ h2, .h2 {
   background-color: #ff4f4a;
   border-color: #ff635a;
 }
+
+.btn-info {
+  background-color: #26cccc;
+  border-color: #00bdc8;
+}
+.btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info {
+  background-color: #00bdc8;
+  border-color: #26cccc;
+}
+
 .bg_grey {
   background-color: #ececec;
   padding: 10px;
+  margin-bottom: 20px;
 }
 .bold {
   font-weight: 700;
@@ -180,4 +191,18 @@ h4.title_goals {
 }
 .tab-content {
   margin-bottom: 30px;
+}
+.objetives {
+  background-color: #ececec;
+  padding: 15px;
+}
+.objetives .panel-heading {
+  margin: -15px -15px 0;
+}
+.objetives table {
+  background-color: #ffffff;
+  margin-top: 40px;
+}
+.objetives table a {
+  color: #e2534b;
 }
