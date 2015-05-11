@@ -15,4 +15,8 @@ class StepsController  < ApplicationController
   end
   def project_index
   end
+  def stage1
+  end
+  def project_index
+  end
 end

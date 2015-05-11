@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   end
 
   resources :steps do
+    get 'stage1', on: :collection
     get 'step1', on: :collection
     get 'step2', on: :collection
     get 'step3', on: :collection
