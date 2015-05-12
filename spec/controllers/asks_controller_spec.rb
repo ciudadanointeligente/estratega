@@ -34,6 +34,14 @@ RSpec.describe AsksController, :type => :controller do
       get :index, {activity_id: @activity}, valid_session
       expect(assigns(:asks)).to eq([@ask])
     end
+
+    it "assigns all asks as @asks as a JSON" do
+      get :index, {activity_id: @activity}, valid_session, :format => 'json'
+      expect(response).to be_success
+
+      expect(assigns(:asks).length).to eq(1)
+      expect(assigns(:asks).first.title).to eq('MyText')
+    end
   end
 
   describe "GET show" do

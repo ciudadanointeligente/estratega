@@ -2,10 +2,10 @@ class AsksController < ApplicationController
   before_action :set_ask, only: [:show, :edit, :update, :destroy]
   before_action :set_activity
 
-  respond_to :html
+  respond_to :html, :json
 
   def index
-    @asks = Ask.all
+    @asks = @activity.asks.all
     respond_with(@asks)
   end
 
