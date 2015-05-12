@@ -21,4 +21,6 @@ class StepsController  < ApplicationController
   end
   def stage1
   end
+  def step6
+  end
 end
