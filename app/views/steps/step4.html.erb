@@ -68,11 +68,11 @@ $('#myTab a').click(function (e) {
                 <div class="form-group">
                     <div role="tabpanel">
                         <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active"><a href="#explication" aria-controls="home" role="tab" data-toggle="tab">Explication</a></li>
+                            <li role="presentation" class="active"><a href="#explanation" aria-controls="home" role="tab" data-toggle="tab">Explanation</a></li>
                             <li role="presentation"><a href="#data-entry" aria-controls="profile" role="tab" data-toggle="tab">Data Entry</a></li>
                         </ul>
                             <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="explication">
+                                <div role="tabpanel" class="tab-pane active" id="explanation">
                                     <h4>Description</h4>
                                     <p>The definition of the interim outcomes corresponds to the description of how you envision that the change will take place.</p>
                                     <p>By this point in the planning process, the analysis to underpin an advocacy strategy is complete. The analysis must be pulled together and guide the definition of the shorter term results (interim outcomes) that must be achieved in order to reach the advocacy objective and the actions that will contribute to the interim outcomes (UNICEF (2010) Advocacy toolkit). Developing an advocacy strategy entails figuring out how to reach interim outcomes while keeping the long-term vision alive. </p>
@@ -180,7 +180,6 @@ $('#myTab a').click(function (e) {
                                     </ul>
                                 </div>
                                <div role="tabpanel" class="tab-pane" id="data-entry" ng-controller="step4Ctrl">
-                               		{{current_outcome.description}}
                                		<%= form_tag do %>
                                     <div class=row>
 		                                <div class="col-md-6">
@@ -254,8 +253,8 @@ $('#myTab a').click(function (e) {
                                                   <td>{{outcome.actor_type_id}}</td>
                                                   <td><a href="step411#activities">0</a></td>
                                                   <td class="text-right actions">
-                                                    <a href="#"><i class="fa fa-edit" title="Edit"></i></a>
-                                                    <a data-confirm="Are you sure you want to permanently delete this?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-trash" title="Delete"></i></a>
+                                                    <i class="fa fa-edit" title="Edit" ng-click="edit_outcome(outcome.id)"></i>
+                                                    <i class="fa fa-trash" title="Delete" ng-click="delete_outcome(outcome.id)"></i>
                                                   </td>
                                                 </tr>
                                               </tbody>
