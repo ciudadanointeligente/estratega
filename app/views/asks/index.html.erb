@@ -16,9 +16,9 @@
         <td><%= ask.title %></td>
         <td><%= ask.description %></td>
         <td><%= ask.activity %></td>
-        <td><%= link_to 'Show', ask %></td>
-        <td><%= link_to 'Edit', edit_ask_path(ask) %></td>
-        <td><%= link_to 'Destroy', ask, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [@activity, ask] %></td>
+        <td><%= link_to 'Edit', edit_activity_ask_path(@activity, ask) %></td>
+        <td><%= link_to 'Destroy', [@activity, ask], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Ask', new_ask_path %>
+<%= link_to 'New Ask', new_activity_ask_path %>
