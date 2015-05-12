@@ -2,7 +2,7 @@ class ResourcesController < ApplicationController
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
   before_action :set_project
 
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @resources = @project.resources
