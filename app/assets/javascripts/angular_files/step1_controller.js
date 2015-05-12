@@ -41,7 +41,7 @@ app.controller("step1Ctrl", function($scope, $http, $location, $timeout, $aside)
             $http.post("/real_problems", $scope.problem)
             .success(function(data){
                 $scope.problem = data;
-                $location.path("/steps/step1_1").search({problem_id:$scope.problem.id})
+                $location.path("/steps/step1").search({problem_id:$scope.problem.id})
                 // alertar en caso de success o error
             })
         }

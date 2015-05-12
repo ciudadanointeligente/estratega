@@ -10,6 +10,17 @@ RSpec.describe StepsController, :type => :controller do
   #   end
   # end
 
+  describe "GET step1" do
+    it "creates a new real_problem as @real_problem" do
+      get :step1, {}
+      expect(assigns(:real_problem)).to be_a_new RealProblem
+    end
+    it "renders the step1 template" do
+      get :step1, {}
+      expect(response).to render_template :step1
+    end
+  end
+
   describe "GET step2" do
     it "creates a new objetive as @objective" do
       get :step2, {}
