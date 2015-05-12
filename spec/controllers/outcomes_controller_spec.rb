@@ -40,12 +40,19 @@ RSpec.describe OutcomesController, :type => :controller do
     @objective = create(:objective)
     @outcome = create(:outcome)
     @objective.outcomes.append(@outcome)
+    @objective.save
   end
 
   describe "GET index" do
     it "assigns all outcomes as @outcomes" do
       get :index, {objective_id: @objective}, valid_session
       expect(assigns(:outcomes)).to eq([@outcome])
+    end
+    it "assigns all outcomes as @outcomes as JSON" do
+      get :index, {objective_id: @objective}, valid_session, :format => 'json'
+      expect(response).to be_success
+      expect(assigns(:outcomes).length).to eq(1)
+      expect(assigns(:outcomes).first.title).to eq('MyText')
     end
   end
 

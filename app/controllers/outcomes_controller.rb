@@ -5,7 +5,7 @@ class OutcomesController < ApplicationController
   respond_to :html, :json
 
   def index
-    @outcomes = Outcome.all
+    @outcomes = @objective.outcomes
     respond_with(@outcomes)
   end
 
