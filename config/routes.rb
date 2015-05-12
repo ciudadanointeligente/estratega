@@ -41,8 +41,9 @@ Rails.application.routes.draw do
     get 'project_index', on: :collection
   end
 
-  resources :projects
-  resources :resources
+  resources :projects do
+    resources :resources
+  end
 
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :people

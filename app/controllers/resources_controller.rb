@@ -1,10 +1,11 @@
 class ResourcesController < ApplicationController
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
+  before_action :set_project
 
   respond_to :html
 
   def index
-    @resources = Resource.all
+    @resources = @project.resources
     respond_with(@resources)
   end
 
@@ -23,25 +24,29 @@ class ResourcesController < ApplicationController
   def create
     @resource = Resource.new(resource_params)
     @resource.save
-    respond_with(@resource)
+    respond_with(@project, @resource)
   end
 
   def update
     @resource.update(resource_params)
-    respond_with(@resource)
+    respond_with(@project, @resource)
   end
 
   def destroy
     @resource.destroy
-    respond_with(@resource)
+    respond_with(@project, @resource)
   end
 
   private
+    def set_project
+      @project = Project.find(params[:project_id])
+    end
+
     def set_resource
       @resource = Resource.find(params[:id])
     end
 
     def resource_params
-      params[:resource]
+       params.require(:resource).permit(:title, :description, :public, :project_id)
     end
 end
