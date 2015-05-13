@@ -29,6 +29,9 @@ h2, .h2 {
 .bold {
   font-weight: 700;
 }
+table a {
+  color: #e2534b;
+}
 .navbar {
   margin-bottom: 0px;
 }
@@ -180,4 +183,61 @@ h4.title_goals {
 }
 .tab-content {
   margin-bottom: 30px;
+}
+table th.sorting_desc {
+  background: image-url("sort_desc.png") no-repeat center right;
+}
+table th.sorting_asc {
+  background: image-url("sort_asc.png") no-repeat center right;
+}
+table th.sorting {
+  background: image-url("sort_both.png") no-repeat center right;
+} 
+#resources_filter {
+  margin-top: -30px;
+} 
+#resources_filter input[type="search"] {
+  -webkit-appearance: none;
+  margin-left: 15px;
+  height: 30px;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  font-weight: 400;
+}
+#resources_info {
+  display: none;
+}
+.dataTable {
+  margin-top: 20px;
+}
+div#resources_paginate {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  float: left;
+}
+#resources_paginate>a, #resources_paginate>span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin: -1px -2px;
+  line-height: 1.42857143;
+  color: #337ab7;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+#resources_paginate>.disabled, #resources_paginate>.disabled:focus, #resources_paginate>.disabled:hover {
+  color: #777;
+  cursor: not-allowed;
+  background-color: #fff;
+}
+#resources_paginate>span {
+  background-color: #2dc8c2;
+  border-color: #2dc8c2;
+}
+#resources_paginate>span a {
+  color: #ffffff;
 }
