@@ -1,0 +1,17 @@
+<div class="modal-header">
+    
+</div>
+<div class="modal-body">
+    <%= simple_form_for [@project, @resource] do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :title %>
+        <%= f.input :description %>
+        <%= f.input :link %>
+        <%= f.input :tag_list %>
+        <%= f.input :public %>
+        <%= f.button :submit, class: "btn btn-success" %>
+    <% end %>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok($event)">OK</button>
+</div>

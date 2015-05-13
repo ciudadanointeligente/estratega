@@ -72,6 +72,12 @@ RSpec.describe ResourcesController, :type => :controller do
         post :create, {project_id: @project, resource: attributes_for(:resource)}
         expect(response).to redirect_to([@project, Resource.last])
       end
+
+      it "creates a relation between project and resource" do
+        post :create, {project_id: @project, resource: attributes_for(:resource)}
+        expect(assigns(:resource).project).to eq(@project)
+        expect(@project.resources).to include(@resource)
+      end
     end
 
     describe "with invalid params" do

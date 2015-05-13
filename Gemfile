@@ -20,6 +20,7 @@ gem 'cancancan', '~> 1.10'
 gem "bower-rails"
 gem 'wicked'
 gem 'ng-rails-csrf'
+gem 'acts-as-taggable-on'
 
 group :development do
   gem 'better_errors'
