@@ -64,7 +64,7 @@ $('#myTab a').click(function (e) {
       </tr>
     </table>
   </div>
-  <div role="tabpanel" class="tab-pane" id="data-entry">
+  <div role="tabpanel" class="tab-pane" id="data-entry" ng-controller="step6Ctrl">
     <div class="row">
       <div class="col-md-12">
         <form>
@@ -81,9 +81,9 @@ $('#myTab a').click(function (e) {
           </div>
           <div class="form-group">
             <label for="ask">Ask</label>
-            <textarea class="form-control" rows="3" id="ask" placeholder="Write Ask"></textarea>
+            <textarea class="form-control" rows="3" id="ask" placeholder="Write Ask" ng-model="current_ask.description"></textarea>
           </div>
-          <button class="btn btn-default" type="button" ><i class="fa fa-plus-square-o"></i> Add Ask</button>
+          <button class="btn btn-default" type="button" ng-click="save_ask"><i class="fa fa-plus-square-o"></i> Add Ask</button>
     	 </form>
       </div>
     </div>
@@ -99,32 +99,12 @@ $('#myTab a').click(function (e) {
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr ng-repeat="ask in asks">
               <td>Minister of Health</td>
-              <td>To support the review of the policy framework on HI and recommend extension of coverage for informal workers in the report submitted to the NA by the Government</td>
+              <td>{{ ask.description }}</td>
               <td class="text-right actions">
-                    <a href="#"><i class="fa fa-edit" title="Edit"></i></a> <a data-confirm="Are you sure you want to permanently delete this sandbox?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-trash" title="Delete"></i></a>
-              </td>
-            </tr>
-            <tr>
-              <td>Members of Parliament</td>
-              <td>To support the review of the policy framework on HI and recommend extension of coverage for informal workers in the report on the 5 year review of the Law</td>
-              <td class="text-right actions">
-                    <a href="#"><i class="fa fa-edit" title="Edit"></i></a> <a data-confirm="Are you sure you want to permanently delete this sandbox?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-trash" title="Delete"></i></a>
-              </td>
-            </tr>
-            <tr>
-              <td>Members of Parliament</td>
-              <td>To invite UNICEF or partners to prepare and deliver report on the issue</td>
-              <td class="text-right actions">
-                    <a href="#"><i class="fa fa-edit" title="Edit"></i></a> <a data-confirm="Are you sure you want to permanently delete this sandbox?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-trash" title="Delete"></i></a>
-              </td>
-            </tr>
-            <tr>
-              <td>Director of the Department</td>
-              <td>To publicly advocate for the issue. </td>
-              <td class="text-right actions">
-                    <a href="#"><i class="fa fa-edit" title="Edit"></i></a> <a data-confirm="Are you sure you want to permanently delete this sandbox?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-trash" title="Delete"></i></a>
+                <i class="fa fa-edit" title="Edit" ng-click="edit_ask(ask.id)"></i>
+                <i class="fa fa-trash" title="Delete"></i>
               </td>
             </tr>
           </tbody>
