@@ -2,16 +2,16 @@
     
 </div>
 <div class="modal-body">
-    <%= simple_form_for [@project, @resource] do |f| %>
+    <%= simple_form_for [@project, @resource], remote: true do |f| %>
         <%= f.error_notification %>
         <%= f.input :title %>
         <%= f.input :description %>
         <%= f.input :link %>
         <%= f.input :tag_list %>
         <%= f.input :public %>
-        <%= f.button :submit, class: "btn btn-success" %>
+        <%= f.button :button, class: "btn btn-success", "ng-click" => "add_resource($event)" %>
     <% end %>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok($event)">OK</button>
+    <button class="btn btn-success" ng-click="ok($event)">OK</button>
 </div>

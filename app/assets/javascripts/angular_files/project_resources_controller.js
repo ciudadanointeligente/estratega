@@ -1,19 +1,23 @@
 app.controller("projectResourcesCtrl", function($scope, $http, $location, $timeout, $aside){
     $scope.project_id = 1;
+    $scope.load_models = load_models;
 
-    if($scope.project_id){
-        $http.get('/projects/'+$scope.project_id+'.json')
-        .success(function(data){
-            $scope.project = data;
-        })
-        $http.get('/projects/'+$scope.project_id+'/resources.json')
-        .success(function(data){
-            $scope.resources = data;
-        })
+    var load_models = function(){
+        console.log("loading models")
+        if($scope.project_id){
+            $http.get('/projects/'+$scope.project_id+'.json')
+            .success(function(data){
+                $scope.project = data;
+            })
+            $http.get('/projects/'+$scope.project_id+'/resources.json')
+            .success(function(data){
+                $scope.resources = data;
+            })
+        }
     }
+    load_models();
 
-    $scope.add_resource = function(){
-        console.log("adding resource");
+    $scope.open_form = function(){
         // openAside(policy, 'left', true)
         openAside('left', true)
     }
@@ -36,11 +40,18 @@ app.controller("projectResourcesCtrl", function($scope, $http, $location, $timeo
         placement: position,
         size: 'lg',
         backdrop: backdrop,
-        controller: function($scope, $modalInstance) {
+        controller: function($scope, $modalInstance, $timeout) {
           // $scope.solution_button_txt = "Add Solution";
           // $scope.policy = policy;
           // $scope.problem_id = problem_id;
           // $scope.project = 
+          $scope.add_resource = function(e) {
+            $modalInstance.close();
+            e.stopPropagation();
+            // only so reloading is executed after posting
+            // this should be executed as a callback, on form success
+            $timeout(load_models, 1);
+          };
           $scope.ok = function(e) {
             $modalInstance.close();
             e.stopPropagation();
