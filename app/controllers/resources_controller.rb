@@ -22,7 +22,7 @@ class ResourcesController < ApplicationController
   end
 
   def aside
-    @resource = Resource.new
+    @resource = params[:id] ? Resource.find(params[:id]) : Resource.new
     render :aside, layout: false
   end
 

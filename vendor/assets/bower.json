@@ -4,6 +4,7 @@
     "angular": "latest",
     "angular-bootstrap": "latest",
     "angular-route": "1.2.21",
-    "angular-aside": "latest"
+    "angular-aside": "latest",
+    "angular-smart-table": "latest"
   }
 }

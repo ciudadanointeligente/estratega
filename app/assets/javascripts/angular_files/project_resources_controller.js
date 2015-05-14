@@ -1,6 +1,7 @@
 app.controller("projectResourcesCtrl", function($scope, $http, $location, $timeout, $aside){
-    $scope.project_id = 1;
-    $scope.load_models = load_models;
+    $scope.project_id = $location.path().split("/").pop();
+    // $scope.load_models = load_models;
+    $scope.itemsByPage=15;
 
     var load_models = function(){
         console.log("loading models")
@@ -17,13 +18,13 @@ app.controller("projectResourcesCtrl", function($scope, $http, $location, $timeo
     }
     load_models();
 
-    $scope.open_form = function(){
+    $scope.open_form = function(resource){
         // openAside(policy, 'left', true)
-        openAside('left', true)
+        openAside('left', true, resource);
     }
 
     // var openAside = function(policy, position, backdrop) {
-    var openAside = function(position, backdrop) {
+    var openAside = function(position, backdrop, resource) {
       $scope.asideState = {
         open: true,
         position: position
@@ -34,9 +35,12 @@ app.controller("projectResourcesCtrl", function($scope, $http, $location, $timeo
       }
 
       // var problem_id = $scope.problem_id;
+      var templateUrl = $scope.project.id + '/resources/' + (resource ? resource.id + "/aside" : 'aside')
+      $scope.current_resource = resource;
 
       $aside.open({
-        templateUrl: $scope.project.id + '/resources/aside',
+        templateUrl: templateUrl,
+        scope: $scope,
         placement: position,
         size: 'lg',
         backdrop: backdrop,
