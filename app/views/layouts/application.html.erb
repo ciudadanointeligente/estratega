@@ -11,7 +11,7 @@
     <script src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
     <%= csrf_meta_tags %>
   </head>
-  <body>
+  <body ng-app="wizard-steps" >
     <header>
       <% if( user_signed_in? ) %>
       <nav class="navbar navbar-default" role="navigation">
