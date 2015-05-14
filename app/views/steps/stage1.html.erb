@@ -16,23 +16,55 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
               <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data Entry</a></li>
-              <li role="presentation"><a href="#explication" aria-controls="explication" role="tab" data-toggle="tab">Explication & Examples</a></li>
+              <li role="presentation"><a href="#explication" aria-controls="explication" role="tab" data-toggle="tab">Explanation & Examples</a></li>
               <li role="presentation"><a href="#tips" aria-controls="tips" role="tab" data-toggle="tab">Workshop Tips</a></li>
             </ul>
 
             <!-- Tab panes -->
-            <div class="tab-content">
+            <div class="tab-content" ng-controller="stage1Ctrl">
               <div role="tabpanel" class="tab-pane active" id="data">
               <div class="bg_grey">
-                <button type="button" class="btn btn-warning pull-right">Edit</button>
-                <h4>Which real-world problem children are facing that you want to address? <i class="fa fa-info-circle" title="A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)"></i></h4>
-
-                <p class="bold">Problem</p>
-                <p>20 per cent of children in country XX live below the poverty line</p>
-                <p class="bold">Explanation</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed arcu ex. Vestibulum eget felis eros. Proin vehicula fermentum augue, eu tristique velit accumsan a. Praesent vel metus ante. Integer tempus, nunc in congue mattis, velit nisl ultrices arcu, eget molestie dui diam suscipit eros. Suspendisse potenti</p>
-                <p class="bold">Focus Area</p>
-                <p>Poverty and hunger</p>
+                <!-- <button type="button" class="btn btn-warning pull-right">Edit</button> -->
+                <button type="button" class="btn pull-right" ng-class="{'btn-warning': problem.id, 'btn-info': !problem.id}" ng-click="add_step_one(problem)">{{ btn_problem }}</button>
+                <h4>Which real-world problem children are facing that you want to address? <span ng-if="problem.id"><i class="fa fa-info-circle" title="A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)"></i></span></h4>
+                <p ng-if="!problem.id">
+                  A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)
+                </p>
+                
+                <span ng-if="problem.id">
+                  <p class="bold">Problem</p>
+                  <p>{{ problem.title }}</p>
+                  <p class="bold">Explanation</p>
+                  <p>{{ problem.description }}</p>
+                  <p class="bold">Focus Area</p>
+                  <p>Poverty and hunger</p>
+                </span>
+                <script type="text/ng-template" id="aside.html">
+                  <div class="modal-header">
+                    <h3 class="modal-title">ngAside</h3>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" class="form-control" ng-model="problem.title" placeholder="Enter a title for a problem">
+                      </div>
+                      <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea name="description" class="form-control" ng-model="problem.description" placeholder="Enter a description for a problem"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="focus_area">Focus Area</label>
+                        <select name="focus_area" ng-model="problem.focus_area">
+                        </select>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="save($event)">Save</button>
+                    <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
+                  </div>
+                </script>
               </div>
               <div class="bg_grey">
                 <button type="button" class="btn btn-warning pull-right">Add</button>
@@ -80,7 +112,7 @@
 
               </div>
               <div role="tabpanel" class="tab-pane" id="explication">
-                <h3>Explication</h3>
+                <h3>Explanation</h3>
                 <hr>
                 <h4>Which real-world problem children are facing that you want to address?</h4>
                 <p>A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)</p>
