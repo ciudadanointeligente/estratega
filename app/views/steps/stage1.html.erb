@@ -67,16 +67,20 @@
                 </script>
               </div>
               <div class="bg_grey">
-                <button type="button" class="btn btn-warning pull-right">Add</button>
-                <h4>Which are the policy-related causes of the real-world problem? <i class="fa fa-info-circle" title="Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem"></i></h4>
+                <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_policy()">Add</button>
+                <h4>Which are the policy-related causes of the real-world problem? <span ng-if="policies"><i class="fa fa-info-circle" title="Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem"></i></span></h4>
               </div>
 
-              <div class="panel panel-default objetives">
+              <p ng-if="!policies">
+                Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem
+              </p>
+              
+              <div class="panel panel-default objetives" ng-repeat="policy in policies">
                 <div class="panel-heading">
-                  <button type="button" class="btn btn-warning pull-right">Edit</button>
-                  <h4 class="panel-title"><a data-toggle="collapse" href="#objetive1" aria-expanded="false" aria-controls="collapseExample">Women and children not included as target populations of the National Strategic Plan (epidemy historically concentrated in male drug users)</a></h4>   
+                  <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_policy(policy.id)">Edit</button>
+                  <h4 class="panel-title"><a data-toggle="collapse" href="#objetive1" aria-expanded="false" aria-controls="collapseExample">{{ policy.title }}</a></h4>   
                 </div>      
-                <div class="collapse in" id="objetive1">
+                <!-- <div class="collapse in" id="objetive1">
                   <button type="button" class="btn btn-info pull-right">Add</button>
                   <h4>Which policy solutions would constitute an appropriate response? <i class="fa fa-info-circle" title="What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted? "></i></h4>
                   <table class="table">
@@ -94,10 +98,33 @@
                           <td><a href="#" title="Edit"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete"><i class="fa fa-trash"></i></a></td>
                         </tr>
                       </tbody>
-                </table>
-                </div>
+                  </table>
+                </div> -->
               </div>
 
+              <script type="text/ng-template" id="policy-aside.html">
+                  <div class="modal-header">
+                    <h3 class="modal-title">Policy</h3>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" class="form-control" ng-model="current_policy.title" placeholder="Enter a title for a problem">
+                      </div>
+                      <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea name="description" class="form-control" ng-model="current_policy.description" placeholder="Enter a description for a problem"></textarea>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="save($event)">Save</button>
+                    <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
+                  </div>
+                </script>
+             
+              <!-- 
               <div class="panel panel-default objetives">
                 <div class="panel-heading">
                   <button type="button" class="btn btn-warning pull-right">Edit</button>
@@ -108,7 +135,8 @@
                   <h4>Which policy solutions would constitute an appropriate response?</h4>
                   <p>What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?</p>
                 </div>
-              </div>
+              </div> 
+              -->
 
               </div>
               <div role="tabpanel" class="tab-pane" id="explication">
