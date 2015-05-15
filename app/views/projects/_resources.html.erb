@@ -28,11 +28,18 @@
                     <td>{{resource.id}}</td>
                     <td>{{resource.title}}</td>
                     <td>{{resource.description}}</td>
-                    <td>{{resource.tag_list}}</td>
+                    <td>
+                      <span class="label label-info" ng-repeat="tag in resource.tag_list">{{tag}}</span>
+                    </td>
                     <td>{{resource.public}}</td>
                     <td>{{resource.updated_at}}</td>
                     <td>
-                        <%= button_tag "Edit", {class: "btn", :"ng-click" => "open_form(resource)", type: "button"}%>
+                        <%= button_tag "Edit", {class: "btn btn-link", :"ng-click" => "open_form(resource)", type: "button"} do %>
+                          <i class="fa fa-edit" title="Edit"></i>
+                        <% end %>
+                        <%= button_tag "Delete", class: "btn btn-link", :"ng-click" => "delete_resource(resource)", type: "button" do %>
+                          <i class="fa fa-trash" title="Delete"></i>
+                        <% end %>
                     </td>
                 </tr>
             </tbody>
