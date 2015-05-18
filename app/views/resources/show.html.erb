@@ -1,4 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_resource_path(@resource) %> |
-<%= link_to 'Back', resources_path %>
+<p>
+  <strong>Title:</strong>
+  <%= @resource.title %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @resource.description %>
+</p>
+<p>
+  <strong>Link:</strong>
+  <%= @resource.link %>
+</p>
+<p>
+  <strong>Tags:</strong>
+  <%= @resource.tag_list %>
+</p>
+<p>
+  <strong>Public:</strong>
+  <%= @resource.public %>
+</p>
+
+<%= link_to 'Edit', edit_project_resource_path(@project, @resource) %> |
+<%= link_to 'Back', project_path(@project) %>

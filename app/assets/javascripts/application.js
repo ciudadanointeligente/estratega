@@ -20,8 +20,10 @@
 //= require ng-rails-csrf
 //= require angular-route/angular-route
 //= require angular-aside/dist/js/angular-aside
+//= require angular-smart-table/dist/smart-table
 
 //= require angular_files/wizard_steps
+//= require angular_files/project_resources_controller
 //= require angular_files/step1_controller
 //= require angular_files/step2_controller
 //= require angular_files/step3_controller

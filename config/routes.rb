@@ -40,11 +40,14 @@ Rails.application.routes.draw do
     get 'step4', on: :collection
     get 'step6', on: :collection
     get 'index', on: :collection
-    get 'project_index', on: :collection
   end
 
-  resources :projects
-  resources :resources
+  resources :projects do
+    resources :resources do
+      get 'aside', on: :collection
+      get 'aside', on: :member
+    end
+  end
 
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :people

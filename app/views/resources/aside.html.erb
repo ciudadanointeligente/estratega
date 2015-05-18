@@ -1,0 +1,17 @@
+<div class="modal-header">
+    
+</div>
+<div class="modal-body">
+    <%= simple_form_for [@project, @resource], remote: true do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :title, input_html: {:"ng-model" => "current_resource.title"} %>
+        <%= f.input :description, input_html: {:"ng-model" => "current_resource.description"} %>
+        <%= f.input :link , input_html: {:"ng-model" => "current_resource.link"} %>
+        <%= f.input :tag_list , input_html: {:"ng-model" => "current_resource.tag_list"} %>
+        <%= f.input :public , input_html: {:"ng-model" => "current_resource.public"} %>
+        <%= f.button :button, class: "btn btn-success", "ng-click" => "add_resource($event)" %>
+        <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
+    <% end %>
+</div>
+<div class="modal-footer">
+</div>

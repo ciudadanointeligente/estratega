@@ -20,50 +20,37 @@ require 'rails_helper'
 
 RSpec.describe ResourcesController, :type => :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # Resource. As you add validations to Resource, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # ResourcesController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  before(:each) do
+    @project = create(:project)
+    @resource = create(:resource)
+    @project.resources << @resource
+  end
 
   describe "GET index" do
     it "assigns all resources as @resources" do
-      resource = Resource.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:resources)).to eq([resource])
+      get :index, {project_id: @project}
+      expect(assigns(:resources)).to eq([@resource])
     end
   end
 
   describe "GET show" do
     it "assigns the requested resource as @resource" do
-      resource = Resource.create! valid_attributes
-      get :show, {:id => resource.to_param}, valid_session
-      expect(assigns(:resource)).to eq(resource)
+      get :show, {project_id: @project, id: @resource}
+      expect(assigns(:resource)).to eq(@resource)
     end
   end
 
   describe "GET new" do
     it "assigns a new resource as @resource" do
-      get :new, {}, valid_session
+      get :new, {project_id: @project}
       expect(assigns(:resource)).to be_a_new(Resource)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested resource as @resource" do
-      resource = Resource.create! valid_attributes
-      get :edit, {:id => resource.to_param}, valid_session
-      expect(assigns(:resource)).to eq(resource)
+      get :edit, {project_id: @project, id: @resource}
+      expect(assigns(:resource)).to eq(@resource)
     end
   end
 
@@ -71,30 +58,36 @@ RSpec.describe ResourcesController, :type => :controller do
     describe "with valid params" do
       it "creates a new Resource" do
         expect {
-          post :create, {:resource => valid_attributes}, valid_session
+          post :create, {project_id: @project, resource: attributes_for(:resource)}
         }.to change(Resource, :count).by(1)
       end
 
       it "assigns a newly created resource as @resource" do
-        post :create, {:resource => valid_attributes}, valid_session
+        post :create, {project_id: @project, resource: attributes_for(:resource)}
         expect(assigns(:resource)).to be_a(Resource)
         expect(assigns(:resource)).to be_persisted
       end
 
       it "redirects to the created resource" do
-        post :create, {:resource => valid_attributes}, valid_session
-        expect(response).to redirect_to(Resource.last)
+        post :create, {project_id: @project, resource: attributes_for(:resource)}
+        expect(response).to redirect_to([@project, Resource.last])
+      end
+
+      it "creates a relation between project and resource" do
+        post :create, {project_id: @project, resource: attributes_for(:resource)}
+        expect(assigns(:resource).project).to eq(@project)
+        expect(@project.resources).to include(@resource)
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved resource as @resource" do
-        post :create, {:resource => invalid_attributes}, valid_session
+        post :create, {project_id: @project, resource: attributes_for(:invalid_resource)}
         expect(assigns(:resource)).to be_a_new(Resource)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:resource => invalid_attributes}, valid_session
+        post :create, {project_id: @project, resource: attributes_for(:invalid_resource)}
         expect(response).to render_template("new")
       end
     end
@@ -102,40 +95,32 @@ RSpec.describe ResourcesController, :type => :controller do
 
   describe "PUT update" do
     describe "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
 
       it "updates the requested resource" do
-        resource = Resource.create! valid_attributes
-        put :update, {:id => resource.to_param, :resource => new_attributes}, valid_session
-        resource.reload
-        skip("Add assertions for updated state")
+        put :update, {project_id: @project, id: @resource, resource: attributes_for(:edit_resource)}
+        @resource.reload
+        expect(assigns(:resource).attributes).to include(attributes_for(:edit_resource).stringify_keys)
       end
 
       it "assigns the requested resource as @resource" do
-        resource = Resource.create! valid_attributes
-        put :update, {:id => resource.to_param, :resource => valid_attributes}, valid_session
-        expect(assigns(:resource)).to eq(resource)
+        put :update, {project_id: @project, id: @resource, resource: attributes_for(:edit_resource)}
+        expect(assigns(:resource)).to eq(@resource)
       end
 
       it "redirects to the resource" do
-        resource = Resource.create! valid_attributes
-        put :update, {:id => resource.to_param, :resource => valid_attributes}, valid_session
-        expect(response).to redirect_to(resource)
+        put :update, {project_id: @project, id: @resource, resource: attributes_for(:edit_resource)}
+        expect(response).to redirect_to([@project, @resource])
       end
     end
 
     describe "with invalid params" do
       it "assigns the resource as @resource" do
-        resource = Resource.create! valid_attributes
-        put :update, {:id => resource.to_param, :resource => invalid_attributes}, valid_session
-        expect(assigns(:resource)).to eq(resource)
+        put :update, {project_id: @project, id: @resource, resource: attributes_for(:invalid_resource)}
+        expect(assigns(:resource)).to eq(@resource)
       end
 
       it "re-renders the 'edit' template" do
-        resource = Resource.create! valid_attributes
-        put :update, {:id => resource.to_param, :resource => invalid_attributes}, valid_session
+        put :update, {project_id: @project, id: @resource, resource: attributes_for(:invalid_resource)}
         expect(response).to render_template("edit")
       end
     end
@@ -143,16 +128,14 @@ RSpec.describe ResourcesController, :type => :controller do
 
   describe "DELETE destroy" do
     it "destroys the requested resource" do
-      resource = Resource.create! valid_attributes
       expect {
-        delete :destroy, {:id => resource.to_param}, valid_session
+        delete :destroy, {project_id: @project, id: @resource}
       }.to change(Resource, :count).by(-1)
     end
 
     it "redirects to the resources list" do
-      resource = Resource.create! valid_attributes
-      delete :destroy, {:id => resource.to_param}, valid_session
-      expect(response).to redirect_to(resources_url)
+      delete :destroy, {project_id: @project, id: @resource}
+      expect(response).to redirect_to(project_resources_url(@project))
     end
   end
 
