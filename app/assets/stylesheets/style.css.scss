@@ -11,6 +11,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 h2, .h2 {
   font-size: 24px;
 }
+.tab-pane li {
+  margin-bottom: 15px;
+}
 .btn {
   text-transform: uppercase;
 }
@@ -22,9 +25,20 @@ h2, .h2 {
   background-color: #ff4f4a;
   border-color: #ff635a;
 }
+
+.btn-info {
+  background-color: #26cccc;
+  border-color: #00bdc8;
+}
+.btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info {
+  background-color: #00bdc8;
+  border-color: #26cccc;
+}
+
 .bg_grey {
   background-color: #ececec;
   padding: 10px;
+  margin-bottom: 20px;
 }
 .bold {
   font-weight: 700;
@@ -110,7 +124,7 @@ footer a {
 }
 .stage_menu h3 {
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   color: #7f8c8c;
 }
 .stage_menu a {
@@ -240,4 +254,18 @@ div#resources_paginate {
 }
 #resources_paginate>span a {
   color: #ffffff;
+}
+.objetives {
+  background-color: #ececec;
+  padding: 15px;
+}
+.objetives .panel-heading {
+  margin: -15px -15px 0;
+}
+.objetives table {
+  background-color: #ffffff;
+  margin-top: 40px;
+}
+.objetives table a {
+  color: #e2534b;
 }
