@@ -75,54 +75,80 @@
                 Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem
               </p>
               
+              <!-- policy solution -->
               <div class="panel panel-default objetives" ng-repeat="policy in policies">
                 <div class="panel-heading">
                   <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_policy(policy.id)">Edit</button>
                   <h4 class="panel-title"><a data-toggle="collapse" href="#objetive1" aria-expanded="false" aria-controls="collapseExample">{{ policy.title }}</a></h4>   
                 </div>      
-                <!-- <div class="collapse in" id="objetive1">
-                  <button type="button" class="btn btn-info pull-right">Add</button>
-                  <h4>Which policy solutions would constitute an appropriate response? <i class="fa fa-info-circle" title="What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted? "></i></h4>
+                <!-- policy solutions -->
+                <div class="collapse in" id="objetive1">
+                  <button type="button" class="btn btn-info pull-right" ng-click="add_edit_solution(policy.id)">Add</button>
+                  <h4>Which policy solutions would constitute an appropriate response? <span ng-if="policy.solutions"><i class="fa fa-info-circle" title="What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?"></i></span></h4>
+                  
+                  <p ng-if="!policy.solutions.length">
+                    What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?
+                  </p>
+
                   <table class="table">
                       <tbody>
-                        <tr>
-                          <td>Amendment to the Penal Code to remove sanctions in the form of detention for sex workers</td>
-                          <td><a href="#" title="Edit"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete"><i class="fa fa-trash"></i></a></td>
-                        </tr>
-                        <tr>
-                          <td>Amendment to the Penal Code to remove sanctions in the form of detention for sex workers</td>
-                          <td><a href="#" title="Edit"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete"><i class="fa fa-trash"></i></a></td>
-                        </tr>
-                        <tr>
-                          <td>Amendment to the Penal Code to remove sanctions in the form of detention for sex workers</td>
-                          <td><a href="#" title="Edit"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete"><i class="fa fa-trash"></i></a></td>
+                        <tr ng-repeat="solution in policy.solutions">
+                          <td>{{ solution.title }}</td>
+                          <td>
+                            <i class="fa fa-pencil-square-o" ng-click="add_edit_solution(policy.id, solution.id)"></i>
+                            <i class="fa fa-trash" ng-click=""></i>
+                          </td>
                         </tr>
                       </tbody>
                   </table>
-                </div> -->
+                </div> 
+                <!-- end of policy solutions -->
               </div>
+              <!-- end of policy solution -->
 
               <script type="text/ng-template" id="policy-aside.html">
-                  <div class="modal-header">
-                    <h3 class="modal-title">Policy</h3>
-                  </div>
-                  <div class="modal-body">
-                    <form>
-                      <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" name="title" class="form-control" ng-model="current_policy.title" placeholder="Enter a title for a problem">
-                      </div>
-                      <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea name="description" class="form-control" ng-model="current_policy.description" placeholder="Enter a description for a problem"></textarea>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button class="btn btn-primary" ng-click="save($event)">Save</button>
-                    <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
-                  </div>
-                </script>
+                <div class="modal-header">
+                  <h3 class="modal-title">Policy</h3>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="title">Title</label>
+                      <input type="text" name="title" class="form-control" ng-model="current_policy.title" placeholder="Enter a title for a problem">
+                    </div>
+                    <div class="form-group">
+                      <label for="description">Description</label>
+                      <textarea name="description" class="form-control" ng-model="current_policy.description" placeholder="Enter a description for a problem"></textarea>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-primary" ng-click="save($event)">Save</button>
+                  <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
+                </div>
+              </script>
+
+              <script type="text/ng-template" id="solution-aside.html">
+                <div class="modal-header">
+                  <h3 class="modal-title">Solution</h3>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="title">Title</label>
+                      <input type="text" name="title" class="form-control" ng-model="current_solution.title" placeholder="Enter a title for a problem">
+                    </div>
+                    <div class="form-group">
+                      <label for="description">Description</label>
+                      <textarea name="description" class="form-control" ng-model="current_solution.description" placeholder="Enter a description for a problem"></textarea>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-primary" ng-click="save($event)">Save</button>
+                  <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
+                </div>
+              </script>
              
               <!-- 
               <div class="panel panel-default objetives">
