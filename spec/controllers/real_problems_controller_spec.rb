@@ -85,6 +85,13 @@ RSpec.describe RealProblemsController, :type => :controller do
         post :create, {:real_problem => valid_attributes}, valid_session
         expect(response).to redirect_to(RealProblem.last)
       end
+
+      it "creates an association with a project" do
+        project = create(:project)
+        post :create, {:real_problem => valid_attributes.merge(project_id: project)}, valid_session
+        expect(assigns(:real_problem).project).to eq(project)
+        expect(project.real_problem).to eq(assigns(:real_problem))
+      end
     end
 
     describe "with invalid params" do
