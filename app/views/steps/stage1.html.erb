@@ -1,42 +1,211 @@
 <div class="container main">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 stage_menu">
-          <h3>STAGE 1</h3>
+          <h3>What problems you want to address? What policy change you aim to achieve?</h3>
           <ul class="nav nav-stacked">
-            <li class="active"><a href="#"><i class="fa fa-check-circle"></i> What do you think the real-world problem?</a></li>
-            <li><a href="#"><i class="fa fa-check-circle"></i> What do you think are the policy dimensions of the 'real-world' problem?</a></li>
-            <li><a href="#"><i class="fa fa-check-circle"></i> What policy solutions do you propose?</a></li>
+            <li class="active"><a href="#"><i class="fa fa-check-circle"></i> Which real-world problem children are facing that you want to address?</a></li>
+            <li><a href="#"><i class="fa fa-check-circle"></i> Which real-world problem children are facing that you want to address?</a></li>
+            <li><a href="#"><i class="fa fa-check-circle"></i> Which policy solutions would constitute an appropriate response?</a></li>
           </ul>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-          <h2>Articulate problems and policy solutions</h2>
-          <p>The interim outcomes are key changes that need to happen in order to achieve the advocacy objetive</p>
+          <h2>What problems you want to address? What policy change you aim to achieve?</h2>
+          <p>The foundation of an effective advocacy strategy is a common understanding of the main problems that affect children, their policy dimensions and related policy solutions. It is important you take time to go through this discussion because without a clear, articulated issue and well-defined problems and solutions the remaining parts of the strategy will lose focus.</p>
 
           <div role="tabpanel" class="tabpanel">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
               <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data Entry</a></li>
-              <li role="presentation"><a href="#explication" aria-controls="explication" role="tab" data-toggle="tab">Explication & Examples</a></li>
+              <li role="presentation"><a href="#explication" aria-controls="explication" role="tab" data-toggle="tab">Explanation & Examples</a></li>
               <li role="presentation"><a href="#tips" aria-controls="tips" role="tab" data-toggle="tab">Workshop Tips</a></li>
             </ul>
 
             <!-- Tab panes -->
-            <div class="tab-content">
+            <div class="tab-content" ng-controller="stage1Ctrl">
               <div role="tabpanel" class="tab-pane active" id="data">
               <div class="bg_grey">
-                <button type="button" class="btn btn-warning pull-right">Edit</button>
-                <h4>What do you think the real-world problem? <i class="fa fa-info-circle" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed arcu ex. Vestibulum eget felis eros. Proin vehicula fermentum augue, eu tristique velit accumsan a. Praesent vel metus ante."></i></h4>
+                <!-- <button type="button" class="btn btn-warning pull-right">Edit</button> -->
+                <button type="button" class="btn pull-right" ng-class="{'btn-warning': problem.id, 'btn-info': !problem.id}" ng-click="add_step_one(problem)">{{ btn_problem }}</button>
+                <h4>Which real-world problem children are facing that you want to address? <span ng-if="problem.id"><i class="fa fa-info-circle" title="A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)"></i></span></h4>
+                <p ng-if="!problem.id">
+                  A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)
+                </p>
+                
+                <span ng-if="problem.id">
+                  <p class="bold">Problem</p>
+                  <p>{{ problem.title }}</p>
+                  <p class="bold">Explanation</p>
+                  <p>{{ problem.description }}</p>
+                  <p class="bold">Focus Area</p>
+                  <p>Poverty and hunger</p>
+                </span>
+                <script type="text/ng-template" id="aside.html">
+                  <div class="modal-header">
+                    <h3 class="modal-title">ngAside</h3>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" class="form-control" ng-model="problem.title" placeholder="Enter a title for a problem">
+                      </div>
+                      <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea name="description" class="form-control" ng-model="problem.description" placeholder="Enter a description for a problem"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="focus_area">Focus Area</label>
+                        <select name="focus_area" ng-model="problem.focus_area">
+                        </select>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="save($event)">Save</button>
+                    <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
+                  </div>
+                </script>
+              </div>
+              <div class="bg_grey">
+                <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_policy()">Add</button>
+                <h4>Which are the policy-related causes of the real-world problem? <span ng-if="policies"><i class="fa fa-info-circle" title="Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem"></i></span></h4>
+              </div>
 
-                <p class="bold">Problem</p>
-                <p>20 per cent of children in country XX live below the poverty line</p>
-                <p class="bold">Explanation</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed arcu ex. Vestibulum eget felis eros. Proin vehicula fermentum augue, eu tristique velit accumsan a. Praesent vel metus ante. Integer tempus, nunc in congue mattis, velit nisl ultrices arcu, eget molestie dui diam suscipit eros. Suspendisse potenti</p>
-                <p class="bold">Focus Area</p>
-                <p>Poverty and hunger</p>
+              <p ng-if="!policies">
+                Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem
+              </p>
+              
+              <!-- policy solution -->
+              <div class="panel panel-default objetives" ng-repeat="policy in policies">
+                <div class="panel-heading">
+                  <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_policy(policy.id)">Edit</button>
+                  <h4 class="panel-title"><a data-toggle="collapse" href="#objetive1" aria-expanded="false" aria-controls="collapseExample">{{ policy.title }}</a></h4>   
+                </div>      
+                <!-- policy solutions -->
+                <div class="collapse in" id="objetive1">
+                  <button type="button" class="btn btn-info pull-right" ng-click="add_edit_solution(policy.id)">Add</button>
+                  <h4>Which policy solutions would constitute an appropriate response? <span ng-if="policy.solutions"><i class="fa fa-info-circle" title="What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?"></i></span></h4>
+                  
+                  <p ng-if="!policy.solutions.length">
+                    What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?
+                  </p>
+
+                  <table class="table">
+                      <tbody>
+                        <tr ng-repeat="solution in policy.solutions">
+                          <td>{{ solution.title }}</td>
+                          <td>
+                            <i class="fa fa-pencil-square-o" ng-click="add_edit_solution(policy.id, solution.id)"></i>
+                            <i class="fa fa-trash" ng-click=""></i>
+                          </td>
+                        </tr>
+                      </tbody>
+                  </table>
+                </div> 
+                <!-- end of policy solutions -->
               </div>
+              <!-- end of policy solution -->
+
+              <script type="text/ng-template" id="policy-aside.html">
+                <div class="modal-header">
+                  <h3 class="modal-title">Policy</h3>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="title">Title</label>
+                      <input type="text" name="title" class="form-control" ng-model="current_policy.title" placeholder="Enter a title for a problem">
+                    </div>
+                    <div class="form-group">
+                      <label for="description">Description</label>
+                      <textarea name="description" class="form-control" ng-model="current_policy.description" placeholder="Enter a description for a problem"></textarea>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-primary" ng-click="save($event)">Save</button>
+                  <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
+                </div>
+              </script>
+
+              <script type="text/ng-template" id="solution-aside.html">
+                <div class="modal-header">
+                  <h3 class="modal-title">Solution</h3>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="title">Title</label>
+                      <input type="text" name="title" class="form-control" ng-model="current_solution.title" placeholder="Enter a title for a problem">
+                    </div>
+                    <div class="form-group">
+                      <label for="description">Description</label>
+                      <textarea name="description" class="form-control" ng-model="current_solution.description" placeholder="Enter a description for a problem"></textarea>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-primary" ng-click="save($event)">Save</button>
+                  <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
+                </div>
+              </script>
+             
+              <!-- 
+              <div class="panel panel-default objetives">
+                <div class="panel-heading">
+                  <button type="button" class="btn btn-warning pull-right">Edit</button>
+                  <h4 class="panel-title"><a data-toggle="collapse" href="#objetive2" aria-expanded="false" aria-controls="collapseExample">PMTCT not included as a priority in the National Strategic Plan (few resources to improve services, campaigns, etc.)- Few donors paying attention to it</a></h4>   
+                </div>      
+                <div class="collapse in" id="objetive2">
+                  <button type="button" class="btn btn-info pull-right">Add</button>
+                  <h4>Which policy solutions would constitute an appropriate response?</h4>
+                  <p>What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?</p>
+                </div>
+              </div> 
+              -->
+
               </div>
-              <div role="tabpanel" class="tab-pane" id="explication">...</div>
-              <div role="tabpanel" class="tab-pane" id="tips">...</div>
+              <div role="tabpanel" class="tab-pane" id="explication">
+                <h3>Explanation</h3>
+                <hr>
+                <h4>Which real-world problem children are facing that you want to address?</h4>
+                <p>A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)</p>
+                <h4>Which are the policy-related causes of the real-world problem?</h4>
+                <p>Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem.</p>
+                <p>To conduct the problem analysis, you can use a problem tree. The problem tree is a well-known tool that “will help advocates understand the immediate, underlying and root causes of the issue, as well as help in gathering information to support the analysis”.</p>
+                <h4>Which policy solutions would constitute an appropriate response?</h4>
+                <p>What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?</p>
+                <p>The policy solutions usually refer to:</p>
+                <ul>
+                  <li>Policy development (ex. Development of a nutrition national plan)</li>
+                  <li>Placement on the policy agenda. (Ex: Official paper on new financing mechanisms)</li>
+                  <li>Policy adoption. (Ex: approval of equal pay act)</li>
+                  <li>Policy blocking: (Ex. Rejection of anti-homosexuality bill)</li>
+                  <li>Policy implementation: (Ex. Implementation of regulations forbidding summary deportations by the police)</li>
+                  <li>Policy maintenance. (Ex.: No reduction of budgets for child protection policies)</li>
+                </ul>
+                <p>In those contexts where a policy change may be too ambitious, an organization may aim for a discursive change (which should pave the way for a policy change in the longer run). For instance, for many years, given the lack of options to achieve change on policies related to tax heavens, organizations working on tax justice focused their advocacy efforts on a change in the discourse in the society so tax havens were seen by the majority as an unacceptable practice that distract critical resources for the countries to pay for social services. These efforts built the ground for changes in policy later on when opportunities appeared (i.e. with the 2008 financial crisis).</p>
+                
+                <h3>Example</h3>
+                <hr>
+                <h4>Real-world problem</h4>
+                <p>Increasing mother to child transmission of HIV in country AEIOU during the last 3 years</p>
+                <h4>Policy dimensions of the problem</h4>
+                <ul>
+                  <li>Women and children not included as target populations of the National Strategic Plan (epidemy historically concentrated in male drug users)</li>
+                  <li>Health insurance law does not cover informal workers and many women at risk belong to this group. (Therefore, due to limited capacity to cover out-of-pocket expenditures women with little resources do not attend clinics for HIV testing and treatment)</li>
+                  <li>PMTCT not included as a priority in the National Strategic Plan (few resources to improve services, campaigns, etc.)- Few donors paying attention to it.</li>
+                  <li>Current legal framework stipulates detention for sex workers (after 3 monetary sanctions), which prevents sex workers to attend health services due to fear of being denounced. </li>
+                </ul>
+                <h4>Policy Solutions</h4>
+                <ul>
+                  <li>Amendment to the Penal Code to remove sanctions in the form of detention for sex workers</li>
+                  <li>Revision of the National HIV Strategy </li>
+                  <li>Health insurance policy framework revised to cover disadvantaged informal workers</li>
+                  <li>Increase donor funding on PMTCT</li>
+                </ul>
+
+              </div>
             </div>
 
           </div>
@@ -44,3 +213,4 @@
         </div>
       </div>
     </div>
+    
