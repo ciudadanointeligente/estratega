@@ -82,14 +82,7 @@
         </div>
       </nav>
       <% end %>
-      <div class="breadcrumb_bg">
-        <ol class="breadcrumb container">
-          <li>
-            <a href="#">Projects</a>
-          </li>
-          <li class="active">Stage 1</li>
-        </ol>
-      </div>
+      <%= yield :breadcrumb %>
     </header>
 <%= yield :top %>
     <div role="main" class="container FullPage">

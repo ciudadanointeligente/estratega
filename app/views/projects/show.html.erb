@@ -1,5 +1,16 @@
-<h2>Project 1</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed metus ipsum, condimentum vitae varius non, vulputate eu enim. Etiam non ultrices nulla. Mauris tempus posuere semper.</p>
+<% content_for :breadcrumb do %>
+  <div class="breadcrumb_bg">
+    <ol class="breadcrumb container">
+      <li>
+        <%= link_to "Projects", projects_path %>
+      </li>
+      <li class="active"><%= @project.title %></li>
+    </ol>
+  </div>
+<% end %>
+
+<h2><%= @project.title %></h2>
+<p><%= @project.description %></p>
 <hr>
 <div role="tabpanel">
   <ul class="nav nav-tabs" role="tablist">

@@ -34,7 +34,7 @@
             <% @projects.each do | p | %>
             <tr>
                 <td><%= p.id %></td>
-                <td><a href="#"><%= p.title %></a></td>
+                <td><%= link_to p.title, p %></td>
                 <td><%= p.description %></td>
                 <td class="text-center">
                     <i class="fa fa-globe" title="Public"></i>
@@ -47,7 +47,9 @@
                     <a href="#"><i class="fa fa-home" title="Vist Home"></i></a>
 
                     <a href="#"><i class="fa fa-copy" title="Clone"></i></a>
-                    <a href="#"><i class="fa fa-trash" title="Delete"></i></a>
+                    <%= link_to p, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                      <i class="fa fa-trash" title="Delete"></i>
+                    <% end %>
                 </td>
             </tr>
             <% end %>
