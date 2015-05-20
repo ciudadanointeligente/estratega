@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   resources :steps do
     get 'stage1', on: :collection
     get 'stage2', on: :collection
+    get 'stage3', on: :collection
     get 'step1', on: :collection
     get 'step2', on: :collection
     get 'step3', on: :collection
