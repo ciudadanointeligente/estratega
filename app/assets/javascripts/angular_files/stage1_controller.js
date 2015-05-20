@@ -40,7 +40,8 @@ app.controller("stage1Ctrl", function($scope, $http, $aside, $location){
 	}
 
 	var save_or_update_problem = function(){ 
-        if($scope.problem.title == "" || $scope.problem.description == "")
+        if($scope.problem.title == "")
+            //debería tirar un warning
             return
 
         if($scope.problem.id){
