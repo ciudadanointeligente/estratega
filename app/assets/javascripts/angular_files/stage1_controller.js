@@ -115,7 +115,7 @@ app.controller("stage1Ctrl", function($scope, $http, $aside, $location){
 		});
 	};
 
-	$scope.add_edit_policy = function(current_policy_id='') {
+	$scope.add_edit_policy = function(current_policy_id) {
 		if(current_policy_id) {
 			$http.get("/real_problems/"+$scope.problem.id+"/policy_problems/"+current_policy_id+".json")
 				.success(function(data){
