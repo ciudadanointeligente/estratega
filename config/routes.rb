@@ -47,6 +47,13 @@ Rails.application.routes.draw do
       get 'aside', on: :collection
       get 'aside', on: :member
     end
+    get 'stage1', on: :member
+    get 'stage2', on: :member
+    get 'stage3', on: :member
+    get 'stage4', on: :member
+    get 'stage5', on: :member
+    get 'stage6', on: :member
+    get 'stage7', on: :member
   end
 
   devise_for :users, :controllers => {:registrations => "registrations"}

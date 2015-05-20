@@ -3,6 +3,27 @@ class ProjectsController < ApplicationController
 
   respond_to :html, :json
 
+  def stage1
+  end
+
+  def stage2
+  end
+
+  def stage3
+  end
+
+  def stage4
+  end
+
+  def stage5
+  end
+
+  def stage6
+  end
+
+  def stage7
+  end
+
   def index
     @projects = Project.all
     respond_with(@projects)

@@ -31,6 +31,10 @@ RSpec.describe ProjectsController, :type => :controller do
     skip("Add a hash of attributes invalid for your model")
   }
 
+  before(:each) do
+    @project = create(:project)
+  end
+
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # ProjectsController. Be sure to keep this updated too.
@@ -64,6 +68,75 @@ RSpec.describe ProjectsController, :type => :controller do
       project = Project.create! valid_attributes
       get :edit, {:id => project.to_param}, valid_session
       expect(assigns(:project)).to eq(project)
+    end
+  end
+
+  context "stages" do
+    describe "GET stage1" do
+      # it "creates a new real_problem as @real_problem" do
+      #   get :stage1, {}
+      #   expect(assigns(:real_problem)).to be_a_new RealProblem
+      # end
+      it "renders the stage1 template" do
+        get :stage1, {id: @project}
+        expect(response).to render_template :stage1
+      end
+    end
+
+    describe "GET stage2" do
+    #   it "creates a new objetive as @objective" do
+    #     get :stage2, {}
+    #     expect(assigns(:objective)).to be_a_new(Objective)
+    #   end
+    #   it "assigns an alrealdy created objective as @objective" do
+    #     objective = create(:objective)
+    #     get :stage2, {objective_id: objective}
+    #     expect(assigns(:objective)).to eq(objective)
+    #   end
+    #   it "lists all created objectives as @objectives" do
+    #     objective = create(:objective)
+    #     get :stage2, {}
+    #     expect(assigns(:objectives)).to include(objective)
+    #   end
+      it "renders the stage2 template" do
+        get :stage2, {id: @project}
+        expect(response).to render_template :stage2
+      end
+    end
+
+    describe "GET stage3" do
+      it "render stage3 template" do
+        get :stage3, {id: @project}
+        expect(response).to render_template :stage3
+      end
+    end
+
+    describe "GET stage4" do
+      it "render stage4 template" do
+        get :stage4, {id: @project}
+        expect(response).to render_template :stage4
+      end
+    end
+
+    describe "GET stage5" do
+      it "render stage5 template" do
+        get :stage5, {id: @project}
+        expect(response).to render_template :stage5
+      end
+    end
+
+    describe "GET stage6" do
+      it "render stage6 template" do
+        get :stage6, {id: @project}
+        expect(response).to render_template :stage6
+      end
+    end
+
+    describe "GET stage7" do
+      it "render stage7 template" do
+        get :stage7, {id: @project}
+        expect(response).to render_template :stage7
+      end
     end
   end
 
