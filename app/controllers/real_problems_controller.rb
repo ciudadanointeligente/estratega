@@ -1,5 +1,6 @@
 class RealProblemsController < ApplicationController
   before_action :set_real_problem, only: [:show, :edit, :update, :update_ww, :destroy]
+  before_action :set_project, only: [:create]
 
   respond_to :html, :json
 
@@ -21,8 +22,7 @@ class RealProblemsController < ApplicationController
   end
 
   def create
-    @real_problem = RealProblem.new(real_problem_params)
-    @real_problem.save
+    @real_problem = @project.create_real_problem(real_problem_params)
     respond_with(@real_problem)
   end
 
@@ -48,6 +48,10 @@ class RealProblemsController < ApplicationController
   end
 
   private
+    def set_project
+      @project = Project.find(params[:project_id])
+    end
+
     def set_real_problem
       @real_problem = RealProblem.find(params[:id])
     end

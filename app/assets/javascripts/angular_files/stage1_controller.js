@@ -1,28 +1,33 @@
 app.controller("stage1Ctrl", function($scope, $http, $aside, $location){
 	$scope.btn_problem = "Add";
-	$scope.problem = {title: "", description: "", focus_area: ""};
-	$scope.problem_id = $location.search().problem_id
+    $scope.project_id = $location.path().split("/")[2];
+	$scope.problem = {title: "", description: "", focus_area: "", project_id: $scope.project_id};
 
 	$scope.policies = [];
 	$scope.current_policy = {title: "", description: ""};
 	$scope.current_solution = {title: "", description: ""};
 
-	if($scope.problem_id) {
-		$http.get('/real_problems/'+$scope.problem_id+'.json')
-        	.success(function(data){
-            	$scope.problem = data;
-            	$scope.btn_problem = "Edit";
-        	});
-        $http.get('/real_problems/'+$scope.problem_id+'/policy_problems.json')
-	        .success(function(data){
-	            $scope.policies = data;
-	            var i = 0;
-	            while( i < data.length ) {
-		            get_solutions($scope.problem_id, data[i].id, i);
-		            i++;
-	            }
-	        })
-	}
+    $http.get('/projects/'+$scope.project_id+'.json')
+    .success(function(data){
+        $scope.project = data;
+        $scope.problem_id = data.real_problem_id;
+        if($scope.problem_id) {
+            $http.get('/real_problems/'+$scope.problem_id+'.json')
+                .success(function(data){
+                    $scope.problem = data;
+                    $scope.btn_problem = "Edit";
+                });
+            $http.get('/real_problems/'+$scope.problem_id+'/policy_problems.json')
+                .success(function(data){
+                    $scope.policies = data;
+                    var i = 0;
+                    while( i < data.length ) {
+                        get_solutions($scope.problem_id, data[i].id, i);
+                        i++;
+                    }
+                })
+        }
+    });
 
 	var get_solutions = function(problem_id, policy_id, i){
 		$http.get('/real_problems/'+problem_id+'/policy_problems/'+policy_id+'/solutions.json')
@@ -53,7 +58,6 @@ app.controller("stage1Ctrl", function($scope, $http, $aside, $location){
             $http.post("/real_problems", $scope.problem)
             .success(function(data){
                 $scope.problem = data;
-                $location.search({problem_id:$scope.problem.id});
                 $scope.btn_problem = "Edit";
             })
         }

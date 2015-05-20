@@ -68,40 +68,42 @@ RSpec.describe RealProblemsController, :type => :controller do
   end
 
   describe "POST create" do
+    before(:each) do
+      @project = create(:project)
+    end
     describe "with valid params" do
       it "creates a new RealProblem" do
         expect {
-          post :create, {:real_problem => valid_attributes}, valid_session
+          post :create, {real_problem: attributes_for(:real_problem), project_id: @project}, valid_session
         }.to change(RealProblem, :count).by(1)
       end
 
       it "assigns a newly created real_problem as @real_problem" do
-        post :create, {:real_problem => valid_attributes}, valid_session
+        post :create, {real_problem: attributes_for(:real_problem), project_id: @project}, valid_session
         expect(assigns(:real_problem)).to be_a(RealProblem)
         expect(assigns(:real_problem)).to be_persisted
       end
 
       it "redirects to the created real_problem" do
-        post :create, {:real_problem => valid_attributes}, valid_session
+        post :create, {real_problem: attributes_for(:real_problem), project_id: @project}, valid_session
         expect(response).to redirect_to(RealProblem.last)
       end
 
       it "creates an association with a project" do
-        project = create(:project)
-        post :create, {:real_problem => valid_attributes.merge(project_id: project)}, valid_session
-        expect(assigns(:real_problem).project).to eq(project)
-        expect(project.real_problem).to eq(assigns(:real_problem))
+        post :create, {real_problem: attributes_for(:real_problem), project_id: @project}, valid_session
+        expect(assigns(:real_problem).project).to eq(@project)
+        expect(@project.real_problem).to eq(assigns(:real_problem))
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved real_problem as @real_problem" do
-        post :create, {:real_problem => invalid_attributes}, valid_session
+        post :create, {:real_problem => invalid_attributes, project_id: @project}, valid_session
         expect(assigns(:real_problem)).to be_a_new(RealProblem)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:real_problem => invalid_attributes}, valid_session
+        post :create, {:real_problem => invalid_attributes, project_id: @project}, valid_session
         expect(response).to render_template("new")
       end
     end
