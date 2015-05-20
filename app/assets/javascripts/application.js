@@ -24,7 +24,6 @@
 
 //= require angular_files/wizard_steps
 //= require angular_files/project_resources_controller
-//= require angular_files/step1_controller
 //= require angular_files/stage1_controller
 //= require angular_files/step2_controller
 //= require angular_files/step3_controller
