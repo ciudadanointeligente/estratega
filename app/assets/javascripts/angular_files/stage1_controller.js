@@ -1,33 +1,38 @@
 app.controller("stage1Ctrl", function($scope, $http, $aside, $location){
-	$scope.btn_problem = "Add";
     $scope.project_id = $location.path().split("/")[2];
-	$scope.problem = {title: "", description: "", focus_area: "", project_id: $scope.project_id};
+	$http.get('/real_problems/focus_area.json')
+		.success(function(data){
+			$scope.focus_areas = data
+		})
 
+	$scope.btn_problem = "Add";
 	$scope.policies = [];
 	$scope.current_policy = {title: "", description: ""};
 	$scope.current_solution = {title: "", description: ""};
 
     $http.get('/projects/'+$scope.project_id+'.json')
-    .success(function(data){
-        $scope.project = data;
-        $scope.problem_id = data.real_problem_id;
-        if($scope.problem_id) {
-            $http.get('/real_problems/'+$scope.problem_id+'.json')
-                .success(function(data){
-                    $scope.problem = data;
-                    $scope.btn_problem = "Edit";
-                });
-            $http.get('/real_problems/'+$scope.problem_id+'/policy_problems.json')
-                .success(function(data){
-                    $scope.policies = data;
-                    var i = 0;
-                    while( i < data.length ) {
-                        get_solutions($scope.problem_id, data[i].id, i);
-                        i++;
-                    }
-                })
-        }
-    });
+	    .success(function(data){
+	        $scope.project = data;
+	        $scope.problem_id = data.real_problem_id;
+	        if($scope.problem_id) {
+	            $http.get('/real_problems/'+$scope.problem_id+'.json')
+	                .success(function(data){
+	                    $scope.problem = data;
+	                    $scope.btn_problem = "Edit";
+	                });
+	            $http.get('/real_problems/'+$scope.problem_id+'/policy_problems.json')
+	                .success(function(data){
+	                    $scope.policies = data;
+	                    var i = 0;
+	                    while( i < data.length ) {
+	                        get_solutions($scope.problem_id, data[i].id, i);
+	                        i++;
+	                    }
+	                })
+	        }
+	    });
+
+    
 
 	var get_solutions = function(problem_id, policy_id, i){
 		$http.get('/real_problems/'+problem_id+'/policy_problems/'+policy_id+'/solutions.json')
@@ -37,7 +42,6 @@ app.controller("stage1Ctrl", function($scope, $http, $aside, $location){
 	}
 
 	var get_solution = function(problem_id, policy_id, solution_id) {
-		console.log('/real_problems/'+problem_id+'/policy_problems/'+policy_id+'/solutions/'+solution_id+'.json');
 		$http.get('/real_problems/'+problem_id+'/policy_problems/'+policy_id+'/solutions/'+solution_id+'.json')
         	.success(function(data){
         		$scope.current_solution = data;
@@ -86,7 +90,6 @@ app.controller("stage1Ctrl", function($scope, $http, $aside, $location){
     };
 
     var save_or_update_solution = function(problem_id, policy_id, solution_id) {
-    	console.log($scope.current_solution)
     	if($scope.current_solution.id) {
     		$http.put("/real_problems/"+problem_id+"/policy_problems/"+policy_id+"/solutions/"+solution_id+".json", $scope.current_solution)
             	.success(function(data){

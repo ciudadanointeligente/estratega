@@ -106,4 +106,12 @@ RSpec.describe RealProblem, :type => :model do
     end
   end
 
+  describe "a focus area" do
+    it "return a valid array of focus area" do
+      aRealProblem =  RealProblem.new
+      expect(aRealProblem.focus_area_list).to be_an Array
+      expect(aRealProblem.focus_area_list).to include 'Global partnership for development'
+    end
+  end
+
 end

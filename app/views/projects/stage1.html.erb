@@ -37,11 +37,11 @@
                   <p class="bold">Explanation</p>
                   <p>{{ problem.description }}</p>
                   <p class="bold">Focus Area</p>
-                  <p>Poverty and hunger</p>
+                  <p>{{ problem.focus_area }}</p>
                 </span>
                 <script type="text/ng-template" id="aside.html">
                   <div class="modal-header">
-                    <h3 class="modal-title">ngAside</h3>
+                    <h3 class="modal-title">Real Problem</h3>
                   </div>
                   <div class="modal-body">
                     <form>
@@ -56,6 +56,7 @@
                       <div class="form-group">
                         <label for="focus_area">Focus Area</label>
                         <select name="focus_area" ng-model="problem.focus_area">
+                          <option ng-repeat="fa in focus_areas">{{ fa }}</option>
                         </select>
                       </div>
                     </form>

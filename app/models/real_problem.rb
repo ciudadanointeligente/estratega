@@ -46,4 +46,9 @@ class RealProblem < ActiveRecord::Base
 
     return pp
   end
+
+  def focus_area_list
+    focus_area = ['Poverty and hunger', 'Universal primary education', 'Gender equality and empowerment of women', 'Child mortality', 'Maternal health', 'HIV/AIDS', 'malaria and other diseases', 'Environmental sustainability', 'Global partnership for development']
+    return focus_area
+  end
 end
