@@ -12,5 +12,9 @@ FactoryGirl.define do
     factory :edit_policy_problem do
       title "Policy Problem Title"
     end
+
+    factory :policy_problem2 do
+      title "Another Policy Problem Title"
+    end
   end
 end

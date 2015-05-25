@@ -30,6 +30,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @objectives = @project.objectives
     respond_with(@project)
   end
 

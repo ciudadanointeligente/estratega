@@ -12,5 +12,17 @@ FactoryGirl.define do
     factory :edit_solution do
       title "Policy Solution Title"
     end
+
+    factory :solution2 do
+      title "Policy Solution Title 2"
+    end
+
+    factory :solution3 do
+      title "Policy Solution Title 3"
+    end
+
+    factory :solution4 do
+      title "Policy Solution Title 4"
+    end
   end
 end

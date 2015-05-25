@@ -1,5 +1,6 @@
 class ObjectivesController < ApplicationController
   before_action :set_objective, only: [:show, :edit, :update, :update_ww, :destroy, :destroy_ww]
+  before_action :set_project
 
   respond_to :html, :json
 
@@ -21,9 +22,8 @@ class ObjectivesController < ApplicationController
   end
 
   def create
-    @objective = Objective.new(objective_params)
-    @objective.save
-    respond_with(@objective)
+    @objective = @project.objectives.create(objective_params)
+    respond_with(@project, @objective)
   end
 
   def create_ww
@@ -35,7 +35,7 @@ class ObjectivesController < ApplicationController
 
   def update
     @objective.update(objective_params)
-    respond_with(@objective)
+    respond_with(@project, @objective)
   end
 
   def update_ww
@@ -45,7 +45,7 @@ class ObjectivesController < ApplicationController
 
   def destroy
     @objective.destroy
-    respond_with(@objective)
+    respond_with(@project, @objective)
   end
 
   def destroy_ww
@@ -54,11 +54,15 @@ class ObjectivesController < ApplicationController
   end
 
   private
+    def set_project
+      @project = Project.find(params[:project_id])
+    end
+
     def set_objective
       @objective = Objective.find(params[:id])
     end
 
     def objective_params
-      params.require(:objective).permit(:title, :description, :prioritized, solution_ids: [])
+      params.require(:objective).permit(:title, :description, :prioritized, :project_id, solution_ids: [])
     end
 end
