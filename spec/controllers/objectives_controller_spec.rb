@@ -89,6 +89,12 @@ RSpec.describe ObjectivesController, :type => :controller do
         post :create, {project_id: @project, :objective => valid_attributes}, valid_session
         expect(response).to redirect_to([@project, Objective.last])
       end
+
+      it "relates an objective to an array of actors" do
+        actor = create(:actor)
+        post :create, {project_id: @project, :objective => valid_attributes.merge({actor_ids: [actor]})}, valid_session
+        expect(assigns(:objective).actor_ids).to include(actor.id)
+      end
     end
 
     describe "with invalid params" do
