@@ -45,6 +45,7 @@ Rails.application.routes.draw do
     end
     resources :objectives do
       get 'stage3', on: :member
+      get 'actors', on: :member
       post :create_ww, on: :collection
       patch :update_ww, on: :member
       delete :destroy_ww, on: :member

@@ -71,6 +71,16 @@ RSpec.describe ObjectivesController, :type => :controller do
     end
   end
 
+  describe "GET actors" do
+    it "returns the list of actor related to an objective" do
+      objective = create(:objective)
+      actor = create(:actor)
+      objective.actors << actor
+      get :actors, {project_id: @project, :id => objective, format: :json}, valid_session
+      expect(response.body).to include(actor.to_json)
+    end
+  end
+
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Objective" do
@@ -92,7 +102,7 @@ RSpec.describe ObjectivesController, :type => :controller do
 
       it "relates an objective to an array of actors" do
         actor = create(:actor)
-        post :create, {project_id: @project, :objective => valid_attributes.merge({actor_ids: [actor]})}, valid_session
+        post :create, {project_id: @project, :objective => valid_attributes, actor_id: actor.id}, valid_session
         expect(assigns(:objective).actor_ids).to include(actor.id)
       end
     end

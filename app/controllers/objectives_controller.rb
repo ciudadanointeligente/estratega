@@ -1,5 +1,5 @@
 class ObjectivesController < ApplicationController
-  before_action :set_objective, only: [:show, :edit, :update, :update_ww, :destroy, :destroy_ww]
+  before_action :set_objective, only: [:show, :edit, :update, :actors, :update_ww, :destroy, :destroy_ww]
   before_action :set_project
 
   respond_to :html, :json
@@ -23,6 +23,10 @@ class ObjectivesController < ApplicationController
 
   def create
     @objective = @project.objectives.create(objective_params)
+    x = @objective.actor_ids
+    @objective.actor_ids = x << params[:actor_id]
+    # x = @objective.solution_ids
+    # @objective.solution_ids = x << params[:solution_id]
     respond_with(@project, @objective)
   end
 
@@ -51,6 +55,10 @@ class ObjectivesController < ApplicationController
   def destroy_ww
     @objective.destroy
     redirect_to url_for(controller: :steps, action: :step2)
+  end
+
+  def actors
+    respond_with(@objective.actors)
   end
 
   private

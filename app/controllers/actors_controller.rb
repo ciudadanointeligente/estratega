@@ -21,8 +21,9 @@ class ActorsController < ApplicationController
   end
 
   def create
-    @actor = Actor.new(actor_params)
-    @actor.save
+    @actor = Actor.create(actor_params)
+    x = @actor.objective_ids
+    @actor.objective_ids = x << params[:objective_id]
     respond_with(@actor)
   end
 

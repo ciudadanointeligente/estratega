@@ -88,7 +88,7 @@ RSpec.describe ActorsController, :type => :controller do
 
       it "relates an actor to a list of objectives" do
         objective = create(:objective)
-        post :create, {:actor => valid_attributes.merge({objective_ids: [objective]})}, valid_session
+        post :create, {:actor => valid_attributes, objective_id: objective.id}, valid_session
         objective.reload
         expect(assigns(:actor).objectives).to include(objective)
         expect(objective.actor_ids).to include(assigns(:actor).id)
