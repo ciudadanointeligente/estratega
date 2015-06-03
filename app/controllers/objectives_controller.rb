@@ -38,6 +38,9 @@ class ObjectivesController < ApplicationController
   end
 
   def update
+    puts "objective_params"
+    puts objective_params
+    puts "/objective_params"
     @objective.update(objective_params)
     respond_with(@project, @objective)
   end
@@ -71,6 +74,6 @@ class ObjectivesController < ApplicationController
     end
 
     def objective_params
-      params.require(:objective).permit(:title, :description, :prioritized, :project_id, solution_ids: [], actor_ids: [])
+      params.require(:objective).permit(:title, :description, :prioritized, :project_id, solution_ids: [], actor_ids: [], barriers: [], enabling_factors: [])
     end
 end

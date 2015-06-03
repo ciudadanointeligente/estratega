@@ -11,19 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150521205606) do
+ActiveRecord::Schema.define(version: 20150527222310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "activities", force: true do |t|
+  create_table "activities", force: :cascade do |t|
     t.text     "title"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "activities_outcomes", id: false, force: true do |t|
+  create_table "activities_outcomes", id: false, force: :cascade do |t|
     t.integer "activity_id", null: false
     t.integer "outcome_id",  null: false
   end
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150521205606) do
   add_index "activities_outcomes", ["activity_id", "outcome_id"], name: "index_activities_outcomes_on_activity_id_and_outcome_id", using: :btree
   add_index "activities_outcomes", ["outcome_id", "activity_id"], name: "index_activities_outcomes_on_outcome_id_and_activity_id", using: :btree
 
-  create_table "actors", force: true do |t|
+  create_table "actors", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.string   "actor_type"
@@ -41,12 +41,12 @@ ActiveRecord::Schema.define(version: 20150521205606) do
     t.datetime "updated_at"
   end
 
-  create_table "actors_objectives", id: false, force: true do |t|
+  create_table "actors_objectives", id: false, force: :cascade do |t|
     t.integer "actor_id",     null: false
     t.integer "objective_id", null: false
   end
 
-  create_table "asks", force: true do |t|
+  create_table "asks", force: :cascade do |t|
     t.text     "title"
     t.text     "description"
     t.integer  "activity_id"
@@ -56,18 +56,20 @@ ActiveRecord::Schema.define(version: 20150521205606) do
 
   add_index "asks", ["activity_id"], name: "index_asks_on_activity_id", using: :btree
 
-  create_table "objectives", force: true do |t|
+  create_table "objectives", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "prioritized"
     t.integer  "project_id"
+    t.string   "barriers",         default: [], array: true
+    t.string   "enabling_factors", default: [], array: true
   end
 
   add_index "objectives", ["project_id"], name: "index_objectives_on_project_id", using: :btree
 
-  create_table "objectives_solutions", id: false, force: true do |t|
+  create_table "objectives_solutions", id: false, force: :cascade do |t|
     t.integer "objective_id", null: false
     t.integer "solution_id",  null: false
   end
@@ -75,7 +77,7 @@ ActiveRecord::Schema.define(version: 20150521205606) do
   add_index "objectives_solutions", ["objective_id", "solution_id"], name: "index_objectives_solutions_on_objective_id_and_solution_id", using: :btree
   add_index "objectives_solutions", ["solution_id", "objective_id"], name: "index_objectives_solutions_on_solution_id_and_objective_id", using: :btree
 
-  create_table "other_names", force: true do |t|
+  create_table "other_names", force: :cascade do |t|
     t.string   "name"
     t.datetime "start_date"
     t.datetime "end_date"
@@ -87,7 +89,7 @@ ActiveRecord::Schema.define(version: 20150521205606) do
 
   add_index "other_names", ["people_id"], name: "index_other_names_on_people_id", using: :btree
 
-  create_table "outcomes", force: true do |t|
+  create_table "outcomes", force: :cascade do |t|
     t.text     "title"
     t.text     "description"
     t.integer  "objective_id"
@@ -99,7 +101,7 @@ ActiveRecord::Schema.define(version: 20150521205606) do
 
   add_index "outcomes", ["objective_id"], name: "index_outcomes_on_objective_id", using: :btree
 
-  create_table "people", force: true do |t|
+  create_table "people", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.string   "gender"
@@ -112,7 +114,7 @@ ActiveRecord::Schema.define(version: 20150521205606) do
     t.datetime "updated_at"
   end
 
-  create_table "policy_problems", force: true do |t|
+  create_table "policy_problems", force: :cascade do |t|
     t.text     "title"
     t.text     "description"
     t.integer  "real_problem_id"
@@ -122,7 +124,7 @@ ActiveRecord::Schema.define(version: 20150521205606) do
 
   add_index "policy_problems", ["real_problem_id"], name: "index_policy_problems_on_real_problem_id", using: :btree
 
-  create_table "projects", force: true do |t|
+  create_table "projects", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
@@ -130,7 +132,7 @@ ActiveRecord::Schema.define(version: 20150521205606) do
     t.boolean  "public"
   end
 
-  create_table "real_problems", force: true do |t|
+  create_table "real_problems", force: :cascade do |t|
     t.text     "title"
     t.text     "description"
     t.datetime "created_at"
@@ -140,7 +142,7 @@ ActiveRecord::Schema.define(version: 20150521205606) do
 
   add_index "real_problems", ["project_id"], name: "index_real_problems_on_project_id", using: :btree
 
-  create_table "resources", force: true do |t|
+  create_table "resources", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "project_id"
@@ -152,7 +154,7 @@ ActiveRecord::Schema.define(version: 20150521205606) do
 
   add_index "resources", ["project_id"], name: "index_resources_on_project_id", using: :btree
 
-  create_table "sandboxes", force: true do |t|
+  create_table "sandboxes", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.text     "graph_data"
@@ -164,7 +166,7 @@ ActiveRecord::Schema.define(version: 20150521205606) do
 
   add_index "sandboxes", ["user_id"], name: "index_sandboxes_on_user_id", using: :btree
 
-  create_table "solutions", force: true do |t|
+  create_table "solutions", force: :cascade do |t|
     t.text     "title"
     t.text     "description"
     t.integer  "policy_problem_id"
@@ -174,7 +176,7 @@ ActiveRecord::Schema.define(version: 20150521205606) do
 
   add_index "solutions", ["policy_problem_id"], name: "index_solutions_on_policy_problem_id", using: :btree
 
-  create_table "taggings", force: true do |t|
+  create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
     t.string   "taggable_type"
@@ -187,14 +189,14 @@ ActiveRecord::Schema.define(version: 20150521205606) do
   add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
-  create_table "tags", force: true do |t|
+  create_table "tags", force: :cascade do |t|
     t.string  "name"
     t.integer "taggings_count", default: 0
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
