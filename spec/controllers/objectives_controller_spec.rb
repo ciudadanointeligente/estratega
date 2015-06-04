@@ -36,10 +36,14 @@ RSpec.describe ObjectivesController, :type => :controller do
   # ObjectivesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before(:each) do
+    @project = create(:project)
+  end
+
   describe "GET index" do
     it "assigns all objectives as @objectives" do
       objective = Objective.create! valid_attributes
-      get :index, {}, valid_session
+      get :index, {project_id: @project}, valid_session
       expect(assigns(:objectives)).to eq([objective])
     end
   end
@@ -47,14 +51,14 @@ RSpec.describe ObjectivesController, :type => :controller do
   describe "GET show" do
     it "assigns the requested objective as @objective" do
       objective = Objective.create! valid_attributes
-      get :show, {:id => objective.to_param}, valid_session
+      get :show, {project_id: @project, :id => objective.to_param}, valid_session
       expect(assigns(:objective)).to eq(objective)
     end
   end
 
   describe "GET new" do
     it "assigns a new objective as @objective" do
-      get :new, {}, valid_session
+      get :new, {project_id: @project}, valid_session
       expect(assigns(:objective)).to be_a_new(Objective)
     end
   end
@@ -62,8 +66,18 @@ RSpec.describe ObjectivesController, :type => :controller do
   describe "GET edit" do
     it "assigns the requested objective as @objective" do
       objective = Objective.create! valid_attributes
-      get :edit, {:id => objective.to_param}, valid_session
+      get :edit, {project_id: @project, :id => objective.to_param}, valid_session
       expect(assigns(:objective)).to eq(objective)
+    end
+  end
+
+  describe "GET actors" do
+    it "returns the list of actor related to an objective" do
+      objective = create(:objective)
+      actor = create(:actor)
+      objective.actors << actor
+      get :actors, {project_id: @project, :id => objective, format: :json}, valid_session
+      expect(response.body).to include(actor.to_json)
     end
   end
 
@@ -71,30 +85,36 @@ RSpec.describe ObjectivesController, :type => :controller do
     describe "with valid params" do
       it "creates a new Objective" do
         expect {
-          post :create, {:objective => valid_attributes}, valid_session
+          post :create, {project_id: @project, :objective => valid_attributes}, valid_session
         }.to change(Objective, :count).by(1)
       end
 
       it "assigns a newly created objective as @objective" do
-        post :create, {:objective => valid_attributes}, valid_session
+        post :create, {project_id: @project, :objective => valid_attributes}, valid_session
         expect(assigns(:objective)).to be_a(Objective)
         expect(assigns(:objective)).to be_persisted
       end
 
       it "redirects to the created objective" do
-        post :create, {:objective => valid_attributes}, valid_session
-        expect(response).to redirect_to(Objective.last)
+        post :create, {project_id: @project, :objective => valid_attributes}, valid_session
+        expect(response).to redirect_to([@project, Objective.last])
+      end
+
+      it "relates an objective to an array of actors" do
+        actor = create(:actor)
+        post :create, {project_id: @project, :objective => valid_attributes, actor_id: actor.id}, valid_session
+        expect(assigns(:objective).actor_ids).to include(actor.id)
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved objective as @objective" do
-        post :create, {:objective => invalid_attributes}, valid_session
+        post :create, {project_id: @project, :objective => invalid_attributes}, valid_session
         expect(assigns(:objective)).to be_a_new(Objective)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:objective => invalid_attributes}, valid_session
+        post :create, {project_id: @project, :objective => invalid_attributes}, valid_session
         expect(response).to render_template("new")
       end
     end
@@ -102,18 +122,18 @@ RSpec.describe ObjectivesController, :type => :controller do
     describe "with create_ww" do
       it "creates a new Objective" do
         expect {
-          post :create_ww, {:objective => valid_attributes}, valid_session
+          post :create_ww, {project_id: @project, :objective => valid_attributes}, valid_session
         }.to change(Objective, :count).by(1)
       end
 
       it "assigns a newly created objective as @objective" do
-        post :create_ww, {:objective => valid_attributes}, valid_session
+        post :create_ww, {project_id: @project, :objective => valid_attributes}, valid_session
         expect(assigns(:objective)).to be_a(Objective)
         expect(assigns(:objective)).to be_persisted
       end
 
       it "redirects to wizard step2" do
-        post :create_ww, {:objective => valid_attributes}, valid_session
+        post :create_ww, {project_id: @project, :objective => valid_attributes}, valid_session
         expect(response).to redirect_to(controller: :steps, action: :step2)
       end
     end
@@ -127,34 +147,34 @@ RSpec.describe ObjectivesController, :type => :controller do
 
       it "updates the requested objective" do
         objective = Objective.create! valid_attributes
-        put :update, {:id => objective.to_param, :objective => new_attributes}, valid_session
+        put :update, {project_id: @project, :id => objective.to_param, :objective => new_attributes}, valid_session
         objective.reload
         expect(assigns(:objective).attributes).to include(new_attributes.stringify_keys)
       end
 
       it "assigns the requested objective as @objective" do
         objective = Objective.create! valid_attributes
-        put :update, {:id => objective.to_param, :objective => valid_attributes}, valid_session
+        put :update, {project_id: @project, :id => objective.to_param, :objective => valid_attributes}, valid_session
         expect(assigns(:objective)).to eq(objective)
       end
 
       it "redirects to the objective" do
         objective = Objective.create! valid_attributes
-        put :update, {:id => objective.to_param, :objective => valid_attributes}, valid_session
-        expect(response).to redirect_to(objective)
+        put :update, {project_id: @project, :id => objective.to_param, :objective => valid_attributes}, valid_session
+        expect(response).to redirect_to([@project, objective])
       end
     end
 
     describe "with invalid params" do
       it "assigns the objective as @objective" do
         objective = Objective.create! valid_attributes
-        put :update, {:id => objective.to_param, :objective => invalid_attributes}, valid_session
+        put :update, {project_id: @project, :id => objective.to_param, :objective => invalid_attributes}, valid_session
         expect(assigns(:objective)).to eq(objective)
       end
 
       it "re-renders the 'edit' template" do
         objective = Objective.create! valid_attributes
-        put :update, {:id => objective.to_param, :objective => invalid_attributes}, valid_session
+        put :update, {project_id: @project, :id => objective.to_param, :objective => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
       end
     end
@@ -162,20 +182,20 @@ RSpec.describe ObjectivesController, :type => :controller do
     describe "with update_ww" do
       it "updates the requested objective" do
         objective = Objective.create! valid_attributes
-        put :update_ww, {:id => objective.to_param, :objective => new_attributes}, valid_session
+        put :update_ww, {project_id: @project, :id => objective.to_param, :objective => new_attributes}, valid_session
         objective.reload
         expect(assigns(:objective).attributes).to include(new_attributes.stringify_keys)
       end
 
       it "assigns the requested objective as @objective" do
         objective = Objective.create! valid_attributes
-        put :update_ww, {:id => objective.to_param, :objective => valid_attributes}, valid_session
+        put :update_ww, {project_id: @project, :id => objective.to_param, :objective => valid_attributes}, valid_session
         expect(assigns(:objective)).to eq(objective)
       end
 
       it "redirects to wizard step2 with no objective param" do
         objective = Objective.create! valid_attributes
-        put :update_ww, {:id => objective.to_param, :objective => valid_attributes}, valid_session
+        put :update_ww, {project_id: @project, :id => objective.to_param, :objective => valid_attributes}, valid_session
         expect(response).to redirect_to(controller: :steps, action: :step2)
       end
     end
@@ -185,27 +205,27 @@ RSpec.describe ObjectivesController, :type => :controller do
     it "destroys the requested objective" do
       objective = Objective.create! valid_attributes
       expect {
-        delete :destroy, {:id => objective.to_param}, valid_session
+        delete :destroy, {project_id: @project, :id => objective.to_param}, valid_session
       }.to change(Objective, :count).by(-1)
     end
 
     it "redirects to the objectives list" do
       objective = Objective.create! valid_attributes
-      delete :destroy, {:id => objective.to_param}, valid_session
-      expect(response).to redirect_to(objectives_url)
+      delete :destroy, {project_id: @project, :id => objective.to_param}, valid_session
+      expect(response).to redirect_to(project_objectives_url(@project))
     end
 
     describe "with destroy_ww" do
       it "destroys the requested objective" do
         objective = Objective.create! valid_attributes
         expect {
-          delete :destroy_ww, {:id => objective.to_param}, valid_session
+          delete :destroy_ww, {project_id: @project, :id => objective.to_param}, valid_session
         }.to change(Objective, :count).by(-1)
       end
 
       it "redirects to the objectives list" do
         objective = Objective.create! valid_attributes
-        delete :destroy_ww, {:id => objective.to_param}, valid_session
+        delete :destroy_ww, {project_id: @project, :id => objective.to_param}, valid_session
         expect(response).to redirect_to(controller: :steps, action: :step2)
       end
       

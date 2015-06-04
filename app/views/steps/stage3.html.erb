@@ -16,11 +16,11 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
               <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data Entry</a></li>
-              <li role="presentation"><a href="#explanation" aria-controls="explanation" role="tab" data-toggle="tab">Explanation & Examples</a></li>
+              <li role="presentation"><a href="#explication" aria-controls="explication" role="tab" data-toggle="tab">Explication & Examples</a></li>
             </ul>
 
             <!-- Tab panes -->
-            <div class="tab-content" ng-controller="stage3Ctrl">
+            <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="data">
               <div class="bg_grey">
                 <h4>Understand the institutional and decision-making cycles</h4>
@@ -30,7 +30,7 @@
               <div class="bg_grey">
                 <h4>Map the actors and analyse their influence and support</h4>
                 <p>Effective advocacy requires having a good understanding of all relevant actors: those with power to make change happen (decision-makers); those with influence over the decision-makers (influencers); and those in the community who would be supportive or opposing forces.</p>
-                <button type="button" class="btn btn-warning" ng-click="add_edit_actor()">Add Actor</button>
+                <button type="button" class="btn btn-warning">Add Actor</button>
               </div>
               
               <div class="panel panel-default">
@@ -485,55 +485,11 @@
                   </tr>
                 </table>
 
-                <script type="text/ng-template" id="actor-aside.html">
-                    <div class="modal-header">
-                      <h3 class="modal-title">Actor</h3>
-                    </div>
-                    <div class="modal-body">
-                      <form>
-                        <div class="form-group">
-                          <label for="title">Title</label>
-                          <input type="text" name="title" class="form-control" ng-model="current_actor.name" placeholder="Enter a title for a problem">
-                        </div>
-                        <div class="form-group">
-                          <label for="description">Description</label>
-                          <textarea name="description" class="form-control" ng-model="current_actor.description" placeholder="Enter a description for a problem"></textarea>
-                        </div>
-                        <div class="form-group">
-                          <label for="influence">Influence Level</label>
-                          <select class="form-control" id="influence" ng-model="current_actor.influence">
-                            <option value="">Select Influence Level</option>
-                            <option value="2">Very influential</option>
-                            <option value="1">Significant influence</option>
-                            <option value="0">Moderate influence</option>
-                            <option value="-1">Low influence</option>
-                            <option value="-2">No influence</option>
-                          </select>
-                        </div>
-                        <div class="form-group">
-                          <label for="support">Support</label>
-                          <select class="form-control" id="support" ng-model="current_actor.support">
-                            <option value="">Select Support Level</option>
-                            <option value="2">Very supportive</option>
-                            <option value="1">Significant Support</option>
-                            <option value="0">Moderate support</option>
-                            <option value="-1">Low support</option>
-                            <option value="-2">No support</option>
-                          </select>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="modal-footer">
-                      <button class="btn btn-primary" ng-click="save($event)">Save</button>
-                      <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
-                    </div>
-                </script>
-
               </div>
 
               </div>
-              <div role="tabpanel" class="tab-pane" id="explanation">
-                <h3>Explanation</h3>
+              <div role="tabpanel" class="tab-pane" id="explication">
+                <h3>Explication</h3>
                 <hr>
                 <h4>Which real-world problem children are facing that you want to address?</h4>
                 <p>A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)</p>

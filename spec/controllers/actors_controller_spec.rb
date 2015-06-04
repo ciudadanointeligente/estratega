@@ -85,6 +85,14 @@ RSpec.describe ActorsController, :type => :controller do
         post :create, {:actor => valid_attributes}, valid_session
         expect(response).to redirect_to(Actor.last)
       end
+
+      it "relates an actor to a list of objectives" do
+        objective = create(:objective)
+        post :create, {:actor => valid_attributes, objective_id: objective.id}, valid_session
+        objective.reload
+        expect(assigns(:actor).objectives).to include(objective)
+        expect(objective.actor_ids).to include(assigns(:actor).id)
+      end
     end
 
     describe "with invalid params" do

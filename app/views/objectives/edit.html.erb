@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @objective %> |
-<%= link_to 'Back', objectives_path %>
+<%= link_to 'Show', [@project, @objective] %> |
+<%= link_to 'Back', project_objectives_path(@project) %>

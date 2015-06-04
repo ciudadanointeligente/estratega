@@ -50,8 +50,11 @@ h2, .h2 {
 .bg_grey table th {
   font-weight: 600;
 }
-.bg_grey .btn-warning {
+.bg_grey .btn-warning.pull-right {
   margin-left: 10px;
+}
+.bg_grey .btn-warning.pull-left {
+  margin-right: 10px;
 }
 .bg_grey .label {
   display: inline-block;

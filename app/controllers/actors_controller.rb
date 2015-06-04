@@ -21,8 +21,9 @@ class ActorsController < ApplicationController
   end
 
   def create
-    @actor = Actor.new(actor_params)
-    @actor.save
+    @actor = Actor.create(actor_params)
+    x = @actor.objective_ids
+    @actor.objective_ids = x << params[:objective_id]
     respond_with(@actor)
   end
 
@@ -42,6 +43,6 @@ class ActorsController < ApplicationController
     end
 
     def actor_params
-      params.require(:actor).permit(:name, :description, :actor_type, :support, :influence)
+      params.require(:actor).permit(:name, :description, :actor_type, :support, :influence, objective_ids: [])
     end
 end
