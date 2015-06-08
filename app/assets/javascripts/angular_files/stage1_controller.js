@@ -6,6 +6,7 @@ app.controller("stage1Ctrl", function($scope, $http, $aside, $location){
 		})
 
 	$scope.btn_problem = "Add";
+	$scope.problem = {title: "", description: ""};
 	$scope.policies = [];
 	$scope.current_policy = {title: "", description: ""};
 	$scope.current_solution = {title: "", description: ""};
@@ -20,19 +21,21 @@ app.controller("stage1Ctrl", function($scope, $http, $aside, $location){
 	                    $scope.problem = data;
 	                    $scope.btn_problem = "Edit";
 	                });
-	            $http.get('/real_problems/'+$scope.problem_id+'/policy_problems.json')
-	                .success(function(data){
-	                    $scope.policies = data;
-	                    var i = 0;
-	                    while( i < data.length ) {
-	                        get_solutions($scope.problem_id, data[i].id, i);
-	                        i++;
-	                    }
-	                })
+	            get_policy_solutions($scope.problem_id);
 	        }
 	    });
 
-    
+    var get_policy_solutions = function(problem_id) {
+    	$http.get('/real_problems/'+problem_id+'/policy_problems.json')
+            .success(function(data){
+                $scope.policies = data;
+                var i = 0;
+                while( i < data.length ) {
+                    get_solutions(problem_id, data[i].id, i);
+                    i++;
+                }
+            })
+    }
 
 	var get_solutions = function(problem_id, policy_id, i){
 		$http.get('/real_problems/'+problem_id+'/policy_problems/'+policy_id+'/solutions.json')
@@ -50,15 +53,15 @@ app.controller("stage1Ctrl", function($scope, $http, $aside, $location){
 
 	var save_or_update_problem = function(){ 
         if($scope.problem.title == "")
-            //debería tirar un warning
             return
-
+        
         if($scope.problem.id){
             $http.put("/real_problems/"+$scope.problem.id, $scope.problem)
             .success(function(data){
                 // alertar en caso de success o error
             })
         }else{
+        	$scope.problem.project_id = $scope.project_id
             $http.post("/real_problems", $scope.problem)
             .success(function(data){
                 $scope.problem = data;
@@ -93,12 +96,12 @@ app.controller("stage1Ctrl", function($scope, $http, $aside, $location){
     	if($scope.current_solution.id) {
     		$http.put("/real_problems/"+problem_id+"/policy_problems/"+policy_id+"/solutions/"+solution_id+".json", $scope.current_solution)
             	.success(function(data){
-                	//$scope.policies.push(data);
+                	get_policy_solutions(problem_id);
 	            })
     	} else {
     		$http.post("/real_problems/"+problem_id+"/policy_problems/"+policy_id+"/solutions", $scope.current_solution)
             	.success(function(data){
-                	//$scope.policies.push(data);
+                	get_policy_solutions(problem_id);
 	            })
     	}
     }
@@ -158,6 +161,8 @@ app.controller("stage1Ctrl", function($scope, $http, $aside, $location){
 
 		if( $scope.solution_id )
 			get_solution($scope.problem_id, $scope.policy_id, $scope.solution_id);
+		else
+			$scope.current_solution = {title: "", description: ""};
 
 		$aside.open({
 			templateUrl: 'solution-aside.html',

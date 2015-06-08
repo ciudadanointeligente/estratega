@@ -67,7 +67,7 @@
                   </div>
                 </script>
               </div>
-              <div class="bg_grey">
+              <div class="bg_grey" ng-if="problem.id">
                 <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_policy()">Add</button>
                 <h4>Which are the policy-related causes of the real-world problem? <span ng-if="policies"><i class="fa fa-info-circle" title="Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem"></i></span></h4>
               </div>
@@ -87,7 +87,7 @@
                   <button type="button" class="btn btn-info pull-right" ng-click="add_edit_solution(policy.id)">Add</button>
                   <h4>Which policy solutions would constitute an appropriate response? <span ng-if="policy.solutions"><i class="fa fa-info-circle" title="What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?"></i></span></h4>
                   
-                  <p ng-if="!policy.solutions.length">
+                  <p ng-if="policy.solutions.length > 0">
                     What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?
                   </p>
 
