@@ -104,13 +104,6 @@ RSpec.describe ProjectsController, :type => :controller do
       end
     end
 
-    describe "GET stage3" do
-      it "render stage3 template" do
-        get :stage3, {id: @project}
-        expect(response).to render_template :stage3
-      end
-    end
-
     describe "GET stage4" do
       it "render stage4 template" do
         get :stage4, {id: @project}

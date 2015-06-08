@@ -16,9 +16,9 @@
         <td><%= outcome.title %></td>
         <td><%= outcome.description %></td>
         <td><%= outcome.objective %></td>
-        <td><%= link_to 'Show', [@objective, outcome] %></td>
-        <td><%= link_to 'Edit', edit_objective_outcome_path(@objective, outcome) %></td>
-        <td><%= link_to 'Destroy', [@objective, outcome], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [@project, @objective, outcome] %></td>
+        <td><%= link_to 'Edit', edit_project_objective_outcome_path(@project, @objective, outcome) %></td>
+        <td><%= link_to 'Destroy', [@project, @objective, outcome], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Outcome', new_objective_outcome_path(@objective) %>
+<%= link_to 'New Outcome', new_project_objective_outcome_path(@project, @objective) %>

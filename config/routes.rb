@@ -6,12 +6,6 @@ Rails.application.routes.draw do
     resources :asks
   end
 
-  resources :objectives do
-    post :create_ww, on: :collection
-    patch :update_ww, on: :member
-    delete :destroy_ww, on: :member
-    resources :outcomes
-  end
   
   get 'solutions/aside', to: 'solutions#aside'
   get 'solutions/aside_form', to: 'solutions#aside_form'
@@ -35,7 +29,9 @@ Rails.application.routes.draw do
 
   resources :steps do
     get 'stage1', on: :collection
+    get 'stage4', on: :collection
     get 'stage2', on: :collection
+    get 'stage3', on: :collection
     get 'step1', on: :collection
     get 'step2', on: :collection
     get 'step3', on: :collection
@@ -49,9 +45,17 @@ Rails.application.routes.draw do
       get 'aside', on: :collection
       get 'aside', on: :member
     end
+    resources :objectives do
+      get 'stage3', on: :member
+      get 'stage4', on: :member
+      get 'actors', on: :member
+      post :create_ww, on: :collection
+      patch :update_ww, on: :member
+      delete :destroy_ww, on: :member
+      resources :outcomes
+    end
     get 'stage1', on: :member
     get 'stage2', on: :member
-    get 'stage3', on: :member
     get 'stage4', on: :member
     get 'stage5', on: :member
     get 'stage6', on: :member

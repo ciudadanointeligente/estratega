@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-ruby '2.1.3'
-gem 'rails', '4.1.6'
+ruby '2.2.1'
+gem 'rails', '~> 4.2.1'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -15,7 +15,7 @@ gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
 gem 'unicorn'
 gem 'unicorn-rails'
-gem 'devise'
+gem 'devise', '>= 3.5.1'
 gem 'cancancan', '~> 1.10'
 gem "bower-rails"
 gem 'wicked'

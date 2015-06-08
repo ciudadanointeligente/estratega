@@ -34,15 +34,15 @@
       <% @objective.outcomes.each do |outcome| %>
         <tr>
           <td><%= outcome.title %></td>
-          <td><%= link_to 'Show', [@objective, outcome] %></td>
-          <td><%= link_to 'Edit', edit_objective_outcome_path(@objective, outcome) %></td>
-          <td><%= link_to 'Destroy', [@objective, outcome], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Show', [@project, @objective, outcome] %></td>
+          <td><%= link_to 'Edit', edit_project_objective_outcome_path(@project, @objective, outcome) %></td>
+          <td><%= link_to 'Destroy', [@project, @objective, outcome], method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <%= link_to "New Outcome", new_objective_outcome_path(@objective) %>
+  <%= link_to "New Outcome", new_project_objective_outcome_path(@project, @objective) %>
 </p>
 
-<%= link_to 'Edit', edit_objective_path(@objective) %> |
-<%= link_to 'Back', objectives_path %>
+<%= link_to 'Edit', edit_project_objective_path(@project, @objective) %> |
+<%= link_to 'Back', project_objectives_path(@project) %>

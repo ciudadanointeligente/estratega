@@ -1,6 +1,7 @@
 class OutcomesController < ApplicationController
   before_action :set_outcome, only: [:show, :edit, :update, :destroy]
   before_action :set_objective
+  before_action :set_project
 
   respond_to :html, :json
 
@@ -23,20 +24,24 @@ class OutcomesController < ApplicationController
 
   def create
     @outcome = @objective.outcomes.create(outcome_params)
-    respond_with(@objective, @outcome)
+    respond_with(@project, @objective, @outcome)
   end
 
   def update
     @outcome.update(outcome_params)
-    respond_with(@objective, @outcome)
+    respond_with(@project, @objective, @outcome)
   end
 
   def destroy
     @outcome.destroy
-    respond_with(@objective)
+    respond_with(@project, @objective)
   end
 
   private
+    def set_project
+      @project = Project.find(params[:project_id])
+    end
+
     def set_objective
       @objective = Objective.find(params[:objective_id])
     end
