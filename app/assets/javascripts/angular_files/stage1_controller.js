@@ -54,7 +54,7 @@ app.controller("stage1Ctrl", function($scope, $http, $aside, $location){
 	var save_or_update_problem = function(){ 
         if($scope.problem.title == "")
             return
-        
+
         if($scope.problem.id){
             $http.put("/real_problems/"+$scope.problem.id, $scope.problem)
             .success(function(data){
@@ -92,6 +92,7 @@ app.controller("stage1Ctrl", function($scope, $http, $aside, $location){
         }
     };
 
+	
     var save_or_update_solution = function(problem_id, policy_id, solution_id) {
     	if($scope.current_solution.id) {
     		$http.put("/real_problems/"+problem_id+"/policy_problems/"+policy_id+"/solutions/"+solution_id+".json", $scope.current_solution)
@@ -105,6 +106,13 @@ app.controller("stage1Ctrl", function($scope, $http, $aside, $location){
 	            })
     	}
     }
+
+    $scope.delete_solution = function(problem_id, policy_id, solution){
+		if(confirm('Are you sure you want to delete this solution?')) {
+			$http.delete('/real_problems/'+problem_id+'/policy_problems/'+policy_id+'/solutions/'+solution.id);
+			get_policy_solutions(problem_id)
+		}
+	}
 
 	$scope.add_step_one = function() {
 		$aside.open({
