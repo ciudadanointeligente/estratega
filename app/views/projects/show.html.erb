@@ -4,7 +4,7 @@
       <li>
         <%= link_to "Projects", projects_path %>
       </li>
-      <li class="active"><%= @project.title %></li>
+      <li class="active"><%= truncate(@project.title, length: 30) %></li>
     </ol>
   </div>
 <% end %>
@@ -32,17 +32,74 @@
       <div class="collapse steps" id="stage1">
         <table class="table table-bordered">
             <tbody>
+              <!-- real problem -->
               <tr title="Complete Step">
-                <td class="text-center td-w-10p"><i class="fa fa-unlock"></i> </td>
-                <td><a href="#">Articulate the real-world problem children are facing that you want to address</a></td>
+                <td class="text-center td-w-10p">
+                  <% if !@project.real_problem.blank? %>
+                  <i class="fa fa-unlock"></i>
+                  <% else %>
+                  <i class="fa fa-lock"></i>
+                  <% end %>
+                </td>
+                <td>
+                  <% if !@project.real_problem.blank? %>
+                  <%= link_to @project.real_problem.title, stage1_project_path  %>
+                  <% else %>
+                  <%= link_to 'Articulate the real-world problem children are facing that you want to address', stage1_project_path  %>
+                  <% end %>
+                </td>
               </tr>
+              <!-- policy problems -->
               <tr title="Complete Step">
-                <td class="text-center td-w-10p"><i class="fa fa-unlock"></i> </td>
-                <td><a href="#">Identify policy dimensions of the 'real-world' problem</a></td>
+                <td class="text-center td-w-10p">
+                  <% if !@project.real_problem.blank? %>
+                    <% if !@project.real_problem.policy_problems.blank? %>
+                      <i class="fa fa-unlock"></i>
+                    <% else %>
+                      <i class="fa fa-lock"></i>
+                    <% end %>
+                  <% else %>
+                  <i class="fa fa-lock"></i>
+                  <% end %>
+                </td>
+                <td>
+                  <% if !@project.real_problem.blank? %>
+                    <% if !@project.real_problem.policy_problems.blank? %>
+                      <%= link_to "Identify policy dimensions of the 'real-world' problem ( #{@project.real_problem.policy_problems.size} )", stage1_project_path  %>
+                    <% else %>
+                      <%= link_to "Identify policy dimensions of the 'real-world' problem", stage1_project_path  %>
+                    <% end %>
+                  <% else %>
+                      <%= link_to "Identify policy dimensions of the 'real-world' problem", stage1_project_path  %>
+                  <% end %>
+                </td>
               </tr>
+              <!-- policy solutions -->
               <tr title="Complete Step">
-                <td class="text-center td-w-10p"><i class="fa fa-unlock"></i></td>
-                <td><a href="#">Policy solutions: Describe the main policy solutions that would constitute an appropriate response</a></td>
+                <td class="text-center td-w-10p">
+                  <% if !@project.real_problem.blank? %>
+                      <% if !@project.real_problem.policy_problems.first.solutions.blank? %>
+                        <i class="fa fa-unlock"></i>
+                    <% else %>
+                      <i class="fa fa-lock"></i>
+                    <% end %>
+                  <% else %>
+                      <i class="fa fa-lock"></i>
+                  <% end %>
+                </td>
+                <td>
+                  <% if !@project.real_problem.blank? %>
+                    <% if !@project.real_problem.policy_problems.first.blank? %>
+                      <% @project.real_problem.policy_problems.each do |pp| %>
+                        <%= link_to "Policy solutions: Describe the main policy solutions that would constitute an appropriate response (#{pp.solutions.size})", stage1_project_path  %>
+                      <% end %>
+                    <% else %>
+                      <%= link_to "Policy solutions: Describe the main policy solutions that would constitute an appropriate response", stage1_project_path %>
+                    <% end %>
+                  <% else %>
+                  <%= link_to "Policy solutions: Describe the main policy solutions that would constitute an appropriate response", stage1_project_path %>
+                  <% end %>
+                </td>
               </tr>
             </tbody>
       </table>

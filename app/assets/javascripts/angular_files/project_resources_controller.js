@@ -1,5 +1,5 @@
 app.controller("projectResourcesCtrl", function($scope, $http, $location, $timeout, $aside){
-    $scope.project_id = $location.path().split("/").pop();
+    $scope.project_id = $location.path().split("/")[2];
     $scope.itemsByPage=15;
 
     var load_models = function(){
@@ -37,7 +37,7 @@ app.controller("projectResourcesCtrl", function($scope, $http, $location, $timeo
         $scope.asideState.open = false;
       }
 
-      var templateUrl = $scope.project.id + '/resources/' + (resource ? resource.id + "/aside" : 'aside')
+      var templateUrl = $scope.project_id + '/resources/' + (resource ? resource.id + "/aside" : 'aside')
       $scope.current_resource = resource;
 
       $aside.open({
