@@ -169,24 +169,54 @@
                   <td><%= link_to "Understand the institutional and decision-making cycles/Policy process", stage3_project_objective_path(@project, objective) %></td>
                 </tr>
                 <tr title="You must complete the previous step">
-                  <td class="text-center td-w-10p"><i class="fa fa-lock"></i></td>
-                  <td>List actors and power map</td>
+                  <td class="text-center td-w-10p">
+                    <% if @a_size %>
+                    <i class="fa fa-unlock"></i>
+                    <% else %>
+                    <i class="fa fa-lock"></i>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to "List actors and power map", stage3_project_objective_path(@project, objective, anchor: "actors") %>
+                  </td>
+                </tr>
+                <tr title="You must complete the previous step">
+                  <td class="text-center td-w-10p">
+                    <% if @barriers_size || @factors_size %>
+                    <i class="fa fa-unlock"></i>
+                    <% else %>
+                    <i class="fa fa-lock"></i>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to "Identify enabling factors and barriers", stage3_project_objective_path(@project, objective, anchor: "factors-barriers") %>
+                  </td>
+                </tr>
+                <tr title="You must complete the previous step">
+                  <td class="text-center td-w-10p">
+                    <% if @outcomes_size %>
+                    <i class="fa fa-unlock"></i>
+                    <% else %>
+                    <i class="fa fa-lock"></i>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to "Define the interim outcomes and activities", stage4_project_objective_path(@project, objective) %>
+                  </td>
                 </tr>
                 <tr title="You must complete the previous step">
                   <td class="text-center td-w-10p"><i class="fa fa-lock"></i></td>
-                  <td>Identify enabling factors and barriers</td>
+                  <td>
+                    <a href="#">Define theory of change</a>
+                    <!-- # <%= link_to "Define theory of change", stage3_project_objective_path(@project, objective) %> -->
+                  </td>
                 </tr>
                 <tr title="You must complete the previous step">
                   <td class="text-center td-w-10p"><i class="fa fa-lock"></i></td>
-                  <td>Define the interim outcomes and activities</td>
-                </tr>
-                <tr title="You must complete the previous step">
-                  <td class="text-center td-w-10p"><i class="fa fa-lock"></i></td>
-                  <td>Define theory of change</td>
-                </tr>
-                <tr title="You must complete the previous step">
-                  <td class="text-center td-w-10p"><i class="fa fa-lock"></i></td>
-                  <td>Develop menssages</td>
+                  <td>
+                    <a href="#">Develop menssages</a>
+                    <!-- # <%= link_to "Develop menssages", stage3_project_objective_path(@project, objective) %> -->
+                  </td>
                 </tr>
               </tbody>
         </table>
@@ -195,6 +225,7 @@
     </div>
   </div>
 <% end %>
+<!--
 <div class="row">
   <div class="col-md-12">
     <div class="panel panel-default">
@@ -327,7 +358,7 @@
     </div>
   </div>
 </div>
-
+-->
     </div>
     <div role="tabpanel" class="tab-pane" id="dashboard">...</div>
     <div role="tabpanel" class="tab-pane" id="documents">
