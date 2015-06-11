@@ -4,3 +4,21 @@
 .actions a {
 	margin-left: 10px;
 }
+
+#private_projects_filter {
+	input {
+		margin-left: 15px;
+	}
+}
+
+.footer-project-table {
+	text-align: center;
+	.paging_simple_numbers {
+		a {
+			padding: 0px 5px;
+		}
+		span {
+			font-weight: bold;
+		}
+	}
+}
