@@ -148,7 +148,6 @@
 <hr>
 
 <h4 class="title_goals">Stage 3: Set Goals</h4>
-<%= @objectives.size %>
 <% @objectives.each do |objective| %>
   <div class="row">
     <div class="col-md-12">
@@ -165,7 +164,9 @@
           <table class="table table-bordered">
               <tbody>
                 <tr title="Uninitiated Step">
-                  <td class="text-center td-w-10p"><i class="fa fa-unlock-alt"></i></td>
+                  <td class="text-center td-w-10p">
+                    <i class="fa fa-unlock"></i>
+                  </td>
                   <td><%= link_to "Understand the institutional and decision-making cycles/Policy process", stage3_project_objective_path(@project, objective) %></td>
                 </tr>
                 <tr title="You must complete the previous step">
@@ -173,7 +174,7 @@
                     <% if @a_size %>
                     <i class="fa fa-check"></i>
                     <% else %>
-                    <i class="fa fa-lock"></i>
+                    <i class="fa fa-unlock"></i>
                     <% end %>
                   </td>
                   <td>
@@ -185,7 +186,7 @@
                     <% if @barriers_size || @factors_size %>
                     <i class="fa fa-check"></i>
                     <% else %>
-                    <i class="fa fa-lock"></i>
+                    <i class="fa fa-unlock"></i>
                     <% end %>
                   </td>
                   <td>
@@ -197,7 +198,7 @@
                     <% if @outcomes_size %>
                     <i class="fa fa-check"></i>
                     <% else %>
-                    <i class="fa fa-lock"></i>
+                    <i class="fa fa-unlock"></i>
                     <% end %>
                   </td>
                   <td>
@@ -205,14 +206,18 @@
                   </td>
                 </tr>
                 <tr title="You must complete the previous step">
-                  <td class="text-center td-w-10p"><i class="fa fa-lock"></i></td>
+                  <td class="text-center td-w-10p">
+                    <i class="fa fa-lock"></i>
+                  </td>
                   <td>
                     <a href="#">Define theory of change</a>
                     <!-- # <%= link_to "Define theory of change", stage3_project_objective_path(@project, objective) %> -->
                   </td>
                 </tr>
                 <tr title="You must complete the previous step">
-                  <td class="text-center td-w-10p"><i class="fa fa-lock"></i></td>
+                  <td class="text-center td-w-10p">
+                    <i class="fa fa-lock"></i>
+                  </td>
                   <td>
                     <a href="#">Develop menssages</a>
                     <!-- # <%= link_to "Develop menssages", stage3_project_objective_path(@project, objective) %> -->
