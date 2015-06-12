@@ -1,8 +1,11 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.actions a {
-	margin-left: 10px;
+.actions {
+	min-width: 160px;
+	a {
+		margin-left: 10px;
+	}
 }
 
 #private_projects_filter {

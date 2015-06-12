@@ -7,20 +7,29 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% @projects.each do | p | %>
+		<% @private_projects.each do | p | %>
 		<tr>
 			<td><%= link_to p.title, p %></td>
 			<td><%= truncate p.description, length: 140 %></td>
-			<td class="text-right actions">
-				<%= link_to edit_project_path(p) do %>
-					<i class="fa fa-edit" title="Edit"></i>
-					<% end %>
-					<a href="#"><i class="fa fa-home" title="Vist Home"></i></a>
-
-					<a href="#"><i class="fa fa-copy" title="Clone"></i></a>
-					<%= link_to p, method: :delete, data: { confirm: 'Are you sure?' } do %>
-					<i class="fa fa-trash" title="Delete"></i>
-				<% end %>
+			<td class="actions">
+				<ul class="list-inline">
+					<li>
+						<%= link_to edit_project_path(p) do %>
+							<i class="fa fa-edit" title="Edit"></i>
+						<% end %>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-home" title="Vist Home"></i></a>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-copy" title="Clone"></i></a>
+					</li>
+					<li>
+						<%= link_to p, method: :delete, data: { confirm: 'Are you sure?' } do %>
+							<i class="fa fa-trash" title="Delete"></i>
+						<% end %>
+					</li>	
+				</ul>
 			</td>
 		</tr>
 		<% end %>

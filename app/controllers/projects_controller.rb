@@ -25,7 +25,8 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = Project.all
+    @public_projects = Project.where(public: true)
+    @private_projects = Project.where(public: false)
     respond_with(@projects)
   end
 
@@ -54,6 +55,10 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    @project.public = false
+    if project_params[:public]
+      @project.public = true
+    end
     @project.save
     respond_with(@project)
   end

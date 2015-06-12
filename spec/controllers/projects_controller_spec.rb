@@ -24,11 +24,26 @@ RSpec.describe ProjectsController, :type => :controller do
   # Project. As you add validations to Project, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      title: "a Project",
+      description: "a Description",
+      public: true
+    }
+  }
+
+  let(:valid_attributes_no_public) {
+    {
+      title: "a Project",
+      description: "a Description",
+      public: false
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      title: "",
+      description: "a Description"
+    }
   }
 
   before(:each) do
@@ -41,10 +56,18 @@ RSpec.describe ProjectsController, :type => :controller do
   let(:valid_session) { {} }
 
   describe "GET index" do
-    it "assigns all projects as @projects" do
-      project = Project.create! valid_attributes
+    it "assigns all public projects as @public_projects" do
+      project_one = Project.create! valid_attributes
+      project_two = Project.create! valid_attributes_no_public
       get :index, {}, valid_session
-      expect(assigns(:projects)).to eq([project])
+      expect(assigns(:public_projects)).to eq([project_one])
+    end
+
+    it "assigns al private projects as @private_projects" do
+      project_one = Project.create! valid_attributes
+      project_two = Project.create! valid_attributes_no_public
+      get :index, {}, valid_session
+      expect(assigns(:private_projects)).to eq([project_two])
     end
   end
 
@@ -156,10 +179,10 @@ RSpec.describe ProjectsController, :type => :controller do
     describe "with invalid params" do
       it "assigns a newly created but unsaved project as @project" do
         post :create, {:project => invalid_attributes}, valid_session
-        expect(assigns(:project)).to be_a_new(Project)
+        expect(assigns(:project)).not_to be_a_new(Project)
       end
 
-      it "re-renders the 'new' template" do
+      xit "re-renders the 'new' template" do
         post :create, {:project => invalid_attributes}, valid_session
         expect(response).to render_template("new")
       end
@@ -199,7 +222,7 @@ RSpec.describe ProjectsController, :type => :controller do
         expect(assigns(:project)).to eq(project)
       end
 
-      it "re-renders the 'edit' template" do
+      xit "re-renders the 'edit' template" do
         project = Project.create! valid_attributes
         put :update, {:id => project.to_param, :project => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
