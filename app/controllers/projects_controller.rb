@@ -65,6 +65,11 @@ class ProjectsController < ApplicationController
 
   def update
     @project.update(project_params)
+    @project.public = false
+    if project_params[:public]
+      @project.public = true
+    end
+    @project.save
     respond_with(@project)
   end
 
