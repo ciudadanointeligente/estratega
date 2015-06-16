@@ -45,7 +45,7 @@
                   <% if !@project.real_problem.blank? %>
                   <%= link_to @project.real_problem.title, stage1_project_path  %>
                   <% else %>
-                  <%= link_to 'Articulate the real-world problem children are facing that you want to address', stage1_project_path  %>
+                  <%= link_to 'Articulate the real-world problem children are facing that you want to address', stage1_project_path, target: "_self" %>
                   <% end %>
                 </td>
               </tr>
@@ -67,10 +67,10 @@
                     <% if !@project.real_problem.policy_problems.blank? %>
                       <%= link_to "Identify policy dimensions of the 'real-world' problem ( #{@project.real_problem.policy_problems.size} )", stage1_project_path  %>
                     <% else %>
-                      <%= link_to "Identify policy dimensions of the 'real-world' problem", stage1_project_path  %>
+                      <%= link_to "Identify policy dimensions of the 'real-world' problem", stage1_project_path, target: "_self" %>
                     <% end %>
                   <% else %>
-                      <%= link_to "Identify policy dimensions of the 'real-world' problem", stage1_project_path  %>
+                      <%= link_to "Identify policy dimensions of the 'real-world' problem", stage1_project_path, target: "_self" %>
                   <% end %>
                 </td>
               </tr>
@@ -94,10 +94,10 @@
                         <%= link_to "Policy solutions: Describe the main policy solutions that would constitute an appropriate response (#{pp.solutions.size})", stage1_project_path  %>
                       <% end %>
                     <% else %>
-                      <%= link_to "Policy solutions: Describe the main policy solutions that would constitute an appropriate response", stage1_project_path %>
+                      <%= link_to "Policy solutions: Describe the main policy solutions that would constitute an appropriate response", stage1_project_path, target: "_self" %>
                     <% end %>
                   <% else %>
-                  <%= link_to "Policy solutions: Describe the main policy solutions that would constitute an appropriate response", stage1_project_path %>
+                  <%= link_to "Policy solutions: Describe the main policy solutions that would constitute an appropriate response", stage1_project_path, target: "_self" %>
                   <% end %>
                 </td>
               </tr>
@@ -167,7 +167,7 @@
                   <td class="text-center td-w-10p">
                     <i class="fa fa-unlock"></i>
                   </td>
-                  <td><%= link_to "Understand the institutional and decision-making cycles/Policy process", stage3_project_objective_path(@project, objective) %></td>
+                  <td><%= link_to "Understand the institutional and decision-making cycles/Policy process", stage3_project_objective_path(@project, objective), target: "_self" %></td>
                 </tr>
                 <tr title="You must complete the previous step">
                   <td class="text-center td-w-10p">
@@ -178,7 +178,7 @@
                     <% end %>
                   </td>
                   <td>
-                    <%= link_to "List actors and power map", stage3_project_objective_path(@project, objective, anchor: "actors") %>
+                    <%= link_to "List actors and power map", stage3_project_objective_path(@project, objective, anchor: "actors", target: "_self") %>
                   </td>
                 </tr>
                 <tr title="You must complete the previous step">
@@ -190,7 +190,7 @@
                     <% end %>
                   </td>
                   <td>
-                    <%= link_to "Identify enabling factors and barriers", stage3_project_objective_path(@project, objective, anchor: "factors-barriers") %>
+                    <%= link_to "Identify enabling factors and barriers", stage3_project_objective_path(@project, objective, anchor: "factors-barriers", target: "_self") %>
                   </td>
                 </tr>
                 <tr title="You must complete the previous step">
@@ -202,7 +202,7 @@
                     <% end %>
                   </td>
                   <td>
-                    <%= link_to "Define the interim outcomes and activities", stage4_project_objective_path(@project, objective) %>
+                    <%= link_to "Define the interim outcomes and activities", stage4_project_objective_path(@project, objective, target: "_self") %>
                   </td>
                 </tr>
                 <tr title="You must complete the previous step">
