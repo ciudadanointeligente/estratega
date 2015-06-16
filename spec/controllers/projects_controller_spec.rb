@@ -58,16 +58,14 @@ RSpec.describe ProjectsController, :type => :controller do
   describe "GET index" do
     it "assigns all public projects as @public_projects" do
       project_one = Project.create! valid_attributes
-      project_two = Project.create! valid_attributes_no_public
       get :index, {}, valid_session
       expect(assigns(:public_projects)).to eq([project_one])
     end
 
     it "assigns al private projects as @private_projects" do
       project_one = Project.create! valid_attributes
-      project_two = Project.create! valid_attributes_no_public
       get :index, {}, valid_session
-      expect(assigns(:private_projects)).to eq([project_two])
+      expect(assigns(:private_projects)).to eq([@project])
     end
   end
 
@@ -179,10 +177,10 @@ RSpec.describe ProjectsController, :type => :controller do
     describe "with invalid params" do
       it "assigns a newly created but unsaved project as @project" do
         post :create, {:project => invalid_attributes}, valid_session
-        expect(assigns(:project)).not_to be_a_new(Project)
+        expect(assigns(:project)).to be_a_new(Project)
       end
 
-      xit "re-renders the 'new' template" do
+      it "re-renders the 'new' template" do
         post :create, {:project => invalid_attributes}, valid_session
         expect(response).to render_template("new")
       end
@@ -222,7 +220,7 @@ RSpec.describe ProjectsController, :type => :controller do
         expect(assigns(:project)).to eq(project)
       end
 
-      xit "re-renders the 'edit' template" do
+      it "re-renders the 'edit' template" do
         project = Project.create! valid_attributes
         put :update, {:id => project.to_param, :project => invalid_attributes}, valid_session
         expect(response).to render_template("edit")

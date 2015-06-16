@@ -54,22 +54,16 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(project_params)
-    @project.public = false
-    if project_params[:public]
-      @project.public = true
-    end
-    @project.save
+    new_params = project_params
+    new_params[:public] = false if new_params[:public].nil?
+    @project = Project.create(new_params)
     respond_with(@project)
   end
 
   def update
-    @project.update(project_params)
-    @project.public = false
-    if project_params[:public]
-      @project.public = true
-    end
-    @project.save
+    new_params = project_params
+    new_params[:public] = false if new_params[:public].nil?
+    @project.update(new_params)#//@project.save
     respond_with(@project)
   end
 

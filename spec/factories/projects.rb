@@ -2,5 +2,8 @@
 
 FactoryGirl.define do
   factory :project do
+  	title "My Project"
+    description "My Project Description"
+    public false
   end
 end
