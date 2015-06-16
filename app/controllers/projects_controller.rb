@@ -63,7 +63,7 @@ class ProjectsController < ApplicationController
   def update
     new_params = project_params
     new_params[:public] = false if new_params[:public].nil?
-    @project.update(new_params)#//@project.save
+    @project.update(new_params)
     respond_with(@project)
   end
 
