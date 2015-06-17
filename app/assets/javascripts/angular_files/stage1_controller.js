@@ -66,6 +66,7 @@ app.controller("stage1Ctrl", function($scope, $http, $aside, $location){
             .success(function(data){
                 $scope.problem = data;
                 $scope.btn_problem = "Edit";
+                $scope.problem_id = data.id;
             })
         }
     };
