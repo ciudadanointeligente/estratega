@@ -40,6 +40,8 @@ Rails.application.routes.draw do
     get 'index', on: :collection
   end
 
+  get 'outcomes/categories', to: 'outcomes#categories'
+  
   resources :projects do
     resources :resources do
       get 'aside', on: :collection

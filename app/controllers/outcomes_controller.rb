@@ -1,7 +1,7 @@
 class OutcomesController < ApplicationController
   before_action :set_outcome, only: [:show, :edit, :update, :destroy]
-  before_action :set_objective
-  before_action :set_project
+  before_action :set_objective, except: [:categories]
+  before_action :set_project, except: [:categories]
 
   respond_to :html, :json
 
@@ -35,6 +35,11 @@ class OutcomesController < ApplicationController
   def destroy
     @outcome.destroy
     respond_with(@project, @objective)
+  end
+
+  def categories
+    @outcome = Outcome.new
+    respond_with(@outcome.type_list)
   end
 
   private
