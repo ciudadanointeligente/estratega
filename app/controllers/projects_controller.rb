@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :solutions]
 
   respond_to :html, :json
 
@@ -22,6 +22,14 @@ class ProjectsController < ApplicationController
   end
 
   def stage7
+  end
+
+  def solutions
+    @solutions = []
+    @project.real_problem.policy_problems.each do |pp|
+      pp.solutions.map {|s| @solutions << s}
+    end
+    respond_with(@project, @solutions)
   end
 
   def index

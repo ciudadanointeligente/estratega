@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   end
 
   resources :projects do
+    get 'solutions', on: :member
     resources :resources do
       get 'aside', on: :collection
       get 'aside', on: :member
