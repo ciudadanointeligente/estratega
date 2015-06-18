@@ -56,6 +56,6 @@ class OutcomesController < ApplicationController
     end
 
     def outcome_params
-      params.require(:outcome).permit(:title, :description, :objective_id, :outcome_type_id, :actor_type_id)
+      params.require(:outcome).permit(:title, :description, :objective_id, :outcome_type_id, :actor_type_id, :categorie)
     end
 end
