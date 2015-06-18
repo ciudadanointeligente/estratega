@@ -43,7 +43,7 @@
                 </td>
                 <td>
                   <% if !@project.real_problem.blank? %>
-                  <%= link_to @project.real_problem.title, stage1_project_path  %>
+                  <%= link_to @project.real_problem.title, stage1_project_path, target: "_self"  %>
                   <% else %>
                   <%= link_to 'Articulate the real-world problem children are facing that you want to address', stage1_project_path, target: "_self" %>
                   <% end %>
