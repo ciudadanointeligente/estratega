@@ -47,6 +47,12 @@ class RealProblemsController < ApplicationController
     respond_with(@real_problem)
   end
 
+  def focus_area
+    @rp = RealProblem.new
+    
+    respond_with(@rp.focus_area_list)
+  end
+
   private
     def set_project
       @project = Project.find(params[:project_id])
@@ -57,6 +63,6 @@ class RealProblemsController < ApplicationController
     end
 
     def real_problem_params
-      params.require(:real_problem).permit(:title, :description, :project_id)
+      params.require(:real_problem).permit(:title, :description, :project_id, :focus_area)
     end
 end

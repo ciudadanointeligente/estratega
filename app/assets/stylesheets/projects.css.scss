@@ -1,6 +1,31 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.actions a {
-	margin-left: 10px;
+.actions {
+	min-width: 160px;
+	a {
+		margin-left: 10px;
+	}
+}
+
+#private_projects_filter {
+	input {
+		margin-left: 15px;
+	}
+}
+
+.footer-project-table {
+	text-align: center;
+	.paging_simple_numbers {
+		a {
+			padding: 0px 5px;
+		}
+		span {
+			font-weight: bold;
+		}
+	}
+}
+
+.form-control.textarea-400 {
+	height: 400px;
 }

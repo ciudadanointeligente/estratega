@@ -24,11 +24,26 @@ RSpec.describe ProjectsController, :type => :controller do
   # Project. As you add validations to Project, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      title: "a Project",
+      description: "a Description",
+      public: true
+    }
+  }
+
+  let(:valid_attributes_no_public) {
+    {
+      title: "a Project",
+      description: "a Description",
+      public: false
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      title: "",
+      description: "a Description"
+    }
   }
 
   before(:each) do
@@ -41,10 +56,16 @@ RSpec.describe ProjectsController, :type => :controller do
   let(:valid_session) { {} }
 
   describe "GET index" do
-    it "assigns all projects as @projects" do
-      project = Project.create! valid_attributes
+    it "assigns all public projects as @public_projects" do
+      project_one = Project.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:projects)).to eq([project])
+      expect(assigns(:public_projects)).to eq([project_one])
+    end
+
+    it "assigns al private projects as @private_projects" do
+      project_one = Project.create! valid_attributes
+      get :index, {}, valid_session
+      expect(assigns(:private_projects)).to eq([@project])
     end
   end
 

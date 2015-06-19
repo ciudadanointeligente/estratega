@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'solutions/aside_form', to: 'solutions#aside_form'
   get 'solutions/list', to: 'solutions#list'
 
+  get 'real_problems/focus_area', to: 'real_problems#focus_area'
   resources :real_problems do
     post 'create_ww', on: :collection
     patch 'update_ww',  on: :member
@@ -39,6 +40,8 @@ Rails.application.routes.draw do
     get 'index', on: :collection
   end
 
+  get 'outcomes/categories', to: 'outcomes#categories'
+  
   resources :projects do
     get 'solutions', on: :member
     resources :resources do

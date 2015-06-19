@@ -1,7 +1,7 @@
 class OutcomesController < ApplicationController
   before_action :set_outcome, only: [:show, :edit, :update, :destroy]
-  before_action :set_objective
-  before_action :set_project
+  before_action :set_objective, except: [:categories]
+  before_action :set_project, except: [:categories]
 
   respond_to :html, :json
 
@@ -37,6 +37,11 @@ class OutcomesController < ApplicationController
     respond_with(@project, @objective)
   end
 
+  def categories
+    @outcome = Outcome.new
+    respond_with(@outcome.type_list)
+  end
+
   private
     def set_project
       @project = Project.find(params[:project_id])
@@ -51,6 +56,6 @@ class OutcomesController < ApplicationController
     end
 
     def outcome_params
-      params.require(:outcome).permit(:title, :description, :objective_id, :outcome_type_id, :actor_type_id)
+      params.require(:outcome).permit(:title, :description, :objective_id, :outcome_type_id, :actor_type_id, :categorie)
     end
 end

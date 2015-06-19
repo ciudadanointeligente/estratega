@@ -4,7 +4,7 @@
       <li>
         <%= link_to "Projects", projects_path %>
       </li>
-      <li class="active"><%= @project.title %></li>
+      <li class="active"><%= truncate(@project.title, length: 30) %></li>
     </ol>
   </div>
 <% end %>
@@ -32,17 +32,74 @@
       <div class="collapse steps" id="stage1">
         <table class="table table-bordered">
             <tbody>
+              <!-- real problem -->
               <tr title="Complete Step">
-                <td class="text-center td-w-10p"><i class="fa fa-unlock"></i> </td>
-                <td><a href="#">Articulate the real-world problem children are facing that you want to address</a></td>
+                <td class="text-center td-w-10p">
+                  <% if !@project.real_problem.blank? %>
+                  <i class="fa fa-unlock"></i>
+                  <% else %>
+                  <i class="fa fa-lock"></i>
+                  <% end %>
+                </td>
+                <td>
+                  <% if !@project.real_problem.blank? %>
+                  <%= link_to @project.real_problem.title, stage1_project_path, target: "_self"  %>
+                  <% else %>
+                  <%= link_to 'Articulate the real-world problem children are facing that you want to address', stage1_project_path, target: "_self" %>
+                  <% end %>
+                </td>
               </tr>
+              <!-- policy problems -->
               <tr title="Complete Step">
-                <td class="text-center td-w-10p"><i class="fa fa-unlock"></i> </td>
-                <td><a href="#">Identify policy dimensions of the 'real-world' problem</a></td>
+                <td class="text-center td-w-10p">
+                  <% if !@project.real_problem.blank? %>
+                    <% if !@project.real_problem.policy_problems.blank? %>
+                      <i class="fa fa-unlock"></i>
+                    <% else %>
+                      <i class="fa fa-lock"></i>
+                    <% end %>
+                  <% else %>
+                  <i class="fa fa-lock"></i>
+                  <% end %>
+                </td>
+                <td>
+                  <% if !@project.real_problem.blank? %>
+                    <% if !@project.real_problem.policy_problems.blank? %>
+                      <%= link_to "Identify policy dimensions of the 'real-world' problem ( #{@project.real_problem.policy_problems.size} )", stage1_project_path  %>
+                    <% else %>
+                      <%= link_to "Identify policy dimensions of the 'real-world' problem", stage1_project_path, target: "_self" %>
+                    <% end %>
+                  <% else %>
+                      <%= link_to "Identify policy dimensions of the 'real-world' problem", stage1_project_path, target: "_self" %>
+                  <% end %>
+                </td>
               </tr>
+              <!-- policy solutions -->
               <tr title="Complete Step">
-                <td class="text-center td-w-10p"><i class="fa fa-unlock"></i></td>
-                <td><a href="#">Policy solutions: Describe the main policy solutions that would constitute an appropriate response</a></td>
+                <td class="text-center td-w-10p">
+                  <% if !@project.real_problem.blank? %>
+                      <% if !@project.real_problem.policy_problems.first.solutions.blank? %>
+                        <i class="fa fa-unlock"></i>
+                    <% else %>
+                      <i class="fa fa-lock"></i>
+                    <% end %>
+                  <% else %>
+                      <i class="fa fa-lock"></i>
+                  <% end %>
+                </td>
+                <td>
+                  <% if !@project.real_problem.blank? %>
+                    <% if !@project.real_problem.policy_problems.first.blank? %>
+                      <% @project.real_problem.policy_problems.each do |pp| %>
+                        <%= link_to "Policy solutions: Describe the main policy solutions that would constitute an appropriate response (#{pp.solutions.size})", stage1_project_path  %>
+                      <% end %>
+                    <% else %>
+                      <%= link_to "Policy solutions: Describe the main policy solutions that would constitute an appropriate response", stage1_project_path, target: "_self" %>
+                    <% end %>
+                  <% else %>
+                  <%= link_to "Policy solutions: Describe the main policy solutions that would constitute an appropriate response", stage1_project_path, target: "_self" %>
+                  <% end %>
+                </td>
               </tr>
             </tbody>
       </table>
@@ -91,7 +148,6 @@
 <hr>
 
 <h4 class="title_goals">Stage 3: Set Goals</h4>
-
 <% @objectives.each do |objective| %>
   <div class="row">
     <div class="col-md-12">
@@ -108,28 +164,64 @@
           <table class="table table-bordered">
               <tbody>
                 <tr title="Uninitiated Step">
-                  <td class="text-center td-w-10p"><i class="fa fa-unlock-alt"></i></td>
-                  <td><%= link_to "Understand the institutional and decision-making cycles/Policy process", stage3_project_objective_path(@project, objective) %></td>
+                  <td class="text-center td-w-10p">
+                    <i class="fa fa-unlock"></i>
+                  </td>
+                  <td><%= link_to "Understand the institutional and decision-making cycles/Policy process", stage3_project_objective_path(@project, objective), target: "_self" %></td>
                 </tr>
                 <tr title="You must complete the previous step">
-                  <td class="text-center td-w-10p"><i class="fa fa-lock"></i></td>
-                  <td>List actors and power map</td>
+                  <td class="text-center td-w-10p">
+                    <% if @a_size %>
+                    <i class="fa fa-check"></i>
+                    <% else %>
+                    <i class="fa fa-unlock"></i>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to "List actors and power map", stage3_project_objective_path(@project, objective, anchor: "actors", target: "_self") %>
+                  </td>
                 </tr>
                 <tr title="You must complete the previous step">
-                  <td class="text-center td-w-10p"><i class="fa fa-lock"></i></td>
-                  <td>Identify enabling factors and barriers</td>
+                  <td class="text-center td-w-10p">
+                    <% if @barriers_size || @factors_size %>
+                    <i class="fa fa-check"></i>
+                    <% else %>
+                    <i class="fa fa-unlock"></i>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to "Identify enabling factors and barriers", stage3_project_objective_path(@project, objective, anchor: "factors-barriers", target: "_self") %>
+                  </td>
                 </tr>
                 <tr title="You must complete the previous step">
-                  <td class="text-center td-w-10p"><i class="fa fa-lock"></i></td>
-                  <td>Define the interim outcomes and activities</td>
+                  <td class="text-center td-w-10p">
+                    <% if @outcomes_size %>
+                    <i class="fa fa-check"></i>
+                    <% else %>
+                    <i class="fa fa-unlock"></i>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to "Define the interim outcomes and activities", stage4_project_objective_path(@project, objective, target: "_self") %>
+                  </td>
                 </tr>
                 <tr title="You must complete the previous step">
-                  <td class="text-center td-w-10p"><i class="fa fa-lock"></i></td>
-                  <td>Define theory of change</td>
+                  <td class="text-center td-w-10p">
+                    <i class="fa fa-lock"></i>
+                  </td>
+                  <td>
+                    <a href="#">Define theory of change</a>
+                    <!-- # <%= link_to "Define theory of change", stage3_project_objective_path(@project, objective) %> -->
+                  </td>
                 </tr>
                 <tr title="You must complete the previous step">
-                  <td class="text-center td-w-10p"><i class="fa fa-lock"></i></td>
-                  <td>Develop menssages</td>
+                  <td class="text-center td-w-10p">
+                    <i class="fa fa-lock"></i>
+                  </td>
+                  <td>
+                    <a href="#">Develop menssages</a>
+                    <!-- # <%= link_to "Develop menssages", stage3_project_objective_path(@project, objective) %> -->
+                  </td>
                 </tr>
               </tbody>
         </table>
@@ -138,6 +230,7 @@
     </div>
   </div>
 <% end %>
+<!--
 <div class="row">
   <div class="col-md-12">
     <div class="panel panel-default">
@@ -270,7 +363,7 @@
     </div>
   </div>
 </div>
-
+-->
     </div>
     <div role="tabpanel" class="tab-pane" id="dashboard">...</div>
     <div role="tabpanel" class="tab-pane" id="documents">

@@ -55,6 +55,7 @@ RSpec.describe OutcomesController, :type => :controller do
       expect(response).to be_success
       expect(assigns(:outcomes).length).to eq(1)
       expect(assigns(:outcomes).first.title).to eq('MyText')
+	  expect(assigns(:outcomes).first.categorie).to eq('Political will')
     end
   end
 
@@ -76,6 +77,13 @@ RSpec.describe OutcomesController, :type => :controller do
     it "assigns the requested outcome as @outcome" do
       get :edit, {project_id: @project, objective_id: @objective, :id => @outcome}, valid_session
       expect(assigns(:outcome)).to eq(@outcome)
+    end
+  end
+
+  describe "GET Categories" do
+    it "return a JSON with categories" do
+      get :categories, {:format => 'json'}, valid_session
+      expect(JSON.parse(response.body)).to include "Political will"
     end
   end
 

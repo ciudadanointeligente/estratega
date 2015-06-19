@@ -1,0 +1,27 @@
+<script type="text/ng-template" id="aside.html">
+	<div class="modal-header">
+		<h3 class="modal-title">Real Problem</h3>
+	</div>
+	<div class="modal-body">
+		<form>
+			<div class="form-group">
+				<label for="title">Title</label>
+				<input type="text" name="title" class="form-control" ng-model="problem.title" placeholder="Enter a title for a problem">
+			</div>
+			<div class="form-group">
+				<label for="description">Description</label>
+				<textarea name="description" class="form-control textarea-400" ng-model="problem.description" placeholder="Enter a description for a problem" style="height: 400px"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="focus_area">Focus Area</label>
+				<select name="focus_area" ng-model="problem.focus_area">
+					<option ng-repeat="fa in focus_areas">{{ fa }}</option>
+				</select>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: problem.title == '' }">Save</button>
+		<button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
+	</div>
+</script>

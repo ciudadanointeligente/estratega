@@ -33,12 +33,23 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = Project.all
+    @public_projects = Project.where(public: true)
+    @private_projects = Project.where(public: false)
     respond_with(@projects)
   end
 
   def show
     @objectives = @project.objectives
+    @a_size = 0
+    @barriers_size = 0
+    @factors_size = 0
+    @outcomes_size = 0
+    @objectives.each do |o|
+      @a_size = @a_size + o.actors.size
+      @barriers_size = @barriers_size + o.barriers.size
+      @factors_size = @factors_size + o.enabling_factors.size
+      @outcomes_size = @outcomes_size + o.outcomes.size
+    end
     respond_with(@project)
   end
 
@@ -51,13 +62,16 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(project_params)
-    @project.save
+    new_params = project_params
+    new_params[:public] = false if new_params[:public].nil?
+    @project = Project.create(new_params)
     respond_with(@project)
   end
 
   def update
-    @project.update(project_params)
+    new_params = project_params
+    new_params[:public] = false if new_params[:public].nil?
+    @project.update(new_params)
     respond_with(@project)
   end
 

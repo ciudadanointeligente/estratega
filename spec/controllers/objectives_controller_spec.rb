@@ -26,6 +26,9 @@ RSpec.describe ObjectivesController, :type => :controller do
   let(:valid_attributes) {
     {title: "Title", description: "Description"}
   }
+  let(:valid_project) {
+    {title: "Title Proj", description: "Description"}
+  }
 
   let(:invalid_attributes) {
     {title: "", description: "Description"}
@@ -42,9 +45,17 @@ RSpec.describe ObjectivesController, :type => :controller do
 
   describe "GET index" do
     it "assigns all objectives as @objectives" do
-      objective = Objective.create! valid_attributes
-      get :index, {project_id: @project}, valid_session
-      expect(assigns(:objectives)).to eq([objective])
+      # project = Project.create! proj_valid_attributes
+      project_two = Project.create! valid_project
+      project_three = Project.create! valid_project
+      
+      objective_two = Objective.create! valid_attributes
+      objective_three = Objective.create! valid_attributes
+      project_two.objectives << objective_two
+      project_three.objectives << objective_three
+
+      get :index, {project_id: project_two}, valid_session
+      expect(assigns(:objectives)).to eq([objective_two])
     end
   end
 
