@@ -1,245 +1,137 @@
-app.controller("stage2Ctrl", function($scope, $http, $aside, $location){
-    
-    $scope.project_id = $location.path().split("/")[2];
+app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 
-    $http.get('/projects/'+$scope.project_id+'.json')
-    .success(function(data){
-        $scope.project = data;
-    });
+	$scope.project_id = $location.path().split("/")[2];
 
-    $http.get('/projects/'+$scope.project_id+'/objectives.json')
-    .success(function(data){
-        $scope.objectives = data;
-    });
+	$http.get('/real_problems/focus_area.json')
+		.success(function (data) {
+			$scope.focus_areas = data
+		})
 
-    $http.get('/projects/'+$scope.project_id+'/solutions.json')
-    .success(function(data){
-        $scope.solutions = data.map(function(solution){
-            return {id: solution.id, title: solution.title}
-        });
-    });
-// $scope.solutions = [{asdf:"asdfasdf"},{qwer:"qwerqwer"},{lol:"lollol"}]
+	$http.get('/projects/' + $scope.project_id + '.json')
+		.success(function (data) {
+			$scope.project = data;
+			get_real_problem(data.id);
+		});
 
+	function get_real_problem(project_id) {
+		$http.get('/real_problems/' + project_id + '.json')
+			.success(function (data) {
+				$scope.problem = data;
+			});
+	}
 
+	$http.get('/projects/' + $scope.project_id + '/objectives.json')
+		.success(function (data) {
+			$scope.objectives = data;
+		});
 
+	$http.get('/projects/' + $scope.project_id + '/solutions.json')
+		.success(function (data) {
+			$scope.solutions = data.map(function (solution) {
+				return {
+					id: solution.id,
+					title: solution.title
+				}
+			});
+		});
 
-    var save_or_update_objective = function(){
-        if($scope.current_objective.id) {
-            $http.put('/projects/'+$scope.project_id+'/objectives/'+$scope.current_objective.id, $scope.current_objective)
-                .success(function(data){
-                    // alert success or error
-                })
-        } else {
-            $http.post('/projects/'+$scope.project_id+'/objectives', $scope.current_objective)
-                .success(function(data){
-                    $scope.current_objective = data;
-                    $scope.objectives.push(data);
-                })
-        }
-    }
+	var save_or_update_objective = function () {
+		/*ugly hack*/
+		$scope.current_objective.objective = {
+			title: $scope.current_objective.title,
+			description: $scope.current_objective.description,
+			project_id: $scope.current_objective.project_id,
+			solution_ids: $scope.current_objective.solution_ids
+		}
+		if ($scope.current_objective.id) {
+			$http.put('/projects/' + $scope.project_id + '/objectives/' + $scope.current_objective.id, $scope.current_objective)
+				.success(function (data) {
+					// alert success or error
+				})
+		} else {
+			$http.post('/projects/' + $scope.project_id + '/objectives', $scope.current_objective)
+				.success(function (data) {
+					$scope.current_objective = data;
+					$scope.objectives.push(data);
+				})
+		}
+	}
 
-    $scope.add_edit_objective = function(objective) {
-        if(objective){
-            $scope.current_objective = objective;
-        }
-        else
-            $scope.current_objective = {title: "", description: "", project_id: $scope.project_id};
-        
-        $aside.open({
-            templateUrl: 'objective-aside.html',
-            placement: 'left',
-            size: 'lg',
-            scope: $scope,
-            controller: function($scope, $modalInstance) {
-                $scope.save = function(e) {
-                    save_or_update_objective();
-                    $modalInstance.dismiss();
-                    e.stopPropagation();
-                }
-                $scope.cancel = function(e) {
-                  $modalInstance.dismiss();
-                  e.stopPropagation();
-                };
-            }
-        });
-    }
+	var save_or_update_problem = function () {
+		if ($scope.problem.title == "")
+			return
 
-    $scope.delete_objective = function(objective){
-      if(confirm('Are you sure you want to delete this objective?')) {
-        $http.delete('/projects/'+$scope.project_id+'/objectives/'+objective.id);
-        $scope.objectives.splice($scope.objectives.indexOf(objective),1);
-      }
-    }
+		if ($scope.problem.id) {
+			$http.put("/real_problems/" + $scope.problem.id, $scope.problem)
+				.success(function (data) {
+					// alertar en caso de success o error
+				})
+		} else {
+			$scope.problem.project_id = $scope.project_id
+			$http.post("/real_problems", $scope.problem)
+				.success(function (data) {
+					$scope.problem = data;
+					$scope.btn_problem = "Edit";
+					$scope.problem_id = data.id;
+				})
+		}
+	};
 
+	$scope.edit_real_problem = function () {
+		$aside.open({
+			templateUrl: 'aside.html',
+			placement: 'left',
+			size: 'lg',
+			scope: $scope,
+			controller: function ($scope, $modalInstance) {
+				$scope.save = function (e) {
+					save_or_update_problem();
+					$modalInstance.dismiss();
+					e.stopPropagation();
+				}
+				$scope.cancel = function (e) {
+					$modalInstance.dismiss();
+					e.stopPropagation();
+				};
+			}
+		})
+	}
 
+	$scope.add_edit_objective = function (objective) {
+		if (objective) {
+			$scope.current_objective = objective;
+		} else
+			$scope.current_objective = {
+				title: "",
+				description: "",
+				project_id: $scope.project_id,
+				solution_ids: []
+			};
 
+		$aside.open({
+			templateUrl: 'objective-aside.html',
+			placement: 'left',
+			size: 'lg',
+			scope: $scope,
+			controller: function ($scope, $modalInstance) {
+				$scope.save = function (e) {
+					save_or_update_objective();
+					$modalInstance.dismiss();
+					e.stopPropagation();
+				}
+				$scope.cancel = function (e) {
+					$modalInstance.dismiss();
+					e.stopPropagation();
+				};
+			}
+		});
+	}
 
+	$scope.delete_objective = function (objective) {
+		if (confirm('Are you sure you want to delete this objective?')) {
+			$http.delete('/projects/' + $scope.project_id + '/objectives/' + objective.id);
+			$scope.objectives.splice($scope.objectives.indexOf(objective), 1);
+		}
+	}
 
-
-
-
-
-
-
-    // $scope.current_actor = {name: "", description: "", objective_id: $scope.objective_id};
-    // $scope.current_environment = {}
-
-    // $http.get('/projects/'+$scope.project_id+'.json')
-    // .success(function(data){
-    //     $scope.project = data;
-    // });
-
-    // $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id)
-    // .success(function(data){
-    //     $scope.objective = data;
-    // });
-
-    // $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/actors.json')
-    // .success(function(data){
-    //     $scope.actors = data;
-    // });
-
-    // var save_or_update_actor = function() {
-    //     if($scope.current_actor.id) {
-    //         $http.put("/actors/"+$scope.current_actor.id, $scope.current_actor)
-    //             .success(function(data){
-    //                 // alert success or error
-    //             })
-    //     } else {
-    //         $http.post("/actors", $scope.current_actor)
-    //             .success(function(data){
-    //                 $scope.current_actor = data;
-    //                 $scope.actors.push(data);
-    //             })
-    //     }
-    // }
-
-    // $scope.save_or_update_enabling_factor = function(current_enabling_factor, original_enabling_factor) {
-    //     if(original_enabling_factor){
-    //         var enabling_factor_index = $scope.objective.enabling_factors.indexOf(original_enabling_factor)
-    //         $scope.objective.enabling_factors[enabling_factor_index] = current_enabling_factor;
-    //     }
-    //     else{
-    //         $scope.objective.enabling_factors.push(current_enabling_factor);
-    //     }
-    //     update_objective();
-    // }
-
-    // $scope.save_or_update_barrier = function(current_barrier, original_barrier) {
-    //     if(original_barrier){
-    //         var barrier_index = $scope.objective.barriers.indexOf(original_barrier)
-    //         $scope.objective.barriers[barrier_index] = current_barrier;
-    //     }
-    //     else{
-    //         $scope.objective.barriers.push(current_barrier);
-    //     }
-    //     update_objective();
-    // }
-
-    // var update_objective = function() {
-    //     $http.put('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id, $scope.objective)
-    //         .success(function(data){
-    //             // alert success or error
-    //         })
-    // }
-
-    // $scope.delete_actor = function(actor){
-    //   if(confirm('Are you sure you want to delete this actor?')) {
-    //     $http.delete('/actors/'+actor.id);
-    //     $scope.actors.splice($scope.actors.indexOf(actor),1);
-    //   }
-    // }
-
-    // $scope.add_edit_actor = function(actor) {
-    //     if(actor)
-    //         $scope.current_actor = actor;
-    //     else
-    //         $scope.current_actor = {name: "", description: "", objective_id: $scope.objective_id};
-        
-    //     $aside.open({
-    //         templateUrl: 'actor-aside.html',
-    //         placement: 'left',
-    //         size: 'lg',
-    //         scope: $scope,
-    //         controller: function($scope, $modalInstance) {
-    //             $scope.save = function(e) {
-    //                 save_or_update_actor();
-    //                 $modalInstance.dismiss();
-    //                 e.stopPropagation();
-    //             }
-    //             $scope.cancel = function(e) {
-    //               $modalInstance.dismiss();
-    //               e.stopPropagation();
-    //             };
-    //         }
-    //     });
-    // }
-
-    // $scope.add_edit_enabling_factor = function(enabling_factor) {
-    //     if(enabling_factor)
-    //         $scope.current_enabling_factor = enabling_factor;
-    //     else
-    //         $scope.current_enabling_factor = "";
-        
-    //     $aside.open({
-    //         templateUrl: 'enabling-factor-aside.html',
-    //         placement: 'left',
-    //         size: 'lg',
-    //         scope: $scope,
-    //         controller: function($scope, $modalInstance) {
-    //             $scope.save = function(e) {
-    //                 console.log($scope.current_enabling_factor)
-    //                 $scope.save_or_update_enabling_factor($scope.current_enabling_factor, enabling_factor);
-    //                 $modalInstance.dismiss();
-    //                 e.stopPropagation();
-    //             }
-    //             $scope.cancel = function(e) {
-    //               $modalInstance.dismiss();
-    //               e.stopPropagation();
-    //             };
-    //         }
-    //     });
-    // }
-
-    // $scope.add_edit_barrier = function(barrier) {
-    //     if(barrier)
-    //         $scope.current_barrier = barrier;
-    //     else
-    //         $scope.current_barrier = "";
-
-    //     $aside.open({
-    //         templateUrl: 'barrier-aside.html',
-    //         placement: 'left',
-    //         size: 'lg',
-    //         scope: $scope,
-    //         controller: function($scope, $modalInstance) {
-    //             $scope.save = function(e) {
-    //                 console.log($scope.current_barrier)
-    //                 $scope.save_or_update_barrier($scope.current_barrier, barrier);
-    //                 $modalInstance.dismiss();
-    //                 e.stopPropagation();
-    //             }
-    //             $scope.cancel = function(e) {
-    //               $modalInstance.dismiss();
-    //               e.stopPropagation();
-    //             };
-    //         }
-    //     });
-    // }
-
-    // $scope.delete_enabling_factor = function(enabling_factor){
-    //   if(confirm('Are you sure you want to delete this enabling factor?')) {
-    //     var enabling_factor_index = $scope.objective.enabling_factors.indexOf(enabling_factor);
-    //     $scope.objective.enabling_factors.splice(enabling_factor_index, 1);
-    //     update_objective();
-    //   }
-    // }
-
-    // $scope.delete_barrier = function(barrier){
-    //   if(confirm('Are you sure you want to delete this enabling factor?')) {
-    //     var barrier_index = $scope.objective.barriers.indexOf(barrier);
-    //     $scope.objective.barriers.splice(barrier_index, 1);
-    //     update_objective();
-    //   }
-    // }
 });

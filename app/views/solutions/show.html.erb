@@ -12,12 +12,13 @@
 
 <p>
   <strong>Objectives:</strong>
-  <ul>
-    <% @solution.objectives.each do |objective| %>
-      <li><%= link_to objective.title, objective_path(objective) %></li>
-    <% end %>
-  </ul>
 </p>
+<ul>
+<% @solution.objectives.each do |objective| %>
+	<li><%= objective.title %></li>
+<% end %>
+</ul>
+
 
 <p>
   <strong>Policy problem:</strong>

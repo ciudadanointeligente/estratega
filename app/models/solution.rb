@@ -6,4 +6,8 @@ class Solution < ActiveRecord::Base
   def real_problem_id
     policy_problem.real_problem_id
   end
+	
+	def related_objectives
+		related = Solution.includes(:objectives).where(objectives:{id: 2})
+	end
 end

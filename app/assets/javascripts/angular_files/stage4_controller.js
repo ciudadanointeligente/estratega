@@ -34,7 +34,7 @@ app.controller("stage4Ctrl", function ($scope, $http, $aside, $location) {
 		}
 	}
 
-	$scope.add_edit_outcome = function (outcome = '') {
+	$scope.add_edit_outcome = function (outcome) {
 		if (outcome) {
 			$scope.current_outcome = outcome;
 		} else

@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :solutions]
+	before_action :set_project, only: [:show, :edit, :update, :destroy, :solutions, :stage1]
 
   respond_to :html, :json
 
@@ -82,7 +82,7 @@ class ProjectsController < ApplicationController
 
   private
     def set_project
-      @project = Project.find(params[:id])
+		@project = Project.find(params[:id])
     end
 
     def project_params

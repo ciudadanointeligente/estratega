@@ -38,9 +38,6 @@ class ObjectivesController < ApplicationController
   end
 
   def update
-    puts "objective_params"
-    puts objective_params
-    puts "/objective_params"
     @objective.update(objective_params)
     respond_with(@project, @objective)
   end

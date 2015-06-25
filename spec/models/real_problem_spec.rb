@@ -113,5 +113,12 @@ RSpec.describe RealProblem, :type => :model do
       expect(aRealProblem.focus_area_list).to include 'Global partnership for development'
     end
   end
+	
+	describe "Policy Solutions Associated" do
+		it "return an array of policy solutions associated" do
+			real_problem = RealProblem.new
+			expect(real_problem.solutions_associated).to be_an Array
+		end
+	end
 
 end
