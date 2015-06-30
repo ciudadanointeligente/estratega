@@ -55,7 +55,7 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 					$scope.objectives.push(data);
 				})
 		}
-	}
+	};
 
 	var save_or_update_problem = function () {
 		if ($scope.problem.title == "")
@@ -95,7 +95,27 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 				};
 			}
 		})
-	}
+	};
+
+	$scope.show_goal = function() {
+		$aside.open({
+			templateUrl: 'goal-aside.html',
+			placement: 'left',
+			size: 'lg',
+			scope: $scope,
+			controller: function ($scope, $modalInstance) {
+				$scope.save = function (e) {
+					//save_or_update_problem();
+					$modalInstance.dismiss();
+					e.stopPropagation();
+				}
+				$scope.cancel = function (e) {
+					$modalInstance.dismiss();
+					e.stopPropagation();
+				};
+			}
+		})
+	};
 
 	$scope.add_edit_objective = function (objective) {
 		if (objective) {

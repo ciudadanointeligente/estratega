@@ -1,0 +1,15 @@
+<script type="text/ng-template" id="goal-aside.html">
+<div class="modal-header">
+	<h3 class="modal-title">Goal</h3>
+</div>
+<div class="modal-body">
+	<div class="form-group">
+		<label for="goal">Title</label>
+		<input type="text" name="goal" class="form-control" ng-model="problem.goal" placeholder="Enter a goal for a problem">
+	</div>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: current_policy.goal == ''}">Save</button>
+	<button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
+</div>
+</script>
