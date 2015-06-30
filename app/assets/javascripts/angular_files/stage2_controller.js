@@ -2,6 +2,8 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 
 	$scope.project_id = $location.path().split("/")[2];
 
+	$scope.btn_problem = "Add";
+
 	$http.get('/real_problems/focus_area.json')
 		.success(function (data) {
 			$scope.focus_areas = data
@@ -10,13 +12,16 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 	$http.get('/projects/' + $scope.project_id + '.json')
 		.success(function (data) {
 			$scope.project = data;
-			get_real_problem(data.id);
+			if(data.real_problem_id)
+				get_real_problem(data.real_problem_id);
 		});
 
-	function get_real_problem(project_id) {
-		$http.get('/real_problems/' + project_id + '.json')
+	function get_real_problem(real_problem_id) {
+		$http.get('/real_problems/' + real_problem_id + '.json')
 			.success(function (data) {
 				$scope.problem = data;
+				if( data.goal )
+					$scope.btn_problem = "Edit";
 			});
 	}
 
@@ -58,7 +63,7 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 	};
 
 	var save_or_update_problem = function () {
-		if ($scope.problem.title == "")
+		if ($scope.problem.goal == "")
 			return
 
 		if ($scope.problem.id) {
@@ -77,26 +82,6 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 		}
 	};
 
-	$scope.edit_real_problem = function () {
-		$aside.open({
-			templateUrl: 'aside.html',
-			placement: 'left',
-			size: 'lg',
-			scope: $scope,
-			controller: function ($scope, $modalInstance) {
-				$scope.save = function (e) {
-					save_or_update_problem();
-					$modalInstance.dismiss();
-					e.stopPropagation();
-				}
-				$scope.cancel = function (e) {
-					$modalInstance.dismiss();
-					e.stopPropagation();
-				};
-			}
-		})
-	};
-
 	$scope.show_goal = function() {
 		$aside.open({
 			templateUrl: 'goal-aside.html',
@@ -105,7 +90,7 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 			scope: $scope,
 			controller: function ($scope, $modalInstance) {
 				$scope.save = function (e) {
-					//save_or_update_problem();
+					save_or_update_problem();
 					$modalInstance.dismiss();
 					e.stopPropagation();
 				}
