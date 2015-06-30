@@ -63,6 +63,6 @@ class RealProblemsController < ApplicationController
     end
 
     def real_problem_params
-      params.require(:real_problem).permit(:title, :description, :project_id, :focus_area)
+      params.require(:real_problem).permit(:title, :description, :project_id, :focus_area, :goal)
     end
 end

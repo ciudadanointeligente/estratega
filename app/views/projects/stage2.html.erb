@@ -26,11 +26,11 @@
 				<div class="tab-content" ng-controller="stage2Ctrl">
 					<div role="tabpanel" class="tab-pane active" id="data">
 						<div class="bg_grey">
-							<button type="button" class="btn btn-warning pull-right" ng-click="show_goal()">Add</button>
+							<button type="button" class="btn btn-warning pull-right" ng-click="show_goal()">{{ btn_problem }}</button>
 							<h4>Formulate the real world problem as a goal <i class="fa fa-info-circle" title="The goals are the big changes and benefits being sougth for women and children, or in services and systems, as a result of advocacy objectives. Goal indicates what will happen after the advocacy objective/s is/are achieved. You should turn the real world problem into the desired real world change you want to contribute to through your advocacy."></i></h4>
 							<p>{{problem.goal}}</p>
 						</div>
-						<%= render "real_problem_modal" %>
+						<%= render "goal_modal" %>
 						<div class="bg_grey">
 							<button type="button" class="btn btn-warning pull-right" ng-click="add_edit_objective()">Add Objective</button>
 							<button type="button" class="btn btn-warning pull-right" ng-click="list_policy_solutions()">Policy Solutions</button>
