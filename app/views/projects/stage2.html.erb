@@ -41,12 +41,12 @@
 							</div>
 
 							<div>
-								<p class="bold">Filter by Policy Solutions</p>
+								<!-- <p class="bold">Filter by Policy Solutions</p>
 								<a href="#"><span class="label label-info active">ALL</span></a>
 								<a href="#"><span class="label label-info">Amendment to the Penal Code to remove sanctions in the form of detention for sex workers (3)</span></a>
 								<a href="#"><span class="label label-info">Revision of the National HIV Strategy (5)</span></a>
 								<a href="#"><span class="label label-info">Health insurance policy framework revised to cover disadvantaged informal workers</span></a>
-								<a href="#"><span class="label label-info">Increase donor funding on PMTCT</span></a>
+								<a href="#"><span class="label label-info">Increase donor funding on PMTCT</span></a> -->
 							</div>
 
 							<table class="table ">
@@ -69,17 +69,17 @@
 										<td class="text-center">{{objective.momentum}}</td>
 										<td class="text-center">{{objective.advantage}}</td>
 										<td class="text-center">{{objective.total}}</td>
-										<td class="text-center"><i class="fa fa-check" ng-if="objective.prioritized"></i>
+										<td class="text-center">
+											<i class="fa fa-check" ng-if="objective.prioritized"></i>
 										</td>
-										<td class="text-center"><a href="">{{objective.policy_solutions.count}}</a>
-										</td>
+										<td class="text-center">{{objective.solution_ids.length}}</td>
 										<td class="text-center"><a href="#" title="Edit" ng-click="add_edit_objective(objective)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_objective(objective)"><i class="fa fa-trash"></i></a>
 										</td>
 									</tr>
 								</tbody>
 							</table>
 							<nav>
-								<ul class="pagination">
+								<!-- <ul class="pagination">
 									<li>
 										<a href="#" aria-label="Previous">
 											<span aria-hidden="true">&laquo;</span>
@@ -100,7 +100,7 @@
 											<span aria-hidden="true">&raquo;</span>
 										</a>
 									</li>
-								</ul>
+								</ul> -->
 							</nav>
 						</div>
 						<%= render "solutions_list_modal" %>

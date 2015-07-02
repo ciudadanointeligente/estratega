@@ -35,7 +35,8 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 			$scope.solutions = data.map(function (solution) {
 				return {
 					id: solution.id,
-					title: solution.title
+					title: solution.title,
+					description: solution.description
 				}
 			});
 		});
@@ -124,6 +125,21 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 					$modalInstance.dismiss();
 					e.stopPropagation();
 				}
+				$scope.cancel = function (e) {
+					$modalInstance.dismiss();
+					e.stopPropagation();
+				};
+			}
+		});
+	}
+
+	$scope.list_policy_solutions = function() {
+		$aside.open({
+			templateUrl: 'solutions-list-aside.html',
+			placement: 'left',
+			size: 'lg',
+			scope: $scope,
+			controller: function ($scope, $modalInstance) {
 				$scope.cancel = function (e) {
 					$modalInstance.dismiss();
 					e.stopPropagation();
