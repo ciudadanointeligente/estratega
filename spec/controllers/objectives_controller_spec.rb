@@ -57,6 +57,23 @@ RSpec.describe ObjectivesController, :type => :controller do
       get :index, {project_id: project_two}, valid_session
       expect(assigns(:objectives)).to eq([objective_two])
     end
+
+    it "has the field solutions_ids on a json call" do
+      project_two = Project.create! valid_project
+      objective_one = Objective.create! valid_attributes
+      objective_two = Objective.create! valid_attributes
+      solutions_one = create :solution
+      solutions_two = create :solution
+      solutions_three = create :solution
+      real_problem_one = create :real_problem
+      objective_two.solutions << solutions_one
+      objective_two.solutions << solutions_two
+      project_two.objectives << objective_two
+
+      get :index, {project_id: project_two}, valid_session
+      expect(assigns(:objectives).first.solution_ids.count).to eq(2)
+      expect(assigns(:objectives)).to_not include(solutions_three)
+    end
   end
 
   describe "GET show" do
