@@ -1,1 +1,53 @@
-<h1>Stage 5</h1>
+<div class="container main">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 stage_menu">
+			<h3>What will you do to achieve your advocacy objectives?</h3>
+			<ul class="nav nav-stacked">
+				<li class="active"><a href="#"><i class="fa fa-check-circle"></i> Describe the main actions that will be conducted to the desired change</a></li>
+			</ul>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+			<h2>What will you do to achieve your advocacy objectives?</h2>
+			<p>Your advocacy strategy should describe the main actions that will be conducted in order to contribute to the desired change (interim outcome and advocacy objective). The types of actions are numerous and each action can contribute to different outcomes.</p>
+			<div role="tabpanel" class="tabpanel">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data Entry</a></li>
+					<li role="presentation"><a href="#explication" aria-controls="explication" role="tab" data-toggle="tab">Explanation & Examples</a></li>
+					<li role="presentation"><a href="#tips" aria-controls="tips" role="tab" data-toggle="tab">Workshop Tips</a></li>
+				</ul>
+				<!-- Tab panes -->
+				<!-- Actions -->
+					<div class="panel panel-default objetives" ng-repeat="">
+						<div class="panel-heading">
+							<button type="button" class="btn btn-warning pull-right" ng-click="">Edit</button>
+							<h4 class="panel-title"><a data-toggle="collapse" href="#action1" aria-expanded="false" aria-controls="collapseExample">{{ policy.title }}</a></h4>
+						</div>
+						<!-- policy solutions -->
+						<div class="collapse in" id="objetive1">
+							<button type="button" class="btn btn-info pull-right" ng-click="">Add</button>
+							<h4>What actions must we do to achieve this Interim Outcome? <span ng-if="policy.solutions"><i class="fa fa-info-circle" title="Describe the main actions that will be conducted to the desired change"></i></span></h4>
+							<p ng-if="">
+								Describe the main actions that will be conducted to the desired change
+							</p>
+							<table class="table">
+								<tbody>
+									<tr ng-repeat="">
+										<td>Actions title</td>
+										<td>
+											<i class="fa fa-pencil-square-o" ng-click="add_edit_solution(policy.id, solution.id)"></i>
+											<i class="fa fa-trash" ng-click="delete_solution(problem.id, policy.id, solution)"></i>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- end of Actions -->
+					</div>
+					<!-- end of Actions -->
+					<div role="tabpanel" class="tab-pane" id="explication">
+					<%= render 'explanation' %>
+					</div>
+		</div>
+	</div>
+</div>
