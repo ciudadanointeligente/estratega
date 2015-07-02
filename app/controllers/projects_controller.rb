@@ -29,7 +29,8 @@ class ProjectsController < ApplicationController
     @project.real_problem.policy_problems.each do |pp|
       pp.solutions.map {|s| @solutions << s}
     end
-    respond_with(@project, @solutions)
+    # respond_with(@project, @solutions)
+    render template: 'solutions/index.json.jbuilder'
   end
 
   def index
