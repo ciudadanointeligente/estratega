@@ -29,15 +29,15 @@
       <% @activity.asks.each do |ask| %>
         <tr>
           <td><%= ask.title %></td>
-          <td><%= link_to "Show", [@activity, ask] %></td>
-          <td><%= link_to "Edit", edit_activity_ask_path(@activity, ask) %></td>
-          <td><%= link_to "Delete", [@activity, ask], method: :delete, data: {confirm: 'Are you sure?'} %></td>
+          <td><%= link_to "Show", [@project, @activity, ask] %></td>
+          <td><%= link_to "Edit", edit_project_activity_ask_path(@project, @activity, ask) %></td>
+          <td><%= link_to "Delete", [@project, @activity, ask], method: :delete, data: {confirm: 'Are you sure?'} %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <%= link_to "New Ask", new_activity_ask_path(@activity) %>
+  <%= link_to "New Ask", new_project_activity_ask_path(@project, @activity) %>
 </p>
 
-<%= link_to 'Edit', edit_activity_path(@activity) %> |
-<%= link_to 'Back', activities_path %>
+<%= link_to 'Edit', edit_project_activity_path(@project, @activity) %> |
+<%= link_to 'Back', project_activities_path(@project) %>

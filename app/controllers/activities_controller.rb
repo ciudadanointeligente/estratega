@@ -1,5 +1,6 @@
 class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
+  before_action :set_project
 
   respond_to :html
 
@@ -21,27 +22,33 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    @activity = Activity.new(activity_params)
-    @activity.save
-    respond_with(@activity)
+    @activity = @project.activities.create(activity_params)
+    respond_with(@project, @activity)
   end
 
   def update
     @activity.update(activity_params)
-    respond_with(@activity)
+    respond_with(@project, @activity)
   end
 
   def destroy
     @activity.destroy
-    respond_with(@activity)
+    respond_with(@project, @activity)
+  end
+
+  def stage6
   end
 
   private
+    def set_project
+      @project = Project.find(params[:project_id])
+    end
+
     def set_activity
       @activity = Activity.find(params[:id])
     end
 
     def activity_params
-      params.require(:activity).permit(:title, :description, outcome_ids: [])
+      params.require(:activity).permit(:title, :description, :project_id, outcome_ids: [])
     end
 end
