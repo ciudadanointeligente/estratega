@@ -22,12 +22,12 @@
 				<!-- Actions -->
 					<div class="panel panel-default objectives">
 						<div class="panel-heading">
-							{{outcomes}}
+							
 							<button type="button" class="btn btn-warning pull-right" ng-click="">Edit</button>
-							<h4 class="panel-title"><a data-toggle="collapse" href="#action1" aria-expanded="false" aria-controls="collapseExample">{{ policy.title }}</a></h4>
+							<h4 class="panel-title"><a data-toggle="collapse" href="#action1" aria-expanded="false" aria-controls="collapseExample">{{outcomes}}</a></h4>
 						</div>
 						<!-- policy solutions -->
-						<div class="collapse in" id="objetive1">
+						<div class="collapse in" id="action1">
 							<button type="button" class="btn btn-info pull-right" ng-click="">Add</button>
 							<h4>What actions must we do to achieve this Interim Outcome? <span ng-if="policy.solutions"><i class="fa fa-info-circle" title="Describe the main actions that will be conducted to the desired change"></i></span></h4>
 							<p ng-if="">
