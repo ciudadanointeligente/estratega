@@ -1,4 +1,4 @@
-app.controller('step6Ctrl', function($scope, $http){
+app.controller("stage6Ctrl", function($scope, $http, $aside, $location){
 	$scope.asks = [];
 	$scope.current_ask = { title: "", description: "" };
 
