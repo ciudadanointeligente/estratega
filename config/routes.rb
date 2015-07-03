@@ -54,7 +54,9 @@ Rails.application.routes.draw do
       post :create_ww, on: :collection
       patch :update_ww, on: :member
       delete :destroy_ww, on: :member
-      resources :outcomes
+      resources :outcomes do
+        get 'stage5', on: :member
+    end
     end
     get 'stage1', on: :member
     get 'stage2', on: :member

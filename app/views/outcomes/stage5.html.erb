@@ -17,9 +17,12 @@
 					<li role="presentation"><a href="#tips" aria-controls="tips" role="tab" data-toggle="tab">Workshop Tips</a></li>
 				</ul>
 				<!-- Tab panes -->
+				<div class="tab-content" ng-controller="stage5Ctrl">
+					<div role="tabpanel" class="tab-pane active" id="data">
 				<!-- Actions -->
-					<div class="panel panel-default objetives" ng-repeat="">
+					<div class="panel panel-default objectives">
 						<div class="panel-heading">
+							{{outcomes}}
 							<button type="button" class="btn btn-warning pull-right" ng-click="">Edit</button>
 							<h4 class="panel-title"><a data-toggle="collapse" href="#action1" aria-expanded="false" aria-controls="collapseExample">{{ policy.title }}</a></h4>
 						</div>
@@ -32,8 +35,8 @@
 							</p>
 							<table class="table">
 								<tbody>
-									<tr ng-repeat="">
-										<td>Actions title</td>
+									<tr ng-repeat="outcome in outcomes">
+										<td>{{outcome}}</td>
 										<td>
 											<i class="fa fa-pencil-square-o" ng-click="add_edit_solution(policy.id, solution.id)"></i>
 											<i class="fa fa-trash" ng-click="delete_solution(problem.id, policy.id, solution)"></i>
@@ -44,10 +47,13 @@
 						</div>
 						<!-- end of Actions -->
 					</div>
+					</div>
 					<!-- end of Actions -->
 					<div role="tabpanel" class="tab-pane" id="explication">
-					<%= render 'explanation' %>
+					<%= render 'explanation_stage5' %>
 					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
