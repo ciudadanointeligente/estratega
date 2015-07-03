@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(version: 20150703153458) do
   add_index "activities_outcomes", ["outcome_id", "activity_id"], name: "index_activities_outcomes_on_outcome_id_and_activity_id", using: :btree
 
   create_table "actors", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",        limit: 255
     t.text     "description"
-    t.string   "actor_type"
+    t.string   "actor_type",  limit: 255
     t.integer  "support"
     t.integer  "influence"
     t.datetime "created_at"
@@ -60,14 +60,14 @@ ActiveRecord::Schema.define(version: 20150703153458) do
   add_index "asks", ["activity_id"], name: "index_asks_on_activity_id", using: :btree
 
   create_table "objectives", force: :cascade do |t|
-    t.string   "title"
+    t.string   "title",            limit: 255
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "prioritized"
     t.integer  "project_id"
-    t.string   "barriers",         default: [], array: true
-    t.string   "enabling_factors", default: [], array: true
+    t.string   "barriers",                     default: [], array: true
+    t.string   "enabling_factors",             default: [], array: true
   end
 
   add_index "objectives", ["project_id"], name: "index_objectives_on_project_id", using: :btree
@@ -81,10 +81,10 @@ ActiveRecord::Schema.define(version: 20150703153458) do
   add_index "objectives_solutions", ["solution_id", "objective_id"], name: "index_objectives_solutions_on_solution_id_and_objective_id", using: :btree
 
   create_table "other_names", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "start_date"
     t.datetime "end_date"
-    t.string   "note"
+    t.string   "note",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "people_id"
@@ -100,18 +100,19 @@ ActiveRecord::Schema.define(version: 20150703153458) do
     t.datetime "updated_at"
     t.text     "outcome_type_id"
     t.text     "actor_type_id"
+    t.string   "categorie"
   end
 
   add_index "outcomes", ["objective_id"], name: "index_outcomes_on_objective_id", using: :btree
 
   create_table "people", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "gender"
+    t.string   "name",       limit: 255
+    t.string   "email",      limit: 255
+    t.string   "gender",     limit: 255
     t.datetime "birth_date"
     t.datetime "death_date"
-    t.string   "image"
-    t.string   "summary"
+    t.string   "image",      limit: 255
+    t.string   "summary",    limit: 255
     t.text     "biography"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -130,7 +131,7 @@ ActiveRecord::Schema.define(version: 20150703153458) do
   create_table "projects", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "title"
+    t.string   "title",       limit: 255
     t.text     "description"
     t.boolean  "public"
   end
@@ -150,16 +151,16 @@ ActiveRecord::Schema.define(version: 20150703153458) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "project_id"
-    t.string   "title"
+    t.string   "title",       limit: 255
     t.text     "description"
     t.boolean  "public"
-    t.string   "link"
+    t.string   "link",        limit: 255
   end
 
   add_index "resources", ["project_id"], name: "index_resources_on_project_id", using: :btree
 
   create_table "sandboxes", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",        limit: 255
     t.text     "description"
     t.text     "graph_data"
     t.datetime "created_at"
@@ -183,9 +184,9 @@ ActiveRecord::Schema.define(version: 20150703153458) do
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
-    t.string   "taggable_type"
+    t.string   "taggable_type", limit: 255
     t.integer  "tagger_id"
-    t.string   "tagger_type"
+    t.string   "tagger_type",   limit: 255
     t.string   "context",       limit: 128
     t.datetime "created_at"
   end
@@ -194,19 +195,19 @@ ActiveRecord::Schema.define(version: 20150703153458) do
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
   create_table "tags", force: :cascade do |t|
-    t.string  "name"
-    t.integer "taggings_count", default: 0
+    t.string  "name",           limit: 255
+    t.integer "taggings_count",             default: 0
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"

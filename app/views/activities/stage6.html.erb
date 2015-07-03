@@ -44,6 +44,23 @@
 									</tbody>
 								</table>
 					</div>
+					<script type="text/ng-template" id="add-ask.html">
+		                <div class="modal-header">
+		                  <h3 class="modal-title">Actor</h3>
+		                </div>
+		                <div class="modal-body">
+		                  <form>
+		                    <div class="form-group">
+		                      <label for="title">Description</label>
+		                      <input type="text" name="description" class="form-control" ng-model="current_enabling_factor" placeholder="Enter Description">
+		                    </div>
+		                  </form>
+		                </div>
+		                <div class="modal-footer">
+		                  <button class="btn btn-primary" ng-click="save($event)">Save</button>
+		                  <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
+		                </div>
+		            </script>
 
 					</div>
 					<!-- end of Actions -->

@@ -19,4 +19,23 @@ app.controller('step6Ctrl', function($scope, $http){
 				$scope.current_ask = data;
 			})
 	}
+	$scope.add_edit_ask = function(policy_id, solution_id) {
+
+		$aside.open({
+			templateUrl: 'add-ask.html',
+			placement: 'left',
+			size: 'lg',
+			scope: $scope,
+			controller: function($scope, $modalInstance) {
+				$scope.save = function(e) {
+					$modalInstance.dismiss();
+                  	e.stopPropagation();
+				}
+				$scope.cancel = function(e) {
+                  $modalInstance.dismiss();
+                  e.stopPropagation();
+                };
+			}
+		});
+	}
 })
