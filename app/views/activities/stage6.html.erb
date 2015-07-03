@@ -1,0 +1,57 @@
+<div class="container main">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 stage_menu">
+			<h3>What do you want the target audience to do?</h3>
+			<ul class="nav nav-stacked">
+				<li class="active"><a href="#"><i class="fa fa-check-circle"></i> What will the ask for each actor?</a></li>
+			</ul>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+			<h2>What do you want the target audience to do?</h2>
+			<p>Your advocacy strategy should describe the main actions that will be conducted in order to contribute to the desired change (interim outcome and advocacy objective). The types of actions are numerous and each action can contribute to different outcomes.</p>
+			<div role="tabpanel" class="tabpanel">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data Entry</a></li>
+					<li role="presentation"><a href="#explication" aria-controls="explication" role="tab" data-toggle="tab">Explanation & Examples</a></li>
+					<li role="presentation"><a href="#tips" aria-controls="tips" role="tab" data-toggle="tab">Workshop Tips</a></li>
+				</ul>
+				<!-- Tab panes -->
+				<div class="tab-content" ng-controller="stage5Ctrl">
+					<div role="tabpanel" class="tab-pane active" id="data">
+				<!-- Actions -->
+					<div class="bg_grey">
+						<button type="button" class="btn btn-info pull-right" ng-click="add_edit_ask()">Add</button>
+						<h4>What will the ask for each actor?</h4>
+						<p>
+							The Ask should be clear, concise, solution-focused, and tailored to each actor.
+						</p>
+						<table class="table">
+									<tbody>
+										<tr>
+											<th>Actor</th>
+											<th>Ask</th>
+											<th class="text-right">Actions</th>
+										</tr>
+										<tr ng-repeat="solution in policy.solutions">
+											<td>{{ ask.actor }}</td>
+											<td>{{ ask.ask }}</td>
+											<td  class="text-right">
+												<i class="fa fa-pencil-square-o" ng-click="add_edit_ask()"></i>
+												<i class="fa fa-trash" ng-click="delete_ask()"></i>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+					</div>
+
+					</div>
+					<!-- end of Actions -->
+					<div role="tabpanel" class="tab-pane" id="explication">
+					<%= render 'explanation_stage5' %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
