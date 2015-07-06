@@ -17,6 +17,18 @@
 				<input type="checkbox" name="prioritized" class="form-control" ng-model="current_objective.prioritized"></input>
 			</div>
 			<div class="form-group">
+				<label for="key_contribution">Subtotal Key Contribution</label>
+				<input type="number" name="key_contribution" class="form-control" ng-model="current_objective.key_contribution" min="0" value="0"></input>
+			</div>
+			<div class="form-group">
+				<label for="momentum">Subtotal Momentum</label>
+				<input type="number" name="momentum" class="form-control" ng-model="current_objective.momentum" min="0" value="0"></input>
+			</div>
+			<div class="form-group">
+				<label for="comparative_advantage">Subtotal Comparative Advantage</label>
+				<input type="number" name="comparative_advantage" class="form-control" ng-model="current_objective.comparative_advantage" min="0" value="0"></input>
+			</div>
+			<div class="form-group">
 				<label for="solution_ids">Related Solutions</label>
 				<select style="max-width: 735px;" name="solution_ids" multiple="multiple" ng-multiple="true" ng-model="current_objective.solution_ids" ng-options="solution.id as solution.title for solution in solutions">
 				</select>

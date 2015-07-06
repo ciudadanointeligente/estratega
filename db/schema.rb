@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150630185843) do
+ActiveRecord::Schema.define(version: 20150706141136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,8 +63,11 @@ ActiveRecord::Schema.define(version: 20150630185843) do
     t.datetime "updated_at"
     t.boolean  "prioritized"
     t.integer  "project_id"
-    t.string   "barriers",         default: [], array: true
-    t.string   "enabling_factors", default: [], array: true
+    t.string   "barriers",              default: [], array: true
+    t.string   "enabling_factors",      default: [], array: true
+    t.integer  "key_contribution"
+    t.integer  "momentum"
+    t.integer  "comparative_advantage"
   end
 
   add_index "objectives", ["project_id"], name: "index_objectives_on_project_id", using: :btree

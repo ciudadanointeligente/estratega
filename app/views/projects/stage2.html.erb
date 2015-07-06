@@ -36,8 +36,8 @@
 							<button type="button" class="btn btn-warning pull-right" ng-click="list_policy_solutions()">Policy Solutions</button>
 							<h4>Formulate the policy solutions as objectives <i class="fa fa-info-circle" title="The advocacy objectives are what the organization aims to achieve over several years (usually 3-5). It is the overall policy change that is desired as a result of advocacy effort."></i></h4>
 
-							<div class="alert alert-info" role="alert">
-								<i class="fa fa-exclamation-triangle"></i> <a href="#">There are still 2 policy solutions without objectives</a>
+							<div class="alert alert-info" role="alert" ng-class="{hidden: unrelated_solutions < 1}">
+								<i class="fa fa-exclamation-triangle"></i> <a href="#">There are still {{unrelated_solutions}} policy solutions without objectives</a>
 							</div>
 
 							<div>
@@ -65,10 +65,10 @@
 								<tbody>
 									<tr ng-repeat="objective in objectives">
 										<td>{{objective.title}}</td>
-										<td class="text-center">{{objective.contribution}}</td>
+										<td class="text-center">{{objective.key_contribution}}</td>
 										<td class="text-center">{{objective.momentum}}</td>
-										<td class="text-center">{{objective.advantage}}</td>
-										<td class="text-center">{{objective.total}}</td>
+										<td class="text-center">{{objective.comparative_advantage}}</td>
+										<td class="text-center">{{ objective.key_contribution + objective.momentum + objective.comparative_advantage }}</td>
 										<td class="text-center">
 											<i class="fa fa-check" ng-if="objective.prioritized"></i>
 										</td>

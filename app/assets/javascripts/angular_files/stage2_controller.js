@@ -30,13 +30,22 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 			$scope.objectives = data;
 		});
 
+	$scope.unrelated_solutions = 0;
+
 	$http.get('/projects/' + $scope.project_id + '/solutions.json')
 		.success(function (data) {
 			$scope.solutions = data.map(function (solution) {
 				return {
 					id: solution.id,
 					title: solution.title,
-					description: solution.description
+					description: solution.description,
+					objective_ids: solution.objective_ids
+				}
+			});
+			var cnt = 0;
+			data.forEach(function(the_data){
+				if( the_data['objective_ids'].length < 1 ) {
+					$scope.unrelated_solutions = cnt + 1;
 				}
 			});
 		});
@@ -47,6 +56,10 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 			title: $scope.current_objective.title,
 			description: $scope.current_objective.description,
 			project_id: $scope.current_objective.project_id,
+			prioritized: $scope.current_objective.prioritized,
+			key_contribution: $scope.current_objective.key_contribution,
+			momentum: $scope.current_objective.momentum,
+			comparative_advantage: $scope.current_objective.comparative_advantage,
 			solution_ids: $scope.current_objective.solution_ids
 		}
 		if ($scope.current_objective.id) {
