@@ -46,6 +46,13 @@ RSpec.describe ActivitiesController, :type => :controller do
       get :index, {project_id: @project}, valid_session
       expect(assigns(:activities)).to eq([activity])
     end
+
+    it "should display a json with all activities" do
+      activity = Activity.create! valid_attributes
+      get :index, {project_id: @project}, valid_session, :format => 'json'
+      # expect(JSON.parse(response.body)).to include "Political will"
+      expect(assigns(:activities).length).to eq(1)
+    end
   end
 
   describe "GET show" do
