@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+	before_action :set_project, only: [:show, :edit, :update, :destroy, :solutions, :stage1]
 
   respond_to :html, :json
 
@@ -9,19 +9,13 @@ class ProjectsController < ApplicationController
   def stage2
   end
 
-  def stage3
-  end
-
-  def stage4
-  end
-
-  def stage5
-  end
-
-  def stage6
-  end
-
-  def stage7
+  def solutions
+    @solutions = []
+    @project.real_problem.policy_problems.each do |pp|
+      pp.solutions.map {|s| @solutions << s}
+    end
+    # respond_with(@project, @solutions)
+    render template: 'solutions/index.json.jbuilder'
   end
 
   def index
@@ -74,7 +68,7 @@ class ProjectsController < ApplicationController
 
   private
     def set_project
-      @project = Project.find(params[:id])
+		@project = Project.find(params[:id])
     end
 
     def project_params

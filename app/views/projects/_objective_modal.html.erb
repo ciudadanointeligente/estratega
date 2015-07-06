@@ -1,0 +1,42 @@
+<script type="text/ng-template" id="objective-aside.html">
+	<div class="modal-header">
+		<h3 class="modal-title">Objective</h3>
+	</div>
+	<div class="modal-body">
+		<form>
+			<div class="form-group">
+				<label for="title">Title</label>
+				<input type="text" name="title" class="form-control" ng-model="current_objective.title" placeholder="Enter the objective's title">
+			</div>
+			<div class="form-group">
+				<label for="description">Description</label>
+				<textarea name="description" class="form-control textarea-400" ng-model="current_objective.description" placeholder="Add any important objective info"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="prioritized">Prioritized</label>
+				<input type="checkbox" name="prioritized" class="form-control" ng-model="current_objective.prioritized"></input>
+			</div>
+			<div class="form-group">
+				<label for="key_contribution">Subtotal Key Contribution</label>
+				<input type="number" name="key_contribution" class="form-control" ng-model="current_objective.key_contribution" min="0" value="0"></input>
+			</div>
+			<div class="form-group">
+				<label for="momentum">Subtotal Momentum</label>
+				<input type="number" name="momentum" class="form-control" ng-model="current_objective.momentum" min="0" value="0"></input>
+			</div>
+			<div class="form-group">
+				<label for="comparative_advantage">Subtotal Comparative Advantage</label>
+				<input type="number" name="comparative_advantage" class="form-control" ng-model="current_objective.comparative_advantage" min="0" value="0"></input>
+			</div>
+			<div class="form-group">
+				<label for="solution_ids">Related Solutions</label>
+				<select style="max-width: 735px;" name="solution_ids" multiple="multiple" ng-multiple="true" ng-model="current_objective.solution_ids" ng-options="solution.id as solution.title for solution in solutions">
+				</select>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: current_objective.title == ''}">Save</button>
+		<button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
+	</div>
+</script>

@@ -43,7 +43,7 @@
                 </td>
                 <td>
                   <% if !@project.real_problem.blank? %>
-                  <%= link_to @project.real_problem.title, stage1_project_path  %>
+                  <%= link_to @project.real_problem.title, stage1_project_path, target: "_self"  %>
                   <% else %>
                   <%= link_to 'Articulate the real-world problem children are facing that you want to address', stage1_project_path, target: "_self" %>
                   <% end %>
@@ -118,7 +118,9 @@
             <tbody>
               <tr title="You must complete the previous step">
                 <td class="text-center td-w-10p"><i class="fa fa-lock"></i></td>
-                <td>Add and prioritize objectives</td>
+                <td>
+					<%= link_to 'Add and prioritize objectives', stage2_project_path(), target: "_self" %>
+				</td>
               </tr>
             </tbody>
       </table>
@@ -137,7 +139,10 @@
             <tbody>
               <tr title="Complete Step">
                 <td class="text-center td-w-10p"><i class="fa fa-unlock"></i></td>
-                <td><a href="#">Add and prioritize objectives</a></td>
+                <td>
+					<!--<a href="#">Add and prioritize objectives</a>-->
+					<%= link_to 'Add and prioritize objectives', stage2_project_path(), target: "_self" %>
+				</td>
               </tr>
             </tbody>
       </table>

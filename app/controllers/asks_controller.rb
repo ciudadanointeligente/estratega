@@ -1,6 +1,7 @@
 class AsksController < ApplicationController
   before_action :set_ask, only: [:show, :edit, :update, :destroy]
   before_action :set_activity
+  before_action :set_project
 
   respond_to :html, :json
 
@@ -23,20 +24,24 @@ class AsksController < ApplicationController
 
   def create
     @ask = @activity.asks.create(ask_params)
-    respond_with(@activity, @ask)
+    respond_with(@project, @activity, @ask)
   end
 
   def update
     @ask.update(ask_params)
-    respond_with(@activity, @ask)
+    respond_with(@project, @activity, @ask)
   end
 
   def destroy
     @ask.destroy
-    respond_with(@activity)
+    respond_with(@project, @activity)
   end
 
   private
+    def set_project
+      @project = Project.find(params[:project_id])
+    end
+
     def set_activity
       @activity = Activity.find(params[:activity_id])
     end
@@ -46,6 +51,6 @@ class AsksController < ApplicationController
     end
 
     def ask_params
-      params.require(:ask).permit(:title, :description, :activity_id)
+      params.require(:ask).permit(:title, :description, :activity_id, :project_id)
     end
 end

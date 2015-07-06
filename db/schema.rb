@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527222310) do
+ActiveRecord::Schema.define(version: 20150706153043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,10 @@ ActiveRecord::Schema.define(version: 20150527222310) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "project_id"
   end
+
+  add_index "activities", ["project_id"], name: "index_activities_on_project_id", using: :btree
 
   create_table "activities_outcomes", id: false, force: :cascade do |t|
     t.integer "activity_id", null: false
@@ -63,8 +66,11 @@ ActiveRecord::Schema.define(version: 20150527222310) do
     t.datetime "updated_at"
     t.boolean  "prioritized"
     t.integer  "project_id"
-    t.string   "barriers",         default: [], array: true
-    t.string   "enabling_factors", default: [], array: true
+    t.string   "barriers",              default: [], array: true
+    t.string   "enabling_factors",      default: [], array: true
+    t.integer  "key_contribution"
+    t.integer  "momentum"
+    t.integer  "comparative_advantage"
   end
 
   add_index "objectives", ["project_id"], name: "index_objectives_on_project_id", using: :btree
@@ -77,18 +83,6 @@ ActiveRecord::Schema.define(version: 20150527222310) do
   add_index "objectives_solutions", ["objective_id", "solution_id"], name: "index_objectives_solutions_on_objective_id_and_solution_id", using: :btree
   add_index "objectives_solutions", ["solution_id", "objective_id"], name: "index_objectives_solutions_on_solution_id_and_objective_id", using: :btree
 
-  create_table "other_names", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.string   "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "people_id"
-  end
-
-  add_index "other_names", ["people_id"], name: "index_other_names_on_people_id", using: :btree
-
   create_table "outcomes", force: :cascade do |t|
     t.text     "title"
     t.text     "description"
@@ -97,22 +91,10 @@ ActiveRecord::Schema.define(version: 20150527222310) do
     t.datetime "updated_at"
     t.text     "outcome_type_id"
     t.text     "actor_type_id"
+    t.string   "categorie"
   end
 
   add_index "outcomes", ["objective_id"], name: "index_outcomes_on_objective_id", using: :btree
-
-  create_table "people", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "gender"
-    t.datetime "birth_date"
-    t.datetime "death_date"
-    t.string   "image"
-    t.string   "summary"
-    t.text     "biography"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "policy_problems", force: :cascade do |t|
     t.text     "title"
@@ -139,6 +121,7 @@ ActiveRecord::Schema.define(version: 20150527222310) do
     t.datetime "updated_at"
     t.integer  "project_id"
     t.text     "focus_area"
+    t.text     "goal"
   end
 
   add_index "real_problems", ["project_id"], name: "index_real_problems_on_project_id", using: :btree
@@ -215,4 +198,5 @@ ActiveRecord::Schema.define(version: 20150527222310) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "activities", "projects"
 end

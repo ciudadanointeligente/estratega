@@ -55,6 +55,7 @@ RSpec.describe OutcomesController, :type => :controller do
       expect(response).to be_success
       expect(assigns(:outcomes).length).to eq(1)
       expect(assigns(:outcomes).first.title).to eq('MyText')
+	  expect(assigns(:outcomes).first.categorie).to eq('Political will')
     end
   end
 

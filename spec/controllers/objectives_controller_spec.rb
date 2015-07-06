@@ -57,6 +57,23 @@ RSpec.describe ObjectivesController, :type => :controller do
       get :index, {project_id: project_two}, valid_session
       expect(assigns(:objectives)).to eq([objective_two])
     end
+
+    it "has the field solutions_ids on a json call" do
+      project_two = Project.create! valid_project
+      objective_one = Objective.create! valid_attributes
+      objective_two = Objective.create! valid_attributes
+      solutions_one = create :solution
+      solutions_two = create :solution
+      solutions_three = create :solution
+      real_problem_one = create :real_problem
+      objective_two.solutions << solutions_one
+      objective_two.solutions << solutions_two
+      project_two.objectives << objective_two
+
+      get :index, {project_id: project_two}, valid_session
+      expect(assigns(:objectives).first.solution_ids.count).to eq(2)
+      expect(assigns(:objectives)).to_not include(solutions_three)
+    end
   end
 
   describe "GET show" do
@@ -129,25 +146,6 @@ RSpec.describe ObjectivesController, :type => :controller do
         expect(response).to render_template("new")
       end
     end
-
-    describe "with create_ww" do
-      it "creates a new Objective" do
-        expect {
-          post :create_ww, {project_id: @project, :objective => valid_attributes}, valid_session
-        }.to change(Objective, :count).by(1)
-      end
-
-      it "assigns a newly created objective as @objective" do
-        post :create_ww, {project_id: @project, :objective => valid_attributes}, valid_session
-        expect(assigns(:objective)).to be_a(Objective)
-        expect(assigns(:objective)).to be_persisted
-      end
-
-      it "redirects to wizard step2" do
-        post :create_ww, {project_id: @project, :objective => valid_attributes}, valid_session
-        expect(response).to redirect_to(controller: :steps, action: :step2)
-      end
-    end
   end
 
   describe "PUT update" do
@@ -189,27 +187,6 @@ RSpec.describe ObjectivesController, :type => :controller do
         expect(response).to render_template("edit")
       end
     end
-
-    describe "with update_ww" do
-      it "updates the requested objective" do
-        objective = Objective.create! valid_attributes
-        put :update_ww, {project_id: @project, :id => objective.to_param, :objective => new_attributes}, valid_session
-        objective.reload
-        expect(assigns(:objective).attributes).to include(new_attributes.stringify_keys)
-      end
-
-      it "assigns the requested objective as @objective" do
-        objective = Objective.create! valid_attributes
-        put :update_ww, {project_id: @project, :id => objective.to_param, :objective => valid_attributes}, valid_session
-        expect(assigns(:objective)).to eq(objective)
-      end
-
-      it "redirects to wizard step2 with no objective param" do
-        objective = Objective.create! valid_attributes
-        put :update_ww, {project_id: @project, :id => objective.to_param, :objective => valid_attributes}, valid_session
-        expect(response).to redirect_to(controller: :steps, action: :step2)
-      end
-    end
   end
 
   describe "DELETE destroy" do
@@ -224,22 +201,6 @@ RSpec.describe ObjectivesController, :type => :controller do
       objective = Objective.create! valid_attributes
       delete :destroy, {project_id: @project, :id => objective.to_param}, valid_session
       expect(response).to redirect_to(project_objectives_url(@project))
-    end
-
-    describe "with destroy_ww" do
-      it "destroys the requested objective" do
-        objective = Objective.create! valid_attributes
-        expect {
-          delete :destroy_ww, {project_id: @project, :id => objective.to_param}, valid_session
-        }.to change(Objective, :count).by(-1)
-      end
-
-      it "redirects to the objectives list" do
-        objective = Objective.create! valid_attributes
-        delete :destroy_ww, {project_id: @project, :id => objective.to_param}, valid_session
-        expect(response).to redirect_to(controller: :steps, action: :step2)
-      end
-      
     end
   end
 
