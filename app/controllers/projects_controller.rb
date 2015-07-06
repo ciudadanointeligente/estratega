@@ -9,21 +9,6 @@ class ProjectsController < ApplicationController
   def stage2
   end
 
-  def stage3
-  end
-
-  def stage4
-  end
-
-  def stage5
-  end
-
-  def stage6
-  end
-
-  def stage7
-  end
-
   def solutions
     @solutions = []
     @project.real_problem.policy_problems.each do |pp|

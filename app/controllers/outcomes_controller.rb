@@ -42,6 +42,9 @@ class OutcomesController < ApplicationController
     respond_with(@outcome.type_list)
   end
 
+  def stage5
+  end
+
   private
     def set_project
       @project = Project.find(params[:project_id])

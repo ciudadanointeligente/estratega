@@ -30,31 +30,14 @@ class ObjectivesController < ApplicationController
     respond_with(@project, @objective)
   end
 
-  def create_ww
-    @objective = Objective.new(objective_params)
-    @objective.save
-    flash[:notice] = "Updated"
-    redirect_to url_for("/steps/step2")
-  end
-
   def update
     @objective.update(objective_params)
     respond_with(@project, @objective)
   end
 
-  def update_ww
-    @objective.update(objective_params)
-    redirect_to url_for(controller: :steps, action: :step2)
-  end
-
   def destroy
     @objective.destroy
     respond_with(@project, @objective)
-  end
-
-  def destroy_ww
-    @objective.destroy
-    redirect_to url_for(controller: :steps, action: :step2)
   end
 
   def actors

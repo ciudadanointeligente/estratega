@@ -26,20 +26,9 @@ class RealProblemsController < ApplicationController
     respond_with(@real_problem)
   end
 
-  def create_ww
-    @real_problem = RealProblem.new(real_problem_params)
-    @real_problem.save
-    redirect_to step_path(:step1_2, :rp_id => @real_problem.id)
-  end
-
   def update
     @real_problem.update(real_problem_params)
     respond_with(@real_problem)
-  end
-
-  def update_ww
-    @real_problem.update(real_problem_params)
-    redirect_to step_path(:step1_2, :rp_id => @real_problem.id)
   end
 
   def destroy

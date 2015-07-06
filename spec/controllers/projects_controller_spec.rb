@@ -172,34 +172,6 @@ RSpec.describe ProjectsController, :type => :controller do
         expect(response).to render_template :stage2
       end
     end
-
-    describe "GET stage4" do
-      it "render stage4 template" do
-        get :stage4, {id: @project}
-        expect(response).to render_template :stage4
-      end
-    end
-
-    describe "GET stage5" do
-      it "render stage5 template" do
-        get :stage5, {id: @project}
-        expect(response).to render_template :stage5
-      end
-    end
-
-    describe "GET stage6" do
-      it "render stage6 template" do
-        get :stage6, {id: @project}
-        expect(response).to render_template :stage6
-      end
-    end
-
-    describe "GET stage7" do
-      it "render stage7 template" do
-        get :stage7, {id: @project}
-        expect(response).to render_template :stage7
-      end
-    end
   end
 
   describe "POST create" do
