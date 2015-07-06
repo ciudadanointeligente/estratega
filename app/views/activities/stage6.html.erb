@@ -46,14 +46,25 @@
 					</div>
 					<script type="text/ng-template" id="add-ask.html">
 		                <div class="modal-header">
-		                  <h3 class="modal-title">Actor</h3>
+		                  <h3 class="modal-title">Ask</h3>
 		                </div>
 		                <div class="modal-body">
 		                  <form>
 		                    <div class="form-group">
-		                      <label for="title">Description</label>
-		                      <input type="text" name="description" class="form-control" ng-model="current_enabling_factor" placeholder="Enter Description">
-		                    </div>
+					            <label for="target-audience">Actor</label>
+					            <select class="form-control" id="target-audience">
+					              <option>Select Target Audience</option>
+					              <option>Minister of Health</option>
+					              <option>Members of Parliament</option>
+					              <option>Director of the Department</option>
+					              <option>INGO “X”</option>
+					              <option>UN Agencies</option>
+					            </select>
+					          </div>
+					          <div class="form-group">
+					            <label for="ask">Ask</label>
+					            <textarea class="form-control" rows="3" id="ask" placeholder="Write Ask"></textarea>
+					          </div>
 		                  </form>
 		                </div>
 		                <div class="modal-footer">
