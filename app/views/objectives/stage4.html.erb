@@ -1,70 +1,73 @@
 <div class="container main">
-	
-	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 stage_menu">
-			<h3>Which steps will lead you to the achievement of your advocacy objectives?</h3>
-			<ul class="nav nav-stacked">
-				<li class="active"><a href="#"><i class="fa fa-check-circle"></i> Define Interim Outcomes</a></li>
-			</ul>
-		</div>
-		<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-			<h2>Which steps will lead you to the achievement of your advocacy objectives?</h2>
-			<p>At this point in the planning process, the analysis necessary to underpin your advocacy strategy is complete. Hence, now it is time to use that analysis to guide the definition of the shorter-term results that must be achieved in order to reach the advocacy objective. These are your advocacy interim outcomes and when arranged sequencially they will describe the plausible path of how you envision that the policy change you are seeking will take place as a result of your advocacy.</p>
-			<div role="tabpanel" class="tabpanel">
-				<!-- Nav tabs -->
-				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data Entry</a></li>
-					<li role="presentation"><a href="#explication" aria-controls="explication" role="tab" data-toggle="tab">Explication & Examples</a></li>
-				</ul>
-				<!-- Tab panes -->
-				<div class="tab-content" ng-controller="stage4Ctrl">
-					<div role="tabpanel" class="tab-pane active" id="data">
-						<div class="bg_grey">
-							<button type="button" class="btn btn-warning pull-right" ng-click="add_edit_outcome()">Add</button>
-							<h4>Define Interim Outcomes <i class="fa fa-info-circle" title="The interim outcomes refer to changes in the target audiences/critical players´attitudes, beliefs or behaviours."></i></h4>
-							<table class="table">
-								<thead>
-									<tr>
-										<th>Interim Outcome</th>
-										<th>Category</th>
-										<th class="text-center">Actions</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr ng-repeat="outcome in outcomes">
-										<td>{{outcome.title}}</td>
-										<td>{{outcome.categorie}}</td>
-										<td class="text-center"><a href="#" title="Edit" ng-click="add_edit_outcome(outcome)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_outcome(outcome)"><i class="fa fa-trash"></i></a></td>
-									</tr>
-								</tbody>
-							</table>
-							<nav>
-								<!-- <ul class="pagination">
-									<li>
-											<a href="#" aria-label="Previous">
-												<span aria-hidden="true">&laquo;</span>
-											</a>
-									</li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li>
-											<a href="#" aria-label="Next">
-												<span aria-hidden="true">&raquo;</span>
-											</a>
-									</li>
-								</ul> -->
-							</nav>
-						</div>
-						<%= render "outcome_modal" %>
-					</div>
-					<div role="tabpanel" class="tab-pane" id="explication">
-						<%= render "explanation_stage4" %>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 stage_menu">
+      <h3>Which steps will lead you to the achievement of your advocacy objectives?</h3>
+      <ul class="nav nav-stacked">
+        <li class="active"><a href="#"><i class="fa fa-check-circle"></i> Define Interim Outcomes</a></li>
+      </ul>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+      <h2>Which steps will lead you to the achievement of your advocacy objectives?</h2>
+      <p>At this point in the planning process, the analysis necessary to underpin your advocacy strategy is complete. Hence, now it is time to use that analysis to guide the definition of the shorter-term results that must be achieved in order to reach the advocacy objective. These are your advocacy interim outcomes and when arranged sequencially they will describe the plausible path of how you envision that the policy change you are seeking will take place as a result of your advocacy.</p>
+      <div role="tabpanel" class="tabpanel">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data Entry</a></li>
+          <li role="presentation"><a href="#explication" aria-controls="explication" role="tab" data-toggle="tab">Explication & Examples</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content" ng-controller="stage4Ctrl">
+          <div role="tabpanel" class="tab-pane active" id="data">
+            <div class="bg_grey">
+              <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_outcome()">Add</button>
+              <h4>Define Interim Outcomes <i class="fa fa-info-circle" title="The interim outcomes refer to changes in the target audiences/critical players´attitudes, beliefs or behaviours."></i></h4>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Interim Outcome</th>
+                    <th>Interim Outcome Type</th>
+                    <th>Actor Type</th>
+                    <th>Activities Number</th>
+                    <th class="text-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="outcome in outcomes">
+                    <td>{{outcome.description}}</td>
+                    <td>{{outcome.outcome_type_id}}</td>
+                    <td>{{outcome.actor_type_id}}</td>
+                    <td></td>
+                    <td class="text-center"><a href="#" title="Edit" ng-click="add_edit_outcome(outcome)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_outcome(outcome)"><i class="fa fa-trash"></i></a></td>
+                  </tr>
+                </tbody>
+              </table>
+              <nav>
+                <!-- <ul class="pagination">
+                  <li>
+                      <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                  </li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li>
+                      <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                  </li>
+                </ul> -->
+              </nav>
+            </div>
+            <%= render "outcome_modal" %>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="explication">
+            <%= render "explanation" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
