@@ -1,17 +1,19 @@
 Rails.application.routes.draw do
   root to: 'visitors#index'
-  resources :actors
+
+  resources :actors do
+    get 'actor_type', on: :collection
+  end
 
   resources :activities do
     resources :asks
   end
 
-  
   get 'solutions/aside', to: 'solutions#aside'
   get 'solutions/aside_form', to: 'solutions#aside_form'
   get 'solutions/list', to: 'solutions#list'
-
   get 'real_problems/focus_area', to: 'real_problems#focus_area'
+
   resources :real_problems do
     post 'create_ww', on: :collection
     patch 'update_ww',  on: :member
@@ -41,7 +43,7 @@ Rails.application.routes.draw do
   end
 
   get 'outcomes/categories', to: 'outcomes#categories'
-  
+
   resources :projects do
     resources :resources do
       get 'aside', on: :collection
