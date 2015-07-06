@@ -100,38 +100,6 @@ RSpec.describe SolutionsController, :type => :controller do
         }.to change(@policy_problem.solutions, :count).by(1)
         expect(assigns(:solution).policy_problem_id).to eq(@policy_problem.id)
       end
-
-      describe "with create_ww" do
-        before(:each) do
-          @real_problem = create(:real_problem)
-          @policy_problem = create(:policy_problem)
-          @policy_solution = create(:solution)
-
-          @policy_problem.solutions.append @policy_solution
-          @real_problem.policy_problems.append @policy_problem
-          @real_problem.save
-        end
-        it "creates a new Solution" do
-          expect {
-            post :create_ww, {real_problem_id: @real_problem, policy_problem_id: @policy_problem, solution: attributes_for(:solution)}, valid_session
-          }.to change(Solution, :count).by(1)
-        end
-
-        it "creates a solution related to a policy problem" do
-          post :create_ww, {real_problem_id: @real_problem, policy_problem_id: @policy_problem, solution: attributes_for(:solution)}, valid_session
-          expect(@policy_problem.solutions).to include(assigns(:solution))
-          expect(assigns(:solution).policy_problem).to eq(@policy_problem)
-
-          #un pp contenga un array de soluciones
-          #una soluciones contenga un array de pp
-          #expect(@policy_problem.solutions).to include(assigns(:solution))
-          #expect(assigns(:solution).policy_problems).to include(@policy_problem)
-        end
-
-        # it "redirects to step1_3" do
-        #   post :create_ww, {real_problem}
-        # end
-      end
     end
 
     describe "with invalid params" do
