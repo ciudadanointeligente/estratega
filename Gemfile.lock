@@ -342,3 +342,6 @@ DEPENDENCIES
   unicorn
   unicorn-rails
   wicked
+
+BUNDLED WITH
+   1.10.3
