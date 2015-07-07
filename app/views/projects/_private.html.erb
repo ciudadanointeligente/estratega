@@ -11,15 +11,15 @@
 		<tr>
 			<td><%= link_to p.title, p %></td>
 			<td><%= truncate p.description, length: 140 %></td>
-			<td class="actions">
+			<td class="actions text-right">
 				<ul class="list-inline">
 					<li>
 						<%= link_to edit_project_path(p) do %>
-							<i class="fa fa-edit" title="Edit"></i>
+							<i class="fa fa-cog" title="Edit"></i>
 						<% end %>
 					</li>
 					<li>
-						<a href="#"><i class="fa fa-home" title="Vist Home"></i></a>
+						<a href="#"><i class="fa fa-eye" title="Only See Project"></i></a>
 					</li>
 					<li>
 						<a href="#"><i class="fa fa-copy" title="Clone"></i></a>
