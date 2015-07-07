@@ -60,14 +60,14 @@ ActiveRecord::Schema.define(version: 20150706153043) do
   add_index "asks", ["activity_id"], name: "index_asks_on_activity_id", using: :btree
 
   create_table "objectives", force: :cascade do |t|
-    t.string   "title",            limit: 255
+    t.string   "title",                 limit: 255
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "prioritized"
     t.integer  "project_id"
-    t.string   "barriers",              default: [], array: true
-    t.string   "enabling_factors",      default: [], array: true
+    t.string   "barriers",                          default: [], array: true
+    t.string   "enabling_factors",                  default: [], array: true
     t.integer  "key_contribution"
     t.integer  "momentum"
     t.integer  "comparative_advantage"
@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(version: 20150706153043) do
     t.string   "title",       limit: 255
     t.text     "description"
     t.boolean  "public"
-    t.string   "link",        limit: 255
+    t.string   "link"
   end
 
   add_index "resources", ["project_id"], name: "index_resources_on_project_id", using: :btree
@@ -163,9 +163,9 @@ ActiveRecord::Schema.define(version: 20150706153043) do
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
-    t.string   "taggable_type", limit: 255
+    t.string   "taggable_type"
     t.integer  "tagger_id"
-    t.string   "tagger_type",   limit: 255
+    t.string   "tagger_type"
     t.string   "context",       limit: 128
     t.datetime "created_at"
   end
@@ -174,11 +174,19 @@ ActiveRecord::Schema.define(version: 20150706153043) do
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
   create_table "tags", force: :cascade do |t|
-    t.string  "name",           limit: 255
-    t.integer "taggings_count",             default: 0
+    t.string  "name"
+    t.integer "taggings_count", default: 0
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
+
+  create_table "trellos", force: :cascade do |t|
+    t.integer  "uid"
+    t.string   "name"
+    t.date     "creation_date"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -193,6 +201,8 @@ ActiveRecord::Schema.define(version: 20150706153043) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "provider",               limit: 255
+    t.string   "uid",                    limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
