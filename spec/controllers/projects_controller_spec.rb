@@ -92,6 +92,54 @@ RSpec.describe ProjectsController, :type => :controller do
     end
   end
 
+  describe "GET solutions.json" do
+    it "return a json of solutions" do
+      project_one = Project.new title: "a project #1"
+      project_one.save
+      project_two = Project.new title: "a project #2"
+      project_two.save
+      
+      real_problem_one = RealProblem.new title: "a real problem"
+      real_problem_one.project_id = project_one.id
+      real_problem_one.save
+      
+      real_problem_two = RealProblem.new title: "a real problem"
+      real_problem_two.project_id = project_two.id
+      real_problem_two.save
+
+      policy_problem_one = PolicyProblem.new title: "a policy problem"
+      policy_problem_one.real_problem_id = real_problem_one.id
+      policy_problem_one.save
+
+      policy_problem_two = PolicyProblem.new title: "a policy problem"
+      policy_problem_two.real_problem_id = real_problem_two.id
+      policy_problem_two.save
+
+      solution_one = Solution.new title: "a solution #1"
+      solution_two = Solution.new title: "a solution #2"
+      solution_one.policy_problem_id = policy_problem_one.id
+      solution_two.policy_problem_id = policy_problem_two.id
+      solution_one.save
+      solution_two.save
+
+      objective_one = Objective.new title: "a objective #1"
+      objective_two = Objective.new title: "a objective #2"
+      objective_three = Objective.new title: "a objective #3"
+      objective_one.solutions << solution_one
+      objective_one.save
+      objective_three.solutions << solution_one
+      objective_three.save
+      objective_two.solutions << solution_two
+      objective_two.save
+
+      get :solutions, {:id => project_one.to_param, :format => 'json'}, valid_session
+
+      expect(assigns(:solutions)).to include(solution_one)
+      expect(assigns(:solutions)).to_not include(solution_two)
+      expect(assigns(:solutions).first.objective_ids.count).to eq(2)
+    end
+  end
+
   context "stages" do
     describe "GET stage1" do
       # it "creates a new real_problem as @real_problem" do
@@ -122,34 +170,6 @@ RSpec.describe ProjectsController, :type => :controller do
       it "renders the stage2 template" do
         get :stage2, {id: @project}
         expect(response).to render_template :stage2
-      end
-    end
-
-    describe "GET stage4" do
-      it "render stage4 template" do
-        get :stage4, {id: @project}
-        expect(response).to render_template :stage4
-      end
-    end
-
-    describe "GET stage5" do
-      it "render stage5 template" do
-        get :stage5, {id: @project}
-        expect(response).to render_template :stage5
-      end
-    end
-
-    describe "GET stage6" do
-      it "render stage6 template" do
-        get :stage6, {id: @project}
-        expect(response).to render_template :stage6
-      end
-    end
-
-    describe "GET stage7" do
-      it "render stage7 template" do
-        get :stage7, {id: @project}
-        expect(response).to render_template :stage7
       end
     end
   end

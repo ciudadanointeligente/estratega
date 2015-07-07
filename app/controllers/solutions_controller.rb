@@ -40,12 +40,6 @@ class SolutionsController < ApplicationController
     respond_with(@real_problem, @policy_problem, @solution)
   end
 
-  def create_ww
-    @solution = @policy_problem.solutions.create(solution_params)
-    @solution.save
-    respond_with(@real_problem, @policy_problem, @solution)
-  end
-
   def update
     @solution.update(solution_params)
     respond_with(@real_problem, @policy_problem, @solution)

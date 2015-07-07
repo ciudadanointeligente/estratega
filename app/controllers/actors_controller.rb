@@ -37,6 +37,11 @@ class ActorsController < ApplicationController
     respond_with(@actor)
   end
 
+  def actor_type
+    @actor = Actor.new
+    respond_with(@actor.actor_type_list)
+  end
+
   private
     def set_actor
       @actor = Actor.find(params[:id])

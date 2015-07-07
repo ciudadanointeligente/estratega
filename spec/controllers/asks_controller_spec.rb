@@ -21,8 +21,10 @@ require 'rails_helper'
 RSpec.describe AsksController, :type => :controller do
 
   before(:each) do
+    @project = create(:project)
     @activity = create(:activity)
     @ask = create(:ask)
+    @project.activities << @activity
     @activity.asks.append(@ask)
     @activity.save
   end
@@ -31,12 +33,12 @@ RSpec.describe AsksController, :type => :controller do
 
   describe "GET index" do
     it "assigns all asks as @asks" do
-      get :index, {activity_id: @activity}, valid_session
+      get :index, {project_id: @project, activity_id: @activity}, valid_session
       expect(assigns(:asks)).to eq([@ask])
     end
 
     it "assigns all asks as @asks as a JSON" do
-      get :index, {activity_id: @activity}, valid_session, :format => 'json'
+      get :index, {project_id: @project, activity_id: @activity}, valid_session, :format => 'json'
       expect(response).to be_success
 
       expect(assigns(:asks).length).to eq(1)
@@ -46,21 +48,21 @@ RSpec.describe AsksController, :type => :controller do
 
   describe "GET show" do
     it "assigns the requested ask as @ask" do
-      get :show, {activity_id: @activity, id: @ask}, valid_session
+      get :show, {project_id: @project, activity_id: @activity, id: @ask}, valid_session
       expect(assigns(:ask)).to eq(@ask)
     end
   end
 
   describe "GET new" do
     it "assigns a new ask as @ask" do
-      get :new, {activity_id: @activity}, valid_session
+      get :new, {project_id: @project, activity_id: @activity}, valid_session
       expect(assigns(:ask)).to be_a_new(Ask)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested ask as @ask" do
-      get :edit, {activity_id: @activity, id: @ask}, valid_session
+      get :edit, {project_id: @project, activity_id: @activity, id: @ask}, valid_session
       expect(assigns(:ask)).to eq(@ask)
     end
   end
@@ -69,30 +71,30 @@ RSpec.describe AsksController, :type => :controller do
     describe "with valid params" do
       it "creates a new Ask" do
         expect {
-          post :create, {activity_id: @activity, ask: attributes_for(:ask)}, valid_session
+          post :create, {project_id: @project, activity_id: @activity, ask: attributes_for(:ask)}, valid_session
         }.to change(Ask, :count).by(1)
       end
 
       it "assigns a newly created ask as @ask" do
-        post :create, {activity_id: @activity, ask: attributes_for(:ask)}, valid_session
+        post :create, {project_id: @project, activity_id: @activity, ask: attributes_for(:ask)}, valid_session
         expect(assigns(:ask)).to be_a(Ask)
         expect(assigns(:ask)).to be_persisted
       end
 
       it "redirects to the created ask" do
-        post :create, {activity_id: @activity, ask: attributes_for(:ask)}, valid_session
-        expect(response).to redirect_to activity_ask_path(@activity, Ask.last)
+        post :create, {project_id: @project, activity_id: @activity, ask: attributes_for(:ask)}, valid_session
+        expect(response).to redirect_to project_activity_ask_path(@project, @activity, Ask.last)
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved ask as @ask" do
-        post :create, {activity_id: @activity, ask: attributes_for(:invalid_ask)}, valid_session
+        post :create, {project_id: @project, activity_id: @activity, ask: attributes_for(:invalid_ask)}, valid_session
         expect(assigns(:ask)).to be_a_new(Ask)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {activity_id: @activity, ask: attributes_for(:invalid_ask)}, valid_session
+        post :create, {project_id: @project, activity_id: @activity, ask: attributes_for(:invalid_ask)}, valid_session
         expect(response).to render_template("new")
       end
     end
@@ -101,30 +103,30 @@ RSpec.describe AsksController, :type => :controller do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested ask" do
-        put :update, {activity_id: @activity, id: @ask, ask: attributes_for(:edit_ask)}, valid_session
+        put :update, {project_id: @project, activity_id: @activity, id: @ask, ask: attributes_for(:edit_ask)}, valid_session
         @ask.reload
         expect(@ask.attributes).to include(attributes_for(:edit_ask).stringify_keys)
       end
 
       it "assigns the requested ask as @ask" do
-        put :update, {activity_id: @activity, id: @ask, ask: attributes_for(:edit_ask)}, valid_session
+        put :update, {project_id: @project, activity_id: @activity, id: @ask, ask: attributes_for(:edit_ask)}, valid_session
         expect(assigns(:ask)).to eq(@ask)
       end
 
       it "redirects to the ask" do
-        put :update, {activity_id: @activity, id: @ask, ask: attributes_for(:edit_ask)}, valid_session
-        expect(response).to redirect_to activity_ask_path(@activity, @ask)
+        put :update, {project_id: @project, activity_id: @activity, id: @ask, ask: attributes_for(:edit_ask)}, valid_session
+        expect(response).to redirect_to project_activity_ask_path(@project, @activity, @ask)
       end
     end
 
     describe "with invalid params" do
       it "assigns the ask as @ask" do
-        put :update, {activity_id: @activity, id: @ask, ask: attributes_for(:invalid_ask)}, valid_session
+        put :update, {project_id: @project, activity_id: @activity, id: @ask, ask: attributes_for(:invalid_ask)}, valid_session
         expect(assigns(:ask)).to eq(@ask)
       end
 
       it "re-renders the 'edit' template" do
-        put :update, {activity_id: @activity, id: @ask, ask: attributes_for(:invalid_ask)}, valid_session
+        put :update, {project_id: @project, activity_id: @activity, id: @ask, ask: attributes_for(:invalid_ask)}, valid_session
         expect(response).to render_template("edit")
       end
     end
@@ -133,13 +135,13 @@ RSpec.describe AsksController, :type => :controller do
   describe "DELETE destroy" do
     it "destroys the requested ask" do
       expect {
-        delete :destroy, {activity_id: @activity, id: @ask}, valid_session
+        delete :destroy, {project_id: @project, activity_id: @activity, id: @ask}, valid_session
       }.to change(Ask, :count).by(-1)
     end
 
     it "redirects to the parent activity" do
-      delete :destroy, {activity_id: @activity, id: @ask}, valid_session
-      expect(response).to redirect_to activity_path(@activity)
+      delete :destroy, {project_id: @project, activity_id: @activity, id: @ask}, valid_session
+      expect(response).to redirect_to project_activity_path(@project, @activity)
     end
   end
 
