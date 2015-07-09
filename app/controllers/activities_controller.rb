@@ -5,7 +5,11 @@ class ActivitiesController < ApplicationController
   respond_to :html, :json
 
   def index
-    @activities = Activity.all
+    if params[:outcome_id]
+      @activities = Outcome.find(params[:outcome_id]).activities
+    else
+      @activities = Activity.all
+    end
     respond_with(@activities)
   end
 

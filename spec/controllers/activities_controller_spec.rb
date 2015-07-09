@@ -53,6 +53,21 @@ RSpec.describe ActivitiesController, :type => :controller do
       # expect(JSON.parse(response.body)).to include "Political will"
       expect(assigns(:activities).length).to eq(1)
     end
+
+    it "should display a filtered activities by objective_id" do
+      outcome_one     = create :outcome
+      outcome_two     = create :outcome
+
+      activity_one    = Activity.create! valid_attributes
+      activity_two    = Activity.create! valid_attributes
+      activity_three  = Activity.create! valid_attributes
+
+      outcome_one.activities << activity_one
+      outcome_one.activities << activity_three
+
+      get :index, {project_id: @project, outcome_id: outcome_one}, valid_session
+      expect(assigns(:activities)).not_to include(activity_two)
+    end
   end
 
   describe "GET show" do
