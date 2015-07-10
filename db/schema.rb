@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706153043) do
+ActiveRecord::Schema.define(version: 20150709212113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,9 +55,11 @@ ActiveRecord::Schema.define(version: 20150706153043) do
     t.integer  "activity_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "actor_id"
   end
 
   add_index "asks", ["activity_id"], name: "index_asks_on_activity_id", using: :btree
+  add_index "asks", ["actor_id"], name: "index_asks_on_actor_id", using: :btree
 
   create_table "objectives", force: :cascade do |t|
     t.string   "title",                 limit: 255
@@ -209,4 +211,5 @@ ActiveRecord::Schema.define(version: 20150706153043) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "activities", "projects"
+  add_foreign_key "asks", "actors"
 end
