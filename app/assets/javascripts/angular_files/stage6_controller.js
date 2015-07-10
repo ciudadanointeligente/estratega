@@ -7,18 +7,40 @@ app.controller("stage6Ctrl", function($scope, $http, $aside, $location){
       $scope.actors = data;
   });
 
+  function get_asks(project_id, activity_id) {
+    $http.get('/projects/'+project_id+'/activities/'+activity_id+'/asks.json')
+    .success(function(data){
+      data.forEach(function(ask) {
+        get_actor_of_ask(ask);
+      });
+      $scope.asks = data;
+    });
+  }
+
+  function get_actor_of_ask(ask) {
+    for (var i = 0; $scope.actors[i]; i++) {
+      if ( ask.actor_id == $scope.actors[i].id ) {
+        ask.actor_name = $scope.actors[i].name;
+      }
+    }
+  }
+
+  get_asks($scope.project_id, $scope.activity_id);
+
   var save_or_update_ask = function(){
     $scope.current_ask.title = '&nbsp;';
     if($scope.current_ask.id) {
       $http.put('/projects/'+$scope.project_id+'/activities/'+$scope.activity_id+'/asks/'+$scope.current_ask.id, $scope.current_ask)
         .success(function(data){
+          get_actor_of_ask($scope.current_ask);
           // alert success or error
         })
     } else {
-      $http.post('/projects/'+$scope.project_id+'/activities'+$scope.activity_id+'/asks', $scope.current_ask)
+      $http.post('/projects/'+$scope.project_id+'/activities/'+$scope.activity_id+'/asks', $scope.current_ask)
         .success(function(data){
+          get_actor_of_ask($scope.current_ask);
           $scope.current_ask = data;
-          $scope.asks.push(data);
+          // $scope.asks.push(data);
         })
     }
   }
