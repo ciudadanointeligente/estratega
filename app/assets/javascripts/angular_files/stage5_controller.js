@@ -26,7 +26,7 @@ app.controller("stage5Ctrl", function($scope, $http, $aside, $location){
 
 	$scope.add_edit_activity = function(activity) {
 		$scope.current_activity = {title:"", description:"", outcome_ids: [$scope.outcome_id]};
-		if (activity.title)
+		if (activity)
 			$scope.current_activity = activity;
 		$aside.open({
 			templateUrl: 'activities-aside.html',
