@@ -41,6 +41,7 @@ app.controller("stage4Ctrl", function($scope, $http, $aside, $location){
 
   $scope.add_edit_outcome = function(outcome) {
 
+    var description = "";
     if(outcome){
       $scope.current_outcome = outcome;
       description = outcome.description

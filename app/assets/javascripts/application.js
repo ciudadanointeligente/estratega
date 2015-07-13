@@ -29,8 +29,8 @@
 //= require angular_files/stage3_controller
 //= require angular_files/stage4_controller
 //= require angular_files/stage5_controller
+//= require angular_files/stage6_controller
 //= require angular_files/step2_controller
 //= require angular_files/step3_controller
 //= require angular_files/step4_controller
-//= require angular_files/step6_controller
 //= require angular_files/solutions_form
