@@ -14,7 +14,7 @@
   <strong>Outcomes:</strong>
   <ul>
     <% @activity.outcomes.each do |outcome| %>
-      <li><%= link_to outcome.title, objective_outcome_path(outcome.objective, outcome) %></li>
+      <li><%= outcome.title %></li>
     <% end %>
   </ul>
 </p>
