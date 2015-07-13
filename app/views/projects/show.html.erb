@@ -46,7 +46,7 @@
                           <i class="<%= icon_class @policy_problems, @real_problem %>"></i>
                       </td>
                       <td>
-                        <%= link_to link_text(:policy_problems), stage1_project_path, target: "_self" %>
+                        <%= link_to link_text(:policy_problems), stage1_project_path(anchor: "policy-problems"), target: "_self" %>
                       </td>
                     </tr>
                     <!-- policy solutions -->
@@ -55,7 +55,7 @@
                         <i class="<%= icon_class @solutions, @policy_problems %>"></i>
                       </td>
                       <td>
-                        <%= link_to link_text(:solutions), stage1_project_path, target: "_self" %>
+                        <%= link_to link_text(:solutions), stage1_project_path(anchor: "policy-problems"), target: "_self" %>
                       </td>
                     </tr>
                   </tbody>
