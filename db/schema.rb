@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(version: 20150709212113) do
   add_index "activities_outcomes", ["outcome_id", "activity_id"], name: "index_activities_outcomes_on_outcome_id_and_activity_id", using: :btree
 
   create_table "actors", force: :cascade do |t|
-    t.string   "name",        limit: 255
+    t.string   "name"
     t.text     "description"
-    t.string   "actor_type",  limit: 255
+    t.string   "actor_type"
     t.integer  "support"
     t.integer  "influence"
     t.datetime "created_at"
@@ -62,14 +62,14 @@ ActiveRecord::Schema.define(version: 20150709212113) do
   add_index "asks", ["actor_id"], name: "index_asks_on_actor_id", using: :btree
 
   create_table "objectives", force: :cascade do |t|
-    t.string   "title",                 limit: 255
+    t.string   "title"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "prioritized"
     t.integer  "project_id"
-    t.string   "barriers",                          default: [], array: true
-    t.string   "enabling_factors",                  default: [], array: true
+    t.string   "barriers",              default: [], array: true
+    t.string   "enabling_factors",      default: [], array: true
     t.integer  "key_contribution"
     t.integer  "momentum"
     t.integer  "comparative_advantage"
@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 20150709212113) do
   create_table "projects", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "title",       limit: 255
+    t.string   "title"
     t.text     "description"
     t.boolean  "public"
   end
@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 20150709212113) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "project_id"
-    t.string   "title",       limit: 255
+    t.string   "title"
     t.text     "description"
     t.boolean  "public"
     t.string   "link"
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 20150709212113) do
   add_index "resources", ["project_id"], name: "index_resources_on_project_id", using: :btree
 
   create_table "sandboxes", force: :cascade do |t|
-    t.string   "name",        limit: 255
+    t.string   "name"
     t.text     "description"
     t.text     "graph_data"
     t.datetime "created_at"
@@ -182,29 +182,19 @@ ActiveRecord::Schema.define(version: 20150709212113) do
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
-  create_table "trellos", force: :cascade do |t|
-    t.integer  "uid"
-    t.string   "name"
-    t.date     "creation_date"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "provider",               limit: 255
-    t.string   "uid",                    limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
