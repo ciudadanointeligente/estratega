@@ -218,4 +218,11 @@ app.controller("stage1Ctrl", function ($scope, $http, $aside, $location) {
       }
     });
   }
+
+  $scope.delete_policy = function(policy){
+    if(confirm('Are you sure you want to delete this policy problem?')) {
+      $http.delete('/real_problems/' + $scope.problem.id + '/policy_problems/' + policy.id)
+      $scope.policies.splice($scope.policies.indexOf(policy),1);
+    }
+  }
 });

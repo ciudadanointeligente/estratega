@@ -51,6 +51,7 @@
             <div class="panel panel-default objetives" ng-repeat="policy in policies">
               <div class="panel-heading">
                 <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_policy(policy.id)">Edit</button>
+                <button type="button" class="btn btn-warning pull-right" ng-click="delete_policy(policy.id)">Delete</button>
                 <h4 class="panel-title"><a data-toggle="collapse" href="#objetive1" aria-expanded="false" aria-controls="collapseExample">{{ policy.title }}</a></h4>
               </div>
               <!-- policy solutions -->
