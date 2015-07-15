@@ -44,7 +44,7 @@
 										<th>Support</th>
 										<th>Influence</th>
 										<th class="text-center">Important</th>
-										<th class="text-center">Actions</th>
+										<th class="text-right">Actions</th>
 									</tr>
 									<tr ng-repeat="actor in actors">
 										<td>{{actor.name}}</td>
@@ -52,7 +52,7 @@
 										<td>{{actor.support}}</td>
 										<td>{{actor.influence}}</td>
 										<td class="text-center"><a href=""><i class="fa fa-check-square"></i></a></td>
-										<td class="text-center"><a href="#" title="Edit" ng-click="add_edit_actor(actor)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_actor(actor)"><i class="fa fa-trash"></i></a></td>
+										<td class="text-right"><a href="#" title="Edit" ng-click="add_edit_actor(actor)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_actor(actor)"><i class="fa fa-trash"></i></a></td>
 									</tr>
 								</table>
 							</div>
@@ -72,13 +72,13 @@
 									<thead>
 										<tr>
 											<th>Description</th>
-											<th class="text-center">Actions</th>
+											<th class="text-right">Actions</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr ng-repeat="enabling_factor in objective.enabling_factors">
 											<td>{{enabling_factor}}</td>
-											<td class="text-center"><a href="#" title="Edit" ng-click="add_edit_enabling_factor(enabling_factor)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_enabling_factor(enabling_factor)"><i class="fa fa-trash"></i></a></td>
+											<td class="text-right"><a href="#" title="Edit" ng-click="add_edit_enabling_factor(enabling_factor)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_enabling_factor(enabling_factor)"><i class="fa fa-trash"></i></a></td>
 										</tr>
 									</tbody>
 								</table>
@@ -92,11 +92,11 @@
 								<table class="table">
 									<tr>
 										<th>Description</th>
-										<th class="text-center">Actions</th>
+										<th class="text-right">Actions</th>
 									</tr>
 									<tr ng-repeat="barrier in objective.barriers">
 										<td>{{barrier}}</td>
-										<td class="text-center"><a href="#" title="Edit" ng-click="add_edit_barrier(barrier)"><i class="fa fa-pencil-quare-o"></i></a> <a href="#" title="Delete" ng-click="delete_barrier(barrier)"><i class="fa fa-trash"></i></a></td>
+										<td class="text-right"><a href="#" title="Edit" ng-click="add_edit_barrier(barrier)"><i class="fa fa-pencil-quare-o"></i></a> <a href="#" title="Delete" ng-click="delete_barrier(barrier)"><i class="fa fa-trash"></i></a></td>
 									</tr>
 								</table>
 							</div>
