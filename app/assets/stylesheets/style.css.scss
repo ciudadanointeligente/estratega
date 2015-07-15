@@ -209,6 +209,9 @@ h4.title_goals {
   color: #859292;
   margin-bottom: 30px;
 }
+h4.panel-title {
+  padding: 10px 0;
+}
 .panel-heading .fa-check-circle {
   color: #26a65b;
 }
@@ -302,4 +305,7 @@ div#resources_paginate {
 }
 .objetives table a {
   color: #e2534b;
+}
+.btn.pull-right {
+  margin-left: 5px;
 }
