@@ -81,7 +81,7 @@ app.controller("stage1Ctrl", function ($scope, $http, $aside, $location) {
   };
 
   var save_or_update_policy = function () {
-    $scope.problem.description = '&nbsp;';
+    $scope.current_policy.description = '&nbsp;';
     if ($scope.problem.id == "" || $scope.current_policy.title == "")
       return
 
@@ -107,6 +107,7 @@ app.controller("stage1Ctrl", function ($scope, $http, $aside, $location) {
   };
 
   var save_or_update_solution = function (problem_id, policy_id, solution_id) {
+    $scope.current_solution.description = '&nbsp;';
     if ($scope.current_solution.id) {
       $http.put("/real_problems/" + problem_id + "/policy_problems/" + policy_id + "/solutions/" + solution_id + ".json", $scope.current_solution)
         .success(function (data) {
