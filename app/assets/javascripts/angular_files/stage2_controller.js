@@ -32,26 +32,36 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 
 	$scope.unrelated_solutions = 0;
 
-	$http.get('/projects/' + $scope.project_id + '/solutions.json')
-		.success(function (data) {
-			$scope.solutions = data.map(function (solution) {
-				return {
-					id: solution.id,
-					title: solution.title,
-					description: solution.description,
-					objective_ids: solution.objective_ids
-				}
+	function get_solutions(project_id) {
+
+		$http.get('/projects/' + project_id + '/solutions.json')
+			.success(function (data) {
+				$scope.solutions = data.map(function (solution) {
+					return {
+						id: solution.id,
+						title: solution.title,
+						description: solution.description,
+						objective_ids: solution.objective_ids
+					}
+				});
+				get_unrelated_solutions($scope.solutions);
 			});
-			var cnt = 0;
-			data.forEach(function(the_data){
-				if( the_data['objective_ids'].length < 1 ) {
-					$scope.unrelated_solutions = cnt + 1;
-				}
-			});
+	};
+	function get_unrelated_solutions(data) {
+		var cnt = 0;
+		data.forEach(function(the_data){
+			if( the_data['objective_ids'].length < 1 ) {
+				cnt = cnt + 1;
+			}
 		});
+		$scope.unrelated_solutions = cnt;
+	}
+	get_solutions($scope.project_id);
 
 	var save_or_update_objective = function () {
 		/*ugly hack*/
+		$scope.current_objective.objective = {};
+
 		$scope.current_objective.objective = {
 			title: $scope.current_objective.title,
 			description: $scope.current_objective.description,
@@ -66,12 +76,14 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 			$http.put('/projects/' + $scope.project_id + '/objectives/' + $scope.current_objective.id, $scope.current_objective)
 				.success(function (data) {
 					// alert success or error
+					get_solutions($scope.project_id);
 				})
 		} else {
 			$http.post('/projects/' + $scope.project_id + '/objectives', $scope.current_objective)
 				.success(function (data) {
 					$scope.current_objective = data;
 					$scope.objectives.push(data);
+					get_solutions($scope.project_id);
 				})
 		}
 	};
