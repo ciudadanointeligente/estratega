@@ -341,6 +341,11 @@ div#resources_paginate {
   width: initial;
   height: initial;
 }
+.modal-body select {
+  padding: 5px;
+  display: block;
+  width: 100%;
+}
 table .fa-pencil-square-o, table .fa-trash {
   cursor: pointer;
   color: #E2534B;
