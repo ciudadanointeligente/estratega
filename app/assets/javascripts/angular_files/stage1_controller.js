@@ -81,6 +81,7 @@ app.controller("stage1Ctrl", function ($scope, $http, $aside, $location) {
   };
 
   var save_or_update_policy = function () {
+    $scope.problem.description = '&nbsp;';
     if ($scope.problem.id == "" || $scope.current_policy.title == "")
       return
 
