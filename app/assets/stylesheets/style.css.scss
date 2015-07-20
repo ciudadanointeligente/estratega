@@ -334,3 +334,7 @@ div#resources_paginate {
   -moz-box-shadow: inset 0px 10px 10px -4px rgba(0,0,0,0.06);
   box-shadow: inset 0px 10px 10px -4px rgba(0,0,0,0.06);
 }
+table .fa-pencil-square-o, table .fa-trash {
+  cursor: pointer;
+  color: #E2534B;
+}
