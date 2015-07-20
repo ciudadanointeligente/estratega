@@ -329,3 +329,8 @@ div#resources_paginate {
   background-color: #DBDBDB;
   border-color: #CCC;
 }
+.modal-header {
+  -webkit-box-shadow: inset 0px 10px 10px -4px rgba(0,0,0,0.06);
+  -moz-box-shadow: inset 0px 10px 10px -4px rgba(0,0,0,0.06);
+  box-shadow: inset 0px 10px 10px -4px rgba(0,0,0,0.06);
+}
