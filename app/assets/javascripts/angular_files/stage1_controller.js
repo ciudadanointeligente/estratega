@@ -180,10 +180,12 @@ app.controller("stage1Ctrl", function ($scope, $http, $aside, $location) {
         $scope.save = function (e) {
           save_or_update_policy();
           $modalInstance.dismiss();
+          get_policy_solutions($scope.problem_id);
           e.stopPropagation();
         }
         $scope.cancel = function (e) {
           $modalInstance.dismiss();
+          get_policy_solutions($scope.problem_id);
           e.stopPropagation();
         };
       }
