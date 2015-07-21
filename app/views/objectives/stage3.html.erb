@@ -65,6 +65,23 @@
 
             <div class="panel panel-default">
               <div class="panel-heading table_goals">
+                <a data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">Barriers</a>
+              </div>
+              <div class="collapse steps in">
+                <table class="table">
+                  <tr>
+                    <th>Description</th>
+                    <th class="text-center">Actions</th>
+                  </tr>
+                  <tr ng-repeat="barrier in objective.barriers">
+                    <td>{{barrier}}</td>
+                    <td class="text-center"><a href="#" title="Edit" ng-click="add_edit_barrier(barrier)"><i class="fa fa-pencil-quare-o"></i></a> <a href="#" title="Delete" ng-click="delete_barrier(barrier)"><i class="fa fa-trash"></i></a></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading table_goals">
                 <a data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">Enabling Factors</a>
               </div>
               <div class="collapse steps in">
@@ -81,23 +98,6 @@
                       <td class="text-center"><a href="#" title="Edit" ng-click="add_edit_enabling_factor(enabling_factor)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_enabling_factor(enabling_factor)"><i class="fa fa-trash"></i></a></td>
                     </tr>
                   </tbody>
-                </table>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading table_goals">
-                <a data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">Barriers</a>
-              </div>
-              <div class="collapse steps in">
-                <table class="table">
-                  <tr>
-                    <th>Description</th>
-                    <th class="text-center">Actions</th>
-                  </tr>
-                  <tr ng-repeat="barrier in objective.barriers">
-                    <td>{{barrier}}</td>
-                    <td class="text-center"><a href="#" title="Edit" ng-click="add_edit_barrier(barrier)"><i class="fa fa-pencil-quare-o"></i></a> <a href="#" title="Delete" ng-click="delete_barrier(barrier)"><i class="fa fa-trash"></i></a></td>
-                  </tr>
                 </table>
               </div>
             </div>
