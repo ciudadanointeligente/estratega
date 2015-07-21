@@ -1,117 +1,117 @@
 <div class="container main">
-	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 stage_menu">
-			<h3>Which external factors you need to take into account in your advocacy planning?</h3>
-			<ul class="nav nav-stacked">
-				<li class="active"><a href="#"><i class="fa fa-check-circle"></i> Understand the institutional and decision-making cycles</a></li>
-				<li><a href="#"><i class="fa fa-check-circle"></i> Map the actors and analyse their influence and support</a></li>
-				<li><a href="#"><i class="fa fa-check-circle"></i> Identify additional enabling factors and barriers</a></li>
-			</ul>
-		</div>
-		<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-			<h2>Which external factors you need to take into account in your advocacy planning?</h2>
-			<p>Understanding the decision-making cycle, the political forces both for and against your objectives and the enabling factors and barriers that you will likely encounter during the implementation of your advocacy plan will allow you to assess the feasibility of your objectives and to be accurate and effective in your targeting and planning. All this information will then shape the definition of the interim outcomes (see below).</p>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 stage_menu">
+      <h3>Which external factors you need to take into account in your advocacy planning?</h3>
+      <ul class="nav nav-stacked">
+        <li class="active"><a href="#"><i class="fa fa-check-circle"></i> Understand the institutional and decision-making cycles</a></li>
+        <li><a href="#"><i class="fa fa-check-circle"></i> Map the actors and analyse their influence and support</a></li>
+        <li><a href="#"><i class="fa fa-check-circle"></i> Identify additional enabling factors and barriers</a></li>
+      </ul>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+      <h2>Which external factors you need to take into account in your advocacy planning?</h2>
+      <p>Understanding the decision-making cycle, the political forces both for and against your objectives and the enabling factors and barriers that you will likely encounter during the implementation of your advocacy plan will allow you to assess the feasibility of your objectives and to be accurate and effective in your targeting and planning. All this information will then shape the definition of the interim outcomes (see below).</p>
 
-			<div role="tabpanel" class="tabpanel">
-				<!-- Nav tabs -->
-				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data Entry</a></li>
-					<li role="presentation"><a href="#explanation" aria-controls="explanation" role="tab" data-toggle="tab">Explanation & Examples</a></li>
-				</ul>
+      <div role="tabpanel" class="tabpanel">
+        <!-- nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data Entry</a></li>
+          <li role="presentation"><a href="#explanation" aria-controls="explanation" role="tab" data-toggle="tab">Explanation & Examples</a></li>
+        </ul>
 
-				<!-- Tab panes -->
-				<div class="tab-content" ng-controller="stage3Ctrl">
-					<div role="tabpanel" class="tab-pane active" id="data">
-						<div class="bg_grey">
-							<h4>Understand the institutional and decision-making cycles</h4>
-							<p>Policy decisions are often made according to a cycle or schedule. To maximise your influence you need to have a sound understanding of the policy processes. First, because the analysis of the decision-making process helps to identify opportunities and entry points to begin influencing on a given issue. Second, because last-minute interventions rarely work, and the earlier in the decision-making cycle the idea is accepted, the more effective the end result is likely to be</p>
-							<a href="/sandboxes/new" target="_self" class="btn btn-warning"><i class="fa fa-pencil"></i> Draw in Sandbox</a>
-						</div>
-						<div class="bg_grey">
-							<h4 id="actors">Map the actors and analyse their influence and support</h4>
-							<p>Effective advocacy requires having a good understanding of all relevant actors: those with power to make change happen (decision-makers); those with influence over the decision-makers (influencers); and those in the community who would be supportive or opposing forces.</p>
-							<button type="button" class="btn btn-warning" ng-click="add_edit_actor()">Add Actor</button>
-						</div>
-						<div class="panel panel-default">
-							<div class="panel-heading table_goals">
-								<a data-toggle="collapse" href="#ASWI" aria-expanded="false" aria-controls="collapseExample">All Actors</a>  
-							</div>      
-							<div class="collapse steps in" id="ASWI">
-								<table class="table">
-									<tr>
-										<th>Name</th>
-										<th>Actor Type</th>
-										<th>Support</th>
-										<th>Influence</th>
-										<th class="text-center">Important</th>
-										<th class="text-center">Actions</th>
-									</tr>
-									<tr ng-repeat="actor in actors">
-										<td>{{actor.name}}</td>
-										<td>{{actor.actor_type}}</td>
-										<td>{{actor.support}}</td>
-										<td>{{actor.influence}}</td>
-										<td class="text-center"><a href=""><i class="fa fa-check-square"></i></a></td>
-										<td class="text-center"><a href="#" title="Edit" ng-click="add_edit_actor(actor)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_actor(actor)"><i class="fa fa-trash"></i></a></td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div class="bg_grey" id="factors-barriers">
-							<button type="button" class="btn btn-warning pull-right" ng-click="add_edit_enabling_factor()">Add Enabling Factor</button>
-							<button type="button" class="btn btn-warning pull-right" ng-click="add_edit_barrier()">Add Barrier</button>
-							<h4>Identify additional enabling factors and barriers <i class="fa fa-info-circle" title="Thanks to the prioritizing table, the decision-making cycle analysis and the actor mapping you will have already identified a number of enabling factors and barriers to achieve your chosen objective. However, you may need to go deeper into the analysis of the context surrounding the specific policy change that you want to pursue. You should think devote time to think about additional relevant enabling factors and barriers of different nature: financial, social, technological, factual, political, religious, cultural, geographical, organizational, etc."></i></h4>
-						</div>
+        <!-- tab panes -->
+        <div class="tab-content" ng-controller="stage3Ctrl">
+          <div role="tabpanel" class="tab-pane active" id="data">
+            <div class="bg_grey">
+              <h4>Understand the institutional and decision-making cycles</h4>
+              <p>Policy decisions are often made according to a cycle or schedule. To maximise your influence you need to have a sound understanding of the policy processes. First, because the analysis of the decision-making process helps to identify opportunities and entry points to begin influencing on a given issue. Second, because last-minute interventions rarely work, and the earlier in the decision-making cycle the idea is accepted, the more effective the end result is likely to be</p>
+              <a href="/sandboxes/new" target="_self" class="btn btn-warning"><i class="fa fa-pencil"></i> Draw in Sandbox</a>
+            </div>
+            <div class="bg_grey">
+              <h4 id="actors">Map the actors and analyse their influence and support</h4>
+              <p>Effective advocacy requires having a good understanding of all relevant actors: those with power to make change happen (decision-makers); those with influence over the decision-makers (influencers); and those in the community who would be supportive or opposing forces.</p>
+              <button type="button" class="btn btn-warning" ng-click="add_edit_actor()">Add Actor</button>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading table_goals">
+                <a data-toggle="collapse" href="#ASWI" aria-expanded="false" aria-controls="collapseExample">All Actors</a>
+              </div>
+              <div class="collapse steps in" id="ASWI">
+                <table class="table">
+                  <tr>
+                    <th>Name</th>
+                    <th>Actor Type</th>
+                    <th>Support</th>
+                    <th>Influence</th>
+                    <th class="text-center">Important</th>
+                    <th class="text-center">Actions</th>
+                  </tr>
+                  <tr ng-repeat="actor in actors">
+                    <td>{{actor.name}}</td>
+                    <td>{{actor.actor_type}}</td>
+                    <td>{{actor.support}}</td>
+                    <td>{{actor.influence}}</td>
+                    <td class="text-center"><a href=""><i class="fa fa-check-square"></i></a></td>
+                    <td class="text-center"><a href="#" title="Edit" ng-click="add_edit_actor(actor)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_actor(actor)"><i class="fa fa-trash"></i></a></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="bg_grey" id="factors-barriers">
+              <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_enabling_factor()">Add Enabling Factor</button>
+              <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_barrier()">Add Barrier</button>
+              <h4>Identify additional enabling factors and barriers <i class="fa fa-info-circle" title="Thanks to the prioritizing table, the decision-making cycle analysis and the actor mapping you will have already identified a number of enabling factors and barriers to achieve your chosen objective. However, you may need to go deeper into the analysis of the context surrounding the specific policy change that you want to pursue. You should think devote time to think about additional relevant enabling factors and barriers of different nature: financial, social, technological, factual, political, religious, cultural, geographical, organizational, etc."></i></h4>
+            </div>
 
-						<div class="panel panel-default">
-							<div class="panel-heading table_goals">
-								<a data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">Enabling Factors</a>  
-							</div>
-							<div class="collapse steps in">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>Description</th>
-											<th class="text-center">Actions</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr ng-repeat="enabling_factor in objective.enabling_factors">
-											<td>{{enabling_factor}}</td>
-											<td class="text-center"><a href="#" title="Edit" ng-click="add_edit_enabling_factor(enabling_factor)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_enabling_factor(enabling_factor)"><i class="fa fa-trash"></i></a></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="panel panel-default">
-							<div class="panel-heading table_goals">
-								<a data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">Barriers</a>  
-							</div>      
-							<div class="collapse steps in">
-								<table class="table">
-									<tr>
-										<th>Description</th>
-										<th class="text-center">Actions</th>
-									</tr>
-									<tr ng-repeat="barrier in objective.barriers">
-										<td>{{barrier}}</td>
-										<td class="text-center"><a href="#" title="Edit" ng-click="add_edit_barrier(barrier)"><i class="fa fa-pencil-quare-o"></i></a> <a href="#" title="Delete" ng-click="delete_barrier(barrier)"><i class="fa fa-trash"></i></a></td>
-									</tr>
-								</table>
-							</div>
-						</div>
+            <div class="panel panel-default">
+              <div class="panel-heading table_goals">
+                <a data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">Enabling Factors</a>
+              </div>
+              <div class="collapse steps in">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Description</th>
+                      <th class="text-center">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="enabling_factor in objective.enabling_factors">
+                      <td>{{enabling_factor}}</td>
+                      <td class="text-center"><a href="#" title="Edit" ng-click="add_edit_enabling_factor(enabling_factor)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_enabling_factor(enabling_factor)"><i class="fa fa-trash"></i></a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading table_goals">
+                <a data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">Barriers</a>
+              </div>
+              <div class="collapse steps in">
+                <table class="table">
+                  <tr>
+                    <th>Description</th>
+                    <th class="text-center">Actions</th>
+                  </tr>
+                  <tr ng-repeat="barrier in objective.barriers">
+                    <td>{{barrier}}</td>
+                    <td class="text-center"><a href="#" title="Edit" ng-click="add_edit_barrier(barrier)"><i class="fa fa-pencil-quare-o"></i></a> <a href="#" title="Delete" ng-click="delete_barrier(barrier)"><i class="fa fa-trash"></i></a></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
 
-						<%= render "actors_modal" %>
-						<%= render "factors_modal" %>
-						<%= render "barriers_modal" %>
+            <%= render "actors_modal" %>
+            <%= render "factors_modal" %>
+            <%= render "barriers_modal" %>
 
-					</div>
-					<div role="tabpanel" class="tab-pane" id="explanation">
-						<%= render "explanation_stage3" %>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="explanation">
+            <%= render "explanation_stage3" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
