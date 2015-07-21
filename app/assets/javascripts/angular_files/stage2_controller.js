@@ -4,17 +4,37 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 
 	$scope.btn_problem = "Add";
 
+	$scope.problem = {};
+
 	$http.get('/real_problems/focus_area.json')
 		.success(function (data) {
 			$scope.focus_areas = data
 		})
 
-	$http.get('/projects/' + $scope.project_id + '.json')
-		.success(function (data) {
-			$scope.project = data;
-			if(data.real_problem_id)
-				get_real_problem(data.real_problem_id);
-		});
+	function get_data_project(project_id) {
+		$http.get('/projects/' + project_id + '.json')
+			.success(function (data) {
+				$scope.project = data;
+				if(data.real_problem_id)
+					get_real_problem(data.real_problem_id);
+				else
+					create_real_problem(project_id);
+			});
+	}
+
+	get_data_project($scope.project_id);
+
+	function create_real_problem(project_id) {
+		$scope.problem = {
+			title: ".", 
+			project_id: project_id
+		}
+
+		$http.post('/real_problems/', $scope.problem)
+			.success(function(data){
+				get_data_project($scope.project_id);
+			})
+	}
 
 	function get_real_problem(real_problem_id) {
 		$http.get('/real_problems/' + real_problem_id + '.json')

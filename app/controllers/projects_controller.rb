@@ -11,8 +11,10 @@ class ProjectsController < ApplicationController
 
   def solutions
     @solutions = []
-    @project.real_problem.policy_problems.each do |pp|
-      pp.solutions.map {|s| @solutions << s}
+    if !@project.real_problem.blank?
+      @project.real_problem.policy_problems.each do |pp|
+        pp.solutions.map {|s| @solutions << s}
+      end
     end
     # respond_with(@project, @solutions)
     render template: 'solutions/index.json.jbuilder'
