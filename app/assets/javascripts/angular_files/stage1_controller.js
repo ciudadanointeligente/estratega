@@ -1,4 +1,4 @@
-app.controller("stage1Ctrl", function ($scope, $http, $aside, $location) {
+app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function ($scope, $http, $aside, $location) {
   $scope.project_id = $location.path().split("/")[2];
   $http.get('/real_problems/focus_area.json')
     .success(function (data) {
@@ -229,4 +229,4 @@ app.controller("stage1Ctrl", function ($scope, $http, $aside, $location) {
       $scope.policies.splice($scope.policies.indexOf(policy),1);
     }
   }
-});
+}]);

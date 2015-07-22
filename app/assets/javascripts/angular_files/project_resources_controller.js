@@ -1,4 +1,4 @@
-app.controller("projectResourcesCtrl", function($scope, $http, $location, $timeout, $aside){
+app.controller("projectResourcesCtrl", ["$scope", "$http", "$aside", "$location", "$timeout", function ($scope, $http, $aside, $location, $timeout) {
     $scope.project_id = $location.path().split("/")[2];
     $scope.itemsByPage=15;
 
@@ -61,4 +61,4 @@ app.controller("projectResourcesCtrl", function($scope, $http, $location, $timeo
         }
       }).result.then(postClose, postClose);
     }
-})
+}])

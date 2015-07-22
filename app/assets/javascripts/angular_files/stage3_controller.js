@@ -1,4 +1,4 @@
-app.controller("stage3Ctrl", function($scope, $http, $aside, $location){
+app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", function ($scope, $http, $aside, $location) {
   $scope.project_id = $location.path().split("/")[2];
   $scope.objective_id = $location.path().split("/")[4];
   $scope.current_actor = {name: "", description: "", objective_id: $scope.objective_id};
@@ -160,4 +160,4 @@ app.controller("stage3Ctrl", function($scope, $http, $aside, $location){
       update_objective();
     }
   }
-});
+}]);

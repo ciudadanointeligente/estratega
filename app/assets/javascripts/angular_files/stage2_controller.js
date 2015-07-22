@@ -1,5 +1,4 @@
-app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
-
+app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", function ($scope, $http, $aside, $location) {
 	$scope.project_id = $location.path().split("/")[2];
 
 	$scope.btn_problem = "Add";
@@ -195,4 +194,4 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 		}
 	}
 
-});
+}]);
