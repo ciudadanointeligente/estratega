@@ -19,6 +19,23 @@ app.controller("stage3Ctrl", function($scope, $http, $aside, $location){
       $scope.actors = data;
     });
 
+  function get_support() {
+    $http.get('/actors/actor_support.json')
+    .success(function(data){
+      $scope.support = data;
+    });
+  }
+
+  function get_influence_level() {
+    $http.get('/actors/actor_influence_level.json')
+    .success(function(data){
+      $scope.influence = data;
+    });
+  }
+
+  get_support()
+  get_influence_level()
+
   var save_or_update_actor = function () {
     if($scope.current_actor.id) {
       $http.put("/actors/"+$scope.current_actor.id, $scope.current_actor)
@@ -31,6 +48,28 @@ app.controller("stage3Ctrl", function($scope, $http, $aside, $location){
           $scope.current_actor = data;
           $scope.actors.push(data);
         })
+    }
+  }
+
+  $scope.get_support_name = function (support_id) {
+    supports = $scope.support;
+    for (var k in supports) {
+      if (supports.hasOwnProperty(k)) {
+        if ( supports[k] == support_id ) {
+          return k;
+        }
+      }
+    }
+  }
+
+  $scope.get_influence_name = function (influence_id) {
+    influences = $scope.influence;
+    for (var k in influences) {
+      if (influences.hasOwnProperty(k)) {
+        if ( influences[k] == influence_id ) {
+          return k;
+        }
+      }
     }
   }
 
@@ -106,7 +145,6 @@ app.controller("stage3Ctrl", function($scope, $http, $aside, $location){
         scope: $scope,
         controller: function ($scope, $modalInstance) {
           $scope.save = function (e) {
-            console.log($scope.current_enabling_factor)
             $scope.save_or_update_enabling_factor($scope.current_enabling_factor, enabling_factor);
             $modalInstance.dismiss();
             e.stopPropagation();
@@ -132,7 +170,6 @@ app.controller("stage3Ctrl", function($scope, $http, $aside, $location){
       scope: $scope,
       controller: function ($scope, $modalInstance) {
         $scope.save = function (e) {
-          console.log($scope.current_barrier)
           $scope.save_or_update_barrier($scope.current_barrier, barrier);
           $modalInstance.dismiss();
           e.stopPropagation();
