@@ -44,6 +44,11 @@ class ObjectivesController < ApplicationController
     respond_with(@objective.actors)
   end
 
+  def objective_types
+    objective = Objective.new
+    respond_with objective.objective_type_list
+  end
+
   private
     def set_project
       @project = Project.find(params[:project_id])
@@ -54,6 +59,6 @@ class ObjectivesController < ApplicationController
     end
 
     def objective_params
-      params.require(:objective).permit(:title, :description, :prioritized, :project_id, :key_contribution, :momentum, :comparative_advantage, solution_ids: [], actor_ids: [], barriers: [], enabling_factors: [])
+      params.require(:objective).permit(:title, :description, :prioritized, :project_id, :big_difference_score, :big_difference_arguments, :multiplying_effect_score, :multiplying_effect_arguments, :catalytic_score, :catalytic_arguments, :demand_score, :demand_arguments, :hooks_processes_score, :hooks_processes_arguments, :intuitive_score, :intuitive_arguments, :alignment_score, :alignment_arguments, :added_value_score, :added_value_arguments, :loss_gain_score, :loss_gain_arguments, :objective_type, solution_ids: [], actor_ids: [], barriers: [], enabling_factors: [])
     end
 end

@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20150724203525) do
+=======
 ActiveRecord::Schema.define(version: 20150722192201) do
+>>>>>>> dev
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,11 +71,27 @@ ActiveRecord::Schema.define(version: 20150722192201) do
     t.datetime "updated_at"
     t.boolean  "prioritized"
     t.integer  "project_id"
-    t.string   "barriers",              default: [], array: true
-    t.string   "enabling_factors",      default: [], array: true
-    t.integer  "key_contribution"
-    t.integer  "momentum"
-    t.integer  "comparative_advantage"
+    t.string   "barriers",                     default: [], array: true
+    t.string   "enabling_factors",             default: [], array: true
+    t.integer  "big_difference_score"
+    t.string   "big_difference_arguments"
+    t.integer  "multiplying_effect_score"
+    t.string   "multiplying_effect_arguments"
+    t.integer  "catalytic_score"
+    t.string   "catalytic_arguments"
+    t.integer  "demand_score"
+    t.string   "demand_arguments"
+    t.integer  "hooks_processes_score"
+    t.string   "hooks_processes_arguments"
+    t.integer  "intuitive_score"
+    t.string   "intuitive_arguments"
+    t.integer  "alignment_score"
+    t.string   "alignment_arguments"
+    t.integer  "loss_gain_score"
+    t.string   "loss_gain_arguments"
+    t.integer  "added_value_score"
+    t.integer  "added_value_arguments"
+    t.string   "objective_type"
   end
 
   add_index "objectives", ["project_id"], name: "index_objectives_on_project_id", using: :btree

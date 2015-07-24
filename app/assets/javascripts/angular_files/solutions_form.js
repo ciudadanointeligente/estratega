@@ -1,4 +1,4 @@
-app.directive("solutionsForm", function($http, $location){
+app.directive("solutionsForm", ["$http", "$location", function ($http, $location) {
     return {
         // scope: {
         //     policy: "=",
@@ -41,9 +41,9 @@ app.directive("solutionsForm", function($http, $location){
 
         }
     }
-});
+}]);
 
-app.directive("solutionsList", function($http){
+app.directive("solutionsList", ["$http", function($http){
     return {
         scope: {
             problemId: "=",
@@ -59,4 +59,4 @@ app.directive("solutionsList", function($http){
             })
         }
     }
-});
+}]);

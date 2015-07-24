@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       get 'stage3', on: :member
       get 'stage4', on: :member
       get 'actors', on: :member
+      get 'objective_types', on: :collection
       resources :outcomes do
         get 'stage5', on: :member
       end
