@@ -16,7 +16,7 @@
 //= require bootstrap-sprockets
 
 //= require angular/angular
-//= require angular-bootstrap/ui-bootstrap-tpls.js
+//= require angular-bootstrap/ui-bootstrap-tpls
 //= require ng-rails-csrf
 //= require angular-route/angular-route
 //= require angular-aside/dist/js/angular-aside
@@ -30,7 +30,4 @@
 //= require angular_files/stage4_controller
 //= require angular_files/stage5_controller
 //= require angular_files/stage6_controller
-//= require angular_files/step2_controller
-//= require angular_files/step3_controller
-//= require angular_files/step4_controller
 //= require angular_files/solutions_form

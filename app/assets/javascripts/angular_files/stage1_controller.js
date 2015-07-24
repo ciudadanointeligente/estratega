@@ -1,4 +1,4 @@
-app.controller("stage1Ctrl", function ($scope, $http, $aside, $location) {
+app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function ($scope, $http, $aside, $location) {
   $scope.project_id = $location.path().split("/")[2];
   $http.get('/real_problems/focus_area.json')
     .success(function (data) {
@@ -223,10 +223,10 @@ app.controller("stage1Ctrl", function ($scope, $http, $aside, $location) {
     });
   }
 
-  $scope.delete_policy = function(policy){
+  $scope.delete_policy = function (policy){
     if(confirm('Are you sure you want to delete this policy problem?')) {
       $http.delete('/real_problems/' + $scope.problem.id + '/policy_problems/' + policy.id)
       $scope.policies.splice($scope.policies.indexOf(policy),1);
     }
   }
-});
+}]);

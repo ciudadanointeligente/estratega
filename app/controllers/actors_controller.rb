@@ -48,6 +48,6 @@ class ActorsController < ApplicationController
     end
 
     def actor_params
-      params.require(:actor).permit(:name, :description, :actor_type, :support, :influence, objective_ids: [])
+      params.require(:actor).permit(:name, :description, :important, :actor_type, :support, :influence, objective_ids: [])
     end
 end

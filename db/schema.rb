@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150724203525) do
+=======
+ActiveRecord::Schema.define(version: 20150722192201) do
+>>>>>>> dev
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +44,7 @@ ActiveRecord::Schema.define(version: 20150724203525) do
     t.integer  "influence"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "important"
   end
 
   create_table "actors_objectives", id: false, force: :cascade do |t|
