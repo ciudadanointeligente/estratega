@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :actors do
     get 'actor_type', on: :collection
+    get 'actor_support', on: :collection
+    get 'actor_influence_level', on: :collection
   end
 
   get 'solutions/aside', to: 'solutions#aside'

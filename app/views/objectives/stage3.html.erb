@@ -47,10 +47,10 @@
                     <th class="text-center">Actions</th>
                   </tr>
                   <tr ng-repeat="actor in actors">
-                    <td>{{actor.name}}</td>
-                    <td>{{actor.actor_type}}</td>
-                    <td>{{actor.support}}</td>
-                    <td>{{actor.influence}}</td>
+                    <td>{{ actor.name }}</td>
+                    <td>{{ actor.actor_type }}</td>
+                    <td>{{ get_support_name (actor.support) }}</td>
+                    <td>{{ get_influence_name (actor.influence) }}</td>
                     <td class="text-center"><a href=""><i class="fa fa-check-square" ng-if="actor.important"></i></a></td>
                     <td class="text-center"><a href="#" title="Edit" ng-click="add_edit_actor(actor)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_actor(actor)"><i class="fa fa-trash"></i></a></td>
                   </tr>
