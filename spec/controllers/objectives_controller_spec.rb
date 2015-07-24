@@ -109,6 +109,15 @@ RSpec.describe ObjectivesController, :type => :controller do
     end
   end
 
+  describe "GET objective_types" do
+    it "return a list of objective types" do
+      objective = create(:objective)
+      objective_types = objective.objective_type_list
+      get :objective_types, {project_id: @project, :id => objective, format: :json}, valid_session
+      expect(response.body).to include(objective_types.to_json)
+    end
+  end
+
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Objective" do

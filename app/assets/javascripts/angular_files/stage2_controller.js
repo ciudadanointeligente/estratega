@@ -6,10 +6,21 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 
 	$scope.problem = {};
 
+	$scope.objective_types = {};
+
 	$http.get('/real_problems/focus_area.json')
 		.success(function (data) {
-			$scope.focus_areas = data
+			$scope.focus_areas = data;
 		})
+
+	function get_objective_types(project_id) {
+		$http.get('/projects/' + project_id + '/objectives/objective_types.json')
+			.success(function(data){
+				$scope.objective_types = data;
+			})
+	}
+
+	get_objective_types($scope.project_id);
 
 	function get_data_project(project_id) {
 		$http.get('/projects/' + project_id + '.json')
@@ -45,10 +56,13 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 			});
 	}
 
-	$http.get('/projects/' + $scope.project_id + '/objectives.json')
-		.success(function (data) {
-			$scope.objectives = data;
-		});
+	function get_objectives(project_id) {
+		$http.get('/projects/' + project_id + '/objectives.json')
+			.success(function (data) {
+				$scope.objectives = data;
+			});
+	}
+	get_objectives($scope.project_id);
 
 
 	function get_solutions(project_id) {
@@ -77,21 +91,51 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 
 	var save_or_update_objective = function () {
 		/*ugly hack*/
+		$scope.current_objective.evaluation = [];
+
 		$scope.current_objective.objective = {
 			title: $scope.current_objective.title,
 			description: $scope.current_objective.description,
 			project_id: $scope.current_objective.project_id,
 			prioritized: $scope.current_objective.prioritized,
-			key_contribution: $scope.current_objective.key_contribution,
-			momentum: $scope.current_objective.momentum,
-			comparative_advantage: $scope.current_objective.comparative_advantage,
-			solution_ids: $scope.current_objective.solution_ids
+			//
+			big_difference_score : $scope.current_objective.evaluation.big_difference_score,
+			big_difference_arguments : $scope.current_objective.evaluation.big_difference_arguments,
+			//
+			multiplying_effect_score : $scope.current_objective.evaluation.multiplying_effect_score,
+			multiplying_effect_arguments : $scope.current_objective.evaluation.multiplying_effect_arguments,
+			//
+			catalytic_score : $scope.current_objective.evaluation.catalytic_score,
+			catalytic_arguments: $scope.current_objective.evaluation.catalytic_arguments,
+			//
+			demand_score: $scope.current_objective.evaluation.demand_score,
+			demand_arguments: $scope.current_objective.evaluation.demand_arguments,
+			//
+			hooks_processes_score: $scope.current_objective.evaluation.hooks_processes_score,
+			hooks_processes_arguments: $scope.current_objective.evaluation.hooks_processes_arguments,
+			//
+			intuitive_score: $scope.current_objective.evaluation.intuitive_score,
+			intuitive_arguments: $scope.current_objective.evaluation.intuitive_arguments,
+			//
+			alignment_score: $scope.current_objective.evaluation.alignment_score,
+			alignment_arguments: $scope.current_objective.evaluation.alignment_arguments,
+			//
+			added_value_score: $scope.current_objective.evaluation.added_value_score,
+			added_value_arguments: $scope.current_objective.evaluation.added_value_arguments,
+			//
+			loss_gain_score: $scope.current_objective.evaluation.loss_gain_score,
+			loss_gain_arguments: $scope.current_objective.evaluation.loss_gain_arguments,
+			//
+			solution_ids: $scope.current_objective.solution_ids,
+			objective_type: $scope.current_objective.objective_type
 		}
+
 		if ($scope.current_objective.id) {
 			$http.put('/projects/' + $scope.project_id + '/objectives/' + $scope.current_objective.id, $scope.current_objective)
 				.success(function (data) {
 					// alert success or error
 					get_solutions($scope.project_id);
+					get_objectives($scope.project_id);
 				})
 		} else {
 			$http.post('/projects/' + $scope.project_id + '/objectives', $scope.current_objective)
@@ -99,6 +143,7 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 					$scope.current_objective = data;
 					$scope.objectives.push(data);
 					get_solutions($scope.project_id);
+					get_objectives($scope.project_id);
 				})
 		}
 	};
@@ -144,6 +189,7 @@ app.controller("stage2Ctrl", function ($scope, $http, $aside, $location) {
 	};
 
 	$scope.add_edit_objective = function (objective) {
+		console.log(objective);
 		if (objective) {
 			$scope.current_objective = objective;
 		} else
