@@ -87,73 +87,83 @@
       </div>
       <hr>
       <h4 class="title_goals">Stage 3: Set Goals</h4>
-      <% @objectives.each do |objective| %>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <table class="table_goals">
-                <tr title="Stage Uninitiated or Incomplete">
-                  <td class="td-w-3p"><i class="fa fa-chevron-circle-right pull-left"></i></td>
-                  <td><a data-toggle="collapse" href="#goal1" aria-expanded="false" aria-controls="collapseExample"><%= objective.title %></a></td>
-                </tr>
-                </table> 
-              </div>      
-              <div class="collapse steps in" id="goal1">
-                <table class="table table-bordered">
-                  <tbody>
-                    <tr title="Uninitiated Step">
-                      <td class="text-center td-w-10p">
-                        <i class="fa fa-unlock"></i>
-                      </td>
-                      <td><%= link_to "Understand the institutional and decision-making cycles/Policy process", stage3_project_objective_path(@project, objective), target: "_self" %></td>
-                    </tr>
-                    <tr title="You must complete the previous step">
-                      <td class="text-center td-w-10p">
-                        <i class="<%= icon_class objective.actors %>"></i>
-                      </td>
-                      <td>
-                        <%= link_to objective_link_text(objective, :actors), stage3_project_objective_path(@project, objective, anchor: "actors"), target: "_self" %>
-                      </td>
-                    </tr>
-                    <tr title="You must complete the previous step">
-                      <td class="text-center td-w-10p">
-                        <i class="<%= icon_class objective.enabling_factors %>"></i>
-                      </td>
-                      <td>
-                        <%= link_to objective_link_text(objective, :enabling_factors), stage3_project_objective_path(@project, objective, anchor: "factors-barriers"), target: "_self" %>
-                      </td>
-                    </tr>
-                    <tr title="You must complete the previous step">
-                      <td class="text-center td-w-10p">
-                        <i class="<%= icon_class objective.outcomes %>"></i>
-                      </td>
-                      <td>
-                        <%= link_to objective_link_text(objective, :outcomes), stage4_project_objective_path(@project, objective), target: "_self" %>
-                      </td>
-                    </tr>
-                    <tr title="You must complete the previous step">
-                      <td class="text-center td-w-10p">
-                        <i class="fa fa-lock"></i>
-                      </td>
-                      <td>
-                        <a href="#">(Coming soon) Define theory of change</a>
-                      </td>
-                    </tr>
-                    <tr title="You must complete the previous step">
-                      <td class="text-center td-w-10p">
-                        <i class="fa fa-lock"></i>
-                      </td>
-                      <td>
-                        <a href="#">(Coming soon) Develop messages</a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+      <% if @objectives.count < 1 %>
+        <p>You need add objectives for settings goals</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <% else %>
+        <% @objectives.each do |objective| %>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <table class="table_goals">
+                  <tr title="Stage Uninitiated or Incomplete">
+                    <td class="td-w-3p"><i class="fa fa-chevron-circle-right pull-left"></i></td>
+                    <td><a data-toggle="collapse" href="#goal1" aria-expanded="false" aria-controls="collapseExample"><%= objective.title %></a></td>
+                  </tr>
+                  </table> 
+                </div>      
+                <div class="collapse steps in" id="goal1">
+                  <table class="table table-bordered">
+                    <tbody>
+                      <tr title="Uninitiated Step">
+                        <td class="text-center td-w-10p">
+                          <i class="fa fa-unlock"></i>
+                        </td>
+                        <td><%= link_to "Understand the institutional and decision-making cycles/Policy process", stage3_project_objective_path(@project, objective), target: "_self" %></td>
+                      </tr>
+                      <tr title="You must complete the previous step">
+                        <td class="text-center td-w-10p">
+                          <i class="<%= icon_class objective.actors %>"></i>
+                        </td>
+                        <td>
+                          <%= link_to objective_link_text(objective, :actors), stage3_project_objective_path(@project, objective, anchor: "actors"), target: "_self" %>
+                        </td>
+                      </tr>
+                      <tr title="You must complete the previous step">
+                        <td class="text-center td-w-10p">
+                          <i class="<%= icon_class objective.enabling_factors %>"></i>
+                        </td>
+                        <td>
+                          <%= link_to objective_link_text(objective, :enabling_factors), stage3_project_objective_path(@project, objective, anchor: "factors-barriers"), target: "_self" %>
+                        </td>
+                      </tr>
+                      <tr title="You must complete the previous step">
+                        <td class="text-center td-w-10p">
+                          <i class="<%= icon_class objective.outcomes %>"></i>
+                        </td>
+                        <td>
+                          <%= link_to objective_link_text(objective, :outcomes), stage4_project_objective_path(@project, objective), target: "_self" %>
+                        </td>
+                      </tr>
+                      <tr title="You must complete the previous step">
+                        <td class="text-center td-w-10p">
+                          <i class="fa fa-lock"></i>
+                        </td>
+                        <td>
+                          <a href="#">(Coming soon) Define theory of change</a>
+                        </td>
+                      </tr>
+                      <tr title="You must complete the previous step">
+                        <td class="text-center td-w-10p">
+                          <i class="fa fa-lock"></i>
+                        </td>
+                        <td>
+                          <a href="#">(Coming soon) Develop messages</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
     <div role="tabpanel" class="tab-pane" id="dashboard">...</div>
