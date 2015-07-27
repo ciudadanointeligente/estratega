@@ -27,13 +27,13 @@
       <div class="form-group">
         <label for="support">Support</label>
         <select name="support" ng-model="current_actor.support">
-          <option ng-repeat="sup in support">{{ sup }}</option>
+          <option ng-selected="{{ current_actor.support == value }}" ng-repeat="(name, value) in support" value="{{ value }}">{{ name }}</option>
         </select>
       </div>
       <div class="form-group">
         <label for="influence">Influence Level</label>
         <select name="influence" ng-model="current_actor.influence">
-          <option ng-repeat="inf in influence">{{ inf }}</option>
+          <option ng-selected="{{ current_actor.influence == value }}" ng-repeat="(name, value) in influence" value="{{ value }}">{{ name }}</option>
         </select>
       </div>
     </form>
