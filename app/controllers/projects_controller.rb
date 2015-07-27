@@ -83,7 +83,9 @@ class ProjectsController < ApplicationController
 
   private
     def set_project
-		@project = Project.find(params[:id])
+      @project = Project.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to(new_project_path, :notice => 'Project not found')
     end
 
     def project_params
