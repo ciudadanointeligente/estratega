@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-	before_action :set_project, only: [:show, :edit, :update, :destroy, :solutions, :stage1]
+	before_action :set_project, only: [:show, :edit, :update, :destroy, :solutions, :stage1, :stage2]
 
   respond_to :html, :json
 
