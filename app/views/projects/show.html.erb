@@ -2,7 +2,7 @@
   <div class="breadcrumb_bg">
     <ol class="breadcrumb container">
       <li>
-        <%= link_to "Projects", projects_path %>
+        <%= link_to "Projects", projects_path, target: "_self" %>
       </li>
       <li class="active"><%= truncate(@project.title, length: 30) %></li>
     </ol>
