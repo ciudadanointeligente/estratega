@@ -49,6 +49,9 @@ class ObjectivesController < ApplicationController
     respond_with objective.objective_type_list
   end
 
+  def stage5
+  end
+
   private
     def set_project
       @project = Project.find(params[:project_id])
