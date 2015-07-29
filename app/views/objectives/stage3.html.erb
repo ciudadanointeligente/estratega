@@ -18,7 +18,6 @@
           <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data Entry</a></li>
           <li role="presentation"><a href="#explanation" aria-controls="explanation" role="tab" data-toggle="tab">Explanation & Examples</a></li>
         </ul>
-
         <!-- tab panes -->
         <div class="tab-content" ng-controller="stage3Ctrl">
           <div role="tabpanel" class="tab-pane active" id="data">
@@ -71,11 +70,11 @@
                 <table class="table">
                   <tr>
                     <th>Description</th>
-                    <th class="text-center">Actions</th>
+                    <th class="text-right">Actions</th>
                   </tr>
                   <tr ng-repeat="barrier in objective.barriers">
                     <td>{{barrier}}</td>
-                    <td class="text-center"><a href="#" title="Edit" ng-click="add_edit_barrier(barrier)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_barrier(barrier)"><i class="fa fa-trash"></i></a></td>
+                    <td class="text-right"><a href="#" title="Edit" ng-click="add_edit_barrier(barrier)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_barrier(barrier)"><i class="fa fa-trash"></i></a></td>
                   </tr>
                 </table>
               </div>
@@ -89,19 +88,18 @@
                   <thead>
                     <tr>
                       <th>Description</th>
-                      <th class="text-center">Actions</th>
+                      <th class="text-right">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr ng-repeat="enabling_factor in objective.enabling_factors">
                       <td>{{enabling_factor}}</td>
-                      <td class="text-center"><a href="#" title="Edit" ng-click="add_edit_enabling_factor(enabling_factor)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_enabling_factor(enabling_factor)"><i class="fa fa-trash"></i></a></td>
+                      <td class="text-right"><a href="#" title="Edit" ng-click="add_edit_enabling_factor(enabling_factor)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_enabling_factor(enabling_factor)"><i class="fa fa-trash"></i></a></td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-
             <%= render "actors_modal" %>
             <%= render "factors_modal" %>
             <%= render "barriers_modal" %>

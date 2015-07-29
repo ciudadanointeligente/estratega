@@ -36,7 +36,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", function
 
 	function create_real_problem(project_id) {
 		$scope.problem = {
-			title: ".", 
+			title: ".",
 			project_id: project_id
 		}
 
@@ -63,7 +63,6 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", function
 	}
 	get_objectives($scope.project_id);
 
-
 	function get_solutions(project_id) {
 		$scope.unrelated_solutions = 0;
 
@@ -77,19 +76,23 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", function
 						objective_ids: solution.objective_ids
 					}
 				});
-				var cnt = 0;
-				data.forEach(function(the_data){
-					if( the_data['objective_ids'].length < 1 ) {
-						$scope.unrelated_solutions = cnt + 1;
-					}
-				});
+				get_unrelated_solutions($scope.solutions);
 			});
+	};
+	function get_unrelated_solutions(data) {
+		var cnt = 0;
+		data.forEach(function(the_data){
+			if( the_data['objective_ids'].length < 1 ) {
+				cnt = cnt + 1;
+			}
+		});
+		$scope.unrelated_solutions = cnt;
 	}
-
 	get_solutions($scope.project_id);
 
 	var save_or_update_objective = function () {
 		/*ugly hack*/
+		$scope.current_objective.objective = {};
 		$scope.current_objective.evaluation = [];
 
 		$scope.current_objective.objective = {
@@ -188,7 +191,6 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", function
 	};
 
 	$scope.add_edit_objective = function (objective) {
-		console.log(objective);
 		if (objective) {
 			$scope.current_objective = objective;
 		} else

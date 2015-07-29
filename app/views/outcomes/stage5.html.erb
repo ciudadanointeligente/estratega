@@ -36,9 +36,9 @@
 								<tbody>
 									<tr ng-repeat="activity in activities">
 										<td>{{activity.title}}</td>
-										<td>
-											<i class="fa fa-pencil-square-o" ng-click="add_edit_activity(activity)"></i>
-											<i class="fa fa-trash" ng-click="delete_solution(problem.id, policy.id, solution)"></i>
+										<td class="text-right">
+											<i class="fa fa-pencil-square-o" ng-click="add_edit_activity(activity)" title="Edit"></i>
+											<i class="fa fa-trash" ng-click="delete_solution(problem.id, policy.id, solution)" title="Delete"></i>
 										</td>
 									</tr>
 								</tbody>

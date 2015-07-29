@@ -77,7 +77,7 @@
                   <tbody>
                     <tr ng-repeat="solution in policy.solutions">
                       <td>{{ solution.title }}</td>
-                      <td>
+                      <td class="text-right">
                         <i class="fa fa-pencil-square-o" ng-click="add_edit_solution(policy.id, solution.id)"></i>
                         <i class="fa fa-trash" ng-click="delete_solution(problem.id, policy.id, solution)"></i>
                       </td>

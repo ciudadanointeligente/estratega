@@ -14,6 +14,13 @@ h2, .h2 {
 .tab-pane li {
   margin-bottom: 15px;
 }
+input, button, select, textarea {
+  font-family: 'Open Sans', sans-serif;
+  color: #7f8c8c;
+}
+select {
+  padding: 5px;
+}
 .btn {
   text-transform: uppercase;
 }
@@ -119,6 +126,10 @@ table a {
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
   background-color: #2dc8c2;
 }
+.nav.nav-stacked > li > a:hover, .nav > li > a:focus {
+  background-color: #F3F3F3;
+  text-decoration: underline;
+}
 .breadcrumb {
   padding: 15px;
   font-size: 16px;
@@ -208,6 +219,9 @@ h4.title_goals {
   font-weight: 700;
   color: #859292;
   margin-bottom: 30px;
+}
+h4.panel-title {
+  padding: 10px 0;
 }
 .panel-heading .fa-check-circle {
   color: #26a65b;
@@ -302,4 +316,37 @@ div#resources_paginate {
 }
 .objetives table a {
   color: #e2534b;
+}
+.btn.pull-right {
+  margin-left: 5px;
+}
+.modal-footer .btn-primary {
+  background-color: #FF635A;
+  border-color: #FF4F4A;
+}
+.modal-footer .btn-warning {
+  color: #333;
+  background-color: #DBDBDB;
+  border-color: #CCC;
+}
+.modal-header {
+  -webkit-box-shadow: inset 0px 10px 10px -4px rgba(0,0,0,0.06);
+  -moz-box-shadow: inset 0px 10px 10px -4px rgba(0,0,0,0.06);
+  box-shadow: inset 0px 10px 10px -4px rgba(0,0,0,0.06);
+}
+.modal-body input[type="checkbox"] {
+  margin: 4px 0 0;
+  margin-top: 1px \9;
+  line-height: normal;
+  width: initial;
+  height: initial;
+}
+.modal-body select {
+  padding: 5px;
+  display: block;
+  width: 100%;
+}
+table .fa-pencil-square-o, table .fa-trash {
+  cursor: pointer;
+  color: #E2534B;
 }
