@@ -11,3 +11,4 @@ Rails.application.config.assets.precompile += %w( bpmn.css joint.all.css style.c
 Rails.application.config.assets.precompile += %w( steps.js json2html.js jquery.json2html.js)
 
 Rails.application.config.assets.precompile += %w( step1_2.html)
+Rails.application.config.assets.precompile += %w( wizard_steps.js stage1_controller.js stage2_controller.js stage3_controller.js stage4_controller.js stage5_controller.js stage6_controller.js)

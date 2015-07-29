@@ -1,4 +1,4 @@
-app.controller("stage5Ctrl", function($scope, $http, $aside, $location){
+app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function ($scope, $http, $aside, $location) {
 	$scope.project_id 	= $location.path().split("/")[2];
 	$scope.objective_id = $location.path().split("/")[4];
 	$scope.outcome_id 	= $location.path().split("/")[6];
@@ -66,4 +66,4 @@ app.controller("stage5Ctrl", function($scope, $http, $aside, $location){
 				});
 		}
 	}
-});
+}]);

@@ -1,4 +1,4 @@
-app.controller("stage6Ctrl", function($scope, $http, $aside, $location){
+app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function ($scope, $http, $aside, $location) {
   $scope.project_id = $location.path().split("/")[2];
   $scope.activity_id = $location.path().split("/")[4];
 
@@ -84,4 +84,4 @@ app.controller("stage6Ctrl", function($scope, $http, $aside, $location){
     $scope.asks.splice($scope.asks.indexOf(ask),1);
     }
   }
-});
+}]);

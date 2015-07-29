@@ -42,12 +42,22 @@ class ActorsController < ApplicationController
     respond_with(@actor.actor_type_list)
   end
 
+  def actor_support
+    @actor = Actor.new
+    respond_with(@actor.actor_support_list)
+  end
+
+  def actor_influence_level
+    @actor = Actor.new
+    respond_with(@actor.actor_influence_level_list)
+  end
+
   private
     def set_actor
       @actor = Actor.find(params[:id])
     end
 
     def actor_params
-      params.require(:actor).permit(:name, :description, :actor_type, :support, :influence, objective_ids: [])
+      params.require(:actor).permit(:name, :description, :important, :actor_type, :support, :influence, objective_ids: [])
     end
 end

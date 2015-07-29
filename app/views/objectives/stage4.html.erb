@@ -13,7 +13,7 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data Entry</a></li>
-          <li role="presentation"><a href="#explication" aria-controls="explication" role="tab" data-toggle="tab">Explication & Examples</a></li>
+          <li role="presentation"><a href="#explanation" aria-controls="explanation" role="tab" data-toggle="tab">Explanation & Examples</a></li>
         </ul>
         <!-- Tab panes -->
         <div class="tab-content" ng-controller="stage4Ctrl">
@@ -28,7 +28,7 @@
                     <th>Interim Outcome Type</th>
                     <th>Actor Type</th>
                     <th>Activities Number</th>
-                    <th class="text-center">Actions</th>
+                    <th class="text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -37,7 +37,7 @@
                     <td>{{outcome.outcome_type_id}}</td>
                     <td>{{outcome.actor_type_id}}</td>
                     <td></td>
-                    <td class="text-center"><a href="#" title="Edit" ng-click="add_edit_outcome(outcome)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_outcome(outcome)"><i class="fa fa-trash"></i></a></td>
+                    <td class="text-right"><a href="#" title="Edit" ng-click="add_edit_outcome(outcome)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_outcome(outcome)"><i class="fa fa-trash"></i></a></td>
                   </tr>
                 </tbody>
               </table>
@@ -63,7 +63,7 @@
             </div>
             <%= render "outcome_modal" %>
           </div>
-          <div role="tabpanel" class="tab-pane" id="explication">
+          <div role="tabpanel" class="tab-pane" id="explanation">
             <%= render "explanation_stage4" %>
           </div>
         </div>
