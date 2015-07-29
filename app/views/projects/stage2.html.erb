@@ -37,7 +37,7 @@
 							<h4>Formulate the policy solutions as objectives <i class="fa fa-info-circle" title="The advocacy objectives are what the organization aims to achieve over several years (usually 3-5). It is the overall policy change that is desired as a result of advocacy effort."></i></h4>
 
 							<div class="alert alert-info" role="alert" ng-class="{hidden: unrelated_solutions < 1}">
-								<i class="fa fa-exclamation-triangle"></i> <a href="#">There are still {{unrelated_solutions}} policy solutions without objectives</a>
+								<i class="fa fa-exclamation-triangle"></i> <a href="#" ng-click="list_policy_solutions()">There are still {{unrelated_solutions}} policy solutions without objectives</a>
 							</div>
 
 							<div>
@@ -65,10 +65,10 @@
 								<tbody>
 									<tr ng-repeat="objective in objectives">
 										<td>{{objective.title}}</td>
-										<td class="text-center">{{objective.key_contribution}}</td>
-										<td class="text-center">{{objective.momentum}}</td>
-										<td class="text-center">{{objective.comparative_advantage}}</td>
-										<td class="text-center">{{ objective.key_contribution + objective.momentum + objective.comparative_advantage }}</td>
+										<td class="text-center">{{ objective.evaluation.big_difference_score + objective.evaluation.multiplying_effect_score + objective.evaluation.catalytic_score }}</td>
+										<td class="text-center">{{ objective.evaluation.demand_score + objective.evaluation.hooks_processes_score + objective.evaluation.intuitive_score }}</td>
+										<td class="text-center">{{ objective.evaluation.alignment_score + objective.evaluation.added_value_score + objective.evaluation.loss_gain_score }}</td>
+										<td class="text-center">{{ objective.evaluation.big_difference_score + objective.evaluation.multiplying_effect_score + objective.evaluation.catalytic_score + objective.evaluation.demand_score + objective.evaluation.hooks_processes_score + objective.evaluation.intuitive_score + objective.evaluation.alignment_score + objective.evaluation.added_value_score + objective.evaluation.loss_gain_score }}</td>
 										<td class="text-center">
 											<i class="fa fa-check" ng-if="objective.prioritized"></i>
 										</td>

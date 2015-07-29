@@ -1,4 +1,4 @@
-app.controller("stage4Ctrl", function($scope, $http, $aside, $location){
+app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", function ($scope, $http, $aside, $location) {
   $scope.project_id = $location.path().split("/")[2];
   $scope.objective_id = $location.path().split("/")[4];
   $http.get('/actors/actor_type.json')
@@ -80,4 +80,4 @@ app.controller("stage4Ctrl", function($scope, $http, $aside, $location){
     $scope.outcomes.splice($scope.outcomes.indexOf(outcome),1);
     }
   }
-});
+}]);

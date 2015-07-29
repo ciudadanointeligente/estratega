@@ -1,4 +1,4 @@
-app.controller("stage1Ctrl", function ($scope, $http, $aside, $location) {
+app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function ($scope, $http, $aside, $location) {
   $scope.project_id = $location.path().split("/")[2];
   $http.get('/real_problems/focus_area.json')
     .success(function (data) {
@@ -81,6 +81,7 @@ app.controller("stage1Ctrl", function ($scope, $http, $aside, $location) {
   };
 
   var save_or_update_policy = function () {
+    $scope.current_policy.description = '&nbsp;';
     if ($scope.problem.id == "" || $scope.current_policy.title == "")
       return
 
@@ -106,6 +107,7 @@ app.controller("stage1Ctrl", function ($scope, $http, $aside, $location) {
   };
 
   var save_or_update_solution = function (problem_id, policy_id, solution_id) {
+    $scope.current_solution.description = '&nbsp;';
     if ($scope.current_solution.id) {
       $http.put("/real_problems/" + problem_id + "/policy_problems/" + policy_id + "/solutions/" + solution_id + ".json", $scope.current_solution)
         .success(function (data) {
@@ -178,10 +180,12 @@ app.controller("stage1Ctrl", function ($scope, $http, $aside, $location) {
         $scope.save = function (e) {
           save_or_update_policy();
           $modalInstance.dismiss();
+          get_policy_solutions($scope.problem_id);
           e.stopPropagation();
         }
         $scope.cancel = function (e) {
           $modalInstance.dismiss();
+          get_policy_solutions($scope.problem_id);
           e.stopPropagation();
         };
       }
@@ -219,10 +223,10 @@ app.controller("stage1Ctrl", function ($scope, $http, $aside, $location) {
     });
   }
 
-  $scope.delete_policy = function(policy){
+  $scope.delete_policy = function (policy){
     if(confirm('Are you sure you want to delete this policy problem?')) {
       $http.delete('/real_problems/' + $scope.problem.id + '/policy_problems/' + policy.id)
       $scope.policies.splice($scope.policies.indexOf(policy),1);
     }
   }
-});
+}]);
