@@ -254,10 +254,10 @@ table th.sorting_asc {
 }
 table th.sorting {
   background: image-url("sort_both.png") no-repeat center right;
-} 
+}
 #resources_filter {
   margin-top: -30px;
-} 
+}
 #resources_filter input[type="search"] {
   -webkit-appearance: none;
   margin-left: 15px;
@@ -349,4 +349,9 @@ div#resources_paginate {
 table .fa-pencil-square-o, table .fa-trash {
   cursor: pointer;
   color: #E2534B;
+}
+
+.dropdown-menu.dropdown-menu-button {
+  padding: 10px;
+  min-width: 228px;
 }

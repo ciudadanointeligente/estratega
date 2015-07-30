@@ -70,7 +70,7 @@ RSpec.describe RealProblemsController, :type => :controller do
   describe "GET Focus Area" do
     it "return a JSON with focus areas" do
       get :focus_area, {:format => 'json'}, valid_session
-      expect(JSON.parse(response.body)).to include "Environmental sustainability"
+      expect(JSON.parse(response.body)).to include "Ensure environmental sustainability"
     end
   end
 
@@ -120,7 +120,7 @@ RSpec.describe RealProblemsController, :type => :controller do
     describe "with valid params" do
       let(:new_attributes) {
         {title: "New Title", description: "Description"}
-      } 
+      }
 
       it "updates the requested real_problem" do
         real_problem = RealProblem.create! valid_attributes

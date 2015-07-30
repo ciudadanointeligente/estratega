@@ -5,7 +5,7 @@ RSpec.describe RealProblem, :type => :model do
   describe "to_graph_json" do
     it "returns a RealProblem in json format" do
       problem = RealProblem.new
-      problem.title = "a real world problem" 
+      problem.title = "a real world problem"
       json = { "real_problem" => { "title" => "a real world problem" }, "policy_problems" => [] }.to_json
       expect(problem.to_graph_json).to eq(json)
     end
@@ -110,10 +110,10 @@ RSpec.describe RealProblem, :type => :model do
     it "return a valid array of focus area" do
       aRealProblem =  RealProblem.new
       expect(aRealProblem.focus_area_list).to be_an Array
-      expect(aRealProblem.focus_area_list).to include 'Global partnership for development'
+      expect(aRealProblem.focus_area_list).to include 'Develop a global partnership for development'
     end
   end
-	
+
 	describe "Policy Solutions Associated" do
 		it "return an array of policy solutions associated" do
 			real_problem = RealProblem.new
