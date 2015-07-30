@@ -1,3 +1,15 @@
+<% content_for :breadcrumb do %>
+  <div class="breadcrumb_bg">
+    <ol class="breadcrumb container">
+      <li>
+        <%= link_to "Projects", projects_path, target: "_self" %>
+      </li>
+      <li><%= link_to truncate(@project.title, length: 30), @project, target: "_self" %></li>
+      <li>Stage 1</li>
+    </ol>
+  </div>
+<% end %>
+
 <div class="container main">
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 stage_menu">
@@ -52,13 +64,13 @@
               <div class="panel-heading">
                 <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_policy(policy.id)">Edit</button>
                 <button type="button" class="btn btn-warning pull-right" ng-click="delete_policy(policy)">Delete</button>
-                <h4 class="panel-title"><a data-toggle="collapse" href="#objetive1" aria-expanded="false" aria-controls="collapseExample">{{ policy.title }}</a></h4>
+                <h4 class="panel-title"><a data-toggle="collapse" href="#objetive-{{policy.id}}" aria-expanded="false" aria-controls="collapseExample">{{ policy.title }}</a></h4>
               </div>
               <!-- policy solutions -->
-              <div class="collapse in" id="objetive1">
+              <div class="collapse in" id="objetive-{{policy.id}}">
                 <button type="button" class="btn btn-info pull-right" ng-click="add_edit_solution(policy.id)">Add</button>
                 <h4>Which policy solutions would constitute an appropriate response? <span ng-if="policy.solutions"><i class="fa fa-info-circle" title="What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?"></i></span></h4>
-                <p ng-if="policy.solutions.length > 0">
+                <p ng-if="policy.solutions.length == 0">
                   What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?
                 </p>
                 <table class="table">
