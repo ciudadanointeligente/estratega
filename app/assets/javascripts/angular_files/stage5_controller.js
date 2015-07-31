@@ -73,4 +73,11 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
         });
     }
   }
+
+  $scope.delete_activity = function (activity) {
+    if (confirm('Are you sure you want to delete this activity?')) {
+      $http.delete('/projects/' + $scope.project_id + '/objectives/' + $scope.objective_id + '/activities/' + activity.id);
+      $scope.activities.splice($scope.activities.indexOf(activity), 1);
+    }
+  }
 }]);
