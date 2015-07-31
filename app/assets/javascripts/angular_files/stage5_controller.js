@@ -29,7 +29,6 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
       $scope.current_activity = {
         title: "",
         description: "",
-        project_id: $scope.project_id,
         objective_id: $scope.objective_id,
         outcome_ids: []
       };
@@ -57,7 +56,6 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
     $scope.current_activity.activity = {
       title: $scope.current_activity.title,
       description: $scope.current_activity.description,
-      project_id: $scope.current_activity.project_id,
       objective_id: $scope.current_activity.objective_id,
       outcome_ids: $scope.current_activity.outcome_ids
     }
