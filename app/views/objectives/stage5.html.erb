@@ -23,44 +23,49 @@
       <h2>What will you do to achieve your advocacy objectives?</h2>
       <p>Your advocacy strategy should describe the main actions that will be conducted in order to contribute to the desired change (interim outcome and advocacy objective). The types of actions are numerous and each action can contribute to different outcomes.</p>
       <div role="tabpanel" class="tabpanel">
-        <!-- Nav tabs -->
+        <!-- nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data Entry</a></li>
           <li role="presentation"><a href="#explanation" aria-controls="explanation" role="tab" data-toggle="tab">Explanation & Examples</a></li>
           <li role="presentation"><a href="#tips" aria-controls="tips" role="tab" data-toggle="tab">Workshop Tips</a></li>
         </ul>
-        <!-- Tab panes -->
+        <!-- tab panes -->
         <div class="tab-content" ng-controller="stage5Ctrl">
           <div role="tabpanel" class="tab-pane active" id="data">
-        <!-- Actions -->
+        <!-- actions -->
           <div class="panel panel-default objetives">
-            <div class="panel-heading">
-              <h4 class="panel-title"><a data-toggle="collapse" href="#action1" aria-expanded="false" aria-controls="collapseExample">{{outcome.title}}</a></h4>
-            </div>
-            <!-- policy solutions -->
+            <!-- activities -->
             <div class="collapse in" id="action1">
               <button type="button" class="btn btn-info pull-right" ng-click="add_edit_activity()">Add</button>
               <h4>What actions must we do to achieve this Interim Outcome? <span ng-if="policy.solutions"><i class="fa fa-info-circle" title="Describe the main actions that will be conducted to the desired change"></i></span></h4>
               <p ng-if="">
                 Describe the main actions that will be conducted to the desired change
               </p>
-              <table class="table">
+              <table class="table ">
+                <thead>
+                  <tr>
+                    <th>Activities</th>
+                    <th>Description</th>
+                    <th>Outcomes</th>
+                    <th class="text-right">Actions</th>
+                  </tr>
+                </thead>
                 <tbody>
                   <tr ng-repeat="activity in activities">
                     <td>{{activity.title}}</td>
+                    <td>{{activity.description}}</td>
+                    <td>{{activity.outcome_ids}}</td>
                     <td class="text-right">
                       <i class="fa fa-pencil-square-o" ng-click="add_edit_activity(activity)" title="Edit"></i>
-                      <i class="fa fa-trash" ng-click="delete_solution(problem.id, policy.id, solution)" title="Delete"></i>
+                      <i class="fa fa-trash" ng-click="delete_activity(activity)" title="Delete"></i>
                     </td>
                   </tr>
                 </tbody>
               </table>
-
               <%= render 'modal_activity' %>
             </div>
-            <!-- end of Actions -->
+            <!-- end of actions -->
           </div>
-
           <div class="bg_grey">
             <h4>How to organize the activities?</h4>
             <p>
@@ -68,9 +73,8 @@
             </p>
             <a href="#" target="_self" class="btn btn-warning"><i class="fa fa-calendar"></i> Organize in Trello</a>
           </div>
-
           </div>
-          <!-- end of Actions -->
+          <!-- end of actions -->
           <div role="tabpanel" class="tab-pane" id="explanation">
           <%= render 'explanation_stage5' %>
           </div>
