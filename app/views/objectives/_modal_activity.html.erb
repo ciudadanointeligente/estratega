@@ -12,6 +12,11 @@
       <textarea name="description" class="form-control" ng-model="current_activity.description" placeholder="Enter a description for an activity"></textarea>
     </div>
   </div>
+  <div class="form-group">
+    <label for="outcome">Outcome</label>
+    <select class="form-control" name="outcome_ids" multiple="multiple" ng-multiple="true" ng-model="current_activity.outcome_ids" ng-options="outcome.id as outcome.description for outcome in outcomes">
+    </select>
+  </div>
   <div class="modal-footer">
     <button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: current_activity.title == ''}">Save</button>
     <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
