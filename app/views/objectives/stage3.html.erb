@@ -1,3 +1,15 @@
+<% content_for :breadcrumb do %>
+  <div class="breadcrumb_bg">
+    <ol class="breadcrumb container">
+      <li>
+        <%= link_to "Projects", projects_path, target: "_self" %>
+      </li>
+      <li><%= link_to truncate(@project.title, length: 30), @project, target: "_self" %></li>
+      <li>Stage 3</li>
+    </ol>
+  </div>
+<% end %>
+
 <div class="container main">
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 stage_menu">

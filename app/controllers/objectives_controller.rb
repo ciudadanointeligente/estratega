@@ -1,5 +1,5 @@
 class ObjectivesController < ApplicationController
-  before_action :set_objective, only: [:show, :edit, :update, :actors, :update_ww, :destroy, :destroy_ww]
+  before_action :set_objective, only: [:show, :edit, :update, :actors, :update_ww, :destroy, :destroy_ww, :outcomes]
   before_action :set_project
 
   respond_to :html, :json
@@ -47,6 +47,13 @@ class ObjectivesController < ApplicationController
   def objective_types
     objective = Objective.new
     respond_with objective.objective_type_list
+  end
+
+  def stage5
+  end
+
+  def outcomes
+    respond_with(@objective.outcomes)
   end
 
   private

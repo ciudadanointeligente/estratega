@@ -28,15 +28,14 @@ Rails.application.routes.draw do
     resources :objectives do
       get 'stage3', on: :member
       get 'stage4', on: :member
+      get 'stage5', on: :member
       get 'actors', on: :member
       get 'objective_types', on: :collection
-      resources :outcomes do
-        get 'stage5', on: :member
+      get 'outcomes', on: :member
+      resources :activities do
+        get 'stage6', on: :member
+        resources :asks
       end
-    end
-    resources :activities do
-      get 'stage6', on: :member
-      resources :asks
     end
     resources :resources do
       get 'aside', on: :collection

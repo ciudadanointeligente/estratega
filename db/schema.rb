@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20150731133536) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "project_id"
+    t.integer  "objective_id"
   end
 
   create_table "activities_outcomes", id: false, force: :cascade do |t|
