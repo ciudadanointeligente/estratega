@@ -21,8 +21,7 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @public_projects = Project.where(public: true)
-    @private_projects = Project.where(public: false)
+    @projects = Project.all
     respond_with(@projects)
   end
 
@@ -48,7 +47,7 @@ class ProjectsController < ApplicationController
         end
       end
     end
-    
+
     # @policy_problems = @project.real_problem.policy_problems || PolicyProblem.none
     # @solutions = @project.real_problem.policy_problems.first.solutions || Solution.none
     respond_with(@project)
@@ -89,6 +88,6 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-      params[:project].permit(:title, :description, :public)
+      params[:project].permit(:title, :description, :public, :focus_area)
     end
 end

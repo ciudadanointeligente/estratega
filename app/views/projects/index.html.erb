@@ -1,31 +1,54 @@
-<h3>Projects</h3>
+<div ng-controller="projectCtrl">
+  <h3>Projects</h3>
 
-<div class="row">
-  <div class="addNew col-md-12 text-right">
-    <%= link_to new_project_path, class: 'btn btn-warning' do %>
-      <i class="fa fa-plus-square-o"></i> New Project
-    <% end %>
+  <div class="row">
+    <div class="addNew col-md-12 text-right">
+      <button class="btn btn-warning" ng-click="add_edit_project()">
+        <i class="fa fa-plus-square-o"></i> New Project
+      </button>
+    </div>
   </div>
-</div>
 
-<div role="tabpanel">
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active">
-      <a href="#private" aria-controls="private" role="tab" data-toggle="tab">My projects</a>
-    </li>
-    <li role="presentation">
-      <a href="#public" aria-controls="public" role="tab" data-toggle="tab">Other projects</a>
-    </li>
-  </ul>
+  <div role="tabpanel">
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#private" aria-controls="private" role="tab" data-toggle="tab">My projects</a>
+      </li>
+      <li role="presentation">
+        <a href="#public" aria-controls="public" role="tab" data-toggle="tab">Other projects</a>
+      </li>
+    </ul>
 
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="private">
-      <%= render "private" %>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="private">
+        <table class="table table-stripped">
+          <thead>
+            <tr>
+              <th>Project</th>
+              <th>Focus Area</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr title="{{ project.description | limitTo: 140 }}" ng-repeat="project in projects">
+              <td>{{ project.title }}</td>
+              <td>{{ project.focus_area }}</td>
+              <td>
+                <i class="fa fa-gears" ng-click="add_edit_project(project)"></i>
+                <a href="/projects/{{ project.id }}"><i class="fa fa-edit"></i></a>
+                <i class="fa fa-eye" ng-click=""></i>
+                <i class="fa fa-trash" ng-click="delete_project(project)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="public">
+      </div>
     </div>
 
-    <div role="tabpanel" class="tab-pane" id="public">
-      <%= render "public" %>
-    </div>
+    <%= render "project_modal" %>
   </div>
 </div>
 
