@@ -27,7 +27,8 @@ RSpec.describe ProjectsController, :type => :controller do
     {
       title: "a Project",
       description: "a Description",
-      public: true
+      public: true,
+      focus_area: "Improve maternal health"
     }
   }
 
@@ -35,14 +36,16 @@ RSpec.describe ProjectsController, :type => :controller do
     {
       title: "a Project",
       description: "a Description",
-      public: false
+      public: false,
+      focus_area: "Improve maternal health"
     }
   }
 
   let(:invalid_attributes) {
     {
       title: "",
-      description: "a Description"
+      description: "a Description",
+      focus_area: ""
     }
   }
 
@@ -56,16 +59,12 @@ RSpec.describe ProjectsController, :type => :controller do
   let(:valid_session) { {} }
 
   describe "GET index" do
-    it "assigns all public projects as @public_projects" do
-      project_one = Project.create! valid_attributes
+    it "all projects" do
+      project_private = Project.create! valid_attributes_no_public
+      project_public = Project.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:public_projects)).to eq([project_one])
-    end
-
-    it "assigns al private projects as @private_projects" do
-      project_one = Project.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:private_projects)).to eq([@project])
+      expect(assigns(:projects)).to include(project_private)
+      expect(assigns(:projects)).to include(project_public)
     end
   end
 
@@ -98,11 +97,11 @@ RSpec.describe ProjectsController, :type => :controller do
       project_one.save
       project_two = Project.new title: "a project #2"
       project_two.save
-      
+
       real_problem_one = RealProblem.new title: "a real problem"
       real_problem_one.project_id = project_one.id
       real_problem_one.save
-      
+
       real_problem_two = RealProblem.new title: "a real problem"
       real_problem_two.project_id = project_two.id
       real_problem_two.save
