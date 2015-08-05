@@ -151,6 +151,22 @@
                       </tr>
                       <tr title="You must complete the previous step">
                         <td class="text-center td-w-10p">
+                          <i class="<%= icon_class objective.activities %>"></i>
+                        </td>
+                        <td>
+                          <%= link_to objective_link_text(objective, :activities), stage5_project_objective_path(@project, objective), target: "_self" %>
+                        </td>
+                      </tr>
+                      <tr title="You must complete the previous step">
+                        <td class="text-center td-w-10p">
+                          <i class="<%= icon_class objective.asks %>"></i>
+                        </td>
+                        <td>
+                          <%= link_to objective_link_text(objective, :asks), stage6_project_objective_path(@project, objective), target: "_self" %>
+                        </td>
+                      </tr>
+                      <tr title="You must complete the previous step">
+                        <td class="text-center td-w-10p">
                           <i class="fa fa-lock"></i>
                         </td>
                         <td>

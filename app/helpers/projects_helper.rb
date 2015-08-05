@@ -37,7 +37,11 @@ module ProjectsHelper
     when :enabling_factors
       objective.enabling_factors.blank? ? "Identify enabling factors and barriers" : " #{objective.enabling_factors.size} Enabling Factors and #{objective.barriers.size} Barriers"
     when :outcomes
-      objective.outcomes.blank? ? "Define the interim outcomes and activities" : " #{objective.outcomes.size} Outcomes"
+      objective.outcomes.blank? ? "Define interim outcomes" : " #{objective.outcomes.size} Outcomes"
+    when :activities
+      objective.activities.blank? ? "Define activities" : " #{objective.activities.size} Activities"
+    when :asks
+      objective.activities.blank? ? "Define asks" : " #{objective.asks.size} Asks"
     end
   end
 end
