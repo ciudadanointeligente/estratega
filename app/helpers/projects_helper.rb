@@ -41,7 +41,7 @@ module ProjectsHelper
     when :activities
       objective.activities.blank? ? "Define activities" : " #{objective.activities.size} Activities"
     when :asks
-      objective.activities.blank? ? "Define asks" : " #{objective.asks.size} Asks"
+      objective.asks.blank? ? "Define asks" : " #{objective.asks.size} Asks"
     end
   end
 end
