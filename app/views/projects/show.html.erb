@@ -2,7 +2,7 @@
   <div class="breadcrumb_bg">
     <ol class="breadcrumb container">
       <li>
-        <%= link_to "Projects", projects_path, target: "_self" %>
+        <%= link_to t('.projects'), projects_path, target: "_self" %>
       </li>
       <li class="active"><%= truncate(@project.title, length: 30) %></li>
     </ol>
@@ -14,12 +14,12 @@
 <hr>
 <div role="tabpanel">
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#stages" aria-controls="stages" role="tab" data-toggle="tab">Stages</a></li>
-    <li role="presentation"><a href="#dashboard" aria-controls="dashboard" role="tab" data-toggle="tab">Dashboard</a></li>
-    <li role="presentation"><a href="#documents" aria-controls="documents" role="tab" data-toggle="tab">Documents</a></li>
+    <li role="presentation" class="active"><a href="#stages" aria-controls="stages" role="tab" data-toggle="tab"><%= t('.stages') %></a></li>
+    <li role="presentation"><a href="#dashboard" aria-controls="dashboard" role="tab" data-toggle="tab"><%= t('.dashboard') %></a></li>
+    <li role="presentation"><a href="#documents" aria-controls="documents" role="tab" data-toggle="tab"><%= t('.documents') %></a></li>
   </ul>
 
-  <!-- Tab panes -->
+  <!-- tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="stages">
       <div class="row">
@@ -168,7 +168,7 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="dashboard">...</div>
     <div role="tabpanel" class="tab-pane" id="documents">
-        <%= render "resources" %>
+      <%= render "resources" %>
     </div>
   </div>
 </div>

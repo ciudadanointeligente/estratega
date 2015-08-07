@@ -1,32 +1,32 @@
 <script type="text/ng-template" id="project-aside.html">
   <div class="modal-header">
-      <h3 class="modal-title">Project</h3>
+      <h3 class="modal-title"><%= t('.project') %></h3>
   </div>
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label for="title">Title</label>
+        <label for="title"><%= t('.title') %></label>
         <input type="text" name="title" class="form-control" ng-model="current_project.title" placeholder="Enter a title for the project">
       </div>
       <div class="form-group">
-        <label for="description">Description</label>
+        <label for="description"><%= t('.description') %></label>
         <textarea name="description" class="form-control" ng-model="current_project.description" placeholder="Enter a description for the project"></textarea>
       </div>
       <div class="form-group">
-        <label for="focus_area">Focus Area</label>
+        <label for="focus_area"><%= t('.focus_area') %></label>
         <select name="focus_area" class="form-control" ng-model="current_project.focus_area">
           <option ng-repeat="fa in focus_areas">{{ fa }}</option>
         </select>
       </div>
       <div class="checkbox">
         <label>
-          <input type="checkbox" name="public" ng-model="current_project.public" > Public
+          <input type="checkbox" name="public" ng-model="current_project.public" > <%= t('.public') %>
         </label>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: current_project.title == ''}">Save</button>
-    <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
+    <button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: current_project.title == ''}"><%= t('.save') %></button>
+    <button class="btn btn-warning" ng-click="cancel($event)"><%= t('.cancel') %></button>
   </div>
 </script>
