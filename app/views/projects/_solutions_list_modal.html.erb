@@ -1,13 +1,13 @@
 <script type="text/ng-template" id="solutions-list-aside.html">
 <div class="modal-header">
-  <h3 class="modal-title">Solutions</h3>
+  <h3 class="modal-title"><%= t('.solutions') %></h3>
 </div>
 <div class="modal-body">
   <table class="table">
     <thead>
       <tr>
-        <th>Title</th>
-        <th>Description</th>
+        <th><%= t('.title') %></th>
+        <th><%= t('.description') %></th>
       </tr>
     </thead>
     <tbody>
@@ -19,6 +19,6 @@
   </table>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-warning" ng-click="cancel($event)">Back</button>
+  <button class="btn btn-warning" ng-click="cancel($event)"><%= t('.back_button') %></button>
 </div>
 </script>
