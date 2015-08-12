@@ -1,17 +1,17 @@
 <script type="text/ng-template" id="solution-aside.html">
   <div class="modal-header">
-    <h3 class="modal-title">Solution</h3>
+    <h3 class="modal-title"><%= t('.solution') %></h3>
   </div>
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" name="title" class="form-control" ng-model="current_solution.title" placeholder="Enter a title for a problem">
+        <label for="title"><%= t('.title') %></label>
+        <input type="text" name="title" class="form-control" ng-model="current_solution.title" placeholder="<%= t('.title_placeholder') %>">
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: current_solution.title == ''}">Save</button>
-    <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
+    <button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: current_solution.title == ''}"><%= t('.save_button') %></button>
+    <button class="btn btn-warning" ng-click="cancel($event)"><%= t('.cancel_button') %></button>
   </div>
 </script>
