@@ -36,7 +36,7 @@ en:
       description: "The foundation of an effective advocacy strategy is a common understanding of the main problems that affect children, their policy dimensions and related policy solutions. It is important you take time to go through this discussion because without a clear, articulated issue and well-defined problems and solutions the remaining parts of the strategy will lose focus."
       subtitle1: "Which real-world problem children are facing that you want to address?"
       subtitle1_tooltip: "A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)"
-      subtitle1_explanation4: "A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)"
+      subtitle1_explanation: "A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)"
       subtitle2: "Which are the policy-related causes of the real-world problem?"
       subtitle2_tooltip: "Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem"
       subtitle3: "Which policy solutions would constitute an appropriate response?"
@@ -205,6 +205,105 @@ en:
       save_button: "Save"
       cancel_button: "Cancel"
     explanation_stage2:  #tab `Explanation & Examples` of stage 2
+      explanation: "Explanation"
+      title1: "Which real-world problem children are facing that you want to address?"
+      title1_description: |
+                          <p>A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)</p>
+      title2: "Which are the policy-related causes of the real-world problem?"
+      title2_description: |
+                          <p>Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem.</p>
+                          <p>To conduct the problem analysis, you can use a problem tree. The problem tree is a well-known tool that “will help advocates understand the immediate, underlying and root causes of the issue, as well as help in gathering information to support the analysis”.</p>
+      title3: "Which policy solutions would constitute an appropriate response?"
+      title3_description: |
+                          <p>What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?</p>
+                          <p>The policy solutions usually refer to:</p>
+                          <ul>
+                            <li>Policy development (ex. Development of a nutrition national plan)</li>
+                            <li>Placement on the policy agenda. (Ex: Official paper on new financing mechanisms)</li>
+                            <li>Policy adoption. (Ex: approval of equal pay act)</li>
+                            <li>Policy blocking: (Ex. Rejection of anti-homosexuality bill)</li>
+                            <li>Policy implementation: (Ex. Implementation of regulations forbidding summary deportations by the police)</li>
+                            <li>Policy maintenance. (Ex.: No reduction of budgets for child protection policies)</li>
+                          </ul>
+                          <p>In those contexts where a policy change may be too ambitious, an organization may aim for a discursive change (which should pave the way for a policy change in the longer run). For instance, for many years, given the lack of options to achieve change on policies related to tax heavens, organizations working on tax justice focused their advocacy efforts on a change in the discourse in the society so tax havens were seen by the majority as an unacceptable practice that distract critical resources for the countries to pay for social services. These efforts built the ground for changes in policy later on when opportunities appeared (i.e. with the 2008 financial crisis).</p>
+      example: "Example"
+      real_world_problem: "Real-world problem"
+      real_world_problem_description: |
+                          <p>Increasing mother to child transmission of HIV in country AEIOU during the last 3 years</p>
+                          <h4>Policy dimensions of the problem</h4>
+                          <ul>
+                            <li>Women and children not included as target populations of the National Strategic Plan (epidemy historically concentrated in male drug users)</li>
+                            <li>Health insurance law does not cover informal workers and many women at risk belong to this group. (Therefore, due to limited capacity to cover out-of-pocket expenditures women with little resources do not attend clinics for HIV testing and treatment)</li>
+                            <li>PMTCT not included as a priority in the National Strategic Plan (few resources to improve services, campaigns, etc.)- Few donors paying attention to it.</li>
+                            <li>Current legal framework stipulates detention for sex workers (after 3 monetary sanctions), which prevents sex workers to attend health services due to fear of being denounced. </li>
+                          </ul>
+      policy_solutions: "Policy Solutions"
+      policy_solutions_description: |
+                          <ul>
+                            <li>Amendment to the Penal Code to remove sanctions in the form of detention for sex workers</li>
+                            <li>Revision of the National HIV Strategy </li>
+                            <li>Health insurance policy framework revised to cover disadvantaged informal workers</li>
+                            <li>Increase donor funding on PMTCT</li>
+                          </ul>
+    #
+    # Stage 3
+    #
+  objectives:
+    stage3:   # http://localhost:3000/projects/1/objectives/1/stage3
+      projects: "Projects"
+      stage3: "Stage 3"
+      title: "Which external factors you need to take into account in your advocacy planning?"
+      title_description: "Understanding the decision-making cycle, the political forces both for and against your objectives and the enabling factors and barriers that you will likely encounter during the implementation of your advocacy plan will allow you to assess the feasibility of your objectives and to be accurate and effective in your targeting and planning. All this information will then shape the definition of the interim outcomes (see below)."
+      subtitle1: "Understand the institutional and decision-making cycles"
+      subtitle1_explanation: "Policy decisions are often made according to a cycle or schedule. To maximise your influence you need to have a sound understanding of the policy processes. First, because the analysis of the decision-making process helps to identify opportunities and entry points to begin influencing on a given issue. Second, because last-minute interventions rarely work, and the earlier in the decision-making cycle the idea is accepted, the more effective the end result is likely to be"
+      subtitle2: "Map the actors and analyse their influence and support"
+      subtitle2_explanation: "Effective advocacy requires having a good understanding of all relevant actors: those with power to make change happen (decision-makers); those with influence over the decision-makers (influencers); and those in the community who would be supportive or opposing forces."
+      subtitle3: "Identify additional enabling factors and barriers"
+      subtitle3_tooltip: "Thanks to the prioritizing table, the decision-making cycle analysis and the actor mapping you will have already identified a number of enabling factors and barriers to achieve your chosen objective. However, you may need to go deeper into the analysis of the context surrounding the specific policy change that you want to pursue. You should think devote time to think about additional relevant enabling factors and barriers of different nature: financial, social, technological, factual, political, religious, cultural, geographical, organizational, etc."
+      data_entry: "Data Entry"
+      explanation_examples: "Explanation & Examples"
+      draw_sandbox_button: "Draw in Sandbox"
+      add_actor_button: "Add Actor"
+      all_actors: "All Actors"
+      name: "Name"
+      actor_type: "Actor Type"
+      support: "Support"
+      influence: "Influence"
+      important: "Important"
+      actions: "Actions"
+      add_enabling_factor_button: "Add Enabling Factor"
+      add_barrier_button: "Add Barrier"
+      barriers: "Barriers"
+      description: "Description"
+      enabling_factors: "Enabling Factors"
+    actors_modal:  # modal `add actor` of stage 3
+      actor: "Actor"
+      actor_type: "Actor Type"
+      select_actor_type: "Select Actor Type"
+      person: "Person"
+      organization: "Organization"
+      name: "Name"
+      name_placeholder: "Enter the actor's name"
+      description: "Description"
+      description_placeholder: "Add any important actor info"
+      important: "Important"
+      support: "Support"
+      influence_level: "Influence Level"
+      save_button: "Save"
+      cancel_button: "Cancel"
+    factors_modal:   # modal `add enabling factor` of stage 3
+      enabling_factor: "Enabling Factor"
+      description: "Description"
+      description_placeholder: "Enter description"
+      save_button: "Save"
+      cancel_button: "Cancel"
+    barriers_modal: # modal `add barrier` of stage 3
+      barrier: "Barrier"
+      description: "Description"
+      description_placeholder: "Enter description"
+      save_button: "Save"
+      cancel_button: "Cancel"
+    explanation_stage3: #tab `Explanation & Examples` of stage 3
       explanation: "Explanation"
       title1: "Which real-world problem children are facing that you want to address?"
       title1_description: |
