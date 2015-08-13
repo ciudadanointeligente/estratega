@@ -464,3 +464,250 @@ en:
                     <li>Members of Parliament are aware of our policy proposal and recognize that the problem exists and solutions must be promptly set in place (awareness and salience)</li>
                     <li>UNICEF/ UN is invited to prepare and present a report on the implementation of the HI Law (organizational recognition)</li>
                   </ul>
+    #
+    # Stage 5
+    #
+    stage5: # http://localhost:3000/projects/1/objectives/1/stage5
+      projects: "Projects"
+      stage5: "Stage 5"
+      title: "What will you do to achieve your advocacy objectives?"
+      title_description: "Your advocacy strategy should describe the main actions that will be conducted in order to contribute to the desired change (interim outcome and advocacy objective). The types of actions are numerous and each action can contribute to different outcomes."
+      subtitle1: "What actions must we do to achieve this Interim Outcome?"
+      subtitle2: "How to organize the activities?"
+      subtitle2_explanation: "For planning and coordination purposes it is useful to place the activities in Trello."
+      data_entry: "Data Entry"
+      explanation_examples: "Explanation & Examples"
+      workshop_tips: "Workshop Tips"
+      add_button: "Add"
+      without_activities: "Describe the main actions that will be conducted to the desired change"
+      activities: "Activities"
+      description: "Description"
+      outcomes: "Outcomes"
+      actions: "Actions"
+      trello: "Organize in Trello"
+    modal_activity: # modal 'activities' of stage 5
+      activities: "Activities"
+      title: "Title"
+      title_placeholder: "Enter a title for an activity"
+      description: "Description"
+      description_placeholder: "Enter a description for an activity"
+      outcome: "Outcome"
+      save_button: "Save"
+      cancel_button: "Cancel"
+    explanation_stage5:
+      title: "Explanation"
+      subtitle1: "What will you do to achieve your advocacy objectives?"
+      subtitle1_explanation: <p>Your advocacy strategy should describe the main actions that will be conducted in order to contribute to the desired change (interim outcome and advocacy objective). The types of actions are numerous and each action can contribute to different outcomes.</p>
+      outcomes_table_content: |
+              <tr>
+                <th>Outcome</th>
+                <th>Examples of activities usually associated with the outcome</th>
+              </tr>
+              <tr>
+                <td>Political will</td>
+                <td>Lobby<br>
+                  Relationship building with decision makers<br>
+                  Policymaker and candidate education<br>
+                  Litigation or legal advocacy<br>
+                  Policy proposal development<br>
+                  Demonstration projects or pilots<br>
+                  Earned media
+                </td>
+              </tr>
+              <tr>
+                <td>Public will</td>
+                <td>Polling
+                  Rallies and marches <br>
+                  Digital or internet-based media/social media
+                </td>
+              </tr>
+              <tr>
+                <td>Attitudes or beliefs</td>
+                <td>Issue/policy analysis and research
+                  Polling <br>
+                  Public service announcements <br>
+                  Briefings/presentations
+                </td>
+              </tr>
+              <tr>
+                <td>Salience</td>
+                <td>Lobby <br>
+                  Relationship building with decision makers <br>
+                  Policymaker and candidate education
+                </td>
+              </tr>
+              <tr>
+                <td>Awareness</td>
+                <td>
+                  Public service announcements <br>
+                  Rallies and marches <br>
+                  Briefings/presentations <br>
+                  Digital or internet-based media/social media
+                </td>
+              </tr>
+              <tr>
+                <td>New champions</td>
+                <td>
+                  Relationship building with decision-makers <br>
+                  Digital or internet-based media/social media
+                </td>
+              </tr>
+              <tr>
+                <td>New advocates </td>
+                <td>Briefings/presentations</td>
+              </tr>
+              <tr>
+                <td>Partnerships or alliances</td>
+                <td>
+                  Issue/policy analysis and research <br>
+                  Rallies and marches <br>
+                  Grass-roots organizing and mobilization
+                </td>
+              </tr>
+              <tr>
+                <td>Constituency or support-base growth</td>
+                <td>
+                  Rallies and marches <br>
+                  Grass-roots organizing and mobilization
+                </td>
+              </tr>
+              <tr>
+                <td>Media coverage</td>
+                <td>
+                  Rallies and marches <br>
+                  Grass-roots organizing and mobilization <br>
+                  Media partnerships <br>
+                  Digital or internet-based media/social media
+                </td>
+              </tr>
+              <tr>
+                <td>Issue reframing</td>
+                <td>
+                  Issue/policy analysis and research <br>
+                  Earned media
+                </td>
+              </tr>
+              <tr>
+                <td>Organizational advocacy capacity</td>
+                <td>Any of the others</td>
+              </tr>
+              <tr>
+                <td>Organizational visibility or issue recognition </td>
+                <td>Issue/policy analysis and research</td>
+              </tr>
+      after_outcomes_table_description:  |
+              <p>The actions chosen should be those with the greatest potential to contribute to each of the interim outcomes. During their selection, you also need to keep in mind your organization´s human and financial resources.</p>
+              <p>For planning and coordination purposes it is useful to place the activities in a calendar.</p>
+      example: "Example"
+      activities: "Activities"
+      interim_outcome_table_content: |
+              <tr>
+                <th>Interim outcome</th>
+                <th>Main activities</th>
+              </tr>
+              <tr>
+                <td>1) INGO and UNICEF strengthen their collaboration and jointly advocate the National Assembly and the Government to reform the policy framework on HI in order to cover informal workers and their families <strong>(partnerships)</strong></td>
+                <td>
+                  <ul>
+                    <li>Jointly (INGO and UNICEF) collect and publish live stories of children living with HIV and children born HIV free from HIV positive mothers.</li>
+                    <li>Joint lobby meetings (see below)</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>2) All UN organizations interested on this issue (WHO, ILO, UNAIDS, UNWOMEN, UNICEF) agree on joint advocacy actions and actively engage in their implementation <strong>(partnerships)</strong></td>
+                <td>
+                  <ul>
+                    <li>Develop internal UN document with UN asks, messages and narrative</li>
+                    <li>Joint event around the launch of the WHO report on Health for All with the participation of Gov, MP and engagement of UN Reps and regional/HQ+ affected people</li>
+                    <li>Produce and publish joint UN/UNICEF investment case on HI and coverage to informal workers and families </li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>3) Key neutral media cover and support the issue and give voices to the demands of informal workers <strong>(media coverage)</strong></td>
+                <td>
+                  <ul>
+                    <li>Jointly (INGO and UNICEF) collect and publish live stories of children living with HIV and children born HIV free from HIV positive mothers. </li>
+                    <li>Identify UN contacts in key media and brief them on the issue</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>4) Affected people groups/networks engage and take action in support of the issue <strong>(constituency growth)</strong></td>
+                <td>
+                  <ul>
+                    <li>Engage with affected people groups and strengthen their knowledge about the opportunity for change+ Identification of spokespersons among affected people- training on communications </li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>5) Director of the Department of HI demonstrates its support to expanding HI coverage to informal workers by speaking in favour of it publicly <strong>(political will)</strong></td>
+                <td>
+                  <ul>
+                    <li>Organize field visit to PMTCT clinics supported by INGO with the participation of Members of the Parliament, Government and a few journalists</li>
+                    <li>Hold joint lobby meeting with Government</li>
+                    <li>See also UN joint event around the launch of WHO report)</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>6) Members of Parliament are aware of our policy proposal and recognize that the problem exists and solutions must be promptly set in place <strong>(awareness and salience)</strong></td>
+                <td>
+                  <ul>
+                    <li>Organize field visit to PMTCT clinics supported by INGO with the participation of Members of the Parliament, Government and a few journalists</li>
+                    <li>Hold joint lobby meeting with MP</li>
+                    <li>(See also Joint event around the launch of WHO report)</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>7) UNICEF/ UN is invited to prepare and present a report on the implementation of the HI Law (organizational recognition)</td>
+                <td>
+                  <ul>
+                    <li>Hold joint lobby meeting with MP</li>
+                    <li>+ Publications mentioned above</li>
+                  </ul>
+                </td>
+              </tr>
+      months_table_content: |
+              <tr>
+                <th>Month</th>
+                <th>April</th>
+                <th>May</th>
+                <th>June</th>
+                <th>July</th>
+                <th>August</th>
+                <th>Sept</th>
+                <th>Oct</th>
+                <th>Nov</th>
+                <th>Dec</th>
+              </tr>
+              <tr>
+                <th>External event</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>NA communication on the review of the Law on HIV published </td>
+                <td></td>
+                <td>1st week-report submitted <br>
+                  2nd week- presentations
+                </td>
+              </tr>
+              <tr>
+                <th>Organization´s action</th>
+                <td>Develop internal UN document with UN asks, messages and narrative </td>
+                <td></td>
+                <td>Hold Joint lobby meeting with MP and Government <strong>*</strong></td>
+                <td>Identify UN contacts in key media and brief them on the issue</td>
+                <td></td>
+                <td>Organize field visit to PMTCT clinics supported by INGO with the participation of Members of the Parliament, Government and a few journalists</td>
+                <td></td>
+                <td>Hold Joint lobby meeting with MP and Government <strong>*</strong> <br>
+                Joint event around the launch of the WHO report on Health for All with the participation of Gov, MP and engagement of UN Reps and regional/HQ+ affected people</td>
+                <td></td>
+              </tr>
+      after_months_table_description: <p><strong>*</strong> Engage with affected people groups and strengthen their knowlegde about the opportunity for change+ Identification of spokepersons among affected people- training on communications.</p>
