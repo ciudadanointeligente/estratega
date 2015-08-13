@@ -13,37 +13,37 @@
 <div class="container main">
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 stage_menu">
-      <h3>What do you want the target audience to do?</h3>
+      <h3><%= t('.title') %></h3>
       <ul class="nav nav-stacked">
-        <li class="active"><a href="#"><i class="fa fa-check-circle"></i> What will the ask for each actor?</a></li>
+        <li class="active"><a href="#"><i class="fa fa-check-circle"></i> <%= t('.subtitle1') %></a></li>
       </ul>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-      <h2>What do you want the target audience to do?</h2>
-      <p>Your advocacy strategy should describe the main actions that will be conducted in order to contribute to the desired change (interim outcome and advocacy objective). The types of actions are numerous and each action can contribute to different outcomes.</p>
+      <h2><%= t('.title') %></h2>
+      <p><%= t('.title_description') %></p>
       <div role="tabpanel" class="tabpanel">
         <!-- nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data Entry</a></li>
-          <li role="presentation"><a href="#explanation" aria-controls="explanation" role="tab" data-toggle="tab">Explanation & Examples</a></li>
-          <li role="presentation"><a href="#tips" aria-controls="tips" role="tab" data-toggle="tab">Workshop Tips</a></li>
+          <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab"><%= t('.data_entry') %></a></li>
+          <li role="presentation"><a href="#explanation" aria-controls="explanation" role="tab" data-toggle="tab"><%= t('.explanation_examples') %></a></li>
+          <li role="presentation"><a href="#tips" aria-controls="tips" role="tab" data-toggle="tab"><%= t('.workshop_tips') %></a></li>
         </ul>
         <!-- tab panel -->
         <div class="tab-content" ng-controller="stage6Ctrl">
           <div role="tabpanel" class="tab-pane active" id="data">
         <!-- actions -->
           <div class="bg_grey">
-            <button type="button" class="btn btn-info pull-right" ng-click="add_edit_ask()">Add</button>
-            <h4>What will the ask for each actor?</h4>
+            <button type="button" class="btn btn-info pull-right" ng-click="add_edit_ask()"><%= t('.add_button') %></button>
+            <h4><%= t('.subtitle1') %></h4>
             <p>
-              The Ask should be clear, concise, solution-focused, and tailored to each actor.
+              <%= t('.subtitle1_explanation') %>
             </p>
             <table class="table">
               <thead>
                 <tr>
-                  <th>Actor</th>
-                  <th>Ask</th>
-                  <th class="text-right">Actions</th>
+                  <th><%= t('.actor') %></th>
+                  <th><%= t('.ask') %></th>
+                  <th class="text-right"><%= t('.actions') %></th>
                 </tr>
               </thead>
               <tbody>
