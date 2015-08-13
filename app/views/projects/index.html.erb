@@ -1,10 +1,10 @@
 <div ng-controller="projectCtrl">
-  <h3>Projects</h3>
+  <h3><%= t('.projects') %></h3>
 
   <div class="row">
     <div class="addNew col-md-12 text-right">
       <button class="btn btn-warning" ng-click="add_edit_project()">
-        <i class="fa fa-plus-square-o"></i> New Project
+        <i class="fa fa-plus-square-o"></i> <%= t('.new_project') %>
       </button>
     </div>
   </div>
@@ -12,10 +12,10 @@
   <div role="tabpanel">
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active">
-        <a href="#private" aria-controls="private" role="tab" data-toggle="tab">My projects</a>
+        <a href="#private" aria-controls="private" role="tab" data-toggle="tab"><%= t('.my_projects') %></a>
       </li>
       <li role="presentation">
-        <a href="#public" aria-controls="public" role="tab" data-toggle="tab">Other projects</a>
+        <a href="#public" aria-controls="public" role="tab" data-toggle="tab"><%= t('.other_projects') %></a>
       </li>
     </ul>
 
@@ -24,9 +24,9 @@
         <table class="table table-stripped">
           <thead>
             <tr>
-              <th>Project</th>
-              <th>Focus Area</th>
-              <th>Actions</th>
+              <th><%= t('.project') %></th>
+              <th><%= t('.focus_area') %></th>
+              <th><%= t('.actions') %></th>
             </tr>
           </thead>
           <tbody>
@@ -51,4 +51,3 @@
     <%= render "project_modal" %>
   </div>
 </div>
-

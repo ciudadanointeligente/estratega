@@ -1,17 +1,17 @@
 <script type="text/ng-template" id="barrier-aside.html">
   <div class="modal-header">
-    <h3 class="modal-title">Barrier</h3>
+    <h3 class="modal-title"><%= t('.barrier') %></h3>
   </div>
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label for="title">Description</label>
-        <input type="text" name="description" class="form-control" ng-model="current_barrier" placeholder="Enter description">
+        <label for="title"><%= t('.description') %></label>
+        <input type="text" name="description" class="form-control" ng-model="current_barrier" placeholder="<%= t('.description_placeholder') %>">
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: current_barrier == ''}">Save</button>
-    <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
+    <button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: current_barrier == ''}"><%= t('.save_button') %></button>
+    <button class="btn btn-warning" ng-click="cancel($event)"><%= t('.cancel_button') %></button>
   </div>
 </script>
