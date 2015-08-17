@@ -3,7 +3,6 @@
 body {
   font-family: 'Open Sans', sans-serif;
   color: #7f8c8c;
-  background-color: #f3f3f3;
 }
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: #00385A;
@@ -365,4 +364,32 @@ table .fa-pencil-square-o, table .fa-trash {
 }
 .benefits p {
   color: #436B83;
+}
+.benefits .btn-danger {
+    border-radius: 15px;
+    background-color: #FF635A;
+    border-color: #FF4F4A;
+    color: #ffffff;
+    text-transform: none;
+}
+.benefits .btn-default {
+    border-radius: 15px;
+    background-color: #CDCDCD;
+    border-color: #CDCDCD;
+    color: #ffffff;
+    text-transform: none;
+}
+.testimonial {
+  color: #ffffff;
+  background-color: #0091EA;
+  font-weight: 300;
+}
+.testimonial p.cita {
+  font-size: 26px;
+}
+.testimonial .t2 {
+  background-color: #00C2E4;
+}
+.testimonial img {
+  width: 100%
 }
