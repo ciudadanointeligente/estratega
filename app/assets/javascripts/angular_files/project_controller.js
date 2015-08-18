@@ -73,4 +73,24 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
     }
   }
 
+  $scope.user_permission = function(project) {
+    $aside.open({
+      templateUrl: 'user-permission-aside',
+      placement: 'left',
+      size: 'lg',
+      scope: $scope,
+      controller: function ($scope, $modalInstance) {
+        $scope.save = function (e) {
+          // save_or_update_project();
+          $modalInstance.dismiss();
+          e.stopPropagation();
+        }
+        $scope.cancel = function (e) {
+          $modalInstance.dismiss();
+          e.stopPropagation();
+        };
+      }
+    });
+  }
+
 }])

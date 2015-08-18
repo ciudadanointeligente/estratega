@@ -56,7 +56,11 @@ RSpec.describe ProjectsController, :type => :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # ProjectsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) {
+    {"warden.user.user.key" => session["warden.user.user.key"]}
+  }
+
+  login_user
 
   describe "GET index" do
     it "all projects" do
@@ -191,6 +195,11 @@ RSpec.describe ProjectsController, :type => :controller do
         post :create, {:project => valid_attributes}, valid_session
         expect(response).to redirect_to(Project.last)
       end
+
+      it "assigns a project owner" do
+        post :create, {:project => valid_attributes}, valid_session
+        expect(assigns(:project).users).to eq(valid_session["warden.user.user.key"][0][0])
+      end
     end
 
     describe "with invalid params" do
@@ -203,6 +212,17 @@ RSpec.describe ProjectsController, :type => :controller do
         post :create, {:project => invalid_attributes}, valid_session
         expect(response).to render_template("new")
       end
+    end
+  end
+
+  describe "POST Share" do
+    it "add share users" do
+      # project = FactoryGirl.create(:project)
+      # owner = FactoryGirl.create(:user)
+      # collaborator = User.new :email 'guest_01@ciudadanoi.org'
+      # sharing = { :emails => ['guest_01@ciudadanoi.org, guest_02@ciudadanoi.org'], :message => 'simple message' }
+      # post :share, {:id => project.to_param, :project => sharing}, valid_session
+      # sharing user is added as collaborator
     end
   end
 

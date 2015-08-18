@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
-	before_action :set_project, only: [:show, :edit, :update, :destroy, :solutions, :stage1, :stage2]
+  before_action :authenticate_user!
+	before_action :set_project, only: [:show, :edit, :update, :destroy, :solutions, :stage1, :stage2, :share]
 
   respond_to :html, :json
 
@@ -77,6 +78,10 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
+    respond_with(@project)
+  end
+
+  def share
     respond_with(@project)
   end
 
