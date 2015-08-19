@@ -27,31 +27,19 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function
 
   get_asks($scope.project_id, $scope.activity_id);
 
-  var save_or_update_ask = function(){
-    $scope.current_ask.title = '&nbsp;';
-    if($scope.current_ask.id) {
-      $http.put('/projects/'+$scope.project_id+'/activities/'+$scope.activity_id+'/asks/'+$scope.current_ask.id, $scope.current_ask)
-        .success(function(data){
-          get_actor_of_ask($scope.current_ask);
-          // alert success or error
-        })
-    } else {
-      $http.post('/projects/'+$scope.project_id+'/activities/'+$scope.activity_id+'/asks', $scope.current_ask)
-        .success(function(data){
-          get_actor_of_ask($scope.current_ask);
-          $scope.current_ask = data;
-          // $scope.asks.push(data);
-        })
-    }
-  }
-
   $scope.add_edit_ask = function(ask) {
     if(ask){
       $scope.current_ask = ask;
       description = ask.description
     }
     else
-      $scope.current_ask = {title: "", description: "", activity_id: $scope.activity_id, project_id: $scope.project_id};
+      $scope.current_ask = {
+        title: "",
+        description: "",
+        execution: false,
+        activity_id: $scope.activity_id,
+        project_id: $scope.project_id
+      };
 
     $aside.open({
       templateUrl: 'add-ask.html',
@@ -76,6 +64,32 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function
         };
       }
     });
+  }
+
+  var save_or_update_ask = function() {
+    $scope.current_ask.ask = {
+      title: '&nbsp;',
+      description: $scope.current_ask.description,
+      execution: $scope.current_ask.execution,
+      scheduling: $scope.current_ask.scheduling,
+      activity_id: $scope.current_ask.activity_id,
+      project_id: $scope.current_ask.project_id,
+      actor_id: $scope.current_ask.actor_id
+    }
+    if($scope.current_ask.id) {
+      $http.put('/projects/'+$scope.project_id+'/activities/'+$scope.activity_id+'/asks/'+$scope.current_ask.id, $scope.current_ask)
+        .success(function(data){
+          get_actor_of_ask($scope.current_ask);
+          // alert success or error
+        })
+    } else {
+      $http.post('/projects/'+$scope.project_id+'/activities/'+$scope.activity_id+'/asks', $scope.current_ask)
+        .success(function(data){
+          get_actor_of_ask($scope.current_ask);
+          $scope.current_ask = data;
+          // $scope.asks.push(data);
+        })
+    }
   }
 
   $scope.delete_ask = function(ask){

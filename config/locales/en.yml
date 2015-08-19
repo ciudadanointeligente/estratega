@@ -735,6 +735,7 @@ en:
       actor: "Actor"
       ask: "Ask"
       ask_placeholder: "Write ask"
+      execution: "Execution"
       save_button: "Save"
       cancel_button: "Cancel"
     explanation_stage6: #tab `Explanation & Examples` of stage 6
