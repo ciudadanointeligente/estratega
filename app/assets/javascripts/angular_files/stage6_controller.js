@@ -58,9 +58,9 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function
           e.stopPropagation();
         }
         $scope.cancel = function(e) {
-          $scope.current_ask.description = description
           $modalInstance.dismiss();
           e.stopPropagation();
+          $scope.current_ask.description = description
         };
       }
     });
