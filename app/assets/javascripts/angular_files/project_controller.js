@@ -3,6 +3,7 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
   $scope.projects = [];
   $scope.current_project = { title: "", description: "", focus_area: "", public: false };
   $scope.focus_areas = [];
+  $scope.messages = {response: "", message: ""}
 
   $http.get('/real_problems/focus_area.json')
     .success(function (data) {
@@ -23,12 +24,15 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
     if( $scope.current_project.id ) {
       $http.put('/projects/' + $scope.current_project.id, $scope.current_project)
         .success(function (data){
-
+          $scope.messages = { response: true, message: "Project updated!"}
+        })
+        .error(function(){
+          $scope.messages = { response: false, message: "Error while updating Project!"}
         });
     } else {
       $http.post('/projects', $scope.current_project)
         .success(function (data){
-
+          $scope.messages = { response: true, message: "Project created!"}
         });
     }
 
@@ -40,7 +44,11 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
       $http.get("/projects/" + project.id + ".json")
         .success(function (data) {
           $scope.current_project = data;
+          $scope.messages = { response: true, message: "The project was created!"}
         })
+        .error(function(){
+          $scope.messages = { response: false, message: "Error while creating a project!"}
+        });
     } else {
       $scope.current_project = { title: "", description: "", focus_area: "", public: false };
     }
@@ -67,7 +75,13 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
   $scope.delete_project = function (project){
     if( project ) {
       if(confirm('Are you sure you want to delete this project?')) {
-        $http.delete('/projects/' + project.id);
+        $http.delete('/projects/' + project.id)
+            .success(function(){
+              $scope.messages = { response: true, message: "The project was delete!"}
+            })
+            .error(function(){
+              $scope.messages = { response: false, message: "Error while deleting a project!"}
+            });
         get_projects();
       }
     }
