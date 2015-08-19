@@ -21,6 +21,9 @@
 
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="private">
+        <div class="alert" role="alert" ng-class="messages.response?'alert-success':'alert-danger'" ng-if="messages.message">
+          {{ messages.message }}
+        </div>
         <table class="table table-stripped">
           <thead>
             <tr>
