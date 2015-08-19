@@ -3,5 +3,5 @@ class Project < ActiveRecord::Base
   has_many :objectives, dependent: :destroy
   has_one :real_problem, dependent: :destroy
 
-	validates :title, presence: true
+  validates :title, presence: true
 end

@@ -52,13 +52,13 @@ class RealProblem < ActiveRecord::Base
     return focus_area
   end
 
-	def solutions_associated
-		solutions = []
+  def solutions_associated
+    solutions = []
 
-		policy_problems.each do |pp|
-			solutions << pp.id
-		end
-		puts solutions.inspect
-		return solutions
-	end
+    policy_problems.each do |pp|
+      solutions << pp.id
+    end
+    puts solutions.inspect
+    return solutions
+  end
 end
