@@ -63,12 +63,15 @@ RSpec.describe ProjectsController, :type => :controller do
   login_user
 
   describe "GET index" do
-    it "all projects" do
-      project_private = Project.create! valid_attributes_no_public
-      project_public = Project.create! valid_attributes
+    it "retrieves all user projects" do
+      owner = User.find(valid_session["warden.user.user.key"][0][0])
+      project_one.users << owner
+      project_two = create(:project)
+      project_two.users << create(:user)
+
       get :index, {}, valid_session
-      expect(assigns(:projects)).to include(project_private)
-      expect(assigns(:projects)).to include(project_public)
+      expect(assigns(:projects)).to include(project_one)
+      expect(assigns(:projects)).not_to include(project_two)
     end
   end
 
@@ -198,7 +201,10 @@ RSpec.describe ProjectsController, :type => :controller do
 
       it "assigns a project owner" do
         post :create, {:project => valid_attributes}, valid_session
-        expect(assigns(:project).users).to eq(valid_session["warden.user.user.key"][0][0])
+        owner = User.find(valid_session["warden.user.user.key"][0][0])
+        expect(assigns(:project).users.to_a).to include(owner)
+        permission = Permission.where(project_id: assigns(:project).id ).where( user_id: owner.id)
+        expect(permission.first.role).to eq("owner")
       end
     end
 

@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = Project.all
+    @projects = current_user.projects
     respond_with(@projects)
   end
 
@@ -66,6 +66,15 @@ class ProjectsController < ApplicationController
     new_params = project_params
     new_params[:public] = false if new_params[:public].nil?
     @project = Project.create(new_params)
+
+    if !@project.id.blank?
+      @project.users << current_user
+
+      permission = Permission.where(project_id: @project.id ).where(user_id: current_user.id).first
+      permission.role = :owner
+      permission.save
+    end
+
     respond_with(@project)
   end
 
