@@ -11,14 +11,22 @@
       <label for="description"><%= t('.description') %></label>
       <textarea name="description" class="form-control" ng-model="current_activity.description" placeholder="<%= t('.description_placeholder') %>"></textarea>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="outcome"><%= t('.outcome') %></label>
-    <select class="form-control" name="outcome_ids" multiple="multiple" ng-multiple="true" ng-model="current_activity.outcome_ids" ng-options="outcome.id as outcome.description for outcome in outcomes">
-    </select>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: current_activity.title == ''}"><%= t('.save_button') %></button>
-    <button class="btn btn-warning" ng-click="cancel($event)"><%= t('.cancel_button') %></button>
+    <div class="form-group">
+      <label for="completion"><%= t('.completion') %></label>
+      <input type="checkbox" name="completion" class="form-control" ng-model="current_activity.completion"></input>
+    </div>
+    <div class="form-group">
+      <label for="scheduling"><%= t('.scheduling') %> (current: {{current_activity.scheduling | date:'MM/dd/yyyy'}})</label>
+      <input type="date" name="scheduling" class="form-control" ng-model="current_activity.scheduling" value="{{current_activity.scheduling}}"></input>
+    </div>
+    <div class="form-group">
+      <label for="outcome"><%= t('.outcome') %></label>
+      <select class="form-control" name="outcome_ids" multiple="multiple" ng-multiple="true" ng-model="current_activity.outcome_ids" ng-options="outcome.id as outcome.description for outcome in outcomes">
+      </select>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: current_activity.title == ''}"><%= t('.save_button') %></button>
+      <button class="btn btn-warning" ng-click="cancel($event)"><%= t('.cancel_button') %></button>
+    </div>
   </div>
 </script>

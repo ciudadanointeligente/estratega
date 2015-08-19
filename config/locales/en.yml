@@ -491,6 +491,8 @@ en:
       title_placeholder: "Enter a title for an activity"
       description: "Description"
       description_placeholder: "Enter a description for an activity"
+      completion: "Completion"
+      scheduling: "Scheduling"
       outcome: "Outcome"
       save_button: "Save"
       cancel_button: "Cancel"

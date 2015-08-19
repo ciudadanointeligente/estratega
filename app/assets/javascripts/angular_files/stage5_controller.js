@@ -29,6 +29,8 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
       $scope.current_activity = {
         title: "",
         description: "",
+        completion: false,
+        scheduling: "",
         objective_id: $scope.objective_id,
         outcome_ids: []
       };
@@ -56,6 +58,8 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
     $scope.current_activity.activity = {
       title: $scope.current_activity.title,
       description: $scope.current_activity.description,
+      completion: $scope.current_activity.completion,
+      scheduling: $scope.current_activity.scheduling,
       objective_id: $scope.current_activity.objective_id,
       outcome_ids: $scope.current_activity.outcome_ids
     }

@@ -58,6 +58,6 @@ class ActivitiesController < ApplicationController
     end
 
     def activity_params
-      params.require(:activity).permit(:title, :description, :objective_id, outcome_ids: [])
+      params.require(:activity).permit(:title, :description, :completion, :scheduling, :objective_id, outcome_ids: [])
     end
 end
