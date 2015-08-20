@@ -1,12 +1,12 @@
 class AsksController < ApplicationController
   before_action :set_ask, only: [:show, :edit, :update, :destroy]
-  before_action :set_activity
   before_action :set_project
+  before_action :set_objective
 
   respond_to :html, :json
 
   def index
-    @asks = @activity.asks.all
+    @asks = @objective.asks
     respond_with(@asks)
   end
 
@@ -23,18 +23,18 @@ class AsksController < ApplicationController
   end
 
   def create
-    @ask = @activity.asks.create(ask_params)
-    respond_with(@project, @activity, @ask)
+    @ask = @objective.asks.create(ask_params)
+    respond_with(@project, @objective, @ask)
   end
 
   def update
     @ask.update(ask_params)
-    respond_with(@project, @activity, @ask)
+    respond_with(@project, @objective, @ask)
   end
 
   def destroy
     @ask.destroy
-    respond_with(@project, @activity)
+    respond_with(@project, @objective)
   end
 
   private
@@ -42,8 +42,8 @@ class AsksController < ApplicationController
       @project = Project.find(params[:project_id])
     end
 
-    def set_activity
-      @activity = Activity.find(params[:activity_id])
+    def set_objective
+      @objective = Objective.find(params[:objective_id])
     end
 
     def set_ask
@@ -51,6 +51,6 @@ class AsksController < ApplicationController
     end
 
     def ask_params
-      params.require(:ask).permit(:title, :description, :execution, :activity_id, :project_id, :actor_id)
+      params.require(:ask).permit(:title, :description, :execution, :objective_id, :actor_id)
     end
 end

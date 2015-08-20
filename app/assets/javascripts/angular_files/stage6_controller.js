@@ -1,14 +1,14 @@
 app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function ($scope, $http, $aside, $location) {
   $scope.project_id = $location.path().split("/")[2];
-  $scope.activity_id = $location.path().split("/")[4];
+  $scope.objective_id = $location.path().split("/")[4];
 
-  $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.activity_id+'/actors.json')
+  $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/actors.json')
   .success(function(data){
       $scope.actors = data;
   });
 
-  function get_asks(project_id, activity_id) {
-    $http.get('/projects/'+project_id+'/activities/'+activity_id+'/asks.json')
+  function get_asks(project_id, objective_id) {
+    $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/asks.json')
     .success(function(data){
       data.forEach(function(ask) {
         get_actor_of_ask(ask);
@@ -25,7 +25,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function
     }
   }
 
-  get_asks($scope.project_id, $scope.activity_id);
+  get_asks($scope.project_id, $scope.objective_id);
 
   $scope.add_edit_ask = function(ask) {
     if(ask){
@@ -37,7 +37,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function
         title: "",
         description: "",
         execution: false,
-        activity_id: $scope.activity_id,
+        objective_id: $scope.objective_id,
         project_id: $scope.project_id
       };
 
@@ -72,18 +72,18 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function
       description: $scope.current_ask.description,
       execution: $scope.current_ask.execution,
       scheduling: $scope.current_ask.scheduling,
-      activity_id: $scope.current_ask.activity_id,
+      objective_id: $scope.current_ask.objective_id,
       project_id: $scope.current_ask.project_id,
       actor_id: $scope.current_ask.actor_id
     }
     if($scope.current_ask.id) {
-      $http.put('/projects/'+$scope.project_id+'/activities/'+$scope.activity_id+'/asks/'+$scope.current_ask.id, $scope.current_ask)
+      $http.put('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/asks/'+$scope.current_ask.id, $scope.current_ask)
         .success(function(data){
           get_actor_of_ask($scope.current_ask);
           // alert success or error
         })
     } else {
-      $http.post('/projects/'+$scope.project_id+'/activities/'+$scope.activity_id+'/asks', $scope.current_ask)
+      $http.post('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/asks', $scope.current_ask)
         .success(function(data){
           get_actor_of_ask($scope.current_ask);
           $scope.current_ask = data;
@@ -94,7 +94,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function
 
   $scope.delete_ask = function(ask){
     if(confirm('Are you sure you want to delete this ask?')) {
-    $http.delete('/projects/'+$scope.project_id+'/activities/'+$scope.activity_id+'/asks/'+ask.id);
+    $http.delete('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/asks/'+ask.id);
     $scope.asks.splice($scope.asks.indexOf(ask),1);
     }
   }
