@@ -76,6 +76,9 @@ select {
 .bg_grey .label-info.active {
   background-color: #ff4f4a;
 }
+label {
+    font-weight: 300;
+}
 .alert-info {
   background-color: #62b9b0;
   border-color: #62b9b0;
@@ -328,17 +331,18 @@ div#resources_paginate {
 }
 .modal-footer .btn-primary {
   background-color: #FF635A;
-  border-color: #FF4F4A;
+  border-color: #FF635A;
+  font-weight: 300;
 }
 .modal-footer .btn-warning {
-  color: #333;
-  background-color: #DBDBDB;
-  border-color: #CCC;
+  color: #ffffff;
+  background-color: #0091EA;
+  border-color: #0091EA;
+  font-weight: 300;
 }
 .modal-header {
-  -webkit-box-shadow: inset 0px 10px 10px -4px rgba(0,0,0,0.06);
-  -moz-box-shadow: inset 0px 10px 10px -4px rgba(0,0,0,0.06);
-  box-shadow: inset 0px 10px 10px -4px rgba(0,0,0,0.06);
+  border-bottom: none;
+  margin-top: 30px;
 }
 .modal-body input[type="checkbox"] {
   /*margin: 4px 0 0;*/
@@ -423,4 +427,13 @@ table .fa-pencil-square-o, table .fa-trash {
 }
 .banner .container {
   padding: 40px 0;
+}
+.ng-aside .modal-dialog .modal-content {
+    background-color: #F3F3F3;
+}
+.ng-aside .modal-dialog .modal-content .form-control {
+  border: none;
+}
+.ng-aside .modal-dialog .modal-content h3 {
+  color: #575757;
 }
