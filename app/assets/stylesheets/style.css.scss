@@ -3,6 +3,10 @@
 body {
   font-family: 'Open Sans', sans-serif;
   color: #7f8c8c;
+  background-color: #f3f3f3;
+}
+body.home {
+  background-color: #ffffff;
 }
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: #00385A;
@@ -136,14 +140,14 @@ table a {
 .breadcrumb {
   padding: 15px;
   font-size: 16px;
-  background-color: #ececec;
+  background-color: #e5e5e5;
   text-transform: uppercase;;
 }
 .breadcrumb a {
   color: #7f8c8c;
 }
 .breadcrumb_bg {
-  background-color: #ececec;
+  background-color: #e5e5e5;
 }
 .breadcrumb>.active {
   color: #7f8c8c;
