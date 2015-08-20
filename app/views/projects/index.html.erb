@@ -22,6 +22,7 @@
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="private">
         <div class="alert" role="alert" ng-class="messages.response?'alert-success':'alert-danger'" ng-if="messages.message">
+          <button ng-click="dismiss_modal()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           {{ messages.message }}
         </div>
         <table class="table table-stripped">
@@ -37,11 +38,11 @@
               <td><a href="/projects/{{ project.id }}" target="_self">{{ project.title }}</a></td>
               <td>{{ project.focus_area }}</td>
               <td class="controllers">
-                <i class="fa fa-gears" ng-click="add_edit_project(project)"></i>
-                <i class="fa fa-user-plus" ng-click="user_permission(project)"></i>
+                <i class="fa fa-gears" ng-click="add_edit_project(project)" ng-if="project.permission == 'owner'"></i>
+                <i class="fa fa-user-plus" ng-click="user_permission(project)" ng-if="project.permission == 'owner'"></i>
                 <a href="/projects/{{ project.id }}" target="_self"><i class="fa fa-edit"></i></a>
                 <i class="fa fa-eye" ng-click=""></i>
-                <i class="fa fa-trash" ng-click="delete_project(project)"></i>
+                <i class="fa fa-trash" ng-click="delete_project(project)" ng-if="project.permission == 'owner'"></i>
               </td>
             </tr>
           </tbody>

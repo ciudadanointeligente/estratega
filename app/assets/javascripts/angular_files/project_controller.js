@@ -44,10 +44,9 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
       $http.get("/projects/" + project.id + ".json")
         .success(function (data) {
           $scope.current_project = data;
-          $scope.messages = { response: true, message: "The project was created!"}
         })
         .error(function(){
-          $scope.messages = { response: false, message: "Error while creating a project!"}
+          $scope.messages = { response: false, message: "Error while retrieve the data!"}
         });
     } else {
       $scope.current_project = { title: "", description: "", focus_area: "", public: false };
@@ -105,6 +104,10 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
         };
       }
     });
+  }
+
+  $scope.dismiss_modal = function(){
+    $scope.messages = {response: "", message: ""}
   }
 
 }])
