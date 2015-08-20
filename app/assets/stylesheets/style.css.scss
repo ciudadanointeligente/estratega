@@ -107,7 +107,7 @@ table a {
 }
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
   color: #ffffff;
-  background-color: #31a1a2;
+  background-color: #0276BD;
 }
 .navbar-default .navbar-brand, .brand {
   color: #ffffff;
@@ -124,13 +124,13 @@ table a {
   font-weight: 300;
 }
 .nav > li > a:hover, .nav > li > a:focus {
-  background-color: #2dc8c2;
+  background-color: #0276BD;
 }
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
-  background-color: #2dc8c2;
+  background-color: #0276BD;
 }
 .nav.nav-stacked > li > a:hover, .nav > li > a:focus {
-  background-color: #F3F3F3;
+  background-color: #0276BD;
   text-decoration: underline;
 }
 .breadcrumb {
@@ -163,7 +163,7 @@ footer {
   font-size: 12px;
 }
 footer h5 {
-  color: #12867b;
+  color: #ffffff;
   font-size: 20px;
   font-weight: 600;
 }
@@ -365,7 +365,7 @@ table .fa-pencil-square-o, table .fa-trash {
 .benefits p {
   color: #436B83;
 }
-.benefits .btn-danger {
+.benefits .btn-danger, .banner .btn-danger {
     border-radius: 15px;
     background-color: #FF635A;
     border-color: #FF4F4A;
@@ -390,6 +390,34 @@ table .fa-pencil-square-o, table .fa-trash {
 .testimonial .t2 {
   background-color: #00C2E4;
 }
+.testimonial td {
+  width: 50%;
+  overflow: hidden;
+}
+.testimonial p {
+  margin: 20px;
+}
 .testimonial img {
-  width: 100%
+  width: 100%;
+}
+.banner {
+  background: image-url("banner.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding: 50px 0;
+}
+.banner .container {
+  /* Fallback for web browsers that doesn't support RGBa */
+  background: rgb(255, 255, 255);
+  /* RGBa with 0.6 opacity */
+  background: rgba(255, 255, 255, 0.6);
+  /* For IE 5.5 - 7*/
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#ffffff);
+  /* For IE 8*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#ffffff)";
+}
+.banner .container {
+  padding: 40px 0;
 }
