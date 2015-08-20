@@ -26,7 +26,7 @@ select {
   padding: 5px;
 }
 .btn {
-  text-transform: uppercase;
+  border-radius: 15px;
 }
 .btn-warning {
   background-color: #ff635a;
@@ -141,7 +141,6 @@ table a {
   padding: 15px;
   font-size: 16px;
   background-color: #e5e5e5;
-  text-transform: uppercase;;
 }
 .breadcrumb a {
   color: #7f8c8c;
