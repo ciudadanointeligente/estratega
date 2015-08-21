@@ -87,6 +87,9 @@ select {
 label {
     font-weight: 300;
 }
+.radio label, .checkbox label {
+    font-weight: 300;
+}
 .alert-info {
   background-color: #0091EA;
   border-color: #0091EA;
@@ -100,13 +103,15 @@ label {
   margin-bottom: 50px;
 }
 .bold {
-  font-weight: 700;
+  font-weight: 300;
+    font-size: 16px;
+    color: #575757;
 }
 .nowrap {
   white-space:nowrap;
 }
 table a {
-  color: #e2534b;
+  color: #0091EA;
 }
 .table > thead > tr > th {
     border-bottom: 2px solid #F3F3F3;
