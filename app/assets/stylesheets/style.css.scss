@@ -102,8 +102,17 @@ label {
 .bold {
   font-weight: 700;
 }
+.nowrap {
+  white-space:nowrap;
+}
 table a {
   color: #e2534b;
+}
+.table > thead > tr > th {
+    border-bottom: 2px solid #F3F3F3;
+}
+.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+    border-top: 1px solid #F3F3F3;
 }
 .navbar {
   margin-bottom: 0px;
@@ -363,7 +372,7 @@ div#resources_paginate {
   display: block;
   width: 100%;
 }
-table .fa-pencil-square-o, table .fa-trash {
+table .fa-pencil-square-o, table .fa-trash, table .fa-gears, table .fa-edit, table .fa-eye {
   cursor: pointer;
   color: #0091EA;
 }
