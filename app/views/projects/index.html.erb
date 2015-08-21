@@ -4,7 +4,7 @@
   <div class="row">
     <div class="addNew col-md-12 text-right">
       <button class="btn btn-warning" ng-click="add_edit_project()">
-        <i class="fa fa-plus-square-o"></i> <%= t('.new_project') %>
+        <i class="fa fa-plus-circle"></i> <%= t('.new_project') %>
       </button>
     </div>
   </div>
@@ -26,14 +26,14 @@
             <tr>
               <th><%= t('.project') %></th>
               <th><%= t('.focus_area') %></th>
-              <th><%= t('.actions') %></th>
+              <th class="text-right"><%= t('.actions') %></th>
             </tr>
           </thead>
           <tbody>
             <tr title="{{ project.description | limitTo: 140 }}" ng-repeat="project in projects">
-              <td>{{ project.title }}</td>
+              <td><a href="/projects/{{ project.id }}" target="_self">{{ project.title }}</a></td>
               <td>{{ project.focus_area }}</td>
-              <td>
+              <td class="text-right nowrap">
                 <i class="fa fa-gears" ng-click="add_edit_project(project)"></i>
                 <a href="/projects/{{ project.id }}" target="_self"><i class="fa fa-edit"></i></a>
                 <i class="fa fa-eye" ng-click=""></i>
