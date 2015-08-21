@@ -80,7 +80,7 @@
                     <td class="text-center">{{ objective.evaluation.alignment_score + objective.evaluation.added_value_score + objective.evaluation.loss_gain_score }}</td>
                     <td class="text-center">{{ objective.evaluation.big_difference_score + objective.evaluation.multiplying_effect_score + objective.evaluation.catalytic_score + objective.evaluation.demand_score + objective.evaluation.hooks_processes_score + objective.evaluation.intuitive_score + objective.evaluation.alignment_score + objective.evaluation.added_value_score + objective.evaluation.loss_gain_score }}</td>
                     <td class="text-center">
-                      <i class="fa fa-check" ng-if="objective.prioritized"></i>
+                      <i class="fa fa-check" ng-if="objective.prioritized"></i> 
                     </td>
                     <td class="text-center">{{objective.solution_ids.length}}</td>
                     <td class="text-right"><a href="#" title="Edit" ng-click="add_edit_objective(objective)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_objective(objective)"><i class="fa fa-trash"></i></a>

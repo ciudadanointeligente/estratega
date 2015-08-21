@@ -58,8 +58,14 @@ select {
 .bg_grey table a {
   color: #e2534b;
 }
-.bg_grey table th {
-  font-weight: 600;
+.bg_grey table th, table th {
+  font-weight: 300;
+  font-size: 15px;
+  color: #575757;
+}
+.bg_grey table td, table td {
+  font-weight: 300;
+  color: #7D7D7D;
 }
 .bg_grey .btn-warning.pull-right {
   margin-left: 10px;
@@ -361,7 +367,9 @@ table .fa-pencil-square-o, table .fa-trash {
   cursor: pointer;
   color: #0091EA;
 }
-
+table .fa-star, table .fa-check {
+  color: #0091EA;
+}
 .dropdown-menu.dropdown-menu-button {
   padding: 10px;
   min-width: 228px;
