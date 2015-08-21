@@ -10,7 +10,7 @@ feature 'Home page' do
   #   Then I see "Explore the Features"
   scenario 'visit the home page' do
     visit root_path
-    expect(page).to have_content 'Explore the Features'
+    expect(page).to have_content 'Benefits'
   end
 
 end
