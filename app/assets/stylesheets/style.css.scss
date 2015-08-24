@@ -485,3 +485,19 @@ table .fa-star, table .fa-check {
 .ng-aside .modal-dialog .modal-content h3 {
   color: #575757;
 }
+.contenedor {
+    padding: 10px;
+    border: 1px solid #575757;
+}
+#policy-problems {
+  margin-bottom: -20px;
+}
+#policy-problems .bg_grey {
+  background-color: #575757;
+  color: #ffffff;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+#policy-problems .bg_grey h4 {
+  color: #ffffff;
+}
