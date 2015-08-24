@@ -27,7 +27,6 @@ RSpec.describe AsksController, :type => :controller do
 
     @project.objectives << @objective
     @objective.asks << @ask
-    @objective.save
   end
 
   let(:valid_session) { {} }
