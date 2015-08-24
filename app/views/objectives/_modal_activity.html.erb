@@ -24,6 +24,11 @@
       <select class="form-control" name="outcome_ids" multiple="multiple" ng-multiple="true" ng-model="current_activity.outcome_ids" ng-options="outcome.id as outcome.description for outcome in outcomes">
       </select>
     </div>
+    <div class="form-group">
+      <label for="ask">Ask</label>
+      <select class="form-control" name="ask_ids" multiple="multiple" ng-multiple="true" ng-model="current_activity.ask_ids" ng-options="ask.id as ask.description for ask in asks">
+      </select>
+    </div>
     <div class="modal-footer">
       <button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: current_activity.title == ''}"><%= t('.save_button') %></button>
       <button class="btn btn-warning" ng-click="cancel($event)"><%= t('.cancel_button') %></button>
