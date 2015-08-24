@@ -131,9 +131,7 @@ table a {
   border-color: #0091EA;
   border-radius: 0px;
 }
-.navbar-default .navbar-collapse, .navbar-default .navbar-form {
-    margin-top: 8px;
-}
+
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #fff;
 }
@@ -250,7 +248,7 @@ div.steps table a {
 }
 h4.panel-title a, .table_goals a {
   font-weight: 300;
-  color: #859292;
+  color: #ffffff;
 }
 h4.title_goals {
   font-weight: 300;
@@ -258,7 +256,21 @@ h4.title_goals {
   margin-bottom: 30px;
 }
 h4.panel-title {
-  padding: 10px 0;
+  padding: 5px;
+}
+.collapse.in {
+  background-color: #FFF;
+  padding: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.regular {
+  font-weight: 500px;
+}
+.panel-default > .panel-heading {
+    color: #FFF;
+    background-color: #7D7D7D;
+    border-color: #7D7D7D;
 }
 .panel-heading .fa-check-circle {
   color: #26a65b;
@@ -342,7 +354,7 @@ div#resources_paginate {
 }
 .objetives {
   background-color: #ececec;
-  padding: 15px;
+  padding: 15px 15px 0px 15px;
 }
 .objetives .panel-heading {
   margin: -15px -15px 0;

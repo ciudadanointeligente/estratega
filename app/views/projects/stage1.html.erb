@@ -35,7 +35,7 @@
             <div class="bg_grey" id='real-problem'>
               <!-- <button type="button" class="btn btn-warning pull-right">Edit</button> -->
               <button type="button" class="btn pull-right" ng-class="{'btn-warning': problem.id, 'btn-info': !problem.id}" ng-click="add_step_one(problem)">{{ btn_problem }}</button>
-              <h4><%= t('.subtitle1') %> <span ng-if="problem.id"><i class="fa fa-info-circle" title="<%= t('.subtitle1_tooltip') %>"></i></span></h4>
+              <h4 class="regular"><%= t('.subtitle1') %> <span ng-if="problem.id"><i class="fa fa-info-circle" title="<%= t('.subtitle1_tooltip') %>"></i></span></h4>
               <p ng-if="!problem.id">
                 <%= t('.subtitle1_explanation') %>
               </p>
