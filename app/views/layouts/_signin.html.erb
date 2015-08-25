@@ -1,17 +1,17 @@
 <%= form_for(:user, :url => session_path(:user)) do |f| %>
-	<div class="form-group">
-		<label for="email">E-mail</label>
-		<%= f.text_field :email, class: "form-control" %>
-	</div>
-	<div class="form-group">
-		<label for="email">Password</label>
-		<%= f.password_field :password, class: "form-control" %>
-	</div>
-	<div class="checkbox">
-		<label>
-			<%= f.check_box :remember_me %> Remember me
-		</label>
-	</div>
-	<%= f.submit 'Sign in', class: "btn btn-success" %>
-	<p><%= link_to "Forgot your password?", new_password_path(:user) %></p>
+  <div class="form-group">
+    <label for="email">E-mail</label>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <label for="email">Password</label>
+    <%= f.password_field :password, class: "form-control" %>
+  </div>
+  <div class="checkbox">
+    <label>
+      <%= f.check_box :remember_me %> Remember me
+    </label>
+  </div>
+  <%= f.submit 'Sign in', class: "btn btn-success" %>
+  <p><%= link_to "Forgot your password?", new_password_path(:user) %></p>
 <% end %>

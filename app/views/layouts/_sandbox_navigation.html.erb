@@ -1,9 +1,7 @@
 <% content_for :navbar do %>
-    <span id="fileName"><%= truncate(@sandbox.name, length: 40, omission: "...") %></span>
-	<% if(@owner) %>
-    	<span id="fileEdit" data-step="2" data-intro="Click here to go to the sandbox preferences menu"><%= link_to('<i class="fa fa-pencil"></i>'.html_safe, [:edit, @sandbox]) %> </span>
-    <% end %>
+  <span id="fileName"><%= truncate(@sandbox.name, length: 40, omission: "...") %></span>
+  <% if(@owner) %>
+    <span id="fileEdit" data-step="2" data-intro="Click here to go to the sandbox preferences menu"><%= link_to('<i class="fa fa-pencil"></i>'.html_safe, [:edit, @sandbox]) %> </span>
+  <% end %>
 <% end %>
-
 <%= render 'layouts/navigation' %>
-
