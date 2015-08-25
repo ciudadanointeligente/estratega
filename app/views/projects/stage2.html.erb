@@ -29,15 +29,16 @@
         <div class="tab-content" ng-controller="stage2Ctrl">
           <div role="tabpanel" class="tab-pane active" id="data">
             <div class="bg_grey">
+              <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" title="<%= t('.subtitle1_tooltip') %>"><i class="fa fa-info"></i></button>
               <button type="button" class="btn btn-warning pull-right" ng-click="show_goal()">{{ btn_problem }}</button>
-              <h4><%= t('.subtitle1') %> <i class="fa fa-info-circle" title="<%= t('.subtitle1_tooltip') %>"></i></h4>
+              <h4><%= t('.subtitle1') %></h4>
               <p>{{problem.goal}}</p>
             </div>
             <%= render "goal_modal" %>
             <div class="bg_grey">
+              <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" title="<%= t('.subtitle2_tooltip') %>"><i class="fa fa-info"></i></button>
               <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_objective()"><%= t('.add_objective_button') %></button>
-              
-              <h4><%= t('.subtitle2') %> <i class="fa fa-info-circle" title="<%= t('.subtitle2_tooltip') %>"></i></h4>
+              <h4><%= t('.subtitle2') %></h4>
 
               <div class="alert alert-info" role="alert" ng-class="{hidden: unrelated_solutions < 1}">
                 <i class="fa fa-exclamation-triangle"></i> <a href="#" ng-click="list_policy_solutions()"><%= t('.without_objectives_begin_sentence') %> {{unrelated_solutions}} <%= t('.without_objectives_end_sentence') %></a>
