@@ -9,6 +9,11 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <script src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
+    <script>
+      $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
     <%= csrf_meta_tags %>
   </head>
   <body ng-app="wizard-steps" >
