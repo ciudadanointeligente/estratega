@@ -65,6 +65,7 @@ RSpec.describe ProjectsController, :type => :controller do
   describe "GET index" do
     it "retrieves all user projects" do
       owner = User.find(valid_session["warden.user.user.key"][0][0])
+      project_one = create(:project)
       project_one.users << owner
       project_two = create(:project)
       project_two.users << create(:user)
@@ -221,14 +222,34 @@ RSpec.describe ProjectsController, :type => :controller do
     end
   end
 
-  describe "POST Share" do
-    it "add share users" do
-      # project = FactoryGirl.create(:project)
-      # owner = FactoryGirl.create(:user)
-      # collaborator = User.new :email 'guest_01@ciudadanoi.org'
-      # sharing = { :emails => ['guest_01@ciudadanoi.org, guest_02@ciudadanoi.org'], :message => 'simple message' }
-      # post :share, {:id => project.to_param, :project => sharing}, valid_session
-      # sharing user is added as collaborator
+  describe "POST share" do
+    it "adds shared users" do
+      project = FactoryGirl.create(:project)
+      share_users = "guest_01@ciudadanoi.org, guest_02@ciudadanoi.org"
+      post :share, {:id => project.to_param, :share_users => share_users, :message => 'simple message' }, valid_session
+
+      current_u = User.find_by_email(share_users.split(",")[0])
+
+      expect(assigns(:project).users).to include current_u
+      # expect(share_users).to include assigns(:project).users.first.email
+    end
+
+    it "adds shared users as collaborator" do
+      project = FactoryGirl.create(:project)
+      share_users = "guest_01@ciudadanoi.org, guest_02@ciudadanoi.org"
+      post :share, {:id => project.to_param, :share_users => share_users, :message => 'simple message' }, valid_session
+
+      expect(assigns(:project).users[1].permissions[0].role).to eq "collaborator"
+    end
+
+    it "add an existence user" do
+      existence_user = User.create(email: 'dgarrido@ciudadanoi.org', password: 'stupidPassw0rd')
+      project = FactoryGirl.create(:project)
+
+      share_users = "dgarrido@ciudadanoi.org, guest_02@ciudadanoi.org"
+      post :share, {:id => project.to_param, :share_users => share_users, :message => 'simple message' }, valid_session
+
+      expect(assigns(:project).users[0].permissions[0].role).to eq "collaborator"
     end
   end
 

@@ -91,6 +91,36 @@ class ProjectsController < ApplicationController
   end
 
   def share
+    message = params[:message]
+    p params[:share_users].split(",")
+    params[:share_users].split(",").each do |u|
+      u = u.to_s.strip
+      share_user = User.find_by_email(u)
+      if share_user.blank?
+        generated_password = Devise.friendly_token.first(8)
+        new_user = User.create(email: u, password: generated_password)
+        raw_token, hashed_token = Devise.token_generator.generate(User, :reset_password_token)
+        new_user.reset_password_token = hashed_token
+        new_user.reset_password_sent_at = Time.now.utc
+        @project.users << new_user
+
+        permission = Permission.where(project_id: @project.id ).where(user_id: new_user.id).first
+        permission.role = :collaborator
+        if permission.save
+          data_send = {email: new_user.email, message: message, token: raw_token}
+          UserMailer.new_user_share(data_send).deliver_now
+        end
+      else
+        @project.users << share_user
+
+        permission = Permission.where(project_id: @project.id ).where(user_id: share_user.id).first
+        permission.role = :collaborator
+        if permission.save
+          data_send = {email: share_user.email, message: message}
+          UserMailer.exist_user_share(data_send).deliver_now
+        end
+      end
+    end
     respond_with(@project)
   end
 

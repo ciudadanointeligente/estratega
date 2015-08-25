@@ -4,6 +4,7 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
   $scope.current_project = { title: "", description: "", focus_area: "", public: false };
   $scope.focus_areas = [];
   $scope.messages = {response: "", message: ""}
+  $scope.share = {share_users: "", message: ""}
 
   $http.get('/real_problems/focus_area.json')
     .success(function (data) {
@@ -39,7 +40,7 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
     get_projects();
   }
 
-  $scope.add_edit_project = function(project) {
+  function get_project_info(project) {
     if( project ) {
       $http.get("/projects/" + project.id + ".json")
         .success(function (data) {
@@ -51,6 +52,10 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
     } else {
       $scope.current_project = { title: "", description: "", focus_area: "", public: false };
     }
+  }
+
+  $scope.add_edit_project = function(project) {
+    get_project_info(project)
 
     $aside.open({
       templateUrl: 'project-aside.html',
@@ -87,6 +92,8 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
   }
 
   $scope.user_permission = function(project) {
+    get_project_info(project)
+
     $aside.open({
       templateUrl: 'user-permission-aside',
       placement: 'left',
@@ -94,7 +101,7 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
       scope: $scope,
       controller: function ($scope, $modalInstance) {
         $scope.save = function (e) {
-          // save_or_update_project();
+          send_invitations(project);
           $modalInstance.dismiss();
           e.stopPropagation();
         }
@@ -104,6 +111,17 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
         };
       }
     });
+  }
+
+  function send_invitations(project) {
+    $http.post('projects/'+ project.id +'/share', $scope.share)
+        .success(function(data){
+          $scope.messages = {response: true, message: "Shared users added"}
+          $scope.share = {share_users: "", message: ""}
+        })
+        .error(function(){
+          $scope.messages = {response: false, message: "Error while sharing"}
+        })
   }
 
   $scope.dismiss_modal = function(){
