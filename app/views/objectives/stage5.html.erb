@@ -2,10 +2,10 @@
   <div class="breadcrumb_bg">
     <ol class="breadcrumb container">
       <li>
-        <%= link_to "Projects", projects_path, target: "_self" %>
+        <%= link_to t('.projects'), projects_path, target: "_self" %>
       </li>
       <li><%= link_to truncate(@project.title, length: 30), @project, target: "_self" %></li>
-      <li>Stage 5</li>
+      <li><%= t('.stage5') %></li>
     </ol>
   </div>
 <% end %>
@@ -13,21 +13,21 @@
 <div class="container main">
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 stage_menu">
-      <h3>What will you do to achieve your advocacy objectives?</h3>
+      <h3><%= t('.title') %></h3>
       <ul class="nav nav-stacked">
-        <li class="active"><a href="#"><i class="fa fa-check-circle"></i> What actions must we do to achieve this Interim Outcome?</a></li>
-        <li class=""><a href="#"><i class="fa fa-check-circle"></i> How to organize the activities?</a></li>
+        <li class="active"><a href="#"><i class="fa fa-check-circle"></i> <%= t('.subtitle1') %></a></li>
+        <li class=""><a href="#"><i class="fa fa-check-circle"></i> <%= t('.subtitle2') %></a></li>
       </ul>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-      <h2>What will you do to achieve your advocacy objectives?</h2>
-      <p>Your advocacy strategy should describe the main actions that will be conducted in order to contribute to the desired change (interim outcome and advocacy objective). The types of actions are numerous and each action can contribute to different outcomes.</p>
+      <h2><%= t('.title') %></h2>
+      <p><%= t('.title_description') %></p>
       <div role="tabpanel" class="tabpanel">
         <!-- nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data Entry</a></li>
-          <li role="presentation"><a href="#explanation" aria-controls="explanation" role="tab" data-toggle="tab">Explanation & Examples</a></li>
-          <li role="presentation"><a href="#tips" aria-controls="tips" role="tab" data-toggle="tab">Workshop Tips</a></li>
+          <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab"><%= t('.data_entry') %></a></li>
+          <li role="presentation"><a href="#explanation" aria-controls="explanation" role="tab" data-toggle="tab"><%= t('.explanation_examples') %></a></li>
+          <li role="presentation"><a href="#tips" aria-controls="tips" role="tab" data-toggle="tab"><%= t('.workshop_tips') %></a></li>
         </ul>
         <!-- tab panes -->
         <div class="tab-content" ng-controller="stage5Ctrl">
@@ -36,18 +36,18 @@
           <div class="panel panel-default objetives">
             <!-- activities -->
             <div class="collapse in" id="action1">
-              <button type="button" class="btn btn-info pull-right" ng-click="add_edit_activity()">Add</button>
-              <h4>What actions must we do to achieve this Interim Outcome? <span ng-if="policy.solutions"><i class="fa fa-info-circle" title="Describe the main actions that will be conducted to the desired change"></i></span></h4>
+              <button type="button" class="btn btn-info pull-right" ng-click="add_edit_activity()"><%= t('.add_button') %></button>
+              <h4><%= t('.subtitle1') %> <span ng-if="policy.solutions"><i class="fa fa-info-circle" title="Describe the main actions that will be conducted to the desired change"></i></span></h4>
               <p ng-if="">
-                Describe the main actions that will be conducted to the desired change
+                <%= t('.without_activities') %>
               </p>
               <table class="table ">
                 <thead>
                   <tr>
-                    <th>Activities</th>
-                    <th>Description</th>
-                    <th>Outcomes</th>
-                    <th class="text-right">Actions</th>
+                    <th><%= t('.activities') %></th>
+                    <th><%= t('.description') %></th>
+                    <th><%= t('.outcomes') %></th>
+                    <th class="text-right"><%= t('.actions') %></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -67,11 +67,11 @@
             <!-- end of actions -->
           </div>
           <div class="bg_grey">
-            <h4>How to organize the activities?</h4>
+            <h4><%= t('.subtitle2') %></h4>
             <p>
-              For planning and coordination purposes it is useful to place the activities in Trello.
+              <%= t('.subtitle2_explanation') %>
             </p>
-            <a href="#" target="_self" class="btn btn-warning"><i class="fa fa-calendar"></i> Organize in Trello</a>
+            <a href="#" target="_self" class="btn btn-warning"><i class="fa fa-calendar"></i> <%= t('.trello') %></a>
           </div>
           </div>
           <!-- end of actions -->

@@ -8,8 +8,10 @@ class ActivitiesController < ApplicationController
   def index
     if params[:outcome_id]
       @activities = Outcome.find(params[:outcome_id]).activities
+    elsif params[:objective_id]
+      @activities = Objective.find(params[:objective_id]).activities
     else
-      @activities = Activity.all
+      @activities = Project.find(params[:project_id]).activities
     end
     respond_with(@activities)
   end
@@ -58,6 +60,6 @@ class ActivitiesController < ApplicationController
     end
 
     def activity_params
-      params.require(:activity).permit(:title, :description, :objective_id, outcome_ids: [])
+      params.require(:activity).permit(:title, :description, :completion, :scheduling, :objective_id, outcome_ids: [], ask_ids: [])
     end
 end

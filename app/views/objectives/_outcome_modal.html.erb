@@ -1,21 +1,21 @@
 <script type="text/ng-template" id="outcome-aside.html">
   <div class="modal-header">
-    <h3 class="modal-title">New Interim Outcome</h3>
+    <h3 class="modal-title"><%= t('.new_interim_outcome') %></h3>
   </div>
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label for="description">Interim Outcome</label>
-        <textarea name="description" class="form-control" ng-model="current_outcome.description" placeholder="Add any important outcome info"></textarea>
+        <label for="description"><%= t('.interim_outcome') %></label>
+        <textarea name="description" class="form-control" ng-model="current_outcome.description" placeholder="<%= t('.interim_outcome_placeholder') %>"></textarea>
       </div>
       <div class="form-group">
-        <label for="category">Interim Outcome Type</label>
+        <label for="category"><%= t('.interim_outcome_type') %></label>
         <select name="category" ng-model="current_outcome.outcome_type_id">
           <option ng-repeat="ca in outcomes_categories">{{ ca }}</option>
         </select>
       </div>
       <div class="form-group">
-        <label for="actor_type">Actor Type</label>
+        <label for="actor_type"><%= t('.actor_type') %></label>
         <select name="actor_type" ng-model="current_outcome.actor_type_id">
           <option ng-repeat="at in actor_types">{{ at }}</option>
         </select>
@@ -23,7 +23,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: current_outcome.description == ''}">Save</button>
-    <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
+    <button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: current_outcome.description == ''}"><%= t('.save_button') %></button>
+    <button class="btn btn-warning" ng-click="cancel($event)"><%= t('.cancel_button') %></button>
   </div>
 </script>

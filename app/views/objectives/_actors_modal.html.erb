@@ -1,37 +1,37 @@
 <script type="text/ng-template" id="actor-aside.html">
   <div class="modal-header">
-    <h3 class="modal-title">Actor</h3>
+    <h3 class="modal-title"><%= t('.actor') %></h3>
   </div>
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label for="influence">Actor Type</label>
+        <label for="influence"><%= t('.actor_type') %></label>
         <select class="form-control" id="influence" ng-model="current_actor.actor_type">
-          <option value="">Select Actor Type</option>
-          <option value="Person">Person</option>
-          <option value="Organization">Organization</option>
+          <option value=""><%= t('.select_actor_type') %></option>
+          <option value="Person"><%= t('.person') %></option>
+          <option value="Organization"><%= t('.organization') %></option>
         </select>
       </div>
       <div class="form-group">
-        <label for="title">Name</label>
-        <input type="text" name="name" class="form-control" ng-model="current_actor.name" placeholder="Enter the actor's name">
+        <label for="title"><%= t('.name') %></label>
+        <input type="text" name="name" class="form-control" ng-model="current_actor.name" placeholder="<%= t('.name_placeholder') %>">
       </div>
       <div class="form-group">
-        <label for="description">Description</label>
-        <textarea name="description" class="form-control" ng-model="current_actor.description" placeholder="Add any important actor info"></textarea>
+        <label for="description"><%= t('.description') %></label>
+        <textarea name="description" class="form-control" ng-model="current_actor.description" placeholder="<%= t('.description_placeholder') %>"></textarea>
       </div>
       <div class="form-group">
-        <label for="important">Important</label>
+        <label for="important"><%= t('.important') %></label>
         <input type="checkbox" name="important" class="form-control" ng-model="current_actor.important"></input>
       </div>
       <div class="form-group">
-        <label for="support">Support</label>
+        <label for="support"><%= t('.support') %></label>
         <select name="support" ng-model="current_actor.support">
           <option ng-selected="{{ current_actor.support == value }}" ng-repeat="(name, value) in support" value="{{ value }}">{{ name }}</option>
         </select>
       </div>
       <div class="form-group">
-        <label for="influence">Influence Level</label>
+        <label for="influence"><%= t('.influence_level') %></label>
         <select name="influence" ng-model="current_actor.influence">
           <option ng-selected="{{ current_actor.influence == value }}" ng-repeat="(name, value) in influence" value="{{ value }}">{{ name }}</option>
         </select>
@@ -39,7 +39,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: current_actor.name == '' }">Save</button>
-    <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
+    <button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: current_actor.name == '' }"><%= t('.save_button') %></button>
+    <button class="btn btn-warning" ng-click="cancel($event)"><%= t('.cancel_button') %></button>
   </div>
 </script>

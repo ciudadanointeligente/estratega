@@ -1,23 +1,785 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  #
+  # Projects sections
+  #
+  projects:
+    index:    # http://localhost:3000/projects/
+      projects: "Projects"
+      new_project: "New Project"
+      my_projects: "My projects"
+      other_projects: "Other projects"
+      project: "Project"
+      focus_area: "Focus Area"
+      actions: "Actions"
+    project_modal: # modal `new project` of index
+      project: "Project"
+      title: "Title"
+      title_placeholder: "Enter a title for the project"
+      description: "Description"
+      title_placeholder: "Enter a description for the project"
+      focus_area: "Focus Area"
+      public: "Public"
+      save: "Save"
+      cancel: "Cancel"
+    show:     # http://localhost:3000/projects/1
+      projects: "Projects"
+      stages: "Stages"
+      dashboard: "Dashboard"
+      documents: "Documents"
+    #
+    # Stage 1
+    #
+    stage1:   # http://localhost:3000/projects/1/stage1
+      projects: "Projects"
+      stage1: "Stage 1"
+      title: "What problems you want to address? What policy change you aim to achieve?"
+      description: "The foundation of an effective advocacy strategy is a common understanding of the main problems that affect children, their policy dimensions and related policy solutions. It is important you take time to go through this discussion because without a clear, articulated issue and well-defined problems and solutions the remaining parts of the strategy will lose focus."
+      subtitle1: "Which real-world problem children are facing that you want to address?"
+      subtitle1_tooltip: "A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)"
+      subtitle1_explanation: "A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)"
+      subtitle2: "Which are the policy-related causes of the real-world problem?"
+      subtitle2_tooltip: "Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem"
+      subtitle3: "Which policy solutions would constitute an appropriate response?"
+      subtitle3_tooltip: "What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?"
+      problem: "Problem"
+      description: "Description"
+      focus_area: "Focus Area"
+      data_entry: "Data Entry"
+      add_button: "Add"
+      edit_button: "Edit"
+      explanation_examples: "Explanation & Examples"
+      workshop_tips: "Workshop Tips"
+      policies_text: "Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem"
+    policy_modal: # modal `add policy` of stage 1
+      policy: "Policy"
+      title: "Title"
+      title_placeholder: "Enter a title for a problem"
+      save_button: "Save"
+      cancel_button: "Cancel"
+    solution_modal:  # modal `add solution` of stage 1
+      solution: "Solution"
+      title: "Title"
+      title_placeholder: "Enter a title for a problem"
+      save_button: "Save"
+      cancel_button: "Cancel"
+    explanation:  #tab `Explanation & Examples` of stage 1
+      explanation: "Explanation"
+      title1: "Which real-world problem children are facing that you want to address?"
+      title1_description: |
+                          <p>A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)</p>
+      title2: "Which are the policy-related causes of the real-world problem?"
+      title2_description: |
+                          <p>Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem.</p>
+                          <p>To conduct the problem analysis, you can use a problem tree. The problem tree is a well-known tool that “will help advocates understand the immediate, underlying and root causes of the issue, as well as help in gathering information to support the analysis”.</p>
+      title3: "Which policy solutions would constitute an appropriate response?"
+      title3_description: |
+                          <p>What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?</p>
+                          <p>The policy solutions usually refer to:</p>
+                          <ul>
+                            <li>Policy development (ex. Development of a nutrition national plan)</li>
+                            <li>Placement on the policy agenda. (Ex: Official paper on new financing mechanisms)</li>
+                            <li>Policy adoption. (Ex: approval of equal pay act)</li>
+                            <li>Policy blocking: (Ex. Rejection of anti-homosexuality bill)</li>
+                            <li>Policy implementation: (Ex. Implementation of regulations forbidding summary deportations by the police)</li>
+                            <li>Policy maintenance. (Ex.: No reduction of budgets for child protection policies)</li>
+                          </ul>
+                          <p>In those contexts where a policy change may be too ambitious, an organization may aim for a discursive change (which should pave the way for a policy change in the longer run). For instance, for many years, given the lack of options to achieve change on policies related to tax heavens, organizations working on tax justice focused their advocacy efforts on a change in the discourse in the society so tax havens were seen by the majority as an unacceptable practice that distract critical resources for the countries to pay for social services. These efforts built the ground for changes in policy later on when opportunities appeared (i.e. with the 2008 financial crisis).</p>
+      example: "Example"
+      real_world_problem: "Real-world problem"
+      real_world_problem_description: |
+                          <p>Increasing mother to child transmission of HIV in country AEIOU during the last 3 years</p>
+                          <h4>Policy dimensions of the problem</h4>
+                          <ul>
+                            <li>Women and children not included as target populations of the National Strategic Plan (epidemy historically concentrated in male drug users)</li>
+                            <li>Health insurance law does not cover informal workers and many women at risk belong to this group. (Therefore, due to limited capacity to cover out-of-pocket expenditures women with little resources do not attend clinics for HIV testing and treatment)</li>
+                            <li>PMTCT not included as a priority in the National Strategic Plan (few resources to improve services, campaigns, etc.)- Few donors paying attention to it.</li>
+                            <li>Current legal framework stipulates detention for sex workers (after 3 monetary sanctions), which prevents sex workers to attend health services due to fear of being denounced. </li>
+                          </ul>
+      policy_solutions: "Policy Solutions"
+      policy_solutions_description: |
+                          <ul>
+                            <li>Amendment to the Penal Code to remove sanctions in the form of detention for sex workers</li>
+                            <li>Revision of the National HIV Strategy </li>
+                            <li>Health insurance policy framework revised to cover disadvantaged informal workers</li>
+                            <li>Increase donor funding on PMTCT</li>
+                          </ul>
+    #
+    # Stage 2
+    #
+    stage2:   # http://localhost:3000/projects/1/stage2
+      projects: "Projects"
+      stage2: "Stage 2"
+      title: "What policy changes will you focus your advocacy efforts on?"
+      description: "Advocacy planning involves defining and building consensus on the key policy changes to be achieved. The strategic selection of a few key objectives helps you make an efficient use of available resources and maximize existing opportunities."
+      subtitle1: "Formulate the real world problem as a goal"
+      subtitle1_tooltip: "The goals are the big changes and benefits being sougth for women and children, or in services and systems, as a result of advocacy objectives. Goal indicates what will happen after the advocacy objective/s is/are achieved. You should turn the real world problem into the desired real world change you want to contribute to through your advocacy."
+      subtitle2: "Formulate the policy solutions as objectives"
+      subtitle2_tooltip: "The advocacy objectives are what the organization aims to achieve over several years (usually 3-5). It is the overall policy change that is desired as a result of advocacy effort."
+      data_entry: "Data Entry"
+      explanation_examples: "Explanation & Examples"
+      add_objective_button: "Add Objective"
+      policy_solutions_button: "Policy Solutions"
+      without_objectives_begin_sentence: "There are still "
+      without_objectives_end_sentence: " policy solutions without objectives"
+      objectives: "Objectives"
+      subtotal_key_contribution: "Subtotal Key Contribution"
+      subtotal_momentum: "Subtotal Momentum"
+      subtotal_comparative_advantage: "Subtotal Comparative Advantage"
+      total: "Total"
+      prioritized: "Prioritized"
+      policy_solutions: "Policy Solutions"
+      actions: "Actions"
+    goal_modal: # modal `goal` of stage 2
+      goal: "Goal"
+      title: "Title"
+      title_placeholder: "Enter a goal for a problem"
+      save_button: "Save"
+      cancel_button: "Cancel"
+    solutions_list_modal:  # modal `solutions` of stage 2
+      solutions: "Solutions"
+      title: "Title"
+      description: "Description"
+      back_button: "Back"
+    objective_modal: # modal `add objective` of stage 2
+      objective: "Objective"
+      select_solution: "Select Solution"
+      objective_type: "Objective Type"
+      objective_placeholder: "Add any important objective info"
+      key_contribution: "KEY CONTRIBUTION: is the advocacy objective a key contribution to the problem?"
+      big_difference: "<p><strong>Big difference:</strong> Would success on the advocacy objective make a significant difference in addressing the problem children face (assess in comparison with other objectives)?</p>"
+      score: "Score"
+      score_placeholder: "Enter number 1 to 3"
+      main_arguments: "Main arguments"
+      main_arguments_placeholder: "Enter Main Arguments"
+      multiplying_effect: "<p><strong>Multiplying effect:</strong> Would it address several important real world problems at the same time? (at national level and/or at national and global level)</p>"
+      catalytic: "<p><strong>Catalytic:</strong> Is achieving this particular advocacy objective almost a precondition for tackling other UNICEF advocacy objectives (e.g. policy adoption is a precondition for funding)?</p>"
+      momentum: "MOMENTUM: Does the advocacy objective have enough momentum, or can momentum be generated?"
+      demand: |
+              <p><strong>Demand:</strong> Is there demand to carry the advocacy objective forward?</p>
+              <ul>
+                <li>Are there specific champions pushing the issue (governments; policy-makers; influential figures; etc.)?</li>
+                <li>Are rights-holders (including children) articulating specific demands to duty-bearers?</li>
+                <li>Are other important constituencies pushing policy-makers?</li>
+                <li>Is there sufficient public awareness?</li>
+              </ul>
+      hooks_processes: |
+              <p><strong>Hooks & processes:</strong></p>
+              <ul>
+                <li>Are there legislative or policy processes (national, regional or global) that open windows of opportunity to push for the advocacy objective?</li>
+                <li>Has a UN Treaty Body, such as the Committee on the Rights of the Child, addressed the issue as part of country reporting or a General Comment?</li>
+              </ul>
+      intuitive: |
+              <p><strong>Intuitive:</strong> Is the issue behind the advocacy objective easy to communicate and understand, or can we get it to be?</p>
+              <ul>
+                <li>Can the issue and the proposal be articulated in a compelling narrative?</li>
+                <li>Is it an issue that has the potential to generate compassion and solidarity?</li>
+              </ul>
+      comparative_advantage: "Comparative Advantage: Does UNICEF have a mandate and comparative advantage with regard"
+      alignment: |
+              <p><strong>Alignment:</strong></p>
+              <ul>
+                <li>Is it consistent with UNICEF’s mandate (CRC and SDGs)?</li>
+                <li>Is there a clear case under Convention on the Rights of Children (CRC)?</li>
+                <li>Is it part of UNICEF’s existing medium- and long-term strategy and commitments, including the Strategic Plan?</li>
+                <li>Does it contribute to reduce disparities?</li>
+                <li>Are there synergies with other UNICEF agendas, e.g. existing fundraising schemes?</li>
+                <li>Do we have senior management buy-in?</li>
+              </ul>
+      added_value: |
+              <p><strong>Added value:</strong> Can UNICEF add value to the voices of other stakeholders in the pursuit of the advocacy objective?</p>
+              <ul>
+                <li>Is the issue behind the advocacy objective being addressed by anybody? If so, is it being approached appropriately (e.g. rights-based approach)?</li>
+                <li>Do we have, or can we generate, the data and evidence to make a robust case?</li>
+                <li>Do we have the technical expertise? </li>
+                <li>Are we able to convene key partners?</li>
+              </ul>
+      loss_or_gain: |
+              <p><strong>Loss or gain:</strong> Does UNICEF have a lot to gain (or a lot to lose) from pursuing (or not pursuing) the advocacy objective? </p>
+              <ul>
+                <li>Can the issue help raise UNICEF’s profile, or allow UNICEF to position itself strategically?</li>
+                <li>Are there synergies with other UNICEF agendas, e.g. existing fundraising schemes?</li>
+                <li>Is it an issue that UNICEF can’t be seen to be silent on (UNICEF must be there)?</li>
+                <li>Are there significant risks for UNICEF, including from not engaging on the issue? </li>
+              </ul>
+      save_button: "Save"
+      cancel_button: "Cancel"
+    explanation_stage2:  #tab `Explanation & Examples` of stage 2
+      explanation: "Explanation"
+      title1: "Which real-world problem children are facing that you want to address?"
+      title1_description: |
+                          <p>A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)</p>
+      title2: "Which are the policy-related causes of the real-world problem?"
+      title2_description: |
+                          <p>Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem.</p>
+                          <p>To conduct the problem analysis, you can use a problem tree. The problem tree is a well-known tool that “will help advocates understand the immediate, underlying and root causes of the issue, as well as help in gathering information to support the analysis”.</p>
+      title3: "Which policy solutions would constitute an appropriate response?"
+      title3_description: |
+                          <p>What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?</p>
+                          <p>The policy solutions usually refer to:</p>
+                          <ul>
+                            <li>Policy development (ex. Development of a nutrition national plan)</li>
+                            <li>Placement on the policy agenda. (Ex: Official paper on new financing mechanisms)</li>
+                            <li>Policy adoption. (Ex: approval of equal pay act)</li>
+                            <li>Policy blocking: (Ex. Rejection of anti-homosexuality bill)</li>
+                            <li>Policy implementation: (Ex. Implementation of regulations forbidding summary deportations by the police)</li>
+                            <li>Policy maintenance. (Ex.: No reduction of budgets for child protection policies)</li>
+                          </ul>
+                          <p>In those contexts where a policy change may be too ambitious, an organization may aim for a discursive change (which should pave the way for a policy change in the longer run). For instance, for many years, given the lack of options to achieve change on policies related to tax heavens, organizations working on tax justice focused their advocacy efforts on a change in the discourse in the society so tax havens were seen by the majority as an unacceptable practice that distract critical resources for the countries to pay for social services. These efforts built the ground for changes in policy later on when opportunities appeared (i.e. with the 2008 financial crisis).</p>
+      example: "Example"
+      real_world_problem: "Real-world problem"
+      real_world_problem_description: |
+                          <p>Increasing mother to child transmission of HIV in country AEIOU during the last 3 years</p>
+                          <h4>Policy dimensions of the problem</h4>
+                          <ul>
+                            <li>Women and children not included as target populations of the National Strategic Plan (epidemy historically concentrated in male drug users)</li>
+                            <li>Health insurance law does not cover informal workers and many women at risk belong to this group. (Therefore, due to limited capacity to cover out-of-pocket expenditures women with little resources do not attend clinics for HIV testing and treatment)</li>
+                            <li>PMTCT not included as a priority in the National Strategic Plan (few resources to improve services, campaigns, etc.)- Few donors paying attention to it.</li>
+                            <li>Current legal framework stipulates detention for sex workers (after 3 monetary sanctions), which prevents sex workers to attend health services due to fear of being denounced. </li>
+                          </ul>
+      policy_solutions: "Policy Solutions"
+      policy_solutions_description: |
+                          <ul>
+                            <li>Amendment to the Penal Code to remove sanctions in the form of detention for sex workers</li>
+                            <li>Revision of the National HIV Strategy </li>
+                            <li>Health insurance policy framework revised to cover disadvantaged informal workers</li>
+                            <li>Increase donor funding on PMTCT</li>
+                          </ul>
+    #
+    # Stage 3
+    #
+  objectives:
+    stage3:   # http://localhost:3000/projects/1/objectives/1/stage3
+      projects: "Projects"
+      stage3: "Stage 3"
+      title: "Which external factors you need to take into account in your advocacy planning?"
+      title_description: "Understanding the decision-making cycle, the political forces both for and against your objectives and the enabling factors and barriers that you will likely encounter during the implementation of your advocacy plan will allow you to assess the feasibility of your objectives and to be accurate and effective in your targeting and planning. All this information will then shape the definition of the interim outcomes (see below)."
+      subtitle1: "Understand the institutional and decision-making cycles"
+      subtitle1_explanation: "Policy decisions are often made according to a cycle or schedule. To maximise your influence you need to have a sound understanding of the policy processes. First, because the analysis of the decision-making process helps to identify opportunities and entry points to begin influencing on a given issue. Second, because last-minute interventions rarely work, and the earlier in the decision-making cycle the idea is accepted, the more effective the end result is likely to be"
+      subtitle2: "Map the actors and analyse their influence and support"
+      subtitle2_explanation: "Effective advocacy requires having a good understanding of all relevant actors: those with power to make change happen (decision-makers); those with influence over the decision-makers (influencers); and those in the community who would be supportive or opposing forces."
+      subtitle3: "Identify additional enabling factors and barriers"
+      subtitle3_tooltip: "Thanks to the prioritizing table, the decision-making cycle analysis and the actor mapping you will have already identified a number of enabling factors and barriers to achieve your chosen objective. However, you may need to go deeper into the analysis of the context surrounding the specific policy change that you want to pursue. You should think devote time to think about additional relevant enabling factors and barriers of different nature: financial, social, technological, factual, political, religious, cultural, geographical, organizational, etc."
+      data_entry: "Data Entry"
+      explanation_examples: "Explanation & Examples"
+      draw_sandbox_button: "Draw in Sandbox"
+      add_actor_button: "Add Actor"
+      all_actors: "All Actors"
+      name: "Name"
+      actor_type: "Actor Type"
+      support: "Support"
+      influence: "Influence"
+      important: "Important"
+      actions: "Actions"
+      add_enabling_factor_button: "Add Enabling Factor"
+      add_barrier_button: "Add Barrier"
+      barriers: "Barriers"
+      description: "Description"
+      enabling_factors: "Enabling Factors"
+    actors_modal:  # modal `add actor` of stage 3
+      actor: "Actor"
+      actor_type: "Actor Type"
+      select_actor_type: "Select Actor Type"
+      person: "Person"
+      organization: "Organization"
+      name: "Name"
+      name_placeholder: "Enter the actor's name"
+      description: "Description"
+      description_placeholder: "Add any important actor info"
+      important: "Important"
+      support: "Support"
+      influence_level: "Influence Level"
+      save_button: "Save"
+      cancel_button: "Cancel"
+    factors_modal:   # modal `add enabling factor` of stage 3
+      enabling_factor: "Enabling Factor"
+      description: "Description"
+      description_placeholder: "Enter description"
+      save_button: "Save"
+      cancel_button: "Cancel"
+    barriers_modal: # modal `add barrier` of stage 3
+      barrier: "Barrier"
+      description: "Description"
+      description_placeholder: "Enter description"
+      save_button: "Save"
+      cancel_button: "Cancel"
+    explanation_stage3: #tab `Explanation & Examples` of stage 3
+      explanation: "Explanation"
+      title1: "Which real-world problem children are facing that you want to address?"
+      title1_description: |
+                          <p>A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)</p>
+      title2: "Which are the policy-related causes of the real-world problem?"
+      title2_description: |
+                          <p>Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem.</p>
+                          <p>To conduct the problem analysis, you can use a problem tree. The problem tree is a well-known tool that “will help advocates understand the immediate, underlying and root causes of the issue, as well as help in gathering information to support the analysis”.</p>
+      title3: "Which policy solutions would constitute an appropriate response?"
+      title3_description: |
+                          <p>What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?</p>
+                          <p>The policy solutions usually refer to:</p>
+                          <ul>
+                            <li>Policy development (ex. Development of a nutrition national plan)</li>
+                            <li>Placement on the policy agenda. (Ex: Official paper on new financing mechanisms)</li>
+                            <li>Policy adoption. (Ex: approval of equal pay act)</li>
+                            <li>Policy blocking: (Ex. Rejection of anti-homosexuality bill)</li>
+                            <li>Policy implementation: (Ex. Implementation of regulations forbidding summary deportations by the police)</li>
+                            <li>Policy maintenance. (Ex.: No reduction of budgets for child protection policies)</li>
+                          </ul>
+                          <p>In those contexts where a policy change may be too ambitious, an organization may aim for a discursive change (which should pave the way for a policy change in the longer run). For instance, for many years, given the lack of options to achieve change on policies related to tax heavens, organizations working on tax justice focused their advocacy efforts on a change in the discourse in the society so tax havens were seen by the majority as an unacceptable practice that distract critical resources for the countries to pay for social services. These efforts built the ground for changes in policy later on when opportunities appeared (i.e. with the 2008 financial crisis).</p>
+      example: "Example"
+      real_world_problem: "Real-world problem"
+      real_world_problem_description: |
+                          <p>Increasing mother to child transmission of HIV in country AEIOU during the last 3 years</p>
+                          <h4>Policy dimensions of the problem</h4>
+                          <ul>
+                            <li>Women and children not included as target populations of the National Strategic Plan (epidemy historically concentrated in male drug users)</li>
+                            <li>Health insurance law does not cover informal workers and many women at risk belong to this group. (Therefore, due to limited capacity to cover out-of-pocket expenditures women with little resources do not attend clinics for HIV testing and treatment)</li>
+                            <li>PMTCT not included as a priority in the National Strategic Plan (few resources to improve services, campaigns, etc.)- Few donors paying attention to it.</li>
+                            <li>Current legal framework stipulates detention for sex workers (after 3 monetary sanctions), which prevents sex workers to attend health services due to fear of being denounced. </li>
+                          </ul>
+      policy_solutions: "Policy Solutions"
+      policy_solutions_description: |
+                          <ul>
+                            <li>Amendment to the Penal Code to remove sanctions in the form of detention for sex workers</li>
+                            <li>Revision of the National HIV Strategy </li>
+                            <li>Health insurance policy framework revised to cover disadvantaged informal workers</li>
+                            <li>Increase donor funding on PMTCT</li>
+                          </ul>
+    #
+    # Stage 4
+    #
+    stage4: # http://localhost:3000/projects/1/objectives/1/stage4
+      projects: "Projects"
+      stage4: "Stage 4"
+      title: "Which steps will lead you to the achievement of your advocacy objectives?"
+      subtitle1: "Define Interim Outcomes"
+      subtitle1_explanation: "At this point in the planning process, the analysis necessary to underpin your advocacy strategy is complete. Hence, now it is time to use that analysis to guide the definition of the shorter-term results that must be achieved in order to reach the advocacy objective. These are your advocacy interim outcomes and when arranged sequencially they will describe the plausible path of how you envision that the policy change you are seeking will take place as a result of your advocacy."
+      subtitle1_tooltip: "The interim outcomes refer to changes in the target audiences/critical players´attitudes, beliefs or behaviours."
+      data_entry: "Data Entry"
+      explanation_examples: "Explanation & Examples"
+      add_button: "Add"
+      interim_outcome: "Interim Outcome"
+      interim_outcome_type: "Interim Outcome Type"
+      actor_type: "Actor Type"
+      activities_number: "Activities Number"
+      actions: "Actions"
+    outcome_modal:  # modal `add new interim outcome` of stage 4
+      new_interim_outcome: "New Interim Outcome"
+      interim_outcome: "Interim Outcome"
+      interim_outcome_placeholder: "Add any important outcome info"
+      interim_outcome_type: "Interim Outcome Type"
+      actor_type: "Actor Type"
+      save_button: "Save"
+      cancel_button: "Cancel"
+    explanation_stage4: #tab `Explanation & Examples` of stage 4
+      title: "Explanation"
+      explanation_part1: |
+                  <p>At this point in the planning process, the analysis necessary to underpin your advocacy strategy is complete. Hence, now it is time to use that analysis to guide the definition of the shorter-term results that must be achieved in order to reach the advocacy objective. These are your advocacy interim outcomes and when arranged sequencially they will describe the plausible path of how you envision that the policy change you are seeking will take place as a result of your advocacy. </p>
+                  <p>The interim outcomes refer to changes in the target audiences/critical players´attitudes, beliefs or behaviours and usually include some of the following elements:</p>
+      table_content:  |
+                  <tr>
+                    <th>Frequent categories of interim outcomes</th>
+                    <th>Definition</th>
+                    <th>Examples</th>
+                  </tr>
+                  <tr>
+                    <td>Political will</td>
+                    <td>Willingness of policymakers to act in support of an issue or policy proposal</td>
+                    <td>Members of Parliament issue a statement in favour of regulating the fracking</td>
+                  </tr>
+                  <tr>
+                    <td>Public will</td>
+                    <td>Willingness of a (non-policymaker) target audience to act in support of an issue or policy proposal</td>
+                    <td>Increased citizens´ willingness to participate in acts against evictions </td>
+                  </tr>
+                  <tr>
+                    <td>Attitudes or beliefs</td>
+                    <td>Target audiences’ thoughts, feelings or judgements about an issue or policy proposal</td>
+                    <td>Increased number of young people´s in favour of removing the bicameral system</td>
+                  </tr>
+                  <tr>
+                    <td>Salience</td>
+                    <td>The importance a target audience assigns to an issue or policy proposal</td>
+                    <td>Increased the importance citizens give to child poverty as an urgent problem politician should pay attention to.</td>
+                  </tr>
+                  <tr>
+                    <td>Awareness</td>
+                    <td>Audience acknowledgement that a problem exists or familiarity with a policy proposal</td>
+                    <td>Improved EU Council awareness of conflict in country XX and the increasing number of refugeees in neighbourhood countries.</td>
+                  </tr>
+                  <tr>
+                    <td>New champions</td>
+                    <td>High-profile individuals who adopt an issue and publicly advocate for it</td>
+                    <td>African leaders speak out to reduce stigma against homosexual people.</td>
+                  </tr>
+                  <tr>
+                    <td>New advocates </td>
+                    <td>Previously unengaged individuals who take action in support of an issue or position</td>
+                    <td>Well-known basketball players stand against racism. </td>
+                  </tr>
+                  <tr>
+                    <td>Partnerships or alliances</td>
+                    <td>Mutually beneficial relationships with other organizations or individuals who support or participate in an advocacy strategy</td>
+                    <td>Coalition on violence against women and children in place with the participation of diverse and well-respected organizations. </td>
+                  </tr>
+                  <tr>
+                    <td>Constituency or support-base growth</td>
+                    <td>Increase in the number of individuals who can be counted on for sustained advocacy or action on an issue</td>
+                    <td>Expanded young people support-base </td>
+                  </tr>
+                  <tr>
+                    <td>Media coverage</td>
+                    <td>Quantity and / or quality of coverage generated in print, broadcast, digital or social media</td>
+                    <td>Major social media make an extensive coverage of the new data </td>
+                  </tr>
+                  <tr>
+                    <td>Issue reframing</td>
+                    <td>Changes in how an issue is presented, discussed, or perceived</td>
+                    <td>Climate change is presented as a problem affecting people (human face)</td>
+                  </tr>
+                  <tr>
+                    <td>Organizational advocacy capacity</td>
+                    <td>The ability of an organization or coalition to lead, adapt, manage and implement advocacy strategy</td>
+                    <td>Coaliton defines and carries out advocacy strategy according to the general coalition agreement</td>
+                  </tr>
+                  <tr>
+                    <td>Organizational visibility or issue recognition</td>
+                    <td>Identification of an organization or campaign as a credible source, leader, partner on an issue</td>
+                    <td>Organization is recognized as credible voice on the issue of inequality</td>
+                  </tr>
+      table_content_source: "<p>Source: Adapted from UNICEF (2010) Advocacy toolkit, pg 64</p>"
+      explanation_part2:  |
+                  <p>The selection of the interim outcomes should be based on the conclusions from the previous analysis: actor mapping, decision-making process, enabling factors and barriers (including the contextual information obtained from the prioritizing table).</p>
+                  <p>For example: a) an organization defines as its advocacy objective the adoption of a Law“X” next year; b) the actor mapping shows that there are active supporters and opponents with similar level of power; the public is neutral and there are few grassroots organizations with some influence working on the issue; c) The decision-making process analysis shows that the Law has been assigned to the Committee on Labour, which will be a key player during the adoption process. Then, in order to move the balance in your favour and progress in the achievement of your objectives your interim outcomes will probably include changes in the public such as increase their awareness on the issue so they position themselves in favour of it and to build their public will to act in support of the issue so they put pressure on decision-makers. You will most likely also aim for powerful messages delivered by the media or new champions to encourage the supporters and influence the public so they can become a force to move opponents to reduce their opposition to the policy change.</p>
+                  <p>Interim outcomes indicate movements towards the advocacy objective, they are “measures of effect” and therefore they “should also be worded in terms of the desired result or achievement, not in terms of the activity or what will be done”. “Raise support for children’s rights among key decision-makers,” for example, is activity-oriented. A results-oriented outcome is: “Decision-makers X, Y and Z will demonstrate their increased support for children’s rights by calling for increased funding for boys’ and girls’ primary education.”</p>
+                  <p>The interim outcomes can be organized in a logical chain where the combined effort of reaching some of them contributes to achieve the overall advocacy objective. The deeper you have worked in your analysis of problems, the more accurate you will be in organising your outcomes. This logical chain is sometimes known as your theory of change, which explains how you expect policy change to happen and what will pave the way to the implementation of the desired policy solution.</p>
+      example:    |
+                  <h3>Example</h3>
+                  <hr>
+                  <ul>
+                    <li>INGO and UNICEF strengthen their collaboration and jointly advocate the National Assembly and the Government to reform the policy framework on HI in order to cover informal workers and their families (partnerships)</li>
+                    <li>All UN organizations interested on this issue (WHO, ILO, UNAIDS, UNWOMEN, UNICEF) agree on joint advocacy actions and actively engage in their implementation (partnerships)</li>
+                    <li>Key neutral media cover and support the issue and give voices to the demands of informal workers (media coverage)</li>
+                    <li>Affected people groups/networks engage and take action in support of the issue (constituency growth)</li>
+                    <li>Director of the Department of HI demonstrates its support to expanding HI coverage to informal workers by speaking in favour of it publicly (political will)</li>
+                    <li>Members of Parliament are aware of our policy proposal and recognize that the problem exists and solutions must be promptly set in place (awareness and salience)</li>
+                    <li>UNICEF/ UN is invited to prepare and present a report on the implementation of the HI Law (organizational recognition)</li>
+                  </ul>
+    #
+    # Stage 5
+    #
+    stage5: # http://localhost:3000/projects/1/objectives/1/stage5
+      projects: "Projects"
+      stage5: "Stage 5"
+      title: "What will you do to achieve your advocacy objectives?"
+      title_description: "Your advocacy strategy should describe the main actions that will be conducted in order to contribute to the desired change (interim outcome and advocacy objective). The types of actions are numerous and each action can contribute to different outcomes."
+      subtitle1: "What actions must we do to achieve this Interim Outcome?"
+      subtitle2: "How to organize the activities?"
+      subtitle2_explanation: "For planning and coordination purposes it is useful to place the activities in Trello."
+      data_entry: "Data Entry"
+      explanation_examples: "Explanation & Examples"
+      workshop_tips: "Workshop Tips"
+      add_button: "Add"
+      without_activities: "Describe the main actions that will be conducted to the desired change"
+      activities: "Activities"
+      description: "Description"
+      outcomes: "Outcomes"
+      actions: "Actions"
+      trello: "Organize in Trello"
+    modal_activity: # modal 'activities' of stage 5
+      activities: "Activities"
+      title: "Title"
+      title_placeholder: "Enter a title for an activity"
+      description: "Description"
+      description_placeholder: "Enter a description for an activity"
+      completion: "Completion"
+      scheduling: "Scheduling"
+      outcome: "Outcome"
+      save_button: "Save"
+      cancel_button: "Cancel"
+    explanation_stage5: #tab `Explanation & Examples` of stage 5
+      title: "Explanation"
+      subtitle1: "What will you do to achieve your advocacy objectives?"
+      subtitle1_explanation: <p>Your advocacy strategy should describe the main actions that will be conducted in order to contribute to the desired change (interim outcome and advocacy objective). The types of actions are numerous and each action can contribute to different outcomes.</p>
+      outcomes_table_content: |
+              <tr>
+                <th>Outcome</th>
+                <th>Examples of activities usually associated with the outcome</th>
+              </tr>
+              <tr>
+                <td>Political will</td>
+                <td>Lobby<br>
+                  Relationship building with decision makers<br>
+                  Policymaker and candidate education<br>
+                  Litigation or legal advocacy<br>
+                  Policy proposal development<br>
+                  Demonstration projects or pilots<br>
+                  Earned media
+                </td>
+              </tr>
+              <tr>
+                <td>Public will</td>
+                <td>Polling
+                  Rallies and marches <br>
+                  Digital or internet-based media/social media
+                </td>
+              </tr>
+              <tr>
+                <td>Attitudes or beliefs</td>
+                <td>Issue/policy analysis and research
+                  Polling <br>
+                  Public service announcements <br>
+                  Briefings/presentations
+                </td>
+              </tr>
+              <tr>
+                <td>Salience</td>
+                <td>Lobby <br>
+                  Relationship building with decision makers <br>
+                  Policymaker and candidate education
+                </td>
+              </tr>
+              <tr>
+                <td>Awareness</td>
+                <td>
+                  Public service announcements <br>
+                  Rallies and marches <br>
+                  Briefings/presentations <br>
+                  Digital or internet-based media/social media
+                </td>
+              </tr>
+              <tr>
+                <td>New champions</td>
+                <td>
+                  Relationship building with decision-makers <br>
+                  Digital or internet-based media/social media
+                </td>
+              </tr>
+              <tr>
+                <td>New advocates </td>
+                <td>Briefings/presentations</td>
+              </tr>
+              <tr>
+                <td>Partnerships or alliances</td>
+                <td>
+                  Issue/policy analysis and research <br>
+                  Rallies and marches <br>
+                  Grass-roots organizing and mobilization
+                </td>
+              </tr>
+              <tr>
+                <td>Constituency or support-base growth</td>
+                <td>
+                  Rallies and marches <br>
+                  Grass-roots organizing and mobilization
+                </td>
+              </tr>
+              <tr>
+                <td>Media coverage</td>
+                <td>
+                  Rallies and marches <br>
+                  Grass-roots organizing and mobilization <br>
+                  Media partnerships <br>
+                  Digital or internet-based media/social media
+                </td>
+              </tr>
+              <tr>
+                <td>Issue reframing</td>
+                <td>
+                  Issue/policy analysis and research <br>
+                  Earned media
+                </td>
+              </tr>
+              <tr>
+                <td>Organizational advocacy capacity</td>
+                <td>Any of the others</td>
+              </tr>
+              <tr>
+                <td>Organizational visibility or issue recognition </td>
+                <td>Issue/policy analysis and research</td>
+              </tr>
+      after_outcomes_table_description:  |
+              <p>The actions chosen should be those with the greatest potential to contribute to each of the interim outcomes. During their selection, you also need to keep in mind your organization´s human and financial resources.</p>
+              <p>For planning and coordination purposes it is useful to place the activities in a calendar.</p>
+      example: "Example"
+      activities: "Activities"
+      interim_outcome_table_content: |
+              <tr>
+                <th>Interim outcome</th>
+                <th>Main activities</th>
+              </tr>
+              <tr>
+                <td>1) INGO and UNICEF strengthen their collaboration and jointly advocate the National Assembly and the Government to reform the policy framework on HI in order to cover informal workers and their families <strong>(partnerships)</strong></td>
+                <td>
+                  <ul>
+                    <li>Jointly (INGO and UNICEF) collect and publish live stories of children living with HIV and children born HIV free from HIV positive mothers.</li>
+                    <li>Joint lobby meetings (see below)</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>2) All UN organizations interested on this issue (WHO, ILO, UNAIDS, UNWOMEN, UNICEF) agree on joint advocacy actions and actively engage in their implementation <strong>(partnerships)</strong></td>
+                <td>
+                  <ul>
+                    <li>Develop internal UN document with UN asks, messages and narrative</li>
+                    <li>Joint event around the launch of the WHO report on Health for All with the participation of Gov, MP and engagement of UN Reps and regional/HQ+ affected people</li>
+                    <li>Produce and publish joint UN/UNICEF investment case on HI and coverage to informal workers and families </li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>3) Key neutral media cover and support the issue and give voices to the demands of informal workers <strong>(media coverage)</strong></td>
+                <td>
+                  <ul>
+                    <li>Jointly (INGO and UNICEF) collect and publish live stories of children living with HIV and children born HIV free from HIV positive mothers. </li>
+                    <li>Identify UN contacts in key media and brief them on the issue</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>4) Affected people groups/networks engage and take action in support of the issue <strong>(constituency growth)</strong></td>
+                <td>
+                  <ul>
+                    <li>Engage with affected people groups and strengthen their knowledge about the opportunity for change+ Identification of spokespersons among affected people- training on communications </li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>5) Director of the Department of HI demonstrates its support to expanding HI coverage to informal workers by speaking in favour of it publicly <strong>(political will)</strong></td>
+                <td>
+                  <ul>
+                    <li>Organize field visit to PMTCT clinics supported by INGO with the participation of Members of the Parliament, Government and a few journalists</li>
+                    <li>Hold joint lobby meeting with Government</li>
+                    <li>See also UN joint event around the launch of WHO report)</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>6) Members of Parliament are aware of our policy proposal and recognize that the problem exists and solutions must be promptly set in place <strong>(awareness and salience)</strong></td>
+                <td>
+                  <ul>
+                    <li>Organize field visit to PMTCT clinics supported by INGO with the participation of Members of the Parliament, Government and a few journalists</li>
+                    <li>Hold joint lobby meeting with MP</li>
+                    <li>(See also Joint event around the launch of WHO report)</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>7) UNICEF/ UN is invited to prepare and present a report on the implementation of the HI Law (organizational recognition)</td>
+                <td>
+                  <ul>
+                    <li>Hold joint lobby meeting with MP</li>
+                    <li>+ Publications mentioned above</li>
+                  </ul>
+                </td>
+              </tr>
+      months_table_content: |
+              <tr>
+                <th>Month</th>
+                <th>April</th>
+                <th>May</th>
+                <th>June</th>
+                <th>July</th>
+                <th>August</th>
+                <th>Sept</th>
+                <th>Oct</th>
+                <th>Nov</th>
+                <th>Dec</th>
+              </tr>
+              <tr>
+                <th>External event</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>NA communication on the review of the Law on HIV published </td>
+                <td></td>
+                <td>1st week-report submitted <br>
+                  2nd week- presentations
+                </td>
+              </tr>
+              <tr>
+                <th>Organization´s action</th>
+                <td>Develop internal UN document with UN asks, messages and narrative </td>
+                <td></td>
+                <td>Hold Joint lobby meeting with MP and Government <strong>*</strong></td>
+                <td>Identify UN contacts in key media and brief them on the issue</td>
+                <td></td>
+                <td>Organize field visit to PMTCT clinics supported by INGO with the participation of Members of the Parliament, Government and a few journalists</td>
+                <td></td>
+                <td>Hold Joint lobby meeting with MP and Government <strong>*</strong> <br>
+                Joint event around the launch of the WHO report on Health for All with the participation of Gov, MP and engagement of UN Reps and regional/HQ+ affected people</td>
+                <td></td>
+              </tr>
+      after_months_table_description: <p><strong>*</strong> Engage with affected people groups and strengthen their knowlegde about the opportunity for change+ Identification of spokepersons among affected people- training on communications.</p>
+    #
+    # Stage 6
+    #
+    stage6: # http://localhost:3000/projects/1/objectives/1/stage6
+      projects: "Projects"
+      stage6: "Stage 6"
+      title: "What do you want the target audience to do?"
+      title_description: "Your advocacy strategy should describe the main actions that will be conducted in order to contribute to the desired change (interim outcome and advocacy objective). The types of actions are numerous and each action can contribute to different outcomes."
+      subtitle1: "What will the ask for each actor?"
+      subtitle1_explanation: "The Ask should be clear, concise, solution-focused, and tailored to each actor."
+      data_entry: "Data Entry"
+      explanation_examples: "Explanation & Examples"
+      workshop_tips: "Workshop Tips"
+      add_button: "Add"
+      actor: "Actor"
+      ask: "Ask"
+      actions: "Actions"
+    asks_modal: # modal 'add ask' of stage 6
+      asks: "Asks"
+      actor: "Actor"
+      ask: "Ask"
+      ask_placeholder: "Write ask"
+      execution: "Execution"
+      save_button: "Save"
+      cancel_button: "Cancel"
+    explanation_stage6: #tab `Explanation & Examples` of stage 6
+      title: "Explanation"
+      subtitle1: "What do you want the target audience to do?"
+      subtitle1_explanation:  |
+                    <p>After you have identified the target audiences/critical players (actors who bring about the change you aim for and those who can influence them) you should define the “asks” for each of them. These are the actions you want them to understake to support the achievement of your advocacy objective. They should be clear, concise, solution-focused, and tailored to each actor.</p>
+                    <p>Communication specialists will craft powerful messages based on the information obtained in the previous steps, the “asks” that you will define at this stage, and other relevant information, such as the motivation of the audience or the communication channel. Having a broad range of solid messages ready to be used is necessary for your advocacy efforts. You can then communicate them in a number of formats (lobby meetings, letters, interviews in the media, etc).</p>
+      example: "Example"
+      actors_ask_table_content: |
+                    <tr>
+                      <th>Actors</th>
+                      <th>Ask</th>
+                    </tr>
+                    <tr>
+                      <td>Minister of Health</td>
+                      <td>To support the review of the policy framework on HI and recommend extension of coverage for informal workers in the report submitted to the NA by the Government</td>
+                    </tr>
+                    <tr>
+                      <td>Members of Parliament</td>
+                      <td>To support the review of the policy framework on HI and recommend extension of coverage for informal workers in the report on the 5 year review of the Law <br>
+                      To invite UNICEF or partners to prepare and deliver report on the issue
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Director of the Department</td>
+                      <td>To publicly advocate for the issue. </td>
+                    </tr>
+                    <tr>
+                      <td>INGO “X”</td>
+                      <td>To join forces with the UN to use the 5-year review of the Law on HI to advocate for the expansion of the HI coverage to informal workers and their families. </td>
+                    </tr>
+                    <tr>
+                      <td>UN Agencies</td>
+                      <td>To join forces within UN to use the 5-year review of the Law on HI to advocate for the expansion of the HI coverage to informal workers and their families. </td>
+                    </tr>
+                    <tr>
+                      <td>Neutral media</td>
+                      <td>To give voice to informal workers who relate their stories regarding the (lack of) access to expensive health services <br>
+                      To join UN and INGO “X” in a field visit with the option of producing a documentary with the participation of …
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Affected groups of people</td>
+                      <td>To tell their stories to decision makers and the media <br>
+                      To build their communication skills and knowledge on the issue (offering to participate in workshops to be organized by UN and INGO “X”)
+                      </td>
+                    </tr>

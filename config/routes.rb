@@ -33,10 +33,9 @@ Rails.application.routes.draw do
       get 'stage6', on: :member
       get 'actors', on: :member
       get 'objective_types', on: :collection
-      get 'outcomes', on: :member
-      resources :activities do
-        resources :asks
-      end
+      resources :outcomes
+      resources :asks
+      resources :activities
     end
     resources :resources do
       get 'aside', on: :collection

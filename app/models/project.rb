@@ -5,5 +5,15 @@ class Project < ActiveRecord::Base
   has_many :users, through: :permissions
   has_many :permissions
 
-	validates :title, presence: true
+  validates :title, presence: true
+
+  def activities
+    @activities = []
+    self.objectives.each do |objective|
+      objective.activities.each do |activity|
+        @activities << activity
+      end
+    end
+    return @activities
+  end
 end

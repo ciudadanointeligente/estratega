@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20150818141624) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "objective_id"
+    t.datetime "scheduling"
+    t.boolean  "completion"
+  end
+
+  create_table "activities_asks", id: false, force: :cascade do |t|
+    t.integer "activity_id", null: false
+    t.integer "ask_id",      null: false
   end
 
   create_table "activities_outcomes", id: false, force: :cascade do |t|
@@ -55,6 +62,7 @@ ActiveRecord::Schema.define(version: 20150818141624) do
     t.datetime "updated_at"
     t.integer  "actor_id"
     t.integer  "objective_id"
+    t.boolean  "execution"
   end
 
   add_index "asks", ["actor_id"], name: "index_asks_on_actor_id", using: :btree
