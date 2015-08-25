@@ -21,6 +21,7 @@ gem "bower-rails"
 gem 'wicked'
 gem 'ng-rails-csrf'
 gem 'acts-as-taggable-on'
+gem 'pundit'
 
 group :development do
   gem 'better_errors'
