@@ -51,12 +51,6 @@ select {
   background-color: #00bdc8;
   border-color: #26cccc;
 }
-
-.bg_grey {
-  background-color: #ececec;
-  padding: 10px;
-  margin-bottom: 20px;
-}
 .bg_grey table {
   background-color: #ffffff;
   margin-top: 40px;
@@ -486,17 +480,35 @@ table .fa-star, table .fa-check {
   color: #575757;
 }
 .contenedor {
-    padding: 10px;
+    padding: 20px 10px 10px 10px;
     border: 1px solid #575757;
+    margin-bottom: 20px;
+    margin-top: -20px;
 }
 #policy-problems {
   margin-bottom: -20px;
 }
+.bg_grey {
+  background-color: #575757;
+  color: #ffffff;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+.bg_grey h4 {
+  color: #ffffff;
+}
+.bg_grey h4 i {
+  font-size: 28px;
+  vertical-align: middle;
+  color: #666666;
+  margin-right: 15px;
+}
 #policy-problems .bg_grey {
   background-color: #575757;
   color: #ffffff;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 #policy-problems .bg_grey h4 {
   color: #ffffff;
