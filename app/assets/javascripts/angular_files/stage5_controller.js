@@ -3,12 +3,20 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
   $scope.objective_id = $location.path().split("/")[4];
 
   $scope.outcomes    = [];
+  $scope.asks = [];
   $scope.activities = [];
 
   function get_outcomes(project_id, objective_id) {
     $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/outcomes.json')
       .success(function (data){
         $scope.outcomes = data;
+      })
+  }
+
+  function get_asks(project_id, objective_id) {
+    $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/asks.json')
+      .success(function (data){
+        $scope.asks = data;
       })
   }
 
@@ -20,6 +28,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
   }
 
   get_outcomes($scope.project_id, $scope.objective_id);
+  get_asks($scope.project_id, $scope.objective_id);
   get_activities($scope.project_id, $scope.objective_id);
 
   $scope.add_edit_activity = function(activity) {
@@ -29,8 +38,11 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
       $scope.current_activity = {
         title: "",
         description: "",
+        completion: false,
+        scheduling: "",
         objective_id: $scope.objective_id,
-        outcome_ids: []
+        outcome_ids: [],
+        ask_ids: []
       };
 
     $aside.open({
@@ -56,8 +68,11 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
     $scope.current_activity.activity = {
       title: $scope.current_activity.title,
       description: $scope.current_activity.description,
+      completion: $scope.current_activity.completion,
+      scheduling: $scope.current_activity.scheduling,
       objective_id: $scope.current_activity.objective_id,
-      outcome_ids: $scope.current_activity.outcome_ids
+      outcome_ids: $scope.current_activity.outcome_ids,
+      ask_ids: $scope.current_activity.ask_ids
     }
     if ($scope.current_activity.id) {
       $http.put('/projects/' + $scope.project_id + '/objectives/' + $scope.objective_id + '/activities/' + $scope.current_activity.id, $scope.current_activity)

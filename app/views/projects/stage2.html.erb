@@ -2,129 +2,125 @@
   <div class="breadcrumb_bg">
     <ol class="breadcrumb container">
       <li>
-        <%= link_to "Projects", projects_path, target: "_self" %>
+        <%= link_to t('.projects'), projects_path, target: "_self" %>
       </li>
       <li><%= link_to truncate(@project.title, length: 30), @project, target: "_self" %></li>
-      <li>Stage 2</li>
+      <li><%= t('.stage2') %></li>
     </ol>
   </div>
 <% end %>
 
 <div class="container main">
-	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 stage_menu">
-			<h3>What policy changes will you focus your advocacy efforts on?</h3>
-			<ul class="nav nav-stacked">
-				<li class="active"><a href="#"><i class="fa fa-check-circle"></i> Formulate the real world problem as a goal</a>
-				</li>
-				<li><a href="#"><i class="fa fa-check-circle"></i> Formulate the policy solutions as objectives</a>
-				</li>
-			</ul>
-		</div>
-		<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-			<h2>What policy changes will you focus your advocacy efforts on?</h2>
-			<p>Advocacy planning involves defining and building consensus on the key policy changes to be achieved. The strategic selection of a few key objectives helps you make an efficient use of available resources and maximize existing opportunities.</p>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 stage_menu">
+      <h3><%= t('.title') %></h3>
+      <ul class="nav nav-stacked">
+        <li class="active"><a href="#"><i class="fa fa-check-circle"></i> <%= t('.subtitle1') %></a></li>
+        <li><a href="#"><i class="fa fa-check-circle"></i> <%= t('.subtitle2') %></a></li>
+      </ul>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+      <h2><%= t('.title') %></h2>
+      <p><%= t('.description') %></p>
 
-			<div role="tabpanel" class="tabpanel">
-				<!-- Nav tabs -->
-				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data Entry</a>
-					</li>
-					<li role="presentation"><a href="#explanation" aria-controls="explanation" role="tab" data-toggle="tab">Explanation & Examples</a>
-					</li>
-				</ul>
+      <div role="tabpanel" class="tabpanel">
+        <!-- nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab"><%= t('.data_entry') %></a>
+          </li>
+          <li role="presentation"><a href="#explanation" aria-controls="explanation" role="tab" data-toggle="tab"><%= t('.explanation_examples') %></a>
+          </li>
+        </ul>
 
-				<!-- Tab panes -->
-				<div class="tab-content" ng-controller="stage2Ctrl">
-					<div role="tabpanel" class="tab-pane active" id="data">
-						<div class="bg_grey">
-							<button type="button" class="btn btn-warning pull-right" ng-click="show_goal()">{{ btn_problem }}</button>
-							<h4>Formulate the real world problem as a goal <i class="fa fa-info-circle" title="The goals are the big changes and benefits being sougth for women and children, or in services and systems, as a result of advocacy objectives. Goal indicates what will happen after the advocacy objective/s is/are achieved. You should turn the real world problem into the desired real world change you want to contribute to through your advocacy."></i></h4>
-							<p>{{problem.goal}}</p>
-						</div>
-						<%= render "goal_modal" %>
-						<div class="bg_grey">
-							<button type="button" class="btn btn-warning pull-right" ng-click="add_edit_objective()">Add Objective</button>
-							<button type="button" class="btn btn-warning pull-right" ng-click="list_policy_solutions()">Policy Solutions</button>
-							<h4>Formulate the policy solutions as objectives <i class="fa fa-info-circle" title="The advocacy objectives are what the organization aims to achieve over several years (usually 3-5). It is the overall policy change that is desired as a result of advocacy effort."></i></h4>
+        <!-- tab panes -->
+        <div class="tab-content" ng-controller="stage2Ctrl">
+          <div role="tabpanel" class="tab-pane active" id="data">
+            <div class="bg_grey">
+              <button type="button" class="btn btn-warning pull-right" ng-click="show_goal()">{{ btn_problem }}</button>
+              <h4><%= t('.subtitle1') %> <i class="fa fa-info-circle" title="<%= t('.subtitle1_tooltip') %>"></i></h4>
+              <p>{{problem.goal}}</p>
+            </div>
+            <%= render "goal_modal" %>
+            <div class="bg_grey">
+              <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_objective()"><%= t('.add_objective_button') %></button>
+              <button type="button" class="btn btn-warning pull-right" ng-click="list_policy_solutions()"><%= t('.policy_solutions_button') %></button>
+              <h4><%= t('.subtitle2') %> <i class="fa fa-info-circle" title="<%= t('.subtitle2_tooltip') %>"></i></h4>
 
-							<div class="alert alert-info" role="alert" ng-class="{hidden: unrelated_solutions < 1}">
-								<i class="fa fa-exclamation-triangle"></i> <a href="#" ng-click="list_policy_solutions()">There are still {{unrelated_solutions}} policy solutions without objectives</a>
-							</div>
+              <div class="alert alert-info" role="alert" ng-class="{hidden: unrelated_solutions < 1}">
+                <i class="fa fa-exclamation-triangle"></i> <a href="#" ng-click="list_policy_solutions()"><%= t('.without_objectives_begin_sentence') %> {{unrelated_solutions}} <%= t('.without_objectives_end_sentence') %></a>
+              </div>
 
-							<div>
-								<!-- <p class="bold">Filter by Policy Solutions</p>
-								<a href="#"><span class="label label-info active">ALL</span></a>
-								<a href="#"><span class="label label-info">Amendment to the Penal Code to remove sanctions in the form of detention for sex workers (3)</span></a>
-								<a href="#"><span class="label label-info">Revision of the National HIV Strategy (5)</span></a>
-								<a href="#"><span class="label label-info">Health insurance policy framework revised to cover disadvantaged informal workers</span></a>
-								<a href="#"><span class="label label-info">Increase donor funding on PMTCT</span></a> -->
-							</div>
+              <div>
+                <!-- <p class="bold">Filter by Policy Solutions</p>
+                <a href="#"><span class="label label-info active">ALL</span></a>
+                <a href="#"><span class="label label-info">Amendment to the Penal Code to remove sanctions in the form of detention for sex workers (3)</span></a>
+                <a href="#"><span class="label label-info">Revision of the National HIV Strategy (5)</span></a>
+                <a href="#"><span class="label label-info">Health insurance policy framework revised to cover disadvantaged informal workers</span></a>
+                <a href="#"><span class="label label-info">Increase donor funding on PMTCT</span></a> -->
+              </div>
 
-							<table class="table ">
-								<thead>
-									<tr>
-										<th>Objectives</th>
-										<th>Subtotal Key Contribution</th>
-										<th>Subtotal Momentum</th>
-										<th>Subtotal Comparative Advantage </th>
-										<th>Total</th>
-										<th>Prioritized</th>
-										<th>Policy Solutions</th>
-										<th class="text-right">Actions</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr ng-repeat="objective in objectives">
-										<td>{{objective.title}}</td>
-										<td class="text-center">{{ objective.big_difference_score + objective.multiplying_effect_score + objective.catalytic_score }}</td>
-										<td class="text-center">{{ objective.demand_score + objective.hooks_processes_score + objective.intuitive_score }}</td>
-										<td class="text-center">{{ objective.alignment_score + objective.added_value_score + objective.loss_gain_score }}</td>
-										<td class="text-center">{{ objective.big_difference_score + objective.multiplying_effect_score + objective.catalytic_score + objective.demand_score + objective.hooks_processes_score + objective.intuitive_score + objective.alignment_score + objective.added_value_score + objective.loss_gain_score }}</td>
-										<td class="text-center">
-											<i class="fa fa-check" ng-if="objective.prioritized"></i>
-										</td>
-										<td class="text-center">{{objective.solution_ids.length}}</td>
-										<td class="text-right"><a href="#" title="Edit" ng-click="add_edit_objective(objective)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_objective(objective)"><i class="fa fa-trash"></i></a>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<nav>
-								<!-- <ul class="pagination">
-									<li>
-										<a href="#" aria-label="Previous">
-											<span aria-hidden="true">&laquo;</span>
-										</a>
-									</li>
-									<li><a href="#">1</a>
-									</li>
-									<li><a href="#">2</a>
-									</li>
-									<li><a href="#">3</a>
-									</li>
-									<li><a href="#">4</a>
-									</li>
-									<li><a href="#">5</a>
-									</li>
-									<li>
-										<a href="#" aria-label="Next">
-											<span aria-hidden="true">&raquo;</span>
-										</a>
-									</li>
-								</ul> -->
-							</nav>
-						</div>
-						<%= render "solutions_list_modal" %>
-						<%= render "objective_modal" %>
-					</div>
-					<div role="tabpanel" class="tab-pane" id="explanation">
-						<%= render "explanation_stage2" %>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-	</div>
+              <table class="table ">
+                <thead>
+                  <tr>
+                    <th><%= t('.objectives') %></th>
+                    <th><%= t('.subtotal_key_contribution') %></th>
+                    <th><%= t('.subtotal_momentum') %></th>
+                    <th><%= t('.subtotal_comparative_advantage') %></th>
+                    <th><%= t('.total') %></th>
+                    <th><%= t('.prioritized') %></th>
+                    <th><%= t('.policy_solutions') %></th>
+                    <th class="text-right"><%= t('.actions') %></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="objective in objectives">
+                    <td>{{objective.title}}</td>
+                    <td class="text-center">{{ objective.evaluation.big_difference_score + objective.evaluation.multiplying_effect_score + objective.evaluation.catalytic_score }}</td>
+                    <td class="text-center">{{ objective.evaluation.demand_score + objective.evaluation.hooks_processes_score + objective.evaluation.intuitive_score }}</td>
+                    <td class="text-center">{{ objective.evaluation.alignment_score + objective.evaluation.added_value_score + objective.evaluation.loss_gain_score }}</td>
+                    <td class="text-center">{{ objective.evaluation.big_difference_score + objective.evaluation.multiplying_effect_score + objective.evaluation.catalytic_score + objective.evaluation.demand_score + objective.evaluation.hooks_processes_score + objective.evaluation.intuitive_score + objective.evaluation.alignment_score + objective.evaluation.added_value_score + objective.evaluation.loss_gain_score }}</td>
+                    <td class="text-center">
+                      <i class="fa fa-check" ng-if="objective.prioritized"></i>
+                    </td>
+                    <td class="text-center">{{objective.solution_ids.length}}</td>
+                    <td class="text-right"><a href="#" title="Edit" ng-click="add_edit_objective(objective)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_objective(objective)"><i class="fa fa-trash"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <nav>
+                <!-- <ul class="pagination">
+                  <li>
+                    <a href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li><a href="#">1</a>
+                  </li>
+                  <li><a href="#">2</a>
+                  </li>
+                  <li><a href="#">3</a>
+                  </li>
+                  <li><a href="#">4</a>
+                  </li>
+                  <li><a href="#">5</a>
+                  </li>
+                  <li>
+                    <a href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul> -->
+              </nav>
+            </div>
+            <%= render "solutions_list_modal" %>
+            <%= render "objective_modal" %>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="explanation">
+            <%= render "explanation_stage2" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -8,14 +8,14 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", function
 
   function get_outcomes(project_id, objective_id) {
     $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/outcomes.json')
-    .success(function(data){
+    .success(function (data) {
       $scope.outcomes = data;
     });
   }
 
   function get_outcomes_categories() {
     $http.get('/outcomes/categories.json')
-    .success(function(data){
+    .success(function (data) {
       $scope.outcomes_categories = data;
     });
   }
@@ -27,12 +27,12 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", function
     $scope.current_outcome.title = '&nbsp;';
     if($scope.current_outcome.id) {
       $http.put('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/outcomes/'+$scope.current_outcome.id, $scope.current_outcome)
-        .success(function(data){
+        .success(function (data) {
           // alert success or error
         })
     } else {
       $http.post('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/outcomes', $scope.current_outcome)
-        .success(function(data){
+        .success(function (data) {
           $scope.current_outcome = data;
           $scope.outcomes.push(data);
         })
