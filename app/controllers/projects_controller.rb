@@ -92,7 +92,6 @@ class ProjectsController < ApplicationController
 
   def share
     message = params[:message]
-    p params[:share_users].split(",")
     params[:share_users].split(",").each do |u|
       u = u.to_s.strip
       share_user = User.find_by_email(u)
