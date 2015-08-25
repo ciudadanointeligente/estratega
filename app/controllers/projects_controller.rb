@@ -101,12 +101,13 @@ class ProjectsController < ApplicationController
         raw_token, hashed_token = Devise.token_generator.generate(User, :reset_password_token)
         new_user.reset_password_token = hashed_token
         new_user.reset_password_sent_at = Time.now.utc
+        new_user.save
         @project.users << new_user
 
         permission = Permission.where(project_id: @project.id ).where(user_id: new_user.id).first
         permission.role = :collaborator
         if permission.save
-          data_send = {email: new_user.email, message: message, token: raw_token}
+          data_send = {email: new_user.email, message: message, token: raw_token, project: @project}
           UserMailer.new_user_share(data_send).deliver_now
         end
       else
@@ -115,7 +116,7 @@ class ProjectsController < ApplicationController
         permission = Permission.where(project_id: @project.id ).where(user_id: share_user.id).first
         permission.role = :collaborator
         if permission.save
-          data_send = {email: share_user.email, message: message}
+          data_send = {email: share_user.email, message: message, project: @project}
           UserMailer.exist_user_share(data_send).deliver_now
         end
       end

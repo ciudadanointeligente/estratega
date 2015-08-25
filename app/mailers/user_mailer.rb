@@ -3,8 +3,11 @@ class UserMailer < ActionMailer::Base
 
   def new_user_share(data)
     @user = User.find_by_email(data[:email])
+
     @message = data[:message]
     @token = data[:token]
+    @project = data[:project]
+
     mail(to: @user.email, subject: 'Added to collaborate')
   end
 
@@ -12,6 +15,8 @@ class UserMailer < ActionMailer::Base
     @user = User.find_by_email(data[:email])
 
     @message = data[:message]
+    @project = data[:project]
+
     mail(to: @user.email, subject: 'Shared a project')
   end
 

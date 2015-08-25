@@ -2,10 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Vizard Share</title>
 </head>
 <body>
-  <p><%= @message %></p>
-  <%= link_to 'Activate my account', edit_password_url(@user, reset_password_token: @token) %>
+  <p><%= t('.new_add_to_share') %></p>
+
+  <p><%= link_to @project.title, project_url(@project) %></p>
+
+  <% if @message %>
+    <p><%= @message %></p>
+  <% end %>
+
+  <%= link_to t('.activate_account'), edit_password_url(@user, reset_password_token: @token) %>
 </body>
 </html>

@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Vizard Share</title>
 </head>
 <body>
-  <p>exist</p>
+  <p><%= t('.exist_add_to_share') %></p>
+
+  <p><%= link_to @project.title, project_url(@project) %></p>
+
+  <% if @message %>
+    <p><%= @message %></p>
+  <% end %>
+
 </body>
 </html>
