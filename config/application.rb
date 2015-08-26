@@ -6,6 +6,9 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+ENV.update YAML.load_file('config/vizard.yml')[Rails.env] rescue {}
+ENV.update YAML.load_file('config/private_vizard.yml')[Rails.env] rescue {}
+
 module VizardRails
   class Application < Rails::Application
 
@@ -35,5 +38,7 @@ module VizardRails
 
     # add bower stuff
     config.assets.paths << Rails.root.join("vendor","assets","bower_components")
+
+    config.action_mailer.default_url_options = { host: 'localhost:3000' }
   end
 end

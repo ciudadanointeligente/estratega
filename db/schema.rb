@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150805025510) do
+ActiveRecord::Schema.define(version: 20150821185316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20150805025510) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "objective_id"
+    t.datetime "scheduling"
+    t.boolean  "completion"
+  end
+
+  create_table "activities_asks", id: false, force: :cascade do |t|
+    t.integer "activity_id", null: false
+    t.integer "ask_id",      null: false
   end
 
   create_table "activities_outcomes", id: false, force: :cascade do |t|
@@ -55,6 +62,7 @@ ActiveRecord::Schema.define(version: 20150805025510) do
     t.datetime "updated_at"
     t.integer  "actor_id"
     t.integer  "objective_id"
+    t.boolean  "execution"
   end
 
   add_index "asks", ["actor_id"], name: "index_asks_on_actor_id", using: :btree
@@ -112,6 +120,16 @@ ActiveRecord::Schema.define(version: 20150805025510) do
   end
 
   add_index "outcomes", ["objective_id"], name: "index_outcomes_on_objective_id", using: :btree
+
+  create_table "permissions", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.integer  "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "permissions", ["project_id"], name: "index_permissions_on_project_id", using: :btree
 
   create_table "policy_problems", force: :cascade do |t|
     t.text     "title"
@@ -211,6 +229,8 @@ ActiveRecord::Schema.define(version: 20150805025510) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "roles_mask"
+    t.integer  "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -218,4 +238,5 @@ ActiveRecord::Schema.define(version: 20150805025510) do
 
   add_foreign_key "asks", "actors"
   add_foreign_key "asks", "objectives"
+  add_foreign_key "permissions", "projects"
 end

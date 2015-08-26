@@ -391,13 +391,6 @@ div#resources_paginate {
   display: block;
   width: 100%;
 }
-table .fa-pencil-square-o, table .fa-trash, table .fa-gears, table .fa-edit, table .fa-eye {
-  cursor: pointer;
-  color: #0091EA;
-}
-table .fa-star, table .fa-check {
-  color: #0091EA;
-}
 .dropdown-menu.dropdown-menu-button {
   padding: 10px;
   min-width: 228px;
@@ -450,7 +443,11 @@ table .fa-star, table .fa-check {
   width: 100%;
 }
 .banner {
+<<<<<<< HEAD
   background: image-url("banner.jpg") no-repeat center center; 
+=======
+  background: image-url("banner.jpg") no-repeat center center fixed;
+>>>>>>> dev
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

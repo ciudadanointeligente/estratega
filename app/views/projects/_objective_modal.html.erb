@@ -28,11 +28,11 @@
       <div class="col-md-8">
         <div class="form-group">
           <label for="big-difference"><%= t('.score') %></label>
-          <input type="number" class="form-control" id="big-difference-score" placeholder="<%= t('.score_placeholder') %>" min="1" max="3" ng-model="current_objective.evaluation.big_difference_score">
+          <input type="number" class="form-control" id="big-difference-score" placeholder="<%= t('.score_placeholder') %>" min="1" max="3" ng-model="current_objective.big_difference_score">
         </div>
         <div class="form-group">
           <label for="big-difference-arguments"><%= t('.main_arguments') %></label>
-          <textarea class="form-control" rows="3" id="big-difference-arguments" placeholder="<%= t('.main_arguments_placeholder') %>" ng-model="current_objective.evaluation.big_difference_arguments"></textarea>
+          <textarea class="form-control" rows="3" id="big-difference-arguments" placeholder="<%= t('.main_arguments_placeholder') %>" ng-model="current_objective.big_difference_arguments"></textarea>
         </div>
       </div>
     </div>
@@ -44,11 +44,11 @@
       <div class="col-md-8">
         <div class="form-group">
           <label for="multiplying-effect"><%= t('.score') %></label>
-          <input type="number" class="form-control" id="multiplying-effect" placeholder="<%= t('.score_placeholder') %>" min="1" max="3" ng-model="current_objective.evaluation.multiplying_effect_score">
+          <input type="number" class="form-control" id="multiplying-effect" placeholder="<%= t('.score_placeholder') %>" min="1" max="3" ng-model="current_objective.multiplying_effect_score">
         </div>
         <div class="form-group">
           <label for="multiplying-effect-arguments"><%= t('.main_arguments') %></label>
-          <textarea class="form-control" rows="3" id="multiplying-effect-arguments" placeholder="<%= t('.main_arguments_placeholder') %>" ng-model="current_objective.evaluation.multiplying_effect_arguments"></textarea>
+          <textarea class="form-control" rows="3" id="multiplying-effect-arguments" placeholder="<%= t('.main_arguments_placeholder') %>" ng-model="current_objective.multiplying_effect_arguments"></textarea>
         </div>
       </div>
     </div>
@@ -60,11 +60,11 @@
       <div class="col-md-8">
         <div class="form-group">
           <label for="catalytic"><%= t('.score') %></label>
-          <input type="number" class="form-control" id="catalytic" placeholder="<%= t('.score_placeholder') %>" min="1" max="3" ng-model="current_objective.evaluation.catalytic_score">
+          <input type="number" class="form-control" id="catalytic" placeholder="<%= t('.score_placeholder') %>" min="1" max="3" ng-model="current_objective.catalytic_score">
         </div>
         <div class="form-group">
           <label for="catalytic-arguments"><%= t('.main_arguments') %></label>
-          <textarea class="form-control" rows="3" id="catalytic-arguments" placeholder="<%= t('.main_arguments_placeholder') %>" ng-model="current_objective.evaluation.catalytic_arguments"></textarea>
+          <textarea class="form-control" rows="3" id="catalytic-arguments" placeholder="<%= t('.main_arguments_placeholder') %>" ng-model="current_objective.catalytic_arguments"></textarea>
         </div>
       </div>
     </div>
@@ -80,11 +80,11 @@
       <div class="col-md-8">
         <div class="form-group">
           <label for="demand"><%= t('.score') %></label>
-          <input type="number" class="form-control" id="demand" placeholder="<%= t('.score_placeholder') %>" min="1" max="3" ng-model="current_objective.evaluation.demand_score">
+          <input type="number" class="form-control" id="demand" placeholder="<%= t('.score_placeholder') %>" min="1" max="3" ng-model="current_objective.demand_score">
         </div>
         <div class="form-group">
           <label for="demand-arguments"><%= t('.main_arguments') %></label>
-          <textarea class="form-control" rows="3" id="demand-arguments" placeholder="<%= t('.main_arguments_placeholder') %>" ng-model="current_objective.evaluation.demand_arguments"></textarea>
+          <textarea class="form-control" rows="3" id="demand-arguments" placeholder="<%= t('.main_arguments_placeholder') %>" ng-model="current_objective.demand_arguments"></textarea>
         </div>
       </div>
     </div>
@@ -96,11 +96,11 @@
       <div class="col-md-8">
         <div class="form-group">
           <label for="hooks-processes"><%= t('.score') %></label>
-          <input type="number" class="form-control" id="hooks-processes" placeholder="<%= t('.score_placeholder') %>" min="1" max="3" ng-model="current_objective.evaluation.hooks_processes_score">
+          <input type="number" class="form-control" id="hooks-processes" placeholder="<%= t('.score_placeholder') %>" min="1" max="3" ng-model="current_objective.hooks_processes_score">
         </div>
         <div class="form-group">
           <label for="hooks-processes-arguments"><%= t('.main_arguments') %></label>
-          <textarea class="form-control" rows="3" id="hooks-processes-arguments" placeholder="<%= t('.main_arguments_placeholder') %>" ng-model="current_objective.evaluation.hooks_processes_arguments"></textarea>
+          <textarea class="form-control" rows="3" id="hooks-processes-arguments" placeholder="<%= t('.main_arguments_placeholder') %>" ng-model="current_objective.hooks_processes_arguments"></textarea>
         </div>
       </div>
     </div>
@@ -112,11 +112,11 @@
       <div class="col-md-8">
         <div class="form-group">
           <label for="intuitive"><%= t('.score') %></label>
-          <input type="number" class="form-control" id="intuitive" placeholder="<%= t('.score_placeholder') %>" min="1" max="3" ng-model="current_objective.evaluation.intuitive_score">
+          <input type="number" class="form-control" id="intuitive" placeholder="<%= t('.score_placeholder') %>" min="1" max="3" ng-model="current_objective.intuitive_score">
         </div>
         <div class="form-group">
           <label for="intuitive-arguments"><%= t('.main_arguments') %></label>
-          <textarea class="form-control" rows="3" id="intuitive-arguments" placeholder="<%= t('.main_arguments_placeholder') %>" ng-model="current_objective.evaluation.intuitive_arguments"></textarea>
+          <textarea class="form-control" rows="3" id="intuitive-arguments" placeholder="<%= t('.main_arguments_placeholder') %>" ng-model="current_objective.intuitive_arguments"></textarea>
         </div>
       </div>
     </div>
@@ -132,11 +132,11 @@
       <div class="col-md-8">
         <div class="form-group">
           <label for="alignment"><%= t('.score') %></label>
-          <input type="number" class="form-control" id="alignment" placeholder="<%= t('.score_placeholder') %>" min="1" max="3" ng-model="current_objective.evaluation.alignment_score">
+          <input type="number" class="form-control" id="alignment" placeholder="<%= t('.score_placeholder') %>" min="1" max="3" ng-model="current_objective.alignment_score">
         </div>
         <div class="form-group">
           <label for="alignment-arguments"><%= t('.main_arguments') %></label>
-          <textarea class="form-control" rows="3" id="alignment-arguments" placeholder="<%= t('.main_arguments_placeholder') %>" ng-model="current_objective.evaluation.alignment_arguments"></textarea>
+          <textarea class="form-control" rows="3" id="alignment-arguments" placeholder="<%= t('.main_arguments_placeholder') %>" ng-model="current_objective.alignment_arguments"></textarea>
         </div>
       </div>
     </div>
@@ -148,11 +148,11 @@
       <div class="col-md-8">
         <div class="form-group">
           <label for="added-value"><%= t('.score') %></label>
-          <input type="number" class="form-control" id="added-value" placeholder="<%= t('.score_placeholder') %>" min="1" max="3" ng-model="current_objective.evaluation.added_value_score">
+          <input type="number" class="form-control" id="added-value" placeholder="<%= t('.score_placeholder') %>" min="1" max="3" ng-model="current_objective.added_value_score">
         </div>
         <div class="form-group">
           <label for="added-value-arguments"><%= t('.main_arguments') %></label>
-          <textarea class="form-control" rows="3" id="added-value-arguments" placeholder="<%= t('.main_arguments_placeholder') %>" ng-model="current_objective.evaluation.added_value_arguments"></textarea>
+          <textarea class="form-control" rows="3" id="added-value-arguments" placeholder="<%= t('.main_arguments_placeholder') %>" ng-model="current_objective.added_value_arguments"></textarea>
         </div>
       </div>
     </div>
@@ -164,11 +164,11 @@
       <div class="col-md-8">
         <div class="form-group">
           <label for="loss-or-gain"><%= t('.score') %></label>
-          <input type="number" class="form-control" id="loss-or-gain" placeholder="<%= t('.score_placeholder') %>" min="1" max="3" ng-model="current_objective.evaluation.loss_gain_score">
+          <input type="number" class="form-control" id="loss-or-gain" placeholder="<%= t('.score_placeholder') %>" min="1" max="3" ng-model="current_objective.loss_gain_score">
         </div>
         <div class="form-group">
           <label for="loss-or-gain-arguments"><%= t('.main_arguments') %></label>
-          <textarea class="form-control" rows="3" id="loss-or-gain-arguments" placeholder="<%= t('.main_arguments_placeholder') %>" ng-model="current_objective.evaluation.loss_gain_arguments"></textarea>
+          <textarea class="form-control" rows="3" id="loss-or-gain-arguments" placeholder="<%= t('.main_arguments_placeholder') %>" ng-model="current_objective.loss_gain_arguments"></textarea>
         </div>
       </div>
     </div>

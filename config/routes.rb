@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     get 'solutions', on: :member
     get 'stage1', on: :member
     get 'stage2', on: :member
+    post 'share', on: :member
     resources :objectives do
       get 'stage3', on: :member
       get 'stage4', on: :member
@@ -32,10 +33,9 @@ Rails.application.routes.draw do
       get 'stage6', on: :member
       get 'actors', on: :member
       get 'objective_types', on: :collection
-      get 'outcomes', on: :member
-      resources :activities do
-        resources :asks
-      end
+      resources :outcomes
+      resources :asks
+      resources :activities
     end
     resources :resources do
       get 'aside', on: :collection

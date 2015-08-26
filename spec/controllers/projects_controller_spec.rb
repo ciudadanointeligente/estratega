@@ -56,15 +56,23 @@ RSpec.describe ProjectsController, :type => :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # ProjectsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) {
+    {"warden.user.user.key" => session["warden.user.user.key"]}
+  }
+
+  login_user
 
   describe "GET index" do
-    it "all projects" do
-      project_private = Project.create! valid_attributes_no_public
-      project_public = Project.create! valid_attributes
+    it "retrieves all user projects" do
+      owner = User.find(valid_session["warden.user.user.key"][0][0])
+      project_one = create(:project)
+      project_one.users << owner
+      project_two = create(:project)
+      project_two.users << create(:user)
+
       get :index, {}, valid_session
-      expect(assigns(:projects)).to include(project_private)
-      expect(assigns(:projects)).to include(project_public)
+      expect(assigns(:projects)).to include(project_one)
+      expect(assigns(:projects)).not_to include(project_two)
     end
   end
 
@@ -73,6 +81,18 @@ RSpec.describe ProjectsController, :type => :controller do
       project = Project.create! valid_attributes
       get :show, {:id => project.to_param}, valid_session
       expect(assigns(:project)).to eq(project)
+    end
+
+    it "showing a project for an authorized user" do
+      project = create(:project)
+      user_01 = create(:user)
+      project.users << user_01
+      user_02 = create(:user)
+
+      get :show, {:id => project.to_param}, valid_session
+
+      expect(assigns(:project).users).to_not include(user_02)
+      expect(assigns(:project).users).to include(user_01)
     end
   end
 
@@ -191,6 +211,14 @@ RSpec.describe ProjectsController, :type => :controller do
         post :create, {:project => valid_attributes}, valid_session
         expect(response).to redirect_to(Project.last)
       end
+
+      it "assigns a project owner" do
+        post :create, {:project => valid_attributes}, valid_session
+        owner = User.find(valid_session["warden.user.user.key"][0][0])
+        expect(assigns(:project).users.to_a).to include(owner)
+        permission = Permission.where(project_id: assigns(:project).id ).where( user_id: owner.id)
+        expect(permission.first.role).to eq("owner")
+      end
     end
 
     describe "with invalid params" do
@@ -203,6 +231,37 @@ RSpec.describe ProjectsController, :type => :controller do
         post :create, {:project => invalid_attributes}, valid_session
         expect(response).to render_template("new")
       end
+    end
+  end
+
+  describe "POST share" do
+    it "adds shared users" do
+      project = FactoryGirl.create(:project)
+      share_users = "guest_01@ciudadanoi.org, guest_02@ciudadanoi.org"
+      post :share, {:id => project.to_param, :share_users => share_users, :message => 'simple message' }, valid_session
+
+      current_u = User.find_by_email(share_users.split(",")[0])
+
+      expect(assigns(:project).users).to include current_u
+      # expect(share_users).to include assigns(:project).users.first.email
+    end
+
+    it "adds shared users as collaborator" do
+      project = FactoryGirl.create(:project)
+      share_users = "guest_01@ciudadanoi.org, guest_02@ciudadanoi.org"
+      post :share, {:id => project.to_param, :share_users => share_users, :message => 'simple message' }, valid_session
+
+      expect(assigns(:project).users[1].permissions[0].role).to eq "collaborator"
+    end
+
+    it "add an existence user" do
+      existence_user = User.create(email: 'dgarrido@ciudadanoi.org', password: 'stupidPassw0rd')
+      project = FactoryGirl.create(:project)
+
+      share_users = "dgarrido@ciudadanoi.org, guest_02@ciudadanoi.org"
+      post :share, {:id => project.to_param, :share_users => share_users, :message => 'simple message' }, valid_session
+
+      expect(assigns(:project).users[0].permissions[0].role).to eq "collaborator"
     end
   end
 

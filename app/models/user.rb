@@ -4,4 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :sandboxes
+  has_many :projects, through: :permissions
+  has_many :permissions
 end

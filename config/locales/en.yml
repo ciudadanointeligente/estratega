@@ -490,6 +490,8 @@ en:
       title_placeholder: "Enter a title for an activity"
       description: "Description"
       description_placeholder: "Enter a description for an activity"
+      completion: "Completion"
+      scheduling: "Scheduling"
       outcome: "Outcome"
       save_button: "Save"
       cancel_button: "Cancel"
@@ -732,6 +734,7 @@ en:
       actor: "Actor"
       ask: "Ask"
       ask_placeholder: "Write ask"
+      execution: "Execution"
       save_button: "Save"
       cancel_button: "Cancel"
     explanation_stage6: #tab `Explanation & Examples` of stage 6
@@ -780,3 +783,9 @@ en:
                       To build their communication skills and knowledge on the issue (offering to participate in workshops to be organized by UN and INGO “X”)
                       </td>
                     </tr>
+  user_mailer:
+    exist_user_share:
+      exist_add_to_share: 'You are invited to collaborate in the proyect:'
+    new_user_share:
+      new_add_to_share: 'You are invited to activate your account and collaborate in the proyect:'
+      activate_account: 'Activate my account'
