@@ -43,7 +43,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", function
     $http.get('/actors/actor_influence_level.json')
       .success(function(data){
         $scope.influence = data;
-      });
+      })
       .error(function (){
         $scope.messages = { response: false, message: "Error while getting actor influence levels information"}
       });
@@ -121,7 +121,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", function
         // alert success or error
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error while updating objective information"}
+        $scope.messages = { response: false, message: "Error while updating enabling factors or/and barriers information"}
       });
   }
 
