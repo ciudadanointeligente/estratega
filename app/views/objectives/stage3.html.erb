@@ -56,11 +56,12 @@
                 </table>
             </div>
             <div class="bg_grey" id="factors-barriers">
-              <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_enabling_factor()"><%= t('.add_enabling_factor_button') %></button>
-              <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_barrier()"><%= t('.add_barrier_button') %></button>
-              <h4><%= t('.subtitle3') %> <i class="fa fa-info-circle" title="<%= t('.subtitle3_tooltip') %>"></i></h4>
+              <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" title="<%= t('.subtitle3_tooltip') %>"><i class="fa fa-info"></i></button>
+              <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_enabling_factor()"><i class="fa fa-plus-circle"></i> <%= t('.add_enabling_factor_button') %></button>
+              <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_barrier()"><i class="fa fa-plus-circle"></i> <%= t('.add_barrier_button') %></button>
+              <h4><i class="fa fa-circle"></i> <%= t('.subtitle3') %></h4>
             </div>
-
+          <div class="contenedor">
             <div class="panel panel-default">
               <div class="panel-heading table_goals">
                 <a data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><%= t('.barriers') %></a>
@@ -99,6 +100,7 @@
                 </table>
               </div>
             </div>
+          </div>
             <%= render "actors_modal" %>
             <%= render "factors_modal" %>
             <%= render "barriers_modal" %>

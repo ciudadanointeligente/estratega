@@ -67,8 +67,9 @@ select {
   font-weight: 300;
   color: #7D7D7D;
 }
-.bg_grey .btn-warning.pull-right {
+.bg_grey .btn.pull-right {
   margin-left: 10px;
+  margin-top: 5px;
 }
 .bg_grey .btn-warning.pull-left {
   margin-right: 10px;
@@ -492,7 +493,7 @@ table .fa-star, table .fa-check {
   background-color: #575757;
   color: #ffffff;
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px 10px;
   margin-bottom: 15px;
 }
 .bg_grey h4 {
