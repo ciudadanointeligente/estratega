@@ -10,7 +10,7 @@
   </div>
 <% end %>
 
-<div class="container main">
+<div class="container main" ng-controller="stage2Ctrl">
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 stage_menu">
       <h3><%= t('.title') %></h3>
@@ -20,6 +20,11 @@
       </ul>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+      <div class="alert" role="alert" ng-class="messages.response?'alert-success':'alert-danger'" ng-if="messages.message">
+        <button ng-click="dismiss_modal()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{ messages.message }}
+      </div>
+
       <h2><%= t('.title') %></h2>
       <p><%= t('.description') %></p>
 
@@ -33,7 +38,7 @@
         </ul>
 
         <!-- tab panes -->
-        <div class="tab-content" ng-controller="stage2Ctrl">
+        <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="data">
             <div class="bg_grey">
               <button type="button" class="btn btn-warning pull-right" ng-click="show_goal()">{{ btn_problem }}</button>
