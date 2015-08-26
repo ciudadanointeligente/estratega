@@ -7,17 +7,17 @@
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Asap:400,700' rel='stylesheet' type='text/css'>
-    <!-- Latest compiled and minified CSS -->
+    <!-- latest compiled and minified css -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
-        <%= 'var interactive_status = ' + @owner.to_s %>
+      <%= 'var interactive_status = ' + @owner.to_s %>
     </script>
     <% if(!@owner) %>
     <style>
-        .link-tools {
-            display: none;
-        }
+      .link-tools {
+        display: none;
+      }
     </style>
     <% end %>
   </head>
@@ -26,8 +26,8 @@
       <%= render 'layouts/sandbox_navigation' %>
     </header>
     <main role="main">
-        <!-- <%= render 'layouts/messages' %> -->
-        <%= yield %>
+      <!-- <%= render 'layouts/messages' %> -->
+      <%= yield %>
     </main>
 
     <%= javascript_include_tag 'sandboxes', 'data-turbolinks-track' => true %>
