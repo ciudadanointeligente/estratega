@@ -82,6 +82,18 @@ RSpec.describe ProjectsController, :type => :controller do
       get :show, {:id => project.to_param}, valid_session
       expect(assigns(:project)).to eq(project)
     end
+
+    it "showing a project for an authorized user" do
+      project = create(:project)
+      user_01 = create(:user)
+      project.users << user_01
+      user_02 = create(:user)
+
+      get :show, {:id => project.to_param}, valid_session
+
+      expect(assigns(:project).users).to_not include(user_02)
+      expect(assigns(:project).users).to include(user_01)
+    end
   end
 
   describe "GET new" do
