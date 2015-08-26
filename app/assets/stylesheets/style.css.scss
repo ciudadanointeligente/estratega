@@ -238,9 +238,6 @@ footer a {
 div.steps table {
     margin-bottom: 0;
 }
-div.steps table a {
-    color: #e2534b;
-}
 h4.panel-title a, .table_goals a {
   font-weight: 300;
   color: #ffffff;
@@ -279,8 +276,11 @@ h4.panel-title {
 .td-w-10p {
   width: 10%;
 }
-.td-w-10p .fa-unlock, .td-w-10p .fa-unlock-alt, .td-w-10p .fa-lock {
-  color: #62b9b0;
+.td-w-10p .fa-lock {
+  color: #7D7D7D;
+}
+.td-w-10p .fa-unlock, .td-w-10p .fa-unlock-alt {
+  color: #0091EA;
 }
 .td-w-3p {
   width: 20px;

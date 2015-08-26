@@ -22,14 +22,14 @@
   <!-- tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="stages">
-      <div class="row">
-        <div class="col-md-12">
+      <div class="">
+        <div class="">
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title" title="Complete Stage"><a data-toggle="collapse" href="#stage1" aria-expanded="false" aria-controls="collapseExample"><i class="<%= icon_class_stage 1 %>"></i> Stage 1: Articulate problems and policy solutions</a></h4>
             </div>
             <div class="collapse steps" id="stage1">
-              <table class="table table-bordered">
+              <table class="table">
                   <tbody>
                     <!-- real problem -->
                     <tr title="Complete Step">
@@ -64,14 +64,14 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12">
+      <div class="">
+        <div class="">
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title" title="You must complete the previous stage"><a data-toggle="collapse" href="#stage2" aria-expanded="false" aria-controls="collapseExample"><i class="<%= icon_class_stage 2 %>"></i> Stage 2: Articulate and prioritize objectives (Example)</a></h4>
             </div>
             <div class="collapse steps" id="stage2">
-              <table class="table table-bordered">
+              <table class="table">
                 <tbody>
                   <tr title="You must complete the previous step">
                     <td class="text-center td-w-10p"><i class="<%= icon_class @objectives, @solutions %>"></i></td>
@@ -97,8 +97,8 @@
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       <% else %>
         <% @objectives.each do |objective| %>
-          <div class="row">
-            <div class="col-md-12">
+          <div class="">
+            <div class="">
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <table class="table_goals">
@@ -109,7 +109,7 @@
                   </table>
                 </div>
                 <div class="collapse steps in" id="goal-<%= objective.id %>">
-                  <table class="table table-bordered">
+                  <table class="table">
                     <tbody>
                       <tr title="Uninitiated Step">
                         <td class="text-center td-w-10p">
