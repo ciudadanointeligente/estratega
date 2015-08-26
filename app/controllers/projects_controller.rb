@@ -27,6 +27,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    authorize @project
     @objectives = @project.objectives
     @a_size = 0
     @barriers_size = 0

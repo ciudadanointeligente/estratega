@@ -6,4 +6,10 @@ class ProjectPolicy
     @user = user
     @model = project
   end
+
+  def show?
+    if @model.users.include?(@user)
+      true
+    end
+  end
 end
