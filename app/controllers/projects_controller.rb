@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :solutions, :stage1, :stage2]
+  before_action :authenticate_user!
+	before_action :set_project, only: [:show, :edit, :update, :destroy, :solutions, :stage1, :stage2, :share]
 
   respond_to :html, :json
 
@@ -21,7 +22,7 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = Project.all
+    @projects = current_user.projects
     respond_with(@projects)
   end
 
@@ -65,6 +66,15 @@ class ProjectsController < ApplicationController
     new_params = project_params
     new_params[:public] = false if new_params[:public].nil?
     @project = Project.create(new_params)
+
+    if !@project.id.blank?
+      @project.users << current_user
+
+      permission = Permission.where(project_id: @project.id ).where(user_id: current_user.id).first
+      permission.role = :owner
+      permission.save
+    end
+
     respond_with(@project)
   end
 
@@ -77,6 +87,40 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
+    respond_with(@project)
+  end
+
+  def share
+    message = params[:message]
+    params[:share_users].split(",").each do |u|
+      u = u.to_s.strip
+      share_user = User.find_by_email(u)
+      if share_user.blank?
+        generated_password = Devise.friendly_token.first(8)
+        new_user = User.create(email: u, password: generated_password)
+        raw_token, hashed_token = Devise.token_generator.generate(User, :reset_password_token)
+        new_user.reset_password_token = hashed_token
+        new_user.reset_password_sent_at = Time.now.utc
+        new_user.save
+        @project.users << new_user
+
+        permission = Permission.where(project_id: @project.id ).where(user_id: new_user.id).first
+        permission.role = :collaborator
+        if permission.save
+          data_send = {email: new_user.email, message: message, token: raw_token, project: @project}
+          UserMailer.new_user_share(data_send).deliver_now
+        end
+      else
+        @project.users << share_user
+
+        permission = Permission.where(project_id: @project.id ).where(user_id: share_user.id).first
+        permission.role = :collaborator
+        if permission.save
+          data_send = {email: share_user.email, message: message, project: @project}
+          UserMailer.exist_user_share(data_send).deliver_now
+        end
+      end
+    end
     respond_with(@project)
   end
 

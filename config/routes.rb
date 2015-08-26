@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     get 'solutions', on: :member
     get 'stage1', on: :member
     get 'stage2', on: :member
+    post 'share', on: :member
     resources :objectives do
       get 'stage3', on: :member
       get 'stage4', on: :member
