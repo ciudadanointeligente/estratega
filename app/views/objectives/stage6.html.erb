@@ -12,13 +12,7 @@
 
 <div class="container main">
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 stage_menu">
-      <h3><%= t('.title') %></h3>
-      <ul class="nav nav-stacked">
-        <li class="active"><a href="#"><i class="fa fa-check-circle"></i> <%= t('.subtitle1') %></a></li>
-      </ul>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <h2><%= t('.title') %></h2>
       <p><%= t('.title_description') %></p>
       <div role="tabpanel" class="tabpanel">
@@ -26,18 +20,17 @@
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab"><%= t('.data_entry') %></a></li>
           <li role="presentation"><a href="#explanation" aria-controls="explanation" role="tab" data-toggle="tab"><%= t('.explanation_examples') %></a></li>
-          <li role="presentation"><a href="#tips" aria-controls="tips" role="tab" data-toggle="tab"><%= t('.workshop_tips') %></a></li>
         </ul>
         <!-- tab panel -->
         <div class="tab-content" ng-controller="stage6Ctrl">
           <div role="tabpanel" class="tab-pane active" id="data">
         <!-- actions -->
           <div class="bg_grey">
-            <button type="button" class="btn btn-info pull-right" ng-click="add_edit_ask()"><%= t('.add_button') %></button>
-            <h4><%= t('.subtitle1') %></h4>
-            <p>
-              <%= t('.subtitle1_explanation') %>
-            </p>
+            <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" title="<%= t('.subtitle1_explanation') %>"><i class="fa fa-info"></i></button>
+            <button type="button" class="btn btn-warning  pull-right" ng-click="add_edit_ask()"><i class="fa fa-plus-circle"></i> <%= t('.add_button') %></button>
+            <h4><i class="fa fa-circle"></i> <%= t('.subtitle1') %></h4>
+          </div>
+          <div class="contenedor">
             <table class="table">
               <thead>
                 <tr>
