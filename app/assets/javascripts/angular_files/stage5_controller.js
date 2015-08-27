@@ -6,6 +6,8 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
   $scope.asks = [];
   $scope.activities = [];
 
+  $scope.messages = {response: "", message: ""}
+
   function get_outcomes(project_id, objective_id) {
     $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/outcomes.json')
       .success(function (data){
