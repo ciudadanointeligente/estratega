@@ -18,7 +18,12 @@
         <li class="active"><a href="#"><i class="fa fa-check-circle"></i> <%= t('.subtitle1') %></a></li>
       </ul>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" ng-controller="stage6Ctrl">
+      <div class="alert" role="alert" ng-class="messages.response?'alert-success':'alert-danger'" ng-if="messages.message">
+        <button ng-click="dismiss_modal()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{ messages.message }}
+      </div>
+
       <h2><%= t('.title') %></h2>
       <p><%= t('.title_description') %></p>
       <div role="tabpanel" class="tabpanel">
@@ -29,7 +34,7 @@
           <li role="presentation"><a href="#tips" aria-controls="tips" role="tab" data-toggle="tab"><%= t('.workshop_tips') %></a></li>
         </ul>
         <!-- tab panel -->
-        <div class="tab-content" ng-controller="stage6Ctrl">
+        <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="data">
         <!-- actions -->
           <div class="bg_grey">

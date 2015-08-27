@@ -1,10 +1,14 @@
 app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function ($scope, $http, $aside, $location) {
   $scope.project_id = $location.path().split("/")[2];
   $scope.objective_id = $location.path().split("/")[4];
+  $scope.messages = {response: "", message: ""}
 
   $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/actors.json')
   .success(function(data){
       $scope.actors = data;
+  })
+  .error(function (){
+    $scope.messages = { response: false, message: "Error while getting actors information"}
   });
 
   function get_asks(project_id, objective_id) {
@@ -14,6 +18,9 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function
         get_actor_of_ask(ask);
       });
       $scope.asks = data;
+    })
+    .error(function (){
+      $scope.messages = { response: false, message: "Error while getting asks information"}
     });
   }
 
@@ -82,6 +89,9 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function
           get_actor_of_ask($scope.current_ask);
           // alert success or error
         })
+        .error(function (){
+          $scope.messages = { response: false, message: "Error while updating ask information"}
+        });
     } else {
       $http.post('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/asks', $scope.current_ask)
         .success(function(data){
@@ -89,6 +99,9 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function
           $scope.current_ask = data;
           // $scope.asks.push(data);
         })
+        .error(function (){
+          $scope.messages = { response: false, message: "Error while creating ask information"}
+        });
     }
   }
 
@@ -97,5 +110,9 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function
     $http.delete('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/asks/'+ask.id);
     $scope.asks.splice($scope.asks.indexOf(ask),1);
     }
+  }
+
+  $scope.dismiss_modal = function(){
+    $scope.messages = {response: "", message: ""}
   }
 }]);
