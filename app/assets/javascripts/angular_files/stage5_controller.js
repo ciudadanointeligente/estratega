@@ -6,11 +6,16 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
   $scope.asks = [];
   $scope.activities = [];
 
+  $scope.messages = {response: "", message: ""}
+
   function get_outcomes(project_id, objective_id) {
     $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/outcomes.json')
       .success(function (data){
         $scope.outcomes = data;
       })
+      .error(function (){
+        $scope.messages = { response: false, message: "Error while getting outcomes information"}
+      });
   }
 
   function get_asks(project_id, objective_id) {
@@ -18,12 +23,18 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
       .success(function (data){
         $scope.asks = data;
       })
+      .error(function (){
+        $scope.messages = { response: false, message: "Error while getting asks information"}
+      });
   }
 
   function get_activities(project_id, objective_id) {
     $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/activities.json')
       .success(function (data) {
         $scope.activities = data;
+      })
+      .error(function (){
+        $scope.messages = { response: false, message: "Error while getting activities information"}
       });
   }
 
@@ -79,12 +90,18 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
         .success(function (data) {
           // alert success or error
           get_activities($scope.project_id, $scope.objective_id)
+        })
+        .error(function (){
+          $scope.messages = { response: false, message: "Error while updating activity information"}
         });
     } else {
       $http.post('/projects/' + $scope.project_id + '/objectives/' + $scope.objective_id + '/activities', $scope.current_activity)
         .success(function (data) {
           $scope.current_activity = data;
           get_activities($scope.project_id, $scope.objective_id)
+        })
+        .error(function (){
+          $scope.messages = { response: false, message: "Error while creating activity information"}
         });
     }
   }
@@ -94,5 +111,9 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
       $http.delete('/projects/' + $scope.project_id + '/objectives/' + $scope.objective_id + '/activities/' + activity.id);
       $scope.activities.splice($scope.activities.indexOf(activity), 1);
     }
+  }
+
+  $scope.dismiss_modal = function(){
+    $scope.messages = {response: "", message: ""}
   }
 }]);

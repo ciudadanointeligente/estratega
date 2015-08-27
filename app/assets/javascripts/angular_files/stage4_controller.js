@@ -1,15 +1,23 @@
 app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", function ($scope, $http, $aside, $location) {
   $scope.project_id = $location.path().split("/")[2];
   $scope.objective_id = $location.path().split("/")[4];
+  $scope.messages = {response: "", message: ""}
+
   $http.get('/actors/actor_type.json')
     .success(function(data){
       $scope.actor_types = data
+    })
+    .error(function (){
+      $scope.messages = {response: false, message: "Error while getting actor type information"}
     });
 
   function get_outcomes(project_id, objective_id) {
     $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/outcomes.json')
     .success(function (data) {
       $scope.outcomes = data;
+    })
+    .error(function (){
+      $scope.messages = {response: false, message: "Error while getting outcomes information"}
     });
   }
 
@@ -17,6 +25,9 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", function
     $http.get('/outcomes/categories.json')
     .success(function (data) {
       $scope.outcomes_categories = data;
+    })
+    .error(function (){
+      $scope.messages = {response: false, message: "Error while getting categories information"}
     });
   }
 
@@ -30,12 +41,18 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", function
         .success(function (data) {
           // alert success or error
         })
+        .error(function (){
+          $scope.messages = {response: false, message: "Error while updating the outcome information"}
+        });
     } else {
       $http.post('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/outcomes', $scope.current_outcome)
         .success(function (data) {
           $scope.current_outcome = data;
           $scope.outcomes.push(data);
         })
+        .error(function (){
+          $scope.messages = {response: false, message: "Error while creating the outcome information"}
+        });
     }
   }
 
@@ -79,5 +96,9 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", function
     $http.delete('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/outcomes/'+outcome.id);
     $scope.outcomes.splice($scope.outcomes.indexOf(outcome),1);
     }
+  }
+
+  $scope.dismiss_modal = function(){
+    $scope.messages = {response: "", message: ""}
   }
 }]);

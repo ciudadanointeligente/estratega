@@ -1,9 +1,13 @@
 app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function ($scope, $http, $aside, $location) {
   $scope.project_id = $location.path().split("/")[2];
+  $scope.messages = {response: "", message: ""}
   $http.get('/real_problems/focus_area.json')
     .success(function (data) {
       $scope.focus_areas = data
     })
+    .error(function (){
+      $scope.messages = { response: false, message: "Error while getting focus area information"}
+    });
 
   $scope.btn_problem = "Add";
   $scope.problem = {
@@ -29,6 +33,9 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
           .success(function (data) {
             $scope.problem = data;
             $scope.btn_problem = "Edit";
+          })
+          .error(function (){
+            $scope.messages = { response: false, message: "Error while getting the project information"}
           });
         get_policy_solutions($scope.problem_id);
       }
@@ -44,6 +51,9 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
           i++;
         }
       })
+      .error(function (){
+        $scope.messages = { response: false, message: "Error while getting policy problems information"}
+      });
   }
 
   var get_solutions = function (problem_id, policy_id, i) {
@@ -51,6 +61,9 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
       .success(function (data) {
         $scope.policies[i].solutions = data;
       })
+      .error(function (){
+        $scope.messages = { response: false, message: "Error while getting solutions information"}
+      });
   }
 
   var get_solution = function (problem_id, policy_id, solution_id) {
@@ -58,6 +71,9 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
       .success(function (data) {
         $scope.current_solution = data;
       })
+      .error(function (){
+        $scope.messages = { response: false, message: "Error while getting a solution information"}
+      });
   }
 
   var save_or_update_problem = function () {
@@ -69,6 +85,10 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
         .success(function (data) {
           // alert success or error
         })
+        .error(function (){
+          console.log('fail')
+          $scope.messages = { response: false, message: "Error while updating information"}
+        });
     } else {
       $scope.problem.project_id = $scope.project_id
       $http.post("/real_problems", $scope.problem)
@@ -77,6 +97,9 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
           $scope.btn_problem = "Edit";
           $scope.problem_id = data.id;
         })
+        .error(function (){
+          $scope.messages = { response: false, message: "Error while insert information"}
+        });
     }
   };
 
@@ -98,11 +121,17 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
               };
             })
         })
+        .error(function (){
+          $scope.messages = { response: false, message: "Error while updating a policy information"}
+        });
     } else {
       $http.post("/real_problems/" + $scope.problem.id + "/policy_problems", $scope.current_policy)
         .success(function (data) {
           $scope.policies.push(data);
         })
+        .error(function (){
+          $scope.messages = { response: false, message: "Error while creating a policy information"}
+        });
     }
   };
 
@@ -113,11 +142,17 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
         .success(function (data) {
           get_policy_solutions(problem_id);
         })
+        .error(function (){
+          $scope.messages = { response: false, message: "Error while updating a solution information"}
+        });
     } else {
       $http.post("/real_problems/" + problem_id + "/policy_problems/" + policy_id + "/solutions", $scope.current_solution)
         .success(function (data) {
           get_policy_solutions(problem_id);
         })
+        .error(function (){
+          $scope.messages = { response: false, message: "Error while creating a solution information"}
+        });
     }
   }
 
@@ -164,6 +199,9 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
         .success(function (data) {
           $scope.current_policy = data;
         })
+        .error(function (){
+          $scope.messages = { response: false, message: "Error while getting the policy problem information"}
+        });
     } else {
       $scope.current_policy = {
         title: "",
@@ -228,5 +266,9 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
       $http.delete('/real_problems/' + $scope.problem.id + '/policy_problems/' + policy.id)
       $scope.policies.splice($scope.policies.indexOf(policy),1);
     }
+  }
+
+  $scope.dismiss_modal = function(){
+    $scope.messages = {response: "", message: ""}
   }
 }]);

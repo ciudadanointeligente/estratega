@@ -16,6 +16,9 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
       .success(function (data){
         $scope.projects = data;
       })
+      .error(function (){
+        $scope.messages = { response: false, message: "Error while getting projects"}
+      })
   }
 
   get_projects();
