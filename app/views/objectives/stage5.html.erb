@@ -12,19 +12,11 @@
 
 <div class="container main">
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 stage_menu">
-      <h3><%= t('.title') %></h3>
-      <ul class="nav nav-stacked">
-        <li class="active"><a href="#"><i class="fa fa-check-circle"></i> <%= t('.subtitle1') %></a></li>
-        <li class=""><a href="#"><i class="fa fa-check-circle"></i> <%= t('.subtitle2') %></a></li>
-      </ul>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" ng-controller="stage5Ctrl">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-controller="stage5Ctrl">
       <div class="alert" role="alert" ng-class="messages.response?'alert-success':'alert-danger'" ng-if="messages.message">
         <button ng-click="dismiss_modal()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         {{ messages.message }}
       </div>
-
       <h2><%= t('.title') %></h2>
       <p><%= t('.title_description') %></p>
       <div role="tabpanel" class="tabpanel">
@@ -32,21 +24,19 @@
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab"><%= t('.data_entry') %></a></li>
           <li role="presentation"><a href="#explanation" aria-controls="explanation" role="tab" data-toggle="tab"><%= t('.explanation_examples') %></a></li>
-          <li role="presentation"><a href="#tips" aria-controls="tips" role="tab" data-toggle="tab"><%= t('.workshop_tips') %></a></li>
         </ul>
         <!-- tab panes -->
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="data">
         <!-- actions -->
-          <div class="panel panel-default objetives">
             <!-- activities -->
-            <div class="collapse in" id="action1">
-              <button type="button" class="btn btn-info pull-right" ng-click="add_edit_activity()"><%= t('.add_button') %></button>
-              <h4><%= t('.subtitle1') %> <span ng-if="policy.solutions"><i class="fa fa-info-circle" title="Describe the main actions that will be conducted to the desired change"></i></span></h4>
-              <p ng-if="">
-                <%= t('.without_activities') %>
-              </p>
-              <table class="table ">
+            <div class="bg_grey" ng-controller="stage5Ctrl">
+              <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" title="<%= t('.without_activities') %>"><i class="fa fa-info"></i></button>
+              <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_activity()"><i class="fa fa-plus-circle"></i> <%= t('.add_button') %></button>
+              <h4><i class="fa fa-circle"></i> <%= t('.subtitle1') %></h4>
+            </div>
+            <div class="contenedor" ng-controller="stage5Ctrl">
+              <table class="table">
                 <thead>
                   <tr>
                     <th><%= t('.activities') %></th>
@@ -70,13 +60,10 @@
               <%= render 'modal_activity' %>
             </div>
             <!-- end of actions -->
-          </div>
           <div class="bg_grey">
-            <h4><%= t('.subtitle2') %></h4>
-            <p>
-              <%= t('.subtitle2_explanation') %>
-            </p>
-            <a href="#" target="_self" class="btn btn-warning"><i class="fa fa-calendar"></i> <%= t('.trello') %></a>
+            <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" title="<%= t('.subtitle2_explanation') %>"><i class="fa fa-info"></i></button>
+            <a href="#" target="_self" class="btn btn-warning pull-right"><i class="fa fa-calendar"></i> <%= t('.trello') %></a>
+            <h4><i class="fa fa-circle"></i>  <%= t('.subtitle2') %></h4>
           </div>
           </div>
           <!-- end of actions -->

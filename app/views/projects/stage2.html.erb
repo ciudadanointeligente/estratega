@@ -10,21 +10,13 @@
   </div>
 <% end %>
 
-<div class="container main" ng-controller="stage2Ctrl">
+<div class="container main">
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 stage_menu">
-      <h3><%= t('.title') %></h3>
-      <ul class="nav nav-stacked">
-        <li class="active"><a href="#"><i class="fa fa-check-circle"></i> <%= t('.subtitle1') %></a></li>
-        <li><a href="#"><i class="fa fa-check-circle"></i> <%= t('.subtitle2') %></a></li>
-      </ul>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-controller="stage2Ctrl">
       <div class="alert" role="alert" ng-class="messages.response?'alert-success':'alert-danger'" ng-if="messages.message">
         <button ng-click="dismiss_modal()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         {{ messages.message }}
       </div>
-
       <h2><%= t('.title') %></h2>
       <p><%= t('.description') %></p>
 
@@ -41,16 +33,20 @@
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="data">
             <div class="bg_grey">
+              <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle1_tooltip') %>"><i class="fa fa-info"></i></button>
               <button type="button" class="btn btn-warning pull-right" ng-click="show_goal()">{{ btn_problem }}</button>
-              <h4><%= t('.subtitle1') %> <i class="fa fa-info-circle" title="<%= t('.subtitle1_tooltip') %>"></i></h4>
+              <h4><i class="fa fa-circle"></i>  <%= t('.subtitle1') %></h4>
+            </div>
+            <div class="contenedor">
               <p>{{problem.goal}}</p>
             </div>
             <%= render "goal_modal" %>
             <div class="bg_grey">
+              <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle2_tooltip') %>"><i class="fa fa-info"></i></button>
               <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_objective()"><%= t('.add_objective_button') %></button>
-              <button type="button" class="btn btn-warning pull-right" ng-click="list_policy_solutions()"><%= t('.policy_solutions_button') %></button>
-              <h4><%= t('.subtitle2') %> <i class="fa fa-info-circle" title="<%= t('.subtitle2_tooltip') %>"></i></h4>
-
+              <h4><i class="fa fa-circle"></i>  <%= t('.subtitle2') %></h4>
+            </div>
+            <div class="contenedor">
               <div class="alert alert-info" role="alert" ng-class="{hidden: unrelated_solutions < 1}">
                 <i class="fa fa-exclamation-triangle"></i> <a href="#" ng-click="list_policy_solutions()"><%= t('.without_objectives_begin_sentence') %> {{unrelated_solutions}} <%= t('.without_objectives_end_sentence') %></a>
               </div>

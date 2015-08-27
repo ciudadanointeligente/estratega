@@ -12,18 +12,11 @@
 
 <div class="container main">
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 stage_menu">
-      <h3><%= t('.title') %></h3>
-      <ul class="nav nav-stacked">
-        <li class="active"><a href="#"><i class="fa fa-check-circle"></i> <%= t('.subtitle1') %></a></li>
-      </ul>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" ng-controller="stage4Ctrl">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-controller="stage4Ctrl">
       <div class="alert" role="alert" ng-class="messages.response?'alert-success':'alert-danger'" ng-if="messages.message">
         <button ng-click="dismiss_modal()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         {{ messages.message }}
       </div>
-
       <h2><%= t('.subtitle1') %></h2>
       <p><%= t('.subtitle1_explanation') %></p>
       <div role="tabpanel" class="tabpanel">
@@ -36,8 +29,11 @@
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="data">
             <div class="bg_grey">
-              <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_outcome()"><%= t('.add_button') %></button>
-              <h4><%= t('.subtitle1') %> <i class="fa fa-info-circle" title="<%= t('.subtitle1_tooltip') %>"></i></h4>
+              <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" title="<%= t('.subtitle1_tooltip') %>"><i class="fa fa-info"></i></button>
+              <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_outcome()"><i class="fa fa-plus-circle"></i> <%= t('.add_button') %></button>
+              <h4><i class="fa fa-circle"></i> <%= t('.subtitle1') %></h4>
+            </div>
+            <div class="contenedor">
               <table class="table">
                 <thead>
                   <tr>
