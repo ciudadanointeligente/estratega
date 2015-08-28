@@ -83,11 +83,11 @@ Rails.application.configure do
   config.action_mailer.default :charset => "utf-8"
 
   config.action_mailer.smtp_settings = {
-    address: ENV['smtp_setting_address'],
-    port: ENV['smtp_setting_port'],
+    address: ENV['SMTP_SETTING_ADDRESS'],
+    port: ENV['SMTP_SETTING_PORT'],
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["smtp_setting_username"],
-    password: ENV["smtp_setting_password"]
+    user_name: ENV["SMTP_SETTING_USERNAME"],
+    password: ENV["SMTP_SETTING_PASSWORD"]
   }
 end
