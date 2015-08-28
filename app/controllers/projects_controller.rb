@@ -112,7 +112,9 @@ class ProjectsController < ApplicationController
           UserMailer.new_user_share(data_send).deliver_now
         end
       else
-        @project.users << share_user
+        if !@project.users.include? share_user
+          @project.users << share_user
+        end
 
         permission = Permission.where(project_id: @project.id ).where(user_id: share_user.id).first
         permission.role = :collaborator
