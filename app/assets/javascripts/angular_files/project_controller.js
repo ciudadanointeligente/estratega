@@ -80,18 +80,28 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
   }
 
   $scope.delete_project = function (project){
-    if( project ) {
-      if(confirm('Are you sure you want to delete this project?')) {
-        $http.delete('/projects/' + project.id)
-            .success(function(){
-              $scope.messages = { response: true, message: "The project was delete!"}
-            })
-            .error(function(){
-              $scope.messages = { response: false, message: "Error while deleting a project!"}
-            });
-        get_projects();
-      }
-    }
+    $http.get('/projects/'+project.id+'.json')
+        .success(function (data) {
+          if( data ) {
+            var msg = 'Are you sure you want to delete this project?';
+            if( data.members.length > 1 )
+              msg = 'This project is shared with other users. Are you sure you want to delete this project?';
+
+            if(confirm(msg)) {
+              $http.delete('/projects/' + data.id)
+                  .success(function(){
+                    $scope.messages = { response: true, message: "The project was delete!"}
+                    get_projects();
+                  })
+                  .error(function(){
+                    $scope.messages = { response: false, message: "Error while deleting a project!"}
+                  });
+            }
+          }
+        })
+        .error(function (){
+          $scope.messages = { response: false, message: "Error while deleting a project!"}
+        });
   }
 
   $scope.user_permission = function(project) {
