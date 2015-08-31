@@ -76,15 +76,15 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
   }
 
   var save_or_update_activity = function() {
-    $scope.current_activity.activity = {
-      title: $scope.current_activity.title,
-      description: $scope.current_activity.description,
-      completion: $scope.current_activity.completion,
-      scheduling: $scope.current_activity.scheduling,
-      objective_id: $scope.current_activity.objective_id,
-      outcome_ids: $scope.current_activity.outcome_ids,
-      ask_ids: $scope.current_activity.ask_ids
-    }
+    // $scope.current_activity.activity = {
+    //   title: $scope.current_activity.title,
+    //   description: $scope.current_activity.description,
+    //   completion: $scope.current_activity.completion,
+    //   scheduling: $scope.current_activity.scheduling,
+    //   objective_id: $scope.current_activity.objective_id,
+    //   outcome_ids: $scope.current_activity.outcome_ids,
+    //   ask_ids: $scope.current_activity.ask_ids
+    // }
     if ($scope.current_activity.id) {
       $http.put('/projects/' + $scope.project_id + '/objectives/' + $scope.objective_id + '/activities/' + $scope.current_activity.id, $scope.current_activity)
         .success(function (data) {

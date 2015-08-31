@@ -30,18 +30,20 @@
           <div role="tabpanel" class="tab-pane active" id="data">
         <!-- actions -->
             <!-- activities -->
-            <div class="bg_grey" ng-controller="stage5Ctrl">
+            <div class="bg_grey">
               <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" title="<%= t('.without_activities') %>"><i class="fa fa-info"></i></button>
               <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_activity()"><i class="fa fa-plus-circle"></i> <%= t('.add_button') %></button>
               <h4><i class="fa fa-circle"></i> <%= t('.subtitle1') %></h4>
             </div>
-            <div class="contenedor" ng-controller="stage5Ctrl">
+            <div class="contenedor">
               <table class="table">
                 <thead>
                   <tr>
                     <th><%= t('.activities') %></th>
                     <th><%= t('.description') %></th>
                     <th><%= t('.outcomes') %></th>
+                    <th><%= t('.date') %></th>
+                    <th><%= t('.completion') %></th>
                     <th class="text-right"><%= t('.actions') %></th>
                   </tr>
                 </thead>
@@ -50,6 +52,10 @@
                     <td>{{activity.title}}</td>
                     <td>{{activity.description}}</td>
                     <td>{{activity.outcome_ids}}</td>
+                    <td>{{activity.scheduling | date: 'mediumDate' }}</td>
+                    <td>
+                      <i class="fa fa-check" ng-if="activity.completion"></i>
+                    </td>
                     <td class="text-right">
                       <i class="fa fa-pencil-square-o" ng-click="add_edit_activity(activity)" title="Edit"></i>
                       <i class="fa fa-trash" ng-click="delete_activity(activity)" title="Delete"></i>
