@@ -87,6 +87,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function
       $http.put('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/asks/'+$scope.current_ask.id, $scope.current_ask)
         .success(function(data){
           get_actor_of_ask($scope.current_ask);
+          get_asks($scope.project_id, $scope.objective_id);
           // alert success or error
         })
         .error(function (){
@@ -97,6 +98,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function
         .success(function(data){
           get_actor_of_ask($scope.current_ask);
           $scope.current_ask = data;
+          get_asks($scope.project_id, $scope.objective_id);
           // $scope.asks.push(data);
         })
         .error(function (){
