@@ -142,6 +142,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", function
       $http.put("/real_problems/" + $scope.problem.id, $scope.problem)
         .success(function (data) {
           // alertar en caso de success o error
+          $scope.btn_problem = "Edit";
         })
         .error(function (){
           $scope.messages = { response: false, message: "Error while updating the goal information"}
