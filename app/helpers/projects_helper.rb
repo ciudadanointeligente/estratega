@@ -2,7 +2,7 @@ module ProjectsHelper
   @@locked_icon = "fa fa-lock"
   @@unlocked_icon = "fa fa-unlock"
   @@done_icon = "fa fa-check"
-  
+
   def icon_class element, requirement = true
     return @@locked_icon unless requirement
     element.blank? ? @@unlocked_icon : @@done_icon
@@ -20,7 +20,7 @@ module ProjectsHelper
   def link_text element_symbol
     case element_symbol
     when :real_problem
-      @real_problem.blank? ? 'Articulate the real-world problem children are facing that you want to address' : @real_problem.title
+      @real_problem.blank? ? 'Articulate the real-world problem children are facing that you want to address' : (@real_problem.title != "." ? @real_problem.title : 'Articulate the real-world problem children are facing that you want to address')
     when :policy_problems
       @policy_problems.blank? ? "Identify policy dimensions of the 'real-world' problem" : " #{@policy_problems.size} Policy problems"
     when :solutions

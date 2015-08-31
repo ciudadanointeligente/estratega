@@ -38,6 +38,7 @@
               <td><a href="/projects/{{ project.id }}" target="_self">{{ project.title }}</a></td>
               <td>{{ project.focus_area }}</td>
               <td class="controllers">
+                <i class="fa fa-globe" ng-if="project.public" title="<%= t('.public') %>"></i>
                 <i class="fa fa-gears" ng-click="add_edit_project(project)" ng-if="project.permission == 'owner'"></i>
                 <i class="fa fa-user-plus" ng-click="user_permission(project)" ng-if="project.permission == 'owner'"></i>
                 <a href="/projects/{{ project.id }}" target="_self"><i class="fa fa-edit"></i></a>
@@ -50,6 +51,24 @@
       </div>
 
       <div role="tabpanel" class="tab-pane" id="public">
+        <table class="table table-stripped">
+          <thead>
+            <tr>
+              <th width="60%"><%= t('.project') %></th>
+              <th><%= t('.focus_area') %></th>
+              <th class="text-right"><%= t('.actions') %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr title="{{ project.description | limitTo: 140 }}" ng-repeat="project in public_projects">
+              <td><a href="/projects/{{ project.id }}" target="_self">{{ project.title }}</a></td>
+              <td>{{ project.focus_area }}</td>
+              <td class="controllers">
+                <i class="fa fa-eye" ng-click=""></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 

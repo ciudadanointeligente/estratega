@@ -23,6 +23,9 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = current_user.projects
+    if params[:public]
+      @projects = Project.where("public = true")
+    end
     respond_with(@projects)
   end
 

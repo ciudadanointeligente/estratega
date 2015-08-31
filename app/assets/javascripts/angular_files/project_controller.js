@@ -21,7 +21,18 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
       })
   }
 
+  function get_public_projects() {
+    $http.get('/projects.json?public=true')
+      .success(function(data){
+        $scope.public_projects = data;
+      })
+      .error(function(){
+        $scope.messages = { response: false, message: "Error while getting public projects"}
+      })
+  }
+
   get_projects();
+  get_public_projects()
 
   function save_or_update_project() {
 
