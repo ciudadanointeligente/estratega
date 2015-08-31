@@ -36,10 +36,10 @@
               <h4><i class="fa fa-circle"></i> <%= t('.subtitle1') %></h4>
             </div>
             <div class="contenedor">
-              <p ng-if="!problem.id">
+              <p ng-if="problem.title == '.' || !problem.title">
                 <%= t('.subtitle1_explanation') %>
               </p>
-              <span ng-if="problem.id">
+              <span ng-if="problem.id and problem.title != '.'">
                 <p class="bold"><%= t('.problem') %></p>
                 <p>{{ problem.title }}</p>
                 <p class="bold"><%= t('.description') %></p>

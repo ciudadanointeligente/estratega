@@ -32,7 +32,8 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
         $http.get('/real_problems/' + $scope.problem_id + '.json')
           .success(function (data) {
             $scope.problem = data;
-            $scope.btn_problem = "Edit";
+            if(data.title!='.')
+              $scope.btn_problem = "Edit";
           })
           .error(function (){
             $scope.messages = { response: false, message: "Error while getting the project information"}
