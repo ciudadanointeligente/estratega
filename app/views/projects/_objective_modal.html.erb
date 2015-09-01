@@ -18,6 +18,11 @@
       <label for="objective"><%= t('.objective') %></label>
       <textarea name="title" class="form-control" ng-model="current_objective.title" placeholder="<%= t('.objective_placeholder') %>"></textarea>
     </div>
+    <div class="form-group">
+      <label>
+        <input type="checkbox" ng-model="current_objective.prioritized"> <%= t('.prioritized') %>
+      </label>
+    </div>
     <hr>
     <!-- key contribution -->
     <h4 class="mtb40"><%= t('.key_contribution') %></h4>

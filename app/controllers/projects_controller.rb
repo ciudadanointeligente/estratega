@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
 
   def show
     authorize @project
-    @objectives = @project.objectives
+    @objectives = @project.objectives.where('prioritized = true')
     @a_size = 0
     @barriers_size = 0
     @factors_size = 0
