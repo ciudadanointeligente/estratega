@@ -58,16 +58,6 @@ class ProjectsController < ApplicationController
   def public
     # authorize @project
     @objectives = @project.objectives
-    @actors_size = 0
-    @barriers_size = 0
-    @factors_size = 0
-    @outcomes_size = 0
-    @objectives.each do |o|
-      @actors_size = @actors_size + o.actors.size
-      @barriers_size = @barriers_size + o.barriers.size
-      @factors_size = @factors_size + o.enabling_factors.size
-      @outcomes_size = @outcomes_size + o.outcomes.size
-    end
 
     if !@project.real_problem.blank?
       @real_problem = @project.real_problem
@@ -79,8 +69,6 @@ class ProjectsController < ApplicationController
       end
     end
 
-    # @policy_problems = @project.real_problem.policy_problems || PolicyProblem.none
-    # @solutions = @project.real_problem.policy_problems.first.solutions || Solution.none
     respond_with(@project)
   end
 
