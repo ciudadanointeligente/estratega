@@ -87,7 +87,6 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
           // alert success or error
         })
         .error(function (){
-          console.log('fail')
           $scope.messages = { response: false, message: "Error while updating information"}
         });
     } else {

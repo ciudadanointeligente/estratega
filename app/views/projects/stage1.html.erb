@@ -39,7 +39,7 @@
               <p ng-if="problem.title == '.' || !problem.title">
                 <%= t('.subtitle1_explanation') %>
               </p>
-              <span ng-if="problem.id and problem.title != '.'">
+              <span ng-if="problem.title != '.'">
                 <p class="bold"><%= t('.problem') %></p>
                 <p>{{ problem.title }}</p>
                 <p class="bold"><%= t('.description') %></p>
