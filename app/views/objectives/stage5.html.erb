@@ -51,7 +51,11 @@
                   <tr ng-repeat="activity in activities">
                     <td>{{activity.title}}</td>
                     <td>{{activity.description}}</td>
-                    <td>{{activity.outcome_ids}}</td>
+                    <td>
+                      <ul class="list-unstyled" ng-repeat="o in get_outcome_names(activity.outcome_ids, outcomes)">
+                        <li>{{ o }}</li>
+                      </ul>
+                    </td>
                     <td>{{activity.scheduling | date: 'mediumDate' }}</td>
                     <td>
                       <i class="fa fa-check" ng-if="activity.completion"></i>

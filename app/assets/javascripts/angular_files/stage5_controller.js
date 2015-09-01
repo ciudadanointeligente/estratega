@@ -76,15 +76,6 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
   }
 
   var save_or_update_activity = function() {
-    // $scope.current_activity.activity = {
-    //   title: $scope.current_activity.title,
-    //   description: $scope.current_activity.description,
-    //   completion: $scope.current_activity.completion,
-    //   scheduling: $scope.current_activity.scheduling,
-    //   objective_id: $scope.current_activity.objective_id,
-    //   outcome_ids: $scope.current_activity.outcome_ids,
-    //   ask_ids: $scope.current_activity.ask_ids
-    // }
     if ($scope.current_activity.id) {
       $http.put('/projects/' + $scope.project_id + '/objectives/' + $scope.objective_id + '/activities/' + $scope.current_activity.id, $scope.current_activity)
         .success(function (data) {
@@ -115,5 +106,16 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
 
   $scope.dismiss_modal = function(){
     $scope.messages = {response: "", message: ""}
+  }
+
+  $scope.get_outcome_names = function(outcome_ids, outcomes){
+    var names = []
+    for(k in outcome_ids) {
+      for(o in outcomes) {
+        if(outcomes[o].id == outcome_ids[k])
+          names.push(outcomes[o].description)
+      }
+    }
+    return names
   }
 }]);

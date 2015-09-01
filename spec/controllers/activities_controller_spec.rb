@@ -121,7 +121,7 @@ RSpec.describe ActivitiesController, :type => :controller do
 
       it "creates a many to many relationship with outcomes" do
         outcome = create(:outcome)
-        post :create, {project_id: @project, objective_id: @objective, :activity => valid_attributes.merge({outcome_ids:[outcome.id]})}, valid_session
+        post :create, {project_id: @project, objective_id: @objective, :activity => valid_attributes, outcome_ids:[outcome.id]}, valid_session
         expect(assigns(:activity).outcomes).to include(outcome)
         expect(outcome.activities).to include(assigns(:activity))
       end

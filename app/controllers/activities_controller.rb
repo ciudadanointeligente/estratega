@@ -30,11 +30,15 @@ class ActivitiesController < ApplicationController
 
   def create
     @activity = @objective.activities.create(activity_params)
+    @activity.outcome_ids = params[:outcome_ids]
+    @activity.ask_ids = params[:ask_ids]
     respond_with(@project, @objective, @activity)
   end
 
   def update
     @activity.update(activity_params)
+    @activity.outcome_ids = params[:outcome_ids]
+    @activity.ask_ids = params[:ask_ids]
     respond_with(@project, @objective, @activity)
   end
 
