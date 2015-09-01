@@ -7,6 +7,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
   $scope.activities = [];
 
   $scope.messages = {response: "", message: ""}
+  $scope.organizer = ["External Event", "Organization's action"];
 
   function get_outcomes(project_id, objective_id) {
     $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/outcomes.json')
