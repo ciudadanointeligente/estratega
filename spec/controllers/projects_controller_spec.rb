@@ -74,6 +74,17 @@ RSpec.describe ProjectsController, :type => :controller do
       expect(assigns(:projects)).to include(project_one)
       expect(assigns(:projects)).not_to include(project_two)
     end
+
+    it "retrieve all public projects" do
+      private_project = create(:project)
+      public_project = create(:project)
+      public_project.public = true
+      public_project.save
+
+      get :index, {public: true}, valid_session
+      expect(assigns(:projects)).to include(public_project)
+      expect(assigns(:projects)).to_not include(private_project)
+    end
   end
 
   describe "GET show" do

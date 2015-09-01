@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :sandboxes
   has_many :projects, through: :permissions
-  has_many :permissions
+  has_many :permissions, dependent: :destroy
 end

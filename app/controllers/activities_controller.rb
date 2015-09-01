@@ -30,11 +30,15 @@ class ActivitiesController < ApplicationController
 
   def create
     @activity = @objective.activities.create(activity_params)
+    @activity.outcome_ids = params[:outcome_ids]
+    @activity.ask_ids = params[:ask_ids]
     respond_with(@project, @objective, @activity)
   end
 
   def update
     @activity.update(activity_params)
+    @activity.outcome_ids = params[:outcome_ids]
+    @activity.ask_ids = params[:ask_ids]
     respond_with(@project, @objective, @activity)
   end
 
@@ -60,6 +64,6 @@ class ActivitiesController < ApplicationController
     end
 
     def activity_params
-      params.require(:activity).permit(:title, :description, :completion, :scheduling, :objective_id, outcome_ids: [], ask_ids: [])
+      params.require(:activity).permit(:title, :description, :completion, :scheduling, :objective_id, :organizer, outcome_ids: [], ask_ids: [])
     end
 end

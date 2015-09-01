@@ -35,13 +35,12 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.action_mailer.default_url_options = { :host => "localhost:3000" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address              => ENV['smtp_setting_address'],
-    :port                 => ENV['smtp_setting_port'],
-    :user_name            => ENV['smtp_setting_username'],
-    :password             => ENV['smtp_setting_password'],
+    :address              => ENV['SMTP_SETTING_ADDRESS'],
+    :port                 => ENV['SMTP_SETTING_PORT'],
+    :user_name            => ENV['SMTP_SETTING_USERNAME'],
+    :password             => ENV['SMTP_SETTING_PASSWORD'],
     :authentication       => :plain
   }
 end

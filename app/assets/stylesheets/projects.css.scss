@@ -40,7 +40,10 @@
   height: 400px;
 }
 
-.controllers i {
-  color: #0091EA;
-  cursor: pointer;
+.controllers {
+  text-align: right;
+  i {
+    color: #0091EA;
+    cursor: pointer;
+  }
 }

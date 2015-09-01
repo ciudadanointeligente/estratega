@@ -39,6 +39,6 @@ module VizardRails
     # add bower stuff
     config.assets.paths << Rails.root.join("vendor","assets","bower_components")
 
-    config.action_mailer.default_url_options = { host: 'localhost:3000' }
+    config.action_mailer.default_url_options = { host: ENV['BASE_URL'] }
   end
 end

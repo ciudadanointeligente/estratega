@@ -1,5 +1,18 @@
+production:
+  BASE_URL: ~
+  SMTP_SETTING_ADDRESS: 'smtp.gmail.com'
+  SMTP_SETTING_PORT: 587
+  SMTP_SETTING_USERNAME: ''
+  SMTP_SETTING_PASSWORD: ''
 development:
-  smtp_setting_address: 'smtp.gmail.com'
-  smtp_setting_port: 587
-  smtp_setting_username: ''
-  smtp_setting_password: ''
+  BASE_URL: 'http://localhost:3000'
+  SMTP_SETTING_ADDRESS: 'smtp.gmail.com'
+  SMTP_SETTING_PORT: 587
+  SMTP_SETTING_USERNAME: ''
+  SMTP_SETTING_PASSWORD: ''
+test:
+  BASE_URL: 'http://localhost:3000'
+  SMTP_SETTING_ADDRESS: 'smtp.gmail.com'
+  SMTP_SETTING_PORT: 587
+  SMTP_SETTING_USERNAME: ''
+  SMTP_SETTING_PASSWORD: ''

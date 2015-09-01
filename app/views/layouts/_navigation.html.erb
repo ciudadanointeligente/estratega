@@ -1,6 +1,6 @@
 <%# navigation styled for Bootstrap 3.0 %>
 <nav class="navbar navbar-inverse navbar-fixed-top">
-  <a class="company-logo" href="/sandboxes">Wizard</a><span class="tagline">beta</span>
+  <a class="company-logo" href="<%= root_path %>" target="_self">Wizard</a><span class="tagline">beta</span>
   <!-- top menu items -->
   <% if( user_signed_in? ) %>
   <ul class="nav navbar-right top-nav" data-step="3" data-intro="This is the user navigation menu">

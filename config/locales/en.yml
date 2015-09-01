@@ -11,6 +11,7 @@ en:
       project: "Project"
       focus_area: "Focus Area"
       actions: "Actions"
+      public: "Public"
     project_modal: # modal `new project` of index
       project: "Project"
       title: "Title"
