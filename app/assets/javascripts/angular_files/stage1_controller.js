@@ -1,4 +1,4 @@
-app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function ($scope, $http, $aside, $location) {
+app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs", function ($scope, $http, $aside, $location, $attrs) {
   $scope.project_id = $location.path().split("/")[2];
   $scope.messages = {response: "", message: ""}
   $http.get('/real_problems/focus_area.json')
@@ -6,7 +6,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
       $scope.focus_areas = data
     })
     .error(function (){
-      $scope.messages = { response: false, message: "Error while getting focus area information"}
+      $scope.messages = { response: false, message: $attrs.errorfocusarea }
     });
 
   $scope.btn_problem = "Add";
@@ -36,7 +36,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
               $scope.btn_problem = "Edit";
           })
           .error(function (){
-            $scope.messages = { response: false, message: "Error while getting the project information"}
+            $scope.messages = { response: false, message: $attrs.errorproject }
           });
         get_policy_solutions($scope.problem_id);
       }
@@ -53,7 +53,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
         }
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error while getting policy problems information"}
+        $scope.messages = { response: false, message: $attrs.errorpolicyproblems }
       });
   }
 
@@ -63,7 +63,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
         $scope.policies[i].solutions = data;
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error while getting solutions information"}
+        $scope.messages = { response: false, message: $attrs.errorsolutions }
       });
   }
 
@@ -73,7 +73,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
         $scope.current_solution = data;
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error while getting a solution information"}
+        $scope.messages = { response: false, message: $attrs.errorsolution }
       });
   }
 
@@ -87,7 +87,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
           // alert success or error
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while updating information"}
+          $scope.messages = { response: false, message: $attrs.errorupdating }
         });
     } else {
       $scope.problem.project_id = $scope.project_id
@@ -98,7 +98,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
           $scope.problem_id = data.id;
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while insert information"}
+          $scope.messages = { response: false, message: $attrs.errorinsert }
         });
     }
   };
@@ -122,7 +122,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
             })
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while updating a policy information"}
+          $scope.messages = { response: false, message: $attrs.errorupdatingpolicy }
         });
     } else {
       $http.post("/real_problems/" + $scope.problem.id + "/policy_problems", $scope.current_policy)
@@ -130,7 +130,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
           $scope.policies.push(data);
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while creating a policy information"}
+          $scope.messages = { response: false, message: $attrs.errorcreatingpolicy }
         });
     }
   };
@@ -143,7 +143,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
           get_policy_solutions(problem_id);
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while updating a solution information"}
+          $scope.messages = { response: false, message: $attrs.errorupdatingsolution }
         });
     } else {
       $http.post("/real_problems/" + problem_id + "/policy_problems/" + policy_id + "/solutions", $scope.current_solution)
@@ -151,13 +151,13 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
           get_policy_solutions(problem_id);
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while creating a solution information"}
+          $scope.messages = { response: false, message: $attrs.errorcreatingsolution }
         });
     }
   }
 
   $scope.delete_solution = function (problem_id, policy_id, solution) {
-    if (confirm('Are you sure you want to delete this solution?')) {
+    if (confirm($attrs.confirmdeletesolution)) {
       $http.delete('/real_problems/' + problem_id + '/policy_problems/' + policy_id + '/solutions/' + solution.id);
       get_policy_solutions(problem_id)
     }
@@ -200,7 +200,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
           $scope.current_policy = data;
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while getting the policy problem information"}
+          $scope.messages = { response: false, message: $attrs.errorgettingpolicy }
         });
     } else {
       $scope.current_policy = {
@@ -262,7 +262,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", function
   }
 
   $scope.delete_policy = function (policy){
-    if(confirm('Are you sure you want to delete this policy problem?')) {
+    if(confirm($attrs.confirmdeletepolicy)) {
       $http.delete('/real_problems/' + $scope.problem.id + '/policy_problems/' + policy.id)
       $scope.policies.splice($scope.policies.indexOf(policy),1);
     }
