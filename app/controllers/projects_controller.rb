@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-	before_action :set_project, only: [:show, :edit, :update, :destroy, :solutions, :stage1, :stage2, :share]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :solutions, :public, :stage1, :stage2, :share]
 
   respond_to :html, :json
 
@@ -55,6 +55,23 @@ class ProjectsController < ApplicationController
 
     # @policy_problems = @project.real_problem.policy_problems || PolicyProblem.none
     # @solutions = @project.real_problem.policy_problems.first.solutions || Solution.none
+    respond_with(@project)
+  end
+
+  def public
+    # authorize @project
+    @objectives = @project.objectives
+
+    if !@project.real_problem.blank?
+      @real_problem = @project.real_problem
+      if !@project.real_problem.try(:policy_problems).try(:blank?)
+        @policy_problems = @project.real_problem.policy_problems
+        if !@project.real_problem.try(:get_solutions).try(:blank?)
+          @solutions = @project.real_problem.get_solutions
+        end
+      end
+    end
+
     respond_with(@project)
   end
 
