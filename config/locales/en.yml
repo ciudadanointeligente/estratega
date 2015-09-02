@@ -492,6 +492,8 @@ en:
       description: "Description"
       description_placeholder: "Enter a description for an activity"
       completion: "Completion"
+      organizer: "Organizer"
+      activity_types: "Activity types"
       scheduling: "Scheduling"
       outcome: "Outcome"
       save_button: "Save"

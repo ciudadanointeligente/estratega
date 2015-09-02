@@ -8,6 +8,21 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
 
   $scope.messages = {response: "", message: ""}
   $scope.organizer = ["External Event", "Organization's action"];
+  $scope.activity_types = [
+    {type: "Political will", values: ["Lobby", "Relationship building with decision makers", "Policymaker and candidate education", "Litigation or legal advocacy", "Policy proposal development", "Demonstration projects or pilots", "Earned media"]},
+    {type: "Public will", values: ["Polling", "Rallies and marches", "Digital or internet-based media/social media"]},
+    {type: "Attitudes or beliefs", values: ["Issue/policy analysis and research", "Polling", "Public service announcements", "Briefings/presentations"]},
+    {type: "Salience", values: ["Lobby", "Relationship building with decision makers", "Policymaker and candidate education"]},
+    {type: "Awareness", values: ["Public service announcements", "Rallies and marches", "Briefings/presentations", "Digital or internet-based media/social media"]},
+    {type: "New champions", values: ["Relationship building with decision-makers", "Digital or internet-based media/social media"]},
+    {type: "New advocates", values: ["Briefings/presentations"]},
+    {type: "Partnerships or alliances", values: ["Issue/policy analysis and research", "Rallies and marches", "Grass-roots organizing and mobilization"]},
+    {type: "Constituency or support-base growth", values: ["Rallies and marches", "Grass-roots organizing and mobilization"]},
+    {type: "Media coverage", values: ["Rallies and marches", "Grass-roots organizing and mobilization", "Media partnerships", "Digital or internet-based media/social media"]},
+    {type: "Issue reframing", values: ["Issue/policy analysis and research", "Earned media"]},
+    {type: "Organizational advocacy capacity", values: ["Any of the others"]},
+    {type: "Organizational visibility or issue recognition", values: ["Issue/policy analysis and research"]}
+  ];
 
   function get_outcomes(project_id, objective_id) {
     $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/outcomes.json')
