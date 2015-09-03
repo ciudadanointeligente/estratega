@@ -1,4 +1,4 @@
-app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", function ($scope, $http, $aside, $location) {
+app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs", function ($scope, $http, $aside, $location, $attrs) {
   $scope.project_id = $location.path().split("/")[2];
   $scope.objective_id = $location.path().split("/")[4];
   $scope.messages = {response: "", message: ""}
@@ -8,7 +8,7 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", function
       $scope.actor_types = data
     })
     .error(function (){
-      $scope.messages = {response: false, message: "Error while getting actor type information"}
+      $scope.messages = {response: false, message: $attrs.errorgettingactortype }
     });
 
   function get_outcomes(project_id, objective_id) {
@@ -17,7 +17,7 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", function
       $scope.outcomes = data;
     })
     .error(function (){
-      $scope.messages = {response: false, message: "Error while getting outcomes information"}
+      $scope.messages = {response: false, message: $attrs.errorgettingoutcomes }
     });
   }
 
@@ -27,7 +27,7 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", function
       $scope.outcomes_categories = data;
     })
     .error(function (){
-      $scope.messages = {response: false, message: "Error while getting categories information"}
+      $scope.messages = {response: false, message: $attrs.errorgettingcategories }
     });
   }
 
@@ -42,7 +42,7 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", function
           // alert success or error
         })
         .error(function (){
-          $scope.messages = {response: false, message: "Error while updating the outcome information"}
+          $scope.messages = {response: false, message: $attrs.errorupdatingoutcome }
         });
     } else {
       $http.post('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/outcomes', $scope.current_outcome)
@@ -51,7 +51,7 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", function
           $scope.outcomes.push(data);
         })
         .error(function (){
-          $scope.messages = {response: false, message: "Error while creating the outcome information"}
+          $scope.messages = {response: false, message: $attrs.errorcreatingoutcome }
         });
     }
   }
@@ -92,7 +92,7 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", function
   }
 
   $scope.delete_outcome = function(outcome){
-    if(confirm('Are you sure you want to delete this outcome?')) {
+    if(confirm($attrs.confirmdeleteoutcome)) {
     $http.delete('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/outcomes/'+outcome.id);
     $scope.outcomes.splice($scope.outcomes.indexOf(outcome),1);
     }
