@@ -780,6 +780,11 @@ en:
       actor: "Actor"
       ask: "Ask"
       actions: "Actions"
+      error_getting_actors: "Error while getting actors information"
+      error_getting_asks: "Error while getting asks information"
+      error_updating_ask: "Error while updating ask information"
+      error_creating_ask: "Error while creating ask information"
+      confirm_delete_ask: "Are you sure you want to delete this ask?"
     asks_modal: # modal 'add ask' of stage 6
       asks: "Asks"
       actor: "Actor"

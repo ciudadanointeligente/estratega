@@ -1,4 +1,4 @@
-app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function ($scope, $http, $aside, $location) {
+app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs", function ($scope, $http, $aside, $location, $attrs) {
   $scope.project_id = $location.path().split("/")[2];
   $scope.objective_id = $location.path().split("/")[4];
   $scope.messages = {response: "", message: ""}
@@ -8,7 +8,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function
       $scope.actors = data;
   })
   .error(function (){
-    $scope.messages = { response: false, message: "Error while getting actors information"}
+    $scope.messages = { response: false, message: $attrs.errorgettingactors }
   });
 
   function get_asks(project_id, objective_id) {
@@ -20,7 +20,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function
       $scope.asks = data;
     })
     .error(function (){
-      $scope.messages = { response: false, message: "Error while getting asks information"}
+      $scope.messages = { response: false, message: $attrs.errorgettingasks }
     });
   }
 
@@ -91,7 +91,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function
           // alert success or error
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while updating ask information"}
+          $scope.messages = { response: false, message: $attrs.errorupdatingask }
         });
     } else {
       $http.post('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/asks', $scope.current_ask)
@@ -102,13 +102,13 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", function
           // $scope.asks.push(data);
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while creating ask information"}
+          $scope.messages = { response: false, message: $attrs.errorcreatingask }
         });
     }
   }
 
   $scope.delete_ask = function(ask){
-    if(confirm('Are you sure you want to delete this ask?')) {
+    if(confirm($attrs.confirmdeleteask)) {
     $http.delete('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/asks/'+ask.id);
     $scope.asks.splice($scope.asks.indexOf(ask),1);
     }
