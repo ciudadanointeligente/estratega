@@ -1,5 +1,25 @@
 en:
   #
+  # Landing page and tags
+  #
+  layouts:
+    landing:
+      meta_description: "Wizard, an advocacy tool"
+      brand: "Wizard"
+      brand_extra: "Beta"
+      navbar_home: "Home"
+      navbar_projects: "Projects"
+      navbar_documents: "Documents"
+      navbar_tools: "Tools"
+      navbar_dropdown_welcome: "Welcome,"
+      navbar_dropdown_my_account: "My Account"
+      navbar_dropdown_sign_out: "Sign out"
+      footer_left_txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec."
+      footer_contact: "Contact"
+      footer_phone_number_txt: "+56 2 2419 2770"
+      footer_email_txt: "Press Contact"
+      footer_address_txt: "Holanda 895, Providencia, Santiago"
+  #
   # Home
   #
   visitors:
