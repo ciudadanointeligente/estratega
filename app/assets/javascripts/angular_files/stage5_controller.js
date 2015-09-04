@@ -1,4 +1,4 @@
-app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function ($scope, $http, $aside, $location) {
+app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs", function ($scope, $http, $aside, $location, $attrs) {
   $scope.project_id   = $location.path().split("/")[2];
   $scope.objective_id = $location.path().split("/")[4];
 
@@ -30,7 +30,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
         $scope.outcomes = data;
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error while getting outcomes information"}
+        $scope.messages = { response: false, message: $attrs.errorgettingoutcomes }
       });
   }
 
@@ -40,7 +40,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
         $scope.asks = data;
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error while getting asks information"}
+        $scope.messages = { response: false, message: $attrs.errorgettingasks }
       });
   }
 
@@ -50,7 +50,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
         $scope.activities = data;
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error while getting activities information"}
+        $scope.messages = { response: false, message: $attrs.errorgettingactivities }
       });
   }
 
@@ -99,7 +99,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
           get_activities($scope.project_id, $scope.objective_id)
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while updating activity information"}
+          $scope.messages = { response: false, message: $attrs.errorupdatingactivity }
         });
     } else {
       $http.post('/projects/' + $scope.project_id + '/objectives/' + $scope.objective_id + '/activities', $scope.current_activity)
@@ -108,13 +108,13 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
           get_activities($scope.project_id, $scope.objective_id)
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while creating activity information"}
+          $scope.messages = { response: false, message: $attrs.errorcreatingactivity }
         });
     }
   }
 
   $scope.delete_activity = function (activity) {
-    if (confirm('Are you sure you want to delete this activity?')) {
+    if (confirm($attrs.confirmdeleteactivity)) {
       $http.delete('/projects/' + $scope.project_id + '/objectives/' + $scope.objective_id + '/activities/' + activity.id);
       $scope.activities.splice($scope.activities.indexOf(activity), 1);
     }

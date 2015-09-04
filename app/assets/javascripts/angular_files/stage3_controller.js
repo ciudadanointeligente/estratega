@@ -1,4 +1,4 @@
-app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", function ($scope, $http, $aside, $location) {
+app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs", function ($scope, $http, $aside, $location, $attrs) {
   $scope.project_id = $location.path().split("/")[2];
   $scope.objective_id = $location.path().split("/")[4];
   $scope.current_actor = {name: "", description: "", objective_id: $scope.objective_id};
@@ -10,7 +10,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", function
       $scope.project = data;
     })
     .error(function (){
-      $scope.messages = { response: false, message: "Error while getting project information"}
+      $scope.messages = { response: false, message: $attrs.errorgettingproject }
     });
 
   $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id)
@@ -18,7 +18,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", function
       $scope.objective = data;
     })
     .error(function (){
-      $scope.messages = { response: false, message: "Error while getting objectives information"}
+      $scope.messages = { response: false, message: $attrs.errorgettingobjectives }
     });
 
   $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/actors.json')
@@ -26,7 +26,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", function
       $scope.actors = data;
     })
     .error(function (){
-      $scope.messages = { response: false, message: "Error while getting actors information"}
+      $scope.messages = { response: false, message: $attrs.errorgettingactors }
     });
 
   function get_support() {
@@ -35,7 +35,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", function
         $scope.support = data;
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error while getting actor supports information"}
+        $scope.messages = { response: false, message: $attrs.errorgettingactorsupports }
       });
   }
 
@@ -45,7 +45,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", function
         $scope.influence = data;
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error while getting actor influence levels information"}
+        $scope.messages = { response: false, message: $attrs.errorgettingactorinfluencelevels }
       });
   }
 
@@ -59,7 +59,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", function
           // alert success or error
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while updating actor information"}
+          $scope.messages = { response: false, message: $attrs.errorupdatingactor }
         });
     } else {
       $http.post("/actors", $scope.current_actor)
@@ -68,7 +68,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", function
           $scope.actors.push(data);
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while updating actor information"}
+          $scope.messages = { response: false, message: $attrs.errorupdatingactor }
         });
     }
   }
@@ -121,12 +121,12 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", function
         // alert success or error
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error while updating enabling factors or/and barriers information"}
+        $scope.messages = { response: false, message: $attrs.errorupdatingenablingfactors }
       });
   }
 
   $scope.delete_actor = function (actor){
-    if(confirm('Are you sure you want to delete this actor?')) {
+    if(confirm($attrs.confirmdeleteactor)) {
       $http.delete('/actors/'+actor.id);
       $scope.actors.splice($scope.actors.indexOf(actor),1);
     }
@@ -208,7 +208,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", function
   }
 
   $scope.delete_enabling_factor = function (enabling_factor) {
-    if(confirm('Are you sure you want to delete this enabling factor?')) {
+    if(confirm($attrs.confirmdeleteenablingfactor)) {
       var enabling_factor_index = $scope.objective.enabling_factors.indexOf(enabling_factor);
       $scope.objective.enabling_factors.splice(enabling_factor_index, 1);
       update_objective();
@@ -216,7 +216,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", function
   }
 
   $scope.delete_barrier = function (barrier) {
-    if(confirm('Are you sure you want to delete this enabling factor?')) {
+    if(confirm($attrs.confirmdeletebarrier)) {
       var barrier_index = $scope.objective.barriers.indexOf(barrier);
       $scope.objective.barriers.splice(barrier_index, 1);
       update_objective();

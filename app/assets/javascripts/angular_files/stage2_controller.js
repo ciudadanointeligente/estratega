@@ -1,4 +1,4 @@
-app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", function ($scope, $http, $aside, $location) {
+app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs", function ($scope, $http, $aside, $location, $attrs) {
   $scope.project_id = $location.path().split("/")[2];
   $scope.btn_problem = "Add";
   $scope.problem = {};
@@ -10,7 +10,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", function
       $scope.focus_areas = data;
     })
     .error(function (){
-      $scope.messages = { response: false, message: "Error while getting focus area information"}
+      $scope.messages = { response: false, message: $attrs.errorfocusarea }
     });
 
   function get_objective_types(project_id) {
@@ -19,7 +19,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", function
         $scope.objective_types = data;
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error while getting objective types information"}
+        $scope.messages = { response: false, message: $attrs.errorobjectivetypes }
       });
   }
 
@@ -35,7 +35,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", function
           create_real_problem(project_id);
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error while getting the project information"}
+        $scope.messages = { response: false, message: $attrs.errorproject }
       });
   }
 
@@ -52,7 +52,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", function
         get_data_project($scope.project_id);
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error while creating the real problem information"}
+        $scope.messages = { response: false, message: $attrs.errorcreatingrealproblem }
       });
   }
 
@@ -64,7 +64,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", function
           $scope.btn_problem = "Edit";
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error while getting the real problem information"}
+        $scope.messages = { response: false, message: $attrs.errorgettingrealproblem }
       });
   }
 
@@ -74,7 +74,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", function
         $scope.objectives = data;
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error while getting objectives information"}
+        $scope.messages = { response: false, message: $attrs.errorgettingobjectives }
       });
   }
   get_objectives($scope.project_id);
@@ -95,7 +95,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", function
         get_unrelated_solutions($scope.solutions);
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error while getting solutions information"}
+        $scope.messages = { response: false, message: $attrs.errorgettingsolutions }
       });
   };
   function get_unrelated_solutions(data) {
@@ -118,7 +118,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", function
           get_objectives($scope.project_id);
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while updating objective information"}
+          $scope.messages = { response: false, message: $attrs.errorupdatingobjective }
         });
     } else {
       $http.post('/projects/' + $scope.project_id + '/objectives', $scope.current_objective)
@@ -129,7 +129,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", function
           get_objectives($scope.project_id);
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while creating objective information"}
+          $scope.messages = { response: false, message: $attrs.errorcreatingobjective }
         });
     }
   };
@@ -145,7 +145,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", function
           $scope.btn_problem = "Edit";
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while updating the goal information"}
+          $scope.messages = { response: false, message: $attrs.errorupdatinggoal }
         });
     } else {
       $scope.problem.project_id = $scope.project_id
@@ -156,7 +156,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", function
           $scope.problem_id = data.id;
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while creating the real problem information"}
+          $scope.messages = { response: false, message: $attrs.errorgettingrealproblem }
         });
     }
   };

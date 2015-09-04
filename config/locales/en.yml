@@ -1,5 +1,49 @@
 en:
   #
+  # Landing page and tags
+  #
+  layouts:
+    landing:
+      meta_description: "Wizard, an advocacy tool"
+      brand: "Wizard"
+      brand_extra: "Beta"
+      navbar_home: "Home"
+      navbar_projects: "Projects"
+      navbar_documents: "Documents"
+      navbar_tools: "Tools"
+      navbar_dropdown_welcome: "Welcome,"
+      navbar_dropdown_my_account: "My Account"
+      navbar_dropdown_sign_out: "Sign out"
+      footer_left_txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec."
+      footer_contact: "Contact"
+      footer_phone_number_txt: "+56 2 2419 2770"
+      footer_email_txt: "Press Contact"
+      footer_address_txt: "Holanda 895, Providencia, Santiago"
+  #
+  # Home
+  #
+  visitors:
+    index:
+      main_txt: "Benefits"
+      sentence_resources: "Effective use for your resources"
+      sentence_risks: "Minimize risks and maximize opportunities"
+      sentence_advocacy: "Align advocacy width other areas and organization goals, both long and short term"
+      sentence_keep_track: "Keep track and evaluate your performance"
+      button_demo: "Demo"
+      button_read_more: "I want to read more about it"
+      testimony1_txt: "Align advocacy width other areas and organization goals, both long and short term"
+      testimony1_signer: "UNICEF Ambassador Matt Dawson"
+      testimony2_txt: "Align advocacy width other areas and organization goals, both long and short term"
+      testimony2_signer: "Unicef Goodwill Ambassador Angélique Kidjo"
+      testimony3_txt: "Align advocacy width other areas and organization goals, both long and short term"
+      testimony3_signer: "UNICEF Ambassador Matt Dawson"
+      guest_main_txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+      sign_up: "Sign up"
+      email_placeholder: "Email"
+      password_placeholder: "Password"
+      confirm_password_placeholder: "Confirm Password"
+      button_sign_up: "Start now!"
+  #
   # Projects sections
   #
   projects:
@@ -27,6 +71,10 @@ en:
       stages: "Stages"
       dashboard: "Dashboard"
       documents: "Documents"
+      overview: "Overview"
+    public:     # http://localhost:3000/projects/1/public
+      projects: "Projects"
+      overview: "Overview"
     #
     # Stage 1
     #
@@ -51,6 +99,20 @@ en:
       explanation_examples: "Explanation & Examples"
       workshop_tips: "Workshop Tips"
       policies_text: "Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem"
+      error_focus_area: "Error while getting focus area information"
+      error_project: "Error while getting the project information"
+      error_policy_problems: "Error while getting policy problems information"
+      error_solutions: "Error while getting solutions information"
+      error_solution: "Error while getting a solution information"
+      error_updating: "Error while updating information"
+      error_insert: "Error while insert information"
+      error_updating_policy: "Error while updating a policy information"
+      error_creating_policy: "Error while creating a policy information"
+      error_updating_solution: "Error while updating a solution information"
+      error_creating_solution: "Error while creating a solution information"
+      error_getting_policy: "Error while getting the policy problem information"
+      confirm_delete_solution: "Are you sure you want to delete this solution?"
+      confirm_delete_policy: "Are you sure you want to delete this policy problem?"
     policy_modal: # modal `add policy` of stage 1
       policy: "Policy"
       title: "Title"
@@ -130,6 +192,16 @@ en:
       prioritized: "Prioritized"
       policy_solutions: "Policy Solutions"
       actions: "Actions"
+      error_focus_area: "Error while getting focus area information"
+      error_objective_types: "Error while getting objective types information"
+      error_project: "Error while getting the project information"
+      error_creating_real_problem: "Error while creating the real problem information"
+      error_getting_real_problem: "Error while getting the real problem information"
+      error_getting_objectives: "Error while getting objectives information"
+      error_getting_solutions: "Error while getting solutions information"
+      error_updating_objective: "Error while updating objective information"
+      error_creating_objective: "Error while creating objective information"
+      error_updating_goal: "Error while updating the goal information"
     goal_modal: # modal `goal` of stage 2
       goal: "Goal"
       title: "Title"
@@ -276,6 +348,16 @@ en:
       barriers: "Barriers"
       description: "Description"
       enabling_factors: "Enabling Factors"
+      error_getting_project: "Error while getting project information"
+      error_getting_objectives: "Error while getting objectives information"
+      error_getting_actors: "Error while getting actors information"
+      error_getting_actor_supports: "Error while getting actor supports information"
+      error_getting_actor_influence_levels: "Error while getting actor influence levels information"
+      error_updating_actor: "Error while updating actor information"
+      error_updating_enabling_factors: "Error while updating enabling factors or/and barriers information"
+      confirm_delete_actor: "Are you sure you want to delete this actor?"
+      confirm_delete_enabling_factor: "Are you sure you want to delete this enabling factor?"
+      confirm_delete_barrier: "Are you sure you want to delete this enabling factor?"
     actors_modal:  # modal `add actor` of stage 3
       actor: "Actor"
       actor_type: "Actor Type"
@@ -362,6 +444,12 @@ en:
       actor_type: "Actor Type"
       activities_number: "Activities Number"
       actions: "Actions"
+      error_getting_actor_type: "Error while getting actor type information"
+      error_getting_outcomes: "Error while getting outcomes information"
+      error_getting_categories: "Error while getting categories information"
+      error_updating_outcome: "Error while updating the outcome information"
+      error_creating_outcome: "Error while creating the outcome information"
+      confirm_delete_outcome: "Are you sure you want to delete this outcome?"
     outcome_modal:  # modal `add new interim outcome` of stage 4
       new_interim_outcome: "New Interim Outcome"
       interim_outcome: "Interim Outcome"
@@ -485,6 +573,12 @@ en:
       outcomes: "Outcomes"
       actions: "Actions"
       trello: "Organize in Trello"
+      error_getting_outcomes: "Error while getting outcomes information"
+      error_getting_asks: "Error while getting asks information"
+      error_getting_activities: "Error while getting activities information"
+      error_updating_activity: "Error while updating activity information"
+      error_creating_activity: "Error while creating activity information"
+      confirm_delete_activity: "Are you sure you want to delete this activity?"
     modal_activity: # modal 'activities' of stage 5
       activities: "Activities"
       title: "Title"
@@ -741,6 +835,11 @@ en:
       actor: "Actor"
       ask: "Ask"
       actions: "Actions"
+      error_getting_actors: "Error while getting actors information"
+      error_getting_asks: "Error while getting asks information"
+      error_updating_ask: "Error while updating ask information"
+      error_creating_ask: "Error while creating ask information"
+      confirm_delete_ask: "Are you sure you want to delete this ask?"
     asks_modal: # modal 'add ask' of stage 6
       asks: "Asks"
       actor: "Actor"

@@ -12,7 +12,7 @@
 
 <div class="container main">
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-controller="stage2Ctrl">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-controller="stage2Ctrl" data-errorfocusarea="<%= t('.error_focus_area') %>" data-errorobjectivetypes="<%= t('.error_objective_types') %>" data-errorproject="<%= t('.error_project') %>" data-errorcreatingrealproblem="<%= t('.error_creating_real_problem') %>" data-errorgettingrealproblem="<%= t('.error_getting_real_problem') %>" data-errorgettingobjectives="<%= t('.error_getting_objectives') %>" data-errorgettingsolutions="<%= t('.error_getting_solutions') %>" data-errorupdatingobjective="<%= t('.error_updating_objective') %>" data-errorcreatingobjective="<%= t('.error_creating_objective') %>" data-errorupdatinggoal="<%= t('.error_updating_goal') %>">
       <div class="alert" role="alert" ng-class="messages.response?'alert-success':'alert-danger'" ng-if="messages.message">
         <button ng-click="dismiss_modal()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         {{ messages.message }}
