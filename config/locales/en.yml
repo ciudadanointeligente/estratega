@@ -1,5 +1,29 @@
 en:
   #
+  # Home
+  #
+  visitors:
+    index:
+      main_txt: "Benefits"
+      sentence_resources: "Effective use for your resources"
+      sentence_risks: "Minimize risks and maximize opportunities"
+      sentence_advocacy: "Align advocacy width other areas and organization goals, both long and short term"
+      sentence_keep_track: "Keep track and evaluate your performance"
+      button_demo: "Demo"
+      button_read_more: "I want to read more about it"
+      testimony1_txt: "Align advocacy width other areas and organization goals, both long and short term"
+      testimony1_signer: "UNICEF Ambassador Matt Dawson"
+      testimony2_txt: "Align advocacy width other areas and organization goals, both long and short term"
+      testimony2_signer: "Unicef Goodwill Ambassador Angélique Kidjo"
+      testimony3_txt: "Align advocacy width other areas and organization goals, both long and short term"
+      testimony3_signer: "UNICEF Ambassador Matt Dawson"
+      guest_main_txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+      sign_up: "Sign up"
+      email_placeholder: "Email"
+      password_placeholder: "Password"
+      confirm_password_placeholder: "Confirm Password"
+      button_sign_up: "Start now!"
+  #
   # Projects sections
   #
   projects:
