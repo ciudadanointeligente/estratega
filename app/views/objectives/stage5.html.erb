@@ -62,12 +62,14 @@
                     </td>
                     <td class="text-right">
                       <i class="fa fa-pencil-square-o" ng-click="add_edit_activity(activity)" title="Edit"></i>
+                      <i class="fa fa-line-chart" ng-click="add_edit_indicator(activity)"></i>
                       <i class="fa fa-trash" ng-click="delete_activity(activity)" title="Delete"></i>
                     </td>
                   </tr>
                 </tbody>
               </table>
               <%= render 'modal_activity' %>
+              <%= render 'modal_indicator' %>
             </div>
             <!-- end of actions -->
           <div class="bg_grey">

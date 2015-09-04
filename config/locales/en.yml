@@ -498,6 +498,15 @@ en:
       outcome: "Outcome"
       save_button: "Save"
       cancel_button: "Cancel"
+    modal_indicator:
+      owner_name: "Owner"
+      owner_role: "Role"
+      expected_results: "Expected results"
+      obtained_results: "Obtained results"
+      settings: "Settings"
+      percentage: "Percentage"
+      save_button: "Save"
+      cancel_button: "Cancel"
     explanation_stage5: #tab `Explanation & Examples` of stage 5
       title: "Explanation"
       subtitle1: "What will you do to achieve your advocacy objectives?"

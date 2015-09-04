@@ -3,4 +3,5 @@ class Activity < ActiveRecord::Base
   belongs_to :objective
   has_and_belongs_to_many :outcomes
   has_and_belongs_to_many :asks
+  has_one :indicator, dependent: :destroy
 end

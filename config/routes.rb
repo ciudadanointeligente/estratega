@@ -43,6 +43,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :activities, only: [:show] do
+    resources :indicators
+  end
+
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :people
   resources :other_names

@@ -1,0 +1,35 @@
+<script type="text/ng-template" id="indicator-aside.html">
+  <div class="modal-header">
+    <h3 class="modal-title"><%= t('.indicators') %></h3>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="owner_name"><%= t('.owner_name') %></label>
+      <input name="owner_name" class="form-control" ng-model="current_indicator.owner_name" placeholder="<%= t('.owner_name') %>">
+    </div>
+    <div class="form-group">
+      <label for="owner_role"><%= t('.owner_role') %></label>
+      <input name="owner_role" class="form-control" ng-model="current_indicator.owner_role" placeholder="<%= t('.owner_role') %>">
+    </div>
+    <div class="form-group">
+      <label for="expected_results"><%= t('.expected_results') %></label>
+      <textarea class="form-control" ng-model="current_indicator.expected_results"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="obtained_results"><%= t('.obtained_results') %></label>
+      <textarea class="form-control" ng-model="current_indicator.obtained_results"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="settings"><%= t('.settings') %></label>
+      <textarea class="form-control" ng-model="current_indicator.settings"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="percentage"><%= t('.percentage') %></label>
+      <input name="percentage" class="form-control" ng-model="current_indicator.percentage" placeholder="<%= t('.percentage') %>">
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="save($event)"><%= t('.save_button') %></button>
+      <button class="btn btn-warning" ng-click="cancel($event)"><%= t('.cancel_button') %></button>
+    </div>
+  </div>
+</script>

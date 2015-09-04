@@ -1,0 +1,1 @@
+json.extract! @indicator, :owner_name, :owner_role, :expected_results, :obtained_results, :settings, :percentage, :activity_id, :created_at, :updated_at

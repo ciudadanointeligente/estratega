@@ -134,4 +134,57 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
     }
     return names
   }
+
+  $scope.add_edit_indicator = function(activity) {
+    $scope.activity = activity;
+    if(activity.indicator_id) {
+      $http.get('/activities/'+activity.id+'/indicators/'+activity.indicator_id)
+          .success(function(data){
+            $scope.current_indicator = data;
+          })
+    } else
+      $scope.current_indicator = {owner_name: "", owner_role: "", expected_results:"", obtained_results: "", settings: "", percentage: ""};
+
+    $aside.open({
+      templateUrl: 'indicator-aside.html',
+      placement: 'left',
+      size: 'lg',
+      scope: $scope,
+      controller: function ($scope, $modalInstance) {
+        $scope.save = function (e) {
+          save_or_update_indicator()
+          $modalInstance.dismiss();
+          e.stopPropagation();
+        }
+        $scope.cancel = function (e) {
+          $modalInstance.dismiss();
+          e.stopPropagation();
+        };
+      }
+    });
+
+  }
+
+  var save_or_update_indicator = function() {
+    if($scope.activity.indicator_id) {
+      $http.put('/activities/'+$scope.activity.id+'/indicators/'+$scope.activity.indicator_id, $scope.current_indicator)
+          .success(function(){
+            $scope.messages = { response: true, message: "Indicator updated"}
+            get_activities($scope.project_id, $scope.objective_id);
+          })
+          .error(function(){
+            $scope.messages = { response: false, message: "Error while updating outcomes information"}
+          });
+    } else {
+      $http.post('/activities/'+$scope.activity.id+'/indicators/', $scope.current_indicator)
+          .success(function(data){
+            $scope.messages = { response: true, message: "Indicator added"}
+            get_activities($scope.project_id, $scope.objective_id);
+          })
+          .error(function(){
+            $scope.messages = { response: false, message: "Error while creating the indicator"}
+          });
+    }
+
+  }
 }]);
