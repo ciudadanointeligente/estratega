@@ -72,7 +72,7 @@ en:
       dashboard: "Dashboard"
       documents: "Documents"
       overview: "Overview"
-    public:     # http://localhost:3000/projects/1/public
+    overview:     # http://localhost:3000/projects/1#overview
       projects: "Projects"
       overview: "Overview"
     #
