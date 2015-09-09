@@ -7,8 +7,14 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Vizard Rails" %>">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- INICIO GRAFICOS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
     <link rel="stylesheet" href="/assets/css/circle.css">
+    <!-- FIN GRAFICOS -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <!-- INICIO GRAFICOS -->
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <!-- FIN GRAFICOS -->
     <script src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
     <script>
       $(function () {

@@ -358,7 +358,7 @@ div#resources_paginate {
 .objetives .panel-heading {
   margin: -15px -15px 0;
 }
-.objetives table {
+.objetives table, .well table {
   background-color: #ffffff;
   margin-top: 40px;
 }
@@ -523,4 +523,8 @@ div#resources_paginate {
 .well .fa-ul {
     margin-left: 1.4em;
     margin-top: 2em;
+}
+.ct-perfect-fourth {
+    overflow: hidden;
+    height: 300px;
 }

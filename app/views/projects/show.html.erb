@@ -227,6 +227,75 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 well">
+          <h3>Estado actividades últimos meses</h3>
+          <div class="ct-chart ct-perfect-fourth"></div>
+          <script>
+            var chart = new Chartist.Line('.ct-chart', {
+              labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul', 'Ago', 'Sept', 'Oct', 'Nov', 'Dic'],
+              series: [
+                [1, 5, 2, 5, 4, 3, 1, 5, 2, 5, 4, 3],
+                [2, 3, 4, 8, 1, 2, 2, 3, 4, 8, 1, 2],
+                [5, 4, 3, 2, 1, 2, 5, 4, 3, 2, 1, 1]
+              ]
+            }, {
+              low: 0,
+              showArea: true,
+              showPoint: true,
+              height: '300px',
+              fullWidth: true
+            });
+
+            chart.on('draw', function(data) {
+              if(data.type === 'line' || data.type === 'area') {
+                data.element.animate({
+                  d: {
+                    begin: 2000 * data.index,
+                    dur: 2000,
+                    from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                    to: data.path.clone().stringify(),
+                    easing: Chartist.Svg.Easing.easeOutQuint
+                  }
+                });
+              }
+            });
+          </script>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+          <div class="well">holi</div>
+          <div class="well">holi</div>
+          <div class="well">holi</div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 well">
+          <h3>Próximas actividades</h3>
+          <p><a href="#">Ver todas las actividades</a></p>
+          <table class="table">
+            <tr>
+              <th>Fecha</th>
+              <th>Actividad</th>
+            </tr>
+            <tr>
+              <td>12/12/2020</td>
+              <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec dolor enim. Donec porttitor mauris</td>
+            </tr>
+            <tr>
+              <td>12/12/2020</td>
+              <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec dolor enim. Donec porttitor mauris</td>
+            </tr>
+            <tr>
+              <td>12/12/2020</td>
+              <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec dolor enim. Donec porttitor mauris</td>
+            </tr>
+            <tr>
+              <td>12/12/2020</td>
+              <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec dolor enim. Donec porttitor mauris</td>
+            </tr>
+          </table>
+        </div>
+      </div>
       <hr>
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
