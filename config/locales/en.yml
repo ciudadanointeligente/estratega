@@ -86,6 +86,7 @@ en:
     overview:     # http://localhost:3000/projects/1#overview
       projects: "Projects"
       overview: "Overview"
+      empty: "( empty field )"
     #
     # Stage 1
     #

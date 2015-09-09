@@ -9,7 +9,7 @@
         <table class="table">
           <!-- real problem -->
           <% if !@real_problem %>
-            <p>vacio</p>
+            <p><%= t('.empty') %></p>
           <% else %>
             <div>
               <h1>Real problem</h1>
@@ -24,7 +24,7 @@
             <!-- policy problems -->
             <div>
               <% if @policy_problems.count < 1 %>
-                <p>vacio</p>
+                <p><%= t('.empty') %></p>
               <% else %>
                 <h2>Policy problems (<%= @policy_problems.count %>)</h2>
                 <% @policy_problems.each do |policy| %>
@@ -32,7 +32,7 @@
                   <!-- solutions -->
                   <div>
                     <% if @solutions.count < 1 %>
-                      <p>vacio</p>
+                      <p><%= t('.empty') %></p>
                     <% else %>
                       <h3>Solutions (<%= policy.solutions.count %>)</h3>
                       <% policy.solutions.each do |solution| %>
@@ -59,16 +59,36 @@
         <table class="table">
           <!-- objetives -->
           <% if @objectives.count < 1 %>
-            <p>vacio</p>
+            <p><%= t('.empty') %></p>
           <% else %>
             <h1>Objectives (<%= @objectives.count %>)</h1>
             <% @objectives.each do |objective| %>
               <h2><b>title: </b><%= objective.title %></h2>
+              <b>type: </b><%= objective.objective_type.presence || t('.empty') %>
+              </br>
+              <b>description: </b><%= objective.description %>
+              </br>
+              <% if !objective.barriers.nil? %>
+                <b>barriers: </b>
+                <% objective.barriers.each do |barrier| %>
+                  <ul type="circle">
+                    <li><%= barrier %></li>
+                  </ul>
+                <% end %>
+              <% end %>
+              <% if !objective.enabling_factors.nil? %>
+                <b>enabling factors:</b>
+                <% objective.enabling_factors.each do |efactor| %>
+                  <ul type="circle">
+                    <li><%= efactor %></li>
+                  </ul>
+                <% end %>
+              <% end %>
               <!-- actors -->
               <div>
                 <h3>Actors (<%= objective.actors.count %>)</h3>
                 <% if objective.actors.count < 1 %>
-                  <p>vacio</p>
+                  <p><%= t('.empty') %></p>
                 <% else %>
                   <% objective.actors.each do |actor| %>
                     <b>name: </b><%= actor.name %>
@@ -90,7 +110,7 @@
               <div>
                 <h3>Outcomes (<%= objective.outcomes.count %>)</h3>
                 <% if objective.outcomes.count < 1 %>
-                  <p>vacio</p>
+                  <p><%= t('.empty') %></p>
                 <% else %>
                   <% objective.outcomes.each do |outcome| %>
                     <b>description: </b><%= outcome.description %>
@@ -108,7 +128,7 @@
               <div>
                 <h3>Activities (<%= objective.activities.count %>)</h3>
                 <% if objective.activities.count < 1 %>
-                  <p>vacio</p>
+                  <p><%= t('.empty') %></p>
                 <% else %>
                   <% objective.activities.each do |activity| %>
                     <b>title: </b><%= activity.title %>
@@ -124,7 +144,7 @@
               <div>
                 <h3>Asks (<%= objective.asks.count %>)</h3>
                 <% if objective.asks.count < 1 %>
-                  <p>vacio</p>
+                  <p><%= t('.empty') %></p>
                 <% else %>
                   <% objective.asks.each do |ask| %>
                     <b>description: </b><%= ask.description %>
