@@ -896,7 +896,7 @@ en:
                     </tr>
   user_mailer:
     exist_user_share:
-      exist_add_to_share: 'You are invited to collaborate in the proyect:'
+      exist_add_to_share: 'You are invited to collaborate in the project:'
     new_user_share:
-      new_add_to_share: 'You are invited to activate your account and collaborate in the proyect:'
+      new_add_to_share: 'You are invited to activate your account and collaborate in the project:'
       activate_account: 'Activate my account'
