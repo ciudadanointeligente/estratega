@@ -6,11 +6,14 @@
       <button class="btn btn-warning" ng-click="add_edit_project()">
         <i class="fa fa-plus-circle"></i> <%= t('.new_project') %>
       </button>
+      <button class="btn btn-success" onclick="javascript:introJs().start();">
+        <i class="fa fa-map"></i> <%= t('.guide_me') %>
+      </button>
     </div>
   </div>
 
   <div role="tabpanel">
-    <ul class="nav nav-tabs" role="tablist">
+    <ul class="nav nav-tabs" role="tablist" data-step="1" data-intro="<%= t('.step_one') %>">
       <li role="presentation" class="active">
         <a href="#private" aria-controls="private" role="tab" data-toggle="tab"><%= t('.my_projects') %></a>
       </li>
@@ -37,7 +40,7 @@
             <tr title="{{ project.description | limitTo: 140 }}" ng-repeat="project in projects">
               <td><a href="/projects/{{ project.id }}" target="_self">{{ project.title }}</a></td>
               <td>{{ project.focus_area }}</td>
-              <td class="controllers">
+              <td class="controllers" data-step="2" data-intro="<%= t('.step_two') %>">
                 <i class="fa fa-globe" ng-if="project.public" title="<%= t('.public') %>"></i>
                 <i class="fa fa-gears" ng-click="add_edit_project(project)" ng-if="project.permission == 'owner'"></i>
                 <i class="fa fa-user-plus" ng-click="user_permission(project)" ng-if="project.permission == 'owner'"></i>
