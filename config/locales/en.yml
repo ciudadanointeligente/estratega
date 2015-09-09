@@ -72,6 +72,17 @@ en:
       dashboard: "Dashboard"
       documents: "Documents"
       overview: "Overview"
+      stage1_title: "Stage 1: Articulate problems and policy solutions"
+      stage2_title: "Stage 2: Articulate and prioritize objectives"
+      stage3_title: "Stage 3: Set Goals"
+      stage3_without_objectives: |
+                    <p>You need add objectives for settings goals</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     overview:     # http://localhost:3000/projects/1#overview
       projects: "Projects"
       overview: "Overview"
