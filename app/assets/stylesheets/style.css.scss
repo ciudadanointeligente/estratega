@@ -528,3 +528,14 @@ div#resources_paginate {
     overflow: hidden;
     height: 300px;
 }
+table.indicator {
+  background-color: transparent;
+  margin-top: 0;
+}
+table.indicator td {
+  vertical-align: baseline;
+}
+table.indicator td:first-child {
+  font-size: 2.143em;
+  padding-right: 20px;
+}
