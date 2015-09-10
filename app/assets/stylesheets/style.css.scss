@@ -358,7 +358,7 @@ div#resources_paginate {
 .objetives .panel-heading {
   margin: -15px -15px 0;
 }
-.objetives table {
+.objetives table, .well table {
   background-color: #ffffff;
   margin-top: 40px;
 }
@@ -510,4 +510,21 @@ div#resources_paginate {
 }
 #policy-problems .bg_grey h4 {
   color: #ffffff;
+}
+.successful {
+  color: #3c763d;
+}
+.neutral {
+  color: #8a6d3b;
+}
+.failed {
+  color: #a94442;
+}
+.well .fa-ul {
+    margin-left: 1.4em;
+    margin-top: 2em;
+}
+.ct-perfect-fourth {
+    overflow: hidden;
+    height: 300px;
 }
