@@ -58,23 +58,6 @@ class ProjectsController < ApplicationController
     respond_with(@project)
   end
 
-  def public
-    # authorize @project
-    @objectives = @project.objectives
-
-    if !@project.real_problem.blank?
-      @real_problem = @project.real_problem
-      if !@project.real_problem.try(:policy_problems).try(:blank?)
-        @policy_problems = @project.real_problem.policy_problems
-        if !@project.real_problem.try(:get_solutions).try(:blank?)
-          @solutions = @project.real_problem.get_solutions
-        end
-      end
-    end
-
-    respond_with(@project)
-  end
-
   def new
     @project = Project.new
     respond_with(@project)

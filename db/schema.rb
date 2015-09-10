@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901154137) do
+ActiveRecord::Schema.define(version: 20150902151457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20150901154137) do
     t.datetime "scheduling"
     t.boolean  "completion"
     t.string   "organizer"
+    t.string   "activity_types"
   end
 
   create_table "activities_asks", id: false, force: :cascade do |t|
@@ -68,6 +69,20 @@ ActiveRecord::Schema.define(version: 20150901154137) do
 
   add_index "asks", ["actor_id"], name: "index_asks_on_actor_id", using: :btree
   add_index "asks", ["objective_id"], name: "index_asks_on_objective_id", using: :btree
+
+  create_table "indicators", force: :cascade do |t|
+    t.string   "owner_name"
+    t.string   "owner_role"
+    t.text     "expected_results"
+    t.text     "obtained_results"
+    t.text     "settings"
+    t.text     "percentage"
+    t.integer  "activity_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "indicators", ["activity_id"], name: "index_indicators_on_activity_id", using: :btree
 
   create_table "objectives", force: :cascade do |t|
     t.string   "title"

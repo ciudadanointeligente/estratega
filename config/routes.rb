@@ -23,7 +23,6 @@ Rails.application.routes.draw do
 
   resources :projects do
     get 'solutions', on: :member
-    get 'public', on: :member
     get 'stage1', on: :member
     get 'stage2', on: :member
     post 'share', on: :member
@@ -42,6 +41,10 @@ Rails.application.routes.draw do
       get 'aside', on: :collection
       get 'aside', on: :member
     end
+  end
+
+  resources :activities, only: [:show] do
+    resources :indicators
   end
 
   devise_for :users, :controllers => {:registrations => "registrations"}

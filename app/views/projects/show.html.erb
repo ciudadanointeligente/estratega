@@ -17,7 +17,7 @@
     <li role="presentation" class="active"><a href="#stages" aria-controls="stages" role="tab" data-toggle="tab"><%= t('.stages') %></a></li>
     <li role="presentation"><a href="#dashboard" aria-controls="dashboard" role="tab" data-toggle="tab"><%= t('.dashboard') %></a></li>
     <li role="presentation"><a href="#documents" aria-controls="documents" role="tab" data-toggle="tab"><%= t('.documents') %></a></li>
-    <li role="presentation"><a href="./public" aria-controls="overview" role="tab" data-toggle="tab"><%= t('.overview') %></a></li>
+    <li role="presentation"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab"><%= t('.overview') %></a></li>
   </ul>
 
   <!-- tab panes -->
@@ -27,7 +27,7 @@
         <div class="">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h4 class="panel-title" title="Complete Stage"><a data-toggle="collapse" href="#stage1" aria-expanded="false" aria-controls="collapseExample"><i class="<%= icon_class_stage 1 %>"></i> Stage 1: Articulate problems and policy solutions</a></h4>
+              <h4 class="panel-title" title="Complete Stage"><a data-toggle="collapse" href="#stage1" aria-expanded="false" aria-controls="collapseExample"><i class="<%= icon_class_stage 1 %>"></i> <%= t('.stage1_title') %></a></h4>
             </div>
             <div class="collapse steps" id="stage1">
               <table class="table">
@@ -69,7 +69,7 @@
         <div class="">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h4 class="panel-title" title="You must complete the previous stage"><a data-toggle="collapse" href="#stage2" aria-expanded="false" aria-controls="collapseExample"><i class="<%= icon_class_stage 2 %>"></i> Stage 2: Articulate and prioritize objectives (Example)</a></h4>
+              <h4 class="panel-title" title="You must complete the previous stage"><a data-toggle="collapse" href="#stage2" aria-expanded="false" aria-controls="collapseExample"><i class="<%= icon_class_stage 2 %>"></i> <%= t('.stage2_title') %></a></h4>
             </div>
             <div class="collapse steps" id="stage2">
               <table class="table">
@@ -87,15 +87,9 @@
         </div>
       </div>
       <hr>
-      <h4 class="title_goals">Stage 3: Set Goals</h4>
+      <h4 class="title_goals"><%= t('.stage3_title') %></h4>
       <% if @objectives.count < 1 %>
-        <p>You need add objectives for settings goals</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <%= t('.stage3_without_objectives').html_safe %>
       <% else %>
         <% @objectives.each do |objective| %>
           <div class="">
@@ -403,6 +397,9 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="documents">
       <%= render "resources" %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="overview">
+      <%= render "overview" %>
     </div>
   </div>
 </div>

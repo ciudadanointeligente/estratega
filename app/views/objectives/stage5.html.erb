@@ -12,7 +12,7 @@
 
 <div class="container main">
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-controller="stage5Ctrl">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-controller="stage5Ctrl" data-errorgettingoutcomes="<%= t('.error_getting_outcomes') %>" data-errorgettingasks="<%= t('.error_getting_asks') %>" data-errorgettingactivities="<%= t('.error_getting_activities') %>" data-errorupdatingactivity="<%= t('.error_updating_activity') %>" data-errorcreatingactivity="<%= t('.error_creating_activity') %>" data-confirmdeleteactivity="<%= t('.confirm_delete_activity') %>">
       <div class="alert" role="alert" ng-class="messages.response?'alert-success':'alert-danger'" ng-if="messages.message">
         <button ng-click="dismiss_modal()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         {{ messages.message }}
@@ -62,12 +62,14 @@
                     </td>
                     <td class="text-right">
                       <i class="fa fa-pencil-square-o" ng-click="add_edit_activity(activity)" title="Edit"></i>
+                      <i class="fa fa-line-chart" ng-click="add_edit_indicator(activity)"></i>
                       <i class="fa fa-trash" ng-click="delete_activity(activity)" title="Delete"></i>
                     </td>
                   </tr>
                 </tbody>
               </table>
               <%= render 'modal_activity' %>
+              <%= render 'modal_indicator' %>
             </div>
             <!-- end of actions -->
           <div class="bg_grey">

@@ -3,8 +3,8 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Wizard" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Vizard Rails" %>">
+    <title><%= content_for?(:title) ? yield(:title) : t('.brand') %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : t('.meta_description') %>">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -16,7 +16,7 @@
       <% if( user_signed_in? ) %>
       <nav class="navbar navbar-default" role="navigation">
         <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
+        <!-- brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -24,26 +24,26 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<%= root_path %>" target="_self">Wizard <span>Beta</span></a>
+          <a class="navbar-brand" href="<%= root_path %>" target="_self"><%= t('.brand') %> <span><%= t('.brand_extra') %></span></a>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="<%= root_path %>" target="_self">Home</a></li>
-            <li><a href="<%= projects_path %>" target="_self">Projects</a></li>
-            <li><a href="#">Documents</a></li>
-            <li><a href="#">Tools</a></li>
+            <li class="active"><a href="<%= root_path %>" target="_self"><%= t('.navbar_home') %></a></li>
+            <li><a href="<%= projects_path %>" target="_self"><%= t('.navbar_projects') %></a></li>
+            <li><a href="#"><%= t('.navbar_documents') %></a></li>
+            <li><a href="#"><%= t('.navbar_tools') %></a></li>
           </ul>
           <ul class="nav navbar-right top-nav">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Welcome, <%= current_user.email %> <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <%= t('.navbar_dropdown_welcome') %> <%= current_user.email %> <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>
-                  <a href="/users/edit">My Account</a>
+                  <a href="/users/edit"><%= t('.navbar_dropdown_my_account') %></a>
                 </li>
                 <li class="divider"></li>
                 <li>
-                  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+                  <%= link_to t('.navbar_dropdown_sign_out'), destroy_user_session_path, :method => :delete %>
                 </li>
               </ul>
             </li>
@@ -64,18 +64,18 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-6 col-sm-6 col-md-8 col-lg-8">
-            <p class="brand" href="#">Wizard <span>Beta</span></p>
+            <p class="brand" href="#"><%= t('.brand') %> <span><%= t('.brand_extra') %></span></p>
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec .</p>
+                <p><%= t('.footer_left_txt') %></p>
               </div>
             </div>
           </div>
           <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-            <h5>Contact</h5>
-            <p><i class="fa fa-phone-square"></i> +56 2 2419 2770</p>
-            <p><i class="fa fa-envelope"></i> <a href="">Press Contact</a></p>
-            <p>&nbsp;<i class="fa fa-map-marker"></i>&nbsp; Holanda 895, Providencia</p>
+            <h5><%= t('.footer_contact') %></h5>
+            <p><i class="fa fa-phone-square"></i> <%= t('.footer_phone_number_txt') %></p>
+            <p><i class="fa fa-envelope"></i> <a href=""><%= t('.footer_email_txt') %></a></p>
+            <p>&nbsp;<i class="fa fa-map-marker"></i>&nbsp; <%= t('.footer_address_txt') %></p>
           </div>
         </div>
       </div>

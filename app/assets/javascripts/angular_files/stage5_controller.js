@@ -1,4 +1,4 @@
-app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function ($scope, $http, $aside, $location) {
+app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs", function ($scope, $http, $aside, $location, $attrs) {
   $scope.project_id   = $location.path().split("/")[2];
   $scope.objective_id = $location.path().split("/")[4];
 
@@ -8,6 +8,21 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
 
   $scope.messages = {response: "", message: ""}
   $scope.organizer = ["External Event", "Organization's action"];
+  $scope.activity_types = [
+    {type: "Political will", values: ["Lobby", "Relationship building with decision makers", "Policymaker and candidate education", "Litigation or legal advocacy", "Policy proposal development", "Demonstration projects or pilots", "Earned media"]},
+    {type: "Public will", values: ["Polling", "Rallies and marches", "Digital or internet-based media/social media"]},
+    {type: "Attitudes or beliefs", values: ["Issue/policy analysis and research", "Polling", "Public service announcements", "Briefings/presentations"]},
+    {type: "Salience", values: ["Lobby", "Relationship building with decision makers", "Policymaker and candidate education"]},
+    {type: "Awareness", values: ["Public service announcements", "Rallies and marches", "Briefings/presentations", "Digital or internet-based media/social media"]},
+    {type: "New champions", values: ["Relationship building with decision-makers", "Digital or internet-based media/social media"]},
+    {type: "New advocates", values: ["Briefings/presentations"]},
+    {type: "Partnerships or alliances", values: ["Issue/policy analysis and research", "Rallies and marches", "Grass-roots organizing and mobilization"]},
+    {type: "Constituency or support-base growth", values: ["Rallies and marches", "Grass-roots organizing and mobilization"]},
+    {type: "Media coverage", values: ["Rallies and marches", "Grass-roots organizing and mobilization", "Media partnerships", "Digital or internet-based media/social media"]},
+    {type: "Issue reframing", values: ["Issue/policy analysis and research", "Earned media"]},
+    {type: "Organizational advocacy capacity", values: ["Any of the others"]},
+    {type: "Organizational visibility or issue recognition", values: ["Issue/policy analysis and research"]}
+  ];
 
   function get_outcomes(project_id, objective_id) {
     $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/outcomes.json')
@@ -15,7 +30,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
         $scope.outcomes = data;
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error while getting outcomes information"}
+        $scope.messages = { response: false, message: $attrs.errorgettingoutcomes }
       });
   }
 
@@ -25,7 +40,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
         $scope.asks = data;
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error while getting asks information"}
+        $scope.messages = { response: false, message: $attrs.errorgettingasks }
       });
   }
 
@@ -35,7 +50,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
         $scope.activities = data;
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error while getting activities information"}
+        $scope.messages = { response: false, message: $attrs.errorgettingactivities }
       });
   }
 
@@ -84,7 +99,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
           get_activities($scope.project_id, $scope.objective_id)
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while updating activity information"}
+          $scope.messages = { response: false, message: $attrs.errorupdatingactivity }
         });
     } else {
       $http.post('/projects/' + $scope.project_id + '/objectives/' + $scope.objective_id + '/activities', $scope.current_activity)
@@ -93,13 +108,13 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
           get_activities($scope.project_id, $scope.objective_id)
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while creating activity information"}
+          $scope.messages = { response: false, message: $attrs.errorcreatingactivity }
         });
     }
   }
 
   $scope.delete_activity = function (activity) {
-    if (confirm('Are you sure you want to delete this activity?')) {
+    if (confirm($attrs.confirmdeleteactivity)) {
       $http.delete('/projects/' + $scope.project_id + '/objectives/' + $scope.objective_id + '/activities/' + activity.id);
       $scope.activities.splice($scope.activities.indexOf(activity), 1);
     }
@@ -118,5 +133,58 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", function
       }
     }
     return names
+  }
+
+  $scope.add_edit_indicator = function(activity) {
+    $scope.activity = activity;
+    if(activity.indicator_id) {
+      $http.get('/activities/'+activity.id+'/indicators/'+activity.indicator_id)
+          .success(function(data){
+            $scope.current_indicator = data;
+          })
+    } else
+      $scope.current_indicator = {owner_name: "", owner_role: "", expected_results:"", obtained_results: "", settings: "", percentage: ""};
+
+    $aside.open({
+      templateUrl: 'indicator-aside.html',
+      placement: 'left',
+      size: 'lg',
+      scope: $scope,
+      controller: function ($scope, $modalInstance) {
+        $scope.save = function (e) {
+          save_or_update_indicator()
+          $modalInstance.dismiss();
+          e.stopPropagation();
+        }
+        $scope.cancel = function (e) {
+          $modalInstance.dismiss();
+          e.stopPropagation();
+        };
+      }
+    });
+
+  }
+
+  var save_or_update_indicator = function() {
+    if($scope.activity.indicator_id) {
+      $http.put('/activities/'+$scope.activity.id+'/indicators/'+$scope.activity.indicator_id, $scope.current_indicator)
+          .success(function(){
+            $scope.messages = { response: true, message: "Indicator updated"}
+            get_activities($scope.project_id, $scope.objective_id);
+          })
+          .error(function(){
+            $scope.messages = { response: false, message: "Error while updating outcomes information"}
+          });
+    } else {
+      $http.post('/activities/'+$scope.activity.id+'/indicators/', $scope.current_indicator)
+          .success(function(data){
+            $scope.messages = { response: true, message: "Indicator added"}
+            get_activities($scope.project_id, $scope.objective_id);
+          })
+          .error(function(){
+            $scope.messages = { response: false, message: "Error while creating the indicator"}
+          });
+    }
+
   }
 }]);

@@ -22,6 +22,15 @@
       </select>
     </div>
     <div class="form-group">
+      <label for="activity_types"><%= t('.activity_types') %></label>
+      <select class="form-control" name="activity_types" ng-model="current_activity.activity_types">
+        <optgroup ng-repeat="at in activity_types" label="{{at.type}}">
+          {{at.type}}
+          <option ng-repeat="o in at.values">{{o}}</option>
+        </optgroup>
+      </select>
+    </div>
+    <div class="form-group">
       <label for="scheduling"><%= t('.scheduling') %> (current: {{current_activity.scheduling | date:'MM/dd/yyyy'}})</label>
       <input type="date" name="scheduling" class="form-control" ng-model="current_activity.scheduling" value="{{current_activity.scheduling}}"></input>
     </div>
