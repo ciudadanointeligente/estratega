@@ -13,30 +13,34 @@
           <% else %>
             <div>
               <h1>Real problem</h1>
-              <b>title: </b><%= @real_problem.title %>
+              <b>title: </b><%= @real_problem.title.presence || t('.empty') %>
               </br>
-              <b>description: </b><%= @real_problem.description %>
+              <b>description: </b><%= @real_problem.description.presence || t('.empty') %>
               </br>
-              <b>focus area: </b><%= @real_problem.focus_area %>
+              <b>focus area: </b><%= @real_problem.focus_area.presence || t('.empty') %>
               </br>
-              <b>goal: </b><%= @real_problem.goal %>
+              <b>goal: </b><%= @real_problem.goal.presence || t('.empty') %>
             </div>
             <!-- policy problems -->
             <div>
-              <% if @policy_problems.count < 1 %>
+              <h2>Policy problems (<%= @policy_problems.count.presence || "" %>)</h2>
+              <% if @policy_problems.nil? %>
+                <p><%= t('.uncreated') %></p>
+              <% elsif @policy_problems.count < 1 %>
                 <p><%= t('.empty') %></p>
               <% else %>
-                <h2>Policy problems (<%= @policy_problems.count %>)</h2>
                 <% @policy_problems.each do |policy| %>
                   <b>title: </b><%= policy.title %>
                   <!-- solutions -->
                   <div>
-                    <% if @solutions.count < 1 %>
+                    <h3>Solutions (<%= policy.solutions.count.presence || "" %>)</h3>
+                    <% if @solutions.nil? %>
+                      <p><%= t('.uncreated') %></p>
+                    <% elsif @solutions.count < 1 %>
                       <p><%= t('.empty') %></p>
                     <% else %>
-                      <h3>Solutions (<%= policy.solutions.count %>)</h3>
                       <% policy.solutions.each do |solution| %>
-                        <b>title: </b><%= solution.title %>
+                        <b>title: </b><%= solution.title.presence || t('.empty') %>
                         </br>
                       <% end %>
                     <% end %>
@@ -58,48 +62,60 @@
       <div class="collapse steps" id="overviewstage3">
         <table class="table">
           <!-- objetives -->
-          <% if @objectives.count < 1 %>
+          <h1>Objectives (<%= @objectives.count.presence || "" %>)</h1>
+          <% if @objectives.nil? %>
+            <p><%= t('.uncreated') %></p>
+          <% elsif @objectives.count < 1 %>
             <p><%= t('.empty') %></p>
           <% else %>
-            <h1>Objectives (<%= @objectives.count %>)</h1>
             <% @objectives.each do |objective| %>
-              <h2><b>title: </b><%= objective.title %></h2>
+              <h2><b>title: </b><%= objective.title.presence || t('.empty') %></h2>
               <b>type: </b><%= objective.objective_type.presence || t('.empty') %>
               </br>
-              <b>description: </b><%= objective.description %>
+              <b>description: </b><%= objective.description.presence || t('.empty') %>
               </br>
-              <% if !objective.barriers.nil? %>
-                <b>barriers: </b>
+              <!-- barriers -->
+              <b>barriers: </b>
+              <% if objective.barriers.nil? %>
+                <p><%= t('.empty') %></p>
+              <% else %>
                 <% objective.barriers.each do |barrier| %>
                   <ul type="circle">
                     <li><%= barrier %></li>
                   </ul>
                 <% end %>
               <% end %>
-              <% if !objective.enabling_factors.nil? %>
-                <b>enabling factors:</b>
+              <!-- end barriers -->
+              <!-- enabling factors -->
+              <b>enabling factors:</b>
+              <% if objective.enabling_factors.nil? %>
+                <p><%= t('.empty') %></p>
+              <% else %>
                 <% objective.enabling_factors.each do |efactor| %>
                   <ul type="circle">
                     <li><%= efactor %></li>
                   </ul>
                 <% end %>
               <% end %>
+              <!-- end enabling factors -->
               <!-- actors -->
               <div>
-                <h3>Actors (<%= objective.actors.count %>)</h3>
-                <% if objective.actors.count < 1 %>
+                <h3>Actors (<%= objective.actors.count.presence || "" %>)</h3>
+                <% if objective.actors.nil? %>
+                  <p><%= t('.uncreated') %></p>
+                <% elsif objective.actors.count < 1 %>
                   <p><%= t('.empty') %></p>
                 <% else %>
                   <% objective.actors.each do |actor| %>
                     <b>name: </b><%= actor.name %>
                     </br>
-                    <b>description: </b><%= actor.description %>
+                    <b>description: </b><%= actor.description.presence || t('.empty') %>
                     </br>
-                    <b>actor_type: </b><%= actor.actor_type %>
+                    <b>actor_type: </b><%= actor.actor_type.presence || t('.empty') %>
                     </br>
-                    <b>support: </b><%= actor.support %>
+                    <b>support: </b><%= actor.support.presence || t('.empty') %>
                     </br>
-                    <b>influence: </b><%= actor.influence %>
+                    <b>influence: </b><%= actor.influence.presence || t('.empty') %>
                     </br></br>
                   <% end %>
                 <% end %>
@@ -108,12 +124,14 @@
 
               <!-- outcomes -->
               <div>
-                <h3>Outcomes (<%= objective.outcomes.count %>)</h3>
-                <% if objective.outcomes.count < 1 %>
+                <h3>Outcomes (<%= objective.outcomes.count.presence || "" %>)</h3>
+                <% if objective.outcomes.nil? %>
+                  <p><%= t('.uncreated') %></p>
+                <% elsif objective.outcomes.count < 1 %>
                   <p><%= t('.empty') %></p>
                 <% else %>
                   <% objective.outcomes.each do |outcome| %>
-                    <b>description: </b><%= outcome.description %>
+                    <b>description: </b><%= outcome.description.presence || t('.empty') %>
                     </br>
                     <b>outcome_type_id: </b><%= outcome.outcome_type_id %>
                     </br>
@@ -126,14 +144,16 @@
 
               <!-- activity -->
               <div>
-                <h3>Activities (<%= objective.activities.count %>)</h3>
-                <% if objective.activities.count < 1 %>
+                <h3>Activities (<%= objective.activities.count.presence || "" %>)</h3>
+                <% if objective.activities.nil? %>
+                  <p><%= t('.uncreated') %></p>
+                <% elsif objective.activities.count < 1 %>
                   <p><%= t('.empty') %></p>
                 <% else %>
                   <% objective.activities.each do |activity| %>
-                    <b>title: </b><%= activity.title %>
+                    <b>title: </b><%= activity.title.presence || t('.empty') %>
                     </br>
-                    <b>description: </b><%= activity.description %>
+                    <b>description: </b><%= activity.description.presence || t('.empty') %>
                     </br></br>
                   <% end %>
                 <% end %>
@@ -142,12 +162,14 @@
 
               <!-- ask -->
               <div>
-                <h3>Asks (<%= objective.asks.count %>)</h3>
-                <% if objective.asks.count < 1 %>
+                <h3>Asks (<%= objective.asks.count.presence || "" %>)</h3>
+                <% if objective.asks.nil? %>
+                  <p><%= t('.uncreated') %></p>
+                <% elsif objective.asks.count < 1 %>
                   <p><%= t('.empty') %></p>
                 <% else %>
                   <% objective.asks.each do |ask| %>
-                    <b>description: </b><%= ask.description %>
+                    <b>description: </b><%= ask.description.presence || t('.empty') %>
                     </br>
                     <b>actor_id: </b><%= ask.actor_id %>
                     </br>

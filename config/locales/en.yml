@@ -87,6 +87,7 @@ en:
       projects: "Projects"
       overview: "Overview"
       empty: "( empty field )"
+      uncreated: "( uncreated )"
     #
     # Stage 1
     #
