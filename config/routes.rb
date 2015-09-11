@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'outcomes/categories', to: 'outcomes#categories'
 
   resources :projects do
+    get 'overview', on: :member
     get 'solutions', on: :member
     get 'stage1', on: :member
     get 'stage2', on: :member
