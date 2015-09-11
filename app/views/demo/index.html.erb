@@ -1,0 +1,105 @@
+<div ng-controller="projectCtrl">
+  <h3><%= t('.demo') %></h3>
+
+  <div class="row">
+    <div class="addNew col-md-12 text-right">
+      <button class="btn btn-warning" ng-click="add_edit_project()">
+        <i class="fa fa-plus-circle"></i> <%= t('.new_project') %>
+      </button>
+    </div>
+  </div>
+
+  <div role="tabpanel">
+    <ul class="nav nav-tabs" role="tablist" data-step="1" data-intro="<%= t('.step_one') %>">
+      <li role="presentation">
+        <a href="#private" aria-controls="private" role="tab" data-toggle="tab"><%= t('.my_projects') %></a>
+      </li>
+      <li role="presentation" class="active">
+        <a href="#public" aria-controls="public" role="tab" data-toggle="tab"><%= t('.other_projects') %></a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane" id="private">
+        <div class="alert" role="alert" ng-class="messages.response?'alert-success':'alert-danger'" ng-if="messages.message">
+          <button ng-click="dismiss_modal()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          {{ messages.message }}
+        </div>
+        <!-- <table class="table table-stripped">
+          <thead>
+            <tr>
+              <th width="60%"><%= t('.project') %></th>
+              <th><%= t('.focus_area') %></th>
+              <th class="text-right"><%= t('.actions') %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr title="{{ project.description | limitTo: 140 }}" ng-repeat="project in projects">
+              <td><a href="/projects/{{ project.id }}" target="_self">{{ project.title }}</a></td>
+              <td>{{ project.focus_area }}</td>
+              <td class="controllers">
+                <i class="fa fa-globe" ng-if="project.public" title="<%= t('.public') %>"></i>
+                <i class="fa fa-gears" ng-click="add_edit_project(project)" ng-if="project.permission == 'owner'"></i>
+                <i class="fa fa-user-plus" ng-click="user_permission(project)" ng-if="project.permission == 'owner'"></i>
+                <a href="/projects/{{ project.id }}" target="_self"><i class="fa fa-edit"></i></a>
+                <i class="fa fa-eye" ng-click=""></i>
+                <i class="fa fa-trash" ng-click="delete_project(project)" ng-if="project.permission == 'owner'"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table> -->
+      </div>
+
+      <div role="tabpanel" class="tab-pane active" id="public">
+        <!-- <table class="table table-stripped">
+          <thead>
+            <tr>
+              <th width="60%"><%= t('.project') %></th>
+              <th><%= t('.focus_area') %></th>
+              <th class="text-right"><%= t('.actions') %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr title="{{ project.description | limitTo: 140 }}" ng-repeat="project in public_projects">
+              <td><a href="/projects/{{ project.id }}" target="_self">{{ project.title }}</a></td>
+              <td>{{ project.focus_area }}</td>
+              <td class="controllers">
+                <i class="fa fa-eye" ng-click=""></i>
+              </td>
+            </tr>
+          </tbody>
+        </table> -->
+        <table class="table table-stripped">
+          <thead>
+            <tr>
+              <td>Project</td>
+              <td>Actions</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-step="2" data-intro="<%= t('.step_two') %>">
+              <td><%= link_to @project.title, demo_path(@project)  %></td>
+              <td>
+                <%= link_to demo_path(@project) do %>
+                  <i class="fa fa-eye"></i>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    if (RegExp('tour', 'gi').test(window.location.search)) {
+      introJs().setOption('doneLabel', 'Next page').start().oncomplete(function() {
+        window.location.href = '/demo/1?tour=true';
+      });
+    }
+  })
+</script>
+
+
