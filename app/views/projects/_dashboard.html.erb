@@ -8,9 +8,9 @@
     <div class="well">
       <h3><%= @project.activities.count.presence || "0" %> Activities</h3>
       <ul class="fa-ul">
-        <li class="successful"><i class="fa-li fa fa-check-circle"></i>16 actividades éxitosas</li>
-        <li class="neutral"><i class="fa-li fa fa-minus-circle"></i>5 actividades neutras</li>
-        <li class="failed"><i class="fa-li fa fa-times-circle"></i>1 actividad fallida</li>
+        <li class="successful"><i class="fa-li fa fa-check-circle"></i><%= @successful_activities.presence %> successful activities</li>
+        <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @neutral_activities.presence %> neutral activities</li>
+        <li class="failed"><i class="fa-li fa fa-times-circle"></i><%= @failed_activities.presence %> failed activities</li>
       </ul>
     </div>
   </div>

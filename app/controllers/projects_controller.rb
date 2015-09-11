@@ -43,6 +43,21 @@ class ProjectsController < ApplicationController
       @outcomes_size = @outcomes_size + o.outcomes.size
     end
 
+    @successful_activities = 0
+    @neutral_activities = 0
+    @failed_activities = 0
+    @project.activities.each do |ac|
+      if !ac.indicator.nil?
+        if ( ac.indicator.percentage.to_i >= 60 && ac.indicator.percentage.to_i <= 100 )
+          @successful_activities = @successful_activities + 1
+        elsif ( ac.indicator.percentage.to_i >= 39 && ac.indicator.percentage.to_i <= 59 )
+          @neutral_activities = @neutral_activities + 1
+        elsif ( ac.indicator.percentage.to_i >= 0 && ac.indicator.percentage.to_i <= 38 )
+          @failed_activities = @failed_activities + 1
+        end
+      end
+    end
+
     if !@project.real_problem.blank?
       @real_problem = @project.real_problem
       if !@project.real_problem.try(:policy_problems).try(:blank?)
