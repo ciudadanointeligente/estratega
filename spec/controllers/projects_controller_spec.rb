@@ -107,6 +107,14 @@ RSpec.describe ProjectsController, :type => :controller do
     end
   end
 
+  describe "GET overview" do
+    it "assigns the requested project as @project" do
+      project = Project.create! valid_attributes
+      get :overview, {:id => project.to_param}, valid_session
+      expect(assigns(:project)).to eq(project)
+    end
+  end
+
   describe "GET new" do
     it "assigns a new project as @project" do
       get :new, {}, valid_session
