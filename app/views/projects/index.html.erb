@@ -35,7 +35,8 @@
           </thead>
           <tbody>
             <tr title="{{ project.description | limitTo: 140 }}" ng-repeat="project in projects">
-              <td><a href="/projects/{{ project.id }}" target="_self">{{ project.title }}</a></td>
+              <td><a href="/projects/{{ project.id }}" ng-if="project.permission == 'owner'" target="_self">{{ project.title }}</a>
+              <a href="/projects/{{ project.id }}" ng-if="project.permission == 'collaborator'" target="_self">{{ project.title }}</a></td>
               <td>{{ project.focus_area }}</td>
               <td class="controllers">
                 <i class="fa fa-globe" ng-if="project.public" title="<%= t('.public') %>"></i>
