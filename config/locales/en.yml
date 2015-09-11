@@ -901,8 +901,14 @@ en:
       new_add_to_share: 'You are invited to activate your account and collaborate in the proyect:'
       activate_account: 'Activate my account'
   demo:
+    index:
+      step_one: "step one"
+      step_two: "step two"
+    show:
+      step_three: "step three"
+      step_four: "step four"
     stage1:
-      projects: "Projects"
+      projects: "Demo"
       stage1: "Stage 1"
       title: "What problems you want to address? What policy change you aim to achieve?"
       description: "The foundation of an effective advocacy strategy is a common understanding of the main problems that affect children, their policy dimensions and related policy solutions. It is important you take time to go through this discussion because without a clear, articulated issue and well-defined problems and solutions the remaining parts of the strategy will lose focus."
@@ -936,3 +942,5 @@ en:
       error_getting_policy: "Error while getting the policy problem information"
       confirm_delete_solution: "Are you sure you want to delete this solution?"
       confirm_delete_policy: "Are you sure you want to delete this policy problem?"
+      step_five: "step five"
+      step_six: "step six"

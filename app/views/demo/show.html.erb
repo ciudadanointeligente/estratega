@@ -13,7 +13,7 @@
 <p><%= @project.description %></p>
 <hr>
 <div role="tabpanel">
-  <ul class="nav nav-tabs" role="tablist" data-step="1" data-intro="lol">
+  <ul class="nav nav-tabs" role="tablist" data-step="3" data-intro="<%= t('.step_three') %>">
     <li role="presentation" class="active"><a href="#stages" aria-controls="stages" role="tab" data-toggle="tab"><%= t('.stages') %></a></li>
     <li role="presentation"><a href="#dashboard" aria-controls="dashboard" role="tab" data-toggle="tab"><%= t('.dashboard') %></a></li>
     <li role="presentation"><a href="#documents" aria-controls="documents" role="tab" data-toggle="tab"><%= t('.documents') %></a></li>
@@ -23,13 +23,13 @@
   <!-- tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="stages">
-      <div class="">
+      <div data-step="4" data-intro="<%= t('.step_four') %>">
         <div class="">
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title" title="Complete Stage"><a data-toggle="collapse" href="#stage1" aria-expanded="false" aria-controls="collapseExample"><i class="<%= icon_class_stage 1 %>"></i> Stage 1: Articulate problems and policy solutions</a></h4>
             </div>
-            <div class="collapse steps" id="stage1">
+            <div class="collapse steps in" id="stage1">
               <table class="table">
                   <tbody>
                     <!-- real problem -->
@@ -96,3 +96,14 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    if (RegExp('tour', 'gi').test(window.location.search)) {
+      introJs().setOption('doneLabel', 'Next page').start().oncomplete(function() {
+        window.location.href = '/demo/1/stage1?tour=true';
+      });
+      $('.introjs-bullets li a')[0].className = 'active';
+    }
+  })
+</script>

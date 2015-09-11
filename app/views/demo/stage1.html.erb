@@ -22,13 +22,13 @@
       <p><%= t('.description') %></p>
       <div role="tabpanel" class="tabpanel">
         <!-- nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
+        <ul class="nav nav-tabs" role="tablist" data-step="5" data-intro="<%= t('.step_five') %>">
           <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab"><%= t('.data_entry') %></a></li>
           <li role="presentation"><a href="#explanation" aria-controls="explanation" role="tab" data-toggle="tab"><%= t('.explanation_examples') %></a></li>
         </ul>
         <!-- tab panes -->
         <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="data">
+          <div role="tabpanel" class="tab-pane active" id="data" data-step="6" data-intro="<%= t('.step_six') %>" data-position="top">
             <div class="bg_grey" id='real-problem'>
               <!-- <button type="button" class="btn btn-warning pull-right">Edit</button> -->
               <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle1_tooltip') %>"><i class="fa fa-info"></i></button>
@@ -105,3 +105,12 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    if (RegExp('tour', 'gi').test(window.location.search)) {
+      introJs().start()
+      $('.introjs-bullets li a')[0].className = 'active';
+    }
+  })
+</script>
