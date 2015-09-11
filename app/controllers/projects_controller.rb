@@ -24,7 +24,9 @@ class ProjectsController < ApplicationController
   def index
     @projects = current_user.projects
     if params[:public]
-      @projects = Project.where("public = true")
+      my_projects = current_user.projects
+      public_projects = Project.where(public: :true)
+      @projects = public_projects - my_projects
     end
     respond_with(@projects)
   end
