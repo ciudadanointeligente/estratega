@@ -23,7 +23,7 @@
             </div>
             <!-- policy problems -->
             <div>
-              <h2>Policy problems (<%= @policy_problems.count.presence || "" %>)</h2>
+              <h2>Policy problems (<%= @policy_problems ? @policy_problems.count.presence : "" %>)</h2>
               <% if @policy_problems.nil? %>
                 <p><%= t('.uncreated') %></p>
               <% elsif @policy_problems.count < 1 %>
