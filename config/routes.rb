@@ -57,4 +57,8 @@ Rails.application.routes.draw do
   get '/javascript_test/:script' => 'javascript_test#render_test', :as => 'javascript_test'
 
   get '/models', to: 'visitors#models'
+
+  resources :demo do
+    get 'stage1', on: :member
+  end
 end

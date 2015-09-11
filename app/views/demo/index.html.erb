@@ -1,0 +1,20 @@
+<h3>Demo</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>Project</td>
+      <td>Actions</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= link_to @project.title, demo_path(@project)  %></td>
+      <td>
+        <%= link_to demo_path(@project) do %>
+          <i class="fa fa-eye"></i>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
