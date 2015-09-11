@@ -6,7 +6,7 @@
 <div class="row">
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
     <div class="well">
-      <h3>22 Actividades</h3>
+      <h3><%= @project.activities.count.presence || "0" %> Activities</h3>
       <ul class="fa-ul">
         <li class="successful"><i class="fa-li fa fa-check-circle"></i>16 actividades éxitosas</li>
         <li class="neutral"><i class="fa-li fa fa-minus-circle"></i>5 actividades neutras</li>
@@ -138,7 +138,7 @@
 <div class="row">
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
     <div class="well">
-      <h3>10 Interim Outcomes</h3>
+      <h3><%= @outcomes_size.presence %> Interim Outcomes</h3>
       <ul class="fa-ul">
         <li class="neutral"><i class="fa-li fa fa-minus-circle"></i>1 outcome sin actividades</li>
         <li class="neutral"><i class="fa-li fa fa-minus-circle"></i>1 outcome sin actividades próximas</li>
@@ -182,7 +182,7 @@
 <div class="row">
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
     <div class="well">
-      <h3>8 Objetives</h3>
+      <h3><%= @objectives.count.presence || "0" %> Objetives</h3>
       <ul class="fa-ul">
         <li class="neutral"><i class="fa-li fa fa-minus-circle"></i>2 Objetives sin interim outcome</li>
         <li class="failed"><i class="fa-li fa fa-times-circle"></i>3 Objetives con actividades fallidas</li>
