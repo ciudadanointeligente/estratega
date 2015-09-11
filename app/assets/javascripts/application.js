@@ -32,3 +32,4 @@
 //= require angular_files/stage6_controller
 //= require angular_files/solutions_form
 //= require angular_files/project_controller
+//= require introjs/intro
