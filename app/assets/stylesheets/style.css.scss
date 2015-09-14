@@ -586,3 +586,10 @@ table.indicator td:first-child {
   font-weight: 800;
   color: #00A4EE;
 }
+
+.panel-default > .panel-heading {
+    background-color: #575757;
+    border-color: #575757;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+}
