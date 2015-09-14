@@ -51,6 +51,6 @@ class AsksController < ApplicationController
     end
 
     def ask_params
-      params.require(:ask).permit(:title, :description, :execution, :objective_id, :actor_id)
+      params.require(:ask).permit(:description, :execution, :objective_id, :actor_id)
     end
 end
