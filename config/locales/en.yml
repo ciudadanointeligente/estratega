@@ -56,6 +56,11 @@ en:
       focus_area: "Focus Area"
       actions: "Actions"
       public: "Public"
+      config: "Config the project"
+      share: "Share the project"
+      edit: "Edit"
+      overview: "Overview"
+      delete: "Delete the project"
     project_modal: # modal `new project` of index
       project: "Project"
       title: "Title"
