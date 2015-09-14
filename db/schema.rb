@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150902151457) do
+ActiveRecord::Schema.define(version: 20150914191701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,10 +76,10 @@ ActiveRecord::Schema.define(version: 20150902151457) do
     t.text     "expected_results"
     t.text     "obtained_results"
     t.text     "settings"
-    t.text     "percentage"
     t.integer  "activity_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "percentage"
   end
 
   add_index "indicators", ["activity_id"], name: "index_indicators_on_activity_id", using: :btree
