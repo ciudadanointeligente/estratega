@@ -48,11 +48,11 @@ class ProjectsController < ApplicationController
     @failed_activities = 0
     @project.activities.each do |ac|
       if !ac.indicator.nil?
-        if ( ac.indicator.percentage.to_i >= 60 && ac.indicator.percentage.to_i <= 100 )
+        if ( ac.indicator.percentage >= 60 && ac.indicator.percentage <= 100 )
           @successful_activities = @successful_activities + 1
-        elsif ( ac.indicator.percentage.to_i >= 39 && ac.indicator.percentage.to_i <= 59 )
+        elsif ( ac.indicator.percentage >= 39 && ac.indicator.percentage <= 59 )
           @neutral_activities = @neutral_activities + 1
-        elsif ( ac.indicator.percentage.to_i >= 0 && ac.indicator.percentage.to_i <= 38 )
+        elsif ( ac.indicator.percentage >= 0 && ac.indicator.percentage <= 38 )
           @failed_activities = @failed_activities + 1
         end
       end
