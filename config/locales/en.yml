@@ -57,8 +57,9 @@ en:
       actions: "Actions"
       public: "Public"
       guide_me: "Tour"
-      step_one: "En estas pestanas podrás ver los proyectos en que trabajas (My project) y los proyectos compartidos por la comunidad (Other projects)"
-      step_two: "Para empezar a ingresar datos presionamos el proyecto a editar"
+      step_one: "Para comenzar a trabajar creemos un <strong>New Project</strong>"
+      step_two: "En estas pestanas podrás ver los proyectos en que trabajas <strong>(My project)</strong> y los proyectos compartidos por la comunidad <strong>(Other projects)</strong>"
+      step_three: "Para empezar a trabajar en el proyecto podemos hacer click sobre el nombre o seleccionar una de las funciones de la columna <strong>Actions</strong>"
     project_modal: # modal `new project` of index
       project: "Project"
       title: "Title"
