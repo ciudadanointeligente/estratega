@@ -140,9 +140,9 @@
     <div class="well">
       <h3><%= @outcomes_size.presence %> Interim Outcomes</h3>
       <ul class="fa-ul">
-        <li class="neutral"><i class="fa-li fa fa-minus-circle"></i>1 outcome sin actividades</li>
-        <li class="neutral"><i class="fa-li fa fa-minus-circle"></i>1 outcome sin actividades próximas</li>
-        <li class="failed"><i class="fa-li fa fa-times-circle"></i>3 outcome con actividades vencidas</li>
+        <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @outcomes_without_activities.presence %> outcomes without activities</li>
+        <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @outcomes_without_upcoming_activities.presence %> outcomes without upcoming activities</li>
+        <li class="failed"><i class="fa-li fa fa-times-circle"></i><%= @outcomes_with_overdue_activities.presence %> outcomes with overdue activities</li>
       </ul>
     </div>
   </div>

@@ -37,17 +37,31 @@ class ProjectsController < ApplicationController
     @a_size = 0
     @barriers_size = 0
     @factors_size = 0
+    @outcomes = Array.new
+    @assigned_outcomes = Array.new
     @outcomes_size = 0
     @objectives.each do |o|
       @a_size = @a_size + o.actors.size
       @barriers_size = @barriers_size + o.barriers.size
       @factors_size = @factors_size + o.enabling_factors.size
       @outcomes_size = @outcomes_size + o.outcomes.size
+
+      o.outcomes.each do |outcome|
+        @outcomes << outcome
+      end
     end
 
+    # dashboard
     @successful_activities = 0
     @neutral_activities = 0
     @failed_activities = 0
+
+    today = DateTime.now
+    near_future = DateTime.now + 3.weeks
+    @outcomes_without_activities = 0
+    @outcomes_without_upcoming_activities = 0
+    @outcomes_with_overdue_activities = 0
+
     @project.activities.each do |ac|
       if !ac.indicator.nil?
         if ( ac.indicator.percentage >= 60 && ac.indicator.percentage <= 100 )
@@ -58,7 +72,18 @@ class ProjectsController < ApplicationController
           @failed_activities = @failed_activities + 1
         end
       end
+
+      if ac.scheduling.to_datetime < today
+        @outcomes_with_overdue_activities = @outcomes_with_overdue_activities + 1
+      elsif ac.scheduling.to_datetime > near_future
+        @outcomes_without_upcoming_activities = @outcomes_without_upcoming_activities + 1
+      end
+      ac.outcomes.each do |outcome|
+        @assigned_outcomes << outcome
+      end
     end
+    @outcomes_without_activities = @outcomes.uniq{|x| x.id}.size - @assigned_outcomes.uniq{|x| x.id}.size
+    # end dashboard
 
     if !@project.real_problem.blank?
       @real_problem = @project.real_problem
