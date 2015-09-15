@@ -65,10 +65,7 @@ table .fa-pencil-square-o, table .fa-trash, table .fa-line-chart {
   font-size: 15px;
   color: #575757;
 }
-.bg_grey table td, table td {
-  font-weight: 300;
-  color: #7D7D7D;
-}
+
 .bg_grey .btn.pull-right {
   margin-left: 10px;
   margin-top: 5px;
@@ -281,9 +278,7 @@ h4.panel-title {
 .td-w-10p .fa-lock {
   color: #7D7D7D;
 }
-.td-w-10p .fa-unlock, .td-w-10p .fa-unlock-alt {
-  color: #0091EA;
-}
+
 .td-w-3p {
   width: 20px;
   vertical-align: text-top;
@@ -538,6 +533,7 @@ table.indicator td:first-child {
   padding-right: 20px;
 }
 
+
 /*Project*/
 
 .project-hero {
@@ -592,4 +588,50 @@ table.indicator td:first-child {
     border-color: #575757;
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
+}
+
+.panel-heading h4 {
+    margin-bottom: 0px;
+}
+
+.panel-title .fa {
+    background-color: #666;
+    padding: 7px;
+    border-radius: 15px;
+}
+
+.panel-title .fa-check {
+    color: #00C2E4;
+}
+
+.panel-title .fa-times {
+    color: #FF6459;
+}
+
+.panel-default {
+    border-color: rgba(255, 255, 255, 0);
+}
+
+.panel {
+    border-radius: 6px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.panel-info > .panel-heading {
+    color: #FFFFFF;
+    background-color: #7D7D7D;
+    border-color: rgba(255, 255, 255, 0);
+    margin: -20px -20px 20px -20px;
+}
+
+.panel-info {
+    border-color: rgba(255, 255, 255, 0);
+    background-color: #F3F3F3;
+    padding: 20px;
+}
+
+.panel-info .table {
+    background-color: #fff;
+    border-radius: 6px;
 }

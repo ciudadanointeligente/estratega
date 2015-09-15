@@ -11,9 +11,11 @@ module ProjectsHelper
   def icon_class_stage stage
     case stage
     when 1
-      (@real_problem && @policy_problems && @solutions) ? "fa fa-check-circle" : "fa fa-times-circle"
+      (@real_problem && @policy_problems && @solutions) ? "fa fa-check" : "fa fa-times"
     when 2
-      @objectives.blank? ? "fa fa-times-circle" : "fa fa-check-circle"
+      @objectives.blank? ? "fa fa-times" : "fa fa-check"
+    when 3
+      (@actors.blank? && @enabling_factors.blank? && @barriers.blank? && @outcomes.blank? && @activities.blank? && @asks.blank? ) ? "fa fa-times" : "fa fa-check"
     end
   end
 
