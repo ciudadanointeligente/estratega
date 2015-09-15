@@ -96,13 +96,13 @@
           <% if @objectives.count < 1 %>
             <%= t('.stage3_without_objectives').html_safe %>
           <% else %>
-            <% @objectives.each do |objective| %>
+            <% @objectives.each_with_index do |objective, i| %>
               <div class="panel-body">
                   <div class="panel panel-info">
                     <div class="panel-heading">
                       <table class="table_goals">
                       <tr title="Stage Uninitiated or Incomplete">
-                        <td><%= objective.title %></td>
+                        <td><%= t('.objective_cnt') %> <%= i + 1 %> / <%= objective.title %></td>
                       </tr>
                       </table>
                     </div>
