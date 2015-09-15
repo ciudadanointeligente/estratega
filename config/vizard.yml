@@ -1,5 +1,5 @@
 production:
-  BASE_URL: ~
+  BASE_URL: 'https://vizard-v2-dev.herokuapp.com'
   SMTP_SETTING_ADDRESS: 'smtp.gmail.com'
   SMTP_SETTING_PORT: 587
   SMTP_SETTING_USERNAME: ''

@@ -71,9 +71,9 @@
         <div class="">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h4 class="panel-title" title="You must complete the previous stage"><a data-toggle="collapse" href="#stage2" aria-expanded="false" aria-controls="collapseExample"><i class="<%= icon_class_stage 2 %>"></i> <%= t('.stage2_title') %></a></h4>
+              <h4 class="panel-title" title="You must complete the previous stage"><i class="<%= icon_class_stage 2 %>"></i> <%= t('.stage2_title') %></h4>
             </div>
-            <div class="collapse steps" id="stage2">
+            <div id="stage2">
               <table class="table">
                 <tbody>
                   <tr title="You must complete the previous step">
@@ -89,95 +89,97 @@
         </div>
       </div>
       <hr>
-      <h4 class="title_goals"><%= t('.stage3_title') %></h4>
-      <% if @objectives.count < 1 %>
-        <%= t('.stage3_without_objectives').html_safe %>
-      <% else %>
-        <% @objectives.each do |objective| %>
-          <div class="">
-            <div class="">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <table class="table_goals">
-                  <tr title="Stage Uninitiated or Incomplete">
-                    <td class="td-w-3p"><i class="fa fa-chevron-circle-right pull-left"></i></td>
-                    <td><a data-toggle="collapse" href="#goal-<%= objective.id %>" aria-expanded="false" aria-controls="collapseExample"><%= objective.title %></a></td>
-                  </tr>
-                  </table>
-                </div>
-                <div class="collapse steps in" id="goal-<%= objective.id %>">
-                  <table class="table">
-                    <tbody>
-                      <tr title="Uninitiated Step">
-                        <td class="text-center td-w-10p">
-                          <i class="fa fa-unlock"></i>
-                        </td>
-                        <td><%= link_to "Understand the institutional and decision-making cycles/Policy process", stage3_project_objective_path(@project, objective), target: "_self" %></td>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title"><i class="<%= icon_class_stage 3 %>"></i> <%= t('.stage3_title') %></h4>
+        </div>
+          <% if @objectives.count < 1 %>
+            <%= t('.stage3_without_objectives').html_safe %>
+          <% else %>
+            <% @objectives.each do |objective| %>
+              <div class="panel-body">
+                  <div class="panel panel-info">
+                    <div class="panel-heading">
+                      <table class="table_goals">
+                      <tr title="Stage Uninitiated or Incomplete">
+                        <td><%= objective.title %></td>
                       </tr>
-                      <tr title="You must complete the previous step">
-                        <td class="text-center td-w-10p">
-                          <i class="<%= icon_class objective.actors %>"></i>
-                        </td>
-                        <td>
-                          <%= link_to objective_link_text(objective, :actors), stage3_project_objective_path(@project, objective, anchor: "actors"), target: "_self" %>
-                        </td>
-                      </tr>
-                      <tr title="You must complete the previous step">
-                        <td class="text-center td-w-10p">
-                          <i class="<%= icon_class objective.enabling_factors %>"></i>
-                        </td>
-                        <td>
-                          <%= link_to objective_link_text(objective, :enabling_factors), stage3_project_objective_path(@project, objective, anchor: "factors-barriers"), target: "_self" %>
-                        </td>
-                      </tr>
-                      <tr title="You must complete the previous step">
-                        <td class="text-center td-w-10p">
-                          <i class="<%= icon_class objective.outcomes %>"></i>
-                        </td>
-                        <td>
-                          <%= link_to objective_link_text(objective, :outcomes), stage4_project_objective_path(@project, objective), target: "_self" %>
-                        </td>
-                      </tr>
-                      <tr title="You must complete the previous step">
-                        <td class="text-center td-w-10p">
-                          <i class="fa fa-lock"></i>
-                        </td>
-                        <td>
-                          <a href="#">(Coming soon) Define theory of change</a>
-                        </td>
-                      </tr>
-                      <tr title="You must complete the previous step">
-                        <td class="text-center td-w-10p">
-                          <i class="<%= icon_class objective.activities %>"></i>
-                        </td>
-                        <td>
-                          <%= link_to objective_link_text(objective, :activities), stage5_project_objective_path(@project, objective), target: "_self" %>
-                        </td>
-                      </tr>
-                      <tr title="You must complete the previous step">
-                        <td class="text-center td-w-10p">
-                          <i class="<%= icon_class objective.asks %>"></i>
-                        </td>
-                        <td>
-                          <%= link_to objective_link_text(objective, :asks), stage6_project_objective_path(@project, objective), target: "_self" %>
-                        </td>
-                      </tr>
-                      <tr title="You must complete the previous step">
-                        <td class="text-center td-w-10p">
-                          <i class="fa fa-lock"></i>
-                        </td>
-                        <td>
-                          <a href="#">(Coming soon) Develop messages</a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                      </table>
+                    </div>
+                    <div id="goal-<%= objective.id %>">
+                      <table class="table">
+                        <tbody>
+                          <tr title="Uninitiated Step">
+                            <td class="text-center td-w-10p">
+                              <i class="fa fa-unlock"></i>
+                            </td>
+                            <td><%= link_to "Understand the institutional and decision-making cycles/Policy process", stage3_project_objective_path(@project, objective), target: "_self" %></td>
+                          </tr>
+                          <tr title="You must complete the previous step">
+                            <td class="text-center td-w-10p">
+                              <i class="<%= icon_class objective.actors %>"></i>
+                            </td>
+                            <td>
+                              <%= link_to objective_link_text(objective, :actors), stage3_project_objective_path(@project, objective, anchor: "actors"), target: "_self" %>
+                            </td>
+                          </tr>
+                          <tr title="You must complete the previous step">
+                            <td class="text-center td-w-10p">
+                              <i class="<%= icon_class objective.enabling_factors %>"></i>
+                            </td>
+                            <td>
+                              <%= link_to objective_link_text(objective, :enabling_factors), stage3_project_objective_path(@project, objective, anchor: "factors-barriers"), target: "_self" %>
+                            </td>
+                          </tr>
+                          <tr title="You must complete the previous step">
+                            <td class="text-center td-w-10p">
+                              <i class="<%= icon_class objective.outcomes %>"></i>
+                            </td>
+                            <td>
+                              <%= link_to objective_link_text(objective, :outcomes), stage4_project_objective_path(@project, objective), target: "_self" %>
+                            </td>
+                          </tr>
+<!--                           <tr title="You must complete the previous step">
+                            <td class="text-center td-w-10p">
+                              <i class="fa fa-lock"></i>
+                            </td>
+                            <td>
+                              <a href="#">(Coming soon) Define theory of change</a>
+                            </td>
+                          </tr> -->
+                          <tr title="You must complete the previous step">
+                            <td class="text-center td-w-10p">
+                              <i class="<%= icon_class objective.activities %>"></i>
+                            </td>
+                            <td>
+                              <%= link_to objective_link_text(objective, :activities), stage5_project_objective_path(@project, objective), target: "_self" %>
+                            </td>
+                          </tr>
+                          <tr title="You must complete the previous step">
+                            <td class="text-center td-w-10p">
+                              <i class="<%= icon_class objective.asks %>"></i>
+                            </td>
+                            <td>
+                              <%= link_to objective_link_text(objective, :asks), stage6_project_objective_path(@project, objective), target: "_self" %>
+                            </td>
+                          </tr>
+<!--                           <tr title="You must complete the previous step">
+                            <td class="text-center td-w-10p">
+                              <i class="fa fa-lock"></i>
+                            </td>
+                            <td>
+                              <a href="#">(Coming soon) Develop messages</a>
+                            </td>
+                          </tr> -->
+                        </tbody>
+                      </table>
+                    </div>
                 </div>
               </div>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
+            <% end %>
+          <% end %>
+        </div>
+
     </div>
     <div role="tabpanel" class="tab-pane" id="dashboard">
       <%= render "dashboard" %>
