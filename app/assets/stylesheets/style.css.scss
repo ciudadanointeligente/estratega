@@ -2,7 +2,7 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
-  color: #7f8c8c;
+  color: #575757;
   background-color: #f3f3f3;
   font-weight: 300;
 }
@@ -20,9 +20,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 h2, .h2 {
   font-size: 36px;
 }
-.tab-pane li {
-  margin-bottom: 15px;
-}
+
 input, button, select, textarea {
   font-family: 'Open Sans', sans-serif;
   color: #7f8c8c;
@@ -30,7 +28,7 @@ input, button, select, textarea {
 select {
   padding: 5px;
 }
-table .fa-pencil-square-o, table .fa-trash {
+table .fa-pencil-square-o, table .fa-trash, table .fa-line-chart {
   color: #0091EA;
   cursor: pointer;
 }
@@ -538,4 +536,60 @@ table.indicator td {
 table.indicator td:first-child {
   font-size: 2.143em;
   padding-right: 20px;
+}
+
+/*Project*/
+
+.project-hero {
+    margin: -1px -0px 30px -0px;
+    padding: 20px;
+    background: #00C2E4 url(/assets/project-folder.png) no-repeat bottom right;
+    color: #fff;
+    min-height: 210px;
+    border-radius: 0px 6px 0px 0px;
+}
+
+.project-hero h2 {
+    color: #fff;
+}
+
+.separator {
+    border-top: 1px solid #F3F3F3;
+    padding: 10px 0;
+    margin-top: 30px;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  border: 1px solid #00C2E4;
+  color: #ffffff;
+  background-color: #00C2E4;
+}
+
+.tab-content > .active {
+    background-color: transparent;
+    padding: 0px;
+}
+
+.box {
+    padding: 20px;
+    border-radius: 6px;
+    background-color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.box:first-child {
+    margin-top: -30px;
+    border-radius: 0px 0px 6px 6px;
+}
+
+.blue {
+  font-weight: 800;
+  color: #00A4EE;
+}
+
+.panel-default > .panel-heading {
+    background-color: #575757;
+    border-color: #575757;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
 }

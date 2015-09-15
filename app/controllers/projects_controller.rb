@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :solutions, :public, :stage1, :stage2, :share]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :solutions, :public, :stage1, :stage2, :share, :overview]
 
   respond_to :html, :json
 
@@ -24,7 +24,9 @@ class ProjectsController < ApplicationController
   def index
     @projects = current_user.projects
     if params[:public]
-      @projects = Project.where("public = true")
+      my_projects = current_user.projects
+      public_projects = Project.where(public: :true)
+      @projects = public_projects - my_projects
     end
     respond_with(@projects)
   end
@@ -139,6 +141,31 @@ class ProjectsController < ApplicationController
         if permission.save
           data_send = {email: share_user.email, message: message, project: @project}
           UserMailer.exist_user_share(data_send).deliver_now
+        end
+      end
+    end
+    respond_with(@project)
+  end
+
+  def overview
+    @objectives = @project.objectives.where('prioritized = true')
+    @a_size = 0
+    @barriers_size = 0
+    @factors_size = 0
+    @outcomes_size = 0
+    @objectives.each do |o|
+      @a_size = @a_size + o.actors.size
+      @barriers_size = @barriers_size + o.barriers.size
+      @factors_size = @factors_size + o.enabling_factors.size
+      @outcomes_size = @outcomes_size + o.outcomes.size
+    end
+
+    if !@project.real_problem.blank?
+      @real_problem = @project.real_problem
+      if !@project.real_problem.try(:policy_problems).try(:blank?)
+        @policy_problems = @project.real_problem.policy_problems
+        if !@project.real_problem.try(:get_solutions).try(:blank?)
+          @solutions = @project.real_problem.get_solutions
         end
       end
     end

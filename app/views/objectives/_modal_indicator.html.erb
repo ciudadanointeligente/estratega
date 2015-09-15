@@ -25,7 +25,7 @@
     </div>
     <div class="form-group">
       <label for="percentage"><%= t('.percentage') %></label>
-      <input name="percentage" class="form-control" ng-model="current_indicator.percentage" placeholder="<%= t('.percentage') %>">
+      <input name="percentage" class="form-control" ng-model="current_indicator.percentage" placeholder="<%= t('.percentage') %>" type="number" min="0" max="100" step="10">
     </div>
     <div class="modal-footer">
       <button class="btn btn-primary" ng-click="save($event)"><%= t('.save_button') %></button>

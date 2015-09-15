@@ -1,0 +1,17 @@
+<% content_for :breadcrumb do %>
+  <div class="breadcrumb_bg">
+    <ol class="breadcrumb container">
+      <li>
+        <%= link_to t('.projects'), projects_path, target: "_self" %>
+      </li>
+      <li class="active"><%= truncate(@project.title, length: 30) %></li>
+    </ol>
+  </div>
+<% end %>
+
+<h2><%= @project.title %></h2>
+<p><%= @project.description %></p>
+<hr>
+<div>
+  <%= render "overview" %>
+</div>
