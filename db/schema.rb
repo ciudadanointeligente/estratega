@@ -75,10 +75,10 @@ ActiveRecord::Schema.define(version: 20150914204545) do
     t.text     "expected_results"
     t.text     "obtained_results"
     t.text     "settings"
-    t.text     "percentage"
     t.integer  "activity_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "percentage"
   end
 
   add_index "indicators", ["activity_id"], name: "index_indicators_on_activity_id", using: :btree
