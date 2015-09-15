@@ -25,6 +25,7 @@
               </br>
             </div>
             <!-- policy problems -->
+            <% if !@policy_problems.blank? %>
             <div class="box">
               <% @policy_problems.each_with_index do |policy, i| %>
                 <div class="label label-default">Policy problem <%= i+1 %></div>
@@ -56,6 +57,7 @@
                 <% end %>
               <% end %>
             </div>
+            <% end %>
             <!-- end policy problems -->
           <% end %>
           <!-- end real problem -->
