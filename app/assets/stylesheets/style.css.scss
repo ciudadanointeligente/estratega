@@ -583,6 +583,10 @@ table.indicator td:first-child {
   color: #00A4EE;
 }
 
+.panel-heading {
+    padding: 20px 240px 20px 20px;
+}
+
 .panel-default > .panel-heading {
     background-color: #575757;
     border-color: #575757;
@@ -634,4 +638,8 @@ table.indicator td:first-child {
 .panel-info .table {
     background-color: #fff;
     border-radius: 6px;
+}
+
+.addNew.dropdown.pull-right {
+    margin-bottom: 10px;
 }
