@@ -15,7 +15,7 @@ module ProjectsHelper
     when 2
       @objectives.blank? ? "fa fa-times" : "fa fa-check"
     when 3
-      (@actors.blank? && @enabling_factors.blank? && @barriers.blank? && @outcomes.blank? && @activities.blank? && @asks.blank? ) ? "fa fa-times" : "fa fa-check"
+      ( @a_size > 0 && @factors_size > 0 && !@project.activities.nil? ) ? "fa fa-check" : "fa fa-times"
     end
   end
 
