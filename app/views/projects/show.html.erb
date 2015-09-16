@@ -196,6 +196,16 @@
 <script type="text/javascript">
 $(function () {
     var tabName = window.location.hash;
-    $('#nav-tabs a[href="' + tabName + '"]').tab('show');
+    if( tabName ) {
+      $('#nav-tabs a[href="' + tabName + '"]').tab('show');
+      if( tabName == '#dashboard' )
+        draw_graph()
+    }
+
+    $('#nav-tabs a').click(function (e) {
+      e.preventDefault()
+      $(this).tab('show')
+      draw_graph()
+    })
 });
 </script>
