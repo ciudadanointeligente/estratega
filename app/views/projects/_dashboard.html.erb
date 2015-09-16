@@ -16,9 +16,9 @@
   </div>
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
     <div class="well text-center">
-      <h3>Porcentaje Actividades Finalizadas</h3>
-      <div class="c100 p20 big">
-          <span>20%</span>
+      <h3>Completed activities rate</h3>
+      <div class="c100 p<%= @rate_completed_activities %> big">
+          <span><%= @rate_completed_activities %>%</span>
           <div class="slice">
               <div class="bar"></div>
               <div class="fill"></div>
@@ -29,9 +29,9 @@
   </div>
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
     <div class="well text-center">
-      <h3>Porcentaje de Éxito</h3>
-      <div class="c100 p80 big">
-          <span>80%</span>
+      <h3>Success rate</h3>
+      <div class="c100 p<%= @rate_success_activities %> big">
+          <span><%= @rate_success_activities %>%</span>
           <div class="slice">
               <div class="bar"></div>
               <div class="fill"></div>

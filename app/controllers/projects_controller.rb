@@ -53,6 +53,9 @@ class ProjectsController < ApplicationController
     @objectives_without_outcomes = 0
     @objectives_with_failed_activities_diff = 0
     @objectives_with_failed_activities = Array.new
+    @completed_activities = 0
+    @rate_completed_activities = 0
+    @rate_success_activities = 0
 
     @objectives.each do |o|
       @a_size = @a_size + o.actors.size
@@ -88,10 +91,22 @@ class ProjectsController < ApplicationController
         ac.outcomes.each do |outcome|
           @assigned_outcomes << outcome
         end
+
+        if ac.completion == true
+          @completed_activities = @completed_activities + 1
+        end
       end
     end
     @objectives_with_failed_activities_diff = @objectives_with_failed_activities.uniq{|x| x.id}.size
     @outcomes_without_activities = @outcomes.uniq{|x| x.id}.size - @assigned_outcomes.uniq{|x| x.id}.size
+
+    if @project.activities.count == 0
+      @rate_completed_activities = 0
+      @rate_success_activities = 0
+    else
+      @rate_completed_activities = ( 100 / @project.activities.count ) * @completed_activities
+      @rate_success_activities = ( 100 / @project.activities.count ) * @successful_activities
+    end
 
     if !@project.real_problem.blank?
       @real_problem = @project.real_problem
