@@ -58,6 +58,7 @@ class ProjectsController < ApplicationController
     @rate_success_activities = 0
     @overdue_activities = 0
     @unfinished_activities = 0
+    @upcoming_activities = Array.new
 
     @objectives.each do |o|
       @a_size = @a_size + o.actors.size
@@ -103,10 +104,15 @@ class ProjectsController < ApplicationController
         if ac.completion == true
           @completed_activities = @completed_activities + 1
         end
+
+        if ac.scheduling.to_datetime > today
+          @upcoming_activities << ac
+        end
       end
     end
     @objectives_with_failed_activities_diff = @objectives_with_failed_activities.uniq{|x| x.id}.size
     @outcomes_without_activities = @outcomes.uniq{|x| x.id}.size - @assigned_outcomes.uniq{|x| x.id}.size
+    @upcoming_activities = @upcoming_activities.uniq{|x| x.id}
 
     if @project.activities.count == 0
       @rate_completed_activities = 0
