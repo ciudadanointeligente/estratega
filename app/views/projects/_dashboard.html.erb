@@ -182,10 +182,10 @@
 <div class="row">
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
     <div class="well">
-      <h3><%= @objectives.count.presence || "0" %> Objetives</h3>
+      <h3><%= @objectives.count.presence || "0" %> Objectives</h3>
       <ul class="fa-ul">
-        <li class="neutral"><i class="fa-li fa fa-minus-circle"></i>2 Objetives sin interim outcome</li>
-        <li class="failed"><i class="fa-li fa fa-times-circle"></i>3 Objetives con actividades fallidas</li>
+        <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @objectives_without_outcomes.presence %> Objectives without interim outcomes</li>
+        <li class="failed"><i class="fa-li fa fa-times-circle"></i><%= @objectives_with_failed_activities_diff.presence %> Objectives with failed activities</li>
       </ul>
     </div>
   </div>
