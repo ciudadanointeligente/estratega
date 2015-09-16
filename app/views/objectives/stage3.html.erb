@@ -76,7 +76,7 @@
                     <th><%= t('.description') %></th>
                     <th class="text-right"><%= t('.actions') %></th>
                   </tr>
-                  <tr ng-repeat="barrier in objective.barriers">
+                  <tr ng-repeat="barrier in objective.barriers track by $index">
                     <td>{{barrier}}</td>
                     <td class="text-right"><a href="#" title="Edit" ng-click="add_edit_barrier(barrier)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_barrier(barrier)"><i class="fa fa-trash"></i></a></td>
                   </tr>

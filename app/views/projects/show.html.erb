@@ -11,11 +11,11 @@
 
 <hr>
 <div role="tabpanel">
-  <ul class="nav nav-tabs" role="tablist">
+  <ul class="nav nav-tabs" role="tablist" id="nav-tabs">
     <li role="presentation" class="active"><a href="#stages" aria-controls="stages" role="tab" data-toggle="tab"><%= t('.stages') %></a></li>
+    <li role="presentation"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab"><%= t('.overview') %></a></li>
     <li role="presentation"><a href="#dashboard" aria-controls="dashboard" role="tab" data-toggle="tab"><%= t('.dashboard') %></a></li>
     <li role="presentation"><a href="#documents" aria-controls="documents" role="tab" data-toggle="tab"><%= t('.documents') %></a></li>
-    <li role="presentation"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab"><%= t('.overview') %></a></li>
   </ul>
 
   <!-- tab panes -->
@@ -96,13 +96,13 @@
           <% if @objectives.count < 1 %>
             <%= t('.stage3_without_objectives').html_safe %>
           <% else %>
-            <% @objectives.each do |objective| %>
+            <% @objectives.each_with_index do |objective, i| %>
               <div class="panel-body">
                   <div class="panel panel-info">
                     <div class="panel-heading">
                       <table class="table_goals">
                       <tr title="Stage Uninitiated or Incomplete">
-                        <td><%= objective.title %></td>
+                        <td><%= t('.objective_cnt') %> <%= i + 1 %> / <%= objective.title %></td>
                       </tr>
                       </table>
                     </div>
@@ -192,3 +192,10 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+$(function () {
+    var tabName = window.location.hash;
+    $('#nav-tabs a[href="' + tabName + '"]').tab('show');
+});
+</script>
