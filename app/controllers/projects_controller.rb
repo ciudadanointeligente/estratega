@@ -56,6 +56,8 @@ class ProjectsController < ApplicationController
     @completed_activities = 0
     @rate_completed_activities = 0
     @rate_success_activities = 0
+    @overdue_activities = 0
+    @unfinished_activities = 0
 
     @objectives.each do |o|
       @a_size = @a_size + o.actors.size
@@ -87,6 +89,12 @@ class ProjectsController < ApplicationController
           @outcomes_with_overdue_activities = @outcomes_with_overdue_activities + 1
         elsif ac.scheduling.to_datetime > near_future
           @outcomes_without_upcoming_activities = @outcomes_without_upcoming_activities + 1
+        end
+
+        if ( ac.scheduling.to_datetime < today && ac.completion == false )
+          @overdue_activities = @overdue_activities + 1
+        elsif ( ac.scheduling.to_datetime > today && ac.completion == false )
+          @unfinished_activities = @unfinished_activities + 1
         end
         ac.outcomes.each do |outcome|
           @assigned_outcomes << outcome

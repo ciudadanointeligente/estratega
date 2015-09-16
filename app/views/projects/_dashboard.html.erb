@@ -116,16 +116,16 @@
     <div class="alert alert-danger">
       <table class="indicator">
         <tr>
-          <td>100</td>
-          <td>Actividades vencidas</td>
+          <td><%= @overdue_activities %></td>
+          <td>Overdue activities</td>
         </tr>
       </table>
     </div>
     <div class="alert alert-warning">
       <table class="indicator">
         <tr>
-          <td>250</td>
-          <td>Actividades sin finalizar</td>
+          <td><%= @unfinished_activities %></td>
+          <td>Unfinished activities</td>
         </tr>
       </table>
     </div>
