@@ -37,7 +37,7 @@ module ProjectsHelper
     when :actors
       objective.actors.blank? ? "List actors and power map" : " #{objective.actors.size} Actors"
     when :enabling_factors
-      objective.enabling_factors.blank? ? "Identify enabling factors and barriers" : " #{objective.enabling_factors.size} Enabling Factors and #{objective.barriers.size} Barriers"
+      objective.enabling_factors.blank? ? "Identify 0 enabling factors and #{objective.barriers.size} barriers" : " #{objective.enabling_factors.size} Enabling Factors and #{objective.barriers.size} Barriers"
     when :outcomes
       objective.outcomes.blank? ? "Define interim outcomes" : " #{objective.outcomes.size} Outcomes"
     when :activities
