@@ -2,15 +2,14 @@
 
 FactoryGirl.define do
   factory :ask do
-    title "MyText"
     description "MyText"
 
     factory :invalid_ask do
-      title ""
+      description ""
     end
 
     factory :edit_ask do
-      title "Ask Title"
+      description "Ask Title"
     end
   end
 end
