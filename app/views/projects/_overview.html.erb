@@ -82,9 +82,9 @@
               <% if objective.barriers.nil? %>
                 <p></p>
               <% else %>
-                <% objective.barriers.each do |barrier| %>
+                <% objective.barriers.each_with_index do |barrier, cnt_barrier| %>
                 <div class="separator"></div>
-                <h4>Barriers: </h4>
+                <h4>Barrier <%= cnt_barrier + 1 %>: </h4>
                   <ul style="list-style-type:disc">
                     <li><%= barrier %></li>
                   </ul>
@@ -95,9 +95,9 @@
               <% if objective.enabling_factors.nil? %>
                 <p></p>
               <% else %>
-                <% objective.enabling_factors.each do |efactor| %>
+                <% objective.enabling_factors.each_with_index do |efactor, cnt_factor| %>
                   <div class="separator"></div>
-                  <h4>Enabling factors:</h4>
+                  <h4>Enabling factor <%= cnt_factor + 1 %>:</h4>
                   <ul style="list-style-type:disc">
                     <li><%= efactor %></li>
                   </ul>
@@ -114,7 +114,7 @@
                   <div class="separator"></div>
                   <h4>Actors</h4>
                     <% objective.actors.each_with_index do |actor, i| %>
-                      <p class="blue"><%= i+1 %>. <%= actor.name %></p>
+                      <p class="blue">Actor <%= i+1 %>. <%= actor.name %></p>
                     <p><%= actor.description.presence || t('.empty') %></p>
                     <ul style="list-style-type:disc">
                       <li><b>Actor type: </b><%= actor.actor_type.presence || t('.empty') %></li>
@@ -135,7 +135,7 @@
                   <div class="separator"></div>
                   <h4>Outcomes</h4>
                     <% objective.outcomes.each_with_index do |outcome, i| %>
-                      <span class='blue'>out<%= i+1 %>. </span><b><%= outcome.description.presence || t('.empty') %></b>
+                      <span class='blue'>Outcome <%= i+1 %>. </span><b><%= outcome.description.presence || t('.empty') %></b>
                     <ul style="list-style-type:disc">
                       <li>Outcome type: <%= outcome.outcome_type_id %></li>
                       <li>Actor type: <%= outcome.actor_type_id %></li>
@@ -154,7 +154,7 @@
                   <div class="separator"></div>
                   <h4>Activities</h4>
                   <% objective.activities.each_with_index do |activity, i| %>
-                    <span class='blue'>act<%= i+1 %>. </span><b><%= activity.title.presence || t('.empty') %></b>
+                    <span class='blue'>Activity <%= i+1 %>. </span><b><%= activity.title.presence || t('.empty') %></b>
                     <p><%= activity.description.presence || t('.empty') %></p>
                   <% end %>
                 <% end %>
@@ -170,7 +170,7 @@
                   <div class="separator"></div>
                   <h4>Asks</h4>
                   <% objective.asks.each_with_index do |ask, i| %>
-                    <span class='blue'>ask<%= i+1 %>. </span><b><%= ask.description.presence || t('.empty') %></b>
+                    <span class='blue'>Ask <%= i+1 %>. </span><b><%= ask.description.presence || t('.empty') %></b>
                     <ul style="list-style-type:disc">
                       <li>Related actor: <%= ask.actor.name %></li>
                       <li>Related objective: objective <%= ask.objective_id %></li>
