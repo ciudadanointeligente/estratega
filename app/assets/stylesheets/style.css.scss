@@ -491,6 +491,7 @@ div#resources_paginate {
   border-radius: 5px 5px 0px 0px;
   padding: 5px 10px;
   margin-bottom: 15px;
+  margin-top: 20px;
 }
 .bg_grey h4 {
   color: #ffffff;
@@ -590,7 +591,7 @@ table.indicator td:first-child {
 }
 
 .panel-heading {
-    padding: 20px 240px 20px 20px;
+    padding: 20px 20px 20px 20px;
 }
 
 .panel-default > .panel-heading {
@@ -621,6 +622,9 @@ table.indicator td:first-child {
 .panel-default {
     border-color: rgba(255, 255, 255, 0);
 }
+.panel-default p {
+   margin: 15px;
+}
 
 .panel {
     border-radius: 6px;
@@ -648,4 +652,12 @@ table.indicator td:first-child {
 
 .addNew.dropdown.pull-right {
     margin-bottom: 10px;
+}
+table.document .label-info {
+  margin-right: 5px;
+}
+table.document td .btn {
+    border-radius: 0;
+    font-weight: normal;
+    padding: 0;
 }

@@ -43,7 +43,7 @@
                     <th><%= t('.description') %></th>
                     <th><%= t('.outcomes') %></th>
                     <th><%= t('.date') %></th>
-                    <th><%= t('.completion') %></th>
+                    <th class="text-center"><%= t('.completion') %></th>
                     <th class="text-right"><%= t('.actions') %></th>
                   </tr>
                 </thead>
@@ -57,7 +57,7 @@
                       </ul>
                     </td>
                     <td>{{activity.scheduling | date: 'mediumDate' }}</td>
-                    <td>
+                    <td class="text-center">
                       <i class="fa fa-check" ng-if="activity.completion"></i>
                     </td>
                     <td class="text-right">
