@@ -56,18 +56,16 @@ en:
       focus_area: "Focus Area"
       actions: "Actions"
       public: "Public"
-<<<<<<< HEAD
       guide_me: "Tour"
       step_one: "To begin working we create a <strong>New Project</strong>"
-      step_two: "En estas pestanas podrás ver los proyectos en que trabajas <strong>(My project)</strong> y los proyectos compartidos por la comunidad <strong>(Other projects)</strong>"
-      step_three: "Para empezar a trabajar en el proyecto podemos hacer click sobre el nombre o seleccionar una de las funciones de la columna <strong>Actions</strong>"
-=======
+      step_two: "In these tabs you will see the projects in which you work <strong>(My project)</strong> and shared community projects <strong>(Other projects)</strong>"
+      step_three: "To get started on the project you can click on the name or select one of the functions of the column <strong>Actions</strong>"
       config: "Config the project"
       share: "Share the project"
       edit: "Edit"
       overview: "Overview"
       delete: "Delete the project"
->>>>>>> dev
+
     project_modal: # modal `new project` of index
       project: "Project"
       title: "Title"
@@ -84,11 +82,9 @@ en:
       dashboard: "Dashboard"
       documents: "Documents"
       overview: "Overview"
-<<<<<<< HEAD
       step_one: "Una vez en la página del proyecto verás 3 pestañas. En <strong>Stages</strong> encontrarás las etapas de ingreso de datos, <strong>Dashboard</strong> te mostrará los indicadores de éxito y avance, <strong>Documents</strong> será la biblioteca de documentos importantes, y por último <strong>Overview</strong> que muestra el resumen con toda la información ingresada"
       step_two: "Empecemos con el trabajo completando la información solicitada en la <strong>Stage 1</strong>"
       step_three: "Estos iconos te muestran los 3 estados de ingreso de información. Te dirán si necesitas llenar un paso previo (<i class='fa fa-lock'></i>), si está listo para ingreso (<i class='fa fa-unlock'></i>) o si ya contiene información (<i class='fa fa-check'></i>)"
-=======
       stage1_title: "Step 1: Describe the problems and the corresponding policy solutions"
       stage2_title: "Step 2: Formulate policy objetives and rank them in order or priority"
       stage3_title: "Step 1: Set Goals"
@@ -101,7 +97,6 @@ en:
                     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       objective_cnt: 'Objective'
->>>>>>> dev
     overview:     # http://localhost:3000/projects/1#overview
       projects: "Projects"
       overview: "Overview"
