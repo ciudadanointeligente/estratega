@@ -8,4 +8,8 @@ asset 'angular-bootstrap'
 asset 'angular-route', '1.2.21'
 asset 'angular-aside'
 asset 'angular-smart-table'
+<<<<<<< HEAD
 asset 'intro.js'
+=======
+asset 'introjs'
+>>>>>>> dev

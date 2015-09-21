@@ -31,7 +31,7 @@
           <div role="tabpanel" class="tab-pane active" id="data">
             <div class="bg_grey">
                 <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle1_explanation') %>"><i class="fa fa-info"></i></button>
-              <a href="/sandboxes/new" target="_blank" class="btn btn-warning pull-right"><i class="fa fa-sitemap"></i> <%= t('.draw_sandbox_button') %></a>
+              <a href="//www.draw.io/" target="_blank" class="btn btn-warning pull-right"><i class="fa fa-sitemap"></i> <%= t('.draw_sandbox_button') %></a>
               <h4><i class="fa fa-circle"></i> <%= t('.subtitle1') %></h4>
             </div>
             <div class="bg_grey">
@@ -76,7 +76,7 @@
                     <th><%= t('.description') %></th>
                     <th class="text-right"><%= t('.actions') %></th>
                   </tr>
-                  <tr ng-repeat="barrier in objective.barriers">
+                  <tr ng-repeat="barrier in objective.barriers track by $index">
                     <td>{{barrier}}</td>
                     <td class="text-right"><a href="#" title="Edit" ng-click="add_edit_barrier(barrier)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_barrier(barrier)"><i class="fa fa-trash"></i></a></td>
                   </tr>

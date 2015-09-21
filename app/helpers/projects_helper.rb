@@ -11,9 +11,11 @@ module ProjectsHelper
   def icon_class_stage stage
     case stage
     when 1
-      (@real_problem && @policy_problems && @solutions) ? "fa fa-check-circle" : "fa fa-times-circle"
+      (@real_problem && @policy_problems && @solutions) ? "fa fa-check" : "fa fa-times"
     when 2
-      @objectives.blank? ? "fa fa-times-circle" : "fa fa-check-circle"
+      @objectives.blank? ? "fa fa-times" : "fa fa-check"
+    when 3
+      ( @a_size > 0 && @factors_size > 0 && !@project.activities.nil? ) ? "fa fa-check" : "fa fa-times"
     end
   end
 
@@ -35,7 +37,7 @@ module ProjectsHelper
     when :actors
       objective.actors.blank? ? "List actors and power map" : " #{objective.actors.size} Actors"
     when :enabling_factors
-      objective.enabling_factors.blank? ? "Identify enabling factors and barriers" : " #{objective.enabling_factors.size} Enabling Factors and #{objective.barriers.size} Barriers"
+      objective.enabling_factors.blank? ? "Identify 0 enabling factors and #{objective.barriers.size} barriers" : " #{objective.enabling_factors.size} Enabling Factors and #{objective.barriers.size} Barriers"
     when :outcomes
       objective.outcomes.blank? ? "Define interim outcomes" : " #{objective.outcomes.size} Outcomes"
     when :activities

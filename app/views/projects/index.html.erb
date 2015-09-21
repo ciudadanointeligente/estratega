@@ -38,15 +38,16 @@
           </thead>
           <tbody>
             <tr title="{{ project.description | limitTo: 140 }}" ng-repeat="project in projects">
-              <td><a href="/projects/{{ project.id }}" target="_self">{{ project.title }}</a></td>
+              <td><a href="/projects/{{ project.id }}" target="_self">{{ project.title }}</a>
+              </td>
               <td>{{ project.focus_area }}</td>
               <td class="controllers">
                 <i class="fa fa-globe" ng-if="project.public" title="<%= t('.public') %>"></i>
-                <i class="fa fa-gears" ng-click="add_edit_project(project)" ng-if="project.permission == 'owner'"></i>
-                <i class="fa fa-user-plus" ng-click="user_permission(project)" ng-if="project.permission == 'owner'"></i>
-                <a href="/projects/{{ project.id }}" target="_self"><i class="fa fa-edit"></i></a>
-                <i class="fa fa-eye" ng-click=""></i>
-                <i class="fa fa-trash" ng-click="delete_project(project)" ng-if="project.permission == 'owner'"></i>
+                <i class="fa fa-gears" ng-click="add_edit_project(project)" ng-if="project.permission == 'owner'" title="<%= t('.config') %>"></i>
+                <i class="fa fa-user-plus" ng-click="user_permission(project)" ng-if="project.permission == 'owner'" title="<%= t('.share') %>"></i>
+                <a href="/projects/{{ project.id }}" target="_self"><i class="fa fa-edit" title="<%= t('.edit') %>"></i></a>
+                <a href="/projects/{{ project.id }}/overview" target="_self"><i class="fa fa-eye" title="<%= t('.overview') %>"></i></a>
+                <i class="fa fa-trash" ng-click="delete_project(project)" ng-if="project.permission == 'owner'" title="<%= t('.delete') %>"></i>
               </td>
             </tr>
           </tbody>
@@ -64,10 +65,10 @@
           </thead>
           <tbody>
             <tr title="{{ project.description | limitTo: 140 }}" ng-repeat="project in public_projects">
-              <td><a href="/projects/{{ project.id }}" target="_self">{{ project.title }}</a></td>
+              <td><a href="/projects/{{ project.id }}/overview" target="_self">{{ project.title }}</a></td>
               <td>{{ project.focus_area }}</td>
               <td class="controllers">
-                <i class="fa fa-eye" ng-click=""></i>
+                <a href="/projects/{{ project.id }}/overview" target="_self"><i class="fa fa-eye"></i></a>
               </td>
             </tr>
           </tbody>
