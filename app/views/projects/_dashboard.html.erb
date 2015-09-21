@@ -188,8 +188,8 @@
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well text-center">
           <h3>Percentage advance priority objectives</h3>
-          <div class="c100 p40 big">
-              <span>40%</span>
+          <div class="c100 p<%= @advance_priority_objectives %> big">
+              <span><%= @advance_priority_objectives %>%</span>
               <div class="slice">
                   <div class="bar"></div>
                   <div class="fill"></div>
@@ -201,8 +201,8 @@
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well text-center">
           <h3>Percentage of total advance objectives</h3>
-          <div class="c100 p50 big">
-              <span>50%</span>
+          <div class="c100 p<%= @advance_total_objectives %> big">
+              <span><%= @advance_total_objectives %>%</span>
               <div class="slice">
                   <div class="bar"></div>
                   <div class="fill"></div>

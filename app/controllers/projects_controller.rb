@@ -135,6 +135,38 @@ class ProjectsController < ApplicationController
       end
     end
 
+    @objectives_prioritized = @project.objectives.where('prioritized = true')
+    @advance_priority_objectives = 0
+    @advance_total_objectives = 0
+    if @objectives_prioritized.count > 0
+      @objectives_completed = 0
+
+      @objectives_prioritized.each do |o|
+        @outcomes_per_objective = Array.new
+        @outcomes_not_completed = Array.new
+
+        o.outcomes.each do |outcome|
+          @outcomes_per_objective << outcome
+        end
+
+        o.activities.each do |ac|
+          if !ac.completion
+            ac.outcomes.each do |outcome|
+              @outcomes_not_completed << outcome
+            end
+          end
+        end
+
+        outcomes_diff = @outcomes_per_objective.uniq{|x| x.id} - @outcomes_not_completed.uniq{|x| x.id}
+        if outcomes_diff.count > 0
+          @objectives_completed = @objectives_completed + 1
+        end
+
+      end
+      @advance_priority_objectives = ( 100 / @objectives_prioritized.count ) * @objectives_completed
+      @advance_total_objectives =  ( 100 / @project.objectives.count ) * @objectives_completed
+    end
+
     # @policy_problems = @project.real_problem.policy_problems || PolicyProblem.none
     # @solutions = @project.real_problem.policy_problems.first.solutions || Solution.none
     respond_with(@project)
