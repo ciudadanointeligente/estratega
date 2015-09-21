@@ -39,7 +39,7 @@
                   <tr>
                     <th><%= t('.interim_outcome') %></th>
                     <th><%= t('.interim_outcome_type') %></th>
-                    <th><%= t('.actor_type') %></th>
+                    <!-- <th><%= t('.actor_type') %></th> -->
                     <th><%= t('.activities_number') %></th>
                     <th class="text-right"><%= t('.actions') %></th>
                   </tr>
@@ -48,7 +48,7 @@
                   <tr ng-repeat="outcome in outcomes">
                     <td>{{outcome.description}}</td>
                     <td>{{outcome.outcome_type_id}}</td>
-                    <td>{{outcome.actor_type_id}}</td>
+                    <!--<td>{{outcome.actor_type_id}}</td>-->
                     <td>{{outcome.no_activities}}</td>
                     <td class="text-right"><a href="#" title="Edit" ng-click="add_edit_outcome(outcome)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_outcome(outcome)"><i class="fa fa-trash"></i></a></td>
                   </tr>
