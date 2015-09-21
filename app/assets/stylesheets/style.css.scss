@@ -551,7 +551,16 @@ table.indicator td:first-child {
     min-height: 210px;
     border-radius: 0px 6px 0px 0px;
 }
-
+@media all and (min-width: 993px) {
+  .project-hero h2, .project-hero p {
+    width: 80%;
+  }
+}
+@media all and (max-width: 992px) {
+  .project-hero {
+    background: #00c2e4;
+  }
+}
 .project-hero h2 {
     color: #fff;
 }
