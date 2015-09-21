@@ -173,7 +173,7 @@
                     <span class='blue'>Ask <%= i+1 %>. </span><b><%= ask.description.presence || t('.empty') %></b>
                     <ul style="list-style-type:disc">
                       <li>Related actor: <%= ask.actor.name %></li>
-                      <li>Related objective: objective <%= ask.objective_id %></li>
+                      <li>Related objective: <%= get_objective_related ask.objective_id %></li>
                     </ul>
                   <% end %>
                 <% end %>

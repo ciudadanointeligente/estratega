@@ -56,4 +56,9 @@ module ProjectsHelper
     actor = Actor.new
     actor.actor_influence_level_list.index(influence_id)
   end
+
+  def get_objective_related objective_id
+    obj = Objective.find(objective_id)
+    obj.title
+  end
 end
