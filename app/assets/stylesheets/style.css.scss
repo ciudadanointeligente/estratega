@@ -670,3 +670,51 @@ table.document td .btn {
     font-weight: normal;
     padding: 0;
 }
+
+/* Colores Graficos*/
+
+.ct-perfect-fourth .ct-series-a .ct-line {
+  /* Set the colour of this series line */
+  stroke: green;
+  /* Control the thikness of your lines */
+  stroke-width: 3px;
+}
+.ct-perfect-fourth .ct-series-a .ct-point {
+  /* Colour of your points */
+  stroke: green;
+  /* Size of your points */
+  stroke-width: 10px;
+}
+.ct-perfect-fourth .ct-series-a .ct-area {
+    fill: green;
+}
+.ct-perfect-fourth .ct-series-b .ct-line {
+  /* Set the colour of this series line */
+  stroke: yellow;
+  /* Control the thikness of your lines */
+  stroke-width: 3px;
+}
+.ct-perfect-fourth .ct-series-b .ct-point {
+  /* Colour of your points */
+  stroke: yellow;
+  /* Size of your points */
+  stroke-width: 10px;
+}
+.ct-perfect-fourth .ct-series-b .ct-area {
+    fill: yellow;
+}
+.ct-perfect-fourth .ct-series-c .ct-line {
+  /* Set the colour of this series line */
+  stroke: red;
+  /* Control the thikness of your lines */
+  stroke-width: 3px;
+}
+.ct-perfect-fourth .ct-series-c .ct-point {
+  /* Colour of your points */
+  stroke: red;
+  /* Size of your points */
+  stroke-width: 10px;
+}
+.ct-perfect-fourth .ct-series-c .ct-area {
+    fill: red;
+}
