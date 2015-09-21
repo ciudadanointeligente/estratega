@@ -25,14 +25,14 @@
   <!-- tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="stages">
-      <div class="" data-step="2" data-intro="<%= t('.step_two') %>">
+      <div class="">
         <div class="">
           <div class="project-hero">
             <h2><%= @project.title %></h2>
             <p><%= @project.description %></p>
           </div>
           <h3 class="mb50">Stage 1: Identify the policy objectives to pursue</h3>
-          <div class="panel panel-default">
+          <div class="panel panel-default" data-step="2" data-intro="<%= t('.step_two') %>">
             <div class="panel-heading">
               <h4 class="panel-title" title="Complete Stage"><i class="<%= icon_class_stage 1 %>"></i> <%= t('.stage1_title') %></h4>
             </div>
