@@ -353,7 +353,7 @@ en:
       subtitle3_tooltip: "Thanks to the prioritizing table, the decision-making cycle analysis and the actor mapping you will have already identified a number of enabling factors and barriers to achieve your chosen objective. However, you may need to go deeper into the analysis of the context surrounding the specific policy change that you want to pursue. You should think devote time to think about additional relevant enabling factors and barriers of different nature: financial, social, technological, factual, political, religious, cultural, geographical, organizational, etc."
       data_entry: "Data Entry"
       explanation_examples: "Explanation & Examples"
-      draw_sandbox_button: "Draw in Sandbox"
+      draw_sandbox_button: "Draw in draw.io"
       add_actor_button: "Add Actor"
       all_actors: "All Actors"
       name: "Name"

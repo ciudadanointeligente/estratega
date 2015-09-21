@@ -108,6 +108,9 @@ label {
 .nowrap {
   white-space:nowrap;
 }
+.table {
+  background-color: #ffffff;
+}
 table a {
   color: #0091EA;
 }
@@ -472,9 +475,12 @@ div#resources_paginate {
 }
 .contenedor {
     padding: 20px 10px 10px 10px;
-    border: 1px solid #575757;
+    /*border: 1px solid #575757;*/
     margin-bottom: 20px;
     margin-top: -20px;
+    background-color: #ffffff;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
 }
 #policy-problems {
   margin-bottom: -20px;
