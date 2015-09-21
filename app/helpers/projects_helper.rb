@@ -46,4 +46,14 @@ module ProjectsHelper
       objective.asks.blank? ? "Define asks" : " #{objective.asks.size} Asks"
     end
   end
+
+  def get_support support_id
+    actor = Actor.new
+    actor.actor_support_list.index(support_id)
+  end
+
+  def get_influence influence_id
+    actor = Actor.new
+    actor.actor_influence_level_list.index(influence_id)
+  end
 end
