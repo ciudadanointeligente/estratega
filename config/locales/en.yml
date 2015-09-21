@@ -77,9 +77,9 @@ en:
       dashboard: "Dashboard"
       documents: "Documents"
       overview: "Overview"
-      stage1_title: "Stage 1: Articulate problems and policy solutions"
-      stage2_title: "Stage 2: Articulate and prioritize objectives"
-      stage3_title: "Stage 3: Set Goals"
+      stage1_title: "Step 1: Describe the problems and the corresponding policy solutions"
+      stage2_title: "Step 2: Formulate policy objetives and rank them in order or priority"
+      stage3_title: "Step 1: Set Goals"
       stage3_without_objectives: |
                     <p>You need add objectives for settings goals</p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -353,7 +353,7 @@ en:
       subtitle3_tooltip: "Thanks to the prioritizing table, the decision-making cycle analysis and the actor mapping you will have already identified a number of enabling factors and barriers to achieve your chosen objective. However, you may need to go deeper into the analysis of the context surrounding the specific policy change that you want to pursue. You should think devote time to think about additional relevant enabling factors and barriers of different nature: financial, social, technological, factual, political, religious, cultural, geographical, organizational, etc."
       data_entry: "Data Entry"
       explanation_examples: "Explanation & Examples"
-      draw_sandbox_button: "Draw in Sandbox"
+      draw_sandbox_button: "Draw in draw.io"
       add_actor_button: "Add Actor"
       all_actors: "All Actors"
       name: "Name"

@@ -86,28 +86,31 @@ class ProjectsController < ApplicationController
           end
         end
 
-        if ac.scheduling.to_datetime < today
-          @outcomes_with_overdue_activities = @outcomes_with_overdue_activities + 1
-        elsif ac.scheduling.to_datetime > near_future
-          @outcomes_without_upcoming_activities = @outcomes_without_upcoming_activities + 1
+        if !ac.scheduling.blank?
+          if ac.scheduling.to_datetime < today
+            @outcomes_with_overdue_activities = @outcomes_with_overdue_activities + 1
+          elsif ac.scheduling.to_datetime > near_future
+            @outcomes_without_upcoming_activities = @outcomes_without_upcoming_activities + 1
+          end
+
+          if ( ac.scheduling.to_datetime < today && ac.completion == false )
+            @overdue_activities = @overdue_activities + 1
+          elsif ( ac.scheduling.to_datetime > today && ac.completion == false )
+            @unfinished_activities = @unfinished_activities + 1
+          end
+          ac.outcomes.each do |outcome|
+            @assigned_outcomes << outcome
+          end
+
+          if ac.completion == true
+            @completed_activities = @completed_activities + 1
+          end
+
+          if ac.scheduling.to_datetime > today
+            @upcoming_activities << ac
+          end
         end
 
-        if ( ac.scheduling.to_datetime < today && ac.completion == false )
-          @overdue_activities = @overdue_activities + 1
-        elsif ( ac.scheduling.to_datetime > today && ac.completion == false )
-          @unfinished_activities = @unfinished_activities + 1
-        end
-        ac.outcomes.each do |outcome|
-          @assigned_outcomes << outcome
-        end
-
-        if ac.completion == true
-          @completed_activities = @completed_activities + 1
-        end
-
-        if ac.scheduling.to_datetime > today
-          @upcoming_activities << ac
-        end
       end
     end
     @objectives_with_failed_activities_diff = @objectives_with_failed_activities.uniq{|x| x.id}.size
@@ -130,6 +133,38 @@ class ProjectsController < ApplicationController
           @solutions = @project.real_problem.get_solutions
         end
       end
+    end
+
+    @objectives_prioritized = @project.objectives.where('prioritized = true')
+    @advance_priority_objectives = 0
+    @advance_total_objectives = 0
+    if @objectives_prioritized.count > 0
+      @objectives_completed = 0
+
+      @objectives_prioritized.each do |o|
+        @outcomes_per_objective = Array.new
+        @outcomes_not_completed = Array.new
+
+        o.outcomes.each do |outcome|
+          @outcomes_per_objective << outcome
+        end
+
+        o.activities.each do |ac|
+          if !ac.completion
+            ac.outcomes.each do |outcome|
+              @outcomes_not_completed << outcome
+            end
+          end
+        end
+
+        outcomes_diff = @outcomes_per_objective.uniq{|x| x.id} - @outcomes_not_completed.uniq{|x| x.id}
+        if outcomes_diff.count > 0
+          @objectives_completed = @objectives_completed + 1
+        end
+
+      end
+      @advance_priority_objectives = ( 100 / @objectives_prioritized.count ) * @objectives_completed
+      @advance_total_objectives =  ( 100 / @project.objectives.count ) * @objectives_completed
     end
 
     # @policy_problems = @project.real_problem.policy_problems || PolicyProblem.none
