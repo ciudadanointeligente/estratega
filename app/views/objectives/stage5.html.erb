@@ -52,7 +52,7 @@
                     <td>{{activity.title}}</td>
                     <td>{{activity.description}}</td>
                     <td>
-                      <ul class="list-unstyled" ng-repeat="o in get_outcome_names(activity.outcome_ids, outcomes)">
+                      <ul class="list-unstyled" ng-repeat="o in get_outcome_names(activity.outcome_ids, outcomes) track by $index">
                         <li>{{ o }}</li>
                       </ul>
                     </td>
