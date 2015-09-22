@@ -55,7 +55,7 @@
               </span>
               <%= render "real_problem_modal" %>
             </div>
-            <div id="policy-problems">
+            <div id="policy-problems"  data-step="3" data-intro="<%= t('.step_three') %>">
               <div class="panel panel-default">
                 <div class="panel-heading" ng-if="problem.id">
                     <button type="button" class="btn btn-primary pull-right" onmouseenter="$(this).tooltip('show')" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle2_tooltip') %>"><i class="fa fa-info"></i></button>
