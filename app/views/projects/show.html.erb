@@ -16,10 +16,10 @@
 <hr>
 <div role="tabpanel">
   <ul class="nav nav-tabs" role="tablist" data-step="1" data-intro="<%= t('.step_one') %>">
-    <li role="presentation" class="active"><a href="#stages" aria-controls="stages" role="tab" data-toggle="tab"><%= t('.stages') %></a></li>
-    <li role="presentation"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab"><%= t('.overview') %></a></li>
-    <li role="presentation"><a href="#dashboard" aria-controls="dashboard" role="tab" data-toggle="tab"><%= t('.dashboard') %></a></li>
-    <li role="presentation"><a href="#documents" aria-controls="documents" role="tab" data-toggle="tab"><%= t('.documents') %></a></li>
+    <li role="presentation" class="active"><a href="#stages" aria-controls="stages" role="tab"><%= t('.stages') %></a></li>
+    <li role="presentation"><a href="#overview" aria-controls="overview" role="tab"><%= t('.overview') %></a></li>
+    <li role="presentation"><a href="#dashboard" aria-controls="dashboard" role="tab"><%= t('.dashboard') %></a></li>
+    <li role="presentation"><a href="#documents" aria-controls="documents" role="tab"><%= t('.documents') %></a></li>
   </ul>
 
   <!-- tab panes -->
@@ -207,12 +207,12 @@
 $(function () {
     var tabName = window.location.hash;
     if( tabName ) {
-      $('#nav-tabs a[href="' + tabName + '"]').tab('show');
+      $('.nav-tabs a[href="' + tabName + '"]').tab('show');
       if( tabName == '#dashboard' )
         draw_graph()
     }
 
-    $('#nav-tabs a').click(function (e) {
+    $('.nav-tabs a').click(function (e) {
       e.preventDefault()
       $(this).tab('show')
       draw_graph()
