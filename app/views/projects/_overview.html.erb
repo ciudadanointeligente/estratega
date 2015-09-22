@@ -11,6 +11,7 @@
             <p><%= t('.empty') %></p>
           <% else %>
             <div class="box">
+              <button class="btn btn-warning pull-right" onclick="window.print()"><i class="fa fa-print"></i> Print overview</button>
               <div class="label label-default">Real problem</div>
               <h3><%= @real_problem.title.presence || t('.empty') %></h3>
               <p><%= @real_problem.description.presence || t('.empty') %></p>
@@ -186,7 +187,6 @@
           <% end %>
           <!-- end objectives -->
 
-      <button class="btn btn-info" onclick="window.print()">Print overview <i class="fa fa-print"></i></button>
     </div>
   </div>
 </div>
