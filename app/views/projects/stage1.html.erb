@@ -71,8 +71,8 @@
             <!-- policy solution -->
             <div class="panel panel-info objetives" ng-repeat="policy in policies">
               <div class="panel-heading">
-                <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_policy(policy.id)"><i class="fa fa-pencil"></i></button>
                 <button type="button" class="btn btn-warning pull-right" ng-click="delete_policy(policy)"><i class="fa fa-trash"></i></button>
+                <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_policy(policy.id)"><i class="fa fa-pencil"></i></button>
                 <h4 class="panel-title"><a data-toggle="collapse" href="#objetive-{{policy.id}}" aria-expanded="false" aria-controls="collapseExample">{{ policy.title }}</a></h4>
               </div>
               <!-- policy solutions -->
