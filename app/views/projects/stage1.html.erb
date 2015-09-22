@@ -58,7 +58,7 @@
             <div id="policy-problems">
               <div class="panel panel-default">
                 <div class="panel-heading" ng-if="problem.id">
-                    <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle2_tooltip') %>"><i class="fa fa-info"></i></button>
+                    <button type="button" class="btn btn-primary pull-right" onmouseenter="$(this).tooltip('show')" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle2_tooltip') %>"><i class="fa fa-info"></i></button>
                     <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_policy()"><i class="fa fa-plus-circle"></i> <%= t('.add_button') %></button>
                     <h4 class="panel-title"><%= t('.subtitle2') %></h4>
                 </div>
