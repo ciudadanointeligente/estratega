@@ -17,10 +17,9 @@
         <button ng-click="dismiss_modal()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         {{ messages.message }}
       </div>
-
       <div role="tabpanel" class="tabpanel">
         <!-- nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
+        <ul class="nav nav-tabs" role="tablist" data-step="1" data-intro="<%= t('.step_one') %>">
           <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab"><%= t('.data_entry') %></a></li>
           <li role="presentation"><a href="#explanation" aria-controls="explanation" role="tab" data-toggle="tab"><%= t('.explanation_examples') %></a></li>
         </ul>
@@ -29,10 +28,13 @@
             <div class="project-hero">
               <h2>1. <%= t('.title') %></h2>
               <p><%= t('.description') %></p>
+              <button class="btn btn-success" onclick="javascript:introJs().start();">
+                <i class="fa fa-map"></i> <%= t('.guide_me') %>
+              </button>
             </div>
           <div role="tabpanel" class="tab-pane active" id="data">
             <div class="panel panel-default">
-              <div class="panel-heading" id='real-problem'>
+              <div class="panel-heading" id='real-problem' data-step="2" data-intro="<%= t('.step_two') %>">
                 <!-- <button type="button" class="btn btn-warning pull-right">Edit</button> -->
                 <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle1_tooltip') %>"><i class="fa fa-info"></i></button>
                 <button type="button" class="btn pull-right" ng-class="{'btn-warning': problem.id, 'btn-info': !problem.id}" ng-click="add_step_one(problem)"><i class="fa" ng-class="{'fa-pencil': problem.id, 'fa-plus-circle': !problem.id}"></i> {{ btn_problem }}</button>
@@ -103,9 +105,8 @@
           <div role="tabpanel" class="tab-pane" id="explanation">
             <div class="box">
               <%= render 'explanation' %>
-            </div>
           </div>
-          <div role="tabpanel" class="tab-pane" id="explanation"><%= t('.workshop_tips') %></div>
+         </div>
         </div>
       </div>
     </div>

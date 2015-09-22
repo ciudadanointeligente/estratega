@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require steps
 
 //= require angular/angular
 //= require angular-bootstrap/ui-bootstrap-tpls
@@ -21,6 +22,7 @@
 //= require angular-route/angular-route
 //= require angular-aside/dist/js/angular-aside
 //= require angular-smart-table/dist/smart-table
+//= require intro.js/intro
 
 //= require angular_files/wizard_steps
 //= require angular_files/project_resources_controller
