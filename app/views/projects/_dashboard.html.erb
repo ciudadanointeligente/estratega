@@ -2,23 +2,23 @@
   <div class="box">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h2>Activities</h2>
+        <h2><%= t('.activities') %></h2>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well">
-          <h3><%= @project.activities.count.presence || "0" %> Activities</h3>
+          <h3><%= @project.activities.count.presence || "0" %> <%= t('.activities') %></h3>
           <ul class="fa-ul">
-            <li class="successful"><i class="fa-li fa fa-check-circle"></i><%= @successful_activities.presence %> successful activities</li>
-            <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @neutral_activities.presence %> neutral activities</li>
-            <li class="failed"><i class="fa-li fa fa-times-circle"></i><%= @failed_activities.presence %> failed activities</li>
+            <li class="successful"><i class="fa-li fa fa-check-circle"></i><%= @successful_activities.presence %> <%= t('.successful_activities') %></li>
+            <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @neutral_activities.presence %> <%= t('.neutral_activities') %></li>
+            <li class="failed"><i class="fa-li fa fa-times-circle"></i><%= @failed_activities.presence %> <%= t('.failed_activities') %></li>
           </ul>
         </div>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well text-center">
-          <h3>Completed activities rate</h3>
+          <h3><%= t('.completed_activities_rate') %></h3>
           <div class="c100 p<%= @rate_completed_activities %> big">
               <span><%= @rate_completed_activities %>%</span>
               <div class="slice">
@@ -31,7 +31,7 @@
       </div>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well text-center">
-          <h3>Success rate</h3>
+          <h3><%= t('.success_rate') %></h3>
           <div class="c100 p<%= @rate_success_activities %> big">
               <span><%= @rate_success_activities %>%</span>
               <div class="slice">
@@ -46,7 +46,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="well">
-          <h3>State of activities last months</h3>
+          <h3><%= t('.state_of_activities') %></h3>
           <div class="ct-chart ct-perfect-fourth"></div>
 
           <script>
@@ -84,14 +84,16 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
         <div class="well">
-          <h3>Upcoming activities</h3>
-          <p><a href="#">See all activities</a></p>
+          <h3><%= t('.upcoming_activities') %></h3>
+          <p><a href="#"><%= t('.all_activities') %></a></p>
           <table class="table">
-            <% @upcoming_activities.first(10).each do |ac| %>
+            <% if @upcoming_activities.size > 0 %>
             <tr>
-              <th>Date</th>
-              <th>Activity</th>
+              <th><%= t('.date') %></th>
+              <th><%= t('.activity') %></th>
             </tr>
+            <% end %>
+            <% @upcoming_activities.first(10).each do |ac| %>
             <tr>
               <td><%= ac.scheduling %></td>
               <td><%= ac.title %></td>
@@ -105,7 +107,7 @@
           <table class="indicator">
             <tr>
               <td><%= @overdue_activities %></td>
-              <td>Overdue activities</td>
+              <td><%= t('.overdue_activities') %></td>
             </tr>
           </table>
         </div>
@@ -113,7 +115,7 @@
           <table class="indicator">
             <tr>
               <td><%= @unfinished_activities %></td>
-              <td>Unfinished activities</td>
+              <td><%= t('.unfinished_activities') %></td>
             </tr>
           </table>
         </div>
@@ -123,23 +125,23 @@
   <div class="box">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h2>Interim Outcomes</h2>
+        <h2><%= t('.interim_outcomes') %></h2>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well">
-          <h3><%= @outcomes_size.presence %> Interim Outcomes</h3>
+          <h3><%= @outcomes_size.presence %> <%= t('.interim_outcomes') %></h3>
           <ul class="fa-ul">
-            <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @outcomes_without_activities.presence %> outcomes without activities</li>
-            <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @outcomes_without_upcoming_activities.presence %> outcomes without upcoming activities</li>
-            <li class="failed"><i class="fa-li fa fa-times-circle"></i><%= @outcomes_with_overdue_activities.presence %> outcomes with overdue activities</li>
+            <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @outcomes_without_activities.presence %> <%= t('.outcomes_without_activities') %></li>
+            <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @outcomes_without_upcoming_activities.presence %> <%= t('.outcomes_without_upcoming_activities') %></li>
+            <li class="failed"><i class="fa-li fa fa-times-circle"></i><%= @outcomes_with_overdue_activities.presence %> <%= t('.outcomes_with_overdue_activities') %></li>
           </ul>
         </div>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well text-center">
-          <h3>Percentage interim outcomes achieved</h3>
+          <h3><%= t('.percentage_interim_outcomes_achieved') %></h3>
           <div class="c100 p30 big">
               <span>30%</span>
               <div class="slice">
@@ -152,7 +154,7 @@
       </div>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well text-center">
-          <h3>Percentage allocation of predefined activities</h3>
+          <h3><%= t('.percentage_allocation_of_predefined_activities') %></h3>
           <div class="c100 p90 big">
               <span>90%</span>
               <div class="slice">
@@ -168,22 +170,22 @@
   <div class="box">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h2>Objetives</h2>
+        <h2><%= t('.objetives') %></h2>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well">
-          <h3><%= @objectives.count.presence || "0" %> Objectives</h3>
+          <h3><%= @objectives.count.presence || "0" %> <%= t('.objetives') %></h3>
           <ul class="fa-ul">
-            <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @objectives_without_outcomes.presence %> Objectives without interim outcomes</li>
-            <li class="failed"><i class="fa-li fa fa-times-circle"></i><%= @objectives_with_failed_activities_diff.presence %> Objectives with failed activities</li>
+            <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @objectives_without_outcomes.presence %> <%= t('.objectives_without_interim_outcomes') %></li>
+            <li class="failed"><i class="fa-li fa fa-times-circle"></i><%= @objectives_with_failed_activities_diff.presence %> <%= t('.objectives_with_failed_activities') %></li>
           </ul>
         </div>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well text-center">
-          <h3>Percentage advance priority objectives</h3>
+          <h3><%= t('.percentage_advance_priority_objectives') %></h3>
           <div class="c100 p<%= @advance_priority_objectives %> big">
               <span><%= @advance_priority_objectives %>%</span>
               <div class="slice">
@@ -196,7 +198,7 @@
       </div>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well text-center">
-          <h3>Percentage of total advance objectives</h3>
+          <h3><%= t('.percentage_of_total_advance_objectives') %></h3>
           <div class="c100 p<%= @advance_total_objectives %> big">
               <span><%= @advance_total_objectives %>%</span>
               <div class="slice">
