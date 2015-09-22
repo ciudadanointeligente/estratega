@@ -168,9 +168,12 @@ class ProjectsController < ApplicationController
     @objectives_prioritized = @project.objectives.where('prioritized = true')
     @advance_priority_objectives = 0
     @advance_total_objectives = 0
+    @percentage_outcomes_achieved = 0
 
     if @objectives_prioritized.count > 0
       @objectives_completed = 0
+      @outcomes_achieved = Array.new
+      @outcomes_failed = Array.new
 
       @objectives_prioritized.each do |o|
         @outcomes_per_objective = Array.new
@@ -186,6 +189,17 @@ class ProjectsController < ApplicationController
               @outcomes_not_completed << outcome
             end
           end
+          if !ac.indicator.nil?
+            if ( ac.indicator.percentage >= 60 && ac.indicator.percentage <= 100 )
+              ac.outcomes.each do |outcome|
+                @outcomes_achieved << outcome
+              end
+            else
+              ac.outcomes.each do |outcome|
+                @outcomes_failed << outcome
+              end
+            end
+          end
         end
 
         outcomes_diff = @outcomes_per_objective.uniq{|x| x.id} - @outcomes_not_completed.uniq{|x| x.id}
@@ -196,6 +210,10 @@ class ProjectsController < ApplicationController
       end
       @advance_priority_objectives = ( 100 / @objectives_prioritized.count ) * @objectives_completed
       @advance_total_objectives =  ( 100 / @project.objectives.count ) * @objectives_completed
+    end
+    if !@outcomes_achieved.nil? && @outcomes_achieved.size > 0
+      outcomes_diff = @outcomes_achieved.uniq{|x| x.id} - @outcomes_failed.uniq{|x| x.id}
+      @percentage_outcomes_achieved = ( 100 / @outcomes.count ) * outcomes_diff.count
     end
 
     # @policy_problems = @project.real_problem.policy_problems || PolicyProblem.none
