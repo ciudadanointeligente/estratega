@@ -28,6 +28,9 @@
             <div class="project-hero">
               <h2>1. <%= t('.title') %></h2>
               <p><%= t('.description') %></p>
+              <button class="btn btn-success" onclick="javascript:introJs().start();">
+                <i class="fa fa-map"></i> <%= t('.guide_me') %>
+              </button>
             </div>
           <div role="tabpanel" class="tab-pane active" id="data">
             <div class="panel panel-default">
@@ -103,7 +106,7 @@
             <div class="box">
               <%= render 'explanation' %>
           </div>
-          <div role="tabpanel" class="tab-pane" id="explanation"><%= t('.workshop_tips') %></div>
+         </div>
         </div>
       </div>
     </div>
