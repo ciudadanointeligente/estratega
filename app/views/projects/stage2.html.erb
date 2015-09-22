@@ -17,8 +17,6 @@
         <button ng-click="dismiss_modal()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         {{ messages.message }}
       </div>
-      <h2><%= t('.title') %></h2>
-      <p><%= t('.description') %></p>
 
       <div role="tabpanel" class="tabpanel">
         <!-- nav tabs -->
@@ -31,20 +29,28 @@
 
         <!-- tab panes -->
         <div class="tab-content">
+          <div class="project-hero">
+            <h2>2. <%= t('.title') %></h2>
+            <p><%= t('.description') %></p>
+          </div>
           <div role="tabpanel" class="tab-pane active" id="data">
-            <div class="bg_grey">
-              <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle1_tooltip') %>"><i class="fa fa-info"></i></button>
-              <button type="button" class="btn btn-warning pull-right" ng-click="show_goal()">{{ btn_problem }}</button>
-              <h4><i class="fa fa-circle"></i>  <%= t('.subtitle1') %></h4>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle1_tooltip') %>"><i class="fa fa-info"></i></button>
+                <button type="button" class="btn btn-warning pull-right" ng-click="show_goal()">{{ btn_problem }}</button>
+                <h4 class="panel-title"><%= t('.subtitle1') %></h4>
+              </div>
             </div>
             <div class="contenedor">
               <p>{{problem.goal}}</p>
             </div>
             <%= render "goal_modal" %>
-            <div class="bg_grey">
-              <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle2_tooltip') %>"><i class="fa fa-info"></i></button>
-              <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_objective()"><%= t('.add_objective_button') %></button>
-              <h4><i class="fa fa-circle"></i>  <%= t('.subtitle2') %></h4>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle2_tooltip') %>"><i class="fa fa-info"></i></button>
+                <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_objective()"><%= t('.add_objective_button') %></button>
+                <h4 class="panel-title"><%= t('.subtitle2') %></h4>
+              </div>
             </div>
             <div class="contenedor">
               <div class="alert alert-info" role="alert" ng-class="{hidden: unrelated_solutions < 1}">
@@ -118,7 +124,9 @@
             <%= render "objective_modal" %>
           </div>
           <div role="tabpanel" class="tab-pane" id="explanation">
-            <%= render "explanation_stage2" %>
+            <div class="box">
+              <%= render "explanation_stage2" %>
+            </div>
           </div>
         </div>
       </div>
