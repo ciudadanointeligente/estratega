@@ -52,12 +52,8 @@
           <script>
             function draw_graph() {
               var chart = new Chartist.Line('.ct-chart', {
-                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul', 'Ago', 'Sept', 'Oct', 'Nov', 'Dic'],
-                series: [
-                  [1, 5, 2, 5, 4, 3, 1, 5, 2, 5, 4, 3],
-                  [2, 3, 4, 8, 1, 2, 2, 3, 4, 8, 1, 2],
-                  [5, 4, 3, 2, 1, 2, 5, 4, 3, 2, 1, 1]
-                ]
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+                series: <%= @state_of_activities_this_year %>
               }, {
                 low: 0,
                 showArea: true,

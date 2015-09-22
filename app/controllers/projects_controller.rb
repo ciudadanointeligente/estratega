@@ -59,6 +59,7 @@ class ProjectsController < ApplicationController
     @overdue_activities = 0
     @unfinished_activities = 0
     @upcoming_activities = Array.new
+    @state_of_activities_this_year = Array.new
 
     @objectives.each do |o|
       @a_size = @a_size + o.actors.size
@@ -74,6 +75,7 @@ class ProjectsController < ApplicationController
         @outcomes << outcome
       end
 
+      @current_state_per_objective = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       o.activities.each do |ac|
         if !ac.indicator.nil?
           if ( ac.indicator.percentage >= 60 && ac.indicator.percentage <= 100 )
@@ -109,9 +111,37 @@ class ProjectsController < ApplicationController
           if ac.scheduling.to_datetime > today
             @upcoming_activities << ac
           end
-        end
 
+          if ( ac.scheduling.strftime("%Y") == today.strftime("%Y") )
+            if ac.scheduling.strftime("%B") == "January"
+              @current_state_per_objective[0] = @current_state_per_objective[0] + 1
+            elsif ac.scheduling.strftime("%B") == "February"
+              @current_state_per_objective[1] = @current_state_per_objective[1] + 1
+            elsif ac.scheduling.strftime("%B") == "March"
+              @current_state_per_objective[2] = @current_state_per_objective[2] + 1
+            elsif ac.scheduling.strftime("%B") == "April"
+              @current_state_per_objective[3] = @current_state_per_objective[3] + 1
+            elsif ac.scheduling.strftime("%B") == "May"
+              @current_state_per_objective[4] = @current_state_per_objective[4] + 1
+            elsif ac.scheduling.strftime("%B") == "June"
+              @current_state_per_objective[5] = @current_state_per_objective[5] + 1
+            elsif ac.scheduling.strftime("%B") == "July"
+              @current_state_per_objective[6] = @current_state_per_objective[6] + 1
+            elsif ac.scheduling.strftime("%B") == "August"
+              @current_state_per_objective[7] = @current_state_per_objective[7] + 1
+            elsif ac.scheduling.strftime("%B") == "September"
+              @current_state_per_objective[8] = @current_state_per_objective[8] + 1
+            elsif ac.scheduling.strftime("%B") == "October"
+              @current_state_per_objective[9] = @current_state_per_objective[9] + 1
+            elsif ac.scheduling.strftime("%B") == "November"
+              @current_state_per_objective[10] = @current_state_per_objective[10] + 1
+            elsif ac.scheduling.strftime("%B") == "December"
+              @current_state_per_objective[11] = @current_state_per_objective[11] + 1
+            end
+          end
+        end
       end
+      @state_of_activities_this_year << @current_state_per_objective
     end
     @objectives_with_failed_activities_diff = @objectives_with_failed_activities.uniq{|x| x.id}.size
     @outcomes_without_activities = @outcomes.uniq{|x| x.id}.size - @assigned_outcomes.uniq{|x| x.id}.size
@@ -138,6 +168,7 @@ class ProjectsController < ApplicationController
     @objectives_prioritized = @project.objectives.where('prioritized = true')
     @advance_priority_objectives = 0
     @advance_total_objectives = 0
+
     if @objectives_prioritized.count > 0
       @objectives_completed = 0
 
