@@ -23,16 +23,16 @@
           <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab"><%= t('.data_entry') %></a></li>
           <li role="presentation"><a href="#explanation" aria-controls="explanation" role="tab" data-toggle="tab"><%= t('.explanation_examples') %></a></li>
         </ul>
-        <div class="project-hero2">
-          <h2><%= t('.title') %></h2>
-          <p><%= t('.description') %></p>
-          <button class="btn btn-success" onclick="javascript:introJs().start();">
-            <i class="fa fa-map"></i> <%= t('.guide_me') %>
-          </button>
-        </div>
         <!-- tab panes -->
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="data">
+            <div class="project-hero2">
+              <h2><%= t('.title') %></h2>
+              <p><%= t('.description') %></p>
+              <button class="btn btn-success" onclick="javascript:introJs().start();">
+                <i class="fa fa-map"></i> <%= t('.guide_me') %>
+              </button>
+            </div>
             <div class="bg_grey" id='real-problem' data-step="2" data-intro="<%= t('.step_two') %>">
               <!-- <button type="button" class="btn btn-warning pull-right">Edit</button> -->
               <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle1_tooltip') %>"><i class="fa fa-info"></i></button>
@@ -99,6 +99,13 @@
             <%= render 'solution_modal' %>
           </div>
           <div role="tabpanel" class="tab-pane" id="explanation">
+            <div class="project-hero2">
+              <h2><%= t('.title') %></h2>
+              <p><%= t('.description') %></p>
+              <button class="btn btn-success" onclick="javascript:introJs().start();">
+                <i class="fa fa-map"></i> <%= t('.guide_me') %>
+              </button>
+            </div>
             <div class="box"><%= render 'explanation' %></div> 
           </div>
           <div role="tabpanel" class="tab-pane" id="explanation"><%= t('.workshop_tips') %></div>
