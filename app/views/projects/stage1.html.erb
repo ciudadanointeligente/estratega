@@ -34,7 +34,7 @@
             </div>
           <div role="tabpanel" class="tab-pane active" id="data">
             <div class="panel panel-default">
-              <div class="panel-heading" id='real-problem'>
+              <div class="panel-heading" id='real-problem' data-step="2" data-intro="<%= t('.step_two') %>">
                 <!-- <button type="button" class="btn btn-warning pull-right">Edit</button> -->
                 <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle1_tooltip') %>"><i class="fa fa-info"></i></button>
                 <button type="button" class="btn pull-right" ng-class="{'btn-warning': problem.id, 'btn-info': !problem.id}" ng-click="add_step_one(problem)"><i class="fa" ng-class="{'fa-pencil': problem.id, 'fa-plus-circle': !problem.id}"></i> {{ btn_problem }}</button>
