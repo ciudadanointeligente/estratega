@@ -47,7 +47,18 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   function get_activities(project_id, objective_id) {
     $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/activities.json')
       .success(function (data) {
-        $scope.activities = data;
+        var new_data = []
+        data.forEach(function(d){
+          d.percentage = 0;
+          if (d.indicator_id) {
+            $http.get('/activities/'+d.id+'/indicators/'+d.indicator_id+'.json')
+                .success(function (indicator) {
+                  d.percentage = indicator.percentage
+                })
+          }
+          new_data.push(d)
+        });
+        $scope.activities = new_data;
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorgettingactivities }

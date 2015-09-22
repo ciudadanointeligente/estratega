@@ -118,8 +118,8 @@
                     <p><%= actor.description.presence || t('.empty') %></p>
                     <ul style="list-style-type:disc">
                       <li><b>Actor type: </b><%= actor.actor_type.presence || t('.empty') %></li>
-                      <li><b>Support: </b><%= actor.support.presence || t('.empty') %></li>
-                      <li><b>Influence: </b><%= actor.influence.presence || t('.empty') %></li>
+                      <li><b>Support: </b><%= get_support actor.support.presence || t('.empty') %></li>
+                      <li><b>Influence: </b><%= get_influence actor.influence.presence || t('.empty') %></li>
                     </ul>
                   <% end %>
                 <% end %>
@@ -173,7 +173,7 @@
                     <span class='blue'>Ask <%= i+1 %>. </span><b><%= ask.description.presence || t('.empty') %></b>
                     <ul style="list-style-type:disc">
                       <li>Related actor: <%= ask.actor.name %></li>
-                      <li>Related objective: objective <%= ask.objective_id %></li>
+                      <li>Related objective: <%= get_objective_related ask.objective_id %></li>
                     </ul>
                   <% end %>
                 <% end %>

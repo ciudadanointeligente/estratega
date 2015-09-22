@@ -32,7 +32,7 @@
                 <tbody>
                     <tr ng-repeat="resource in resource_list">
                         <td>{{resource.id}}</td>
-                        <td>{{resource.title}}</td>
+                        <td><a href="{{resource.link}}" target="_blank">{{resource.title}}</a></td>
                         <td>{{resource.description}}</td>
                         <td>
                           <span class="label label-info" ng-repeat="tag in resource.tag_list">{{tag}}</span>

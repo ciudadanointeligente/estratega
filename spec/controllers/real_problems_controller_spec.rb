@@ -70,7 +70,7 @@ RSpec.describe RealProblemsController, :type => :controller do
   describe "GET Focus Area" do
     it "return a JSON with focus areas" do
       get :focus_area, {:format => 'json'}, valid_session
-      expect(JSON.parse(response.body)).to include "Ensure environmental sustainability"
+      expect(JSON.parse(response.body)).to include "Child survival and development"
     end
   end
 
