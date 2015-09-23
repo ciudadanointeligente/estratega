@@ -155,8 +155,8 @@
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well text-center">
           <h3><%= t('.percentage_allocation_of_predefined_activities') %></h3>
-          <div class="c100 p90 big">
-              <span>90%</span>
+          <div class="c100 p<%= @percentage_outcomes_with_predefined_activities %> big">
+              <span><%= @percentage_outcomes_with_predefined_activities %>%</span>
               <div class="slice">
                   <div class="bar"></div>
                   <div class="fill"></div>

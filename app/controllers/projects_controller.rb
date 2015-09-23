@@ -60,6 +60,23 @@ class ProjectsController < ApplicationController
     @unfinished_activities = 0
     @upcoming_activities = Array.new
     @state_of_activities_this_year = Array.new
+    @outcomes_with_predefined_activities = Array.new
+    @percentage_outcomes_with_predefined_activities = 0
+    @outcome_activities_usually_associated = [
+      {type: "Political will", values: ["Lobby", "Relationship building with decision makers", "Policymaker and candidate education", "Litigation or legal advocacy", "Policy proposal development", "Demonstration projects or pilots", "Earned media"]},
+      {type: "Public will", values: ["Polling", "Rallies and marches", "Digital or internet-based media/social media"]},
+      {type: "Attitudes or beliefs", values: ["Issue/policy analysis and research", "Polling", "Public service announcements", "Briefings/presentations"]},
+      {type: "Salience", values: ["Lobby", "Relationship building with decision makers", "Policymaker and candidate education"]},
+      {type: "Awareness", values: ["Public service announcements", "Rallies and marches", "Briefings/presentations", "Digital or internet-based media/social media"]},
+      {type: "New champions", values: ["Relationship building with decision-makers", "Digital or internet-based media/social media"]},
+      {type: "New advocates", values: ["Briefings/presentations"]},
+      {type: "Partnerships or alliances", values: ["Issue/policy analysis and research", "Rallies and marches", "Grass-roots organizing and mobilization"]},
+      {type: "Constituency or support-base growth", values: ["Rallies and marches", "Grass-roots organizing and mobilization"]},
+      {type: "Media coverage", values: ["Rallies and marches", "Grass-roots organizing and mobilization", "Media partnerships", "Digital or internet-based media/social media"]},
+      {type: "Issue reframing", values: ["Issue/policy analysis and research", "Earned media"]},
+      {type: "Organizational advocacy capacity", values: ["Any of the others"]},
+      {type: "Organizational visibility or issue recognition", values: ["Issue/policy analysis and research"]}
+    ];
 
     @objectives.each do |o|
       @a_size = @a_size + o.actors.size
@@ -140,6 +157,26 @@ class ProjectsController < ApplicationController
             end
           end
         end
+
+        if !ac.activity_types.nil?
+          ac.outcomes.each do |outcome|
+            if !outcome.outcome_type_id.nil?
+              @outcome_activities_usually_associated.each do |option|
+                if option[:type] == outcome.outcome_type_id
+                  option[:values].each do |activity_usually_associated|
+                    if activity_usually_associated == ac.activity_types
+                      @outcomes_with_predefined_activities << outcome
+                    end
+                  end
+                end
+              end
+            end
+          end
+          if @outcomes_with_predefined_activities.size > 0 && @outcomes_size.size > 0
+            @percentage_outcomes_with_predefined_activities = ( 100 / @outcomes_size ) / @outcomes_with_predefined_activities.uniq{|x| x.id}.count
+          end
+        end
+
       end
       @state_of_activities_this_year << @current_state_per_objective
     end
