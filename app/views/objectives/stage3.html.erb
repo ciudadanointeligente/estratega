@@ -17,8 +17,7 @@
         <button ng-click="dismiss_modal()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         {{ messages.message }}
       </div>
-      <h2><%= t('.title') %></h2>
-      <p><%= t('.title_description') %></p>
+
 
       <div role="tabpanel" class="tabpanel">
         <!-- nav tabs -->
@@ -28,16 +27,24 @@
         </ul>
         <!-- tab panes -->
         <div class="tab-content">
+          <div class="project-hero">
+            <h2><%= t('.title') %></h2>
+            <p><%= t('.title_description') %></p>
+          </div>
           <div role="tabpanel" class="tab-pane active" id="data">
-            <div class="bg_grey">
+            <div class="panel panel-default">
+              <div class="panel-heading">
                 <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle1_explanation') %>"><i class="fa fa-info"></i></button>
-              <a href="//www.draw.io/" target="_blank" class="btn btn-warning pull-right"><i class="fa fa-sitemap"></i> <%= t('.draw_sandbox_button') %></a>
-              <h4><i class="fa fa-circle"></i> <%= t('.subtitle1') %></h4>
+                <a href="//www.draw.io/" target="_blank" class="btn btn-warning pull-right"><i class="fa fa-sitemap"></i> <%= t('.draw_sandbox_button') %></a>
+                <h4 class="panel-title"><%= t('.subtitle1') %></h4>
+              </div>
             </div>
-            <div class="bg_grey">
-              <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle2_explanation') %>"><i class="fa fa-info"></i></button>
-              <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_actor()"><i class="fa fa-user"></i> <%= t('.add_actor_button') %></button>
-              <h4 id="actors"><i class="fa fa-circle"></i> <%= t('.subtitle2') %></h4>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle2_explanation') %>"><i class="fa fa-info"></i></button>
+                <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_actor()"><i class="fa fa-user"></i> <%= t('.add_actor_button') %></button>
+                <h4 id="actors" class="panel-title"><%= t('.subtitle2') %></h4>
+              </div>
             </div>
             <div class="contenedor">
               <table class="table">
@@ -59,14 +66,16 @@
                   </tr>
                 </table>
             </div>
-            <div class="bg_grey" id="factors-barriers">
+            <div class="panel panel-default">
+              <div class="panel-heading"  id="factors-barriers">
               <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" title="<%= t('.subtitle3_tooltip') %>"><i class="fa fa-info"></i></button>
               <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_enabling_factor()"><i class="fa fa-plus-circle"></i> <%= t('.add_enabling_factor_button') %></button>
               <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_barrier()"><i class="fa fa-plus-circle"></i> <%= t('.add_barrier_button') %></button>
-              <h4><i class="fa fa-circle"></i> <%= t('.subtitle3') %></h4>
+              <h4 class="panel-title"><%= t('.subtitle3') %></h4>
+              </div>
             </div>
           <div class="contenedor">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
               <div class="panel-heading table_goals">
                 <a data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><%= t('.barriers') %></a>
               </div>
@@ -83,7 +92,7 @@
                 </table>
               </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-info">
               <div class="panel-heading table_goals">
                 <a data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><%= t('.enabling_factors') %></a>
               </div>
@@ -110,7 +119,9 @@
           </div>
           </div>
           <div role="tabpanel" class="tab-pane" id="explanation">
-            <%= render "explanation_stage3" %>
+            <div class="box">
+              <%= render "explanation_stage3" %>
+            </div>
           </div>
         </div>
       </div>
