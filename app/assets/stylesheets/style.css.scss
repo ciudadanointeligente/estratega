@@ -96,6 +96,12 @@ table .fa-pencil-square-o, table .fa-trash, table .fa-line-chart {
     border-color: rgba(46, 109, 164, 0);
 }
 
+/*TOOLTIP*/
+
+.tooltip-inner {
+  padding: 20px;
+}
+
 label {
     font-weight: 300;
 }

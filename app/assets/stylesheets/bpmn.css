@@ -478,7 +478,7 @@
 
 /* TOOLTIPS */
 
-.tooltip {
+/*.tooltip {
     background: #fcfcfc;
     border: 1px solid #3498db;
     color: #333;
@@ -499,7 +499,7 @@
 
 .tooltip.top:after {
     border-bottom-color: #fcfcfc;
-}
+}*/
 
 /* ABOUT */
 

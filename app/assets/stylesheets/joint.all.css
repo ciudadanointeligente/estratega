@@ -1142,7 +1142,7 @@ unmatched elements opaque instead of completely invisible which is the default.
     background-color: #e74c3c;
 }
 
-.tooltip {
+/*.tooltip {
    position: fixed;
    z-index: 100;
    border-radius: 5px;
@@ -1221,7 +1221,7 @@ unmatched elements opaque instead of completely invisible which is the default.
 .tooltip.bottom:before {
    border-top-color: rgb(36, 36, 36);
    margin-left: -8px;
-}
+}*/
 
 .snaplines {
     position: absolute;
