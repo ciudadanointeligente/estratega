@@ -17,8 +17,7 @@
         <button ng-click="dismiss_modal()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         {{ messages.message }}
       </div>
-      <h2><%= t('.title') %></h2>
-      <p><%= t('.title_description') %></p>
+
       <div role="tabpanel" class="tabpanel">
         <!-- nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
@@ -27,12 +26,18 @@
         </ul>
         <!-- tab panel -->
         <div class="tab-content">
+          <div class="project-hero">
+            <h2><%= t('.title') %></h2>
+            <p><%= t('.title_description') %></p>
+          </div>
           <div role="tabpanel" class="tab-pane active" id="data">
         <!-- actions -->
-          <div class="bg_grey">
-            <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" title="<%= t('.subtitle1_explanation') %>"><i class="fa fa-info"></i></button>
-            <button type="button" class="btn btn-warning  pull-right" ng-click="add_edit_ask()"><i class="fa fa-plus-circle"></i> <%= t('.add_button') %></button>
-            <h4><i class="fa fa-circle"></i> <%= t('.subtitle1') %></h4>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" title="<%= t('.subtitle1_explanation') %>"><i class="fa fa-info"></i></button>
+              <button type="button" class="btn btn-warning  pull-right" ng-click="add_edit_ask()"><i class="fa fa-plus-circle"></i> <%= t('.add_button') %></button>
+              <h4 class="panel-title"><%= t('.subtitle1') %></h4>
+            </div>
           </div>
           <div class="contenedor">
             <table class="table">
@@ -58,7 +63,9 @@
           </div>
           <!-- end of actions -->
           <div role="tabpanel" class="tab-pane" id="explanation">
+          <div class="box">
             <%= render 'explanation_stage6' %>
+          </div>
           </div>
         </div>
       </div>
