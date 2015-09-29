@@ -36,7 +36,9 @@ Rails.application.routes.draw do
       get 'objective_types', on: :collection
       resources :outcomes
       resources :asks
-      resources :activities
+      resources :activities do
+        get 'generate_ical', on: :member
+      end
     end
     resources :resources do
       get 'aside', on: :collection

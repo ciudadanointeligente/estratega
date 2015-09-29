@@ -198,4 +198,15 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     }
 
   }
+
+  $scope.get_ical = function(activity) {
+    $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/activities/'+activity.id+'/generate_ical')
+        .success( function(data){
+          var blob = new Blob([activity.ical], {type: "text/calendar; charset=UTF-8;"})
+          var downloadLink = angular.element('<a id="activity_'+activity.id+'"></a>');
+              downloadLink.attr('href',window.URL.createObjectURL(blob));
+              downloadLink.attr('download', 'ical.ics');
+              downloadLink[0].click();
+        })
+  }
 }]);

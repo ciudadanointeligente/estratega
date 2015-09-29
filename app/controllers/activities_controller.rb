@@ -1,5 +1,7 @@
+require 'icalendar'
+
 class ActivitiesController < ApplicationController
-  before_action :set_activity, only: [:show, :edit, :update, :destroy]
+  before_action :set_activity, only: [:show, :edit, :update, :destroy, :generate_ical]
   before_action :set_project
   before_action :set_objective
 
@@ -49,6 +51,18 @@ class ActivitiesController < ApplicationController
 
   def stage6
   end
+
+  def generate_ical
+      cal = Icalendar::Calendar.new
+      event = Icalendar::Event.new
+
+      event.dtstart = @activity.scheduling
+      event.summary = @activity.description
+      cal.add_event(event)
+      cal.publish
+      headers['Content-Type'] = "text/calendar; charset=UTF-8"
+      render :layout => false, :text => cal.to_ical
+    end
 
   private
     def set_objective
