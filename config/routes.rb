@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       get 'stage5', on: :member
       get 'stage6', on: :member
       get 'actors', on: :member
+      get 'generate_massive_ical', on: :member
       get 'objective_types', on: :collection
       resources :outcomes
       resources :asks

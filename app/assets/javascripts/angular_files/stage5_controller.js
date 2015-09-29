@@ -209,4 +209,15 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
               downloadLink[0].click();
         })
   }
+
+  $scope.get_full_calendar = function() {
+    $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/generate_massive_ical')
+        .success( function(data){
+          var blob = new Blob([data], {type: "text/calendar; charset=UTF-8;"})
+          var downloadLink = angular.element('<a id="full_calendar"></a>');
+              downloadLink.attr('href',window.URL.createObjectURL(blob));
+              downloadLink.attr('download', 'full_calendar_ical.ics');
+              downloadLink[0].click();
+        })
+  }
 }]);

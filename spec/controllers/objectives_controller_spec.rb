@@ -48,7 +48,7 @@ RSpec.describe ObjectivesController, :type => :controller do
       # project = Project.create! proj_valid_attributes
       project_two = Project.create! valid_project
       project_three = Project.create! valid_project
-      
+
       objective_two = Objective.create! valid_attributes
       objective_three = Objective.create! valid_attributes
       project_two.objectives << objective_two
@@ -115,6 +115,20 @@ RSpec.describe ObjectivesController, :type => :controller do
       objective_types = objective.objective_type_list
       get :objective_types, {project_id: @project, :id => objective, format: :json}, valid_session
       expect(response.body).to include(objective_types.to_json)
+    end
+  end
+
+  describe "GET massive iCals" do
+    require 'icalendar'
+
+    it "returns iCal filetype" do
+      objective = create(:objective)
+      activity_one = create(:activity_one)
+      objective.activities << activity_one
+
+      get :generate_massive_ical, {project_id: @project, :id => objective}, valid_session
+
+      expect(response.headers['Content-Type']).to eq("text/calendar; charset=UTF-8")
     end
   end
 

@@ -83,7 +83,7 @@
             <div class="panel panel-default">
               <div class="panel-heading">
                 <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" title="<%= t('.subtitle2_explanation') %>"><i class="fa fa-info"></i></button>
-                <a href="https://trello.com/" target="_self" class="btn btn-warning pull-right"><i class="fa fa-calendar"></i> <%= t('.trello') %></a>
+                <a ng-click="get_full_calendar()" id="full_calendar" target="_self" class="btn btn-warning pull-right"><i class="fa fa-calendar"></i> <%= t('.download_as_ical') %></a>
                 <h4 class="panel-title"><%= t('.subtitle2') %></h4>
               </div>
             </div>
