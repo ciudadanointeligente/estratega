@@ -17,11 +17,14 @@
 //= require steps
 
 //= require angular/angular
-//= require angular-bootstrap/ui-bootstrap-tpls
+//= require angular-bootstrap/ui-bootstrap-tpls.min
 //= require ng-rails-csrf
 //= require angular-route/angular-route
-//= require angular-aside/dist/js/angular-aside
-//= require angular-smart-table/dist/smart-table
+//= require angular-aside/dist/js/angular-aside.min
+//= require angular-smart-table/dist/smart-table.min
+//= require moment/min/moment.min
+//= require clndr/clndr.min
+//= require angular-clndr/angular-clndr.min
 //= require intro.js/intro
 
 //= require angular_files/wizard_steps

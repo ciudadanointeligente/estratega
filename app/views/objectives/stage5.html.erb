@@ -86,6 +86,47 @@
                 <a ng-click="get_full_calendar()" id="full_calendar" target="_self" class="btn btn-warning pull-right"><i class="fa fa-calendar"></i> <%= t('.download_as_ical') %></a>
                 <h4 class="panel-title"><%= t('.subtitle2') %></h4>
               </div>
+              <div class="panel-body">
+                <tien-clndr class="clndr" tien-clndr-object="clndr" tien-clndr-events="events" tien-clndr-options="options">
+                  <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                      <div class="clndr-controls">
+                        <div class="clndr-previous-button" ng-click="clndr.back()">
+                          &lsaquo;
+                        </div>
+                        <div class="month">
+                          {{month}}
+                        </div>
+                        <div class="clndr-next-button" ng-click="clndr.forward()">
+                          &rsaquo;
+                        </div>
+                      </div>
+                      <div class="clndr-grid">
+                        <div class="days-of-the-week">
+                          <div class="header-day" ng-repeat="day in daysOfTheWeek track by $index">
+                            {{day}}
+                          </div>
+                        </div>
+                        <div class="days">
+                          <div class="{{day.classes}}" ng-repeat="day in days">
+                            <div class="event-indicator" ng-show="day.events.length" ng-click="showEvents(day.events)">{{day.events.length}}</div>
+                            {{day.day}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                      <ul class="list-unstyled" ng-repeat="day in days" ng-if="day.events.length">{{ day.day }}
+                        <li ng-repeat="d in day.events">
+                          <ul class="list-unstyled" ng-if="d.title">
+                            <li>{{d.title}}</li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </tien-clndr>
+              </div>
             </div>
           </div>
           <!-- end of actions -->

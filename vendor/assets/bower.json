@@ -6,7 +6,7 @@
     "angular-route": "1.2.21",
     "angular-aside": "latest",
     "angular-smart-table": "latest",
-    "intro.js": "latest"
-
+    "angular-clndr": "latest",
+    "introjs": "latest"
   }
 }

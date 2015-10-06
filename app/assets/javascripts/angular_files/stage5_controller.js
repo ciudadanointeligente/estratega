@@ -220,4 +220,30 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
               downloadLink[0].click();
         })
   }
+
+  /* calendar */
+  $scope.options = {
+      weekOffset: 1,
+      constraints: {
+          startDate: moment().subtract(1, 'months').format('YYYY-MM-15'),
+          endDate: moment().add(2, 'months').format('YYYY-MM-15')
+      }
+  };
+
+  $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/activities.json')
+      .success(function (data) {
+        $scope.events = []
+        data.forEach(function(d){
+          $scope.events.push({ date: moment(d.scheduling, 'YYYY-MM-DD').format('LL'), title: d.title })
+        })
+      })
+      .error(function (){
+        $scope.messages = { response: false, message: $attrs.errorgettingactivities }
+      });
+
+  $scope.showEvents = function(events) {
+      console.log(events.map(function(e) { return e.title }).join("\n"));
+  };
+  /* calendar */
+
 }]);
