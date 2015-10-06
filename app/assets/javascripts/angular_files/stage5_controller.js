@@ -203,10 +203,15 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/activities/'+activity.id+'/generate_ical')
         .success( function(data){
           var blob = new Blob([activity.ical], {type: "text/calendar; charset=UTF-8;"})
-          var downloadLink = angular.element('<a id="activity_'+activity.id+'"></a>');
-              downloadLink.attr('href',window.URL.createObjectURL(blob));
-              downloadLink.attr('download', 'ical.ics');
-              downloadLink[0].click();
+          var url = window.URL.createObjectURL(blob);
+
+          var elem_partial_calendar =  document.createElement('a');
+            elem_partial_calendar.setAttribute("href", url);
+            elem_partial_calendar.setAttribute("download", 'partial_calendar_ical.ics');
+
+          document.body.appendChild(elem_partial_calendar);
+          elem_partial_calendar.click();
+          document.body.removeChild(elem_partial_calendar);
         })
   }
 
@@ -214,10 +219,15 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/generate_massive_ical')
         .success( function(data){
           var blob = new Blob([data], {type: "text/calendar; charset=UTF-8;"})
-          var downloadLink = angular.element('<a id="full_calendar"></a>');
-              downloadLink.attr('href',window.URL.createObjectURL(blob));
-              downloadLink.attr('download', 'full_calendar_ical.ics');
-              downloadLink[0].click();
+          var url = window.URL.createObjectURL(blob);
+
+          var elem_full_calendar =  document.createElement('a');
+            elem_full_calendar.setAttribute("href", url);
+            elem_full_calendar.setAttribute("download", 'full_calendar_ical.ics');
+
+          document.body.appendChild(elem_full_calendar);
+          elem_full_calendar.click();
+          document.body.removeChild(elem_full_calendar);
         })
   }
 
@@ -241,9 +251,9 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         $scope.messages = { response: false, message: $attrs.errorgettingactivities }
       });
 
-  $scope.showEvents = function(events) {
-      console.log(events.map(function(e) { return e.title }).join("\n"));
-  };
+  // $scope.showEvents = function(events) {
+  //     console.log(events.map(function(e) { return e.title }).join("\n"));
+  // };
   /* calendar */
 
 }]);
