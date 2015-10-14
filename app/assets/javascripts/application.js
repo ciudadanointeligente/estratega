@@ -25,7 +25,6 @@
 //= require moment/min/moment.min
 //= require clndr/clndr.min
 //= require angular-clndr/angular-clndr.min
-//= require introjs/minified/intro.min
 
 //= require angular_files/wizard_steps
 //= require angular_files/project_resources_controller
