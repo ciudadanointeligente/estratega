@@ -1,11 +1,11 @@
-Vizard
-======
+Estratega
+=========
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-[![Build Status](https://travis-ci.org/ciudadanointeligente/vizard.svg?branch=travis)](https://travis-ci.org/ciudadanointeligente/vizard)
-[![Coverage Status](https://coveralls.io/repos/ciudadanointeligente/vizard/badge.png)](https://coveralls.io/r/ciudadanointeligente/vizard)
-[![Code Climate](https://codeclimate.com/github/ciudadanointeligente/vizard/badges/gpa.svg)](https://codeclimate.com/github/ciudadanointeligente/vizard)
+[![Build Status](https://travis-ci.org/ciudadanointeligente/estratega.svg?branch=travis)](https://travis-ci.org/ciudadanointeligente/estratega)
+[![Coverage Status](https://coveralls.io/repos/ciudadanointeligente/estratega/badge.png)](https://coveralls.io/r/ciudadanointeligente/estratega)
+[![Code Climate](https://codeclimate.com/github/ciudadanointeligente/estratega/badges/gpa.svg)](https://codeclimate.com/github/ciudadanointeligente/estratega)
 
 This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
 provided by the [RailsApps Project](http://railsapps.github.io/).
@@ -27,8 +27,8 @@ Ruby on Rails
 
 This application requires:
 
-- Ruby 2.1.3
-- Rails 4.1.6
+- Ruby 2.2.1
+- Rails 4.2.1
 
 Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
 
