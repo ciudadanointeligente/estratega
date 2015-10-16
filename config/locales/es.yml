@@ -143,7 +143,6 @@ en:
       subtitle3: "Which policy solutions would constitute an appropriate response?"
       subtitle3_tooltip: "What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?"
       problem: "Problem"
-      description: "Description"
       focus_area: "Focus Area"
       data_entry: "Data Entry"
       add_button: "Add"
