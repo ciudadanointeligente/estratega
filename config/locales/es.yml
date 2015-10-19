@@ -131,21 +131,22 @@ en:
     # Stage 1
     #
     stage1:   # http://localhost:3000/projects/1/stage1
-      projects: "Projects"
+      projects: "Proyectos"
       stage1: "Etapa 1"
       title: "¿Qué problema desean abordar? ¿Qué cambios en políticas públicas serían necesarios de llevar a cabo para solucionar el problema?"
-      description: "The foundation of an effective advocacy strategy is a common understanding of the main problems that affect children, their policy dimensions and related policy solutions. It is important you take time to go through this discussion because without a clear, articulated issue and well-defined problems and solutions the remaining parts of the strategy will lose focus."
-      subtitle1: "Which real-world problem children are facing that you want to address?"
+      description: "La definición eficaz de una estrategia de advocacy ayuda a la generación de una idea organizacional compartida respecto de un problema público, sus causas y posibles soluciones políticas. Es importante que se tome el tiempo necesario para generar una discusión en torno al problema, ya que si no existe una definición clara es posible perder el foco durante el desarrollo."
+      subtitle1: "¿Qué problema público desean abordar?"
       subtitle1_tooltip: "A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)"
       subtitle1_explanation: "A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)"
-      subtitle2: "Which are the policy-related causes of the real-world problem?"
+      subtitle2: "¿Cuales son las causas políticas relacionadas al problema público?"
       subtitle2_tooltip: "Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem"
       subtitle3: "Which policy solutions would constitute an appropriate response?"
-      subtitle3_tooltip: "What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?"
-      problem: "Problem"
+      subtitle3_tooltip: "¿Qué soluciones políticas podrían constituir una respuesta adecuada para enfrentar el problema público?"
+      problem: "Problema"
+      problem_description: "Descripción"
       focus_area: "Focus Area"
       data_entry: "Data Entry"
-      add_button: "Add"
+      add_button: "Agregar"
       edit_button: "Edit"
       explanation_examples: "Explicaciones y Ejemplos"
       workshop_tips: "Workshop Tips"
@@ -184,7 +185,7 @@ en:
       explanation: "Explicación"
       title1: "¿Qué problema público desean abordar?"
       title1_description: |
-                          <p>La primera etapa del proceso de planificación está centrada en la identificación y caracterización de un problema. Un problema público puede ser entendido como una situación negativa que afecta a la población de un país o una localidad específica y que lo organización desea revertir. </p>
+                          <p>La primera etapa del proceso de planificación está centrada en la identificación y caracterización de un problema. Un problema público puede ser entendido como una situación negativa que afecta a la población de un país o una localidad específica y que la organización desea revertir. </p>
                           <p>La identificación y definición del problema debe responder a por qué la temática en cuestión puede ser considerada como un problema, además de acotarla a un contexto territorial, a uno temporal y mencionar la población que resulta afectada. También es necesario tener en consideración que un problema público tiene causas múltiples y que la identificación de estas puede estar determinada por la forma en que se defina el problema.</p> 
 
       title2: "¿Cuales son las causas políticas relacionadas con el problema público?"
@@ -228,16 +229,16 @@ en:
     # Stage 2
     #
     stage2:   # http://localhost:3000/projects/1/stage2
-      projects: "Projects"
-      stage2: "Stage 2"
-      title: "What policy changes will you focus your advocacy efforts on?"
-      description: "Advocacy planning involves defining and building consensus on the key policy changes to be achieved. The strategic selection of a few key objectives helps you make an efficient use of available resources and maximize existing opportunities."
-      subtitle1: "Formulate the real world problem as a goal"
-      subtitle1_tooltip: "The goals are the big changes and benefits being sougth for women and children, or in services and systems, as a result of advocacy objectives. Goal indicates what will happen after the advocacy objective/s is/are achieved. You should turn the real world problem into the desired real world change you want to contribute to through your advocacy."
-      subtitle2: "Formulate the policy solutions as objectives"
-      subtitle2_tooltip: "The advocacy objectives are what the organization aims to achieve over several years (usually 3-5). It is the overall policy change that is desired as a result of advocacy effort."
+      projects: "Proyectos"
+      stage2: "Etapa 2"
+      title: "¿Qué cambios en políticas públicas serían necesarios de llevar a cabo para solucionar el problema?"
+      description: "La planificación de advocacy implica la definición y construcción de consenso a nivel organizacional sobre los principales cambios políticos que deben alcanzarse para solucionar el problema público. La selección estratégica de los objetivos llevará a la organización a hacer un uso eficiente de los recursos disponibles y maximizar las oportunidades existentes."
+      subtitle1: "Formular el problema público como una meta"
+      subtitle1_tooltip: "La meta puede ser entendida como el gran cambio que resultará de la planificación de advocacy, por lo cual en este punto es necesario señalar cómo la estrategia ayudará a cambiar de forma positiva la situación inicial o “problemática”."
+      subtitle2: "Formular las soluciones políticas como objectivos"
+      subtitle2_tooltip: "Los objetivos son los propósitos que la organización busca alcanzar en el transcurso de 3 a 5 años. También pueden ser entendidos como los cambios en políticas públicas que se desean alcanzar a través de la estrategia de advocacy."
       data_entry: "Data Entry"
-      explanation_examples: "Explanation & Examples"
+      explanation_examples: "Explicaciones y Ejemplos"
       add_objective_button: "Add Objective"
       policy_solutions_button: "Policy Solutions"
       without_objectives_begin_sentence: "There are still "
@@ -341,45 +342,46 @@ en:
       save_button: "Save"
       cancel_button: "Cancel"
     explanation_stage2:  #tab `Explanation & Examples` of stage 2
-      explanation: "Explanation"
-      title1: "Which real-world problem children are facing that you want to address?"
+      explanation: "Explicación"
+      title1: "¿Qué problema público desean abordar?"
       title1_description: |
-                          <p>A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)</p>
-      title2: "Which are the policy-related causes of the real-world problem?"
+                          <p>Un problema público puede ser entendido como una situación negativa que afecta a la población de un país o una localidad específica y que lo organización desea revertir. La primera etapa del proceso de planificación está centrada en la identificación y caracterización del problema público que se desea abordar.</p>
+                          <p>La identificación y definición del problema debe responder a por qué la temática en cuestión puede ser considerada como un problema, además de acotarla a un contexto territorial, a uno temporal y mencionar la población que resulta afectada. También es necesario tener en consideración que un problema público tiene causas múltiples y que la identificación de estas puede estar determinada por la forma en que se defina el problema.</p>
+      title2: "¿Cuales son las causas políticas relacionadas al problema público?"
       title2_description: |
-                          <p>Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem.</p>
-                          <p>To conduct the problem analysis, you can use a problem tree. The problem tree is a well-known tool that “will help advocates understand the immediate, underlying and root causes of the issue, as well as help in gathering information to support the analysis”.</p>
-      title3: "Which policy solutions would constitute an appropriate response?"
+                          <p>Como se mencionaba anteriormente, detrás de los problemas públicos existen múltiples causas, incluyendo los programas políticos y las malas prácticas relacionadas con el ambiente político.</p>
+                          <p>La labor de la estrategia de advocacy se refiere a causas tales como mecanismos de gobernabilidad deficientes, la existencia de un marco jurídico inadecuado o la presencia de relaciones de poder desequilibradas. Por lo anterior, el análisis del problema debería priorizar la identificación a estas causas en lugar de otros factores explicativos del problema público.</p>
+                          <p>Una herramienta de gran utilidad para llevar a cabo el análisis del problema es el “árbol de problemas”, ya que este puede ayudar a visibilizar las causas y consecuencias subyacentes y también a recaudar información para las posteriores fases de la estrategia de advocacy.</p>
+      title3: "¿Qué soluciones políticas podrían constituir una respuesta adecuada para enfrentar el problema público?"
       title3_description: |
-                          <p>What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?</p>
-                          <p>The policy solutions usually refer to:</p>
+                          <p>Las soluciones de política pública se refieren principalmente a:</p>
                           <ul>
-                            <li>Policy development (ex. Development of a nutrition national plan)</li>
-                            <li>Placement on the policy agenda. (Ex: Official paper on new financing mechanisms)</li>
-                            <li>Policy adoption. (Ex: approval of equal pay act)</li>
-                            <li>Policy blocking: (Ex. Rejection of anti-homosexuality bill)</li>
-                            <li>Policy implementation: (Ex. Implementation of regulations forbidding summary deportations by the police)</li>
-                            <li>Policy maintenance. (Ex.: No reduction of budgets for child protection policies)</li>
+                            <li>El desarrollo de políticas</li>
+                            <li>Establecimiento de un tema en la agenda política</li>
+                            <li>Adopción de políticas públicas</li>
+                            <li>Bloqueo de políticas públicas</li>
+                            <li>Implementación de políticas públicas</li>
+                            <li>Mantenimiento de políticas públicas</li>
                           </ul>
-                          <p>In those contexts where a policy change may be too ambitious, an organization may aim for a discursive change (which should pave the way for a policy change in the longer run). For instance, for many years, given the lack of options to achieve change on policies related to tax heavens, organizations working on tax justice focused their advocacy efforts on a change in the discourse in the society so tax havens were seen by the majority as an unacceptable practice that distract critical resources for the countries to pay for social services. These efforts built the ground for changes in policy later on when opportunities appeared (i.e. with the 2008 financial crisis).</p>
-      example: "Example"
-      real_world_problem: "Real-world problem"
+                          <p>En aquellos contextos en los que un cambio de políticas públicas sea considerado demasiado ambicioso, la organización puede aspirar a un cambio discursivo, el que debería allanar el camino para que en el largo plazo se genere un cambio más profundo. Por ejemplo, por muchos años y dada la falta de opciones de lograr un cambio en las políticas relacionadas a los paraísos fiscales, las organizaciones que trabajan en la justicia fiscal centraron sus esfuerzos de advocacy en un cambio discursivo centrado en la sociedad, a modo que los paraísos fiscales fueran vistos por la mayoría como una práctica inaceptable. Estos esfuerzos constituyen la base de los cambios políticos que se consiguieron unos años después.</p>
+      example: "Ejemplos"
+      real_world_problem: "Problema público"
       real_world_problem_description: |
-                          <p>Increasing mother to child transmission of HIV in country AEIOU during the last 3 years</p>
-                          <h4>Policy dimensions of the problem</h4>
+                          <p>Aumento de la transmisión maternoinfantil de VIH en el país X durante los últimos tres años</p>
+                          <h4>Dimensiones políticas</h4>
                           <ul>
-                            <li>Women and children not included as target populations of the National Strategic Plan (epidemy historically concentrated in male drug users)</li>
-                            <li>Health insurance law does not cover informal workers and many women at risk belong to this group. (Therefore, due to limited capacity to cover out-of-pocket expenditures women with little resources do not attend clinics for HIV testing and treatment)</li>
-                            <li>PMTCT not included as a priority in the National Strategic Plan (few resources to improve services, campaigns, etc.)- Few donors paying attention to it.</li>
-                            <li>Current legal framework stipulates detention for sex workers (after 3 monetary sanctions), which prevents sex workers to attend health services due to fear of being denounced. </li>
+                            <li>Las mujeres y los niños no son incluidos como público objetivo del Plan de Salud Estratégico Nacional, ya que la epidemia ha estado históricamente concentrada en los consumidores de drogas masculinos.</li>
+                            <li>El seguro de salud no cubre a los trabajadores informales y muchas mujeres en situación de riesgo pertenecen a este grupo (Debido a los pocos ingresos que perciben las mujeres al trabajar de forma informal, no pueden acceder a los exámenes para detectar el VIH y a tratamientos).</li>
+                            <li>La prevención de la transmisión de VIH de madre a hijo no está incluida como una prioridad en el Plan de Salud Estratégico Nacional.</li>
+                            <li>El marco legal actual considera el comercio sexual como ilegal, por lo que las trabajadoras sexuales evitan asistir a controles médicos por temor a ser denunciadas. </li>
                           </ul>
-      policy_solutions: "Policy Solutions"
+      policy_solutions: "Soluciones de política pública"
       policy_solutions_description: |
                           <ul>
-                            <li>Amendment to the Penal Code to remove sanctions in the form of detention for sex workers</li>
-                            <li>Revision of the National HIV Strategy </li>
-                            <li>Health insurance policy framework revised to cover disadvantaged informal workers</li>
-                            <li>Increase donor funding on PMTCT</li>
+                            <li>Enmienda al Código Penal, a modo de que se eliminen las detenciones a las trabajadoras sexuales.</li>
+                            <li>Revisión de la estrategia nacional del VIH.</li>
+                            <li>Cambio del marco de la política de salud para cubrir a los trabajadores informales que resultan desfavorecidos.</li>
+                            <li>Aumentar la financiación a través de donantes para la prevención de la transmisión del VIH de madre a hijo.</li>
                           </ul>
     #
     # Stage 3
