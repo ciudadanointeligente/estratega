@@ -3,7 +3,7 @@ Estratega
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-[![Build Status](https://travis-ci.org/ciudadanointeligente/estratega.svg?branch=travis)](https://travis-ci.org/ciudadanointeligente/estratega)
+[![Build Status](https://api.travis-ci.org/ciudadanointeligente/estratega.svg?branch=master)](https://travis-ci.org/ciudadanointeligente/estratega)
 [![Coverage Status](https://coveralls.io/repos/ciudadanointeligente/estratega/badge.png)](https://coveralls.io/r/ciudadanointeligente/estratega)
 [![Code Climate](https://codeclimate.com/github/ciudadanointeligente/estratega/badges/gpa.svg)](https://codeclimate.com/github/ciudadanointeligente/estratega)
 
