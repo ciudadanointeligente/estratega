@@ -53,8 +53,8 @@ en:
       my_projects: "Mis proyectos"
       other_projects: "Otros proyectos"
       project: "Proyecto"
-      focus_area: "Focus Area"
-      actions: "Actions"
+      focus_area: "Área de focalización"
+      actions: "Acciones"
       public: "Public"
       guide_me: "Guide Me"
       step_one: "Para comenzar a trabajar se debe crear un <strong>Nuevo proyecto</strong>"
@@ -63,7 +63,7 @@ en:
       config: "Config the project"
       share: "Share the project"
       edit: "Editar"
-      overview: "Overview"
+      overview: "Resumen"
       delete: "Borrar el proyecto"
 
     project_modal: # modal `new project` of index
@@ -72,7 +72,7 @@ en:
       title_placeholder: "Ingrese un título para el proyecto"
       description: "Descripción"
       title_placeholder: "Ingrese la description del proyecto"
-      focus_area: "Focus Area"
+      focus_area: "Área de focalización"
       public: "Public"
       save: "guardar"
       cancel: "Cancelar"
@@ -81,7 +81,7 @@ en:
       stages: "Etapas"
       dashboard: "Dashboard"
       documents: "Documents"
-      overview: "Overview"
+      overview: "Resumen"
       step_one: "Once the project page you will see 3 tabs. In <strong>Stages</strong> are the stages of data entry, <strong>Dashboard</strong> will show indicators of success and progress , will be the <strong>Documents</strong> library of important documents , and finally <strong>Overview</strong> showing the summary of all the information entered"
       step_two: "Let's start with the advocacy plan by completing the information requested in the <strong>Stage 1</strong>"
       step_three: "These icons show you the 3 states of data entry. They'll tell you if you need to fill a previous step (<i class='fa fa-lock'></i>), if they are ready to income (<i class='fa fa-unlock'></i>) or it contains information (<i class='fa fa-check'></i>)"
@@ -96,22 +96,22 @@ en:
                     consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
                     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      objective_cnt: 'Objective'
+      objective_cnt: 'objectivos'
     overview:     # http://localhost:3000/projects/1#overview
-      projects: "Projects"
-      overview: "Overview"
+      projects: "Proyectos"
+      overview: "Resumen"
       empty: "( empty field )"
       uncreated: "( uncreated )"
     dashboard:    # http://localhost:3000/projects/1#dashboard
-      activities: "Activities"
-      successful_activities: "successful activities"
-      neutral_activities: "neutral activities"
-      failed_activities: "failed activities"
+      activities: "Actividades"
+      successful_activities: "Actividades exitosas"
+      neutral_activities: "Actividades neutrales"
+      failed_activities: "Actividades fallidas"
       completed_activities_rate: "Completed activities rate"
       success_rate: "Success rate"
       state_of_activities: "State of activities last months"
       upcoming_activities: "Upcoming activities"
-      all_activities: "See all activities"
+      all_activities: "Ver todas las actividades"
       date: "Date"
       activity: "Activity"
       overdue_activities: "Overdue activities"
@@ -136,18 +136,18 @@ en:
       title: "¿Qué problema desean abordar? ¿Qué cambios en políticas públicas serían necesarios de llevar a cabo para solucionar el problema?"
       description: "La definición eficaz de una estrategia de advocacy ayuda a la generación de una idea organizacional compartida respecto de un problema público, sus causas y posibles soluciones políticas. Es importante que se tome el tiempo necesario para generar una discusión en torno al problema, ya que si no existe una definición clara es posible perder el foco durante el desarrollo."
       subtitle1: "¿Qué problema público desean abordar?"
-      subtitle1_tooltip: "A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)"
-      subtitle1_explanation: "A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)"
+      subtitle1_tooltip: "Un problema público puede ser entendido como una situación negativa que afecta a la población de un país o una localidad específica y que la organización desea revertir."
+      subtitle1_explanation: "Un problema público puede ser entendido como una situación negativa que afecta a la población de un país o una localidad específica y que la organización desea revertir."
       subtitle2: "¿Cuales son las causas políticas relacionadas al problema público?"
-      subtitle2_tooltip: "Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem"
-      subtitle3: "Which policy solutions would constitute an appropriate response?"
+      subtitle2_tooltip: "Como se mencionaba anteriormente, detrás de los problemas públicos existen múltiples causas, incluyendo los programas políticos y las malas prácticas relacionadas con el ambiente político. La labor de la estrategia de advocacy se refiere a causas tales como mecanismos de gobernabilidad deficientes, la existencia de un marco jurídico inadecuado o la presencia de relaciones de poder desequilibradas. Por lo anterior, el análisis del problema debería priorizar la identificación a estas causas en lugar de otros factores explicativos del problema público."
+      subtitle3: "¿Qué soluciones políticas podrían constituir una respuesta adecuada para enfrentar el problema público?"
       subtitle3_tooltip: "¿Qué soluciones políticas podrían constituir una respuesta adecuada para enfrentar el problema público?"
       problem: "Problema"
       problem_description: "Descripción"
-      focus_area: "Focus Area"
+      focus_area: "Área de focalización"
       data_entry: "Data Entry"
       add_button: "Agregar"
-      edit_button: "Edit"
+      edit_button: "Editar"
       explanation_examples: "Explicaciones y Ejemplos"
       workshop_tips: "Workshop Tips"
       policies_text: "Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem"
@@ -171,16 +171,16 @@ en:
       step_three: "Now add <strong>Policy Problems</strong>, they group <strong>Policy Solution</strong>"
     policy_modal: # modal `add policy` of stage 1
       policy: "Policy"
-      title: "Title"
+      title: "Título"
       title_placeholder: "Enter a title for a problem"
-      save_button: "Save"
-      cancel_button: "Cancel"
+      save_button: "Guardar"
+      cancel_button: "Cancelar"
     solution_modal:  # modal `add solution` of stage 1
       solution: "Solution"
-      title: "Title"
-      title_placeholder: "Enter a title for a problem"
-      save_button: "Save"
-      cancel_button: "Cancel"
+      title: "Título"
+      title_placeholder: "Ingrese el título del problema"
+      save_button: "Guardar"
+      cancel_button: "Cancelar"
     explanation:  #tab `Explanation & Examples` of stage 1
       explanation: "Explicación"
       title1: "¿Qué problema público desean abordar?"
@@ -239,18 +239,18 @@ en:
       subtitle2_tooltip: "Los objetivos son los propósitos que la organización busca alcanzar en el transcurso de 3 a 5 años. También pueden ser entendidos como los cambios en políticas públicas que se desean alcanzar a través de la estrategia de advocacy."
       data_entry: "Data Entry"
       explanation_examples: "Explicaciones y Ejemplos"
-      add_objective_button: "Add Objective"
-      policy_solutions_button: "Policy Solutions"
+      add_objective_button: "Agregar objetivos"
+      policy_solutions_button: "Soluciones políticas"
       without_objectives_begin_sentence: "There are still "
       without_objectives_end_sentence: " policy solutions without objectives"
-      objectives: "Objectives"
+      objectives: "Objetivos"
       subtotal_key_contribution: "Subtotal Key Contribution"
       subtotal_momentum: "Subtotal Momentum"
       subtotal_comparative_advantage: "Subtotal Comparative Advantage"
       total: "Total"
-      prioritized: "Prioritized"
-      policy_solutions: "Policy Solutions"
-      actions: "Actions"
+      prioritized: "Priorizado"
+      policy_solutions: "Solución de políticas públicas"
+      actions: "Acciones"
       error_focus_area: "Error while getting focus area information"
       error_objective_types: "Error while getting objective types information"
       error_project: "Error while getting the project information"
@@ -268,79 +268,67 @@ en:
       step_four: "Pressing the text of the alert window will display a list of solutions, colored in <strong class='red'>red</strong> are unassigned"
       step_five: "In this selection we <strong>add Objetives</strong> and <strong>partner with Solutions</strong>"
     goal_modal: # modal `goal` of stage 2
-      goal: "Goal"
-      title: "Title"
+      goal: "Meta"
+      title: "Título"
       title_placeholder: "Enter a goal for a problem"
-      save_button: "Save"
-      cancel_button: "Cancel"
+      save_button: "Guardar"
+      cancel_button: "Cancelar"
     solutions_list_modal:  # modal `solutions` of stage 2
-      solutions: "Solutions"
-      title: "Title"
-      description: "Description"
+      solutions: "Soluciones"
+      title: "Título"
+      description: "Descripción"
       back_button: "Back"
     objective_modal: # modal `add objective` of stage 2
-      objective: "Objective"
+      objective: "Objectivos"
       select_solution: "Select Solution"
       objective_type: "Objective Type"
       objective_placeholder: "Add any important objective info"
-      key_contribution: "KEY CONTRIBUTION: is the advocacy objective a key contribution to the problem?"
-      big_difference: "<p><strong>Big difference:</strong> Would success on the advocacy objective make a significant difference in addressing the problem children face (assess in comparison with other objectives)?</p>"
-      score: "Score"
-      score_placeholder: "Enter number 1 to 3"
-      main_arguments: "Main arguments"
-      main_arguments_placeholder: "Enter Main Arguments"
-      multiplying_effect: "<p><strong>Multiplying effect:</strong> Would it address several important real world problems at the same time? (at national level and/or at national and global level)</p>"
-      catalytic: "<p><strong>Catalytic:</strong> Is achieving this particular advocacy objective almost a precondition for tackling other UNICEF advocacy objectives (e.g. policy adoption is a precondition for funding)?</p>"
-      momentum: "MOMENTUM: Does the advocacy objective have enough momentum, or can momentum be generated?"
+      key_contribution: "CONTRIBUCIÓN CLAVE: ¿El objetivo es una contribución clave para la solución del problema?"
+      big_difference: "<p><strong>Gran diferencia:</strong> ¿Podría el éxito del objetivo hacer una diferencia significativa en el tratamiento del problema público?</p>"
+      score: "Puntaje"
+      score_placeholder: "Ingrese un número del 1 al 3"
+      main_arguments: "Justificación del puntaje"
+      main_arguments_placeholder: "Ingrese sus argumentos"
+      multiplying_effect: "<p><strong>Efecto multiplicador:</strong> ¿Sería posible abordar varios problemas al mismo tiempo?</p>"
+      catalytic: "<p><strong>Catalizador:</strong> ¿El objetivo principal de advocacy ayuda a lograr otras metas de la organización?</p>"
+      momentum: "MOMENTUM: ¿El objetivo de advocacy tiene el impulso suficiente?"
       demand: |
-              <p><strong>Demand:</strong> Is there demand to carry the advocacy objective forward?</p>
+              <p><strong>Demanda:</strong> ¿Existe demanda para el desarrollar la estrategia de advocacy?</p>
               <ul>
-                <li>Are there specific champions pushing the issue (governments; policy-makers; influential figures; etc.)?</li>
-                <li>Are rights-holders (including children) articulating specific demands to duty-bearers?</li>
-                <li>Are other important constituencies pushing policy-makers?</li>
-                <li>Is there sufficient public awareness?</li>
+                <li>¿Hay líderes de opinión apoyando la temática?</li>
+                <li>¿Hay otros grupos importantes empujando a los responsables políticos?</li>
+                <li>¿Hay suficiente conciencia pública?</li>
               </ul>
       hooks_processes: |
-              <p><strong>Hooks & processes:</strong></p>
+              <p><strong>Ganchos y procesos:</strong></p>
               <ul>
-                <li>Are there legislative or policy processes (national, regional or global) that open windows of opportunity to push for the advocacy objective?</li>
-                <li>Has a UN Treaty Body, such as the Committee on the Rights of the Child, addressed the issue as part of country reporting or a General Comment?</li>
+                <li>¿hay ventanas de oportunidad en los procesos políticos?</li>
               </ul>
       intuitive: |
-              <p><strong>Intuitive:</strong> Is the issue behind the advocacy objective easy to communicate and understand, or can we get it to be?</p>
+              <p><strong>Intuitivo:</strong> ¿El tema detrás de la estrategia de advocacy es fácil de comunicar o entender?</p>
               <ul>
-                <li>Can the issue and the proposal be articulated in a compelling narrative?</li>
-                <li>Is it an issue that has the potential to generate compassion and solidarity?</li>
               </ul>
-      comparative_advantage: "Comparative Advantage: Does UNICEF have a mandate and comparative advantage with regard"
+      comparative_advantage: "Ventaja comparativa: ¿tiene la organización una ventaja comparativa en relación al objetivo de advocacy?"
       alignment: |
-              <p><strong>Alignment:</strong></p>
+              <p><strong>Alineación:</strong></p>
               <ul>
-                <li>Is it consistent with UNICEF’s mandate (CRC and SDGs)?</li>
-                <li>Is there a clear case under Convention on the Rights of Children (CRC)?</li>
-                <li>Is it part of UNICEF’s existing medium- and long-term strategy and commitments, including the Strategic Plan?</li>
-                <li>Does it contribute to reduce disparities?</li>
-                <li>Are there synergies with other UNICEF agendas, e.g. existing fundraising schemes?</li>
-                <li>Do we have senior management buy-in?</li>
+                <li> ¿la estrategia de advocacy es coherente con el mandato de la organización?</li>
+                <li>¿Existen sinergias con otro programa de la organización?</li>
               </ul>
       added_value: |
-              <p><strong>Added value:</strong> Can UNICEF add value to the voices of other stakeholders in the pursuit of the advocacy objective?</p>
+              <p><strong>Valor agregado:</strong> ¿puede la organización agregar valor y peso al discurso de otras organizaciones para la consecución de la meta de advocacy?</p>
               <ul>
-                <li>Is the issue behind the advocacy objective being addressed by anybody? If so, is it being approached appropriately (e.g. rights-based approach)?</li>
-                <li>Do we have, or can we generate, the data and evidence to make a robust case?</li>
-                <li>Do we have the technical expertise? </li>
-                <li>Are we able to convene key partners?</li>
+                <li>¿Está el tema que impulsa la estrategia de advocacy siendo tratado por alguien más?</li>
+                <li>¿La organización cuenta con la expertise técnica y es capaz de convocar a socios clave?</li>
               </ul>
       loss_or_gain: |
-              <p><strong>Loss or gain:</strong> Does UNICEF have a lot to gain (or a lot to lose) from pursuing (or not pursuing) the advocacy objective? </p>
+              <p><strong>Perdida o ganancia:</strong> ¿La organización tiene mucho  que ganar de llevar a cabo el objetivo de advocacy?</p>
               <ul>
-                <li>Can the issue help raise UNICEF’s profile, or allow UNICEF to position itself strategically?</li>
-                <li>Are there synergies with other UNICEF agendas, e.g. existing fundraising schemes?</li>
-                <li>Is it an issue that UNICEF can’t be seen to be silent on (UNICEF must be there)?</li>
-                <li>Are there significant risks for UNICEF, including from not engaging on the issue? </li>
+                <li>¿Se fortalece la reputación o credibilidad de la organización al llevar a cabo el plan de advocacy? </li>
+                <li>¿Existen riesgos significativos para la organización de no participar en el tema?</li>
               </ul>
-      save_button: "Save"
-      cancel_button: "Cancel"
+      save_button: "Guardar"
+      cancel_button: "Cancelar"
     explanation_stage2:  #tab `Explanation & Examples` of stage 2
       explanation: "Explicación"
       title1: "¿Qué problema público desean abordar?"
