@@ -30,7 +30,7 @@ en:
       sentence_advocacy: "Align advocacy width other areas and organization goals, both long and short term"
       sentence_keep_track: "Keep track and evaluate your performance"
       button_demo: "Demo"
-      button_read_more: "I want to read more about it"
+      button_read_more: "Quiero saber más acerca de esto"
       testimony1_txt: "Align advocacy width other areas and organization goals, both long and short term"
       testimony1_signer: "UNICEF Ambassador Matt Dawson"
       testimony2_txt: "Align advocacy width other areas and organization goals, both long and short term"
@@ -604,44 +604,45 @@ en:
                     <td>Identificación de una organización o campaña como una fuente creíble</td>
                     <td>La organización es reconocida como una voz creible en temas de transparencia y fiscalización</td>
                   </tr>
-      table_content_source: "<p>Source: Adapted from UNICEF (2010) Advocacy toolkit, pg 64</p>"
+      table_content_source: "<p>Fuente: Adaptado desde, UNICEF (2010) Advocacy toolkit, pág. 64</p>"
       explanation_part2:  |
-                  <p>The selection of the interim outcomes should be based on the conclusions from the previous analysis: actor mapping, decision-making process, enabling factors and barriers (including the contextual information obtained from the prioritizing table).</p>
-                  <p>For example: a) an organization defines as its advocacy objective the adoption of a Law“X” next year; b) the actor mapping shows that there are active supporters and opponents with similar level of power; the public is neutral and there are few grassroots organizations with some influence working on the issue; c) The decision-making process analysis shows that the Law has been assigned to the Committee on Labour, which will be a key player during the adoption process. Then, in order to move the balance in your favour and progress in the achievement of your objectives your interim outcomes will probably include changes in the public such as increase their awareness on the issue so they position themselves in favour of it and to build their public will to act in support of the issue so they put pressure on decision-makers. You will most likely also aim for powerful messages delivered by the media or new champions to encourage the supporters and influence the public so they can become a force to move opponents to reduce their opposition to the policy change.</p>
-                  <p>Interim outcomes indicate movements towards the advocacy objective, they are “measures of effect” and therefore they “should also be worded in terms of the desired result or achievement, not in terms of the activity or what will be done”. “Raise support for children’s rights among key decision-makers,” for example, is activity-oriented. A results-oriented outcome is: “Decision-makers X, Y and Z will demonstrate their increased support for children’s rights by calling for increased funding for boys’ and girls’ primary education.”</p>
-                  <p>The interim outcomes can be organized in a logical chain where the combined effort of reaching some of them contributes to achieve the overall advocacy objective. The deeper you have worked in your analysis of problems, the more accurate you will be in organising your outcomes. This logical chain is sometimes known as your theory of change, which explains how you expect policy change to happen and what will pave the way to the implementation of the desired policy solution.</p>
+                  <p>La selección de resultados intermedios debe estar basada en las conclusiones de las etapas anteriores, como el mapeo de actores, los procesos de toma de decisión, ciclo político y los factores habilitantes y barreras.</p>
+                  <p>Por ejemplo: a) Una organización define como parte de sus objetivos de advocacy la adopción de la Ley X el próximo año; b) El mapeo de actores muestra que hay partidarios y opositores activos con niveles similares de influencia, el gobierno es neutral al igual que la ciudadanía y existen pocas organizaciones de la sociedad civil con influencia respecto del tema; c) El análisis de los procesos de toma de decisión muestran que la Ley en cuestión ha sido asignada a la Comisión de Trabajo, la que será un actor clave en el proceso de advocacy. Luego, con el fin de mover la balanza a favor de la organización y progresar en el desarrollo de sus objetivos, los resultados intermedios deben incluir cambios en el público tales como aumentar el conocimiento de la sociedad o un grupo de la sociedad respecto del tema, a modo de generar voluntad pública para presionar a los tomadores de decisión. Es muy probable que se necesite el apoyo de personas con mayor cantidad de influencia, como líderes de opinión, los que pueden emitir comentarios a modo de posicionar el tema. Todas las acciones tienen que tener como foco o finalidad la reducción de los opositores de la causa en cuestión.</p>
+                  <p>Los resultados intermedios pueden ser entendidos como indicadores del tránsito hacia los objetivos de advocacy, por lo que deben ser pensados y planificados en función de ellos. hay que tener en consideración que cuanto más profundo ha sido el análisis del problema público, más precisos serán los resultados intermedios.</p>
+                  <p>Los resultados intermedios también pueden ser ordenados de forma lógica y secuencial, a modo que el cumplimiento de un conjunto de resultados genere la realización de un objetivo. Este ordenamiento es conocido como “teoría de cambio”.</p>
       example:    |
                   <h3>Ejemplos</h3>
                   <hr>
                   <ul>
-                    <li>INGO and UNICEF strengthen their collaboration and jointly advocate the National Assembly and the Government to reform the policy framework on HI in order to cover informal workers and their families (partnerships)</li>
-                    <li>All UN organizations interested on this issue (WHO, ILO, UNAIDS, UNWOMEN, UNICEF) agree on joint advocacy actions and actively engage in their implementation (partnerships)</li>
-                    <li>Key neutral media cover and support the issue and give voices to the demands of informal workers (media coverage)</li>
-                    <li>Affected people groups/networks engage and take action in support of the issue (constituency growth)</li>
-                    <li>Director of the Department of HI demonstrates its support to expanding HI coverage to informal workers by speaking in favour of it publicly (political will)</li>
-                    <li>Members of Parliament are aware of our policy proposal and recognize that the problem exists and solutions must be promptly set in place (awareness and salience)</li>
-                    <li>UNICEF/ UN is invited to prepare and present a report on the implementation of the HI Law (organizational recognition)</li>
+                    <li>ONG’s internacionales y UNICEF refuerzan su colaboración y conjuntamente abogan para reformar el marco normativo del Plan Nacional de Salud, a modo de que los trabajadores informales y sus familias tengan una cobertura de salud garantizada.</li>
+                    <li>Todas las organizaciones de la ONU (OMS, OIT, UNICEF, ONU Mujeres Y ONUSIDA) están de acuerdo en promocionar de forma conjunta el problema de la cobertura de salud, y también de participar activamente en su implementación.</li>
+                    <li>Un actor clave y neutral de los medios de comunicación, apoya y ayuda a visibilizar las demandas de los trabajadores informales.</li>
+                    <li>Un grupo de personas afectadas crean una red a modo de gestionar la ayuda</li>
+                    <li>(Crecimiento de la base de apoyo).
+                    <li>El Director del Departamento de Salud demuestra su apoyo a la ampliación de la cobertura del Plan de Salud, hablando públicamente del tema en una conferencia.</li>
+                    <li>Algunos miembros del Parlamento son conscientes de la propuesta para ampliar la cobertura del Plan de Salud, reconociendo la existencia del problema.</li>
+                    <li>UNICEF y la ONU preparan un informe sobre la aplicación del Plan Nacional de Salud.</li>
                   </ul>
     #
     # Stage 5
     #
     stage5: # http://localhost:3000/projects/1/objectives/1/stage5
-      projects: "Projects"
-      stage5: "Stage 5"
-      title: "What will you do to achieve your advocacy objectives?"
-      title_description: "Your advocacy strategy should describe the main actions that will be conducted in order to contribute to the desired change (interim outcome and advocacy objective). The types of actions are numerous and each action can contribute to different outcomes."
-      subtitle1: "What actions must we do to achieve this Interim Outcome?"
-      subtitle2: "Import your activities in your calendar"
-      subtitle2_explanation: "For planning and coordination purposes it is useful to place the activities in Trello. Trello integration will be available soon."
+      projects: "Proyectos"
+      stage5: "Etapa 5"
+      title: "¿Qué van a hacer como organización para alcanzar sus objetivos de advocacy?"
+      title_description: "Las actividades son la materialización del proceso de advocacy, es decir, las principales acciones que se llevarán a cabo con el fin de contribuir al cambio deseado. Los tipos de acciones realizables son numerosas y cada una puede contribuir a un resultado diferente."
+      subtitle1: "¿Qué acciones se deben llevar a cabo para lograr los resultados intermedios? "
+      subtitle2: "Importe sus actividades en el calendario"
+      subtitle2_explanation: "Para efectos de la planificación y coordinación, es útil poner las actividades a realizar en Trello. La integración con Trello estará disponible pronto."
       data_entry: "Data Entry"
-      explanation_examples: "Explanation & Examples"
+      explanation_examples: "Explicaciones y ejemplos"
       workshop_tips: "Workshop Tips"
-      add_button: "Add"
-      without_activities: "Describe the main actions that will be conducted to the desired change"
-      activities: "Activities"
-      description: "Description"
-      outcomes: "Outcomes"
-      actions: "Actions"
+      add_button: "Agregar"
+      without_activities: "En este punto se deben describir las principales acciones que llevarán al cambio deseado."
+      activities: "Actividades"
+      description: "Descripción"
+      outcomes: "Resultados"
+      actions: "Acciones"
       download_as_ical: "Downloads activities as iCal"
       error_getting_outcomes: "Error while getting outcomes information"
       error_getting_asks: "Error while getting asks information"
@@ -650,285 +651,280 @@ en:
       error_creating_activity: "Error while creating activity information"
       confirm_delete_activity: "Are you sure you want to delete this activity?"
     modal_activity: # modal 'activities' of stage 5
-      activities: "Activities"
-      title: "Title"
-      title_placeholder: "Enter a title for an activity"
-      description: "Description"
-      description_placeholder: "Enter a description for an activity"
-      completion: "Completion"
-      organizer: "Organizer"
-      activity_types: "Activity types"
-      scheduling: "Scheduling"
-      outcome: "Outcome"
-      save_button: "Save"
-      cancel_button: "Cancel"
+      activities: "Actividades"
+      title: "Título"
+      title_placeholder: "Ingrese un título para la actividad"
+      description: "Descripción"
+      description_placeholder: "Ingrese una descripción para la actividad"
+      completion: "¿finalizó?"
+      organizer: "Tipo de evento"
+      activity_types: "Tipos de actividades"
+      scheduling: "Fecha"
+      outcome: "Resultado"
+      save_button: "Guardar"
+      cancel_button: "Cancelar"
     modal_indicator:
       owner_name: "Owner"
       owner_role: "Role"
-      expected_results: "Expected results"
-      obtained_results: "Obtained results"
-      settings: "Settings"
-      percentage: "Percentage"
-      save_button: "Save"
-      cancel_button: "Cancel"
+      expected_results: "Resultados esperados"
+      obtained_results: "Resultados obtenidos"
+      settings: "Ajustes"
+      percentage: "Porcentaje"
+      save_button: "Guardar"
+      cancel_button: "Cancelar"
     explanation_stage5: #tab `Explanation & Examples` of stage 5
-      title: "Explanation"
-      subtitle1: "What will you do to achieve your advocacy objectives?"
-      subtitle1_explanation: <p>Your advocacy strategy should describe the main actions that will be conducted in order to contribute to the desired change (interim outcome and advocacy objective). The types of actions are numerous and each action can contribute to different outcomes.</p>
+      title: "Explicación"
+      subtitle1: "¿Qué van a hacer como organización para alcanzar sus objetivos de advocacy?"
+      subtitle1_explanation: "<p>Las actividades son la materialización del proceso de advocacy, es decir, las principales acciones que se llevarán a cabo con el fin de contribuir al cambio deseado. Los tipos de acciones realizables son numerosas y cada una puede contribuir a un resultado diferente.</p>"
       outcomes_table_content: |
               <tr>
-                <th>Outcome</th>
-                <th>Examples of activities usually associated with the outcome</th>
+                <th>Resultado intermedio</th>
+                <th>Ejemplos de actividades usualmente asociadas con este resultados intermedios</th>
               </tr>
               <tr>
-                <td>Political will</td>
+                <td>Voluntad política</td>
                 <td>Lobby<br>
-                  Relationship building with decision makers<br>
-                  Policymaker and candidate education<br>
-                  Litigation or legal advocacy<br>
-                  Policy proposal development<br>
-                  Demonstration projects or pilots<br>
-                  Earned media
+                  Construcción de relaciones con tomadores de decisión<br>
+                  Lítigios y defensa legal<br>
+                  Desarrollo de una propuesta política<br>
+                  Demostración de proyectos y pilotos<br>
+                  Medios ganados
                 </td>
               </tr>
               <tr>
-                <td>Public will</td>
-                <td>Polling
-                  Rallies and marches <br>
-                  Digital or internet-based media/social media
+                <td>Voluntad pública</td>
+                <td>Manifestaciones 
+                  y marchas <br>
+                  Difusión a través de redes sociales
                 </td>
               </tr>
               <tr>
-                <td>Attitudes or beliefs</td>
-                <td>Issue/policy analysis and research
-                  Polling <br>
-                  Public service announcements <br>
-                  Briefings/presentations
+                <td>Actitudes y creencias</td>
+                <td>Análisis e investigación de políticas y temas
+                  <br>
+                  Anuncios de servicios públicos <br>
+                  Conferencias de prensa
                 </td>
               </tr>
               <tr>
-                <td>Salience</td>
+                <td>Relevancia</td>
                 <td>Lobby <br>
-                  Relationship building with decision makers <br>
-                  Policymaker and candidate education
+                  Construcción de relaciones con tomadores de decisión<br>
                 </td>
               </tr>
               <tr>
-                <td>Awareness</td>
+                <td>Conciencia</td>
                 <td>
-                  Public service announcements <br>
-                  Rallies and marches <br>
-                  Briefings/presentations <br>
-                  Digital or internet-based media/social media
+                  Anuncios de servicios públicos<br>
+                  Manifestaciones y marchas<br>
+                  Conferencias de prensa<br>
+                  Difusión a través de redes sociales
                 </td>
               </tr>
               <tr>
-                <td>New champions</td>
+                <td>Líderes de opinión</td>
                 <td>
-                  Relationship building with decision-makers <br>
-                  Digital or internet-based media/social media
+                  Construcción de relaciones con tomadores de decisión<br>
+                  Difusióna través de redes sociales
                 </td>
               </tr>
               <tr>
-                <td>New advocates </td>
-                <td>Briefings/presentations</td>
+                <td>Nuevos Defensores</td>
+                <td>Conferencias de prensa</td>
               </tr>
               <tr>
-                <td>Partnerships or alliances</td>
+                <td>Asociaciones y alianzas</td>
                 <td>
-                  Issue/policy analysis and research <br>
-                  Rallies and marches <br>
-                  Grass-roots organizing and mobilization
+                  Análisis e investigación de políticas y temas<br>
+                  Manifestaciones y marchas<br>
+                  Organización y movilización popular
                 </td>
               </tr>
               <tr>
-                <td>Constituency or support-base growth</td>
+                <td>Circunscripción o base de apoyo en crecimiento</td>
                 <td>
-                  Rallies and marches <br>
-                  Grass-roots organizing and mobilization
+                  Manifestaciones y marchas<br>
+                  Organización y movilización popular
                 </td>
               </tr>
               <tr>
-                <td>Media coverage</td>
+                <td>Cobertura mediática</td>
                 <td>
-                  Rallies and marches <br>
-                  Grass-roots organizing and mobilization <br>
-                  Media partnerships <br>
-                  Digital or internet-based media/social media
+                  Manifestaciones y marchas<br>
+                  Organización y movilización popular<br>
+                  alianzas con medios<br>
+                  difusión a través de redes sociales
                 </td>
               </tr>
               <tr>
-                <td>Issue reframing</td>
+                <td>Replanteamiento del asunto</td>
                 <td>
-                  Issue/policy analysis and research <br>
-                  Earned media
+                  Análisis e investigación de políticas y temas<br>
+                  Medios ganados
                 </td>
               </tr>
               <tr>
-                <td>Organizational advocacy capacity</td>
-                <td>Any of the others</td>
+                <td>Capacidad organizacional de advocacy</td>
+                <td>Cualquiera de las demás actividades</td>
               </tr>
               <tr>
-                <td>Organizational visibility or issue recognition </td>
-                <td>Issue/policy analysis and research</td>
+                <td>Visibilidad organizacional y reconocimiento del problema</td>
+                <td>Análisis e investigación de políticas y temas</td>
               </tr>
       after_outcomes_table_description:  |
-              <p>The actions chosen should be those with the greatest potential to contribute to each of the interim outcomes. During their selection, you also need to keep in mind your organization´s human and financial resources.</p>
-              <p>For planning and coordination purposes it is useful to place the activities in a calendar.</p>
-      example: "Example"
-      activities: "Activities"
+              <p>Las acciones elegidas deben ser las que tienen el mayor potencial para contribuir a cada uno de los resultados provisionales. Durante su selección, también hay que tener en cuenta sus recursos organizacionales, ya sean humanos o financieros.</p>
+              <p>Para planificar y coordinar lo más recomendable es agendar las actividades, así resultará mucho más sencillo acoplar los distintos elementos asociados.</p>
+      example: "Ejemplos"
+      activities: "Actividades"
       interim_outcome_table_content: |
               <tr>
-                <th>Interim outcome</th>
-                <th>Main activities</th>
+                <th>Resultado intermedio</th>
+                <th>Actividades principales</th>
               </tr>
               <tr>
-                <td>1) INGO and UNICEF strengthen their collaboration and jointly advocate the National Assembly and the Government to reform the policy framework on HI in order to cover informal workers and their families <strong>(partnerships)</strong></td>
+                <td>1) ONG’s internacionales y UNICEF refuerzan su colaboración y conjuntamente abogan para reformar el marco normativo del Plan Nacional de Salud, a modo de que los trabajadores informales y sus familias tengan una cobertura de salud garantizada (alianzas)</td>
                 <td>
                   <ul>
-                    <li>Jointly (INGO and UNICEF) collect and publish live stories of children living with HIV and children born HIV free from HIV positive mothers.</li>
-                    <li>Joint lobby meetings (see below)</li>
+                    <li>De forma conjunta, UNICEF y un conjunto de ONG’s internacionales recolectan y publican historias de familias afectadas.</li>
+                    <li>Reuniones de lobby conjuntas (Ver más adelante)</li>
                   </ul>
                 </td>
               </tr>
               <tr>
-                <td>2) All UN organizations interested on this issue (WHO, ILO, UNAIDS, UNWOMEN, UNICEF) agree on joint advocacy actions and actively engage in their implementation <strong>(partnerships)</strong></td>
+                <td>2) Todas las organizaciones de la ONU (OMS, OIT, UNICEF, ONU Mujeres Y ONUSIDA) están de acuerdo en promocionar de forma conjunta el problema de la cobertura de salud, y también de participar activamente en su implementación (alianzas)</td>
                 <td>
                   <ul>
-                    <li>Develop internal UN document with UN asks, messages and narrative</li>
-                    <li>Joint event around the launch of the WHO report on Health for All with the participation of Gov, MP and engagement of UN Reps and regional/HQ+ affected people</li>
-                    <li>Produce and publish joint UN/UNICEF investment case on HI and coverage to informal workers and families </li>
+                    <li>Desarrollo de un documento interno ONU en donde se establezcan peticiones y mensajes</li>
+                    <li>Realizar un evento conjunto para presentar el informe de la OMS “Salud para Todos”, con la asistencia de gobernadores, diputados, miembros de la ONU y personas afectadas.</li>
+                    <li>Producir y publicar en forma conjunta con la ONU un análisis de caso sobre un trabajador informal con VIH y su familia. </li>
                   </ul>
                 </td>
               </tr>
               <tr>
-                <td>3) Key neutral media cover and support the issue and give voices to the demands of informal workers <strong>(media coverage)</strong></td>
+                <td>3) Un actor clave y neutral de los medios de comunicación, apoya y ayuda a visibilizar las demandas de los trabajadores informales (cobertura mediática).</td>
                 <td>
                   <ul>
-                    <li>Jointly (INGO and UNICEF) collect and publish live stories of children living with HIV and children born HIV free from HIV positive mothers. </li>
-                    <li>Identify UN contacts in key media and brief them on the issue</li>
+                    <li>La ONU y UNICEF realizan de forma conjunta la recolección y publicación de historias de niños nacidos con VIH </li>
+                    <li>Identificar los contactos que posee la ONU en medios de comunicación claves e informales respecto de la problemática </li>
                   </ul>
                 </td>
               </tr>
               <tr>
-                <td>4) Affected people groups/networks engage and take action in support of the issue <strong>(constituency growth)</strong></td>
+                <td>4) Un grupo de personas afectadas crean una red a modo de gestionar la ayuda (Crecimiento de la base de apoyo).</td>
                 <td>
                   <ul>
-                    <li>Engage with affected people groups and strengthen their knowledge about the opportunity for change+ Identification of spokespersons among affected people- training on communications </li>
+                    <li>Comprometerse con grupos de afectadas y fortalecer sus conocimientos sobre las oportunidades de cambio. Sumado a lo anterior, es necesario identificar líderes dentro de la colectividad y enseñarles técnicas de comunicación </li>
                   </ul>
                 </td>
               </tr>
               <tr>
-                <td>5) Director of the Department of HI demonstrates its support to expanding HI coverage to informal workers by speaking in favour of it publicly <strong>(political will)</strong></td>
+                <td>5) El Director del Departamento de Salud demuestra su apoyo a la ampliación de la cobertura del Plan de Salud, hablando públicamente del tema en una conferencia (voluntad política).</td>
                 <td>
                   <ul>
-                    <li>Organize field visit to PMTCT clinics supported by INGO with the participation of Members of the Parliament, Government and a few journalists</li>
-                    <li>Hold joint lobby meeting with Government</li>
-                    <li>See also UN joint event around the launch of WHO report)</li>
+                    <li>Organizar visitas a clínicas que trabajen en la prevención de la transmisión maternoinfantil del VIH, a las que asistan distintos miembros del gobierno, parlamento y periodistas</li>
+                    <li>Llevar a cabo una reunión de lobby con el gobierno</li>
                   </ul>
                 </td>
               </tr>
               <tr>
-                <td>6) Members of Parliament are aware of our policy proposal and recognize that the problem exists and solutions must be promptly set in place <strong>(awareness and salience)</strong></td>
+                <td>6) Algunos miembros del Parlamento son conscientes de la propuesta para ampliar la cobertura del Plan de Salud, reconociendo la existencia del problema (conciencia y relevancia).</td>
                 <td>
                   <ul>
-                    <li>Organize field visit to PMTCT clinics supported by INGO with the participation of Members of the Parliament, Government and a few journalists</li>
-                    <li>Hold joint lobby meeting with MP</li>
-                    <li>(See also Joint event around the launch of WHO report)</li>
+                    <li>Organizar visitas a clínicas que trabajen en la prevención de la transmisión maternoinfantil del VIH, a las que asistan distintos miembros del gobierno, parlamento y periodistas</li>
+                    <li>Llevar a cabo una reunión de lobby con el gobierno</li>
                   </ul>
                 </td>
               </tr>
               <tr>
-                <td>7) UNICEF/ UN is invited to prepare and present a report on the implementation of the HI Law (organizational recognition)</td>
+                <td>7) UNICEF y la ONU preparan un informe sobre la aplicación del Plan Nacional de Salud (reconocimiento organizacional).</td>
                 <td>
                   <ul>
-                    <li>Hold joint lobby meeting with MP</li>
-                    <li>+ Publications mentioned above</li>
+                    <li>Llevar a cabo una reunión de lobby con el gobierno o parlamento</li>
+                    <li>Realizar publicaciones como las anteriormente mencionadas</li>
                   </ul>
                 </td>
               </tr>
       months_table_content: |
               <tr>
-                <th>Month</th>
-                <th>April</th>
-                <th>May</th>
-                <th>June</th>
-                <th>July</th>
-                <th>August</th>
-                <th>Sept</th>
-                <th>Oct</th>
-                <th>Nov</th>
-                <th>Dec</th>
+                <th>Mes</th>
+                <th>Abril</th>
+                <th>Mayo</th>
+                <th>Junio</th>
+                <th>Julio</th>
+                <th>Agosto</th>
+                <th>Septiembre</th>
+                <th>Octubre</th>
+                <th>Noviembre</th>
+                <th>Diciembre</th>
               </tr>
               <tr>
-                <th>External event</th>
+                <th>Evento externo</th>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>NA communication on the review of the Law on HIV published </td>
                 <td></td>
-                <td>1st week-report submitted <br>
-                  2nd week- presentations
+                <td></td>
+                <td>1era semana-informe<br>
+                  2da semana- presentaciones
                 </td>
               </tr>
               <tr>
-                <th>Organization´s action</th>
-                <td>Develop internal UN document with UN asks, messages and narrative </td>
+                <th>Acción organanizacional</th>
+                <td>Desarrollo de un documento interno ONU en donde se establezcan peticiones y mensajes</td>
                 <td></td>
-                <td>Hold Joint lobby meeting with MP and Government <strong>*</strong></td>
-                <td>Identify UN contacts in key media and brief them on the issue</td>
+                <td>Llevar a cabo una reunión de lobby con el gobierno o parlamento<strong>*</strong></td>
+                <td>Identificar los contactos que posee la ONU en medios de comunicación claves e informales respecto de la problemática</td>
                 <td></td>
-                <td>Organize field visit to PMTCT clinics supported by INGO with the participation of Members of the Parliament, Government and a few journalists</td>
+                <td>Organizar visitas a clínicas que trabajen en la prevención de la transmisión maternoinfantil del VIH, a las que asistan distintos miembros del gobierno, parlamento y periodistas</td>
                 <td></td>
-                <td>Hold Joint lobby meeting with MP and Government <strong>*</strong> <br>
-                Joint event around the launch of the WHO report on Health for All with the participation of Gov, MP and engagement of UN Reps and regional/HQ+ affected people</td>
+                <td>Llevar a cabo una reunión de lobby con el gobierno<strong>*</strong> <br></td>
                 <td></td>
               </tr>
-      after_months_table_description: <p><strong>*</strong> Engage with affected people groups and strengthen their knowlegde about the opportunity for change+ Identification of spokepersons among affected people- training on communications.</p>
+      after_months_table_description: "<p><strong>*</strong>Comprometerse con grupos de afectadas y fortalecer sus conocimientos sobre las oportunidades de cambio. Sumado a lo anterior, es necesario identificar líderes dentro de la colectividad  y enseñarles técnicas de comunicación</p>"
     #
     # Stage 6
     #
     stage6: # http://localhost:3000/projects/1/objectives/1/stage6
-      projects: "Projects"
-      stage6: "Stage 6"
-      title: "What do you want the target audience to do?"
-      title_description: "Your advocacy strategy should describe the main actions that will be conducted in order to contribute to the desired change (interim outcome and advocacy objective). The types of actions are numerous and each action can contribute to different outcomes."
-      subtitle1: "What will the ask for each actor?"
-      subtitle1_explanation: "The Ask should be clear, concise, solution-focused, and tailored to each actor."
-      data_entry: "Data Entry"
-      explanation_examples: "Explanation & Examples"
+      projects: "Proyectos"
+      stage6: "Etapa 6"
+      title: "¿Qué es lo que quieren como organización que transmita el actor o actores claves?"
+      title_description: "Las actividades son la materialización del proceso de advocacy, es decir, las principales acciones que se llevarán a cabo con el fin de contribuir al cambio deseado. Los tipos de acciones realizables son numerosas y cada una puede contribuir a un resultado diferente."
+      subtitle1: "¿Cuál será la petición para cada actor?"
+      subtitle1_explanation: "Una petición debe ser clara, concisa, centrada en el resultado y adaptada a cada actor. Las peticiones también pueden ser entendidas como una solicitud a un actor clave o un grupo de actores para que estos lleven a cabo una acción que genere el cumplimiento de los resultados intermedios."
+      data_entry: "Ingreso de datos"
+      explanation_examples: "Explicaciones y ejemplos"
       workshop_tips: "Workshop Tips"
-      add_button: "Add"
+      add_button: "Agregar"
       actor: "Actor"
-      ask: "Ask"
-      actions: "Actions"
+      ask: "Petición"
+      actions: "Acciones"
       error_getting_actors: "Error while getting actors information"
       error_getting_asks: "Error while getting asks information"
       error_updating_ask: "Error while updating ask information"
       error_creating_ask: "Error while creating ask information"
       confirm_delete_ask: "Are you sure you want to delete this ask?"
     asks_modal: # modal 'add ask' of stage 6
-      asks: "Asks"
+      asks: "Peticiones"
       actor: "Actor"
-      ask: "Ask"
-      ask_placeholder: "Write ask"
-      execution: "Execution"
-      save_button: "Save"
-      cancel_button: "Cancel"
+      ask: "Petición"
+      ask_placeholder: "Escribir la Petición"
+      execution: "ejecución"
+      save_button: "Guardar"
+      cancel_button: "Cancelar"
     explanation_stage6: #tab `Explanation & Examples` of stage 6
-      title: "Explanation"
-      subtitle1: "What do you want the target audience to do?"
+      title: "Explicación"
+      subtitle1: "¿Qué es lo que quieren como organización que transmita el actor o actores claves?"
       subtitle1_explanation:  |
                     <p>After you have identified the target audiences/critical players (actors who bring about the change you aim for and those who can influence them) you should define the “asks” for each of them. These are the actions you want them to understake to support the achievement of your advocacy objective. They should be clear, concise, solution-focused, and tailored to each actor.</p>
                     <p>Communication specialists will craft powerful messages based on the information obtained in the previous steps, the “asks” that you will define at this stage, and other relevant information, such as the motivation of the audience or the communication channel. Having a broad range of solid messages ready to be used is necessary for your advocacy efforts. You can then communicate them in a number of formats (lobby meetings, letters, interviews in the media, etc).</p>
       example: "Example"
       actors_ask_table_content: |
                     <tr>
-                      <th>Actors</th>
-                      <th>Ask</th>
+                      <th>Actores</th>
+                      <th>Peticiones</th>
                     </tr>
                     <tr>
                       <td>Minister of Health</td>
