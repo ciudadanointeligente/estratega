@@ -13,7 +13,7 @@ en:
       navbar_tools: "Herramientas"
       navbar_dropdown_welcome: "Bienvenidos,"
       navbar_dropdown_my_account: "Mi Cuenta"
-      navbar_dropdown_sign_out: "Sign out"
+      navbar_dropdown_sign_out: "Cerrar sesión"
       footer_left_txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec."
       footer_contact: "Contacto"
       footer_phone_number_txt: "+56 2 2419 2770"
@@ -26,7 +26,7 @@ en:
     index:
       main_txt: "Beneficios"
       sentence_resources: "Uso efectivo de sus recursos"
-      sentence_risks: "Minimiza riesgos y maximiza opostunidades"
+      sentence_risks: "Minimiza riesgos y maximiza oportunidades"
       sentence_advocacy: "Align advocacy width other areas and organization goals, both long and short term"
       sentence_keep_track: "Keep track and evaluate your performance"
       button_demo: "Demo"
@@ -55,12 +55,12 @@ en:
       project: "Proyecto"
       focus_area: "Área de focalización"
       actions: "Acciones"
-      public: "Public"
+      public: "Publico"
       guide_me: "Guide Me"
       step_one: "Para comenzar a trabajar se debe crear un <strong>Nuevo proyecto</strong>"
       step_two: "In these tabs you will see the projects in which you work <strong>(My project)</strong> and shared community projects <strong>(Other projects)</strong>"
       step_three: "To get started on the project you can click on the name or select one of the functions of the column <strong>Actions</strong>"
-      config: "Config the project"
+      config: "Configuración del proyecto"
       share: "Share the project"
       edit: "Editar"
       overview: "Resumen"
@@ -73,14 +73,14 @@ en:
       description: "Descripción"
       title_placeholder: "Ingrese la description del proyecto"
       focus_area: "Área de focalización"
-      public: "Public"
+      public: "Publico"
       save: "guardar"
       cancel: "Cancelar"
     show:     # http://localhost:3000/projects/1
       projects: "Proyectos"
       stages: "Etapas"
       dashboard: "Dashboard"
-      documents: "Documents"
+      documents: "Documentos"
       overview: "Resumen"
       step_one: "Once the project page you will see 3 tabs. In <strong>Stages</strong> are the stages of data entry, <strong>Dashboard</strong> will show indicators of success and progress , will be the <strong>Documents</strong> library of important documents , and finally <strong>Overview</strong> showing the summary of all the information entered"
       step_two: "Let's start with the advocacy plan by completing the information requested in the <strong>Stage 1</strong>"
@@ -145,7 +145,7 @@ en:
       problem: "Problema"
       problem_description: "Descripción"
       focus_area: "Área de focalización"
-      data_entry: "Data Entry"
+      data_entry: "Ingre de datos"
       add_button: "Agregar"
       edit_button: "Editar"
       explanation_examples: "Explicaciones y Ejemplos"
@@ -170,13 +170,13 @@ en:
       step_two: "To add information press <i class='fa fa-plus-circle'></i> <strong>Add</strong>, if you want information guide takes the pointer over the <i class='fa fa-info'></i> button. Once entered the data, you only have to press <i class='fa fa-pencil'></i> <strong>Edit</strong> to modify the information"
       step_three: "Now add <strong>Policy Problems</strong>, they group <strong>Policy Solution</strong>"
     policy_modal: # modal `add policy` of stage 1
-      policy: "Policy"
+      policy: "Política pública"
       title: "Título"
       title_placeholder: "Enter a title for a problem"
       save_button: "Guardar"
       cancel_button: "Cancelar"
     solution_modal:  # modal `add solution` of stage 1
-      solution: "Solution"
+      solution: "Solución"
       title: "Título"
       title_placeholder: "Ingrese el título del problema"
       save_button: "Guardar"
@@ -270,7 +270,7 @@ en:
     goal_modal: # modal `goal` of stage 2
       goal: "Meta"
       title: "Título"
-      title_placeholder: "Enter a goal for a problem"
+      title_placeholder: "Ingrese una meta para el problema"
       save_button: "Guardar"
       cancel_button: "Cancelar"
     solutions_list_modal:  # modal `solutions` of stage 2
@@ -280,8 +280,8 @@ en:
       back_button: "Back"
     objective_modal: # modal `add objective` of stage 2
       objective: "Objectivos"
-      select_solution: "Select Solution"
-      objective_type: "Objective Type"
+      select_solution: "Seleccionar solución"
+      objective_type: "Tipo de Objetivo"
       objective_placeholder: "Add any important objective info"
       key_contribution: "CONTRIBUCIÓN CLAVE: ¿El objetivo es una contribución clave para la solución del problema?"
       big_difference: "<p><strong>Gran diferencia:</strong> ¿Podría el éxito del objetivo hacer una diferencia significativa en el tratamiento del problema público?</p>"
@@ -475,17 +475,20 @@ en:
                             <li>Entre otros</li>
                           </ul>
       example: "Ejemplos"
-      real_world_problem: "Real-world problem"
+      real_world_problem: "Comprensión de los ciclos políticos y los de toma de decisión"
       real_world_problem_description: |
                           <p>Increasing mother to child transmission of HIV in country AEIOU during the last 3 years</p>
-                          <h4>Policy dimensions of the problem</h4>
+                          <h4>Mapeo de actores relacionados</h4>
                           <ul>
-                            <li>Women and children not included as target populations of the National Strategic Plan (epidemy historically concentrated in male drug users)</li>
-                            <li>Health insurance law does not cover informal workers and many women at risk belong to this group. (Therefore, due to limited capacity to cover out-of-pocket expenditures women with little resources do not attend clinics for HIV testing and treatment)</li>
-                            <li>PMTCT not included as a priority in the National Strategic Plan (few resources to improve services, campaigns, etc.)- Few donors paying attention to it.</li>
-                            <li>Current legal framework stipulates detention for sex workers (after 3 monetary sanctions), which prevents sex workers to attend health services due to fear of being denounced. </li>
+                            <li>Ministro de Salud</li>
+                            <li>Parlamento</li>
+                            <li>Miembro X del Parlamento<li> 
+                            <li>ONG internacional X</li>
+                            <li>Agencias ONU: ONUSIDA, OMS, ONU Mujeres, UNESCO, OIT,etc</li>
+                            <li>Medio de comunicación X </li>
+                            <li>Grupo de personas afectadas </li>
                           </ul>
-      policy_solutions: "Policy Solutions"
+      policy_solutions: "Identificación de factores habilitantes y barreras"
       policy_solutions_description: |
                           <ul>
                             <li>Amendment to the Penal Code to remove sanctions in the form of detention for sex workers</li>
@@ -918,82 +921,82 @@ en:
       title: "Explicación"
       subtitle1: "¿Qué es lo que quieren como organización que transmita el actor o actores claves?"
       subtitle1_explanation:  |
-                    <p>After you have identified the target audiences/critical players (actors who bring about the change you aim for and those who can influence them) you should define the “asks” for each of them. These are the actions you want them to understake to support the achievement of your advocacy objective. They should be clear, concise, solution-focused, and tailored to each actor.</p>
-                    <p>Communication specialists will craft powerful messages based on the information obtained in the previous steps, the “asks” that you will define at this stage, and other relevant information, such as the motivation of the audience or the communication channel. Having a broad range of solid messages ready to be used is necessary for your advocacy efforts. You can then communicate them in a number of formats (lobby meetings, letters, interviews in the media, etc).</p>
-      example: "Example"
+                    <p>Después de haber identificado el público objetivo y los actores claves (los que tienen la capacidad de generar el cambio deseado), es momento de definir la “petición” para cada uno de ellos. Una petición debe ser clara, concisa, centrada en el resultado y adaptada a cada actor. Las peticiones también pueden ser entendidas como una solicitud a un actor clave o un grupo de actores para que estos lleven a cabo una acción que genere el cumplimiento de los resultados intermedios.</p>
+                    <p>Los especialistas en comunicación de la organización deben transformar las peticiones en mensajes, los que son la bajada comunicacional de una petición y deben transmitir la idea central del resultado intermedio según el actor al cual se enfrente. El mensaje debe favorecer un intercambio políticamente correcto, a modo de hacer efectivo el resultado intermedio y no pasar a llevar susceptibilidades.</p>
+      example: "Ejemplos"
       actors_ask_table_content: |
                     <tr>
                       <th>Actores</th>
                       <th>Peticiones</th>
                     </tr>
                     <tr>
-                      <td>Minister of Health</td>
-                      <td>To support the review of the policy framework on HI and recommend extension of coverage for informal workers in the report submitted to the NA by the Government</td>
+                      <td>Ministro de Salud</td>
+                      <td>Apoyar la revisión sobre el marco normativo del VIH y recomendar la extensión de la cobertura del Plan Nacional de Salud a los trabajadores informales</td>
                     </tr>
                     <tr>
-                      <td>Members of Parliament</td>
-                      <td>To support the review of the policy framework on HI and recommend extension of coverage for informal workers in the report on the 5 year review of the Law <br>
-                      To invite UNICEF or partners to prepare and deliver report on the issue
+                      <td>Miembros del Parlamento</td>
+                      <td>Apoyar la revisión sobre el marco normativo del VIH y recomendar la extensión de la cobertura del Plan Nacional de Salud a los trabajadores informales<br>
+                      Invitar a UNICEF o alguno de sus socios a preparar y entregar un informe sobre el tema
                       </td>
                     </tr>
                     <tr>
-                      <td>Director of the Department</td>
-                      <td>To publicly advocate for the issue. </td>
+                      <td>Directos del Departamento</td>
+                      <td>Abogar públicamente por el tema</td>
                     </tr>
                     <tr>
-                      <td>INGO “X”</td>
-                      <td>To join forces with the UN to use the 5-year review of the Law on HI to advocate for the expansion of the HI coverage to informal workers and their families. </td>
+                      <td>ONG internacional “X”</td>
+                      <td>Unir fuerzas con la ONU para usar los informes de la ley de VIH a modo de abogar por la expansión del Plan Nacional de Salud para los trabajadores informales y sus familias</td>
                     </tr>
                     <tr>
-                      <td>UN Agencies</td>
-                      <td>To join forces within UN to use the 5-year review of the Law on HI to advocate for the expansion of the HI coverage to informal workers and their families. </td>
+                      <td>Agencias ONU</td>
+                      <td>Unir fuerzas al interior de la ONU a modo de utilizar los informes para abogar por la expansión del Plan Nacional de Salud para los trabajadores informales y sus familias</td>
                     </tr>
                     <tr>
-                      <td>Neutral media</td>
-                      <td>To give voice to informal workers who relate their stories regarding the (lack of) access to expensive health services <br>
-                      To join UN and INGO “X” in a field visit with the option of producing a documentary with the participation of …
+                      <td>Medios de comunicación neutrales</td>
+                      <td>Dar voz a la posición de los trabajadores informales, relatando sus historias respecto de a falta de acceso a servicios de salud debido a que estos son muy caros<br>
+                      Unirse con ONU y con la ONG internacional X para realizar una visita de campo
                       </td>
                     </tr>
                     <tr>
-                      <td>Affected groups of people</td>
-                      <td>To tell their stories to decision makers and the media <br>
-                      To build their communication skills and knowledge on the issue (offering to participate in workshops to be organized by UN and INGO “X”)
+                      <td>Grupos de personas afectadas</td>
+                      <td>Contar sus historias a los medios de comunicación y a los tomadores de decisión<br>
+                      Ofrecer participar en talleres ofrecidos por la ONU y una ONG internacional X
                       </td>
                     </tr>
   user_mailer:
     exist_user_share:
-      exist_add_to_share: 'You are invited to collaborate in the project:'
+      exist_add_to_share: 'Estas invitado a colaborar con el proyecto:'
     new_user_share:
-      new_add_to_share: 'You are invited to activate your account and collaborate in the project:'
-      activate_account: 'Activate my account'
+      new_add_to_share: 'Estas invitado para activar tu cuenta y colaborar con el proyecto:'
+      activate_account: 'Activar mi cuenta'
   demo:
     index:
-      step_one: "step one"
-      step_two: "step two"
+      step_one: "Paso uno"
+      step_two: "Paso dos"
     show:
-      step_three: "step three"
-      step_four: "step four"
+      step_three: "Paso tres"
+      step_four: "Paso cuatro"
     stage1:
       projects: "Demo"
-      stage1: "Stage 1"
-      title: "What problems you want to address? What policy change you aim to achieve?"
-      description: "The foundation of an effective advocacy strategy is a common understanding of the main problems that affect children, their policy dimensions and related policy solutions. It is important you take time to go through this discussion because without a clear, articulated issue and well-defined problems and solutions the remaining parts of the strategy will lose focus."
-      subtitle1: "Which real-world problem children are facing that you want to address?"
-      subtitle1_tooltip: "A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)"
-      subtitle1_explanation: "A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)"
-      subtitle2: "Which are the policy-related causes of the real-world problem?"
-      subtitle2_tooltip: "Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem"
-      subtitle3: "Which policy solutions would constitute an appropriate response?"
-      subtitle3_tooltip: "What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?"
-      problem: "Problem"
-      description: "Description"
-      focus_area: "Focus Area"
-      data_entry: "Data Entry"
-      add_button: "Add"
-      edit_button: "Edit"
-      explanation_examples: "Explanation & Examples"
+      stage1: "Etapa 1"
+      title: "¿Qué problema desean abordar? ¿Qué cambios en políticas públicas serían necesarios de llevar a cabo para solucionar el problema?"
+      description: "La definición eficaz de una estrategia de advocacy ayuda a la generación de una idea organizacional compartida respecto de un problema público, sus causas y posibles soluciones políticas. Es importante que se tome el tiempo necesario para generar una discusión en torno al problema, ya que si no existe una definición clara es posible perder el foco durante el desarrollo."
+      subtitle1: "¿Qué problema público desean abordar?"
+      subtitle1_tooltip: "La primera etapa del proceso de planificación está centrada en la identificación y caracterización de un problema. Un problema público puede ser entendido como una situación negativa que afecta a la población de un país o una localidad específica y que la organización desea revertir."
+      subtitle1_explanation: "La identificación y definición del problema debe responder a por qué la temática en cuestión puede ser considerada como un problema, además de acotarla a un contexto territorial, a uno temporal y mencionar la población que resulta afectada. También es necesario tener en consideración que un problema público tiene causas múltiples y que la identificación de estas puede estar determinada por la forma en que se defina el problema."
+      subtitle2: "¿Cuales son las causas políticas relacionadas con el problema público?"
+      subtitle2_tooltip: "Como se mencionaba anteriormente, detrás de los problemas públicos existen múltiples causas, incluyendo los programas políticos y las malas prácticas relacionadas con el ambiente político. La labor de la estrategia de advocacy se refiere a causas tales como mecanismos de gobernabilidad deficientes, la existencia de un marco jurídico inadecuado o la presencia de relaciones de poder desequilibradas. Por lo anterior, el análisis del problema debería priorizar la identificación a estas causas en lugar de otros factores explicativos del problema público."
+      subtitle3: "¿Qué soluciones políticas podrían constituir una respuesta adecuada para enfrentar el problema público?"
+      subtitle3_tooltip: "¿Cuáles son las principales soluciones de política pública que ayudarían a resolver el problema inicialmente identificado?"
+      problem: "Problema"
+      description: "Descripción"
+      focus_area: "Área de focalización"
+      data_entry: "Ingreso de datos"
+      add_button: "Agregar"
+      edit_button: "Editar"
+      explanation_examples: "Explicaciones y Ejemplos"
       workshop_tips: "Workshop Tips"
-      policies_text: "Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem"
+      policies_text: "Como se mencionaba anteriormente, detrás de los problemas públicos existen múltiples causas, incluyendo los programas políticos y las malas prácticas relacionadas con el ambiente político. La labor de la estrategia de advocacy se refiere a causas tales como mecanismos de gobernabilidad deficientes, la existencia de un marco jurídico inadecuado o la presencia de relaciones de poder desequilibradas. Por lo anterior, el análisis del problema debería priorizar la identificación a estas causas en lugar de otros factores explicativos del problema público."
       error_focus_area: "Error while getting focus area information"
       error_project: "Error while getting the project information"
       error_policy_problems: "Error while getting policy problems information"
@@ -1006,7 +1009,7 @@ en:
       error_updating_solution: "Error while updating a solution information"
       error_creating_solution: "Error while creating a solution information"
       error_getting_policy: "Error while getting the policy problem information"
-      confirm_delete_solution: "Are you sure you want to delete this solution?"
-      confirm_delete_policy: "Are you sure you want to delete this policy problem?"
-      step_five: "step five"
-      step_six: "step six"
+      confirm_delete_solution: "¿Estas seguro que quieres eliminar esta solución"
+      confirm_delete_policy: "¿Estas seguro que quieres elimina este problema de política pública?"
+      step_five: "Etapa cinco"
+      step_six: "Etapa seis"
