@@ -477,7 +477,12 @@ en:
       example: "Ejemplos"
       real_world_problem: "Comprensión de los ciclos políticos y los de toma de decisión"
       real_world_problem_description: |
-                          <p>Increasing mother to child transmission of HIV in country AEIOU during the last 3 years</p>
+                          <ul>
+                            <li>Octubre 2015: Comisión de la Asamblea Nacional asigna al Ministro de Salud para realizar un informe sobre la aplicación de la Ley de VIH </li>
+                            <li>Octubre 2015: ONU invita a actores claves no gubernamentales a realizar informes sobre la situación de los trabajadores informales y sus familias </li>
+                            <li>Diciembre 2015: El Ministro de Salud se reune con los actores invitados (ONG's internacionales y ONU) para discutir sobre la problemática y sus posibles soluciones </li>
+                            <li>Enero 2016: ONU prepara un informe de evaluación de la política de salud actual y se lo entrega al Primer Ministro </li>
+                          </ul>
                           <h4>Mapeo de actores relacionados</h4>
                           <ul>
                             <li>Ministro de Salud</li>
