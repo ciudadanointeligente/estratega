@@ -27,8 +27,8 @@ en:
       main_txt: "Beneficios"
       sentence_resources: "Uso efectivo de sus recursos"
       sentence_risks: "Minimiza riesgos y maximiza oportunidades"
-      sentence_advocacy: "Align advocacy width other areas and organization goals, both long and short term"
-      sentence_keep_track: "Keep track and evaluate your performance"
+      sentence_advocacy: "Alinea la estrategia de advocacy con otras áreas y objetivos de la organización, tanto a corto como a largo plazo"
+      sentence_keep_track: "Realiza un seguimiento y evalúa el rendimiento organizacional"
       button_demo: "Demo"
       button_read_more: "Quiero saber más acerca de esto"
       testimony1_txt: "Align advocacy width other areas and organization goals, both long and short term"
@@ -38,7 +38,7 @@ en:
       testimony3_txt: "Align advocacy width other areas and organization goals, both long and short term"
       testimony3_signer: "UNICEF Ambassador Matt Dawson"
       guest_main_txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
-      sign_up: "Sign up"
+      sign_up: "Registrate"
       email_placeholder: "Email"
       password_placeholder: "Contraseña"
       confirm_password_placeholder: "Confirme contraseña"
@@ -61,7 +61,7 @@ en:
       step_two: "In these tabs you will see the projects in which you work <strong>(My project)</strong> and shared community projects <strong>(Other projects)</strong>"
       step_three: "To get started on the project you can click on the name or select one of the functions of the column <strong>Actions</strong>"
       config: "Configuración del proyecto"
-      share: "Share the project"
+      share: "Compartir el proyecto"
       edit: "Editar"
       overview: "Resumen"
       delete: "Borrar el proyecto"
@@ -487,7 +487,7 @@ en:
                           <ul>
                             <li>Ministro de Salud</li>
                             <li>Parlamento</li>
-                            <li>Miembro X del Parlamento<li> 
+                            <li>Miembro X del Parlamento</li> 
                             <li>ONG internacional X</li>
                             <li>Agencias ONU: ONUSIDA, OMS, ONU Mujeres, UNESCO, OIT,etc</li>
                             <li>Medio de comunicación X </li>
@@ -495,12 +495,58 @@ en:
                           </ul>
       policy_solutions: "Identificación de factores habilitantes y barreras"
       policy_solutions_description: |
-                          <ul>
-                            <li>Amendment to the Penal Code to remove sanctions in the form of detention for sex workers</li>
-                            <li>Revision of the National HIV Strategy </li>
-                            <li>Health insurance policy framework revised to cover disadvantaged informal workers</li>
-                            <li>Increase donor funding on PMTCT</li>
-                          </ul>
+                          <table>
+                            <tr>
+                              <th>Elementos del contexto                        </th>
+                              <th>Factores habilitantes</th>
+                              <th>Barerras</th>
+                            </tr>
+                            <tr>
+                              <td>Financiero</td>
+                              <td>                                              </td>
+                              <td>                                              </td>
+                            </tr>
+                            <tr>
+                              <td>Social</td>
+                              <td>Apoyo por parte de la ciudadanía en las materias en las cuales se busca incidir</td>
+                              <td> </td>
+                            </tr>
+                            <tr>
+                              <td>Tecnológico</td>
+                              <td> </td>
+                              <td>Baja penetración de internet en el país o región</td>
+                            </tr>
+                            <tr>
+                              <td>Legal</td>
+                              <td> </td>
+                              <td>El tipo de ley que se quiere modificar o cambiar necesita de una mayoría especial de votos</td>
+                           </tr>
+                           <tr>
+                              <td>Político</td>
+                              <td> </td>
+                              <td> </td>
+                            </tr>
+                            <tr>
+                              <td>Religioso</td>
+                              <td> </td>
+                              <td> </td>
+                            </tr>
+                            <tr>
+                              <td>Cultural</td>
+                              <td>Dentro de la sociedad existen posturas y comportamientos arraigados que resultan favorables al tema que se busca potenciar</td>
+                              <td> </td>
+                            </tr>
+                            <tr>
+                              <td>Geográfico</td>
+                              <td> </td>
+                              <td> </td>
+                            </tr>
+                            <tr>
+                              <td>Organizacional</td>
+                              <td>La organización se encuentra totalmente institucionalizada y posee el reconocimiento de la sociedad</td>
+                              <td> </td>
+                            </tr>
+                          </table>
     #
     # Stage 4
     #
