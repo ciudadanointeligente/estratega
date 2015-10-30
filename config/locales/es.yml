@@ -71,7 +71,7 @@ en:
       title: "Título"
       title_placeholder: "Ingrese un título para el proyecto"
       description: "Descripción"
-      title_placeholder: "Ingrese la description del proyecto"
+      title_placeholder: "Ingrese la descripción del proyecto"
       focus_area: "Área de focalización"
       public: "Publico"
       save: "guardar"
