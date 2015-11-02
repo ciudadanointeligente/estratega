@@ -471,19 +471,14 @@ div#resources_paginate {
   background-size: cover;
   padding: 50px 0;
   margin: -15px 0;
+  background-color: #021b2d;
 }
-.banner .container {
-  /* Fallback for web browsers that doesn't support RGBa */
-  background: rgb(255, 255, 255);
-  /* RGBa with 0.6 opacity */
-  background: rgba(255, 255, 255, 0.6);
-  /* For IE 5.5 - 7*/
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#ffffff);
-  /* For IE 8*/
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#ffffff)";
-}
+
 .banner .container {
   padding: 40px 0;
+}
+.banner .container h2, .banner .container h3 {
+  color: #ffffff;
 }
 .ng-aside .modal-dialog .modal-content {
     background-color: #F3F3F3;
