@@ -437,7 +437,19 @@ div#resources_paginate {
     color: #ffffff;
     text-transform: none;
 }
+.btn-danger:focus, .btn-danger.focus {
+    color: #FFF;
+    background-color: #eb0f4a;
+    border-color: #eb0f4a;
+}
 .benefits .btn-default {
+    border-radius: 15px;
+    background-color: #023355;
+    border-color: #023355;
+    color: #ffffff;
+    text-transform: none;
+}
+.benefits .btn-default:focus, .benefits .btn-default.focus {
     border-radius: 15px;
     background-color: #023355;
     border-color: #023355;
