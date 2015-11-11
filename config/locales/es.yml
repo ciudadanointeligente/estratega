@@ -74,7 +74,7 @@ en:
       title_placeholder: "Ingrese la descripción del proyecto"
       focus_area: "Área de focalización"
       public: "Publico"
-      save: "guardar"
+      save: "Guardar"
       cancel: "Cancelar"
     show:     # http://localhost:3000/projects/1
       projects: "Proyectos"
