@@ -40,21 +40,21 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="<%= root_path %>" target="_self">Home</a></li>
-            <li class="active"><a href="<%= projects_path %>" target="_self">Projects</a></li>
+            <li><a href="<%= root_path %>" target="_self">Inicio</a></li>
+            <li class="active"><a href="<%= projects_path %>" target="_self">Proyectos</a></li>
             <!-- <li><a href="#">Documents</a></li>
             <li><a href="#">Tools</a></li> -->
           </ul>
           <ul class="nav navbar-right top-nav">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Welcome, <%= current_user.email %> <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Bienvenido, <%= current_user.email %> <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>
-                  <a href="/users/edit">My Account</a>
+                  <a href="/users/edit">Mi Cuenta</a>
                 </li>
                 <li class="divider"></li>
                 <li>
-                  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+                  <%= link_to "Salir", destroy_user_session_path, :method => :delete %>
                 </li>
               </ul>
             </li>
