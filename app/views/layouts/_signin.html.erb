@@ -4,14 +4,14 @@
     <%= f.text_field :email, class: "form-control" %>
   </div>
   <div class="form-group">
-    <label for="email">Password</label>
+    <label for="email">Contraseña</label>
     <%= f.password_field :password, class: "form-control" %>
   </div>
   <div class="checkbox">
     <label>
-      <%= f.check_box :remember_me %> Remember me
+      <%= f.check_box :remember_me %> Recuerdame
     </label>
   </div>
-  <%= f.submit 'Sign in', class: "btn btn-success" %>
+  <%= f.submit 'Iniciar Sesión', class: "btn btn-success" %>
   <p><%= link_to "¿Olvidó su contraseña?", new_password_path(:user) %></p>
 <% end %>
