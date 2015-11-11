@@ -8,7 +8,7 @@
         <div class="addNew dropdown pull-right">
             <%# link_to 'New Resource', new_resource_path %>
             <a id="dLabel" class="btn btn-warning" ng-click="open_form()" >
-            <i class="fa fa-plus-circle"></i> Add Resource
+            <i class="fa fa-plus-circle"></i> Añadir Documentos
           </a>
         </div>
         <div class="clearfix"></div>
@@ -21,12 +21,12 @@
                 <thead>
                   <tr>
                     <th>Id</th>
-                    <th st-sort="title" >Name</th>
-                    <th>Description</th>
+                    <th st-sort="title" >Nombre</th>
+                    <th>Descripción</th>
                     <th>Tags</th>
-                    <th class="text-center no-sort">Public</th>
-                    <th>Last update</th>
-                    <th class="text-right no-sort">Actions</th>
+                    <th class="text-center no-sort">Público</th>
+                    <th>Último Cambio</th>
+                    <th class="text-right no-sort">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -40,10 +40,10 @@
                         <td>{{resource.public}}</td>
                         <td>{{resource.updated_at}}</td>
                         <td>
-                            <%= button_tag "Edit", {class: "btn btn-link", :"ng-click" => "open_form(resource)", type: "button"} do %>
+                            <%= button_tag "Editar", {class: "btn btn-link", :"ng-click" => "open_form(resource)", type: "button"} do %>
                               <i class="fa fa-edit" title="Edit"></i>
                             <% end %>
-                            <%= button_tag "Delete", class: "btn btn-link", :"ng-click" => "delete_resource(resource)", type: "button" do %>
+                            <%= button_tag "Borrar", class: "btn btn-link", :"ng-click" => "delete_resource(resource)", type: "button" do %>
                               <i class="fa fa-trash" title="Delete"></i>
                             <% end %>
                         </td>
