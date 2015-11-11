@@ -11,8 +11,8 @@
             <p><%= t('.empty') %></p>
           <% else %>
             <div class="box">
-              <button class="btn btn-warning pull-right" onclick="window.print()"><i class="fa fa-print"></i> Print overview</button>
-              <div class="label label-default">Real problem</div>
+              <button class="btn btn-warning pull-right" onclick="window.print()"><i class="fa fa-print"></i> imprimir Resumen</button>
+              <div class="label label-default">Problema Real</div>
               <h3><%= @real_problem.title.presence || t('.empty') %></h3>
               <p><%= @real_problem.description.presence || t('.empty') %></p>
               <ul>
@@ -29,7 +29,7 @@
             <% if !@policy_problems.blank? %>
             <div class="box">
               <% @policy_problems.each_with_index do |policy, i| %>
-                <div class="label label-default">Policy problem <%= i+1 %></div>
+                <div class="label label-default">Problema Político <%= i+1 %></div>
               <% if @policy_problems.nil? %>
                 <p><%= t('.uncreated') %></p>
               <% elsif @policy_problems.count < 1 %>
@@ -72,7 +72,7 @@
           <% elsif @objectives.count < 1 %>
             <p></p>
           <% else %>
-            <div class="label label-default">Objective <%= i+1 %></div>
+            <div class="label label-default">Objectivo <%= i+1 %></div>
             <% @objectives.each do |objective| %>
               <h3><%= objective.title.presence || t('.empty') %></h3>
               <p><%= objective.description.presence %></p>
