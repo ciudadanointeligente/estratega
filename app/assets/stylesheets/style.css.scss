@@ -32,6 +32,9 @@ table .fa-pencil-square-o, table .fa-trash, table .fa-line-chart, table .fa-cale
   color: #0091EA;
   cursor: pointer;
 }
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    color: #ffffff;
+}
 
 /*BUTTONS */
 
