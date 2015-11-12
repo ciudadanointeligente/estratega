@@ -803,3 +803,19 @@ table.document td .btn {
 .clndr {
   max-width: initial;
 }
+
+@media screen and (max-width: 991px) {
+  .benefits{
+    height: 800px;
+  }
+  .benefits img {
+  height: 120px;
+  margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .benefits{
+    height: 1100px;
+  }
+}
