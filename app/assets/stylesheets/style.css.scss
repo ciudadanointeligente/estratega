@@ -423,6 +423,7 @@ div#resources_paginate {
   padding: 50px 0;
   text-align: center;
   background-color: #63c0d6;
+  height: 650px;
 }
 .benefits p {
   color: #ffffff;
@@ -430,6 +431,11 @@ div#resources_paginate {
 .benefits h2 {
   color: #ffffff;
 }
+
+.benefits img {
+  height: 190px;
+}
+
 .benefits .btn-danger, .banner .btn-danger {
     border-radius: 15px;
     background-color: #eb0f4a;
