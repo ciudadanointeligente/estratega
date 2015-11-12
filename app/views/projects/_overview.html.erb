@@ -11,7 +11,7 @@
             <p><%= t('.empty') %></p>
           <% else %>
             <div class="box">
-              <button class="btn btn-warning pull-right" onclick="window.print()"><i class="fa fa-print"></i> imprimir Resumen</button>
+              <button class="btn btn-warning pull-right" onclick="window.print()"><i class="fa fa-print"></i> Imprimir Resumen</button>
               <div class="label label-default">Problema Real</div>
               <h3><%= @real_problem.title.presence || t('.empty') %></h3>
               <p><%= @real_problem.description.presence || t('.empty') %></p>
