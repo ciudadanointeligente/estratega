@@ -1,4 +1,4 @@
-@import url(//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,600,700,300);
 
 body {
   font-family: 'Open Sans', sans-serif;
@@ -472,6 +472,8 @@ div#resources_paginate {
 }
 .testimonial p.cita {
   font-size: 26px;
+  font-weight: 300;
+  font-style: italic;
 }
 .testimonial .t2 {
   background-color: #00C2E4;
