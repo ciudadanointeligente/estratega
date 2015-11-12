@@ -466,14 +466,23 @@ div#resources_paginate {
     text-transform: none;
 }
 .testimonial {
-  color: #ffffff;
   background-color: #021b2d;
   font-weight: 300;
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 .testimonial p.cita {
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 300;
   font-style: italic;
+  color: #ffffff;
+  margin-bottom: 5px;
+}
+.testimonial p.persona {
+  font-size: 16px;
+  font-weight: 700;
+  color: #66C8DF;
+  margin-top: 0;
 }
 .testimonial .t2 {
   background-color: #00C2E4;
