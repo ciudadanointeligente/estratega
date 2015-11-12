@@ -805,16 +805,28 @@ table.document td .btn {
 }
 
 @media screen and (max-width: 991px) {
+  .banner{
+    padding: 0;
+    background-position-y: 420px;
+    height: 650px;
+  }
   .benefits{
     height: 800px;
   }
   .benefits img {
-  height: 120px;
-  margin-top: 30px;
+    height: 120px;
+    margin-top: 30px;
   }
 }
 
 @media screen and (max-width: 768px) {
+  h2, .h2 {
+    font-size: 30px;
+  }
+  .banner{
+    height: 700px;
+    background-position-y: 500px;
+  }
   .benefits{
     height: 1100px;
   }
