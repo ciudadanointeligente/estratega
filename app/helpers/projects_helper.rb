@@ -22,28 +22,28 @@ module ProjectsHelper
   def link_text element_symbol
     case element_symbol
     when :real_problem
-      @real_problem.blank? ? 'Articulate the real-world problem children are facing that you want to address' : (@real_problem.title != "." ? @real_problem.title : 'Articulate the real-world problem children are facing that you want to address')
+      @real_problem.blank? ? 'Articular el problema del mundo real que se desea abordar' : (@real_problem.title != "." ? @real_problem.title : 'Articular el problema del mundo real que se desea abordar')
     when :policy_problems
-      @policy_problems.blank? ? "Identify policy dimensions of the 'real-world' problem" : " #{@policy_problems.size} Policy problems"
+      @policy_problems.blank? ? "Identificar los dimensiones políticas del problema" : " #{@policy_problems.size} Problemas políticos"
     when :solutions
-      @solutions.blank? ? "Policy solutions: Describe the main policy solutions that would constitute an appropriate response" : " #{@solutions.size} Solutions"
+      @solutions.blank? ? "Soluciones políticas: Describir las principales soluciones políticas que pudieran constituir una respuesta adecuada" : " #{@solutions.size} Soluciones"
     when :objectives
-      @objectives.blank? ? 'Add and prioritize objectives' : " #{@objectives.size} Objectives"
+      @objectives.blank? ? 'Añada y priorice objetivos' : " #{@objectives.size} Objectivos"
     end
   end
 
   def objective_link_text objective, element_symbol
     case element_symbol
     when :actors
-      objective.actors.blank? ? "List actors and power map" : " #{objective.actors.size} Actors"
+      objective.actors.blank? ? "Lista de Actores y Mapa de Poder" : " #{objective.actors.size} Actores"
     when :enabling_factors
-      objective.enabling_factors.blank? ? "Identify 0 enabling factors and #{objective.barriers.size} barriers" : " #{objective.enabling_factors.size} Enabling Factors and #{objective.barriers.size} Barriers"
+      objective.enabling_factors.blank? ? "Identificado 0 factores habilitantes y #{objective.barriers.size} barreras" : " #{objective.enabling_factors.size} Factores habilitantes and #{objective.barriers.size} Barreras"
     when :outcomes
-      objective.outcomes.blank? ? "Define interim outcomes" : " #{objective.outcomes.size} Outcomes"
+      objective.outcomes.blank? ? "Defina metas intermedias" : " #{objective.outcomes.size} Metas Intermedias"
     when :activities
-      objective.activities.blank? ? "Define activities" : " #{objective.activities.size} Activities"
+      objective.activities.blank? ? "Defina actividades" : " #{objective.activities.size} Actividades"
     when :asks
-      objective.asks.blank? ? "Define asks" : " #{objective.asks.size} Asks"
+      objective.asks.blank? ? "Defina peticiones" : " #{objective.asks.size} Peticiones"
     end
   end
 
