@@ -617,7 +617,12 @@ table.indicator td:first-child {
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
   border: 1px solid #00C2E4;
   color: #ffffff;
-  background-color: #00C2E4;
+  background-color: #00c2e4;
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+    color: #FFFFFF;
+    text-decoration: underline;
 }
 
 .tab-content > .active {
