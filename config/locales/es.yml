@@ -55,7 +55,7 @@ en:
       project: "Proyecto"
       focus_area: "Área de focalización"
       actions: "Acciones"
-      public: "Publico"
+      public: "Público"
       guide_me: "Guíame"
       step_one: "Para comenzar a trabajar se debe crear un <strong>Nuevo proyecto</strong>"
       step_two: "En estas pestañas podrás ver los proyectos en los que estas trabajando<strong>(Mis proyectos)</strong> y proyectos comunitarios compartidos <strong>(Otros proyectos)</strong>"
@@ -73,7 +73,7 @@ en:
       description: "Descripción"
       title_placeholder: "Ingrese la descripción del proyecto"
       focus_area: "Área de focalización"
-      public: "Publico"
+      public: "Público"
       save: "Guardar"
       cancel: "Cancelar"
     show:     # http://localhost:3000/projects/1
