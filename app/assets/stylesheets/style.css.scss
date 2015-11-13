@@ -659,6 +659,10 @@ table.indicator td:first-child {
   background-color: #00c2e4;
 }
 
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+    color: #FFFFFF;
+}
+
 .tab-content > .active {
     background-color: transparent;
     padding: 0px;
