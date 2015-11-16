@@ -959,6 +959,7 @@ en:
       actor: "Actor"
       ask: "Petición"
       actions: "Acciones"
+      execution: "Petición entregada"
       error_getting_actors: "Error al obtener información de los actores"
       error_getting_asks: "Error al obtener la información de las peticiones"
       error_updating_ask: "Error al subir la información de las peticiones"
@@ -969,7 +970,7 @@ en:
       actor: "Actor"
       ask: "Petición"
       ask_placeholder: "Escribir la Petición"
-      execution: "Petición comunicada"
+      execution: "Petición entregada"
       save_button: "Guardar"
       cancel_button: "Cancelar"
     explanation_stage6: #tab `Explanation & Examples` of stage 6
