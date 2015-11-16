@@ -419,7 +419,7 @@ en:
       confirm_delete_barrier: "¿Estas seguroo que quieres eliminar esta barrera?"
     actors_modal:  # modal `add actor` of stage 3
       actor: "Actor"
-      actor_type: "tipo de actor"
+      actor_type: "Tipo de actor"
       select_actor_type: "Selecione el tipo de actor"
       person: "Person"
       organization: "Organización"
@@ -427,7 +427,7 @@ en:
       name_placeholder: "Ingrese el nombre del actor"
       description: "Descripción"
       description_placeholder: "Agregar información del actor"
-      important: "Importancia"
+      important: "Actor Importante"
       support: "Apoyo"
       influence_level: "Nivel de influencia"
       save_button: "Guardar"
