@@ -10,7 +10,7 @@
       </div>
       <div class="form-group">
         <label for="category"><%= t('.interim_outcome_type') %></label>
-        <select name="category" ng-model="current_outcome.outcome_type_id">
+        <select name="category" class="form-control" ng-model="current_outcome.outcome_type_id">
           <option ng-repeat="ca in outcomes_categories">{{ ca }}</option>
         </select>
       </div>
