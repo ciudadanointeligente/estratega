@@ -47,10 +47,23 @@ table .fa-pencil-square-o, table .fa-trash, table .fa-line-chart, table .fa-cale
   border-color: #FF6459;
 }
 .btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .open .dropdown-toggle.btn-warning {
-  background-color: #c0453e;
-  border-color: #c0453e;
+  background-color: #D32114;
+  border-color: #D32114;
 }
-
+.btn-default {
+    border-radius: 15px;
+    background-color: #01598F;
+    border-color: #01598F;
+    color: #ffffff;
+    text-transform: none;
+}
+.btn-default:hover{
+    border-radius: 15px;
+    background-color: #00385A;
+    border-color: #00385A;
+    color: #ffffff;
+    text-transform: none;
+}
 .btn-info {
   background-color: #26cccc;
   border-color: #00bdc8;
@@ -457,13 +470,6 @@ div#resources_paginate {
     background-color: #eb0f4a;
     border-color: #eb0f4a;
 }
-.benefits .btn-default {
-    border-radius: 15px;
-    background-color: #01598F;
-    border-color: #01598F;
-    color: #ffffff;
-    text-transform: none;
-}
 .benefits .btn-default:focus, .benefits .btn-default.focus {
     border-radius: 15px;
     background-color: #01598F;
@@ -471,6 +477,7 @@ div#resources_paginate {
     color: #ffffff;
     text-transform: none;
 }
+
 .testimonial {
   background-color: #021b2d;
   font-weight: 300;

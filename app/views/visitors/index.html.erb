@@ -21,7 +21,7 @@
               <%= f.password_field :password_confirmation, required: true, class: "form-control", placeholder: t('.confirm_password_placeholder') %>
             </div>
             <div class="text-right">
-              <%= f.submit t('.button_sign_up'), class: "btn btn-danger" %>
+              <%= f.submit t('.button_sign_up'), class: "btn btn-warning" %>
             </div>
           <% end %>
         </div>
@@ -55,7 +55,7 @@
       </div>
     </div>
     <div class="row text_right">
-      <a class="btn btn-danger" id="startButton" href="/demo/?tour=true" target="_self" role="button"><%= t('.button_demo') %></a>
+      <a class="btn btn-warning" id="startButton" href="/demo/?tour=true" target="_self" role="button"><%= t('.button_demo') %></a>
       <a class="btn btn-default" href="#" role="button"><%= t('.button_read_more') %></a>
     </div>
   </div>
