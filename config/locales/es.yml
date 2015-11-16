@@ -579,7 +579,7 @@ en:
       new_interim_outcome: "Nuevo resultado intermedio"
       interim_outcome: "Resultado intermedio"
       interim_outcome_placeholder: "Agregar información del resultado intermedio"
-      interim_outcome_type: "tipo de resultado intermedio"
+      interim_outcome_type: "Tipo de resultado intermedio"
       actor_type: "Tipo de actor"
       save_button: "Guardar"
       cancel_button: "Cancelar"
