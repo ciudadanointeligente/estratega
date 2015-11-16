@@ -26,13 +26,13 @@
       </div>
       <div class="form-group">
         <label for="support"><%= t('.support') %></label>
-        <select name="support" ng-model="current_actor.support">
+        <select name="support" class="form-control" ng-model="current_actor.support">
           <option ng-selected="{{ current_actor.support == value }}" ng-repeat="(name, value) in support" value="{{ value }}">{{ name }}</option>
         </select>
       </div>
       <div class="form-group">
         <label for="influence"><%= t('.influence_level') %></label>
-        <select name="influence" ng-model="current_actor.influence">
+        <select name="influence" class="form-control" ng-model="current_actor.influence">
           <option ng-selected="{{ current_actor.influence == value }}" ng-repeat="(name, value) in influence" value="{{ value }}">{{ name }}</option>
         </select>
       </div>
