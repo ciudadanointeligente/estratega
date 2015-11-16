@@ -441,9 +441,17 @@ div#resources_paginate {
 }
 .modal-footer .btn-warning {
   color: #ffffff;
-  background-color: #0091EA;
-  border-color: #0091EA;
+  background-color: #1B8BD0;
+  border-color: #1B8BD0;
   font-weight: 300;
+}
+.modal-footer .btn-warning:hover {
+  background-color: #06649D;
+  border-color: #06649D;
+}
+.modal-footer .btn-warning:active:focus {
+  background-color: #06649D;
+  border-color: #06649D;
 }
 .modal-header {
   border-bottom: none;
