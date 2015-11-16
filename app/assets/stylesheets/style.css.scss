@@ -57,17 +57,22 @@ table .fa-pencil-square-o, table .fa-trash, table .fa-line-chart, table .fa-cale
 }
 .btn-default {
     border-radius: 15px;
-    background-color: #01598F;
-    border-color: #01598F;
+    background-color: #1B8BD0;
+    border-color: #1B8BD0;
     color: #ffffff;
     text-transform: none;
 }
 .btn-default:hover{
     border-radius: 15px;
-    background-color: #00385A;
-    border-color: #00385A;
+    background-color: #06649D;
+    border-color: #06649D;
     color: #ffffff;
     text-transform: none;
+}
+.btn-default:active:hover, .btn-default:active:focus, .btn-default:active.focus, .btn-default.active:hover, .btn-default.active:focus, .btn-default.active.focus, .open>.btn-default.dropdown-toggle:hover, .open>.btn-default.dropdown-toggle:focus, .open>.btn-default.dropdown-toggle.focus {
+    color: #ffffff;
+    background-color: #06649D;
+    border-color: #06649D;
 }
 .btn-info {
   background-color: #26cccc;
