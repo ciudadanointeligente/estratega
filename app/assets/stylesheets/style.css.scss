@@ -637,6 +637,9 @@ table.indicator td:first-child {
   .project-hero h2, .project-hero p, .project-hero02 h2, .project-hero02 p {
     width: 80%;
   }
+  .navbar-nav {
+    margin-left: 30px;
+  }
 }
 @media all and (max-width: 992px) {
   .project-hero, .project-hero02 {
