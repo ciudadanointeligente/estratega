@@ -397,7 +397,7 @@ en:
       add_actor_button: "Agregar actor"
       all_actors: "Todos los actores"
       name: "Nombre"
-      actor_type: "tipo de actor"
+      actor_type: "Tipo de actor"
       support: "Apoyo"
       influence: "Influencia"
       important: "Importancia"
