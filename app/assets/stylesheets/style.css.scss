@@ -77,6 +77,11 @@ table .fa-pencil-square-o, table .fa-trash, table .fa-line-chart, table .fa-cale
   background-color: #00bdc8;
   border-color: #26cccc;
 }
+.btn-success:active:hover, .btn-success:active:focus, .btn-success:active.focus, .btn-success.active:hover, .btn-success.active:focus, .btn-success.active.focus, .open>.btn-success.dropdown-toggle:hover, .open>.btn-success.dropdown-toggle:focus, .open>.btn-success.dropdown-toggle.focus {
+    color: #FFF;
+    background-color: #398439;
+    border-color: #398439;
+}
 .bg_grey table {
   background-color: #ffffff;
   margin-top: 40px;
