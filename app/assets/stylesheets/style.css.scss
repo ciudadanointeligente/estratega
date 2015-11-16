@@ -50,6 +50,11 @@ table .fa-pencil-square-o, table .fa-trash, table .fa-line-chart, table .fa-cale
   background-color: #D32114;
   border-color: #D32114;
 }
+.btn-warning:active:hover, .btn-warning:active:focus, .btn-warning:active.focus, .btn-warning.active:hover, .btn-warning.active:focus, .btn-warning.active.focus, .open>.btn-warning.dropdown-toggle:hover, .open>.btn-warning.dropdown-toggle:focus, .open>.btn-warning.dropdown-toggle.focus {
+    color: #FFF;
+    background-color: #D32114;
+    border-color: #D32114;
+}
 .btn-default {
     border-radius: 15px;
     background-color: #01598F;
