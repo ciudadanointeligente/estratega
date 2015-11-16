@@ -36,10 +36,6 @@ table .fa-pencil-square-o, table .fa-trash, table .fa-line-chart, table .fa-cale
     color: #ffffff;
 }
 
-.navbar-brand > img{
-  margin: -7px 0 0 0;
-}
-
 /*BUTTONS */
 
 .btn {
@@ -155,7 +151,6 @@ table a {
   border-color: #021b2d;
   border-radius: 0px;
 }
-
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #fff;
 }
@@ -172,9 +167,16 @@ table a {
   font-size: 18px;
   font-weight: 700;
 }
-.navbar-default .navbar-brand span, .brand span {
-  font-size: 14px;
-  font-weight: 300;
+.navbar-brand > img{
+  margin: -7px 0 0 0;
+}
+.navbar-default .navbar-brand span, .brand span{
+  font-size: 16px;
+  font-weight: 600;
+  position: relative;
+  left: 221px;
+  top: -25px;
+  text-transform: uppercase;
 }
 .top-nav a {
   color: #fff;
