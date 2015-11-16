@@ -660,6 +660,9 @@ table.indicator td:first-child {
   .navbar-nav {
     margin-left: 60px;
   }
+  .navbar-nav .dropdown .btn-default {
+    margin-top: 5px;
+  }
 }
 @media all and (max-width: 992px) {
   .project-hero, .project-hero02 {
