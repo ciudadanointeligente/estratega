@@ -53,7 +53,7 @@
                 <tr ng-repeat="ask in asks">
                   <td>{{ ask.actor_name }}</td>
                   <td>{{ ask.description }}</td>
-                  <td class="text-center">><i class="fa fa-check" ng-if="ask.execution"></i></td>
+                  <td class="text-center"><i class="fa fa-check" ng-if="ask.execution"></i></td>
                   <td class="text-right"><a href="#" title="Editar" ng-click="add_edit_ask(ask)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Eliminar" ng-click="delete_ask(ask)"><i class="fa fa-trash"></i></a></td>
                 </tr>
               </tbody>
