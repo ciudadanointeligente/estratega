@@ -388,7 +388,7 @@ en:
       subtitle3: "Identificar factores habilitantes y barreras"
       subtitle3_tooltip: "Gracias al análisis del ciclo de toma de decisiones y el mapeo de actores, ya habrán identificado una serie de factores que permitirán lograr los objetivos y otros que serán un freno, sin embargo puede que sea necesario profundizar aún más el contexto que rodea el cambio deseado. Una forma de profundizar más es a través de la identificación de factores habilitantes y barreras, los que pueden propiciar el cumplimiento de los objetivos de advocacy o entorpecer y dificultar la estrategia."
       guide_me: "Guíame"
-      step_one: "It draws the decision-making cycles using the draw.io application, a new tab will open in your browser"
+      step_one: "Dibuja los ciclos de toma de decisiones mediante la aplicación draw.io, una nueva pestaña se abrirá en su navegador"
       step_two: "Agregar a los actores involucrados en el plan de advocacy con <strong>Agregar actor</strong>, luego puede editar o eliminar la columna de acciones"
       step_three: "Ingrese las barreras en (<strong>Barreras</strong>) y los factores habilitantes en (<strong>Factores habilitantes</strong>) para lograr sus objectivos de advocacy"
       data_entry: "Ingreso de datos"
