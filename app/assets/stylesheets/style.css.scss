@@ -431,6 +431,14 @@ div#resources_paginate {
   border-color: #FF6459;
   font-weight: 300;
 }
+.modal-footer .btn-primary:hover {
+  background-color: #D32114;
+  border-color: #D32114;
+}
+.btn-primary:active:focus {
+  background-color: #D32114;
+  border-color: #D32114;
+}
 .modal-footer .btn-warning {
   color: #ffffff;
   background-color: #0091EA;
