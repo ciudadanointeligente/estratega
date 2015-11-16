@@ -393,7 +393,7 @@ en:
       step_three: "Ingrese las barreras en (<strong>Barreras</strong>) y los factores habilitantes en (<strong>Factores habilitantes</strong>) para lograr sus objectivos de advocacy"
       data_entry: "Ingreso de datos"
       explanation_examples: "Explicaciones y ejemplos"
-      draw_sandbox_button: "Draw in draw.io"
+      draw_sandbox_button: "Dibujar en draw.io"
       add_actor_button: "Agregar actor"
       all_actors: "Todos los actores"
       name: "Nombre"
