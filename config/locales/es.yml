@@ -719,8 +719,8 @@ en:
       save_button: "Guardar"
       cancel_button: "Cancelar"
     modal_indicator:
-      owner_name: "Owner"
-      owner_role: "Role"
+      owner_name: "Encargado"
+      owner_role: "Puesto"
       expected_results: "Resultados esperados"
       obtained_results: "Resultados obtenidos"
       settings: "Ajustes"
