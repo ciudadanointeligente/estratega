@@ -969,7 +969,7 @@ en:
       actor: "Actor"
       ask: "Petición"
       ask_placeholder: "Escribir la Petición"
-      execution: "Ejecutado"
+      execution: "Petición comunicada"
       save_button: "Guardar"
       cancel_button: "Cancelar"
     explanation_stage6: #tab `Explanation & Examples` of stage 6
