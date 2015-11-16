@@ -82,6 +82,11 @@ table .fa-pencil-square-o, table .fa-trash, table .fa-line-chart, table .fa-cale
     background-color: #398439;
     border-color: #398439;
 }
+.btn-default:active, .btn-default.active, .open>.btn-default.dropdown-toggle {
+    color: #ffffff;
+    background-color: #01598F;
+    border-color: #01598F;
+}
 .bg_grey table {
   background-color: #ffffff;
   margin-top: 40px;
