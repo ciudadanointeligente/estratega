@@ -700,6 +700,9 @@ table.indicator td:first-child {
   .navbar-default .navbar-collapse {
     border: 0;
   }
+  .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #06649D;
+  }
 }
 .project-hero h2, .project-hero02 h2 {
     color: #fff;
