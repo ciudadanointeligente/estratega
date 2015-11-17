@@ -697,6 +697,9 @@ table.indicator td:first-child {
     background-color: #021b2d;
     padding-bottom: 0;
   }
+  .navbar-default .navbar-collapse {
+    border: 0;
+  }
 }
 .project-hero h2, .project-hero02 h2 {
     color: #fff;
