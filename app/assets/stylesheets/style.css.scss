@@ -554,6 +554,14 @@ div#resources_paginate {
   background-color: #00C2E4;
   height: 450px;
 }
+.col-md-12.logos{
+  position: relative;
+}
+img.logos{
+  display: -webkit-inline-box;
+  vertical-align: middle;
+  margin: 6%;
+}
 .banner {
   background: image-url("welcome.png");
   background-position: center;
@@ -875,11 +883,11 @@ table.document td .btn {
     height: 800px;
   }
   .benefits img {
-    height: 120px;
+    height: 150px;
     margin-top: 30px;
   }
   .testimonial img {
-  width: 75%;
+    width: 75%;
   }
 }
 
@@ -897,7 +905,7 @@ table.document td .btn {
 }
 
 @media screen and (max-width: 767px) {
-    .testimonial img {
+  .testimonial img {
     width: 30%;
   }
   .testimonial p.cita{
