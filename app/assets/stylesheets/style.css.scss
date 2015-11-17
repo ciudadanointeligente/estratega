@@ -493,7 +493,9 @@ div#resources_paginate {
 .benefits img {
   height: 190px;
 }
-
+.row.benefits{
+  margin: 0px 0 -270px 0;
+}
 .benefits .btn-danger, .banner .btn-danger {
     border-radius: 15px;
     background-color: #FF6459;
@@ -935,12 +937,9 @@ table.document td .btn {
 }
 
 @media screen and (max-width: 640px) {
-  .testimonial img {
-    width: 40%;
-  }
+.row.benefits{
+  margin: -40px 0 -210px 0;
 }
-
-@media screen and (max-width: 640px) {
   .testimonial img {
     width: 40%;
   }
