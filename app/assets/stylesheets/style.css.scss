@@ -543,7 +543,7 @@ div#resources_paginate {
   color: #ffffff;
 }
 .testimonial img {
-  width: 100%;
+  width: 90%;
 }
 .testimonial .row {
   margin-bottom: 20px;
@@ -878,6 +878,9 @@ table.document td .btn {
     height: 120px;
     margin-top: 30px;
   }
+  .testimonial img {
+  width: 75%;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -890,5 +893,35 @@ table.document td .btn {
   }
   .benefits{
     height: 1100px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+    .testimonial img {
+    width: 30%;
+  }
+  .testimonial p.cita{
+    margin: 20px 100px 5px 125px;
+  }
+  .testimonial p.persona{
+    margin: 0 0 25px 125px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .testimonial img {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .testimonial img {
+    width: 40%;
+  }
+  .testimonial p.cita{
+    margin: 20px 0 5px 0;
+  }
+  .testimonial p.persona{
+    margin: 0 0 25px 0;
   }
 }
