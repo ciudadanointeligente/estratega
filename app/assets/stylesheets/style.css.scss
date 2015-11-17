@@ -531,7 +531,7 @@ div#resources_paginate {
 .testimonial p.persona {
   font-size: 16px;
   font-weight: 700;
-  color: #66C8DF;
+  color: #FF6459;
   margin-top: 0;
 }
 .testimonial .t2 {
@@ -548,11 +548,22 @@ div#resources_paginate {
 .testimonial .row {
   margin-bottom: 20px;
 }
-.instituciones{
+.organizations h2 {
+  color: #ffffff;
+}
+.organizations{
   padding: 50px 0;
   text-align: center;
   background-color: #00C2E4;
-  height: 450px;
+  height: 500px;
+}
+.col-md-12.logos{
+  position: relative;
+}
+img.logos{
+  display: -webkit-inline-box;
+  vertical-align: middle;
+  margin: 6%;
 }
 .banner {
   background: image-url("welcome.png");
@@ -681,6 +692,16 @@ table.indicator td:first-child {
 @media all and (max-width: 992px) {
   .project-hero, .project-hero02 {
     background: #63c0d6;
+  }
+  .collapse.in {
+    background-color: #021b2d;
+    padding-bottom: 0;
+  }
+  .navbar-default .navbar-collapse {
+    border: 0;
+  }
+  .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #06649D;
   }
 }
 .project-hero h2, .project-hero02 h2 {
@@ -875,11 +896,11 @@ table.document td .btn {
     height: 800px;
   }
   .benefits img {
-    height: 120px;
+    height: 150px;
     margin-top: 30px;
   }
   .testimonial img {
-  width: 75%;
+    width: 75%;
   }
 }
 
@@ -892,12 +913,12 @@ table.document td .btn {
     background-position-y: 500px;
   }
   .benefits{
-    height: 1100px;
+    height: 1250px;
   }
 }
 
 @media screen and (max-width: 767px) {
-    .testimonial img {
+  .testimonial img {
     width: 30%;
   }
   .testimonial p.cita{
