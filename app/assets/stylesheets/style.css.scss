@@ -784,8 +784,10 @@ table.indicator td:first-child {
 .panel-title .fa-check {
     color: #00C2E4;
 }
-
-.panel-title .fa-times {
+.panel-default h4 {
+  margin: 15px;
+}
+.panel-title .fa-times, .panel-default h4 .fa-times-circle {
     color: #FF6459;
 }
 
