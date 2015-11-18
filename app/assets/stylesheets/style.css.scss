@@ -569,16 +569,15 @@ img.logos{
 }
 .banner {
   background: image-url("welcome.png");
-  background-position: center;
+  background-position: 50% 100%;
   background-repeat: no-repeat;
-  background-position-y: 330px;
   padding: 50px 0;
   margin: -5px 0;
   background-color: #021b2d;
-  height: 550px;
+  height: 700px;
 }
 .banner .container {
-  padding: 40px 0;
+  padding: 80px 0;
 }
 .banner .container h2, .banner .container h3 {
   color: #ffffff;
@@ -894,11 +893,6 @@ table.document td .btn {
 }
 
 @media screen and (max-width: 991px) {
-  .banner{
-    padding: 0;
-    background-position-y: 420px;
-    height: 650px;
-  }
   .benefits{
     height: 800px;
   }
@@ -914,10 +908,6 @@ table.document td .btn {
 @media screen and (max-width: 768px) {
   h2, .h2 {
     font-size: 30px;
-  }
-  .banner{
-    height: 700px;
-    background-position-y: 500px;
   }
   .benefits{
     height: 1250px;
