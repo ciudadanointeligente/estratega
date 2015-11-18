@@ -263,7 +263,10 @@ footer h5 {
 footer a {
   color: #ffffff;
 }
-
+.row, footer {
+  margin-left: -15px;
+  margin-right: -15px;
+}
 .brand{
   display: inline-block;
 }
