@@ -60,25 +60,6 @@
     <div role="main" class="FullPage">
       <%= yield %>
     </div>
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-6 col-sm-6 col-md-8 col-lg-8">
-            <p class="brand" href="#"><%= image_tag "logo.png" %></p>
-            <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <p><%= t('.footer_left_txt') %></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-            <h5><%= t('.footer_contact') %></h5>
-            <p><i class="fa fa-phone-square"></i> <%= t('.footer_phone_number_txt') %></p>
-            <p><i class="fa fa-envelope"></i> <a href=""><%= t('.footer_email_txt') %></a></p>
-            <p>&nbsp;<i class="fa fa-map-marker"></i>&nbsp; <%= t('.footer_address_txt') %></p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
