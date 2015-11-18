@@ -90,13 +90,8 @@ en:
       stage2_title: "Step 2: Formular los objetivos y ordenarlos en orden de prioridad"
       stage3_title: "Step 1: Establecer metas"
       stage3_without_objectives: |
-                    "<p>Necesitas agregar objetivos para para establecer la meta</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"
+                    <h4><i class='fa fa-times-circle'></i> Necesitas agregar objetivos para para establecer las metas</h4>
+                    <p>Completa el paso anterior para poder seguir con el ingreso de tu plan de advocacy</p>
       objective_cnt: 'Objectivo'
     overview:     # http://localhost:3000/projects/1#overview
       projects: "Proyectos"
