@@ -1,4 +1,4 @@
-en:
+es:
   #
   # Landing page and tags
   #
@@ -187,7 +187,7 @@ en:
       title1: "¿Qué problema público desean abordar?"
       title1_description: |
                           <p>La primera etapa del proceso de planificación está centrada en la identificación y caracterización de un problema. Un problema público puede ser entendido como una situación negativa que afecta a la población de un país o una localidad específica y que la organización desea revertir. </p>
-                          <p>La identificación y definición del problema debe responder a por qué la temática en cuestión puede ser considerada como un problema, además de acotarla a un contexto territorial, a uno temporal y mencionar la población que resulta afectada. También es necesario tener en consideración que un problema público tiene causas múltiples y que la identificación de estas puede estar determinada por la forma en que se defina el problema.</p> 
+                          <p>La identificación y definición del problema debe responder a por qué la temática en cuestión puede ser considerada como un problema, además de acotarla a un contexto territorial, a uno temporal y mencionar la población que resulta afectada. También es necesario tener en consideración que un problema público tiene causas múltiples y que la identificación de estas puede estar determinada por la forma en que se defina el problema.</p>
 
       title2: "¿Cuales son las causas políticas relacionadas con el problema público?"
       title2_description: |
@@ -204,7 +204,7 @@ en:
                             <li>Bloqueo de políticas públicas</li>
                             <li>Implementación de políticas públicas</li>
                             <li>Mantenimiento de políticas públicas</li>
-                            <li>Entre otros</li> 
+                            <li>Entre otros</li>
                           </ul>
                           <p>En aquellos contextos en los que un cambio de políticas públicas sea considerado demasiado ambicioso, la organización puede aspirar a un cambio discursivo, el que debería allanar el camino para que en el largo plazo se genere un cambio más profundo. Por ejemplo, por muchos años y dada la falta de opciones de lograr un cambio en las políticas relacionadas a los paraísos fiscales, las organizaciones que trabajan en la justicia fiscal centraron sus esfuerzos de advocacy en un cambio discursivo centrado en la sociedad, a modo que los paraísos fiscales fueran vistos por la mayoría como una práctica inaceptable. Estos esfuerzos constituyen la base de los cambios políticos que se consiguieron unos años después.</p>
       example: "Ejemplos"
@@ -456,7 +456,7 @@ en:
                             <li>Implementación y cumplimiento</li>
                             <li>Monitoreo y evaluación</li>
                           </ul>
-                          <p>En cada una de las fases anteriormente listadas se encuentran presentes actores diversos formales e informales que cuentan con distintos niveles de influencia, por lo cual es necesario tener algún tipo de conocimientos sobre estos.</p> 
+                          <p>En cada una de las fases anteriormente listadas se encuentran presentes actores diversos formales e informales que cuentan con distintos niveles de influencia, por lo cual es necesario tener algún tipo de conocimientos sobre estos.</p>
 
       title2: "Mapeo de actores relacionados para analizar su influencia relativa y su nivel de apoyo"
       title2_description: |
@@ -488,7 +488,7 @@ en:
                           <ul>
                             <li>Ministro de Salud</li>
                             <li>Parlamento</li>
-                            <li>Miembro X del Parlamento</li> 
+                            <li>Miembro X del Parlamento</li>
                             <li>ONG internacional X</li>
                             <li>Agencias ONU: ONUSIDA, OMS, ONU Mujeres, UNESCO, OIT,etc</li>
                             <li>Medio de comunicación X </li>
@@ -748,7 +748,7 @@ en:
               </tr>
               <tr>
                 <td>Voluntad pública</td>
-                <td>Manifestaciones 
+                <td>Manifestaciones
                   y marchas <br>
                   Difusión a través de redes sociales
                 </td>
