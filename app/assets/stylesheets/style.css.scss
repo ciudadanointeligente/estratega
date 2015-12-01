@@ -895,6 +895,10 @@ table.document td .btn {
 .clndr {
   max-width: initial;
 }
+.controllers i:hover:focus, table .fa-trash:hover:focus {
+    color: #215CA0;
+    cursor: pointer;
+}
 
 @media screen and (max-width: 991px) {
   .benefits{
