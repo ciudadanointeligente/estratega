@@ -895,7 +895,7 @@ table.document td .btn {
 .clndr {
   max-width: initial;
 }
-.controllers i:hover:focus, table .fa-trash:hover:focus {
+.controllers i:hover, table .fa-pencil-square-o:hover, table .fa-trash:hover, table .fa-line-chart:hover, table .fa-calendar:hover {
     color: #215CA0;
     cursor: pointer;
 }
