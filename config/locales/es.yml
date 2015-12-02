@@ -74,7 +74,7 @@ es:
       description: "Descripción"
       title_placeholder: "Ingrese la descripción del proyecto"
       focus_area: "Área de focalización"
-      public: "Público"
+      public: "Proyecto Público (las personas de la red podrán ver el contenido pero no editar)"
       save: "Guardar"
       cancel: "Cancelar"
     show:     # http://localhost:3000/projects/1

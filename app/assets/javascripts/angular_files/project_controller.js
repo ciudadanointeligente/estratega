@@ -94,7 +94,7 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
     $http.get('/projects/'+project.id+'.json')
         .success(function (data) {
           if( data ) {
-            var msg = '¿Seguro que quieres eliminar este proyecto?';
+            var msg = '¿Estás seguro que quieres eliminar este proyecto?';
             if( data.members.length > 1 )
               msg = 'Este proyecto es compartido con otros usuarios. ¿Seguro que quieres eliminar este proyecto?';
 
