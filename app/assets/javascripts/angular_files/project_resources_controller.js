@@ -21,7 +21,7 @@ app.controller("projectResourcesCtrl", ["$scope", "$http", "$aside", "$location"
   }
 
   $scope.delete_resource = function(resource){
-    if(confirm('Are you absolutely sure you want to delete?')) {
+    if(confirm('¿Estás absolutamente seguro de que quieres eliminar?')) {
       $http.delete('/projects/'+$scope.project_id+'/resources/'+resource.id);
       $scope.resources.splice($scope.resources.indexOf(resource),1);
     }
