@@ -41,7 +41,7 @@
             <div class="panel panel-default">
               <div class="panel-heading" data-step="2" data-intro="<%= t('.step_two') %>">
                 <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle1_tooltip') %>"><i class="fa fa-info"></i></button>
-                <button type="button" class="btn btn-warning pull-right" ng-click="show_goal()">{{ btn_problem }}</button>
+                <button type="button" class="btn btn-warning pull-right" ng-click="show_goal()"><i class="fa" ng-class="{'fa-pencil': problem.goal, 'fa-plus-circle': !problem.goal}"></i> {{ btn_problem }}</button>
                 <h4 class="panel-title"><%= t('.subtitle1') %></h4>
               </div>
             </div>
