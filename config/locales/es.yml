@@ -948,8 +948,8 @@ es:
     stage6: # http://localhost:3000/projects/1/objectives/1/stage6
       projects: "Proyectos"
       stage6: "Etapa 6"
-      title: "¿Qué es lo que quieren como organización que transmita el actor o actores claves?"
-      title_description: "Las actividades son la materialización del proceso de advocacy, es decir, las principales acciones que se llevarán a cabo con el fin de contribuir al cambio deseado. Los tipos de acciones realizables son numerosas y cada una puede contribuir a un resultado diferente."
+      title: "¿Qué quieren que realicen como organización el actor o los actores claves?"
+      title_description: "Después de haber identificado el público objetivo y los actores claves, es momento de definir la “petición” que es una solicitud a un actor clave o un grupo de actores para que estos lleven a cabo una acción que genere el cumplimiento de los resultados intermedios"
       subtitle1: "¿Cuál será la petición para cada actor?"
       subtitle1_explanation: "Una petición debe ser clara, concisa, centrada en el resultado y adaptada a cada actor. Las peticiones también pueden ser entendidas como una solicitud a un actor clave o un grupo de actores para que estos lleven a cabo una acción que genere el cumplimiento de los resultados intermedios."
       data_entry: "Ingreso de datos"
