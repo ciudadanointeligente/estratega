@@ -276,10 +276,10 @@ es:
       description: "Descripción"
       back_button: "Volver"
     objective_modal: # modal `add objective` of stage 2
-      objective: "Objectivos"
+      objective: "Objectivo"
       select_solution: "Seleccionar solución"
       objective_type: "Tipo de Objetivo"
-      objective_placeholder: "Agregar información relevante para el objetivo"
+      objective_placeholder: "Redactar el objetivo"
       key_contribution: "CONTRIBUCIÓN CLAVE: ¿El objetivo es una contribución clave para la solución del problema?"
       big_difference: "<p><strong>Gran diferencia:</strong> ¿Podría el éxito del objetivo hacer una diferencia significativa en el tratamiento del problema público?</p>"
       score: "Puntaje"

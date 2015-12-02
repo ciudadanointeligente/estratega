@@ -9,15 +9,16 @@
       </select>
     </div>
     <div class="form-group">
+      <label for="objective"><%= t('.objective') %></label>
+      <textarea name="title" class="form-control" ng-model="current_objective.title" placeholder="<%= t('.objective_placeholder') %>"></textarea>
+    </div>
+    <div class="form-group">
       <label for="objective-type"><%= t('.objective_type') %></label>
       <select class="form-control" id="objective-type" ng-model="current_objective.objective_type">
         <option ng-repeat="obj_type in objective_types">{{obj_type}}</option>
       </select>
     </div>
-    <div class="form-group">
-      <label for="objective"><%= t('.objective') %></label>
-      <textarea name="title" class="form-control" ng-model="current_objective.title" placeholder="<%= t('.objective_placeholder') %>"></textarea>
-    </div>
+    
     <div class="form-group">
       <label>
         <input type="checkbox" ng-model="current_objective.prioritized"> <%= t('.prioritized') %>
