@@ -8,7 +8,7 @@ class Objective < ActiveRecord::Base
   has_many :asks, dependent: :destroy
 
   def objective_type_list
-    objective_type = ["Policy development","Placement on the policy agenda","Policy adoption","Policy blocking","Policy implementation","Policy maintenance", "Other"]
+    objective_type = ["Desarrollo de políticas públicas","Establecimiento de un tema en la agenda política","Adopción de políticas públicas","Bloqueo de políticas públicas","Implementación de políticas públicas","Mantenimiento de políticas públicas", "Otros"]
     return objective_type
   end
 
