@@ -1,6 +1,6 @@
 app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs", function ($scope, $http, $aside, $location, $attrs) {
   $scope.project_id = $location.path().split("/")[2];
-  $scope.btn_problem = "Add";
+  $scope.btn_problem = "Agregar";
   $scope.problem = {};
   $scope.objective_types = {};
   $scope.messages = {response: "", message: ""}
@@ -61,7 +61,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       .success(function (data) {
         $scope.problem = data;
         if( data.goal )
-          $scope.btn_problem = "Edit";
+          $scope.btn_problem = "Editar";
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorgettingrealproblem }
@@ -142,7 +142,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       $http.put("/real_problems/" + $scope.problem.id, $scope.problem)
         .success(function (data) {
           // alertar en caso de success o error
-          $scope.btn_problem = "Edit";
+          $scope.btn_problem = "Editar";
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorupdatinggoal }
@@ -152,7 +152,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       $http.post("/real_problems", $scope.problem)
         .success(function (data) {
           $scope.problem = data;
-          $scope.btn_problem = "Edit";
+          $scope.btn_problem = "Editar";
           $scope.problem_id = data.id;
         })
         .error(function (){

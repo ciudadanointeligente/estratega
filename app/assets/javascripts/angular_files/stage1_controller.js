@@ -9,7 +9,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       $scope.messages = { response: false, message: $attrs.errorfocusarea }
     });
 
-  $scope.btn_problem = "Add";
+  $scope.btn_problem = "Agregar";
   $scope.problem = {
     title: "",
     description: ""
@@ -33,7 +33,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
           .success(function (data) {
             $scope.problem = data;
             if(data.title!='.')
-              $scope.btn_problem = "Edit";
+              $scope.btn_problem = "Editar";
           })
           .error(function (){
             $scope.messages = { response: false, message: $attrs.errorproject }
@@ -94,7 +94,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       $http.post("/real_problems", $scope.problem)
         .success(function (data) {
           $scope.problem = data;
-          $scope.btn_problem = "Edit";
+          $scope.btn_problem = "Editar";
           $scope.problem_id = data.id;
         })
         .error(function (){
