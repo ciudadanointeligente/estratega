@@ -417,7 +417,7 @@ es:
       actor: "Actor"
       actor_type: "Tipo de actor"
       select_actor_type: "Selecione el tipo de actor"
-      person: "Person"
+      person: "Persona"
       organization: "Organización"
       name: "Nombre"
       name_placeholder: "Ingrese el nombre del actor"
