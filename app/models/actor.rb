@@ -4,17 +4,17 @@ class Actor < ActiveRecord::Base
   has_many :asks
 
   def actor_type_list
-    actor_type = ['Active opponents with influence', 'Active opponents with low influence', 'Passive opponents with influence', 'Passive opponents with low influence', 'Neutrals with influence', 'Neutrals with low influence', 'Passive supporters with influence', 'Passive supporters with low influence', 'Active supporters with influence', 'Active supporters with low influence']
+    actor_type = ['Oponentes activos con influencia', 'Oponentes activos sin influencia', 'Oponentes pasivos con influencia', 'Oponentes pasivos sin influencia', 'Neutrales con influencia', 'Neutrales sin influencia', 'Partidarios pasivos con influencia', 'Partidarios pasivos sin influencia', 'Partidarios activos con influencia', 'Partidarios activos sin influencia']
     return actor_type
   end
 
   def actor_support_list
-    actor_support = {'Very supportive' => 2, 'Significant Support' => 1, 'Low support' => -1, 'No support' => -2}
+    actor_support = {'Partidarios activos' => 2, 'Partidarios pasivos' => 1, 'Neutrales' => -1, 'Oponentes activos' => -2, 'Oponentes pasivos' => -3}
     return actor_support
   end
 
   def actor_influence_level_list
-    actor_influence_level = {'Very influential' => 2, 'Significant influence' => 1, 'Moderate influence' => 0, 'Low influence' => -1, 'No influence' => -2}
+    actor_influence_level = {'Alta influencia' => 2, 'Mediana Influencia' => 1, 'Baja Influencia' => 0, '' => -1, 'Sin influencia' => -2}
     return actor_influence_level
   end
 end
