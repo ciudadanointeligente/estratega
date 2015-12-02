@@ -695,7 +695,7 @@ es:
       outcomes: "Resultados"
       actions: "Acciones"
       date: "Fecha"
-      progress: "Progreso"
+      progress: "% Éxito"
       completion: "Finalizado"
       download_as_ical: "Exportar actividades en iCal"
       error_getting_outcomes: "Error al obtener la información de los resultados"
@@ -723,7 +723,7 @@ es:
       expected_results: "Resultados esperados"
       obtained_results: "Resultados obtenidos"
       settings: "Ajustes"
-      percentage: "Porcentaje"
+      percentage: "Porcentaje éxito"
       save_button: "Guardar"
       cancel_button: "Cancelar"
     explanation_stage5: #tab `Explanation & Examples` of stage 5
