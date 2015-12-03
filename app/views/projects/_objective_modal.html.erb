@@ -5,13 +5,8 @@
   <div class="modal-body">
     <div class="form-group">
       <label for="solution"><%= t('.select_solution') %></label>
+      <p class="mini-explicacion"><%= t('.select_solution_placeholder') %></p>
       <select class="form-control" name="solution_ids" multiple="multiple" ng-multiple="true" ng-model="current_objective.solution_ids" ng-options="solution.id as solution.title for solution in solutions">
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="objective-type"><%= t('.objective_type') %></label>
-      <select class="form-control" id="objective-type" ng-model="current_objective.objective_type">
-        <option ng-repeat="obj_type in objective_types">{{obj_type}}</option>
       </select>
     </div>
     <div class="form-group">
@@ -19,8 +14,15 @@
       <textarea name="title" class="form-control" ng-model="current_objective.title" placeholder="<%= t('.objective_placeholder') %>"></textarea>
     </div>
     <div class="form-group">
+      <label for="objective-type"><%= t('.objective_type') %></label>
+      <select class="form-control" id="objective-type" ng-model="current_objective.objective_type">
+        <option ng-repeat="obj_type in objective_types">{{obj_type}}</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
       <label>
-        <input type="checkbox" ng-model="current_objective.prioritized"> <%= t('.prioritized') %>
+        <input type="checkbox" ng-model="current_objective.prioritized" checked> <%= t('.prioritized').html_safe %>
       </label>
     </div>
     <hr>

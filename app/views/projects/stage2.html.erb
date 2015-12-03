@@ -41,7 +41,7 @@
             <div class="panel panel-default">
               <div class="panel-heading" data-step="2" data-intro="<%= t('.step_two') %>">
                 <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle1_tooltip') %>"><i class="fa fa-info"></i></button>
-                <button type="button" class="btn btn-warning pull-right" ng-click="show_goal()">{{ btn_problem }}</button>
+                <button type="button" class="btn btn-warning pull-right" ng-click="show_goal()"><i class="fa" ng-class="{'fa-pencil': problem.goal, 'fa-plus-circle': !problem.goal}"></i> {{ btn_problem }}</button>
                 <h4 class="panel-title"><%= t('.subtitle1') %></h4>
               </div>
             </div>
@@ -74,12 +74,12 @@
                 <thead>
                   <tr>
                     <th><%= t('.objectives') %></th>
-                    <th><%= t('.subtotal_key_contribution') %></th>
-                    <th><%= t('.subtotal_momentum') %></th>
-                    <th><%= t('.subtotal_comparative_advantage') %></th>
-                    <th><%= t('.total') %></th>
-                    <th><%= t('.prioritized') %></th>
-                    <th><%= t('.policy_solutions') %></th>
+                    <th class="text-center"><%= t('.subtotal_key_contribution') %></th>
+                    <th class="text-center"><%= t('.subtotal_momentum') %></th>
+                    <th class="text-center"><%= t('.subtotal_comparative_advantage') %></th>
+                    <th class="text-center"><%= t('.total') %></th>
+                    <th class="text-center"><%= t('.prioritized') %></th>
+                    <th class="text-center"><%= t('.policy_solutions') %></th>
                     <th class="text-right"><%= t('.actions') %></th>
                   </tr>
                 </thead>
@@ -94,7 +94,7 @@
                       <i class="fa fa-check" ng-if="objective.prioritized"></i>
                     </td>
                     <td class="text-center">{{objective.solution_ids.length}}</td>
-                    <td class="text-right"><a href="#" title="Editar" ng-click="add_edit_objective(objective)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Borrar" ng-click="delete_objective(objective)"><i class="fa fa-trash"></i></a>
+                    <td class="text-right"><a href="#" title="Editar" ng-click="add_edit_objective(objective)"><i class="fa fa-pencil-square-o"></i></a> <a href="" title="Priorizar"><i class="fa fa-list-ol"></i></a> <a href="#" title="Eliminar" ng-click="delete_objective(objective)"><i class="fa fa-trash"></i></a> 
                     </td>
                   </tr>
                 </tbody>

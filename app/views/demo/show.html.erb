@@ -100,7 +100,7 @@
 <script>
   $(document).ready(function(){
     if (RegExp('tour', 'gi').test(window.location.search)) {
-      introJs().setOption('doneLabel', 'Next page').start().oncomplete(function() {
+      introJs().setOption('doneLabel', 'Página Siguiente').start().oncomplete(function() {
         window.location.href = '/demo/1/stage1?tour=true';
       });
       $('.introjs-bullets li a')[0].className = 'active';

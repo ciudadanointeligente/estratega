@@ -39,7 +39,7 @@ module ProjectsHelper
     when :enabling_factors
       objective.enabling_factors.blank? ? "Identificado 0 factores habilitantes y #{objective.barriers.size} barreras" : " #{objective.enabling_factors.size} Factores habilitantes and #{objective.barriers.size} Barreras"
     when :outcomes
-      objective.outcomes.blank? ? "Defina metas intermedias" : " #{objective.outcomes.size} Metas Intermedias"
+      objective.outcomes.blank? ? "Defina Resultados intermedios" : " #{objective.outcomes.size} Resultados Intermedios"
     when :activities
       objective.activities.blank? ? "Defina actividades" : " #{objective.activities.size} Actividades"
     when :asks
