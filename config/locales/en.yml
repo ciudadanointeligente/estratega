@@ -510,6 +510,21 @@ en:
       add_button: "Add"
       interim_outcome: "Interim Outcome"
       interim_outcome_type: "Interim Outcome Type"
+      interim_outcome_type_list:
+        - 'Political will'
+        - 'Public will'
+        - 'Attitudes or beliefs'
+        - 'Salience'
+        - 'Awareness'
+        - 'New champions'
+        - 'New advocates'
+        - 'Partnerships or alliances'
+        - 'Constituency or support-base growth'
+        - 'Media coverage'
+        - 'Issue reframing'
+        - 'Organizational advocacy capacity'
+        - 'Organizational visibility or issue recognition'
+        - 'Other'
       actor_type: "Actor Type"
       activities_number: "Activities Number"
       actions: "Actions"

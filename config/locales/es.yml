@@ -566,6 +566,21 @@ es:
       add_button: "Agregar"
       interim_outcome: "Resultado intermedio"
       interim_outcome_type: "Tipo de resultado intermedio"
+      interim_outcome_type_list:
+        - 'Voluntad política'
+        - 'Voluntad pública'
+        - 'Actitudes y creencias'
+        - 'Relevancia'
+        - 'Conciencia'
+        - 'Nuevos campeones'
+        - 'Nuevos defensores'
+        - 'Asociaciones o alianzas'
+        - 'Circunscripción o base de apoyo en crecimiento'
+        - 'Cobertura mediática'
+        - 'Replanteamiento del asunto'
+        - 'Capacidad de advocacy de la organización'
+        - Visibilidad de la organización o reconocimiento del problema
+        - Otras
       actor_type: "Tipo de actor"
       activities_number: "Número de actividades"
       actions: "Acciones"
