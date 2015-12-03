@@ -281,6 +281,7 @@ es:
       select_solution_placeholder: "(Para seleccionar más de ujna solución presione la tecla ctrl al hacer click)"
       objective_type: "Tipo de Objetivo"
       objective_placeholder: "Redactar el objetivo"
+      prioritized: "Priorizado <br /><span class='mini-explicacion'>(Solo prodrá trabajar con este objetivo si se encuentra priorizado)</span>"
       key_contribution: "CONTRIBUCIÓN CLAVE: ¿El objetivo es una contribución clave para la solución del problema?"
       big_difference: "<p><strong>Gran diferencia:</strong> ¿Podría el éxito del objetivo hacer una diferencia significativa en el tratamiento del problema público?</p>"
       score: "Puntaje"
