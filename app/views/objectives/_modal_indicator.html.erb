@@ -13,19 +13,19 @@
     </div>
     <div class="form-group">
       <label for="expected_results"><%= t('.expected_results') %></label>
-      <textarea class="form-control" ng-model="current_indicator.expected_results"></textarea>
+      <textarea class="form-control" ng-model="current_indicator.expected_results" placeholder="<%= t('.expected_results_place') %>"></textarea>
     </div>
     <div class="form-group">
       <label for="obtained_results"><%= t('.obtained_results') %></label>
-      <textarea class="form-control" ng-model="current_indicator.obtained_results"></textarea>
+      <textarea class="form-control" ng-model="current_indicator.obtained_results" placeholder="<%= t('.obtained_results_place') %>"></textarea>
     </div>
     <div class="form-group">
       <label for="settings"><%= t('.settings') %></label>
-      <textarea class="form-control" ng-model="current_indicator.settings"></textarea>
+      <textarea class="form-control" ng-model="current_indicator.settings" placeholder="<%= t('.settings_place') %>"></textarea>
     </div>
     <div class="form-group">
       <label for="percentage"><%= t('.percentage') %></label>
-      <input name="percentage" class="form-control" ng-model="current_indicator.percentage" placeholder="<%= t('.percentage') %>" type="number" min="0" max="100" step="10">
+      <input name="percentage" class="form-control" ng-model="current_indicator.percentage" placeholder="<%= t('.percentage_place') %>" type="number" min="0" max="100" step="10">
     </div>
     <div class="modal-footer">
       <button class="btn btn-primary" ng-click="save($event)"><%= t('.save_button') %></button>
