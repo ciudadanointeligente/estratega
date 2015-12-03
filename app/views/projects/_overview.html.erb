@@ -115,7 +115,7 @@
                   <div class="separator"></div>
                   <h4>Actores</h4>
                     <% objective.actors.each_with_index do |actor, i| %>
-                      <p class="blue">Actor <%= i+1 %>. <%= actor.name %></p>
+                      <p><span class="blue">Actor </span><b><%= i+1 %>. <%= actor.name %></b></p>
                     <p><%= actor.description.presence || t('.empty') %></p>
                     <ul style="list-style-type:disc">
                       <li><b>Tipo de Actor: </b><%= actor.actor_type.presence || t('.empty') %></li>
@@ -174,7 +174,7 @@
                     <span class='blue'>Petición <%= i+1 %>. </span><b><%= ask.description.presence || t('.empty') %></b>
                     <ul style="list-style-type:disc">
                       <li>Encargado: <%= ask.actor.name %></li>
-                      <li>Objetivos Esperados: <%= get_objective_related ask.objective_id %></li>
+                      <li>Objetivos esperados: <%= get_objective_related ask.objective_id %></li>
                     </ul>
                   <% end %>
                 <% end %>
