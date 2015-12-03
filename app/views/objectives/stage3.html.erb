@@ -22,15 +22,15 @@
       <div role="tabpanel" class="tabpanel">
         <!-- nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab"><%= t('.data_entry') %></a></li>
-          <li role="presentation"><a href="#explanation" aria-controls="explanation" role="tab" data-toggle="tab"><%= t('.explanation_examples') %></a></li>
+          <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab" Onclick="show_intro()"><%= t('.data_entry') %></a></li>
+          <li role="presentation"><a href="#explanation" aria-controls="explanation" role="tab" data-toggle="tab" Onclick="hide_intro()"><%= t('.explanation_examples') %></a></li>
         </ul>
         <!-- tab panes -->
         <div class="tab-content">
           <div class="project-hero">
             <h2><%= t('.title') %></h2>
             <p><%= t('.title_description') %></p>
-            <button class="btn btn-success" onclick="javascript:introJs().start();">
+            <button class="btn btn-success" onclick="javascript:introJs().start();" id="guide">
               <i class="fa fa-map"></i> <%= t('.guide_me') %>
             </button>
           </div>
