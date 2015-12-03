@@ -591,6 +591,21 @@ es:
       interim_outcome: "Resultado intermedio"
       interim_outcome_placeholder: "Agregar información del resultado intermedio"
       interim_outcome_type: "Tipo de resultado intermedio"
+      interim_outcome_type_list:
+        - 'Political will'
+        - 'Public will'
+        - 'Attitudes or beliefs'
+        - 'Salience'
+        - 'Awareness'
+        - 'New champions'
+        - 'New advocates'
+        - 'Partnerships or alliances'
+        - 'Constituency or support-base growth'
+        - 'Media coverage'
+        - 'Issue reframing'
+        - 'Organizational advocacy capacity'
+        - 'Organizational visibility or issue recognition'
+        - 'Other'
       actor_type: "Tipo de actor"
       save_button: "Guardar"
       cancel_button: "Cancelar"
