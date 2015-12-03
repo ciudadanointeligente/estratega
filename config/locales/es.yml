@@ -167,9 +167,9 @@ es:
       step_three: "Ahora agrega <strong>Problemas de política pública</strong>, los que se agrupan en <strong>Soluciones de política pública</strong>"
       step_four: "Para volver a la página indice (anterior), presiona el link con el nombre del proyecto"
     policy_modal: # modal `add policy` of stage 1
-      policy: "Problema de política pública"
+      policy: "Causa relacionada a políticas públicas"
       title: "Título"
-      title_placeholder: "Ingrese un título para el problema"
+      title_placeholder: "Ingrese un título para la causa"
       save_button: "Guardar"
       cancel_button: "Cancelar"
     solution_modal:  # modal `add solution` of stage 1
