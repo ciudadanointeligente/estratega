@@ -35,6 +35,9 @@ table .fa-pencil-square-o, table .fa-trash, table .fa-line-chart, table .fa-cale
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
     color: #ffffff;
 }
+.mini-explicacion{
+  font-size: 12px;
+}
 
 /*BUTTONS */
 
@@ -472,6 +475,9 @@ div#resources_paginate {
   padding: 5px;
   display: block;
   width: 100%;
+  font-family: 'Open Sans', sans-serif;
+  color: #7f8c8c;
+  font-weight: 100;
 }
 .dropdown-menu.dropdown-menu-button {
   padding: 10px;

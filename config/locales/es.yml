@@ -277,7 +277,8 @@ es:
       back_button: "Volver"
     objective_modal: # modal `add objective` of stage 2
       objective: "Objectivo"
-      select_solution: "Seleccionar solución"
+      select_solution: "Asociar a solución(es)"
+      select_solution_placeholder: "(Para seleccionar más de ujna solución presione la tecla ctrl al hacer click)"
       objective_type: "Tipo de Objetivo"
       objective_placeholder: "Redactar el objetivo"
       key_contribution: "CONTRIBUCIÓN CLAVE: ¿El objetivo es una contribución clave para la solución del problema?"

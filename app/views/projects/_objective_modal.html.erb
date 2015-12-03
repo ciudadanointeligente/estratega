@@ -5,6 +5,7 @@
   <div class="modal-body">
     <div class="form-group">
       <label for="solution"><%= t('.select_solution') %></label>
+      <p class="mini-explicacion"><%= t('.select_solution_placeholder') %></p>
       <select class="form-control" name="solution_ids" multiple="multiple" ng-multiple="true" ng-model="current_objective.solution_ids" ng-options="solution.id as solution.title for solution in solutions">
       </select>
     </div>
