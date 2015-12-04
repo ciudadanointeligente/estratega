@@ -77,10 +77,9 @@
               </div>
               <!-- policy solutions -->
               <div class="collapse in" id="objetive-{{policy.id}}">
+                <button type="button" class="btn btn-primary pull-right" onmouseenter="$(this).tooltip('show')" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle3_tooltip').html_safe %>"><i class="fa fa-info"></i></button>
                 <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_solution(policy.id)"><i class="fa fa-plus-circle"></i> <%= t('.add_button') %></button>
-                <h4><%= t('.subtitle3') %> <span ng-if="policy.solutions"><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle3_tooltip') %>"></i></span></h4>
-                <p ng-if="policy.solutions.length == 0">
-                  <%= t('.subtitle3_tooltip') %>
+                <h4><%= t('.subtitle3') %></h4>
                 </p>
                 <table class="table">
                   <tbody>
