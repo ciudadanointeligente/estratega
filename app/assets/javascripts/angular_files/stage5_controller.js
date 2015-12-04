@@ -180,20 +180,20 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     if($scope.activity.indicator_id) {
       $http.put('/activities/'+$scope.activity.id+'/indicators/'+$scope.activity.indicator_id, $scope.current_indicator)
           .success(function(){
-            $scope.messages = { response: true, message: "Indicator updated"}
+            $scope.messages = { response: true, message: "Indicator actualizado"}
             get_activities($scope.project_id, $scope.objective_id);
           })
           .error(function(){
-            $scope.messages = { response: false, message: "Error while updating outcomes information"}
+            $scope.messages = { response: false, message: "Error al actualizar los resultados de información"}
           });
     } else {
       $http.post('/activities/'+$scope.activity.id+'/indicators/', $scope.current_indicator)
           .success(function(data){
-            $scope.messages = { response: true, message: "Indicator added"}
+            $scope.messages = { response: true, message: "Indicator añadido"}
             get_activities($scope.project_id, $scope.objective_id);
           })
           .error(function(){
-            $scope.messages = { response: false, message: "Error while creating the indicator"}
+            $scope.messages = { response: false, message: "Error al crear el indicador"}
           });
     }
 
