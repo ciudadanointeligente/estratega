@@ -431,15 +431,15 @@ es:
       save_button: "Guardar"
       cancel_button: "Cancelar"
     factors_modal:   # modal `add enabling factor` of stage 3
-      enabling_factor: "Factores habilitante"
+      enabling_factor: "Factor habilitante"
       description: "Descripción"
-      description_placeholder: "Ingrese descripción"
+      description_placeholder: "Ingrese descripción de factor habilitante"
       save_button: "Guardar"
       cancel_button: "Cancelar"
     barriers_modal: # modal `add barrier` of stage 3
-      barrier: "Barreras"
+      barrier: "Barrera"
       description: "Descripción"
-      description_placeholder: "Ingrese descripción"
+      description_placeholder: "Ingrese descripción de barrera"
       save_button: "Guardar"
       cancel_button: "Cancelar"
     explanation_stage3: #tab `Explanation & Examples` of stage 3
