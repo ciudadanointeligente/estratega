@@ -1075,6 +1075,11 @@ es:
     show:
       step_three: "Paso tres"
       step_four: "Paso cuatro"
+      stages: "Etapas"
+      dashboard: "Panel de control"
+      documents: "Documentos"
+      overview: "Resumen"
+
     stage1:
       projects: "Demo"
       stage1: "Etapa 1"
