@@ -59,7 +59,7 @@ es:
       public: "Público"
       guide_me: "Guíame"
       step_one: "Para comenzar a trabajar se debe crear un <strong>Nuevo proyecto</strong>"
-      step_two: "En estas pestañas podrás ver los proyectos en los que estas trabajando<strong>(Mis proyectos)</strong> y proyectos comunitarios compartidos <strong>(Otros proyectos)</strong>"
+      step_two: "En estas pestañas podrás ver los proyectos en los que estas trabajando <strong>(Mis proyectos)</strong> y proyectos comunitarios compartidos <strong>(Otros proyectos)</strong>"
       step_three: "Para comenzar a trabajar en el proyecto se debe hacer clic en el nombre o seleccionar <strong><i class='fa fa-edit'></i></strong> en <strong>Acciones</strong>"
       config: "Configuración del proyecto"
       share: "Compartir el proyecto"
