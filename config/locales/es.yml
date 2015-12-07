@@ -1072,6 +1072,7 @@ es:
       focus_area: "Área de focalización"
       actions: "Acciones"
       new_project: "Nuevo Proyecto"
+      demo: "Proyectos"
     show:
       step_three: "Paso tres"
       step_four: "Paso cuatro"
