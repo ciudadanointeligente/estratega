@@ -1066,6 +1066,12 @@ es:
     index:
       step_one: "Paso uno"
       step_two: "Paso dos"
+      my_projects: "Mis Proyectos"
+      other_projects: "Otros Proyectos"
+      project: "Proyecto"
+      focus_area: "Área de focalización"
+      actions: "Acciones"
+      new_project: "Nuevo Proyecto"
     show:
       step_three: "Paso tres"
       step_four: "Paso cuatro"
