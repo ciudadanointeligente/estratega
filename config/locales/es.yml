@@ -419,12 +419,12 @@ es:
       confirm_delete_barrier: "¿Estas seguroo que quieres eliminar esta barrera?"
     actors_modal:  # modal `add actor` of stage 3
       actor: "Actor"
-      actor_type: "tipo de actor"
+      actor_type: "Tipo de actor"
       actor_type_list:
         - 'Persona'
         - 'Organización'
-      select_actor_type: "Selecione el tipo de actor"
-      person: "Person"
+      actor_type_placeholder: "Selecione el tipo de actor"
+      person: "Persona"
       organization: "Organización"
       name: "Nombre"
       name_placeholder: "Ingrese el nombre del actor"
