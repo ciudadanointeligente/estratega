@@ -418,6 +418,9 @@ es:
     actors_modal:  # modal `add actor` of stage 3
       actor: "Actor"
       actor_type: "Tipo de actor"
+      actor_type_list:
+        - 'Persona'
+        - 'Organización'
       select_actor_type: "Selecione el tipo de actor"
       person: "Persona"
       organization: "Organización"
@@ -427,7 +430,11 @@ es:
       description_placeholder: "Agregar información del actor"
       important: "Actor Importante"
       support: "Apoyo"
+      support_list: {Partidario activo: 2, Partidario pasivo: 1, Neutro: 0, Oponente pasivo: -1, Oponente activo: -2}
+      support_placeholder: "Selecciona el nivel de apoyo"
       influence_level: "Nivel de influencia"
+      influence_level_list: {Muy influyente: 2, Influyente: 1, Poco influyente: -1, Sin influencia: -2}
+      influence_level_placeholder: "Selecciona el nivel de influencia"
       save_button: "Guardar"
       cancel_button: "Cancelar"
     factors_modal:   # modal `add enabling factor` of stage 3

@@ -427,7 +427,10 @@ en:
     actors_modal:  # modal `add actor` of stage 3
       actor: "Actor"
       actor_type: "Actor Type"
-      select_actor_type: "Select Actor Type"
+      actor_type_list:
+        - 'Person'
+        - 'Organization'
+      actor_type_placeholder: "Select Actor Type"
       person: "Person"
       organization: "Organization"
       name: "Name"
@@ -436,7 +439,11 @@ en:
       description_placeholder: "Add any important actor info"
       important: "Important"
       support: "Support"
+      support_list: {Very supportive: 2, Significant Support: 1, Low support: -1, No support: -2}
+      support_placeholder: "Select Actor Support Level"
       influence_level: "Influence Level"
+      influence_level_list: {Very influential: 2, Significant influence: 1, Moderate influence: 0, Low influence: -1, No influence: -2}
+      influence_level_placeholder: "Select Actor Influence Level"
       save_button: "Save"
       cancel_button: "Cancel"
     factors_modal:   # modal `add enabling factor` of stage 3
