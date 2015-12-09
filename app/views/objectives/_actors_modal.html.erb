@@ -5,11 +5,10 @@
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label for="influence"><%= t('.actor_type') %></label>
-        <select class="form-control" id="influence" ng-model="current_actor.actor_type">
-          <option value=""><%= t('.select_actor_type') %></option>
-          <option value="Person"><%= t('.person') %></option>
-          <option value="Organization"><%= t('.organization') %></option>
+        <label for="actor_type"><%= t('.actor_type') %></label>
+        <select name="actor_type" ng-model="current_actor.actor_type" class="form-control">
+          <option value="" disabled selected> <%= t('.actor_type_placeholder') %></option>
+          <option ng-repeat="type in actor_type">{{ type }}</option>
         </select>
       </div>
       <div class="form-group">
@@ -27,12 +26,14 @@
       <div class="form-group">
         <label for="support"><%= t('.support') %></label>
         <select name="support" ng-model="current_actor.support" class="form-control">
+          <option value="" disabled selected> <%= t('.support_placeholder') %></option>
           <option ng-selected="{{ current_actor.support == value }}" ng-repeat="(name, value) in support" value="{{ value }}">{{ name }}</option>
         </select>
       </div>
       <div class="form-group">
         <label for="influence"><%= t('.influence_level') %></label>
         <select name="influence" ng-model="current_actor.influence" class="form-control">
+          <option value="" disabled selected> <%= t('.influence_level_placeholder') %></option>
           <option ng-selected="{{ current_actor.influence == value }}" ng-repeat="(name, value) in influence" value="{{ value }}">{{ name }}</option>
         </select>
       </div>

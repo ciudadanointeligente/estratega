@@ -29,6 +29,16 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       $scope.messages = { response: false, message: $attrs.errorgettingactors }
     });
 
+  function get_actor_type() {
+    $http.get('/actors/actor_type.json')
+      .success(function(data){
+        $scope.actor_type = data;
+      })
+      .error(function (){
+        $scope.messages = { response: false, message: $attrs.errorgettingactorinfluencelevels }
+      });
+  }
+
   function get_support() {
     $http.get('/actors/actor_support.json')
       .success(function(data){
@@ -49,8 +59,9 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       });
   }
 
-  get_support()
-  get_influence_level()
+  get_actor_type();
+  get_support();
+  get_influence_level();
 
   var save_or_update_actor = function () {
     if($scope.current_actor.id) {
