@@ -76,3 +76,13 @@ var transform =
                         ]
     }
 ////
+function show_intro()
+{
+    document.getElementById('guide').style.cssText = 
+    'display:block';
+}
+function hide_intro()
+{
+    document.getElementById('guide').style.cssText = 
+    'display:none';
+}

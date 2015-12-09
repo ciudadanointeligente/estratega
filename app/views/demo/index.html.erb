@@ -6,6 +6,9 @@
       <button class="btn btn-warning" ng-click="add_edit_project()">
         <i class="fa fa-plus-circle"></i> <%= t('.new_project') %>
       </button>
+      <button class="btn btn-success">
+        <i class="fa fa-map"></i> Guíame
+      </button>
     </div>
   </div>
 
@@ -19,7 +22,7 @@
       </li>
     </ul>
 
-    <div class="tab-content">
+    <div class="tab-content h500">
       <div role="tabpanel" class="tab-pane" id="private">
         <div class="alert" role="alert" ng-class="messages.response?'alert-success':'alert-danger'" ng-if="messages.message">
           <button ng-click="dismiss_modal()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -63,7 +66,7 @@
             <tr title="{{ project.description | limitTo: 140 }}" ng-repeat="project in public_projects">
               <td><a href="/projects/{{ project.id }}" target="_self">{{ project.title }}</a></td>
               <td>{{ project.focus_area }}</td>
-              <td class="controllers">
+              <td class="controllers text-right">
                 <i class="fa fa-eye" ng-click=""></i>
               </td>
             </tr>
@@ -72,14 +75,16 @@
         <table class="table table-stripped">
           <thead>
             <tr>
-              <td>Project</td>
-              <td>Actions</td>
+              <th><%= t('.project') %></td>
+              <th><%= t('.focus_area') %></td>
+              <th class="text-right"><%= t('.actions') %></td>
             </tr>
           </thead>
           <tbody>
             <tr data-step="2" data-intro="<%= t('.step_two') %>">
               <td><%= link_to @project.title, demo_path(@project)  %></td>
-              <td>
+              <td>Educación básica e igualdad de género</td>
+              <td class="text-right">
                 <%= link_to demo_path(@project) do %>
                   <i class="fa fa-eye"></i>
                 <% end %>
@@ -95,7 +100,7 @@
 <script>
   $(document).ready(function(){
     if (RegExp('tour', 'gi').test(window.location.search)) {
-      introJs().setOption('doneLabel', 'Next page').start().oncomplete(function() {
+      introJs().setOption('doneLabel', 'Próxima Página').start().oncomplete(function() {
         window.location.href = '/demo/1?tour=true';
       });
     }

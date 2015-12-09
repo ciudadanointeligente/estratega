@@ -41,10 +41,10 @@
                         <td>{{resource.updated_at}}</td>
                         <td class="text-right">
                             <%= button_tag "Editar", {class: "btn btn-link", :"ng-click" => "open_form(resource)", type: "button"} do %>
-                              <i class="fa fa-edit" title="Edit"></i>
+                              <i class="fa fa-edit" title="Editar"></i>
                             <% end %>
-                            <%= button_tag "Borrar", class: "btn btn-link", :"ng-click" => "delete_resource(resource)", type: "button" do %>
-                              <i class="fa fa-trash" title="Delete"></i>
+                            <%= button_tag "Eliminar", class: "btn btn-link", :"ng-click" => "delete_resource(resource)", type: "button" do %>
+                              <i class="fa fa-trash" title="Eliminar"></i>
                             <% end %>
                         </td>
                     </tr>
