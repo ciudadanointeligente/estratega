@@ -48,7 +48,7 @@ RSpec.describe ActorsController, :type => :controller do
     it "should get actor_type" do
       actor = Actor.create! valid_attributes
       get :actor_type, {:format => 'json'}, valid_session
-      expect(JSON.parse(response.body)).to include "Active opponents with influence"
+      expect(JSON.parse(response.body)).to include "Persona"
     end
   end
 

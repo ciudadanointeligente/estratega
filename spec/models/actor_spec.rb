@@ -11,6 +11,6 @@ RSpec.describe Actor, :type => :model do
 
   it "return an array with valid values" do
     myActorTypes = Actor.new
-    expect(myActorTypes.actor_type_list).to include 'Passive supporters with influence'
+    expect(myActorTypes.actor_type_list).to include 'Persona'
   end
 end

@@ -83,7 +83,7 @@ RSpec.describe OutcomesController, :type => :controller do
   describe "GET Categories" do
     it "return a JSON with categories" do
       get :categories, {:format => 'json'}, valid_session
-      expect(JSON.parse(response.body)).to include "Political will"
+      expect(JSON.parse(response.body)).to include "Voluntad política"
     end
   end
 

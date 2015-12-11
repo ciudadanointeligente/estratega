@@ -11,7 +11,7 @@ RSpec.describe Outcome, :type => :model do
 
   it "return an array with valid values" do
   	myOutcome = Outcome.new
-  	expect(myOutcome.type_list).to include 'Salience'
+  	expect(myOutcome.type_list).to include 'Relevancia'
   end
 
 end
