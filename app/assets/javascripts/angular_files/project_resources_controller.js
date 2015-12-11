@@ -52,7 +52,25 @@ app.controller("projectResourcesCtrl", ["$scope", "$http", "$aside", "$location"
           e.stopPropagation();
           // only so reloading is executed after posting
           // this should be executed as a callback, on form success
-          $timeout(load_models, 1);
+          if($scope.current_resource.id) {
+            $http.put('/projects/'+$scope.project_id+'/resources/'+$scope.current_resource.id+'.json', $scope.current_resource)
+                .success(function (data){
+                  load_models();
+                })
+                .error(function (){
+                  $scope.messages = { response: false, message: $attrs.errorinsert }
+                });
+          } else {
+            $http.post('/projects/'+$scope.project_id+'/resources', $scope.current_resource)
+                .success(function (data){
+                  load_models();
+                })
+                .error(function (){
+                  $scope.messages = { response: false, message: $attrs.errorinsert }
+                });
+          }
+
+          // $timeout(load_models, 1);
         };
         $scope.cancel = function(e) {
           $modalInstance.dismiss();
