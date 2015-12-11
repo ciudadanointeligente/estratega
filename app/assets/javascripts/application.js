@@ -23,6 +23,7 @@
 //= require angular-aside/dist/js/angular-aside.min
 //= require angular-smart-table/dist/smart-table.min
 //= require moment/min/moment.min
+//= require moment/locale/es
 //= require clndr/clndr.min
 //= require angular-clndr/angular-clndr.min
 //= require intro.js/minified/intro.min
