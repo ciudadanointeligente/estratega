@@ -7,21 +7,21 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   $scope.activities = [];
 
   $scope.messages = {response: "", message: ""}
-  $scope.organizer = ["External Event", "Organization's action"];
+  $scope.organizer = ["Evento Externo", "Evento de la Organización"];
   $scope.activity_types = [
-    {type: "Political will", values: ["Lobby", "Relationship building with decision makers", "Policymaker and candidate education", "Litigation or legal advocacy", "Policy proposal development", "Demonstration projects or pilots", "Earned media"]},
-    {type: "Public will", values: ["Polling", "Rallies and marches", "Digital or internet-based media/social media"]},
-    {type: "Attitudes or beliefs", values: ["Issue/policy analysis and research", "Polling", "Public service announcements", "Briefings/presentations"]},
-    {type: "Salience", values: ["Lobby", "Relationship building with decision makers", "Policymaker and candidate education"]},
-    {type: "Awareness", values: ["Public service announcements", "Rallies and marches", "Briefings/presentations", "Digital or internet-based media/social media"]},
-    {type: "New champions", values: ["Relationship building with decision-makers", "Digital or internet-based media/social media"]},
-    {type: "New advocates", values: ["Briefings/presentations"]},
-    {type: "Partnerships or alliances", values: ["Issue/policy analysis and research", "Rallies and marches", "Grass-roots organizing and mobilization"]},
-    {type: "Constituency or support-base growth", values: ["Rallies and marches", "Grass-roots organizing and mobilization"]},
-    {type: "Media coverage", values: ["Rallies and marches", "Grass-roots organizing and mobilization", "Media partnerships", "Digital or internet-based media/social media"]},
-    {type: "Issue reframing", values: ["Issue/policy analysis and research", "Earned media"]},
-    {type: "Organizational advocacy capacity", values: ["Any of the others"]},
-    {type: "Organizational visibility or issue recognition", values: ["Issue/policy analysis and research"]}
+    {type: "Voluntad Política", values: ["Lobby", "Construcción de relaciones con los tomadores de decisiones", "Fijar responsable político y candidato educación", "Litigios o defensa legal", "Política de desarrollo de la propuesta", "Demostración de proyectos o pilotos", "Ganar Medios"]},
+    {type: "Voluntad Pública", values: ["Votación", "Convocatorias y marchas", "Medios de Comunicación Digital o basados en Internet / medios de comunicación social"]},
+    {type: "Actitudes y creencias", values: ["Edición / análisis de políticas y investigación", "Votación", "Anuncios de servicio público", "Reuniones informativas / presentaciones"]},
+    {type: "Relevancia", values: ["Lobby", "Construcción de relaciones con los tomadores de decisiones", "Fijar responsable político y candidato educación"]},
+    {type: "Conciencia", values: ["Anuncios de servicio público", "Convocatorias y marchas", "Reuniones informativas / presentaciones", "Digital or internet-based media/social media"]},
+    {type: "Nuevos campeones", values: ["Relationship building with decision-makers", "Medios de Comunicación Digital o basados en Internet / medios de comunicación social"]},
+    {type: "Nuevos defensores", values: ["Reuniones informativas / presentaciones"]},
+    {type: "Asociaciones y alianzas", values: ["Edición / análisis de políticas y investigación", "Convocatorias y marchas", "Bases de organización y movilización"]},
+    {type: "Circunscripción o base de apoyo en crecimiento", values: ["Convocatorias y marchas", "Bases de organización y movilización"]},
+    {type: "Cobertura mediática", values: ["Convocatorias y marchas", "bases de organización y movilización", "Asociaciones con medios", "Medios de Comunicación Digital o basados en Internet / medios de comunicación social"]},
+    {type: "Replanteamiento del asunto", values: ["Edición / análisis de políticas y investigación", "Medios ganados"]},
+    {type: "Visibilidad de la organización o reconocimiento del problema", values: ["Edición / análisis de políticas y investigación"]},
+    {type: "Capacidad de advocacy de la organización", values: ["Cualquier otra"]}
   ];
 
   function get_outcomes(project_id, objective_id) {
