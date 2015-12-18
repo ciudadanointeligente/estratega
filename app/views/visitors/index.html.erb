@@ -63,6 +63,11 @@
 <div class="testimonial">
   <div class="container">
     <div class="row">
+      <div class="col-md-12">
+        <h2><%= t('.testimony') %></h2>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
         <%= image_tag "t4.png", class: "img-circle" %>
       </div>
@@ -100,8 +105,10 @@
     </div>
     <div class="row">
       <div class="col-md-12 logos">
-        <%= image_tag "logo-techo.png", class: "logos" %>
-        <%= image_tag "logo-hogar.png", class: "logos" %>
+        <a href="http://www.techo.org/paises/chile/" target="_blank"><%= image_tag "logo-techo.png", class: "logos" %></a>
+        <a href="http://www.hogardecristo.cl/" target="_blank"><%= image_tag "logo-hogar.png", class: "logos" %></a>
+        
+        
       </div>     
     </div>
   </div>
