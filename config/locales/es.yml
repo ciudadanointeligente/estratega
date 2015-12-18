@@ -83,7 +83,7 @@ es:
       dashboard: "Panel de control"
       documents: "Documentos"
       overview: "Resumen"
-      step_one: "Una vez que abra la página del proyecto verá 3 pestañas. Las <strong>Etapas</strong> son las fases del ingreso de datos, en <strong>Panel de control</strong> se muestran los indicadores de progreso, en <strong>Documentos</strong> un repositorio para que enlaces documentos importantes, y finalmente en <strong>Resumen</strong> se muestra el compendio de toda la información"
+      step_one: "Una vez que abras la página del proyecto verás 4 pestañas. Las <strong>Etapas</strong> son las fases del ingreso de datos, en <strong>Panel de control</strong> se muestran los indicadores de progreso, en <strong>Documentos</strong> un repositorio para que enlaces documentos importantes, y finalmente en <strong>Resumen</strong> se muestra el compendio de toda la información"
       step_two: "Vamos a comenzar con la planificación de advocacy completando la información requerida en la <strong>Etapa 1</strong>"
       step_three: "Estos iconos muestran los tres estados de de entrada de datos. Te dirán si tienes que completar un paso anterior(<i class='fa fa-lock'></i>), si están listos para el ingreso (<i class='fa fa-unlock'></i>) o que contienen información (<i class='fa fa-check'></i>)"
       stage1_title: "Step 1: Describa el problema y la correspondiente solución de política pública"
