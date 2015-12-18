@@ -120,10 +120,10 @@ es:
       percentage_interim_outcomes_achieved: "Porcentaje de resultados intermedios logrados"
       percentage_allocation_of_predefined_activities: "Porcentaje de asignación de actividades predefinidas"
       objetives: "Objetivos"
-      objectives_without_interim_outcomes: "Objectivos sin resultados intermedios"
-      objectives_with_failed_activities: "Objectivos sin actividades fallidas"
+      objectives_without_interim_outcomes: "Objetivos sin resultados intermedios"
+      objectives_with_failed_activities: "Objetivos sin actividades fallidas"
       percentage_advance_priority_objectives: "Porcentaje de avance de los objetivos priorizados"
-      percentage_of_total_advance_objectives: "Porcentaje total de avance de los objectivos"
+      percentage_of_total_advance_objectives: "Porcentaje total de avance de los objetivos"
     #
     # Stage 1
     #
@@ -233,7 +233,7 @@ es:
       description: "La planificación de advocacy implica la definición y construcción de consenso a nivel organizacional sobre los principales cambios políticos que deben alcanzarse para solucionar el problema público. La selección estratégica de los objetivos llevará a la organización a hacer un uso eficiente de los recursos disponibles y maximizar las oportunidades existentes."
       subtitle1: "Formular el problema público como una meta"
       subtitle1_tooltip: "La meta puede ser entendida como el gran cambio que resultará de la planificación de advocacy, por lo cual en este punto es necesario señalar cómo la estrategia ayudará a cambiar de forma positiva la situación inicial o “problemática”."
-      subtitle2: "Formular las soluciones políticas como objectivos"
+      subtitle2: "Formular las soluciones políticas como objetivos"
       subtitle2_tooltip: "Los objetivos son los propósitos que la organización busca alcanzar en el transcurso de 3 a 5 años. También pueden ser entendidos como los cambios en políticas públicas que se desean alcanzar a través de la estrategia de advocacy."
       data_entry: "Ingreso de datos"
       explanation_examples: "Explicaciones y Ejemplos"
@@ -260,7 +260,7 @@ es:
       error_creating_objective: "Error al crear la información del objetivo"
       error_updating_goal: "Error al subir la información de la meta"
       guide_me: "Guíame"
-      step_one: "Aquí tenemos dos tipos de ingresos: Meta y Objectivos"
+      step_one: "Aquí tenemos dos tipos de ingresos: Meta y Objetivos"
       step_two: "Recuerda que puedes <strong>Agregar</strong> y <strong>Editar</strong> con los botones naranjos y acceder a <strong>información adicional</strong> con los botones azules"
       step_three: "Esta alerta le informará sobre el número de soluciones sin objetivo asociado"
       step_four: "Al pulsar el texto de la ventana de alerta se mostrará una lista de soluciones, y las de color <strong class='red'>rojo</strong> serán las que estan sin asignar"
