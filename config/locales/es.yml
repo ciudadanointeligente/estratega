@@ -165,7 +165,7 @@ es:
       guide_me: "Guíame"
       step_one: "En todas las etapas se encontrarán dos secciones. <strong>Ingreso de datos</strong>, que nos dará la posibilidad de ingresar información en el sistema, y <strong>Explicaciones y Ejemplos</strong> que explicará la etapa paso a paso."
       step_two: "Para añadir información presiona <i class='fa fa-plus-circle'></i> <strong>Agregar</strong>, y si necesitas una guía puedes presionar <i class='fa fa-info'></i>. Una vez introducidos los datos, solo tienes que presionar <i class='fa fa-pencil'></i> <strong>Editar</strong> para modificar la información."
-      step_three: "Ahora agrega <strong>Problemas de política pública</strong>, los que se agrupan en <strong>Soluciones de política pública</strong>"
+      step_three: "Ahora agrega <strong>Causas de política pública</strong>, las que agrupan <strong>Soluciones de política pública</strong>"
       step_four: "Para volver a la página indice (anterior), presiona el link con el nombre del proyecto"
     policy_modal: # modal `add policy` of stage 1
       policy: "Causa relacionada a políticas públicas"
