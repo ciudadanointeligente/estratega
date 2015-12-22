@@ -24,7 +24,7 @@ module ProjectsHelper
     when :real_problem
       @real_problem.blank? ? 'Articular el problema del mundo real que se desea abordar' : (@real_problem.title != "." ? @real_problem.title : 'Articular el problema del mundo real que se desea abordar')
     when :policy_problems
-      @policy_problems.blank? ? "Identificar los dimensiones políticas del problema" : " #{@policy_problems.size} Problemas políticos"
+      @policy_problems.blank? ? "Identificar los dimensiones políticas del problema" : " #{@policy_problems.size} Causas políticas"
     when :solutions
       @solutions.blank? ? "Soluciones políticas: Describir las principales soluciones políticas que pudieran constituir una respuesta adecuada" : " #{@solutions.size} Soluciones"
     when :objectives
