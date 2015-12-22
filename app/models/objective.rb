@@ -18,7 +18,8 @@ class Objective < ActiveRecord::Base
       if !a.scheduling.blank?
         event = Icalendar::Event.new
         event.dtstart = a.scheduling
-        event.summary = a.description
+        event.summary = a.title
+        event.description = a.description
         cal.add_event(event)
       end
     end
