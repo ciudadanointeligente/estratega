@@ -120,6 +120,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   }
 
   $scope.add_edit_msj = function(ask, msj) {
+    $scope.ask_id = ask.id;
     $scope.current_msj = {}
     if(ask && msj) {
       $http.get('/asks/'+ask.id+'/messages/'+msj.id+'.json')
@@ -153,16 +154,28 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
 
   var save_or_update_msj = function() {
     if($scope.current_msj.id) {
-      console.log($scope.current_msj)
       $http.put('/asks/'+$scope.current_msj.ask_id+'/messages/'+$scope.current_msj.id, $scope.current_msj)
         .success(function(data){
-          console.log(data)
         })
         .error(function(){
-          $scope.messages = { response: false, message: 'Error guardando mensaje' }
+          $scope.messages = { response: false, message: 'Error actualizando el mensaje' }
         })
     } else {
+      $scope.current_msj.ask_id = $scope.ask_id;
+      $http.post('/asks/'+$scope.ask_id+'/messages/', $scope.current_msj)
+        .success(function(data){
+        })
+        .error(function(){
+          $scope.messages = { response: false, message: 'Error al guardar mensaje' }
+        })
+    }
+  }
 
+  $scope.delete_msj = function(ask, msj){
+    if(confirm($attrs.confirmdeleteask)) {
+      $http.delete('/asks/'+ask.id+'/messages/'+msj.id);
+      // $scope.asks.splice($scope.asks.indexOf(ask),1);
+      get_asks($scope.project_id, $scope.objective_id);
     }
   }
 }]);

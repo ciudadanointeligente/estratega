@@ -42,6 +42,18 @@ RSpec.describe MessagesController, :type => :controller do
           post :create, {ask_id: @ask, message: attributes_for(:message)}, valid_session
         }.to change(Message, :count).by(1)
       end
+
+      it "create a message with actors" do
+        actor_1 = create(:actor)
+        actor_2 = create(:actor)
+        the_message = create(:message)
+        the_message.actors << actor_1
+        the_message.actors << actor_2
+
+        post :create, {ask_id: @ask, message: attributes_for(:message)}, valid_session
+
+        expect(assigns(:message).actors).to include(actor_1)
+      end
     end
   end
 
@@ -52,6 +64,15 @@ RSpec.describe MessagesController, :type => :controller do
         put :update, {ask_id: @ask, id: @message.to_param, message: attributes_for(:edit_message)}
         expect(assigns(:message)).to eq(@message)
       end
+    end
+  end
+
+  describe "DELETE destroy" do
+    it "destroys the requested message" do
+      @message = create(:message)
+      expect {
+        delete :destroy, {ask_id: @ask, :id => @message.to_param}, valid_session
+      }.to change(Message, :count).by(-1)
     end
   end
 

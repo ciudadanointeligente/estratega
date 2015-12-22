@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_message, except: [:index, :create]
-  before_action :set_ask, except: [:update]
+  before_action :set_ask, except: [:update, :destroy]
   respond_to :html, :json
 
   def index
@@ -13,13 +13,26 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = Message.create(message_params)
-    @ask.message_ids << @message
+    @message = @ask.messages.create(message_params)
+    if !params[:actors].blank?
+      @message.actor_ids = params[:actors]
+    end
+
     respond_with(@ask, @message)
   end
 
   def update
     @message.update(message_params)
+
+    if !params[:actors].blank?
+      @message.actor_ids = params[:actors]
+    end
+
+    respond_with(@message)
+  end
+
+  def destroy
+    @message.destroy
     respond_with(@message)
   end
 
@@ -33,7 +46,6 @@ class MessagesController < ApplicationController
     end
 
     def message_params
-      p params
-      params.require(:message).permit(:description, actor_ids: [])
+      params.require(:message).permit(:description, :executed, :ask_id)
     end
 end

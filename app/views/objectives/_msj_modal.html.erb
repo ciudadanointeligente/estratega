@@ -9,7 +9,7 @@
         <textarea name="message" class="form-control" rows="3" ng-model="current_msj.description" placeholder="<%= t('.ask_placeholder') %>"></textarea>
       </div>
       <div class="form-group">
-        <select name="actors" multiple ng-options="actor.name for actor in actors track by actor.id" ng-model="current_msj.actors"></select>
+        <select name="actors" multiple ng-options="actor.id as actor.name for actor in actors track by actor.id" ng-model="current_msj.actors"></select>
       </div>
       <div class="form-group">
         <label for="executed">Ejecutado </label>

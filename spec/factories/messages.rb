@@ -1,9 +1,10 @@
 FactoryGirl.define do
   factory :message do
-    message "My Message"
+    description "My Message"
 
     factory :edit_message do
-      message "New Message"
+      description "New Message"
+      executed true
     end
   end
 end
