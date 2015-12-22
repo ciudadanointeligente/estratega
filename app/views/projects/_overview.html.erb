@@ -173,7 +173,15 @@
                   <% objective.asks.each_with_index do |ask, i| %>
                     <span class='blue'>Petición <%= i+1 %>. </span><b><%= ask.description.presence || t('.empty') %></b>
                     <ul style="list-style-type:disc">
-                      <li>Encargado: <%= ask.actor.name %></li>
+                      <li>Encargado:
+                        <% if ! ask.actors.nil? %>
+                        <ul class="list-inline">
+                          <% ask.actors.each do |actor|%>
+                            <li><%= actor.name %></li>
+                          <% end %>
+                        </ul>
+                        <% end %>
+                      </li>
                       <li>Objetivos esperados: <%= get_objective_related ask.objective_id %></li>
                     </ul>
                   <% end %>
