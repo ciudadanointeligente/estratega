@@ -57,7 +57,8 @@ class ActivitiesController < ApplicationController
       event = Icalendar::Event.new
 
       event.dtstart = @activity.scheduling
-      event.summary = @activity.description
+      event.summary = @activity.title
+      event.description = @activity.description
       cal.add_event(event)
       cal.publish
       headers['Content-Type'] = "text/calendar; charset=UTF-8"

@@ -209,7 +209,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   $scope.get_ical = function(activity) {
     $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/activities/'+activity.id+'/generate_ical')
         .success( function(data){
-          var blob = new Blob([activity.ical], {type: "text/calendar; charset=UTF-8;"})
+          var blob = new Blob([data], {type: "text/calendar; charset=UTF-8;"})
           var url = window.URL.createObjectURL(blob);
 
           var elem_partial_calendar =  document.createElement('a');
