@@ -31,6 +31,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorgettingoutcomes }
+        scroll_to_top();
       });
   }
 
@@ -41,6 +42,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorgettingasks }
+        scroll_to_top();
       });
   }
 
@@ -62,6 +64,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorgettingactivities }
+        scroll_to_top();
       });
   }
 
@@ -111,6 +114,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorupdatingactivity }
+          scroll_to_top();
         });
     } else {
       $http.post('/projects/' + $scope.project_id + '/objectives/' + $scope.objective_id + '/activities', $scope.current_activity)
@@ -120,6 +124,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorcreatingactivity }
+          scroll_to_top();
         });
     }
   }
@@ -185,6 +190,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
           })
           .error(function(){
             $scope.messages = { response: false, message: "Error al actualizar los resultados de información"}
+            scroll_to_top();
           });
     } else {
       $http.post('/activities/'+$scope.activity.id+'/indicators/', $scope.current_indicator)
@@ -194,6 +200,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
           })
           .error(function(){
             $scope.messages = { response: false, message: "Error al crear el indicador"}
+            scroll_to_top();
           });
     }
 
@@ -249,6 +256,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorgettingactivities }
+        scroll_to_top();
       });
 
   // $scope.showEvents = function(events) {

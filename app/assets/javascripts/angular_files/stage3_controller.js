@@ -11,6 +11,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     })
     .error(function (){
       $scope.messages = { response: false, message: $attrs.errorgettingproject }
+      scroll_to_top();
     });
 
   $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id)
@@ -19,6 +20,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     })
     .error(function (){
       $scope.messages = { response: false, message: $attrs.errorgettingobjectives }
+      scroll_to_top();
     });
 
   $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/actors.json')
@@ -27,6 +29,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     })
     .error(function (){
       $scope.messages = { response: false, message: $attrs.errorgettingactors }
+      scroll_to_top();
     });
 
   function get_actor_type() {
@@ -36,6 +39,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorgettingactorinfluencelevels }
+        scroll_to_top();
       });
   }
 
@@ -46,6 +50,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorgettingactorsupports }
+        scroll_to_top();
       });
   }
 
@@ -56,6 +61,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorgettingactorinfluencelevels }
+        scroll_to_top();
       });
   }
 
@@ -71,6 +77,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorupdatingactor }
+          scroll_to_top();
         });
     } else {
       $http.post("/actors", $scope.current_actor)
@@ -80,6 +87,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorupdatingactor }
+          scroll_to_top();
         });
     }
   }
@@ -133,6 +141,7 @@ app.controller("stage3Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorupdatingenablingfactors }
+        scroll_to_top();
       });
   }
 

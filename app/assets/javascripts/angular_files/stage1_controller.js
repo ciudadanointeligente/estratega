@@ -7,6 +7,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     })
     .error(function (){
       $scope.messages = { response: false, message: $attrs.errorfocusarea }
+      scroll_to_top();
     });
 
   $scope.btn_problem = "Agregar";
@@ -37,6 +38,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
           })
           .error(function (){
             $scope.messages = { response: false, message: $attrs.errorproject }
+            scroll_to_top();
           });
         get_policy_solutions($scope.problem_id);
       }
@@ -54,6 +56,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorpolicyproblems }
+        scroll_to_top();
       });
   }
 
@@ -64,6 +67,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorsolutions }
+        scroll_to_top();
       });
   }
 
@@ -74,6 +78,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorsolution }
+        scroll_to_top();
       });
   }
 
@@ -88,6 +93,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorupdating }
+          scroll_to_top();
         });
     } else {
       $scope.problem.project_id = $scope.project_id
@@ -99,6 +105,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorinsert }
+          scroll_to_top();
         });
     }
   };
@@ -123,6 +130,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorupdatingpolicy }
+          scroll_to_top();
         });
     } else {
       $http.post("/real_problems/" + $scope.problem.id + "/policy_problems", $scope.current_policy)
@@ -131,6 +139,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorcreatingpolicy }
+          scroll_to_top();
         });
     }
   };
@@ -144,6 +153,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorupdatingsolution }
+          scroll_to_top();
         });
     } else {
       $http.post("/real_problems/" + problem_id + "/policy_problems/" + policy_id + "/solutions", $scope.current_solution)
@@ -152,6 +162,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorcreatingsolution }
+          scroll_to_top();
         });
     }
   }
@@ -201,6 +212,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorgettingpolicy }
+          scroll_to_top();
         });
     } else {
       $scope.current_policy = {

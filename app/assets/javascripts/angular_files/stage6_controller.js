@@ -9,6 +9,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   })
   .error(function (){
     $scope.messages = { response: false, message: $attrs.errorgettingactors }
+    scroll_to_top();
   });
 
   function get_asks(project_id, objective_id) {
@@ -21,6 +22,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     })
     .error(function (){
       $scope.messages = { response: false, message: $attrs.errorgettingasks }
+      scroll_to_top();
     });
   }
 
@@ -92,6 +94,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorupdatingask }
+          scroll_to_top();
         });
     } else {
       $http.post('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/asks', $scope.current_ask)
@@ -103,6 +106,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorcreatingask }
+          scroll_to_top();
         });
     }
   }

@@ -50,14 +50,14 @@ $('#myTab a').click(function (e) {
 var transform =
     {
         'main': [
-                    { "tag": "ul", "class": "main", "children": 
+                    { "tag": "ul", "class": "main", "children":
                         [
-                            { "tag": "li", "html": "<p>${title}</p>", "children": 
+                            { "tag": "li", "html": "<p>${title}</p>", "children":
                                 [
-                                    { 
+                                    {
                                         "tag": "ul", "class": "second_level", "children":function() { return( json2html.transform(this.policy_problems, transform.second_level) ) }
                                     }
-                                ] 
+                                ]
                             }
                         ]
                     }
@@ -66,7 +66,7 @@ var transform =
                             { "tag": "li", "html": "<p>${title}</p>", "children":
                                 [
                                     {
-                                        "tag": "ul", "class": "third_level", "children":function() { return( json2html.transform(this.solutions, transform.third_level) ) } 
+                                        "tag": "ul", "class": "third_level", "children":function() { return( json2html.transform(this.solutions, transform.third_level) ) }
                                     }
                                 ]
                             }
@@ -78,11 +78,17 @@ var transform =
 ////
 function show_intro()
 {
-    document.getElementById('guide').style.cssText = 
+    document.getElementById('guide').style.cssText =
     'display:block';
 }
 function hide_intro()
 {
-    document.getElementById('guide').style.cssText = 
+    document.getElementById('guide').style.cssText =
     'display:none';
 }
+
+function scroll_to_top() {
+    $('html, body').animate({
+        scrollTop: $('#main_alerts').offset().top
+    }, 500);
+  }

@@ -11,6 +11,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     })
     .error(function (){
       $scope.messages = { response: false, message: $attrs.errorfocusarea }
+      scroll_to_top();
     });
 
   function get_objective_types(project_id) {
@@ -20,6 +21,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorobjectivetypes }
+        scroll_to_top();
       });
   }
 
@@ -36,6 +38,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorproject }
+        scroll_to_top();
       });
   }
 
@@ -53,6 +56,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorcreatingrealproblem }
+        scroll_to_top();
       });
   }
 
@@ -65,6 +69,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorgettingrealproblem }
+        scroll_to_top();
       });
   }
 
@@ -75,6 +80,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorgettingobjectives }
+        scroll_to_top();
       });
   }
   get_objectives($scope.project_id);
@@ -96,6 +102,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorgettingsolutions }
+        scroll_to_top();
       });
   };
   function get_unrelated_solutions(data) {
@@ -119,6 +126,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorupdatingobjective }
+          scroll_to_top()
         });
     } else {
       $http.post('/projects/' + $scope.project_id + '/objectives', $scope.current_objective)
@@ -130,6 +138,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorcreatingobjective }
+          scroll_to_top();
         });
     }
   };
@@ -146,6 +155,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorupdatinggoal }
+          scroll_to_top();
         });
     } else {
       $scope.problem.project_id = $scope.project_id
@@ -157,6 +167,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorgettingrealproblem }
+          scroll_to_top();
         });
     }
   };

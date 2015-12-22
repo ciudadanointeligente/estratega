@@ -9,6 +9,7 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     })
     .error(function (){
       $scope.messages = {response: false, message: $attrs.errorgettingactortype }
+      scroll_to_top();
     });
 
   function get_outcomes(project_id, objective_id) {
@@ -18,6 +19,7 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     })
     .error(function (){
       $scope.messages = {response: false, message: $attrs.errorgettingoutcomes }
+      scroll_to_top();
     });
   }
 
@@ -28,6 +30,7 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     })
     .error(function (){
       $scope.messages = {response: false, message: $attrs.errorgettingcategories }
+      scroll_to_top();
     });
   }
 
@@ -43,6 +46,7 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
         .error(function (){
           $scope.messages = {response: false, message: $attrs.errorupdatingoutcome }
+          scroll_to_top();
         });
     } else {
       $http.post('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/outcomes', $scope.current_outcome)
@@ -52,6 +56,7 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
         .error(function (){
           $scope.messages = {response: false, message: $attrs.errorcreatingoutcome }
+          scroll_to_top();
         });
     }
   }

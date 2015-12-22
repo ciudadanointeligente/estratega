@@ -12,7 +12,7 @@
 
 <div class="container main">
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-controller="stage4Ctrl" data-errorgettingactortype="<%= t('.error_getting_actor_type') %>" data-errorgettingoutcomes="<%= t('.error_getting_outcomes') %>" data-errorgettingcategories="<%= t('.error_getting_categories') %>" data-errorupdatingoutcome="<%= t('.error_updating_outcome') %>" data-errorcreatingoutcome="<%= t('.error_creating_outcome') %>" data-confirmdeleteoutcome="<%= t('.confirm_delete_outcome') %>">
+    <div id="main_alerts" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-controller="stage4Ctrl" data-errorgettingactortype="<%= t('.error_getting_actor_type') %>" data-errorgettingoutcomes="<%= t('.error_getting_outcomes') %>" data-errorgettingcategories="<%= t('.error_getting_categories') %>" data-errorupdatingoutcome="<%= t('.error_updating_outcome') %>" data-errorcreatingoutcome="<%= t('.error_creating_outcome') %>" data-confirmdeleteoutcome="<%= t('.confirm_delete_outcome') %>">
       <div class="alert" role="alert" ng-class="messages.response?'alert-success':'alert-danger'" ng-if="messages.message">
         <button ng-click="dismiss_modal()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         {{ messages.message }}
