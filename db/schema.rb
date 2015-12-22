@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151218203655) do
+ActiveRecord::Schema.define(version: 20151222144440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,8 +92,8 @@ ActiveRecord::Schema.define(version: 20151218203655) do
   add_index "indicators", ["activity_id"], name: "index_indicators_on_activity_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
-    t.string   "message"
-    t.boolean  "executed",   default: false
+    t.string   "description"
+    t.boolean  "executed",    default: false
     t.integer  "ask_id"
     t.datetime "created_at"
     t.datetime "updated_at"

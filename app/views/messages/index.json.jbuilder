@@ -1,5 +1,5 @@
 json.array!(@messages) do |m|
-  json.extract! m, :id, :message
+  json.extract! m, :id, :description
   actors = []
   m.actors.each do |a|
     actors << a.name

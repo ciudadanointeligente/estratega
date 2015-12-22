@@ -34,6 +34,6 @@ class MessagesController < ApplicationController
 
     def message_params
       p params
-      params.require(:message).permit(:message, actor_ids: [])
+      params.require(:message).permit(:description, actor_ids: [])
     end
 end

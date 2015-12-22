@@ -1,7 +1,7 @@
 app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs", function ($scope, $http, $aside, $location, $attrs) {
   $scope.project_id = $location.path().split("/")[2];
   $scope.objective_id = $location.path().split("/")[4];
-  $scope.messages = {response: "", message: ""}
+  $scope.messages = {response: "", description: ""}
 
   // //get all actors
   $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/actors.json')
@@ -82,6 +82,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     //   project_id: $scope.current_ask.project_id,
     //   actor_id: $scope.current_ask.actor_id
     // }
+    console.log($scope.current_ask)
     if($scope.current_ask.id) {
       $http.put('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/asks/'+$scope.current_ask.id, $scope.current_ask)
         .success(function(data){
@@ -152,6 +153,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
 
   var save_or_update_msj = function() {
     if($scope.current_msj.id) {
+      console.log($scope.current_msj)
       $http.put('/asks/'+$scope.current_msj.ask_id+'/messages/'+$scope.current_msj.id, $scope.current_msj)
         .success(function(data){
           console.log(data)
