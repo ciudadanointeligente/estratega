@@ -200,7 +200,8 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         title: "",
         description: "",
         project_id: $scope.project_id,
-        solution_ids: []
+        solution_ids: [],
+        prioritized: true
       };
     }
 
