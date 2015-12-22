@@ -48,11 +48,10 @@
                 <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_ask(ask)"><i class="fa fa-pencil"></i></button>
                 <h4 class="panel-title">{{ ask.description }}</h4>
               </div>
-              <div class="panel-body">
                 <div class="collapse in">
-                  <button type="button" class="btn btn-primary pull-right" onmouseenter="$(this).tooltip('show')" data-toggle="tooltip" data-placement="left" data-title="title"><i class="fa fa-info"></i></button>
-                    <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_msj(ask)"><i class="fa fa-plus-circle"></i> Agregar</button>
-                  <h4>Cuál es la bajada comunicacional de una petición para transmitir la idea central del resultado  intermedio según el o los actores a los que te enfrentes?</h4>
+                  <button type="button" class="btn btn-primary pull-right" onmouseenter="$(this).tooltip('show')" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle2_explanation') %>"><i class="fa fa-info"></i></button>
+                    <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_msj(ask)"><i class="fa fa-plus-circle"></i> <%= t('.add_button') %></button>
+                  <h4><%= t('.subtitle2') %></h4>
 
                   <table class="table">
                     <thead>
@@ -60,7 +59,7 @@
                         <th>Mensajes</th>
                         <th>Actores</th>
                         <th>Ejecutado?</th>
-                        <th>Acciones</th>
+                        <th class="text-right">Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -76,15 +75,14 @@
                         <td>
                           <i class="fa" ng-class="{'fa-check': m.executed}"></i>
                         </td>
-                        <td>
-                          <i class="fa fa-pencil-square-o" ng-click="add_edit_msj(ask, m)"></i>
-                          <i class="fa fa-trash" ng-click="delete_msj(ask, m)"></i>
+                        <td class="text-right">
+                          <i class="fa fa-pencil-square-o" ng-click="add_edit_msj(ask, m)" title="<%= t('.edit') %>"></i>
+                          <i class="fa fa-trash" ng-click="delete_msj(ask, m)" title="<%= t('.delete') %>"></i>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-              </div>
             </div>
             <!-- end asks -->
           </div>
