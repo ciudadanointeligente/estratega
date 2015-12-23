@@ -40,26 +40,54 @@
             </div>
           </div>
           <div class="contenedor">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th><%= t('.actor') %></th>
-                  <th><%= t('.ask') %></th>
-                  <th><%= t('.execution') %></th>
-                  <th class="text-right"><%= t('.actions') %></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="ask in asks">
-                  <td>{{ ask.actor_name }}</td>
-                  <td>{{ ask.description }}</td>
-                  <td><i class="fa fa-check" ng-if="ask.execution"></i></td>
-                  <td class="text-right"><a href="#" title="Editar" ng-click="add_edit_ask(ask)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Eliminar" ng-click="delete_ask(ask)"><i class="fa fa-trash"></i></a></td>
-                </tr>
-              </tbody>
-            </table>
+
+            <!-- asks -->
+            <div class="panel panel-info" ng-repeat="ask in asks">
+              <div class="panel-heading">
+                <button type="button" class="btn btn-warning pull-right" ng-click="delete_ask(ask)"><i class="fa fa-trash"></i></button>
+                <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_ask(ask)"><i class="fa fa-pencil"></i></button>
+                <h4 class="panel-title">{{ ask.description }}</h4>
+              </div>
+                <div class="collapse in">
+                  <button type="button" class="btn btn-primary pull-right" onmouseenter="$(this).tooltip('show')" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle2_explanation') %>"><i class="fa fa-info"></i></button>
+                    <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_msj(ask)"><i class="fa fa-plus-circle"></i> <%= t('.add_button') %></button>
+                  <h4><%= t('.subtitle2') %></h4>
+
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Mensajes</th>
+                        <th>Actores</th>
+                        <th>Ejecutado?</th>
+                        <th class="text-right">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="m in ask.messages track by $index">
+                        <td>{{m.description}}</td>
+                        <td>
+                          <ul class="list-inline">
+                            <li ng-repeat="a in m.actors">
+                              {{a.name}}
+                            </li>
+                          </ul>
+                        </td>
+                        <td>
+                          <i class="fa" ng-class="{'fa-check': m.executed}"></i>
+                        </td>
+                        <td class="text-right">
+                          <i class="fa fa-pencil-square-o" ng-click="add_edit_msj(ask, m)" title="<%= t('.edit') %>"></i>
+                          <i class="fa fa-trash" ng-click="delete_msj(ask, m)" title="<%= t('.delete') %>"></i>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+            <!-- end asks -->
           </div>
           <%= render "asks_modal" %>
+          <%= render "msj_modal" %>
           </div>
           <!-- end of actions -->
           <div role="tabpanel" class="tab-pane" id="explanation">

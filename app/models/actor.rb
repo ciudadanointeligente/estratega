@@ -1,7 +1,7 @@
 class Actor < ActiveRecord::Base
   validates :name, presence: true
   has_and_belongs_to_many :objectives
-  has_many :asks
+  has_and_belongs_to_many :messages
 
   def actor_type_list
     return I18n.t "objectives.actors_modal.actor_type_list"

@@ -1,0 +1,25 @@
+<script type="text/ng-template" id="add-msj.html">
+  <div class="modal-header">
+    <h3 class="modal-title"><%= t('.menssage') %></h3>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="message"><%= t('.menssage') %></label>
+        <textarea name="message" class="form-control" rows="3" ng-model="current_msj.description" placeholder="<%= t('.menssage_placeholder') %>"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="actors"><%= t('.actors') %></label>
+        <select name="actors" multiple ng-options="actor.id as actor.name for actor in actors track by actor.id" ng-model="current_msj.actors" class="form-control"></select>
+      </div>
+      <div class="form-group">
+        <label for="executed"><%= t('.executed') %></label>
+          <input name="executed" type="checkbox" id="executed" ng-model="current_msj.executed">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="save($event)"><%= t('.save_button') %></button>
+    <button class="btn btn-warning" ng-click="cancel($event)"><%= t('.cancel_button') %></button>
+  </div>
+</script>

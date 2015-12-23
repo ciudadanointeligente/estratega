@@ -29,6 +29,7 @@ class AsksController < ApplicationController
 
   def update
     @ask.update(ask_params)
+    @ask.actor_ids = params[:actor_ids]
     respond_with(@project, @objective, @ask)
   end
 
@@ -51,6 +52,6 @@ class AsksController < ApplicationController
     end
 
     def ask_params
-      params.require(:ask).permit(:description, :execution, :objective_id, :actor_id)
+      params.require(:ask).permit(:description, :execution, :objective_id, actor_ids: [])
     end
 end

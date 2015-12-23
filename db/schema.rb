@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914204545) do
+ActiveRecord::Schema.define(version: 20151222144440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,16 @@ ActiveRecord::Schema.define(version: 20150914204545) do
     t.boolean  "important"
   end
 
+  create_table "actors_asks", id: false, force: :cascade do |t|
+    t.integer "ask_id",   null: false
+    t.integer "actor_id", null: false
+  end
+
+  create_table "actors_messages", id: false, force: :cascade do |t|
+    t.integer "message_id", null: false
+    t.integer "actor_id",   null: false
+  end
+
   create_table "actors_objectives", id: false, force: :cascade do |t|
     t.integer "actor_id",     null: false
     t.integer "objective_id", null: false
@@ -61,12 +71,10 @@ ActiveRecord::Schema.define(version: 20150914204545) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "actor_id"
     t.integer  "objective_id"
     t.boolean  "execution"
   end
 
-  add_index "asks", ["actor_id"], name: "index_asks_on_actor_id", using: :btree
   add_index "asks", ["objective_id"], name: "index_asks_on_objective_id", using: :btree
 
   create_table "indicators", force: :cascade do |t|
@@ -82,6 +90,16 @@ ActiveRecord::Schema.define(version: 20150914204545) do
   end
 
   add_index "indicators", ["activity_id"], name: "index_indicators_on_activity_id", using: :btree
+
+  create_table "messages", force: :cascade do |t|
+    t.string   "description"
+    t.boolean  "executed",    default: false
+    t.integer  "ask_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "messages", ["ask_id"], name: "index_messages_on_ask_id", using: :btree
 
   create_table "objectives", force: :cascade do |t|
     t.string   "title"
@@ -250,7 +268,6 @@ ActiveRecord::Schema.define(version: 20150914204545) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "asks", "actors"
   add_foreign_key "asks", "objectives"
   add_foreign_key "permissions", "projects"
 end

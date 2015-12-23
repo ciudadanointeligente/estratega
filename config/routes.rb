@@ -65,4 +65,8 @@ Rails.application.routes.draw do
   resources :demo do
     get 'stage1', on: :member
   end
+
+  resources :asks do
+    resources :messages
+  end
 end
