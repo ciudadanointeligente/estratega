@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_message, except: [:index, :create]
-  before_action :set_ask, except: [:update, :destroy]
+  before_action :set_ask
   respond_to :html, :json
 
   def index
@@ -28,12 +28,12 @@ class MessagesController < ApplicationController
       @message.actor_ids = params[:actors]
     end
 
-    respond_with(@message)
+    respond_with(@ask, @message)
   end
 
   def destroy
     @message.destroy
-    respond_with(@message)
+    respond_with(@ask, @message)
   end
 
   private

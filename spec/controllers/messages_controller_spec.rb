@@ -46,13 +46,11 @@ RSpec.describe MessagesController, :type => :controller do
       it "create a message with actors" do
         actor_1 = create(:actor)
         actor_2 = create(:actor)
-        the_message = create(:message)
-        the_message.actors << actor_1
-        the_message.actors << actor_2
 
-        post :create, {ask_id: @ask, message: attributes_for(:message)}, valid_session
+        post :create, {ask_id: @ask, message: attributes_for(:message), actors: [actor_1]}, valid_session
 
         expect(assigns(:message).actors).to include(actor_1)
+        expect(assigns(:message).actors).not_to include(actor_2)
       end
     end
   end
