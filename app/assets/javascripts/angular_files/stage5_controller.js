@@ -110,7 +110,8 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       $http.put('/projects/' + $scope.project_id + '/objectives/' + $scope.objective_id + '/activities/' + $scope.current_activity.id, $scope.current_activity)
         .success(function (data) {
           // alert success or error
-          get_activities($scope.project_id, $scope.objective_id)
+          get_activities($scope.project_id, $scope.objective_id);
+          draw_event_calendar($scope.project_id, $scope.objective_id);
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorupdatingactivity }
@@ -120,7 +121,8 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       $http.post('/projects/' + $scope.project_id + '/objectives/' + $scope.objective_id + '/activities', $scope.current_activity)
         .success(function (data) {
           $scope.current_activity = data;
-          get_activities($scope.project_id, $scope.objective_id)
+          get_activities($scope.project_id, $scope.objective_id);
+          draw_event_calendar($scope.project_id, $scope.objective_id);
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorcreatingactivity }
@@ -247,17 +249,22 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       }
   };
 
-  $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/activities.json')
+  function draw_event_calendar(proj_id, obj_id) {
+    $http.get('/projects/'+proj_id+'/objectives/'+obj_id+'/activities.json')
       .success(function (data) {
         $scope.events = []
         data.forEach(function(d){
-          $scope.events.push({ date: moment(d.scheduling, 'YYYY-MM-DD').format('LL'), title: d.title })
+          // $scope.events.push({ date: moment(d.scheduling, 'YYYY-MM-DD').format('LL'), title: d.title })
+          $scope.events.push({ date: moment(d.scheduling, 'YYYY-MM-DD'), title: d.title, fdate: moment(d.scheduling, 'YYYY-MM-DD').format('LL') })
         })
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorgettingactivities }
         scroll_to_top();
       });
+  }
+
+  draw_event_calendar($scope.project_id, $scope.objective_id);
 
   // $scope.showEvents = function(events) {
   //     console.log(events.map(function(e) { return e.title }).join("\n"));

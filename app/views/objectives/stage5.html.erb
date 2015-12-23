@@ -115,10 +115,13 @@
                       </div>
                     </div>
                     <div class="col-xs-12 col-md-6">
-                      <ul class="list-unstyled" ng-repeat="day in days" ng-if="day.events.length">{{ day.day }}
+                      <ul class="list-unstyled" ng-repeat="day in days" ng-if="day.events.length">
                         <li ng-repeat="d in day.events">
+                          {{day.day}}
                           <ul class="list-unstyled" ng-if="d.title">
-                            <li>{{d.title}}</li>
+                            <li>
+                              {{d.title}}
+                            </li>
                           </ul>
                         </li>
                       </ul>
