@@ -19,6 +19,17 @@ module ProjectsHelper
     end
   end
 
+  def title_stage stage
+    case stage
+    when 1
+      (@real_problem && @policy_problems && @solutions) ? "Etapa completada" : "Etapa sin completar"
+    when 2
+      @objectives.blank? ? "Etapa sin completar" : "Etapa completada"
+    when 3
+      ( @a_size > 0 && @factors_size > 0 && !@project.activities.nil? ) ? "Etapa completada" : "Etapa sin completar"
+    end
+  end
+
   def link_text element_symbol
     case element_symbol
     when :real_problem

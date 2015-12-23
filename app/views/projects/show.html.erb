@@ -31,13 +31,13 @@
           <h3 class="mb50">Etapa 1: Identificar el problema y los objetivos políticos a lograr</h3>
           <div class="panel panel-default" data-step="2" data-intro="<%= t('.step_two') %>">
             <div class="panel-heading">
-              <h4 class="panel-title" title="Complete Stage"><i class="<%= icon_class_stage 1 %>"></i> <%= t('.stage1_title') %></h4>
+              <h4 class="panel-title" title="<%= title_stage 1 %>"><i class="<%= icon_class_stage 1 %>"></i> <%= t('.stage1_title') %></h4>
             </div>
             <div id="stage1">
               <table class="table">
                   <tbody>
                     <!-- real problem -->
-                    <tr title="Complete Step">
+                    <tr title="<%= title_stage 1 %>">
                       <td class="text-center td-w-10p">
                         <i class="<%= icon_class @real_problem %>" data-step="3" data-intro="<%= t('.step_three') %>"></i>
                       </td>
@@ -46,7 +46,7 @@
                       </td>
                     </tr>
                     <!-- policy problems -->
-                    <tr title="Complete Step">
+                    <tr title="<%= title_stage 1 %>">
                       <td class="text-center td-w-10p">
                           <i class="<%= icon_class @policy_problems, @real_problem %>"></i>
                       </td>
@@ -55,7 +55,7 @@
                       </td>
                     </tr>
                     <!-- policy solutions -->
-                    <tr title="Complete Step">
+                    <tr title="<%= title_stage 1 %>">
                       <td class="text-center td-w-10p">
                         <i class="<%= icon_class @solutions, @policy_problems %>"></i>
                       </td>
@@ -73,12 +73,12 @@
         <div class="">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h4 class="panel-title" title="You must complete the previous stage"><i class="<%= icon_class_stage 2 %>"></i> <%= t('.stage2_title') %></h4>
+              <h4 class="panel-title" title="<%= title_stage 2 %>"><i class="<%= icon_class_stage 2 %>"></i> <%= t('.stage2_title') %></h4>
             </div>
             <div id="stage2">
               <table class="table">
                 <tbody>
-                  <tr title="You must complete the previous step">
+                  <tr title="<%= title_stage 2 %>">
                     <td class="text-center td-w-10p"><i class="<%= icon_class @objectives, @solutions %>"></i></td>
                     <td>
                       <%= link_to link_text(:objectives), stage2_project_path, target: "_self" %>
@@ -112,13 +112,13 @@
                     <div id="goal-<%= objective.id %>">
                       <table class="table">
                         <tbody>
-                          <tr title="Uninitiated Step">
+                          <tr title="<%= title_stage 3 %>">
                             <td class="text-center td-w-10p">
                               <i class="<%= icon_class objective.actors %>"></i>
                             </td>
                             <td><%= link_to "Comprender el proceso institucional de ciclos de toma de decisiones / Procesos Políticos", stage3_project_objective_path(@project, objective), target: "_self" %></td>
                           </tr>
-                          <tr title="You must complete the previous step">
+                          <tr title="<%= title_stage 3 %>">
                             <td class="text-center td-w-10p">
                               <i class="<%= icon_class objective.actors %>"></i>
                             </td>
@@ -126,7 +126,7 @@
                               <%= link_to objective_link_text(objective, :actors), stage3_project_objective_path(@project, objective, anchor: "actors"), target: "_self" %>
                             </td>
                           </tr>
-                          <tr title="You must complete the previous step">
+                          <tr title="<%= title_stage 3 %>">
                             <td class="text-center td-w-10p">
                               <i class="<%= icon_class objective.enabling_factors %>"></i>
                             </td>
@@ -134,7 +134,7 @@
                               <%= link_to objective_link_text(objective, :enabling_factors), stage3_project_objective_path(@project, objective, anchor: "factors-barriers"), target: "_self" %>
                             </td>
                           </tr>
-                          <tr title="You must complete the previous step">
+                          <tr title="<%= title_stage 3 %>">
                             <td class="text-center td-w-10p">
                               <i class="<%= icon_class objective.outcomes %>"></i>
                             </td>
@@ -150,7 +150,7 @@
                               <a href="#">(Coming soon) Define theory of change</a>
                             </td>
                           </tr> -->
-                          <tr title="You must complete the previous step">
+                          <tr title="<%= title_stage 3 %>">
                             <td class="text-center td-w-10p">
                               <i class="<%= icon_class objective.activities %>"></i>
                             </td>
@@ -158,7 +158,7 @@
                               <%= link_to objective_link_text(objective, :activities), stage5_project_objective_path(@project, objective), target: "_self" %>
                             </td>
                           </tr>
-                          <tr title="You must complete the previous step">
+                          <tr title="<%= title_stage 3 %>">
                             <td class="text-center td-w-10p">
                               <i class="<%= icon_class objective.asks %>"></i>
                             </td>
