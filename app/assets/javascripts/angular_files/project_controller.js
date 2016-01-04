@@ -152,4 +152,19 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
     $scope.messages = {response: "", message: ""}
   }
 
+
+  $scope.delete_shared_user = function (user){
+    var msg = '¿Estás seguro que quieres eliminar este colaborador?';
+
+    if(confirm(msg)) {
+      $http.delete('/projects/'+$scope.current_project.id+'/unshare?user_id='+user.id)
+        .success(function (data) {
+          get_project_info($scope.current_project)
+        })
+        .error(function (){
+          $scope.messages = { response: false, message: "Error mientras se desvinculaba el usuario!"}
+        })
+    }
+  }
+
 }])

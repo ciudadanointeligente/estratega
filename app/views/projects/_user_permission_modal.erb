@@ -15,7 +15,7 @@
       <div class="form-group">
         <label for="share">Compartido con</label>
         <ul ng-repeat="member in current_project.members">
-          <li>{{ member.email }}</li>
+          <li ng-if="member.role != 'owner' ">{{ member.email }} <a href="#"><i class="fa fa-trash" ng-click="delete_shared_user(member)"></i></a></li>
         </ul>
       </div>
     </form>

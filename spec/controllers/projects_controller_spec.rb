@@ -340,4 +340,19 @@ RSpec.describe ProjectsController, :type => :controller do
     end
   end
 
+  describe "DELETE unshare" do
+    it "remove a user from a project" do
+      project = Project.create! valid_attributes
+      user_01 = create(:user)
+      user_02 = create(:user)
+      project.users << user_01
+      project.users << user_02
+
+      delete :unshare, {:id => project.to_param, user_id: user_02}
+
+      expect(assigns(:project).users).to include(user_01)
+      expect(assigns(:project).users).to_not include(user_02)
+    end
+  end
+
 end

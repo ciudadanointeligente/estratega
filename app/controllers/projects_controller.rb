@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :solutions, :public, :stage1, :stage2, :share, :overview]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :solutions, :public, :stage1, :stage2, :share, :overview, :unshare]
 
   respond_to :html, :json
 
@@ -352,6 +352,12 @@ class ProjectsController < ApplicationController
         end
       end
     end
+    respond_with(@project)
+  end
+
+  def unshare
+    user_id = params[:user_id]
+    @project.users.delete(user_id)
     respond_with(@project)
   end
 
