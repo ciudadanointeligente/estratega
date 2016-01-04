@@ -99,6 +99,7 @@ es:
       overview: "Resumen"
       empty: "( Sin datos )"
       uncreated: "( No creado )"
+      actors: Actores
     dashboard:    # http://localhost:3000/projects/1#dashboard
       activities: "Actividades"
       successful_activities: "Actividades exitosas"
