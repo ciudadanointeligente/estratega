@@ -81,6 +81,6 @@ class ActivitiesController < ApplicationController
     def activity_params
       params[:activity][:outcome_ids] ||= []
       params[:activity][:ask_ids] ||= []
-      params.require(:activity).permit(:title, :description, :completion, :scheduling, :objective_id, :organizer, :activity_types, outcome_ids: [], ask_ids: [])
+      params.require(:activity).permit(:title, :description, :completion, :scheduling, :objective_id, :organizer, :activity_types, :event_title, outcome_ids: [], ask_ids: [])
     end
 end

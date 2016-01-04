@@ -762,6 +762,8 @@ es:
       ask_label: "Seleccione Petición(es)"
       save_button: "Guardar"
       cancel_button: "Cancelar"
+      event_title: "Título del evento"
+      event_title_placeholder: "Ingrese un título para describir el evento"
     modal_indicator:
       indicators: "Indicadores"
       owner_name: "Encargado"
