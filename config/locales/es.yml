@@ -286,9 +286,7 @@ es:
       key_contribution: "CONTRIBUCIÓN CLAVE: ¿El objetivo es una contribución clave para la solución del problema?"
       big_difference: "<p><strong>Gran diferencia:</strong> ¿Podría el éxito del objetivo hacer una diferencia significativa en el tratamiento del problema público?</p>"
       score: "Puntaje"
-      score_placeholder: "Ingrese un número del 1 al 3"
       main_arguments: "Justificación del puntaje"
-      main_arguments_placeholder: "Ingrese sus argumentos"
       multiplying_effect: "<p><strong>Efecto multiplicador:</strong> ¿Sería posible abordar varios problemas al mismo tiempo?</p>"
       catalytic: "<p><strong>Catalizador:</strong> ¿El objetivo principal de advocacy ayuda a lograr otras metas de la organización?</p>"
       momentum: "MOMENTUM: ¿El objetivo de advocacy tiene el impulso suficiente?"
@@ -327,6 +325,11 @@ es:
                 <li>¿Se fortalece la reputación o credibilidad de la organización al llevar a cabo el plan de advocacy? </li>
                 <li>¿Existen riesgos significativos para la organización de no participar en el tema?</li>
               </ul>
+      save_button: "Guardar"
+      cancel_button: "Cancelar"
+    prioritized_modal:
+      score_placeholder: "Ingrese un número del 1 al 3"
+      main_arguments_placeholder: "Ingrese sus argumentos"
       save_button: "Guardar"
       cancel_button: "Cancelar"
     explanation_stage2:  #tab `Explanation & Examples` of stage 2

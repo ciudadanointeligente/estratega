@@ -250,4 +250,31 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     $scope.messages = {response: "", message: ""}
   }
 
+
+  $scope.add_edit_prioritized = function (objective) {
+    if (objective) {
+      $scope.current_objective = objective;
+    } else {
+
+    }
+
+    $aside.open({
+      templateUrl: 'prioritized-aside.html',
+      placement: 'left',
+      size: 'lg',
+      scope: $scope,
+      controller: function ($scope, $modalInstance) {
+        $scope.save = function (e) {
+          save_or_update_objective();
+          $modalInstance.dismiss();
+          e.stopPropagation();
+        }
+        $scope.cancel = function (e) {
+          $modalInstance.dismiss();
+          e.stopPropagation();
+        };
+      }
+    });
+  }
+
 }]);

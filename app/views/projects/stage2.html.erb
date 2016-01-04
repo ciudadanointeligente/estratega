@@ -94,7 +94,7 @@
                       <i class="fa fa-check" ng-if="objective.prioritized"></i>
                     </td>
                     <td class="text-center">{{objective.solution_ids.length}}</td>
-                    <td class="text-right"><a href="#" title="Editar" ng-click="add_edit_objective(objective)"><i class="fa fa-pencil-square-o"></i></a> <a href="" title="Priorizar"><i class="fa fa-list-ol"></i></a> <a href="#" title="Eliminar" ng-click="delete_objective(objective)"><i class="fa fa-trash"></i></a>
+                    <td class="text-right"><a href="#" title="Editar" ng-click="add_edit_objective(objective)"><i class="fa fa-pencil-square-o"></i></a> <a href="" title="Priorizar" ng-click="add_edit_prioritized(objective)"><i class="fa fa-list-ol"></i></a> <a href="#" title="Eliminar" ng-click="delete_objective(objective)"><i class="fa fa-trash"></i></a>
                     </td>
                   </tr>
                 </tbody>
@@ -126,6 +126,7 @@
             </div>
             <%= render "solutions_list_modal" %>
             <%= render "objective_modal" %>
+            <%= render "prioritized_modal" %>
           </div>
           <div role="tabpanel" class="tab-pane" id="explanation">
             <div class="box">
