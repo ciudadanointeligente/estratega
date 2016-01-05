@@ -28,7 +28,7 @@
           <div class="project-hero">
             <h2><%= t('.subtitle1') %></h2>
             <p><%= t('.subtitle1_explanation') %></p>
-            <button class="btn btn-success" onclick="javascript:introJs().start();" id="guide">
+            <button class="btn btn-success" onclick="javascript:introJs().setOptions({exitOnOverlayClick: false}).start();" id="guide">
               <i class="fa fa-map"></i> <%= t('.guide_me') %>
             </button>
           </div>

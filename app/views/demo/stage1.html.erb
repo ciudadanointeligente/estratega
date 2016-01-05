@@ -115,7 +115,7 @@
 <script>
   $(document).ready(function(){
     if (RegExp('tour', 'gi').test(window.location.search)) {
-      introJs().start()
+      introJs().setOptions({exitOnOverlayClick: false}).start()
       $('.introjs-bullets li a')[0].className = 'active';
     }
   })

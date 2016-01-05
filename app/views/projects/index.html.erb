@@ -6,7 +6,7 @@
       <button class="btn btn-warning" ng-click="add_edit_project()" data-step="1" data-intro="<%= t('.step_one') %>">
         <i class="fa fa-plus-circle"></i> <%= t('.new_project') %>
       </button>
-      <button class="btn btn-success" onclick="javascript:introJs().start();">
+      <button class="btn btn-success" onclick="javascript:introJs().setOptions({exitOnOverlayClick: false}).start();">
         <i class="fa fa-map"></i> <%= t('.guide_me') %>
       </button>
     </div>

@@ -24,7 +24,7 @@
           <div class="project-hero02">
             <h2><%= @project.title %></h2>
             <p><%= @project.description %></p>
-            <button class="btn btn-success" onclick="javascript:introJs().start();">
+            <button class="btn btn-success" onclick="javascript:introJs().setOptions({exitOnOverlayClick: false}).start();">
               <i class="fa fa-map"></i> Guíame
             </button>
           </div>
