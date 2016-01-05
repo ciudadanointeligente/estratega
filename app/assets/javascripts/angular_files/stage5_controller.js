@@ -170,9 +170,14 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       scope: $scope,
       controller: function ($scope, $modalInstance) {
         $scope.save = function (e) {
-          save_or_update_indicator()
-          $modalInstance.dismiss();
-          e.stopPropagation();
+          $scope.messages_modal = { error: false, msg: ''}
+          if( !isNaN($scope.current_indicator.percentage) ) {
+              save_or_update_indicator()
+              $modalInstance.dismiss();
+              e.stopPropagation();
+          } else {
+            $scope.messages_modal = { error: true, msg: 'El porcentaje debe ser un nro válido'}
+          }
         }
         $scope.cancel = function (e) {
           $modalInstance.dismiss();

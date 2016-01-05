@@ -25,6 +25,7 @@
     </div>
     <div class="form-group">
       <label for="percentage"><%= t('.percentage') %></label>
+      <p class="text-warning" ng-if="messages_modal.error">{{messages_modal.msg}}</p>
       <input name="percentage" class="form-control" ng-model="current_indicator.percentage" placeholder="<%= t('.percentage_place') %>" type="number" min="0" max="100" step="10">
     </div>
     <div class="modal-footer">
