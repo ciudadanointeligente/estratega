@@ -12,11 +12,23 @@
         <label for="message">Mensaje</label>
         <textarea class="form-control" name="message" ng-model="share.message" placeholder="Escribe un mensaje"></textarea>
       </div>
+      <hr>
       <div class="form-group">
-        <label for="share">Compartido con</label>
-        <ul ng-repeat="member in current_project.members">
-          <li ng-if="member.role != 'owner' ">{{ member.email }} <a href="#"><i class="fa fa-trash" ng-click="delete_shared_user(member)"></i></a></li>
-        </ul>
+        <h4>Compartido con</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th with="90%">Usuarios</th>
+              <th class="text-right">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="member in current_project.members" ng-if="member.role != 'owner' ">
+              <td>{{ member.email }}</td>
+              <td class="text-right"><a href="#" title="Eliminar"><i class="fa fa-trash" ng-click="delete_shared_user(member)"></i></a></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </form>
   </div>
