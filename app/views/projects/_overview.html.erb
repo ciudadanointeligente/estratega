@@ -157,6 +157,16 @@
                   <% objective.activities.each_with_index do |activity, i| %>
                     <span class='blue'>Actividad <%= i+1 %>. </span><b><%= activity.title.presence || t('.empty') %></b>
                     <p><%= activity.description.presence || t('.empty') %></p>
+                    <% if !activity.indicator.blank? %>
+                    <ul>
+                      <% if !activity.indicator.owner_name.blank? %><li><b>Encargado:</b> <%= activity.indicator.owner_name %></li><% end %>
+                      <% if !activity.indicator.owner_role.blank? %><li><b>Puesto del encargado:</b> <%= activity.indicator.owner_role %></li><% end %>
+                      <% if !activity.indicator.expected_results.blank? %><li><b>Resultados esperados:</b> <%= activity.indicator.expected_results %></li><% end %>
+                      <% if !activity.indicator.obtained_results.blank? %><li><b>Resultados obtenidos:</b> <%= activity.indicator.obtained_results %></li><% end %>
+                      <% if !activity.indicator.settings.blank? %><li><b>Ajustes:</b> <%= activity.indicator.settings %></li><% end %>
+                      <% if !activity.indicator.percentage.blank? %><li><b>Porcentaje:</b> <%= activity.indicator.percentage %> %</li><% end %>
+                    </ul>
+                    <% end %>
                   <% end %>
                 <% end %>
               </div>
