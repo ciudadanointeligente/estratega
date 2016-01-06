@@ -95,13 +95,15 @@ class ProjectsController < ApplicationController
       @current_state_per_objective = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       o.activities.each do |ac|
         if !ac.indicator.nil?
-          if ( ac.indicator.percentage >= 60 && ac.indicator.percentage <= 100 )
-            @successful_activities = @successful_activities + 1
-          elsif ( ac.indicator.percentage >= 39 && ac.indicator.percentage <= 59 )
-            @neutral_activities = @neutral_activities + 1
-          elsif ( ac.indicator.percentage >= 0 && ac.indicator.percentage <= 38 )
-            @failed_activities = @failed_activities + 1
-            @objectives_with_failed_activities << ac.objective
+          if !ac.indicator.percentage.nil?
+            if ( ac.indicator.percentage >= 60 && ac.indicator.percentage <= 100 )
+              @successful_activities = @successful_activities + 1
+            elsif ( ac.indicator.percentage >= 39 && ac.indicator.percentage <= 59 )
+              @neutral_activities = @neutral_activities + 1
+            elsif ( ac.indicator.percentage >= 0 && ac.indicator.percentage <= 38 )
+              @failed_activities = @failed_activities + 1
+              @objectives_with_failed_activities << ac.objective
+            end
           end
         end
 
@@ -227,15 +229,15 @@ class ProjectsController < ApplicationController
             end
           end
           if !ac.indicator.nil?
-            if ( ac.indicator.percentage >= 60 && ac.indicator.percentage <= 100 )
-              ac.outcomes.each do |outcome|
-                @outcomes_achieved << outcome
+              if ( (!ac.indicator.percentage.nil? ? ac.indicator.percentage : 0) >= 60 && (!ac.indicator.percentage.nil? ? ac.indicator.percentage : 0) <= 100 )
+                ac.outcomes.each do |outcome|
+                  @outcomes_achieved << outcome
+                end
+              else
+                ac.outcomes.each do |outcome|
+                  @outcomes_failed << outcome
+                end
               end
-            else
-              ac.outcomes.each do |outcome|
-                @outcomes_failed << outcome
-              end
-            end
           end
         end
 
