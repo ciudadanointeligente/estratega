@@ -284,6 +284,10 @@ es:
       objective_type: "Tipo de Objetivo"
       objective_placeholder: "Redactar el objetivo"
       prioritized: "Priorizado <br /><span class='mini-explicacion'>(Solo prodrá trabajar con este objetivo si se encuentra priorizado)</span>"
+      save_button: "Guardar"
+      cancel_button: "Cancelar"
+    prioritized_modal:
+      prioritized: Priorización de Objetivos
       key_contribution: "CONTRIBUCIÓN CLAVE: ¿El objetivo es una contribución clave para la solución del problema?"
       big_difference: "<p><strong>Gran diferencia:</strong> ¿Podría el éxito del objetivo hacer una diferencia significativa en el tratamiento del problema público?</p>"
       score: "Puntaje"
@@ -326,9 +330,6 @@ es:
                 <li>¿Se fortalece la reputación o credibilidad de la organización al llevar a cabo el plan de advocacy? </li>
                 <li>¿Existen riesgos significativos para la organización de no participar en el tema?</li>
               </ul>
-      save_button: "Guardar"
-      cancel_button: "Cancelar"
-    prioritized_modal:
       score_placeholder: "Ingrese un número del 1 al 3"
       main_arguments_placeholder: "Ingrese sus argumentos"
       save_button: "Guardar"
