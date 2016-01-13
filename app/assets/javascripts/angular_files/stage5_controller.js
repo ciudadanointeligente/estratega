@@ -14,7 +14,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     {type: "Actitudes y creencias", values: ["Edición / análisis de políticas y investigación", "Votación", "Anuncios de servicio público", "Reuniones informativas / presentaciones"]},
     {type: "Relevancia", values: ["Lobby", "Construcción de relaciones con los tomadores de decisiones", "Fijar responsable político y candidato educación"]},
     {type: "Conciencia", values: ["Anuncios de servicio público", "Convocatorias y marchas", "Reuniones informativas / presentaciones", "Digital or internet-based media/social media"]},
-    {type: "Nuevos campeones", values: ["Relationship building with decision-makers", "Medios de Comunicación Digital o basados en Internet / medios de comunicación social"]},
+    {type: "Nuevos campeones", values: ["Construcción de relaciones con los tomadores de decisiones", "Medios de Comunicación Digital o basados en Internet / medios de comunicación social"]},
     {type: "Nuevos defensores", values: ["Reuniones informativas / presentaciones"]},
     {type: "Asociaciones y alianzas", values: ["Edición / análisis de políticas y investigación", "Convocatorias y marchas", "Bases de organización y movilización"]},
     {type: "Circunscripción o base de apoyo en crecimiento", values: ["Convocatorias y marchas", "Bases de organización y movilización"]},
