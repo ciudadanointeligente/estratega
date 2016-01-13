@@ -27,6 +27,7 @@
 //= require clndr/clndr.min
 //= require angular-clndr/angular-clndr.min
 //= require intro.js/minified/intro.min
+//= require angular-i18n/angular-locale_es-cl
 
 //= require angular_files/wizard_steps
 //= require angular_files/project_resources_controller
