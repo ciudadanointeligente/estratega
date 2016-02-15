@@ -56,25 +56,25 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th>Mensajes</th>
+                        <th> </th>
                         <th>Actores</th>
-                        <th>Ejecutado?</th>
+                        <th>Mensajes</th>
                         <th class="text-right">Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr ng-repeat="m in ask.messages track by $index">
-                        <td>{{m.description}}</td>
-                        <td>
-                          <ul class="list-inline">
-                            <li ng-repeat="a in m.actors">
-                              {{a.name}}
-                            </li>
-                          </ul>
-                        </td>
                         <td>
                           <i class="fa" ng-class="{'fa-check': m.executed}"></i>
                         </td>
+                        <td>
+                          <ul class="list-inline">
+                            <li ng-repeat="a in m.actors">
+                              {{a.name}} - 
+                            </li>
+                          </ul>
+                        </td>
+                        <td>{{m.description}}</td>
                         <td class="text-right">
                           <i class="fa fa-pencil-square-o" ng-click="add_edit_msj(ask, m)" title="<%= t('.edit') %>"></i>
                           <i class="fa fa-trash" ng-click="delete_msj(ask, m)" title="<%= t('.delete') %>"></i>
