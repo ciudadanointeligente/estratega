@@ -52,40 +52,45 @@
                   <button type="button" class="btn btn-primary pull-right" onmouseenter="$(this).tooltip('show')" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle2_explanation') %>"><i class="fa fa-info"></i></button>
                     <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_msj(ask)"><i class="fa fa-plus-circle"></i> <%= t('.add_button') %></button>
                   <h4><%= t('.subtitle2') %></h4>
-
-                  <table class="table">
+                <div>
+                  <table class="table compuesta">
                     <thead>
                       <tr>
-                        <th> </th>
-                        <th>Fecha Entrega</th>
-                        <th>Actores</th>
+                        <th></th>
+                        <th>Fecha</th>
+                        <th>Actor(es)</th>
+                        <th>Actividad</th>
                         <th>Encargado</th>
-                        <th>Mensajes</th>
                         <th class="text-right">Acciones</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr ng-repeat="m in ask.messages track by $index">
-                        <td>
-                          <i class="fa" ng-class="{'fa-check': m.executed}"></i>
+                    <tbody ng-repeat="m in ask.messages track by $index">
+                      <tr>
+                        <td width="5%">
+                          <i class="fa" ng-class="{'fa-check': m.executed}" title="Entregado"></i>
                         </td>
                         <td>20/02/2016</td>
-                        <td>
-                          <ul class="list-inline">
+                        <td width="30%">
+                          <ul class="list-unstyled">
                             <li ng-repeat="a in m.actors">
-                              {{a.name}} - 
+                              {{a.name}}
                             </li>
                           </ul>
                         </td>
-                        <td>Juan Pérez</td>
-                        <td>{{m.description}}</td>
+                        <td width="30%">Cena Anirversario Fundación Bla</td>
+                        <td width="15%">Juan Pérez</td>
                         <td class="text-right">
                           <i class="fa fa-pencil-square-o" ng-click="add_edit_msj(ask, m)" title="<%= t('.edit') %>"></i>
                           <i class="fa fa-trash" ng-click="delete_msj(ask, m)" title="<%= t('.delete') %>"></i>
                         </td>
+                       </tr>
+                       <tr>
+                        <td> </td>
+                        <td colspan="5">{{m.description}}</td>
                       </tr>
                     </tbody>
                   </table>
+                 </div> 
                 </div>
             </div>
             <!-- end asks -->
