@@ -1,0 +1,61 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
+es:
+  devise:
+    confirmations:
+      confirmed: "Su dirección de email ha sido confirmada con éxito."
+      send_instructions: "En breve recibirá un email con las instrucciones para confirmar su dirección email."
+      send_paranoid_instructions: "Si su dirección email existe en nuestra base de datos, en breve recibirá un email con las instrucciones para confirmar su dirección email."
+    failure:
+      already_authenticated: "Ya está registrado."
+      inactive: "Su cuenta no ha sido activada todavía."
+      invalid: "%{authentication_keys} o password no válido."
+      locked: "Su cuenta esta bloqueada."
+      last_attempt: "Puede realizar un intento más antes de que su cuenta sea bloqueada."
+      not_found_in_database: "%{authentication_keys} o password no válido."
+      timeout: "Sesión expirada. Por favor regístrese de nuevo."
+      unauthenticated: "Necesita inscribirse o registrarse."
+      unconfirmed: "Debe confirmar su dirección email antes de continuar."
+    mailer:
+      confirmation_instructions:
+        subject: "Instrucciones de confirmación"
+      reset_password_instructions:
+        subject: "Instrucciones para resetear password"
+      unlock_instructions:
+        subject: "Instrucciones de desbloqueo"
+    omniauth_callbacks:
+      failure: "No se pudo autenticar desde %{kind} porque \"%{reason}\"."
+      success: "Autenticado con éxito desde la cuenta %{kind}."
+    passwords:
+      no_token: "No puede acceder a esta página si no procede de un email de recuperación de password. Si procede de un email de recuperación de password, por favor asegurese de proporcionar la url completa."
+      send_instructions: "En breve recibirá un email con las instrucciones para recuperar su password."
+      send_paranoid_instructions: "Si su dirección email existe en nuestra base de datos, en breve recibirá un email con un enlace para recuperar su password."
+      updated: "Su password ha sido modificado con éxito. Usted está ahora registrado."
+      updated_not_active: "Su password ha sido modificado con éxito."
+    registrations:
+      destroyed: "Adiós! Su cuenta ha sido cancelada con éxito. Esperamos verlo de nuevo pronto"
+      signed_up: "Bienvenido! Usted se ha inscrito con éxito."
+      signed_up_but_inactive: "Usted se ha inscrito con éxito. Sin embargo no puede registrarse porque su cuenta no ha sido activada."
+      signed_up_but_locked: "Usted se ha inscrito con éxito. Sin embargo no puede registrarse porque su cuenta esta bloqueada."
+      signed_up_but_unconfirmed: "Se ha enviado un mensaje con un enlace de confirmación a su dirección email. Por favor siga el enlace para activar su cuenta."
+      update_needs_confirmation: "Su cuenta ha sido actualizada con éxito, pero es necesario verificar su nueva dirección de email. Por favor compruebe su email y siga el enlace para confirmar su nueva dirección de email"
+      updated: "Su cuenta ha sido actualizada con éxito."
+    sessions:
+      user:
+        signed_in: "Inicio de sesión correcto"
+        signed_out: "Fin de sesión correcto"
+        already_signed_out: "Fin de sesión correcto"
+    unlocks:
+      send_instructions: "En breve recibirá un email con las instrucciones para desbloquear su cuenta."
+      send_paranoid_instructions: "Si su dirección email existe en nuestra base de datos, en breve recibirá un email con las instrucciones para desbloquear su cuenta."
+      unlocked: "Su cuenta ha sido desbloqueada con éxito. Usted está ahora registrado."
+  errors:
+    messages:
+      already_confirmed: "ya está confirmado, por favor intente registrarse"
+      confirmation_period_expired: "necesita ser confirmado dentro de %{period}, por favor solicite uno nuevo"
+      expired: "ha expirado, por favor solicite uno nuevo"
+      not_found: "no encontrado"
+      not_locked: "no estaba bloqueado"
+      not_saved:
+        one: "1 error impidió que este %{resource} fuese guardado:"
+        other: "%{count} errores impidieron que este %{resource} fuese guardado:"
