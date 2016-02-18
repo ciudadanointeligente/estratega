@@ -72,7 +72,7 @@
           <% elsif @objectives.count < 1 %>
             <p></p>
           <% else %>
-            <div class="label label-default">Objectivo <%= i+1 %></div>
+            <div class="label label-default">Objetivo <%= i+1 %></div>
             <% @objectives.each do |objective| %>
               <h3><%= objective.title.presence || t('.empty') %></h3>
               <p><%= objective.description.presence %></p>
