@@ -93,7 +93,7 @@ es:
       stage3_without_objectives: |
                     <h4><i class='fa fa-times-circle'></i> Necesitas agregar objetivos para para establecer las metas</h4>
                     <p>Completa el paso anterior para poder seguir con el ingreso de tu plan de advocacy</p>
-      objective_cnt: 'Objectivo'
+      objective_cnt: 'Objetivo'
     overview:     # http://localhost:3000/projects/1#overview
       projects: "Proyectos"
       overview: "Resumen"
@@ -278,7 +278,7 @@ es:
       description: "Descripción"
       back_button: "Volver"
     objective_modal: # modal `add objective` of stage 2
-      objective: "Objectivo"
+      objective: "Objetivo"
       select_solution: "Asociar a solución(es)"
       select_solution_placeholder: "(Para seleccionar más de ujna solución presione la tecla ctrl al hacer click)"
       objective_type: "Tipo de Objetivo"
