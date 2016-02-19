@@ -70,4 +70,8 @@ Rails.application.routes.draw do
   resources :asks do
     resources :messages
   end
+  
+  resources :objectives do
+    resources :indicators
+  end
 end
