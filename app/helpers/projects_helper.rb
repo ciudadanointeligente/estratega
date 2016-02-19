@@ -39,7 +39,7 @@ module ProjectsHelper
     when :solutions
       @solutions.blank? ? "Soluciones políticas: Describir las principales soluciones políticas que pudieran constituir una respuesta adecuada" : " #{@solutions.size} Soluciones"
     when :objectives
-      @objectives.blank? ? 'Añada y priorice objetivos' : " #{@objectives.size} Objectivos"
+      @objectives.blank? ? 'Añada y priorice objetivos' : " #{@objectives.size} Objetivos"
     end
   end
 
