@@ -23,9 +23,9 @@ RSpec.describe Objective, :type => :model do
   it "can have indicators" do
      objective = create(:objective)
      indicator = create(:indicator)
-     objective.indicators << indicator
+     objective.indicator = indicator
      
-     expect(objective.indicators.first).to eq(indicator)
+     expect(objective.indicator).to eq(indicator)
      
   end
 end
