@@ -1,18 +1,21 @@
 production:
-  BASE_URL: 'https://vizard-v2-dev.herokuapp.com'
-  SMTP_SETTING_ADDRESS: 'smtp.gmail.com'
-  SMTP_SETTING_PORT: 587
+  BASE_URL: ''
+  SMTP_SETTING_ADDRESS: ''
+  SMTP_SETTING_PORT: ''
   SMTP_SETTING_USERNAME: ''
   SMTP_SETTING_PASSWORD: ''
+  MAILER_SENDER: ''
 development:
-  BASE_URL: 'http://localhost:3000'
-  SMTP_SETTING_ADDRESS: 'smtp.gmail.com'
-  SMTP_SETTING_PORT: 587
+  BASE_URL: ''
+  SMTP_SETTING_ADDRESS: ''
+  SMTP_SETTING_PORT: ''
   SMTP_SETTING_USERNAME: ''
   SMTP_SETTING_PASSWORD: ''
+  MAILER_SENDER: ''
 test:
-  BASE_URL: 'http://localhost:3000'
-  SMTP_SETTING_ADDRESS: 'smtp.gmail.com'
-  SMTP_SETTING_PORT: 587
+  BASE_URL: ''
+  SMTP_SETTING_ADDRESS: ''
+  SMTP_SETTING_PORT: ''
   SMTP_SETTING_USERNAME: ''
   SMTP_SETTING_PASSWORD: ''
+  MAILER_SENDER: 'test@test.com'
