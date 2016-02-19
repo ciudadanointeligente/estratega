@@ -3,7 +3,7 @@ class UserMailer < Devise::Mailer
   include Devise::Controllers::UrlHelpers # Optional. eg. `confirmation_url`
   default template_path: 'devise/mailer' # to make sure that your mailer uses the devise views
 
-  default from: 'no-reply@advizard.com'
+  default from: Devise.mailer_sender
 
   def new_user_share(data)
     @user = User.find_by_email(data[:email])
