@@ -74,4 +74,8 @@ Rails.application.routes.draw do
   resources :objectives do
     resources :indicators
   end
+  
+  resources :outcomes do
+    resources :indicators
+  end
 end

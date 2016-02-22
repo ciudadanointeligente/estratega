@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217163220) do
+ActiveRecord::Schema.define(version: 20160222013121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,10 +89,12 @@ ActiveRecord::Schema.define(version: 20160217163220) do
     t.datetime "updated_at"
     t.integer  "percentage"
     t.integer  "objective_id"
+    t.integer  "outcome_id"
   end
 
   add_index "indicators", ["activity_id"], name: "index_indicators_on_activity_id", using: :btree
   add_index "indicators", ["objective_id"], name: "index_indicators_on_objective_id", using: :btree
+  add_index "indicators", ["outcome_id"], name: "index_indicators_on_outcome_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
     t.string   "description"
@@ -273,5 +275,6 @@ ActiveRecord::Schema.define(version: 20160217163220) do
 
   add_foreign_key "asks", "objectives"
   add_foreign_key "indicators", "objectives"
+  add_foreign_key "indicators", "outcomes"
   add_foreign_key "permissions", "projects"
 end

@@ -26,6 +26,7 @@ RSpec.describe IndicatorsController, :type => :controller do
   before(:each) do
     @activity = create(:activity)
     @objective = create(:objective)
+    @outcome = create(:outcome)
   end
 
   describe "GET show" do
@@ -35,6 +36,8 @@ RSpec.describe IndicatorsController, :type => :controller do
       expect(assigns(:indicator)).to eq(indicator)
       get :show, {objective_id: @objective, id: indicator.to_param, :format => 'json'}
       expect(assigns(:indicator)).to eq(indicator)
+      get :show, {outcome_id: @outcome, id: indicator.to_param, :format => 'json'}
+      expect(assigns(:indicator)).to eq(indicator)
     end
   end
 
@@ -43,8 +46,13 @@ RSpec.describe IndicatorsController, :type => :controller do
       expect {
         post :create, {activity_id: @activity, indicator: valid_attributes}
       }.to change(Indicator, :count).by(1)
+      
       expect {
         post :create, {objective_id: @objective, indicator: valid_attributes}
+      }.to change(Indicator, :count).by(1)
+      
+      expect {
+        post :create, {outcome_id: @outcome, indicator: valid_attributes}
       }.to change(Indicator, :count).by(1)
     end
   end
@@ -54,7 +62,11 @@ RSpec.describe IndicatorsController, :type => :controller do
       indicator = Indicator.create! valid_attributes
       put :update, {activity_id: @activity, :id => indicator.to_param, indicator: updated_attributes}
       expect(assigns(:indicator)).to eq(indicator)
+      
       put :update, {objective_id: @objective, :id => indicator.to_param, indicator: updated_attributes}
+      expect(assigns(:indicator)).to eq(indicator)
+      
+      put :update, {outcome_id: @outcome, :id => indicator.to_param, indicator: updated_attributes}
       expect(assigns(:indicator)).to eq(indicator)
     end
   end
