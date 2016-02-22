@@ -5,4 +5,5 @@ class Ask < ActiveRecord::Base
   has_and_belongs_to_many :activities
   has_and_belongs_to_many :actors
   has_many :messages, dependent: :destroy
+  has_one :indicator, dependent: :destroy
 end
