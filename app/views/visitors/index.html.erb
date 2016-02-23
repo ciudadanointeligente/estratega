@@ -29,6 +29,15 @@
     </div>
   <% end %>
 <% end %>
+<div class="estratega">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h2 class="text-center">¿Qué es Estratega?</h2>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="benefits">
   <div class="container">
     <div class="row">
@@ -78,6 +87,15 @@
     </div>
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+        <%= image_tag "t6.png", class: "img-circle" %>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-9 col-lg-9">
+        <p class="cita">“<%= t('.testimony3_txt') %>”</p>
+        <p class="persona"><%= t('.testimony3_signer') %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
         <%= image_tag "t5.jpg", class: "img-circle" %>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-9 col-lg-9">
@@ -85,15 +103,6 @@
         <p class="persona"><%= t('.testimony2_signer') %></p>
       </div>
     </div>
-    <!-- <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-        <%= image_tag "t6.png", class: "img-circle" %>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-9 col-lg-9">
-        <p class="cita">“<%= t('.testimony3_txt') %>”</p>
-        <p class="persona"><%= t('.testimony3_signer') %></p>
-      </div>
-    </div> -->
   </div>
 </div>
 <div class="organizations">
@@ -108,7 +117,7 @@
         <a href="http://www.techo.org/paises/chile/" target="_blank"><%= image_tag "logo-techo.png", class: "logos" %></a>
         <a href="http://www.hogardecristo.cl/" target="_blank"><%= image_tag "logo-hogar.png", class: "logos" %></a>
         <a href="http://ciudadanointeligente.org/" target="_blank"><%= image_tag "logo-FCI.png", class: "logos" %></a>
-        
+        <a href="http://bordepolitico.com/" target="_blank"><%= image_tag "logo-borde-politico.png", class: "logos" %></a>
         
       </div>     
     </div>
