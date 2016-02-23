@@ -106,4 +106,67 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   $scope.dismiss_modal = function(){
     $scope.messages = {response: "", message: ""}
   }
+    
+  $scope.add_edit_indicator = function(outcome) {
+    console.log(outcome);
+    console.log(outcome.indicator_id);
+    $scope.outcome = outcome;
+    if(outcome.indicator_id) {
+      $http.get('/outcomes/'+outcome.id+'/indicators/'+outcome.indicator_id)
+          .success(function(data){
+            $scope.current_indicator = data;
+          })
+    } else
+      $scope.current_indicator = {owner_name: "", owner_role: "", expected_results:"", obtained_results: "", settings: "", percentage: ""};
+
+    $aside.open({
+      templateUrl: 'indicator-aside.html',
+      placement: 'left',
+      size: 'lg',
+      scope: $scope,
+      controller: function ($scope, $modalInstance) {
+        $scope.save = function (e) {
+          $scope.messages_modal = { error: false, msg: ''}
+          if( !isNaN($scope.current_indicator.percentage) ) {
+              save_or_update_indicator()
+              $modalInstance.dismiss();
+              e.stopPropagation();
+          } else {
+            $scope.messages_modal = { error: true, msg: 'El porcentaje debe ser un nro válido'}
+          }
+        }
+        $scope.cancel = function (e) {
+          $modalInstance.dismiss();
+          e.stopPropagation();
+        };
+      }
+    });
+
+  }
+  
+  var save_or_update_indicator = function() {
+    if($scope.outcome.indicator_id) {
+      $http.put('/outcomes/'+$scope.outcome.id+'/indicators/'+$scope.outcome.indicator_id, $scope.current_indicator)
+          .success(function(){
+            $scope.messages = { response: true, message: "Indicator actualizado"}
+            get_outcomes($scope.project_id, $scope.objective_id);
+          })
+          .error(function(){
+            $scope.messages = { response: false, message: "Error al actualizar los resultados de información"}
+            scroll_to_top();
+          });
+    } else {
+      $http.post('/outcomes/'+$scope.outcome.id+'/indicators/', $scope.current_indicator)
+          .success(function(data){
+            $scope.messages = { response: true, message: "Indicator añadido"}
+            get_outcomes($scope.project_id, $scope.objective_id);
+          })
+          .error(function(){
+            $scope.messages = { response: false, message: "Error al crear el indicador"}
+            scroll_to_top();
+          });
+    }
+
+  }
+  
 }]);

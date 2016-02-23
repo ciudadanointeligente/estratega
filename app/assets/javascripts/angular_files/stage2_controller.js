@@ -2,6 +2,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   $scope.project_id = $location.path().split("/")[2];
   $scope.btn_problem = "Agregar";
   $scope.problem = {};
+  $scope.objective = {};
   $scope.objective_types = {};
   $scope.messages = {response: "", message: ""}
 
@@ -276,5 +277,77 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       }
     });
   }
+  
+  $scope.add_edit_indicator = function(objective) {
+    $scope.objective = objective;
+    if(objective.indicator_id) {
+      $http.get('/objectives/'+objective.id+'/indicators/'+objective.indicator_id)
+          .success(function(data){
+            $scope.current_indicator = data;
+          })
+    } else
+      $scope.current_indicator = {owner_name: "", owner_role: "", expected_results:"", obtained_results: "", settings: "", percentage: ""};
+
+    $aside.open({
+      templateUrl: 'indicator-aside.html',
+      placement: 'left',
+      size: 'lg',
+      scope: $scope,
+      controller: function ($scope, $modalInstance) {
+        $scope.save = function (e) {
+          $scope.messages_modal = { error: false, msg: ''}
+          if( !isNaN($scope.current_indicator.percentage) ) {
+              save_or_update_indicator()
+              $modalInstance.dismiss();
+              e.stopPropagation();
+          } else {
+            $scope.messages_modal = { error: true, msg: 'El porcentaje debe ser un nro válido'}
+          }
+        }
+        $scope.cancel = function (e) {
+          $modalInstance.dismiss();
+          e.stopPropagation();
+        };
+      }
+    });
+
+  }
+  
+  var save_or_update_indicator = function() {
+    if($scope.objective.indicator_id) {
+      $http.put('/objectives/'+$scope.objective.id+'/indicators/'+$scope.objective.indicator_id, $scope.current_indicator)
+          .success(function(){
+            $scope.messages = { response: true, message: "Indicator actualizado"}
+            get_objectives($scope.project_id, $scope.objective_id);
+          })
+          .error(function(){
+            $scope.messages = { response: false, message: "Error al actualizar los resultados de información"}
+            scroll_to_top();
+          });
+    } else {
+      $http.post('/objectives/'+$scope.objective.id+'/indicators/', $scope.current_indicator)
+          .success(function(data){
+            $scope.messages = { response: true, message: "Indicator añadido"}
+            get_objectives($scope.project_id, $scope.objective_id);
+          })
+          .error(function(){
+            $scope.messages = { response: false, message: "Error al crear el indicador"}
+            scroll_to_top();
+          });
+    }
+
+  }
+  
+  function get_objective(project_id, objective_id) {
+    $http.get('/projects/' + project_id + '/objectives/' + objective_id + '.json')
+      .success(function (data) {
+        $scope.objective = data;
+      })
+      .error(function (){
+        $scope.messages = { response: false, message: $attrs.errorgettingobjectives }
+        scroll_to_top();
+      });
+  }
+  get_objective($scope.project_id, $scope.objective_id);
 
 }]);

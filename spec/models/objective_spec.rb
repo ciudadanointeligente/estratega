@@ -19,4 +19,14 @@ RSpec.describe Objective, :type => :model do
     expect(Icalendar.parse(objective.as_ical).first.events.first.dtstart).to eq(activity_one.scheduling)
     expect(Icalendar.parse(objective.as_ical).first.events.last.dtstart).to eq(activity_two.scheduling)
   end
+  
+  it "can have indicators" do
+     objective = create(:objective)
+     indicator = create(:indicator)
+     objective.indicator = indicator
+     
+     expect(objective.indicator).to eq(indicator)
+     
+  end
 end
+

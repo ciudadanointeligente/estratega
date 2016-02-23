@@ -14,4 +14,12 @@ RSpec.describe Outcome, :type => :model do
   	expect(myOutcome.type_list).to include 'Relevancia'
   end
 
+  it "can have indicators" do
+     outcome = create(:outcome)
+     indicator = create(:indicator)
+     outcome.indicator = indicator
+     
+     expect(outcome.indicator).to eq(indicator)
+
+  end
 end

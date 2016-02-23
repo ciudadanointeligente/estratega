@@ -57,7 +57,11 @@
                     <td>{{outcome.outcome_type_id}}</td>
                     <!--<td>{{outcome.actor_type_id}}</td>-->
                     <td>{{outcome.no_activities}}</td>
-                    <td class="text-right"><a href="#" title="Editar" ng-click="add_edit_outcome(outcome)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Eliminar" ng-click="delete_outcome(outcome)"><i class="fa fa-trash"></i></a></td>
+                    <td class="text-right">
+                      <a href="#" title="Editar" ng-click="add_edit_outcome(outcome)"><i class="fa fa-pencil-square-o"></i></a> 
+                      <a href="#" title="Indicators" ng-click="add_edit_indicator(outcome)"><i class="fa fa-line-chart"></i></a>
+                      <a href="#" title="Eliminar" ng-click="delete_outcome(outcome)"><i class="fa fa-trash"></i></a>
+                      </td>
                   </tr>
                 </tbody>
               </table>
@@ -82,6 +86,7 @@
               </nav>
             </div>
             <%= render "outcome_modal" %>
+            <%= render "objectives/modal_indicator" %>
           </div>
           <div role="tabpanel" class="tab-pane" id="explanation">
             <div class="box">
