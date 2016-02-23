@@ -78,4 +78,8 @@ Rails.application.routes.draw do
   resources :outcomes do
     resources :indicators
   end
+  
+  resources :asks do
+    resources :indicators
+  end
 end

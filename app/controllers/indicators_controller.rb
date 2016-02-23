@@ -30,6 +30,8 @@ class IndicatorsController < ApplicationController
         @parent = Objective.find(params[:objective_id])
       elsif params[:outcome_id]
         @parent = Outcome.find(params[:outcome_id])
+      elsif params[:ask_id]
+        @parent = Ask.find(params[:ask_id])
       end
     end
 
@@ -47,6 +49,9 @@ class IndicatorsController < ApplicationController
       elsif @parent.class == Outcome
         @outcome = @parent
         respond_with(@outcome,@indicator)
+      elsif @parent.class == Ask
+        @ask = @parent
+        respond_with(@ask,@indicator)
       end
     end
 end
