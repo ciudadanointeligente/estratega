@@ -11,4 +11,7 @@ json.array!(@asks) do |ask|
     messages << obj
   end
   json.messages messages
+  if ask.indicator
+    json.indicator_id ask.indicator.id
+  end
 end

@@ -29,5 +29,9 @@ json.array!(@objectives) do |objective|
 
   json.loss_gain_score objective.loss_gain_score
   json.loss_gain_arguments objective.loss_gain_arguments
+  
+  if objective.indicator
+    json.indicator_id objective.indicator.id
+  end
 
 end
