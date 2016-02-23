@@ -348,6 +348,6 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         scroll_to_top();
       });
   }
-  get_objective($scope.project_id, $scope.objective_id);
+  //get_objective($scope.project_id, $scope.objective_id);
 
 }]);
