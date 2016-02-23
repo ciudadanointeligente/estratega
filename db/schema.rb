@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222210915) do
+ActiveRecord::Schema.define(version: 20160223134622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,9 +74,11 @@ ActiveRecord::Schema.define(version: 20160222210915) do
     t.datetime "updated_at"
     t.integer  "objective_id"
     t.boolean  "execution"
+    t.integer  "outcome_id"
   end
 
   add_index "asks", ["objective_id"], name: "index_asks_on_objective_id", using: :btree
+  add_index "asks", ["outcome_id"], name: "index_asks_on_outcome_id", using: :btree
 
   create_table "indicators", force: :cascade do |t|
     t.string   "owner_name"
@@ -276,6 +278,7 @@ ActiveRecord::Schema.define(version: 20160222210915) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "asks", "objectives"
+  add_foreign_key "asks", "outcomes"
   add_foreign_key "indicators", "asks"
   add_foreign_key "indicators", "objectives"
   add_foreign_key "indicators", "outcomes"
