@@ -19,5 +19,14 @@ RSpec.describe Message, :type => :model do
      expect(message.activity).to eq(activity)
      
   end
+  
+  it "can have actor" do
+     message = create(:message)
+     actor = create(:actor)
+     message.actor = actor
+     
+     expect(message.actor).to eq(actor)
+     
+  end
 end
 

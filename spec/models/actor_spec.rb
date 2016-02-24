@@ -13,4 +13,16 @@ RSpec.describe Actor, :type => :model do
     myActorTypes = Actor.new
     expect(myActorTypes.actor_type_list).to include 'Persona'
   end
+  
+  it "can have messages" do
+     actor = create(:actor)
+     message1 = create(:message)
+     message2 = create(:message)
+     actor.messages << message1
+     actor.messages << message2
+     
+     expect(actor.messages).to include(message1)
+     expect(actor.messages).to include(message2)
+     
+  end
 end
