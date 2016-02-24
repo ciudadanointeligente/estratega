@@ -28,5 +28,14 @@ RSpec.describe Message, :type => :model do
      expect(message.actor).to eq(actor)
      
   end
+  
+  it "can have activity" do
+     message = create(:message)
+     activity = create(:activity)
+     message.activity = activity
+     
+     expect(message.activity).to eq(activity)
+     
+  end  
 end
 
