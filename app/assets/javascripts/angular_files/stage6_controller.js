@@ -138,6 +138,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
     } else {
       $scope.current_msj.ask_id = $scope.ask_id;
+      //console.log($scope.current_msj)
       $http.post('/asks/'+$scope.ask_id+'/messages/', $scope.current_msj)
         .success(function(data){
         })
