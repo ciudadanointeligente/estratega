@@ -940,6 +940,8 @@ en:
       actor: "Actor"
       ask: "Ask"
       ask_placeholder: "Write ask"
+      person_in_charge: "Person In Charge"
+      person_in_charge_placeholder: "Write Person In Charge"
       execution: "Execution"
       save_button: "Save"
       cancel_button: "Cancel"

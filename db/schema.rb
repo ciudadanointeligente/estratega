@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224135515) do
+ActiveRecord::Schema.define(version: 20160226160819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20160224135515) do
     t.integer  "objective_id"
     t.boolean  "execution"
     t.integer  "outcome_id"
+    t.string   "person_in_charge"
   end
 
   add_index "asks", ["objective_id"], name: "index_asks_on_objective_id", using: :btree

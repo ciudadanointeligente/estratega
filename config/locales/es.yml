@@ -1026,6 +1026,8 @@ es:
       actor: "Actor"
       ask: "Petición"
       ask_placeholder: "Escribir la Petición"
+      person_in_charge: "Encargado"
+      person_in_charge_placeholder: "Escribir el Encargado"
       execution: "Petición entregada"
       save_button: "Guardar"
       cancel_button: "Cancelar"
