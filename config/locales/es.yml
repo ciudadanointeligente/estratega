@@ -756,6 +756,7 @@ es:
       description: "Descripción"
       description_placeholder: "Ingrese una descripción para la actividad"
       completion: "¿Finalizó?"
+      actors_label: "Seleccione Actor(es)"
       organizer: "Tipo de evento"
       activity_types: "Tipos de actividades"
       scheduling: "Fecha"

@@ -5,4 +5,5 @@ class Activity < ActiveRecord::Base
   has_and_belongs_to_many :outcomes
   #has_and_belongs_to_many :asks
   has_one :indicator, dependent: :destroy
+  has_and_belongs_to_many :actors
 end

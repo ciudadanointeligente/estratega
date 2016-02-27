@@ -683,6 +683,7 @@ en:
       outcome: "Outcome"
       save_button: "Save"
       cancel_button: "Cancel"
+      actors_label: "Select Actor(s)"
     modal_indicator:
       owner_name: "Owner"
       owner_role: "Role"
