@@ -87,13 +87,14 @@ es:
       step_one: "Una vez que abras la página del proyecto verás 4 pestañas. Las <strong>Etapas</strong> son las fases del ingreso de datos, en <strong>Panel de control</strong> se muestran los indicadores de progreso, en <strong>Documentos</strong> un repositorio para que enlaces documentos importantes, y finalmente en <strong>Resumen</strong> se muestra el compendio de toda la información"
       step_two: "Vamos a comenzar con la planificación de advocacy completando la información requerida en la <strong>Etapa 1</strong>"
       step_three: "Estos iconos muestran los tres estados de de entrada de datos. Te dirán si tienes que completar un paso anterior(<i class='fa fa-lock'></i>), si están listos para el ingreso (<i class='fa fa-unlock'></i>) o que contienen información (<i class='fa fa-check'></i>)"
-      stage1_title: "Step 1: Describa el problema y la correspondiente solución de política pública"
-      stage2_title: "Step 2: Formular los objetivos y ordenarlos en orden de prioridad"
-      stage3_title: "Step 1: Establecer metas"
+      stage1_title: "Paso 1: Describa el problema y la correspondiente solución de política pública"
+      stage2_title: "Paso 2: Formular los objetivos y ordenarlos en orden de prioridad"
+      stage3_title: "Paso 3: Establecer metas"
       stage3_without_objectives: |
                     <h4><i class='fa fa-times-circle'></i> Necesitas agregar objetivos para para establecer las metas</h4>
                     <p>Completa el paso anterior para poder seguir con el ingreso de tu plan de advocacy</p>
       objective_cnt: 'Objetivo'
+      outcome_cnt: "Resultado Intermedio"
     overview:     # http://localhost:3000/projects/1#overview
       projects: "Proyectos"
       overview: "Resumen"
@@ -1029,6 +1030,7 @@ es:
       ask_placeholder: "Escribir la Petición"
       person_in_charge: "Encargado"
       person_in_charge_placeholder: "Escribir el Encargado"
+      outcome: "Resultado Intermedio"
       execution: "Petición entregada"
       save_button: "Guardar"
       cancel_button: "Cancelar"

@@ -24,13 +24,26 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     });
   }
   get_asks($scope.project_id, $scope.objective_id);
-
+  
+  function get_outcomes(project_id, objective_id) {
+    $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/outcomes.json')
+    .success(function(data){
+      $scope.outcomes = data;
+    })
+    .error(function (){
+      $scope.messages = { response: false, message: $attrs.errorgettingoutcomes }
+      scroll_to_top();
+    });
+  }
+  get_outcomes($scope.project_id, $scope.objective_id);
+  
   $scope.add_edit_ask = function(ask) {
     $scope.current_ask = {
       title: "",
       description: "",
       objective_id: $scope.objective_id,
-      project_id: $scope.project_id
+      project_id: $scope.project_id,
+      outcome_id: ""
     };
 
     if(ask){

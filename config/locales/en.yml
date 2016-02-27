@@ -97,6 +97,7 @@ en:
                     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       objective_cnt: 'Objective'
+      outcome_cnt: "Interim Outcome"
     overview:     # http://localhost:3000/projects/1#overview
       projects: "Projects"
       overview: "Overview"
@@ -945,6 +946,7 @@ en:
       ask_placeholder: "Write ask"
       person_in_charge: "Person In Charge"
       person_in_charge_placeholder: "Write Person In Charge"
+      outcome: "Interim Outcome"
       execution: "Execution"
       save_button: "Save"
       cancel_button: "Cancel"

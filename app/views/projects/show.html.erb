@@ -158,14 +158,6 @@
                               <%= link_to objective_link_text(objective, :activities), stage5_project_objective_path(@project, objective), target: "_self" %>
                             </td>
                           </tr>
-                          <tr title="<%= title_stage 3 %>">
-                            <td class="text-center td-w-10p">
-                              <i class="<%= icon_class objective.asks %>"></i>
-                            </td>
-                            <td>
-                              <%= link_to objective_link_text(objective, :asks), stage6_project_objective_path(@project, objective), target: "_self" %>
-                            </td>
-                          </tr>
 <!--                           <tr title="You must complete the previous step">
                             <td class="text-center td-w-10p">
                               <i class="fa fa-lock"></i>
@@ -176,6 +168,33 @@
                           </tr> -->
                         </tbody>
                       </table>
+                    <% objective.outcomes.each_with_index do |outcome, i| %>
+              <div class="panel-body">
+                  <div class="panel panel-info">
+                    <div class="panel-heading">
+                      <table class="table_goal_outcomes">
+                      <tr title="Stage Uninitiated or Incomplete">
+                        <td><%= t('.outcome_cnt') %> <%= i + 1 %> / <%= outcome.description %></td>
+                      </tr>
+                      </table>
+                    </div>
+                    <div id="goal-outcome-<%= outcome.id %>">
+                      <table class="table">
+                        <tbody>
+                          <tr title="<%= title_stage 3 %>">
+                            <td class="text-center td-w-10p">
+                              <i class="<%= icon_class objective.asks %>"></i>
+                            </td>
+                            <td>
+                              <%= link_to outcome_link_text(outcome, :asks), stage6_project_objective_path(@project, objective), target: "_self" %>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+              </div>
+              <% end %>  
                     </div>
                 </div>
               </div>
