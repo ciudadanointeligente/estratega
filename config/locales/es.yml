@@ -738,6 +738,8 @@ es:
       activities: "Actividades"
       description: "Descripción"
       outcomes: "Resultados"
+      actors: "Actores"
+      type: "Tipo de Actividad"
       actions: "Acciones"
       date: "Fecha"
       progress: "% Éxito"

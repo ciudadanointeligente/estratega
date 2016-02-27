@@ -166,6 +166,17 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     }
     return names
   }
+  
+  $scope.get_actor_names = function(actor_ids, actors){
+    var names = []
+    for(k in actor_ids) {
+      for(a in actors) {
+        if(actors[a].id == actor_ids[k])
+          names.push(actors[a].name)
+      }
+    }
+    return names
+  }
 
   $scope.add_edit_indicator = function(activity) {
     $scope.activity = activity;

@@ -4,10 +4,6 @@
   </div>
   <div class="modal-body">
     <div class="form-group">
-      <label for="title"><%= t('.title') %></label>
-      <input name="title" class="form-control" ng-model="current_activity.title" placeholder="<%= t('.title_placeholder') %>">
-    </div>
-    <div class="form-group">
       <label for="description"><%= t('.description') %></label>
       <textarea name="description" class="form-control" ng-model="current_activity.description" placeholder="<%= t('.description_placeholder') %>"></textarea>
     </div>
@@ -21,16 +17,6 @@
       <input type="checkbox" name="completion" class="form-control" ng-model="current_activity.completion"></input>
     </div>
     <div class="form-group">
-      <label for="organizer"><%= t('.event_title') %></label>
-      <input type="text" placeholder="<%= t('.event_title_placeholder') %>" ng-model="current_activity.event_title" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="organizer"><%= t('.organizer') %></label>
-      <select class="form-control" name="organizer" ng-model="current_activity.organizer">
-        <option ng-repeat="o in organizer">{{o}}</option>
-      </select>
-    </div>
-    <div class="form-group">
       <label for="activity_types"><%= t('.activity_types') %></label>
       <select class="form-control" name="activity_types" ng-model="current_activity.activity_types">
         <optgroup ng-repeat="at in activity_types" label="{{at.type}}">
@@ -42,16 +28,6 @@
     <div class="form-group">
       <label for="scheduling"><%= t('.scheduling') %> (Elegida: {{current_activity.scheduling | date:'dd/MM/yyyy'}})</label>
       <input type="date" name="scheduling" class="form-control" ng-model="current_activity.scheduling" placeholder="2000/12/24" min="1900-01-01"></input>
-    </div>
-    <div class="form-group">
-      <label for="outcome"><%= t('.outcome_label') %></label>
-      <select class="form-control" name="outcome_ids" multiple="multiple" ng-multiple="true" ng-model="current_activity.outcome_ids" ng-options="outcome.id as outcome.description for outcome in outcomes">
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="ask"><%= t('.ask_label') %></label>
-      <select class="form-control" name="ask_ids" multiple="multiple" ng-multiple="true" ng-model="current_activity.ask_ids" ng-options="ask.id as ask.description for ask in asks">
-      </select>
     </div>
     <div class="modal-footer">
       <button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: current_activity.title == ''}"><%= t('.save_button') %></button>

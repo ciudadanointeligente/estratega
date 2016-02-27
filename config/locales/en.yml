@@ -662,6 +662,8 @@ en:
       activities: "Activities"
       description: "Description"
       outcomes: "Outcomes"
+      actors: "Actors"
+      type: "Activity Type"
       actions: "Actions"
       download_as_ical: "Downloads activities as iCal"
       error_getting_outcomes: "Error while getting outcomes information"
