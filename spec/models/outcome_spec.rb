@@ -22,4 +22,14 @@ RSpec.describe Outcome, :type => :model do
      expect(outcome.indicator).to eq(indicator)
 
   end
+  it "can have asks" do
+     outcome = create(:outcome)
+     ask = create(:ask)
+     outcome.asks << ask
+     
+     expect(outcome.asks).to include(ask)
+
+  end
+  
+  
 end

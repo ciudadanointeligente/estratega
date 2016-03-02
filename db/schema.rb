@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222210915) do
+ActiveRecord::Schema.define(version: 20160302142309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,9 +29,9 @@ ActiveRecord::Schema.define(version: 20160222210915) do
     t.text     "event_title"
   end
 
-  create_table "activities_asks", id: false, force: :cascade do |t|
+  create_table "activities_actors", id: false, force: :cascade do |t|
     t.integer "activity_id", null: false
-    t.integer "ask_id",      null: false
+    t.integer "actor_id",    null: false
   end
 
   create_table "activities_outcomes", id: false, force: :cascade do |t|
@@ -58,11 +58,6 @@ ActiveRecord::Schema.define(version: 20160222210915) do
     t.integer "actor_id", null: false
   end
 
-  create_table "actors_messages", id: false, force: :cascade do |t|
-    t.integer "message_id", null: false
-    t.integer "actor_id",   null: false
-  end
-
   create_table "actors_objectives", id: false, force: :cascade do |t|
     t.integer "actor_id",     null: false
     t.integer "objective_id", null: false
@@ -74,9 +69,12 @@ ActiveRecord::Schema.define(version: 20160222210915) do
     t.datetime "updated_at"
     t.integer  "objective_id"
     t.boolean  "execution"
+    t.integer  "outcome_id"
+    t.string   "person_in_charge"
   end
 
   add_index "asks", ["objective_id"], name: "index_asks_on_objective_id", using: :btree
+  add_index "asks", ["outcome_id"], name: "index_asks_on_outcome_id", using: :btree
 
   create_table "indicators", force: :cascade do |t|
     t.string   "owner_name"
@@ -104,8 +102,10 @@ ActiveRecord::Schema.define(version: 20160222210915) do
     t.integer  "ask_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "actor_id"
   end
 
+  add_index "messages", ["actor_id"], name: "index_messages_on_actor_id", using: :btree
   add_index "messages", ["ask_id"], name: "index_messages_on_ask_id", using: :btree
 
   create_table "objectives", force: :cascade do |t|
@@ -157,6 +157,8 @@ ActiveRecord::Schema.define(version: 20160222210915) do
     t.text     "outcome_type_id"
     t.text     "actor_type_id"
     t.string   "categorie"
+    t.integer  "order_number"
+    t.integer  "container"
   end
 
   add_index "outcomes", ["objective_id"], name: "index_outcomes_on_objective_id", using: :btree
@@ -276,8 +278,10 @@ ActiveRecord::Schema.define(version: 20160222210915) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "asks", "objectives"
+  add_foreign_key "asks", "outcomes"
   add_foreign_key "indicators", "asks"
   add_foreign_key "indicators", "objectives"
   add_foreign_key "indicators", "outcomes"
+  add_foreign_key "messages", "actors"
   add_foreign_key "permissions", "projects"
 end

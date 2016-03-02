@@ -1,13 +1,8 @@
 json.array!(@asks) do |ask|
-  json.extract! ask, :id, :description, :objective_id, :execution
+  json.extract! ask, :id, :description, :objective_id, :execution, :person_in_charge, :outcome_id
   messages = []
   ask.messages.each do |m|
-    obj = {id: m.id, description: m.description, executed: m.executed, actors:[]}
-    actors = []
-    m.actors.each do |a|
-      obj[:actors] << { name: a.name }
-    end
-
+    obj = {id: m.id, description: m.description, executed: m.executed, actor: m.actor, created_at: m.created_at}
     messages << obj
   end
   json.messages messages

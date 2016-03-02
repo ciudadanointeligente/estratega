@@ -33,14 +33,16 @@ class ActivitiesController < ApplicationController
   def create
     @activity = @objective.activities.create(activity_params)
     @activity.outcome_ids = params[:outcome_ids]
-    @activity.ask_ids = params[:ask_ids]
+    #@activity.ask_ids = params[:ask_ids]
+    @activity.actor_ids = params[:actor_ids]
     respond_with(@project, @objective, @activity)
   end
 
   def update
     @activity.update(activity_params)
     @activity.outcome_ids = params[:outcome_ids]
-    @activity.ask_ids = params[:ask_ids]
+    #@activity.ask_ids = params[:ask_ids]
+    @activity.actor_ids = params[:actor_ids]
     respond_with(@project, @objective, @activity)
   end
 
@@ -80,7 +82,8 @@ class ActivitiesController < ApplicationController
 
     def activity_params
       params[:activity][:outcome_ids] ||= []
-      params[:activity][:ask_ids] ||= []
-      params.require(:activity).permit(:title, :description, :completion, :scheduling, :objective_id, :organizer, :activity_types, :event_title, outcome_ids: [], ask_ids: [])
+      #params[:activity][:ask_ids] ||= []
+      params[:activity][:actor_ids] ||= []
+      params.require(:activity).permit(:title, :description, :completion, :scheduling, :objective_id, :organizer, :activity_types, :event_title, outcome_ids: [], ask_ids: [], actor_ids: [])
     end
 end

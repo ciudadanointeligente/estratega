@@ -1,4 +1,4 @@
-app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs", function ($scope, $http, $aside, $location, $attrs) {
+app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs",  function ($scope, $http, $aside, $location, $attrs) {
   $scope.project_id = $location.path().split("/")[2];
   $scope.objective_id = $location.path().split("/")[4];
   $scope.messages = {response: "", message: ""}
@@ -16,6 +16,7 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/outcomes.json')
     .success(function (data) {
       $scope.outcomes = data;
+      init_dnd_list();
     })
     .error(function (){
       $scope.messages = {response: false, message: $attrs.errorgettingoutcomes }
@@ -108,8 +109,6 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   }
     
   $scope.add_edit_indicator = function(outcome) {
-    console.log(outcome);
-    console.log(outcome.indicator_id);
     $scope.outcome = outcome;
     if(outcome.indicator_id) {
       $http.get('/outcomes/'+outcome.id+'/indicators/'+outcome.indicator_id)
@@ -169,4 +168,30 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
 
   }
   
+  $scope.getInclude = function(){
+    if(true){
+        return "item.htm";
+    }
+    return "";
+  }
+  
+  var init_dnd_list = function() {
+    
+    $scope.drag_outcomes={
+        selected: null,
+        templates: [
+            {type: "container", id: 1,"label":"Agrupador", elements: [[]]}
+            
+        ],
+        dropzones:[$scope.outcomes]
+    };
+    
+    $scope.$watch('drag_outcomes.dropzones', function(model) {
+        $scope.modelAsJson = angular.toJson(model, true);
+        console.log('model updated')
+        console.log($scope.drag_outcomes.dropzones)
+    }, true);
+
+  };
+
 }]);

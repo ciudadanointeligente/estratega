@@ -188,9 +188,7 @@
                         <%= m.description %>
                         <p><%= t('.actors') %></p>
                         <ul>
-                          <% m.actors.each do |a| %>
-                          <li><%= a.name %></li>
-                          <% end %>
+                          <li><%= m.actor ? m.actor.name : ""%></li>
                         </ul>
                         <li>Objetivos esperados: <%= get_objective_related ask.objective_id %></li>
                       </li>

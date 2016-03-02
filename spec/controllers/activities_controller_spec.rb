@@ -28,7 +28,7 @@ RSpec.describe ActivitiesController, :type => :controller do
   }
 
   let(:invalid_attributes) {
-    {title: "", description: "Description"}
+    {title: "Title", description: ""}
   }
 
   before(:each) do

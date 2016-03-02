@@ -97,6 +97,7 @@ en:
                     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       objective_cnt: 'Objective'
+      outcome_cnt: "Interim Outcome"
     overview:     # http://localhost:3000/projects/1#overview
       projects: "Projects"
       overview: "Overview"
@@ -541,6 +542,9 @@ en:
       error_updating_outcome: "Error while updating the outcome information"
       error_creating_outcome: "Error while creating the outcome information"
       confirm_delete_outcome: "Are you sure you want to delete this outcome?"
+      theoryofchange: "Theory of Change"
+      outcome_group: "Grouping"
+      theoryofchange_tooltip: "Drag and Drop Interim Outcomes to sort and group them to fit your needs" 
     outcome_modal:  # modal `add new interim outcome` of stage 4
       new_interim_outcome: "New Interim Outcome"
       interim_outcome: "Interim Outcome"
@@ -662,6 +666,8 @@ en:
       activities: "Activities"
       description: "Description"
       outcomes: "Outcomes"
+      actors: "Actors"
+      type: "Activity Type"
       actions: "Actions"
       download_as_ical: "Downloads activities as iCal"
       error_getting_outcomes: "Error while getting outcomes information"
@@ -683,6 +689,7 @@ en:
       outcome: "Outcome"
       save_button: "Save"
       cancel_button: "Cancel"
+      actors_label: "Select Actor(s)"
     modal_indicator:
       owner_name: "Owner"
       owner_role: "Role"
@@ -940,6 +947,9 @@ en:
       actor: "Actor"
       ask: "Ask"
       ask_placeholder: "Write ask"
+      person_in_charge: "Person In Charge"
+      person_in_charge_placeholder: "Write Person In Charge"
+      outcome: "Interim Outcome"
       execution: "Execution"
       save_button: "Save"
       cancel_button: "Cancel"

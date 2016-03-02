@@ -5,6 +5,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   $scope.outcomes    = [];
   $scope.asks = [];
   $scope.activities = [];
+  $scope.actors = [];
 
   $scope.messages = {response: "", message: ""}
   $scope.organizer = ["Evento Externo", "Evento de la Organización"];
@@ -45,6 +46,17 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         scroll_to_top();
       });
   }
+  
+  function get_actors(project_id, objective_id) {
+    $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/actors.json')
+      .success(function (data){
+        $scope.actors = data;
+      })
+      .error(function (){
+        $scope.messages = { response: false, message: $attrs.errorgettingactors }
+        scroll_to_top();
+      });
+  }
 
   function get_activities(project_id, objective_id) {
     $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/activities.json')
@@ -71,6 +83,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   get_outcomes($scope.project_id, $scope.objective_id);
   get_asks($scope.project_id, $scope.objective_id);
   get_activities($scope.project_id, $scope.objective_id);
+  get_actors($scope.project_id, $scope.objective_id);
 
   $scope.add_edit_activity = function(activity) {
     if (activity) {
@@ -83,7 +96,8 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         scheduling: "",
         objective_id: $scope.objective_id,
         outcome_ids: [],
-        ask_ids: []
+        ask_ids: [],
+        actor_ids: []
       };
 
     $aside.open({
@@ -152,6 +166,17 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     }
     return names
   }
+  
+  $scope.get_actor_names = function(actor_ids, actors){
+    var names = []
+    for(k in actor_ids) {
+      for(a in actors) {
+        if(actors[a].id == actor_ids[k])
+          names.push(actors[a].name)
+      }
+    }
+    return names
+  }
 
   $scope.add_edit_indicator = function(activity) {
     $scope.activity = activity;
@@ -159,7 +184,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       $http.get('/activities/'+activity.id+'/indicators/'+activity.indicator_id)
           .success(function(data){
             $scope.current_indicator = data;
-          })
+          });
     } else
       $scope.current_indicator = {owner_name: "", owner_role: "", expected_results:"", obtained_results: "", settings: "", percentage: ""};
 
@@ -170,15 +195,15 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       scope: $scope,
       controller: function ($scope, $modalInstance) {
         $scope.save = function (e) {
-          $scope.messages_modal = { error: false, msg: ''}
+          $scope.messages_modal = { error: false, msg: ''};
           if( !isNaN($scope.current_indicator.percentage) ) {
-              save_or_update_indicator()
+              save_or_update_indicator();
               $modalInstance.dismiss();
               e.stopPropagation();
           } else {
-            $scope.messages_modal = { error: true, msg: 'El porcentaje debe ser un nro válido'}
+            $scope.messages_modal = { error: true, msg: 'El porcentaje debe ser un nro válido'};
           }
-        }
+        };
         $scope.cancel = function (e) {
           $modalInstance.dismiss();
           e.stopPropagation();
@@ -186,7 +211,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       }
     });
 
-  }
+  };
 
   var save_or_update_indicator = function() {
     if($scope.activity.indicator_id) {
@@ -211,7 +236,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
           });
     }
 
-  }
+  };
 
   $scope.get_ical = function(activity) {
     $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/activities/'+activity.id+'/generate_ical')
