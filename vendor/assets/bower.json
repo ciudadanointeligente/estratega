@@ -8,6 +8,7 @@
     "angular-smart-table": "latest",
     "angular-clndr": "latest",
     "introjs": "latest",
-    "angular-i18n": "latest"
+    "angular-i18n": "latest",
+    "angular-drag-and-drop-lists": "latest"
   }
 }

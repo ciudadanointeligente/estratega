@@ -14,8 +14,8 @@ class MessagesController < ApplicationController
 
   def create
     @message = @ask.messages.create(message_params)
-    if !params[:actors].blank?
-      @message.actor_ids = params[:actors]
+    if !params[:actor_id].blank?
+      @message.actor = Actor.find(params[:actor_id])
     end
 
     respond_with(@ask, @message)
@@ -24,8 +24,8 @@ class MessagesController < ApplicationController
   def update
     @message.update(message_params)
 
-    if !params[:actors].blank?
-      @message.actor_ids = params[:actors]
+    if !params[:actor_id].blank?
+      @message.actor = Actor.find(params[:actor_id])
     end
 
     respond_with(@ask, @message)
@@ -46,6 +46,6 @@ class MessagesController < ApplicationController
     end
 
     def message_params
-      params.require(:message).permit(:description, :executed, :ask_id)
+      params.require(:message).permit(:description, :executed, :ask_id, :actor_id)
     end
 end

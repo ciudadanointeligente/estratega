@@ -57,6 +57,13 @@ module ProjectsHelper
       objective.asks.blank? ? "Defina peticiones" : " #{objective.asks.size} Peticiones"
     end
   end
+  
+  def outcome_link_text outcome, element_symbol
+    case element_symbol
+    when :asks
+      outcome.asks.blank? ? "Defina peticiones" : " #{outcome.asks.size} Peticiones"
+    end
+  end
 
   def get_support support_id
     actor = Actor.new
