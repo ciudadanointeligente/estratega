@@ -602,6 +602,9 @@ es:
       error_updating_outcome: "Error al subir la información del resultado"
       error_creating_outcome: "Error al crear la información del resultado"
       confirm_delete_outcome: "Estás seguro que quieres eliminar este resultado"
+      theoryofchange: "Teoria de cambio"
+      outcome_group: "Agrupador"
+      theoryofchange_tooltip: "Arrastre los Resultados Intermedios y agrupelos para ordenarlos segun sus necesidades"
     outcome_modal:  # modal `add new interim outcome` of stage 4
       new_interim_outcome: "Nuevo resultado intermedio"
       interim_outcome: "Resultado intermedio"
