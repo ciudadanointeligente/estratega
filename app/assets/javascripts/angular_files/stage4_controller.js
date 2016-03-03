@@ -54,6 +54,7 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         .success(function (data) {
           $scope.current_outcome = data;
           $scope.outcomes.push(data);
+          init_dnd_list();
         })
         .error(function (){
           $scope.messages = {response: false, message: $attrs.errorcreatingoutcome }
@@ -186,9 +187,25 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         dropzones:[$scope.outcomes]
     };
     
-    $scope.$watch('drag_outcomes.dropzones', function(model) {
-        $scope.modelAsJson = angular.toJson(model, true);
-        console.log('model updated')
+    // $scope.$watch('drag_outcomes.dropzones', function(model) {
+    //     $scope.modelAsJson = angular.toJson(model, true);
+    //     console.log('model updated')
+    //     console.log($scope.drag_outcomes.dropzones)
+    //     console.log(model)
+    // }, true);
+    
+    $scope.$watch('outcomes', function(model) {
+        $scope.drag_outcomes={
+        selected: null,
+        templates: [
+            {type: "container", id: 1,"label":"Agrupador", elements: [[]]}
+            
+        ],
+        dropzones:[$scope.outcomes]
+    };
+        console.log('outcomes:')
+        console.log($scope.outcomes)
+        console.log('model')
         console.log($scope.drag_outcomes.dropzones)
     }, true);
 
