@@ -86,7 +86,7 @@
                     <!--    </tr>-->
                     <!--  </tbody>-->
                     <!--</table>-->
-                    <div class="nestedDemo row ng-scope" ng-controller="stage4Ctrl">
+                    <div class="nestedDemo row ng-scope" >
   
                       <!-- Markup for lists inside the dropzone. It's inside a seperate template
          because it will be used recursively. The dnd-list directive enables
@@ -95,7 +95,6 @@
          assigned to it. If an element was dragged away, you have to remove
          it from the original list yourself using the dnd-moved attribute -->
                       <script type="text/ng-template" id="list.html">
-                        {{list}}
                         <ul dnd-list="list">
                           <li ng-repeat="item in list" 
                           dnd-draggable="item" 
@@ -154,11 +153,10 @@
                             </li>
                           </ul>
                         </div>
-  
                         <!--<div ng-repeat="list in drag_outcomes.dropzones" class="">-->
                         <div class="dropzone">
-                          <div ng-repeat="list in drag_outcomes.dropzones" class="">
-                            <div ng-include="'list.html'"></div>
+                          <div ng-repeat="list in drag_outcomes.dropzones" ng-model="drag_outcomes" class="">
+                            <div  ng-include="'list.html'"></div>
                           </div>
                         </div>
                         <!--</div>-->

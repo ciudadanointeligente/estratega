@@ -52,9 +52,16 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     } else {
       $http.post('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/outcomes', $scope.current_outcome)
         .success(function (data) {
+          get_outcomes($scope.project_id, $scope.objective_id)
           $scope.current_outcome = data;
-          $scope.outcomes.push(data);
-          init_dnd_list();
+          console.log("outcomes before")
+          console.log($scope.outcomes)
+          //$scope.outcomes.push(data);
+          console.log("outcomes after")
+          console.log($scope.outcomes)
+          $scope.drag_outcomes.dropzones = $scope.outcomes
+          $scope.$apply();
+          //init_dnd_list();
         })
         .error(function (){
           $scope.messages = {response: false, message: $attrs.errorcreatingoutcome }
@@ -178,6 +185,7 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   
   var init_dnd_list = function() {
     
+    $scope.drag_outcomes = null;
     $scope.drag_outcomes={
         selected: null,
         templates: [
