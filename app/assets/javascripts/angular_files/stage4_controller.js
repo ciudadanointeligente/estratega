@@ -52,8 +52,16 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     } else {
       $http.post('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/outcomes', $scope.current_outcome)
         .success(function (data) {
+          get_outcomes($scope.project_id, $scope.objective_id)
           $scope.current_outcome = data;
-          $scope.outcomes.push(data);
+          // console.log("outcomes before")
+          // console.log($scope.outcomes)
+          // $scope.outcomes.push(data);
+          // console.log("outcomes after")
+          // console.log($scope.outcomes)
+          $scope.drag_outcomes.dropzones[0].push(data);
+          //$scope.$apply();
+          //init_dnd_list();
         })
         .error(function (){
           $scope.messages = {response: false, message: $attrs.errorcreatingoutcome }
@@ -101,6 +109,14 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     if(confirm($attrs.confirmdeleteoutcome)) {
     $http.delete('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/outcomes/'+outcome.id);
     $scope.outcomes.splice($scope.outcomes.indexOf(outcome),1);
+    console.log('delete outcome:')
+    console.log(outcome)
+    console.log('$scope.outcomes.indexOf(outcome)')
+    console.log($scope.outcomes.indexOf(outcome))
+    console.log('$scope.drag_outcomes.dropzones:')
+    console.log($scope.drag_outcomes.dropzones[0])
+    
+    $scope.drag_outcomes.dropzones[0].splice($scope.drag_outcomes.dropzones[0].indexOf(outcome),1);
     }
   }
 
@@ -175,23 +191,76 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     return "";
   }
   
-  var init_dnd_list = function() {
-    
-    $scope.drag_outcomes={
+  function init_dnd_list() {
+    if ($scope.drag_outcomes) {
+          var obj = JSON.parse($scope.current_objective.theory_of_change);
+          if (obj){
+          if (obj.dropzones){
+            if (obj.dropzones[0]){
+              $scope.drag_outcomes = obj;
+            }
+          }
+          }else{
+            $scope.drag_outcomes.dropzones = [$scope.outcomes];
+          }
+    }else{
+      $scope.drag_outcomes={
         selected: null,
         templates: [
             {type: "container", id: 1,"label":"Agrupador", elements: [[]]}
-            
         ],
         dropzones:[$scope.outcomes]
     };
-    
-    $scope.$watch('drag_outcomes.dropzones', function(model) {
-        $scope.modelAsJson = angular.toJson(model, true);
-        console.log('model updated')
-        console.log($scope.drag_outcomes.dropzones)
+    }
+    $scope.$watch('drag_outcomes', function(model) {
+        if ($scope.current_objective) {
+          $scope.current_objective.theory_of_change = JSON.stringify($scope.drag_outcomes);
+          // console.log('$scope.current_objective.theory_of_change')
+          // console.log($scope.current_objective.theory_of_change)
+          save_or_update_objective();
+        }
     }, true);
-
+  };
+  
+  function get_objective(project_id, objective_id) {
+    $http.get('/projects/' + project_id + '/objectives/' + objective_id + '.json')
+      .success(function (data) {
+        $scope.current_objective = data;
+        init_dnd_list()
+      })
+      .error(function (){
+        $scope.messages = { response: false, message: $attrs.errorgettingobjectives }
+        scroll_to_top();
+      });
+  }
+  get_objective($scope.project_id, $scope.objective_id);
+  
+  var save_or_update_objective = function () {
+    if ($scope.current_objective.id) {
+      $http.put('/projects/' + $scope.project_id + '/objectives/' + $scope.current_objective.id, $scope.current_objective)
+        .success(function (data) {
+          // console.log('saved objective')
+          // console.log(data)
+          //get_solutions($scope.project_id);
+          //get_objectives($scope.project_id);
+        })
+        .error(function (){
+          $scope.messages = { response: false, message: $attrs.errorupdatingobjective }
+          scroll_to_top()
+        });
+    } else {
+      $http.post('/projects/' + $scope.project_id + '/objectives', $scope.current_objective)
+        .success(function (data) {
+          $scope.current_objective = data;
+          //$scope.objectives.push(data);
+          //get_solutions($scope.project_id);
+          //get_objectives($scope.project_id);
+        })
+        .error(function (){
+          $scope.messages = { response: false, message: $attrs.errorcreatingobjective }
+          scroll_to_top();
+        });
+    }
   };
 
 }]);
