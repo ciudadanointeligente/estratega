@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302142309) do
+ActiveRecord::Schema.define(version: 20160311205100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(version: 20160302142309) do
     t.integer  "added_value_score"
     t.integer  "added_value_arguments"
     t.string   "objective_type"
+    t.string   "theory_of_change"
   end
 
   add_index "objectives", ["project_id"], name: "index_objectives_on_project_id", using: :btree
@@ -157,8 +158,6 @@ ActiveRecord::Schema.define(version: 20160302142309) do
     t.text     "outcome_type_id"
     t.text     "actor_type_id"
     t.string   "categorie"
-    t.integer  "order_number"
-    t.integer  "container"
   end
 
   add_index "outcomes", ["objective_id"], name: "index_outcomes_on_objective_id", using: :btree
