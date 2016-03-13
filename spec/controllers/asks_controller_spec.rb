@@ -23,18 +23,25 @@ RSpec.describe AsksController, :type => :controller do
   before(:each) do
     @project = create(:project)
     @objective = create(:objective)
+    @outcome = create(:outcome)
     @ask = create(:ask)
 
     @project.objectives << @objective
     @objective.asks << @ask
+    @outcome.asks << @ask
+    
   end
 
   let(:valid_session) { {} }
 
   describe "GET index" do
     it "assigns all asks related to one particular objective to @asks" do
-      ask2 = create(:ask)
       get :index, {project_id: @project, objective_id: @objective}, valid_session
+      expect(assigns(:asks)).to eq([@ask])
+    end
+    
+    it "assigns all asks related to one particular outcome to @asks" do
+      get :index, {project_id: @project, objective_id: @objective, outcome_id: @outcome}, valid_session
       expect(assigns(:asks)).to eq([@ask])
     end
 

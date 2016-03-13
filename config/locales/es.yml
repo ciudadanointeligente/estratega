@@ -1002,6 +1002,7 @@ es:
     #
     # Stage 6
     #
+  outcomes:
     stage6: # http://localhost:3000/projects/1/objectives/1/stage6
       projects: "Proyectos"
       stage6: "Etapa 6"

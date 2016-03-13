@@ -1,6 +1,7 @@
 app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs", function ($scope, $http, $aside, $location, $attrs) {
   $scope.project_id = $location.path().split("/")[2];
   $scope.objective_id = $location.path().split("/")[4];
+  $scope.outcome_id = $location.path().split("/")[6];
   $scope.messages = {response: "", description: ""}
 
   // //get all actors
@@ -13,8 +14,8 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     scroll_to_top();
   });
 
-  function get_asks(project_id, objective_id) {
-    $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/asks.json')
+  function get_asks(project_id, objective_id,outcome_id) {
+    $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/outcomes/'+outcome_id+'/asks.json')
     .success(function(data){
       $scope.asks = data;
     })
@@ -23,7 +24,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       scroll_to_top();
     });
   }
-  get_asks($scope.project_id, $scope.objective_id);
+  get_asks($scope.project_id, $scope.objective_id, $scope.outcome_id);
   
   function get_outcomes(project_id, objective_id) {
     $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/outcomes.json')
@@ -43,7 +44,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       description: "",
       objective_id: $scope.objective_id,
       project_id: $scope.project_id,
-      outcome_id: ""
+      outcome_id: $scope.outcome_id
     };
 
     if(ask){
@@ -65,7 +66,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
           save_or_update_ask();
           $modalInstance.dismiss();
           e.stopPropagation();
-          get_asks($scope.project_id, $scope.objective_id);
+          get_asks($scope.project_id, $scope.objective_id, $scope.outcome_id);
         }
         $scope.cancel = function(e) {
           $modalInstance.dismiss();
@@ -131,7 +132,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
           save_or_update_msj();
           $modalInstance.dismiss();
           e.stopPropagation();
-          get_asks($scope.project_id, $scope.objective_id);
+          get_asks($scope.project_id, $scope.objective_id, $scope.outcome_id);
         }
         $scope.cancel = function(e) {
           $modalInstance.dismiss();
@@ -164,7 +165,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   $scope.delete_msj = function(ask, msj){
     if(confirm($attrs.confirmdeleteask)) {
       $http.delete('/asks/'+ask.id+'/messages/'+msj.id);
-      get_asks($scope.project_id, $scope.objective_id);
+      get_asks($scope.project_id, $scope.objective_id, $scope.outcome_id);
     }
   }
     
@@ -208,7 +209,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       $http.put('/asks/'+$scope.ask.id+'/indicators/'+$scope.ask.indicator_id, $scope.current_indicator)
           .success(function(){
             $scope.messages = { response: true, message: "Indicator actualizado"}
-            get_asks($scope.project_id, $scope.objective_id);
+            get_asks($scope.project_id, $scope.objective_id, $scope.outcome_id);
           })
           .error(function(){
             $scope.messages = { response: false, message: "Error al actualizar los resultados de información"}
@@ -218,7 +219,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       $http.post('/asks/'+$scope.ask.id+'/indicators/', $scope.current_indicator)
           .success(function(data){
             $scope.messages = { response: true, message: "Indicator añadido"}
-            get_asks($scope.project_id, $scope.objective_id);
+            get_asks($scope.project_id, $scope.objective_id, $scope.outcome_id);
           })
           .error(function(){
             $scope.messages = { response: false, message: "Error al crear el indicador"}

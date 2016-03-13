@@ -2,11 +2,16 @@ class AsksController < ApplicationController
   before_action :set_ask, only: [:show, :edit, :update, :destroy]
   before_action :set_project
   before_action :set_objective
+  before_action :set_outcome, only: :index
+  
 
   respond_to :html, :json
 
   def index
     @asks = @objective.asks
+    if @outcome
+      @asks = @outcome.asks
+    end
     respond_with(@asks)
   end
 
@@ -45,6 +50,12 @@ class AsksController < ApplicationController
 
     def set_objective
       @objective = Objective.find(params[:objective_id])
+    end
+  
+    def set_outcome
+      if params[:outcome_id]
+        @outcome = Outcome.find(params[:outcome_id])
+      end
     end
 
     def set_ask
