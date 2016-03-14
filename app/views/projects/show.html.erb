@@ -92,22 +92,18 @@
       </div>
       <hr>
       <h3 class="mb50">Etapa 2 : El Plan para cada uno de sus Objetivos de política priorizados en detalle</h3>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title"><i class="<%= icon_class_stage 3 %>"></i> <%= t('.stage3_title') %></h4>
-        </div>
+      <!--<div class="panel panel-default">-->
+        <!--<div class="panel-heading">-->
+        <!--  <h4 class="panel-title"><i class="<%= icon_class_stage 3 %>"></i> <%= t('.stage3_title') %></h4>-->
+        <!--</div>-->
           <% if @objectives.count < 1 %>
             <%= t('.stage3_without_objectives').html_safe %>
           <% else %>
             <% @objectives.each_with_index do |objective, i| %>
-              <div class="panel-body">
-                  <div class="panel panel-info">
+              <div class="panel panel-default">
+                  <!--<div class="panel panel-info">-->
                     <div class="panel-heading">
-                      <table class="table_goals">
-                      <tr title="Stage Uninitiated or Incomplete">
-                        <td><%= t('.objective_cnt') %> <%= i + 1 %> / <%= objective.title %></td>
-                      </tr>
-                      </table>
+                      <h4 class="panel-title"><i class="<%= icon_class_objective objective %>"></i> <%= objective.title %></h4>
                     </div>
                     <div id="goal-<%= objective.id %>">
                       <table class="table">
@@ -172,18 +168,14 @@
               <div class="panel-body">
                   <div class="panel panel-info">
                     <div class="panel-heading">
-                      <table class="table_goal_outcomes">
-                      <tr title="Stage Uninitiated or Incomplete">
-                        <td><%= t('.outcome_cnt') %> <%= i + 1 %> / <%= outcome.description %></td>
-                      </tr>
-                      </table>
+                      <h4 class="panel-title"><i class="<%= icon_class_outcome outcome %>"></i> <%= outcome.description %></h4>
                     </div>
                     <div id="goal-outcome-<%= outcome.id %>">
                       <table class="table">
                         <tbody>
                           <tr title="<%= title_stage 3 %>">
                             <td class="text-center td-w-10p">
-                              <i class="<%= icon_class objective.asks %>"></i>
+                              <i class="<%= icon_class outcome.asks %>"></i>
                             </td>
                             <td>
                               <%= link_to outcome_link_text(outcome, :asks), stage6_project_objective_outcome_path(@project, objective, outcome), target: "_self" %>
@@ -196,11 +188,11 @@
               </div>
               <% end %>  
                     </div>
-                </div>
+                <!--</div>-->
               </div>
             <% end %>
           <% end %>
-        </div>
+        <!--</div>-->
 
     </div>
     <div role="tabpanel" class="tab-pane" id="dashboard">

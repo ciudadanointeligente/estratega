@@ -2,10 +2,19 @@ module ProjectsHelper
   @@locked_icon = "fa fa-lock"
   @@unlocked_icon = "fa fa-unlock"
   @@done_icon = "fa fa-check"
+  @@undone_icon = "fa fa-times"
 
   def icon_class element, requirement = true
     return @@locked_icon unless requirement
     element.blank? ? @@unlocked_icon : @@done_icon
+  end
+  
+  def icon_class_objective objective
+    objective.actors.blank? || objective.enabling_factors.blank? || objective.outcomes.blank? || objective.activities.blank? ? @@undone_icon : @@done_icon
+  end
+  
+  def icon_class_outcome outcome
+    outcome.asks.blank? ? @@undone_icon : @@done_icon
   end
 
   def icon_class_stage stage
