@@ -1002,31 +1002,6 @@ es:
     #
     # Stage 6
     #
-  outcomes:
-    stage6: # http://localhost:3000/projects/1/objectives/1/stage6
-      projects: "Proyectos"
-      stage6: "Etapa 6"
-      title: "¿Qué quieren que realicen como organización el actor o los actores claves?"
-      title_description: "Después de haber identificado el público objetivo y los actores claves, es momento de definir la “petición” que es una solicitud a un actor clave o un grupo de actores para que estos lleven a cabo una acción que genere el cumplimiento de los resultados intermedios"
-      subtitle1: "¿Cuál será la petición para cada actor?"
-      subtitle1_explanation: "Una petición debe ser clara, concisa, centrada en el resultado y adaptada a cada actor. Las peticiones también pueden ser entendidas como una solicitud a un actor clave o un grupo de actores para que estos lleven a cabo una acción que genere el cumplimiento de los resultados intermedios."
-      subtitle2: "¿Cuál es la bajada comunicacional de una petición para transmitir la idea central del resultado  intermedio según el o los actores a los que te enfrentes?"
-      subtitle2_explanation: "Un Mensaje es la bajada comunicacional de una petición que debe transmitir la idea central del resultado intermedio según el actor al cual se enfrente"
-      data_entry: "Ingreso de datos"
-      explanation_examples: "Explicaciones y Ejemplos"
-      workshop_tips: "Consejos para el taller"
-      add_button: "Agregar"
-      actor: "Actor"
-      ask: "Petición"
-      actions: "Acciones"
-      execution: "Petición entregada"
-      error_getting_actors: "Error al obtener información de los actores"
-      error_getting_asks: "Error al obtener la información de las peticiones"
-      error_updating_ask: "Error al subir la información de las peticiones"
-      error_creating_ask: "Error al crear la información de las peticiones"
-      confirm_delete_ask: "¿Está seguro que quiere eliminar esta petición?"
-      edit: "Editar"
-      delete: "Eliminar"
     asks_modal: # modal 'add ask' of stage 6
       asks: "Peticiones"
       actor: "Actor"
@@ -1091,6 +1066,32 @@ es:
                       Ofrecer participar en talleres ofrecidos por la ONU y una ONG internacional X
                       </td>
                     </tr>
+
+  outcomes:
+    stage6: # http://localhost:3000/projects/1/objectives/1/stage6
+      projects: "Proyectos"
+      stage6: "Etapa 6"
+      title: "¿Qué quieren que realicen como organización el actor o los actores claves?"
+      title_description: "Después de haber identificado el público objetivo y los actores claves, es momento de definir la “petición” que es una solicitud a un actor clave o un grupo de actores para que estos lleven a cabo una acción que genere el cumplimiento de los resultados intermedios"
+      subtitle1: "¿Cuál será la petición para cada actor?"
+      subtitle1_explanation: "Una petición debe ser clara, concisa, centrada en el resultado y adaptada a cada actor. Las peticiones también pueden ser entendidas como una solicitud a un actor clave o un grupo de actores para que estos lleven a cabo una acción que genere el cumplimiento de los resultados intermedios."
+      subtitle2: "¿Cuál es la bajada comunicacional de una petición para transmitir la idea central del resultado  intermedio según el o los actores a los que te enfrentes?"
+      subtitle2_explanation: "Un Mensaje es la bajada comunicacional de una petición que debe transmitir la idea central del resultado intermedio según el actor al cual se enfrente"
+      data_entry: "Ingreso de datos"
+      explanation_examples: "Explicaciones y Ejemplos"
+      workshop_tips: "Consejos para el taller"
+      add_button: "Agregar"
+      actor: "Actor"
+      ask: "Petición"
+      actions: "Acciones"
+      execution: "Petición entregada"
+      error_getting_actors: "Error al obtener información de los actores"
+      error_getting_asks: "Error al obtener la información de las peticiones"
+      error_updating_ask: "Error al subir la información de las peticiones"
+      error_creating_ask: "Error al crear la información de las peticiones"
+      confirm_delete_ask: "¿Está seguro que quiere eliminar esta petición?"
+      edit: "Editar"
+      delete: "Eliminar"
   user_mailer:
     exist_user_share:
       exist_add_to_share: 'Estas invitado a colaborar con el proyecto:'

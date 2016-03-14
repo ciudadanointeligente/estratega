@@ -919,29 +919,6 @@ en:
     #
     # Stage 6
     #
-    stage6: # http://localhost:3000/projects/1/objectives/1/stage6
-      projects: "Projects"
-      stage6: "Stage 6"
-      title: "What do you want the target audience to do?"
-      title_description: "Your advocacy strategy should describe the main actions that will be conducted in order to contribute to the desired change (interim outcome and advocacy objective). The types of actions are numerous and each action can contribute to different outcomes."
-      subtitle1: "What will the ask for each actor?"
-      subtitle1_explanation: "The Ask should be clear, concise, solution-focused, and tailored to each actor."
-      subtitle2: "What is the communication down a request to transmit the thrust of the intermediate result or according to the actors that you face?"
-      subtitle2_explanation: "A message is the communication down a request to transmit the thrust of the intermediate result according to the actor that may confront"
-      data_entry: "Data Entry"
-      explanation_examples: "Explanation & Examples"
-      workshop_tips: "Workshop Tips"
-      add_button: "Add"
-      actor: "Actor"
-      ask: "Ask"
-      actions: "Actions"
-      error_getting_actors: "Error while getting actors information"
-      error_getting_asks: "Error while getting asks information"
-      error_updating_ask: "Error while updating ask information"
-      error_creating_ask: "Error while creating ask information"
-      confirm_delete_ask: "Are you sure you want to delete this ask?"
-      edit: "Edit"
-      delete: "Delete"
     asks_modal: # modal 'add ask' of stage 6
       asks: "Asks"
       actor: "Actor"
@@ -1006,6 +983,30 @@ en:
                       To build their communication skills and knowledge on the issue (offering to participate in workshops to be organized by UN and INGO “X”)
                       </td>
                     </tr>
+  outcomes:
+    stage6: # http://localhost:3000/projects/1/objectives/1/stage6
+      projects: "Projects"
+      stage6: "Stage 6"
+      title: "What do you want the target audience to do?"
+      title_description: "Your advocacy strategy should describe the main actions that will be conducted in order to contribute to the desired change (interim outcome and advocacy objective). The types of actions are numerous and each action can contribute to different outcomes."
+      subtitle1: "What will the ask for each actor?"
+      subtitle1_explanation: "The Ask should be clear, concise, solution-focused, and tailored to each actor."
+      subtitle2: "What is the communication down a request to transmit the thrust of the intermediate result or according to the actors that you face?"
+      subtitle2_explanation: "A message is the communication down a request to transmit the thrust of the intermediate result according to the actor that may confront"
+      data_entry: "Data Entry"
+      explanation_examples: "Explanation & Examples"
+      workshop_tips: "Workshop Tips"
+      add_button: "Add"
+      actor: "Actor"
+      ask: "Ask"
+      actions: "Actions"
+      error_getting_actors: "Error while getting actors information"
+      error_getting_asks: "Error while getting asks information"
+      error_updating_ask: "Error while updating ask information"
+      error_creating_ask: "Error while creating ask information"
+      confirm_delete_ask: "Are you sure you want to delete this ask?"
+      edit: "Edit"
+      delete: "Delete"
   user_mailer:
     exist_user_share:
       exist_add_to_share: 'You are invited to collaborate in the project:'
