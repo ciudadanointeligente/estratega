@@ -39,5 +39,5 @@ User.create!([
   {email: "jbari@votainteligente.cl",password:"pelotar1", encrypted_password: "$2a$10$4f5ZXYSyf5MQs.fNxETl../o.jVVAoL8flqZLC7RK8.RFPyxX1D4y", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: "2016-02-23 13:08:14", sign_in_count: 3, current_sign_in_at: "2016-02-23 18:46:15", last_sign_in_at: "2016-02-23 13:08:14", current_sign_in_ip: "190.160.200.98", last_sign_in_ip: "190.160.200.98", role: nil}
 ])
 Permission.create!([
-  {project_id: 2, user_id: 1, role: 0}
+  {project_id: 2, user_id: 1, role: :owner}
 ])
