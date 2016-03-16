@@ -55,7 +55,7 @@ en:
       project: "Project"
       focus_area: "Focus Area"
       actions: "Actions"
-      public: "Public"
+      public: "Public project"
       guide_me: "Guide Me"
       step_one: "To begin working we create a <strong>New Project</strong>"
       step_two: "In these tabs you will see the projects in which you work <strong>(My project)</strong> and shared community projects <strong>(Other projects)</strong>"

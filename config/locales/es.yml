@@ -57,7 +57,7 @@ es:
       project: "Proyecto"
       focus_area: "Área de focalización"
       actions: "Acciones"
-      public: "Público"
+      public: "Proyecto público"
       guide_me: "Guíame"
       step_one: "Para comenzar a trabajar se debe crear un <strong>Nuevo proyecto</strong>"
       step_two: "En estas pestañas podrás ver los proyectos en los que estas trabajando <strong>(Mis proyectos)</strong> y proyectos comunitarios compartidos <strong>(Otros proyectos)</strong>"
