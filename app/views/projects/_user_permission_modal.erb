@@ -13,7 +13,7 @@
         <textarea class="form-control" name="message" ng-model="share.message" placeholder="Escribe un mensaje"></textarea>
       </div>
       <hr>
-      <div class="form-group">
+      <div class="form-group" ng-class="{hidden: current_project.members.length < 2}">
         <h4>Compartido con</h4>
         <table class="table">
           <thead>
