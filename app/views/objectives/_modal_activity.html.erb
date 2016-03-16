@@ -7,14 +7,6 @@
       <label for="description"><%= t('.description') %></label>
       <textarea name="description" class="form-control" ng-model="current_activity.description" placeholder="<%= t('.description_placeholder') %>"></textarea>
     </div>
-      <div class="form-group">
-        <label for="outcome"><%= t('.outcomes') %></label>
-        <select name="outcome_id" ng-options="outcome.id as outcome.name for outcome in outcomes" ng-model="current_activity.outcome_id" class="form-control"></select>
-      </div>
-    <div class="form-group">
-      <label for="completion"><%= t('.completion') %></label>
-      <input type="checkbox" name="completion" class="form-control" ng-model="current_activity.completion"></input>
-    </div>
     <div class="form-group">
       <label for="activity_types"><%= t('.activity_types') %></label>
       <select class="form-control" name="activity_types" ng-model="current_activity.activity_types">
@@ -23,6 +15,10 @@
           <option ng-repeat="o in at.values">{{o}}</option>
         </optgroup>
       </select>
+    </div>
+    <div class="form-group">
+      <label for="actors"><%= t('.actors') %></label>
+      <select name="actor_ids" multiple="multiple" ng-multiple="true" ng-options="actor.id as actor.name for actor in actors" ng-model="current_activity.actor_ids" class="form-control"></select>
     </div>
     <div class="form-group">
       <label for="scheduling"><%= t('.scheduling') %> (Elegida: {{current_activity.scheduling | date:'dd/MM/yyyy'}})</label>

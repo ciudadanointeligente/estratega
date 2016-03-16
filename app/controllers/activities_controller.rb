@@ -3,7 +3,7 @@ require 'icalendar'
 class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy, :generate_ical]
   before_action :set_project
-  before_action :set_objective
+  #before_action :set_objective
 
   respond_to :html, :json
 
@@ -31,8 +31,8 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    @activity = @objective.activities.create(activity_params)
-    @activity.outcome_ids = params[:outcome_ids]
+    @activity = @project.activities.create(activity_params)
+    #@activity.outcome_ids = params[:outcome_ids]
     #@activity.ask_ids = params[:ask_ids]
     @activity.actor_ids = params[:actor_ids]
     respond_with(@project, @objective, @activity)
@@ -40,7 +40,7 @@ class ActivitiesController < ApplicationController
 
   def update
     @activity.update(activity_params)
-    @activity.outcome_ids = params[:outcome_ids]
+    #@activity.outcome_ids = params[:outcome_ids]
     #@activity.ask_ids = params[:ask_ids]
     @activity.actor_ids = params[:actor_ids]
     respond_with(@project, @objective, @activity)
@@ -81,9 +81,11 @@ class ActivitiesController < ApplicationController
     end
 
     def activity_params
-      params[:activity][:outcome_ids] ||= []
+      #params[:activity][:outcome_ids] ||= []
       #params[:activity][:ask_ids] ||= []
-      params[:activity][:actor_ids] ||= []
-      params.require(:activity).permit(:title, :description, :completion, :scheduling, :objective_id, :organizer, :activity_types, :event_title, outcome_ids: [], ask_ids: [], actor_ids: [])
+      # if params[:activity][:actor_ids]
+      #   params[:activity][:actor_ids] ||= []  
+      # end
+      params.require(:activity).permit(:title, :description, :completion, :scheduling, :organizer, :activity_types, :event_title, actor_ids: [])
     end
 end

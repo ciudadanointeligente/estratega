@@ -4,7 +4,7 @@ class Objective < ActiveRecord::Base
   has_and_belongs_to_many :solutions
   has_and_belongs_to_many :actors
   has_many :outcomes
-  has_many :activities, dependent: :destroy
+  #has_many :activities, dependent: :destroy
   has_many :asks, dependent: :destroy
   has_one :indicator, dependent: :destroy
 

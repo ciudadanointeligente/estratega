@@ -59,7 +59,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   }
 
   function get_activities(project_id, objective_id) {
-    $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/activities.json')
+    $http.get('/projects/'+project_id+'/activities.json')
       .success(function (data) {
         var new_data = []
         data.forEach(function(d){
@@ -121,7 +121,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
 
   var save_or_update_activity = function() {
     if ($scope.current_activity.id) {
-      $http.put('/projects/' + $scope.project_id + '/objectives/' + $scope.objective_id + '/activities/' + $scope.current_activity.id, $scope.current_activity)
+      $http.put('/projects/' + $scope.project_id + '/activities/' + $scope.current_activity.id, $scope.current_activity)
         .success(function (data) {
           // alert success or error
           get_activities($scope.project_id, $scope.objective_id);
@@ -132,7 +132,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
           scroll_to_top();
         });
     } else {
-      $http.post('/projects/' + $scope.project_id + '/objectives/' + $scope.objective_id + '/activities', $scope.current_activity)
+      $http.post('/projects/' + $scope.project_id + '/activities', $scope.current_activity)
         .success(function (data) {
           $scope.current_activity = data;
           get_activities($scope.project_id, $scope.objective_id);
@@ -147,7 +147,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
 
   $scope.delete_activity = function (activity) {
     if (confirm($attrs.confirmdeleteactivity)) {
-      $http.delete('/projects/' + $scope.project_id + '/objectives/' + $scope.objective_id + '/activities/' + activity.id);
+      $http.delete('/projects/' + $scope.project_id + '/activities/' + activity.id);
       $scope.activities.splice($scope.activities.indexOf(activity), 1);
     }
   }
@@ -239,7 +239,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   };
 
   $scope.get_ical = function(activity) {
-    $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/activities/'+activity.id+'/generate_ical')
+    $http.get('/projects/'+$scope.project_id+'/activities/'+activity.id+'/generate_ical')
         .success( function(data){
           var blob = new Blob([data], {type: "text/calendar; charset=UTF-8;"})
           var url = window.URL.createObjectURL(blob);
@@ -255,7 +255,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   }
 
   $scope.get_full_calendar = function() {
-    $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/generate_massive_ical')
+    $http.get('/projects/'+$scope.project_id+'/generate_massive_ical')
         .success( function(data){
           var blob = new Blob([data], {type: "text/calendar; charset=UTF-8;"})
           var url = window.URL.createObjectURL(blob);
@@ -280,7 +280,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   };
 
   function draw_event_calendar(proj_id, obj_id) {
-    $http.get('/projects/'+proj_id+'/objectives/'+obj_id+'/activities.json')
+    $http.get('/projects/'+proj_id+'/activities.json')
       .success(function (data) {
         $scope.events = []
         data.forEach(function(d){
