@@ -103,6 +103,9 @@ en:
       overview: "Overview"
       empty: "( empty field )"
       uncreated: "( uncreated )"
+      interim_outcomes: "Interim Outcomes"
+      interim_outcome: "interim outcome"
+      type_interim_outcome: "Interim outcome type"
     dashboard:    # http://localhost:3000/projects/1#dashboard
       activities: "Activities"
       successful_activities: "successful activities"

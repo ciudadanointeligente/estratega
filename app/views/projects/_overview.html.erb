@@ -134,11 +134,11 @@
                   <p></p>
                 <% else %>
                   <div class="separator"></div>
-                  <h4>Metas Intermedias</h4>
+                  <h4><%= t('.interim_outcomes')%></h4>
                     <% objective.outcomes.each_with_index do |outcome, i| %>
-                      <span class='blue'>Meta Intermedia <%= i+1 %>. </span><b><%= outcome.description.presence || t('.empty') %></b>
+                      <span class='blue'><%= t('.interim_outcome')%> <%= i+1 %>. </span><b><%= outcome.description.presence || t('.empty') %></b>
                     <ul style="list-style-type:disc">
-                      <li>Tipo de Meta Intermedia: <%= outcome.outcome_type_id %></li>
+                      <li><%= t('.type_interim_outcomes')%>: <%= outcome.outcome_type_id %></li>
                       <!-- <li>Actor type: <%= outcome.actor_type_id %></li> -->
                     </ul>
                   <% end %>

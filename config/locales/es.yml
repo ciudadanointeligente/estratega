@@ -101,6 +101,9 @@ es:
       empty: "( Sin datos )"
       uncreated: "( No creado )"
       actors: Actores
+      interim_outcomes: "Resultados Intermedios"
+      interim_outcome: "Resultado intermedio"
+      type_interim_outcome: "Tipo de Resultado intermedio"
     dashboard:    # http://localhost:3000/projects/1#dashboard
       activities: "Actividades"
       successful_activities: "Actividades exitosas"
