@@ -2,7 +2,7 @@ class ObjectivesController < ApplicationController
   before_action :set_objective, only: [:show, :edit, :update, :actors, :update_ww, :destroy, :destroy_ww, :outcomes, :generate_massive_ical]
   before_action :set_project
 
-  respond_to :html, :json
+  respond_to :html, :json, :csv
 
   def index
     @objectives = Objective.where(project_id: params[:project_id])
@@ -41,7 +41,9 @@ class ObjectivesController < ApplicationController
   end
 
   def actors
-    respond_with(@objective.actors)
+    @actors = @objective.actors
+    @filename = "#{t('objectives.stage3.all_actors')} - #{@objective.title} - #{Date.today.to_formatted_s(:db)}.csv"
+    respond_with(@actors)
   end
 
   def objective_types

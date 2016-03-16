@@ -46,6 +46,8 @@
               <div class="panel-heading" data-step="2" data-intro="<%= t('.step_two') %>">
                 <button type="button" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle2_explanation') %>"><i class="fa fa-info"></i></button>
                 <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_actor()"><i class="fa fa-user"></i> <%= t('.add_actor_button') %></button>
+               
+                <button type="button" class="btn btn-warning pull-right" onclick="location.href='<%= url_for controller: :objectives, action: :actors, format: :csv %>';" ><i class="fa fa-download"></i></button>
                 <h4 id="actors" class="panel-title"><%= t('.subtitle2') %></h4>
               </div>
             </div>
