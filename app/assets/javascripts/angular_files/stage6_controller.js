@@ -25,7 +25,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     });
   }
   get_asks($scope.project_id, $scope.objective_id, $scope.outcome_id);
-  
+
   function get_outcomes(project_id, objective_id) {
     $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/outcomes.json')
     .success(function(data){
@@ -37,7 +37,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     });
   }
   get_outcomes($scope.project_id, $scope.objective_id);
-  
+
   $scope.add_edit_ask = function(ask) {
     $scope.current_ask = {
       title: "",
@@ -163,12 +163,12 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   }
 
   $scope.delete_msj = function(ask, msj){
-    if(confirm($attrs.confirmdeleteask)) {
+    if(confirm($attrs.confirmdeletemsj)) {
       $http.delete('/asks/'+ask.id+'/messages/'+msj.id);
       get_asks($scope.project_id, $scope.objective_id, $scope.outcome_id);
     }
   }
-    
+
   $scope.add_edit_indicator = function(ask) {
     $scope.ask = ask;
     if(ask.indicator_id) {
@@ -203,7 +203,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     });
 
   }
-  
+
   var save_or_update_indicator = function() {
     if($scope.ask.indicator_id) {
       $http.put('/asks/'+$scope.ask.id+'/indicators/'+$scope.ask.indicator_id, $scope.current_indicator)
@@ -228,6 +228,6 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     }
 
   }
-  
+
 
 }]);

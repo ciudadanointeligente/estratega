@@ -1092,6 +1092,7 @@ es:
       confirm_delete_ask: "¿Está seguro que quiere eliminar esta petición?"
       edit: "Editar"
       delete: "Eliminar"
+      confirm_delete_msj: "¿Está seguro que quiere eliminar este mensaje?"
   user_mailer:
     exist_user_share:
       exist_add_to_share: 'Estas invitado a colaborar con el proyecto:'
