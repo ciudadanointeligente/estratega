@@ -29,8 +29,8 @@ RSpec.describe Project, :type => :model do
       @project.activities << activity_two
   
       expect(Icalendar.parse(@project.as_ical).first.events.size).to eq(2)
-      expect(Icalendar.parse(@project.as_ical).first.events.first.dtstart).to eq(activity_one.scheduling)
-      expect(Icalendar.parse(@project.as_ical).first.events.last.dtstart).to eq(activity_two.scheduling)
+      expect(Icalendar.parse(@project.as_ical).first.events.first.dtstart).to eq(activity_one.start_date)
+      expect(Icalendar.parse(@project.as_ical).first.events.last.dtstart).to eq(activity_two.start_date)
     end
   end
   

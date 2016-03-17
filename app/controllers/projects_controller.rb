@@ -107,16 +107,16 @@ class ProjectsController < ApplicationController
           end
         end
 
-        if !ac.scheduling.blank?
-          if ac.scheduling.to_datetime < today
+        if !ac.start_date.blank?
+          if ac.start_date.to_datetime < today
             @outcomes_with_overdue_activities = @outcomes_with_overdue_activities + 1
-          elsif ac.scheduling.to_datetime > near_future
+          elsif ac.start_date.to_datetime > near_future
             @outcomes_without_upcoming_activities = @outcomes_without_upcoming_activities + 1
           end
 
-          if ( ac.scheduling.to_datetime < today && ac.completion == false )
+          if ( ac.start_date.to_datetime < today && ac.completion == false )
             @overdue_activities = @overdue_activities + 1
-          elsif ( ac.scheduling.to_datetime > today && ac.completion == false )
+          elsif ( ac.start_date.to_datetime > today && ac.completion == false )
             @unfinished_activities = @unfinished_activities + 1
           end
           # ac.outcomes.each do |outcome|
@@ -127,34 +127,34 @@ class ProjectsController < ApplicationController
             @completed_activities = @completed_activities + 1
           end
 
-          if ac.scheduling.to_datetime > today
+          if ac.start_date.to_datetime > today
             @upcoming_activities << ac
           end
 
-          if ( ac.scheduling.strftime("%Y") == today.strftime("%Y") )
-            if ac.scheduling.strftime("%B") == "January"
+          if ( ac.start_date.strftime("%Y") == today.strftime("%Y") )
+            if ac.start_date.strftime("%B") == "January"
               @current_state_per_objective[0] = @current_state_per_objective[0] + 1
-            elsif ac.scheduling.strftime("%B") == "February"
+            elsif ac.start_date.strftime("%B") == "February"
               @current_state_per_objective[1] = @current_state_per_objective[1] + 1
-            elsif ac.scheduling.strftime("%B") == "March"
+            elsif ac.start_date.strftime("%B") == "March"
               @current_state_per_objective[2] = @current_state_per_objective[2] + 1
-            elsif ac.scheduling.strftime("%B") == "April"
+            elsif ac.start_date.strftime("%B") == "April"
               @current_state_per_objective[3] = @current_state_per_objective[3] + 1
-            elsif ac.scheduling.strftime("%B") == "May"
+            elsif ac.start_date.strftime("%B") == "May"
               @current_state_per_objective[4] = @current_state_per_objective[4] + 1
-            elsif ac.scheduling.strftime("%B") == "June"
+            elsif ac.start_date.strftime("%B") == "June"
               @current_state_per_objective[5] = @current_state_per_objective[5] + 1
-            elsif ac.scheduling.strftime("%B") == "July"
+            elsif ac.start_date.strftime("%B") == "July"
               @current_state_per_objective[6] = @current_state_per_objective[6] + 1
-            elsif ac.scheduling.strftime("%B") == "August"
+            elsif ac.start_date.strftime("%B") == "August"
               @current_state_per_objective[7] = @current_state_per_objective[7] + 1
-            elsif ac.scheduling.strftime("%B") == "September"
+            elsif ac.start_date.strftime("%B") == "September"
               @current_state_per_objective[8] = @current_state_per_objective[8] + 1
-            elsif ac.scheduling.strftime("%B") == "October"
+            elsif ac.start_date.strftime("%B") == "October"
               @current_state_per_objective[9] = @current_state_per_objective[9] + 1
-            elsif ac.scheduling.strftime("%B") == "November"
+            elsif ac.start_date.strftime("%B") == "November"
               @current_state_per_objective[10] = @current_state_per_objective[10] + 1
-            elsif ac.scheduling.strftime("%B") == "December"
+            elsif ac.start_date.strftime("%B") == "December"
               @current_state_per_objective[11] = @current_state_per_objective[11] + 1
             end
           end

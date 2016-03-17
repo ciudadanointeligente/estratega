@@ -21,9 +21,12 @@ class Project < ActiveRecord::Base
   def as_ical
     cal = Icalendar::Calendar.new
     self.activities.each do |a|
-      if !a.scheduling.blank?
+      if !a.start_date.blank?
         event = Icalendar::Event.new
-        event.dtstart = a.scheduling
+        event.dtstart = a.start_date
+        unless a.end_date.blank?
+          event.dtend = a.end_date
+        end
         event.summary = a.title
         event.description = a.description
         cal.add_event(event)

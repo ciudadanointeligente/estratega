@@ -686,6 +686,8 @@ en:
       organizer: "Organizer"
       activity_types: "Activity types"
       scheduling: "Scheduling"
+      start_date: "Start Date"
+      end_date: "End Date"
       outcome: "Outcome"
       save_button: "Save"
       cancel_button: "Cancel"

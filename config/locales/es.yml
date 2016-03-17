@@ -764,6 +764,8 @@ es:
       organizer: "Tipo de evento"
       activity_types: "Tipos de actividades"
       scheduling: "Fecha"
+      start_date: "Fecha de Inicio"
+      end_date: "Fecha de Fin"
       outcome: "Resultado"
       outcome_label: "Seleccione Resultado(s) intermedio(s)"
       ask_label: "Seleccione Petición(es)"

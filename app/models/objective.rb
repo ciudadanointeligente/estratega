@@ -13,18 +13,18 @@ class Objective < ActiveRecord::Base
     return objective_type
   end
 
-  def as_ical
-    cal = Icalendar::Calendar.new
-    self.activities.each do |a|
-      if !a.scheduling.blank?
-        event = Icalendar::Event.new
-        event.dtstart = a.scheduling
-        event.summary = a.title
-        event.description = a.description
-        cal.add_event(event)
-      end
-    end
-    cal.publish
-    return cal.to_ical
-  end
+  # def as_ical
+  #   cal = Icalendar::Calendar.new
+  #   self.activities.each do |a|
+  #     if !a.scheduling.blank?
+  #       event = Icalendar::Event.new
+  #       event.dtstart = a.scheduling
+  #       event.summary = a.title
+  #       event.description = a.description
+  #       cal.add_event(event)
+  #     end
+  #   end
+  #   cal.publish
+  #   return cal.to_ical
+  # end
 end

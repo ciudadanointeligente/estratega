@@ -7,11 +7,11 @@ FactoryGirl.define do
     association :project, factory: :project
 
     factory :activity_one do
-      scheduling DateTime.now + 1.day
+      start_date DateTime.now + 1.day
     end
     
     factory :activity_two do
-      scheduling DateTime.now + 2.day
+      start_date DateTime.now + 2.day
     end
     
     factory :invalid_activity do

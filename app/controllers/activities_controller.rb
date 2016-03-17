@@ -55,17 +55,20 @@ class ActivitiesController < ApplicationController
   end
 
   def generate_ical
-      cal = Icalendar::Calendar.new
-      event = Icalendar::Event.new
+    cal = Icalendar::Calendar.new
+    event = Icalendar::Event.new
 
-      event.dtstart = @activity.scheduling
-      event.summary = @activity.title
-      event.description = @activity.description
-      cal.add_event(event)
-      cal.publish
-      headers['Content-Type'] = "text/calendar; charset=UTF-8"
-      render :layout => false, :text => cal.to_ical
+    event.dtstart = @activity.start_date
+    if @activity.end_date
+      event.dtend = @activity.end_date
     end
+    event.summary = @activity.title
+    event.description = @activity.description
+    cal.add_event(event)
+    cal.publish
+    headers['Content-Type'] = "text/calendar; charset=UTF-8"
+    render :layout => false, :text => cal.to_ical
+  end
 
   private
     def set_objective
@@ -81,11 +84,9 @@ class ActivitiesController < ApplicationController
     end
 
     def activity_params
-      #params[:activity][:outcome_ids] ||= []
-      #params[:activity][:ask_ids] ||= []
       # if params[:activity][:actor_ids]
       #   params[:activity][:actor_ids] ||= []  
       # end
-      params.require(:activity).permit(:title, :description, :completion, :scheduling, :organizer, :activity_types, :event_title, actor_ids: [])
+      params.require(:activity).permit(:title, :description, :completion, :start_date, :end_date, :organizer, :activity_types, :event_title, actor_ids: [])
     end
 end

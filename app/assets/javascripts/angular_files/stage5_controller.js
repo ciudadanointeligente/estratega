@@ -93,7 +93,8 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         title: "",
         description: "",
         completion: false,
-        scheduling: "",
+        start_date: "",
+        end_date: "",
         objective_id: $scope.objective_id,
         outcome_ids: [],
         ask_ids: [],
@@ -270,13 +271,34 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
   }
 
+var thisMonth = moment().format('YYYY-MM');
+var eventArray = [
+        {
+            title: 'Multi-Day Event',
+            endDate: thisMonth + '-14',
+            startDate: thisMonth + '-10'
+        }, {
+            endDate: thisMonth + '-23',
+            startDate: thisMonth + '-21',
+            title: 'Another Multi-Day Event'
+        }, {
+            date: thisMonth + '-27',
+            title: 'Single Day Event'
+        }
+    ];
   /* calendar */
   $scope.options = {
-      weekOffset: 1,
+    events: eventArray,
+      weekOffset: 0,
       constraints: {
           startDate: moment().subtract(1, 'months').format('YYYY-MM-15'),
           endDate: moment().add(2, 'months').format('YYYY-MM-15')
-      }
+      },
+        multiDayEvents: {
+            singleDay: 'date',
+            endDate: 'endDate',
+            startDate: 'startDate'
+        }
   };
 
   function draw_event_calendar(proj_id, obj_id) {
@@ -284,8 +306,13 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       .success(function (data) {
         $scope.events = []
         data.forEach(function(d){
+          if(d.end_date){
           // $scope.events.push({ date: moment(d.scheduling, 'YYYY-MM-DD').format('LL'), title: d.title })
-          $scope.events.push({ date: moment(d.scheduling, 'YYYY-MM-DD'), title: d.title, fdate: moment(d.scheduling, 'YYYY-MM-DD').format('LL') })
+          //$scope.events.push({ date: moment(d.start_date, 'YYYY-MM-DD'), title: d.title, fdate: moment(d.end_date, 'YYYY-MM-DD').format('LL') })
+            $scope.events.push({color:'#FF0000', startDate: moment(d.start_date, 'YYYY-MM-DD'), endDate: moment(d.end_date, 'YYYY-MM-DD'), title: d.description, fdate: moment(d.start_date, 'YYYY-MM-DD').format('LL') })
+          } else{
+            $scope.events.push({date: moment(d.start_date, 'YYYY-MM-DD'), title: d.description, fdate: moment(d.start_date, 'YYYY-MM-DD').format('LL') })
+          }
         })
       })
       .error(function (){
