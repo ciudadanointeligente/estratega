@@ -55,7 +55,7 @@ en:
       project: "Project"
       focus_area: "Focus Area"
       actions: "Actions"
-      public: "Public"
+      public: "Public project"
       guide_me: "Guide Me"
       step_one: "To begin working we create a <strong>New Project</strong>"
       step_two: "In these tabs you will see the projects in which you work <strong>(My project)</strong> and shared community projects <strong>(Other projects)</strong>"
@@ -103,6 +103,9 @@ en:
       overview: "Overview"
       empty: "( empty field )"
       uncreated: "( uncreated )"
+      interim_outcomes: "Interim Outcomes"
+      interim_outcome: "interim outcome"
+      type_interim_outcome: "Interim outcome type"
     dashboard:    # http://localhost:3000/projects/1#dashboard
       activities: "Activities"
       successful_activities: "successful activities"
@@ -544,7 +547,7 @@ en:
       confirm_delete_outcome: "Are you sure you want to delete this outcome?"
       theoryofchange: "Theory of Change"
       outcome_group: "Grouping"
-      theoryofchange_tooltip: "Drag and Drop Interim Outcomes to sort and group them to fit your needs" 
+      theoryofchange_tooltip: "Drag and Drop Interim Outcomes to sort and group them to fit your needs"
     outcome_modal:  # modal `add new interim outcome` of stage 4
       new_interim_outcome: "New Interim Outcome"
       interim_outcome: "Interim Outcome"
@@ -1009,6 +1012,7 @@ en:
       confirm_delete_ask: "Are you sure you want to delete this ask?"
       edit: "Edit"
       delete: "Delete"
+      confirm_delete_msj: "Are you sure you want to delete this message?"
   user_mailer:
     exist_user_share:
       exist_add_to_share: 'You are invited to collaborate in the project:'

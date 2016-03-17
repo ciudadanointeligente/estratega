@@ -57,7 +57,7 @@ es:
       project: "Proyecto"
       focus_area: "Área de focalización"
       actions: "Acciones"
-      public: "Público"
+      public: "Proyecto público"
       guide_me: "Guíame"
       step_one: "Para comenzar a trabajar se debe crear un <strong>Nuevo proyecto</strong>"
       step_two: "En estas pestañas podrás ver los proyectos en los que estas trabajando <strong>(Mis proyectos)</strong> y proyectos comunitarios compartidos <strong>(Otros proyectos)</strong>"
@@ -101,6 +101,9 @@ es:
       empty: "( Sin datos )"
       uncreated: "( No creado )"
       actors: Actores
+      interim_outcomes: "Resultados Intermedios"
+      interim_outcome: "Resultado intermedio"
+      type_interim_outcome: "Tipo de Resultado intermedio"
     dashboard:    # http://localhost:3000/projects/1#dashboard
       activities: "Actividades"
       successful_activities: "Actividades exitosas"
@@ -1094,6 +1097,7 @@ es:
       confirm_delete_ask: "¿Está seguro que quiere eliminar esta petición?"
       edit: "Editar"
       delete: "Eliminar"
+      confirm_delete_msj: "¿Está seguro que quiere eliminar este mensaje?"
   user_mailer:
     exist_user_share:
       exist_add_to_share: 'Estas invitado a colaborar con el proyecto:'
