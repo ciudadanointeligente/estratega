@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :outcome do
     title "MyText"
     description "MyText"
-	categorie "Political will"
+	  categorie "Political will"
 
     factory :invalid_outcome do
       title ""

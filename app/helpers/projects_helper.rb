@@ -10,7 +10,7 @@ module ProjectsHelper
   end
   
   def icon_class_objective objective
-    objective.actors.blank? || objective.enabling_factors.blank? || objective.outcomes.blank? || objective.activities.blank? ? @@undone_icon : @@done_icon
+    objective.actors.blank? || objective.enabling_factors.blank? || objective.outcomes.blank? || objective.project.activities.blank? ? @@undone_icon : @@done_icon
   end
   
   def icon_class_outcome outcome
@@ -61,7 +61,7 @@ module ProjectsHelper
     when :outcomes
       objective.outcomes.blank? ? "Defina Resultados intermedios" : " #{objective.outcomes.size} Resultados Intermedios"
     when :activities
-      objective.activities.blank? ? "Defina actividades" : " #{objective.activities.size} Actividades"
+      objective.project.activities.blank? ? "Defina actividades" : " #{objective.project.activities.size} Actividades"
     when :asks
       objective.asks.blank? ? "Defina peticiones" : " #{objective.asks.size} Peticiones"
     end

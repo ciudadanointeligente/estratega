@@ -148,7 +148,7 @@
                           </tr> -->
                           <tr title="<%= title_stage 3 %>">
                             <td class="text-center td-w-10p">
-                              <i class="<%= icon_class objective.activities %>"></i>
+                              <i class="<%= icon_class @project.activities %>"></i>
                             </td>
                             <td>
                               <%= link_to objective_link_text(objective, :activities), stage5_project_objective_path(@project, objective), target: "_self" %>

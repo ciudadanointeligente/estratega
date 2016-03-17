@@ -6,7 +6,7 @@ RSpec.describe Objective, :type => :model do
     expect(objective.objective_type_list).to include "Bloqueo de políticas públicas"
   end
 
-  it "count of events is consistent" do
+  xit "count of events is consistent" do
     require 'icalendar'
     objective = create(:objective)
     activity_one = create(:activity_one)

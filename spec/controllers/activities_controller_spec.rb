@@ -25,6 +25,7 @@ RSpec.describe ActivitiesController, :type => :controller do
   # adjust the attributes here as well.
   let(:valid_attributes) {
     {title: "Title", description: "Description"}
+    #FactoryGirl.create(:activity)
   }
 
   let(:invalid_attributes) {
@@ -33,11 +34,12 @@ RSpec.describe ActivitiesController, :type => :controller do
 
   before(:each) do
     @project = create(:project)
-    @objective = create(:objective)
+    #@objective = create(:objective)
     @activity = create(:activity)
 
-    @project.objectives << @objective
-    @objective.activities << @activity
+    #@project.objectives << @objective
+    #@objective.activities << @activity
+    @project.activities << @activity
   end
 
   # This should return the minimal set of values that should be in the session
@@ -46,10 +48,13 @@ RSpec.describe ActivitiesController, :type => :controller do
   let(:valid_session) { {} }
 
   describe "GET index" do
-    it "assigns all activities related to one particular objective to @activities" do
-      activity2 = Activity.create! valid_attributes
-      get :index, {project_id: @project, objective_id: @objective}, valid_session
-      expect(assigns(:activities)).to eq([@activity])
+    it "assigns all activities related to one particular project to @activities" do
+      #activity2 = Activity.create! valid_attributes
+      activity2 = create(:activity)
+      @project.activities << activity2
+      get :index, {project_id: @project}, valid_session
+      expect(assigns(:activities)).to include(@activity)
+      expect(assigns(:activities)).to include(activity2)
     end
 
     # Currently this test doesn't work, need better expects
@@ -61,7 +66,7 @@ RSpec.describe ActivitiesController, :type => :controller do
       # expect(JSON.parse(response.body)).to include "Political will"
     end
 
-    it "should display a filtered activities by outcome_id" do
+    xit "should display a filtered activities by outcome_id" do
       outcome_one     = create :outcome
       outcome_two     = create :outcome
 
@@ -79,24 +84,26 @@ RSpec.describe ActivitiesController, :type => :controller do
 
   describe "GET show" do
     it "assigns the requested activity as @activity" do
-      activity = Activity.create! valid_attributes
-      get :show, {project_id: @project, objective_id: @objective, :id => activity.to_param}, valid_session
-      expect(assigns(:activity)).to eq(activity)
+      #activity = Activity.create! valid_attributes
+      #get :show, {project_id: @project, objective_id: @objective, :id => activity.to_param}, valid_session
+      get :show, {project_id: @project, :id => @activity.to_param}, valid_session
+      expect(assigns(:activity)).to eq(@activity)
     end
   end
 
   describe "GET new" do
     it "assigns a new activity as @activity" do
-      get :new, {project_id: @project, objective_id: @objective}, valid_session
+      #get :new, {project_id: @project, objective_id: @objective}, valid_session
+      get :new, {project_id: @project}, valid_session
       expect(assigns(:activity)).to be_a_new(Activity)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested activity as @activity" do
-      activity = Activity.create! valid_attributes
-      get :edit, {project_id: @project, objective_id: @objective, :id => activity.to_param}, valid_session
-      expect(assigns(:activity)).to eq(activity)
+      #activity = Activity.create! valid_attributes
+      get :edit, {project_id: @project, :id => @activity.to_param}, valid_session
+      expect(assigns(:activity)).to eq(@activity)
     end
   end
 
@@ -104,24 +111,24 @@ RSpec.describe ActivitiesController, :type => :controller do
     describe "with valid params" do
       it "creates a new Activity" do
         expect {
-          post :create, {project_id: @project, objective_id: @objective, :activity => valid_attributes}, valid_session
+          post :create, {project_id: @project, :activity => valid_attributes}, valid_session
         }.to change(Activity, :count).by(1)
       end
 
       it "assigns a newly created activity as @activity" do
-        post :create, {project_id: @project, objective_id: @objective, :activity => valid_attributes}, valid_session
+        post :create, {project_id: @project, :activity => valid_attributes}, valid_session
         expect(assigns(:activity)).to be_a(Activity)
         expect(assigns(:activity)).to be_persisted
       end
 
       it "redirects to the created activity" do
-        post :create, {project_id: @project, objective_id: @objective, :activity => valid_attributes}, valid_session
+        post :create, {project_id: @project, :activity => valid_attributes}, valid_session
         expect(response).to redirect_to([@project, @objective, Activity.last])
       end
 
-      it "creates a many to many relationship with outcomes" do
+      xit "creates a many to many relationship with outcomes" do
         outcome = create(:outcome)
-        post :create, {project_id: @project, objective_id: @objective, :activity => valid_attributes, outcome_ids:[outcome.id]}, valid_session
+        post :create, {project_id: @project, :activity => valid_attributes, outcome_ids:[outcome.id]}, valid_session
         expect(assigns(:activity).outcomes).to include(outcome)
         expect(outcome.activities).to include(assigns(:activity))
       end
@@ -129,12 +136,12 @@ RSpec.describe ActivitiesController, :type => :controller do
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved activity as @activity" do
-        post :create, {project_id: @project, objective_id: @objective, :activity => invalid_attributes}, valid_session
+        post :create, {project_id: @project, :activity => invalid_attributes}, valid_session
         expect(assigns(:activity)).to be_a_new(Activity)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {project_id: @project, objective_id: @objective, :activity => invalid_attributes}, valid_session
+        post :create, {project_id: @project, :activity => invalid_attributes}, valid_session
         expect(response).to render_template("new")
       end
     end
@@ -147,35 +154,35 @@ RSpec.describe ActivitiesController, :type => :controller do
       }
 
       it "updates the requested activity" do
-        activity = Activity.create! valid_attributes
-        put :update, {project_id: @project, objective_id: @objective, :id => activity.to_param, :activity => new_attributes}, valid_session
-        activity.reload
-        expect(activity.attributes).to include(new_attributes.stringify_keys)
+        #activity = Activity.create! valid_attributes
+        put :update, {project_id: @project, :id => @activity.to_param, :activity => new_attributes}, valid_session
+        @activity.reload
+        expect(@activity.attributes).to include(new_attributes.stringify_keys)
       end
 
       it "assigns the requested activity as @activity" do
-        activity = Activity.create! valid_attributes
-        put :update, {project_id: @project, objective_id: @objective, :id => activity.to_param, :activity => valid_attributes}, valid_session
-        expect(assigns(:activity)).to eq(activity)
+        #activity = Activity.create! valid_attributes
+        put :update, {project_id: @project, :id => @activity.to_param, :activity => valid_attributes}, valid_session
+        expect(assigns(:activity)).to eq(@activity)
       end
 
       it "redirects to the activity" do
-        activity = Activity.create! valid_attributes
-        put :update, {project_id: @project, objective_id: @objective, :id => activity.to_param, :activity => valid_attributes}, valid_session
-        expect(response).to redirect_to([@project, @objective, activity])
+        # activity = Activity.create! valid_attributes
+        put :update, {project_id: @project, :id => @activity.to_param, :activity => valid_attributes}, valid_session
+        expect(response).to redirect_to([@project, @activity])
       end
     end
 
     describe "with invalid params" do
       it "assigns the activity as @activity" do
-        activity = Activity.create! valid_attributes
-        put :update, {project_id: @project, objective_id: @objective, :id => activity.to_param, :activity => invalid_attributes}, valid_session
-        expect(assigns(:activity)).to eq(activity)
+        # activity = Activity.create! valid_attributes
+        put :update, {project_id: @project, :id => @activity.to_param, :activity => invalid_attributes}, valid_session
+        expect(assigns(:activity)).to eq(@activity)
       end
 
       it "re-renders the 'edit' template" do
-        activity = Activity.create! valid_attributes
-        put :update, {project_id: @project, objective_id: @objective, :id => activity.to_param, :activity => invalid_attributes}, valid_session
+        # activity = Activity.create! valid_attributes
+        put :update, {project_id: @project, :id => @activity.to_param, :activity => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
       end
     end
@@ -183,16 +190,16 @@ RSpec.describe ActivitiesController, :type => :controller do
 
   describe "DELETE destroy" do
     it "destroys the requested activity" do
-      activity = Activity.create! valid_attributes
+      # activity = Activity.create! valid_attributes
       expect {
-        delete :destroy, {project_id: @project, objective_id: @objective, :id => activity.to_param}, valid_session
+        delete :destroy, {project_id: @project, :id => @activity.to_param}, valid_session
       }.to change(Activity, :count).by(-1)
     end
 
     it "redirects to the activities list" do
-      activity = Activity.create! valid_attributes
-      delete :destroy, {project_id: @project, objective_id: @objective, :id => activity.to_param}, valid_session
-      expect(response).to redirect_to(project_objective_activities_path(@project, @objective))
+      # activity = Activity.create! valid_attributes
+      delete :destroy, {project_id: @project, :id => @activity.to_param}, valid_session
+      expect(response).to redirect_to(project_activities_path(@project))
     end
   end
 

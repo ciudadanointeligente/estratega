@@ -95,7 +95,7 @@
             <% end %>
             <% @upcoming_activities.first(10).each do |ac| %>
             <tr>
-              <td><%= ac.scheduling %></td>
+              <td><%= ac.start_date %></td>
               <td><%= ac.title %></td>
             </tr>
             <% end %>

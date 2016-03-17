@@ -354,5 +354,19 @@ RSpec.describe ProjectsController, :type => :controller do
       expect(assigns(:project).users).to_not include(user_02)
     end
   end
+  
+  describe "GET massive iCals" do
+    require 'icalendar'
+
+    it "returns iCal filetype" do
+      #objective = create(:objective)
+      activity_one = create(:activity_one)
+      @project.activities << activity_one
+
+      get :generate_massive_ical, {id: @project}, valid_session
+
+      expect(response.headers['Content-Type']).to eq("text/calendar; charset=UTF-8")
+    end
+  end
 
 end
