@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :organizations
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  resources :organizations
   root to: 'visitors#index'
 
   resources :actors do
