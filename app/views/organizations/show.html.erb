@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mane:</strong>
+  <%= @organization.mane %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @organization.email %>
+</p>
+
+<p>
+  <strong>Subdomain:</strong>
+  <%= @organization.subdomain %>
+</p>
+
+<p>
+  <strong>Max projects:</strong>
+  <%= @organization.max_projects %>
+</p>
+
+<%= link_to 'Edit', edit_organization_path(@organization) %> |
+<%= link_to 'Back', organizations_path %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :organizations
   root to: 'visitors#index'
 
   resources :actors do
