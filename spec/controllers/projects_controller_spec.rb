@@ -85,6 +85,15 @@ RSpec.describe ProjectsController, :type => :controller do
       expect(assigns(:projects)).to include(public_project)
       expect(assigns(:projects)).to_not include(private_project)
     end
+
+    it "retrieves all projects for admin users" do
+      private_project = create(:project)
+      admin_user = create(:admin_user)
+      sign_in admin_user
+
+      get :index, {public: true}, {"warden.user.user.key" => session["warden.user.user.key"]}
+      expect(assigns(:projects)).to include(private_project)
+    end
   end
 
   describe "GET show" do
