@@ -11,7 +11,8 @@ class UserMailer < Devise::Mailer
     @message = data[:message]
     @token = data[:token]
     @project = data[:project]
-
+    @subdomain = data[:subdomain]
+    
     mail(to: @user.email, subject: 'Added to collaborate')
   end
 
@@ -20,7 +21,8 @@ class UserMailer < Devise::Mailer
 
     @message = data[:message]
     @project = data[:project]
-
+    @subdomain = data[:subdomain]
+    
     mail(to: @user.email, subject: 'Shared a project')
   end
 

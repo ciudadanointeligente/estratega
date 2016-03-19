@@ -313,7 +313,7 @@ class ProjectsController < ApplicationController
         permission = Permission.where(project_id: @project.id ).where(user_id: new_user.id).first
         permission.role = :collaborator
         if permission.save
-          data_send = {email: new_user.email, message: message, token: raw_token, project: @project}
+          data_send = {email: new_user.email, message: message, token: raw_token, project: @project, subdomain: request.subdomain}
           UserMailer.new_user_share(data_send).deliver_now
         end
       else
@@ -324,7 +324,7 @@ class ProjectsController < ApplicationController
         permission = Permission.where(project_id: @project.id ).where(user_id: share_user.id).first
         permission.role = :collaborator
         if permission.save
-          data_send = {email: share_user.email, message: message, project: @project}
+          data_send = {email: share_user.email, message: message, project: @project, subdomain: request.subdomain}
           UserMailer.exist_user_share(data_send).deliver_now
         end
       end

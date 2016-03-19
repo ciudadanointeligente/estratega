@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  # devise_for :user
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  
   resources :organizations
   root to: 'visitors#index'
 
