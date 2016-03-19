@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  wiki_root '/wiki'
   root to: 'visitors#index'
 
   resources :actors do

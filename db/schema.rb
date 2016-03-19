@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314211349) do
+ActiveRecord::Schema.define(version: 20160319015504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -258,12 +258,12 @@ ActiveRecord::Schema.define(version: 20160314211349) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -271,10 +271,38 @@ ActiveRecord::Schema.define(version: 20160314211349) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "role"
+    t.boolean  "admin",                  default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "wiki_page_versions", force: :cascade do |t|
+    t.integer  "page_id",    null: false
+    t.integer  "updator_id"
+    t.integer  "number"
+    t.string   "comment"
+    t.string   "path"
+    t.string   "title"
+    t.text     "content"
+    t.datetime "updated_at"
+  end
+
+  add_index "wiki_page_versions", ["page_id"], name: "index_wiki_page_versions_on_page_id", using: :btree
+  add_index "wiki_page_versions", ["updator_id"], name: "index_wiki_page_versions_on_updator_id", using: :btree
+
+  create_table "wiki_pages", force: :cascade do |t|
+    t.integer  "creator_id"
+    t.integer  "updator_id"
+    t.string   "path"
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "wiki_pages", ["creator_id"], name: "index_wiki_pages_on_creator_id", using: :btree
+  add_index "wiki_pages", ["path"], name: "index_wiki_pages_on_path", unique: true, using: :btree
 
   add_foreign_key "asks", "objectives"
   add_foreign_key "asks", "outcomes"
