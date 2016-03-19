@@ -28,6 +28,7 @@ class ProjectsController < ApplicationController
       public_projects = Project.where(public: :true)
       @projects = public_projects - my_projects
     end
+    @projects = Project.all if current_user.admin?
     respond_with(@projects)
   end
 
