@@ -13,7 +13,7 @@
       </ol>
     </div>
     <% end %>
-  
+
       <div class="container main">
         <div class="row">
           <div id="main_alerts" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-controller="stage4Ctrl" data-errorgettingactortype="<%= t('.error_getting_actor_type') %>" data-errorgettingoutcomes="<%= t('.error_getting_outcomes') %>" data-errorgettingcategories="<%= t('.error_getting_categories') %>"
@@ -55,59 +55,22 @@
                       <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_outcome()"><i class="fa fa-plus-circle"></i>
                         <%=t ( '.add_button') %>
                       </button>
-                      <h4 class="panel-title"><%= t('.subtitle1') %></h4>
+                      <h4 class="panel-title">{{objective_title}} - <%= t('.subtitle1') %></h4>
                     </div>
                   </div>
                   <div class="contenedor">
-                    <!--<table class="table">-->
-                    <!--  <thead>-->
-                    <!--    <tr>-->
-                    <!--      <th><%= t('.interim_outcome') %></th>-->
-                    <!--      <th><%= t('.interim_outcome_type') %></th>-->
-                    <!-- <th><%= t('.actor_type') %></th> -->
-                    <!--      <th data-step="2" data-intro="<%= t('.step_two') %>"><%= t('.activities_number') %></th>-->
-                    <!--      <th class="text-right"><%= t('.actions') %></th>-->
-                    <!--    </tr>-->
-                    <!--  </thead>-->
-                    <!--  <tbody>-->
-                    <!--    <tr ng-repeat="outcome in outcomes">-->
-                    <!--      <td>{{outcome.description}}</td>-->
-                    <!--      <td>{{outcome.outcome_type_id}}</td>-->
-                    <!--<td>{{outcome.actor_type_id}}</td>-->
-                    <!--      <td>{{outcome.no_activities}}</td>-->
-                    <!--      <td class="text-right">-->
-                    <!--        <a href="#" title="Editar" ng-click="add_edit_outcome(outcome)"><i class="fa fa-pencil-square-o"></i></a> -->
-                    <!--        <a href="#" title="Indicators" ng-click="add_edit_indicator(outcome)"><i class="fa fa-line-chart"></i></a>-->
-                    <!--        <a href="#" title="Eliminar" ng-click="delete_outcome(outcome)"><i class="fa fa-trash"></i></a>-->
-                    <!--        </td>-->
-                    <!--    </tr>-->
-                    <!--    <tr>-->
-  
-                    <!--    </tr>-->
-                    <!--  </tbody>-->
-                    <!--</table>-->
                     <div class="nestedDemo row ng-scope" >
-  
-                      <!-- Markup for lists inside the dropzone. It's inside a seperate template
-         because it will be used recursively. The dnd-list directive enables
-         to drop elements into the referenced array. The dnd-draggable directive
-         makes an element draggable and will transfer the object that was
-         assigned to it. If an element was dragged away, you have to remove
-         it from the original list yourself using the dnd-moved attribute -->
                       <script type="text/ng-template" id="list.html">
                         <ul dnd-list="list">
-                          <li ng-repeat="item in list" 
-                          dnd-draggable="item" 
-                          dnd-effect-allowed="move" 
-                          dnd-moved="list.splice($index, 1)" 
-                          dnd-selected="list.selected = item" 
-                          ng-class="{selected: list.selected === item}" 
+                          <li ng-repeat="item in list"
+                          dnd-draggable="item"
+                          dnd-effect-allowed="move"
+                          dnd-moved="list.splice($index, 1)"
+                          dnd-selected="list.selected = item"
+                          ng-class="{selected: list.selected === item}"
                           ng-include="item.description ? 'item.html' : 'container.html'"></li>
                         </ul>
                       </script>
-  
-                      <!-- This template is responsible for rendering a container element. It uses
-         the above list template to render each container column -->
                       <script type="text/ng-template" id="container.html">
                         <div class="panel panel-default">
                           <div class="panel-heading">
@@ -119,8 +82,6 @@
                           </div>
                         </div>
                       </script>
-  
-                      <!-- Template for a normal list item -->
                       <script type="text/ng-template" id="item.html">
                         <div class="item">
                           <table class="table">
@@ -130,39 +91,29 @@
                               </td>
                               <td class="text-right">
                                 <a href="#" title="Editar" ng-click="add_edit_outcome(item)"><i class="fa fa-pencil-square-o"></i></a>
-                                
+
                                 <a href="#" title="Indicators" ng-click="add_edit_indicator(item)"><i class="fa fa-line-chart"></i></a>
-                                
+
                                 <a href="#" title="Eliminar" ng-click="delete_outcome(item)"><i class="fa fa-trash"></i></a>
                               </td>
                             </tr>
                           </table>
                         </div>
                       </script>
-  
-                      <!-- Main area with dropzones and source code -->
+
                       <div class="panel panel-default">
                         <div class="panel-heading">
                           <button type="button" class="btn btn-primary pull-right btn-in-line" data-toggle="tooltip" data-placement="left" title="<%= t('.theoryofchange_tooltip') %>"><i class="fa fa-info"></i></button>
                           <span class="panel-title"><%= t('.theoryofchange') %></span>
-                     <!--     <ul>-->
-                            <!-- The toolbox only allows to copy objects, not move it. After a new
-                     <!--element was created, dnd-copied is invoked and we generate the next id -->
-                     <!--       <li ng-repeat="item in drag_outcomes.templates" dnd-draggable="item" dnd-effect-allowed="copy" dnd-copied="item.id = item.id + 1">-->
-                     <!--         <button type="button" class="btn btn-warning pull-right" ng-click=""><i class="fa fa-plus-circle"></i><%= t('.outcome_group') %> </button>-->
-                     <!--       </li>-->
-                     <!--     </ul>-->
                         </div>
-                        <!--<div ng-repeat="list in drag_outcomes.dropzones" class="">-->
                         <div class="dropzone">
                           <div ng-repeat="list in drag_outcomes.dropzones" ng-model="drag_outcomes" class="">
                             <div  ng-include="'list.html'"></div>
                           </div>
                         </div>
-                        <!--</div>-->
                       </div>
                     </div>
-  
+
                     <nav>
                       <!-- <ul class="pagination">
                       <li>
@@ -181,7 +132,7 @@
                           </a>
                       </li>
                     </ul> -->
-  
+
                     </nav>
                   </div>
                   <%=render "outcome_modal" %>
@@ -197,4 +148,3 @@
           </div>
         </div>
       </div>
-  
