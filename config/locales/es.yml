@@ -284,7 +284,7 @@ es:
     objective_modal: # modal `add objective` of stage 2
       objective: "Objetivo"
       select_solution: "Asociar a solución(es)"
-      select_solution_placeholder: "(Para seleccionar más de ujna solución presione la tecla ctrl al hacer click)"
+      select_solution_placeholder: "(Para seleccionar más de una solución presione la tecla ctrl al hacer click)"
       objective_type: "Tipo de Objetivo"
       objective_placeholder: "Redactar el objetivo"
       prioritized: "Priorizado <br /><span class='mini-explicacion'>(Solo prodrá trabajar con este objetivo si se encuentra priorizado)</span>"
