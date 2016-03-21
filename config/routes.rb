@@ -29,6 +29,10 @@ Rails.application.routes.draw do
     get 'stage2', on: :member
     post 'share', on: :member
     delete 'unshare', on: :member
+    get 'generate_massive_ical', on: :member
+    resources :activities do
+      get 'generate_ical', on: :member
+    end
     resources :objectives do
       get 'stage3', on: :member
       get 'stage4', on: :member
@@ -42,9 +46,7 @@ Rails.application.routes.draw do
           resources :asks
       end
       resources :asks
-      resources :activities do
-        get 'generate_ical', on: :member
-      end
+      
     end
     resources :resources do
       get 'aside', on: :collection

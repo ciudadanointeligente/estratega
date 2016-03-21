@@ -3,7 +3,7 @@ require 'icalendar'
 class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy, :generate_ical]
   before_action :set_project
-  before_action :set_objective
+  #before_action :set_objective
 
   respond_to :html, :json
 
@@ -31,8 +31,8 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    @activity = @objective.activities.create(activity_params)
-    @activity.outcome_ids = params[:outcome_ids]
+    @activity = @project.activities.create(activity_params)
+    #@activity.outcome_ids = params[:outcome_ids]
     #@activity.ask_ids = params[:ask_ids]
     @activity.actor_ids = params[:actor_ids]
     respond_with(@project, @objective, @activity)
@@ -40,7 +40,7 @@ class ActivitiesController < ApplicationController
 
   def update
     @activity.update(activity_params)
-    @activity.outcome_ids = params[:outcome_ids]
+    #@activity.outcome_ids = params[:outcome_ids]
     #@activity.ask_ids = params[:ask_ids]
     @activity.actor_ids = params[:actor_ids]
     respond_with(@project, @objective, @activity)
@@ -55,17 +55,20 @@ class ActivitiesController < ApplicationController
   end
 
   def generate_ical
-      cal = Icalendar::Calendar.new
-      event = Icalendar::Event.new
+    cal = Icalendar::Calendar.new
+    event = Icalendar::Event.new
 
-      event.dtstart = @activity.scheduling
-      event.summary = @activity.title
-      event.description = @activity.description
-      cal.add_event(event)
-      cal.publish
-      headers['Content-Type'] = "text/calendar; charset=UTF-8"
-      render :layout => false, :text => cal.to_ical
+    event.dtstart = @activity.start_date
+    if @activity.end_date
+      event.dtend = @activity.end_date
     end
+    event.summary = @activity.title
+    event.description = @activity.description
+    cal.add_event(event)
+    cal.publish
+    headers['Content-Type'] = "text/calendar; charset=UTF-8"
+    render :layout => false, :text => cal.to_ical
+  end
 
   private
     def set_objective
@@ -81,9 +84,9 @@ class ActivitiesController < ApplicationController
     end
 
     def activity_params
-      params[:activity][:outcome_ids] ||= []
-      #params[:activity][:ask_ids] ||= []
-      params[:activity][:actor_ids] ||= []
-      params.require(:activity).permit(:title, :description, :completion, :scheduling, :objective_id, :organizer, :activity_types, :event_title, outcome_ids: [], ask_ids: [], actor_ids: [])
+      # if params[:activity][:actor_ids]
+      #   params[:activity][:actor_ids] ||= []  
+      # end
+      params.require(:activity).permit(:title, :description, :completion, :start_date, :end_date, :organizer, :activity_types, :event_title, actor_ids: [])
     end
 end

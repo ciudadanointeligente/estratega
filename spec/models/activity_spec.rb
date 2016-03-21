@@ -28,4 +28,16 @@ RSpec.describe Activity, :type => :model do
      
   end
   
+  it "is not valid without a project" do
+    invalid_activity = build(:invalid_activity)
+    expect(invalid_activity).not_to be_valid
+  end
+  
+  it "belongs to a project" do
+     activity = create(:activity)
+     project = create(:project)
+     project.activities << activity
+     expect(activity.project).to eq(project)
+  end
+  
 end

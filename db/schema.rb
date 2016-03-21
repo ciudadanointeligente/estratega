@@ -22,12 +22,16 @@ ActiveRecord::Schema.define(version: 20160319015504) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "objective_id"
-    t.date     "scheduling"
+    t.date     "start_date"
     t.boolean  "completion"
     t.string   "organizer"
     t.string   "activity_types"
     t.text     "event_title"
+    t.integer  "project_id"
+    t.date     "end_date"
   end
+
+  add_index "activities", ["project_id"], name: "index_activities_on_project_id", using: :btree
 
   create_table "activities_actors", id: false, force: :cascade do |t|
     t.integer "activity_id", null: false
@@ -182,6 +186,19 @@ ActiveRecord::Schema.define(version: 20160319015504) do
 
   add_index "policy_problems", ["real_problem_id"], name: "index_policy_problems_on_real_problem_id", using: :btree
 
+  create_table "project_wiki_pages", force: :cascade do |t|
+    t.integer  "creator_id"
+    t.integer  "updator_id"
+    t.string   "path"
+    t.string   "title"
+    t.text     "content"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "project_wiki_pages", ["project_id"], name: "index_project_wiki_pages_on_project_id", using: :btree
+
   create_table "projects", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -304,6 +321,7 @@ ActiveRecord::Schema.define(version: 20160319015504) do
   add_index "wiki_pages", ["creator_id"], name: "index_wiki_pages_on_creator_id", using: :btree
   add_index "wiki_pages", ["path"], name: "index_wiki_pages_on_path", unique: true, using: :btree
 
+  add_foreign_key "activities", "projects"
   add_foreign_key "asks", "objectives"
   add_foreign_key "asks", "outcomes"
   add_foreign_key "indicators", "asks"

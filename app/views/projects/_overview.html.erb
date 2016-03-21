@@ -147,14 +147,14 @@
               <!-- end outcomes -->
               <!-- activity -->
               <div>
-                <% if objective.activities.nil? %>
+                <% if objective.project.activities.nil? %>
                   <p></p>
-                <% elsif objective.activities.count < 1 %>
+                <% elsif objective.project.activities.count < 1 %>
                   <p></p>
                 <% else %>
                   <div class="separator"></div>
                   <h4>Actividades</h4>
-                  <% objective.activities.each_with_index do |activity, i| %>
+                  <% objective.project.activities.each_with_index do |activity, i| %>
                     <span class='blue'>Actividad <%= i+1 %>. </span><b><%= activity.title.presence || t('.empty') %></b>
                     <p><%= activity.description.presence || t('.empty') %></p>
                     <% if !activity.indicator.blank? %>

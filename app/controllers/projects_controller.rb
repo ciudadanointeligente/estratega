@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :solutions, :public, :stage1, :stage2, :share, :overview, :unshare]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :solutions, :public, :stage1, :stage2, :share, :overview, :unshare, :generate_massive_ical]
 
   respond_to :html, :json
 
@@ -94,7 +94,7 @@ class ProjectsController < ApplicationController
       end
 
       @current_state_per_objective = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-      o.activities.each do |ac|
+      @project.activities.each do |ac|
         if !ac.indicator.nil?
           if !ac.indicator.percentage.nil?
             if ( ac.indicator.percentage >= 60 && ac.indicator.percentage <= 100 )
@@ -108,73 +108,73 @@ class ProjectsController < ApplicationController
           end
         end
 
-        if !ac.scheduling.blank?
-          if ac.scheduling.to_datetime < today
+        if !ac.start_date.blank?
+          if ac.start_date.to_datetime < today
             @outcomes_with_overdue_activities = @outcomes_with_overdue_activities + 1
-          elsif ac.scheduling.to_datetime > near_future
+          elsif ac.start_date.to_datetime > near_future
             @outcomes_without_upcoming_activities = @outcomes_without_upcoming_activities + 1
           end
 
-          if ( ac.scheduling.to_datetime < today && ac.completion == false )
+          if ( ac.start_date.to_datetime < today && ac.completion == false )
             @overdue_activities = @overdue_activities + 1
-          elsif ( ac.scheduling.to_datetime > today && ac.completion == false )
+          elsif ( ac.start_date.to_datetime > today && ac.completion == false )
             @unfinished_activities = @unfinished_activities + 1
           end
-          ac.outcomes.each do |outcome|
-            @assigned_outcomes << outcome
-          end
+          # ac.outcomes.each do |outcome|
+          #   @assigned_outcomes << outcome
+          # end
 
           if ac.completion == true
             @completed_activities = @completed_activities + 1
           end
 
-          if ac.scheduling.to_datetime > today
+          if ac.start_date.to_datetime > today
             @upcoming_activities << ac
           end
 
-          if ( ac.scheduling.strftime("%Y") == today.strftime("%Y") )
-            if ac.scheduling.strftime("%B") == "January"
+          if ( ac.start_date.strftime("%Y") == today.strftime("%Y") )
+            if ac.start_date.strftime("%B") == "January"
               @current_state_per_objective[0] = @current_state_per_objective[0] + 1
-            elsif ac.scheduling.strftime("%B") == "February"
+            elsif ac.start_date.strftime("%B") == "February"
               @current_state_per_objective[1] = @current_state_per_objective[1] + 1
-            elsif ac.scheduling.strftime("%B") == "March"
+            elsif ac.start_date.strftime("%B") == "March"
               @current_state_per_objective[2] = @current_state_per_objective[2] + 1
-            elsif ac.scheduling.strftime("%B") == "April"
+            elsif ac.start_date.strftime("%B") == "April"
               @current_state_per_objective[3] = @current_state_per_objective[3] + 1
-            elsif ac.scheduling.strftime("%B") == "May"
+            elsif ac.start_date.strftime("%B") == "May"
               @current_state_per_objective[4] = @current_state_per_objective[4] + 1
-            elsif ac.scheduling.strftime("%B") == "June"
+            elsif ac.start_date.strftime("%B") == "June"
               @current_state_per_objective[5] = @current_state_per_objective[5] + 1
-            elsif ac.scheduling.strftime("%B") == "July"
+            elsif ac.start_date.strftime("%B") == "July"
               @current_state_per_objective[6] = @current_state_per_objective[6] + 1
-            elsif ac.scheduling.strftime("%B") == "August"
+            elsif ac.start_date.strftime("%B") == "August"
               @current_state_per_objective[7] = @current_state_per_objective[7] + 1
-            elsif ac.scheduling.strftime("%B") == "September"
+            elsif ac.start_date.strftime("%B") == "September"
               @current_state_per_objective[8] = @current_state_per_objective[8] + 1
-            elsif ac.scheduling.strftime("%B") == "October"
+            elsif ac.start_date.strftime("%B") == "October"
               @current_state_per_objective[9] = @current_state_per_objective[9] + 1
-            elsif ac.scheduling.strftime("%B") == "November"
+            elsif ac.start_date.strftime("%B") == "November"
               @current_state_per_objective[10] = @current_state_per_objective[10] + 1
-            elsif ac.scheduling.strftime("%B") == "December"
+            elsif ac.start_date.strftime("%B") == "December"
               @current_state_per_objective[11] = @current_state_per_objective[11] + 1
             end
           end
         end
 
         if !ac.activity_types.nil?
-          ac.outcomes.each do |outcome|
-            if !outcome.outcome_type_id.nil?
-              @outcome_activities_usually_associated.each do |option|
-                if option[:type] == outcome.outcome_type_id
-                  option[:values].each do |activity_usually_associated|
-                    if activity_usually_associated == ac.activity_types
-                      @outcomes_with_predefined_activities << outcome
-                    end
-                  end
-                end
-              end
-            end
-          end
+          # ac.outcomes.each do |outcome|
+          #   if !outcome.outcome_type_id.nil?
+          #     @outcome_activities_usually_associated.each do |option|
+          #       if option[:type] == outcome.outcome_type_id
+          #         option[:values].each do |activity_usually_associated|
+          #           if activity_usually_associated == ac.activity_types
+          #             @outcomes_with_predefined_activities << outcome
+          #           end
+          #         end
+          #       end
+          #     end
+          #   end
+          # end
           if @outcomes_with_predefined_activities.size > 0 && @outcomes_size.size > 0
             @percentage_outcomes_with_predefined_activities = ( 100 / @outcomes_size ) / @outcomes_with_predefined_activities.uniq{|x| x.id}.count
           end
@@ -223,24 +223,24 @@ class ProjectsController < ApplicationController
           @outcomes_per_objective << outcome
         end
 
-        o.activities.each do |ac|
-          if !ac.completion
-            ac.outcomes.each do |outcome|
-              @outcomes_not_completed << outcome
-            end
-          end
-          if !ac.indicator.nil?
-              if ( (!ac.indicator.percentage.nil? ? ac.indicator.percentage : 0) >= 60 && (!ac.indicator.percentage.nil? ? ac.indicator.percentage : 0) <= 100 )
-                ac.outcomes.each do |outcome|
-                  @outcomes_achieved << outcome
-                end
-              else
-                ac.outcomes.each do |outcome|
-                  @outcomes_failed << outcome
-                end
-              end
-          end
-        end
+        # o.activities.each do |ac|
+        #   if !ac.completion
+        #     ac.outcomes.each do |outcome|
+        #       @outcomes_not_completed << outcome
+        #     end
+        #   end
+        #   if !ac.indicator.nil?
+        #       if ( (!ac.indicator.percentage.nil? ? ac.indicator.percentage : 0) >= 60 && (!ac.indicator.percentage.nil? ? ac.indicator.percentage : 0) <= 100 )
+        #         ac.outcomes.each do |outcome|
+        #           @outcomes_achieved << outcome
+        #         end
+        #       else
+        #         ac.outcomes.each do |outcome|
+        #           @outcomes_failed << outcome
+        #         end
+        #       end
+        #   end
+        # end
 
         outcomes_diff = @outcomes_per_objective.uniq{|x| x.id} - @outcomes_not_completed.uniq{|x| x.id}
         if outcomes_diff.count > 0
@@ -363,6 +363,12 @@ class ProjectsController < ApplicationController
     @project.users.delete(user_id)
     respond_with(@project)
   end
+  
+  def generate_massive_ical
+    cal = @project.as_ical
+    headers['Content-Type'] = "text/calendar; charset=UTF-8"
+    render :layout => false, :text => cal
+  end  
 
   private
     def set_project

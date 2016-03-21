@@ -59,7 +59,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   }
 
   function get_activities(project_id, objective_id) {
-    $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/activities.json')
+    $http.get('/projects/'+project_id+'/activities.json')
       .success(function (data) {
         var new_data = []
         data.forEach(function(d){
@@ -93,7 +93,8 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         title: "",
         description: "",
         completion: false,
-        scheduling: "",
+        start_date: "",
+        end_date: "",
         objective_id: $scope.objective_id,
         outcome_ids: [],
         ask_ids: [],
@@ -121,7 +122,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
 
   var save_or_update_activity = function() {
     if ($scope.current_activity.id) {
-      $http.put('/projects/' + $scope.project_id + '/objectives/' + $scope.objective_id + '/activities/' + $scope.current_activity.id, $scope.current_activity)
+      $http.put('/projects/' + $scope.project_id + '/activities/' + $scope.current_activity.id, $scope.current_activity)
         .success(function (data) {
           // alert success or error
           get_activities($scope.project_id, $scope.objective_id);
@@ -132,7 +133,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
           scroll_to_top();
         });
     } else {
-      $http.post('/projects/' + $scope.project_id + '/objectives/' + $scope.objective_id + '/activities', $scope.current_activity)
+      $http.post('/projects/' + $scope.project_id + '/activities', $scope.current_activity)
         .success(function (data) {
           $scope.current_activity = data;
           get_activities($scope.project_id, $scope.objective_id);
@@ -147,7 +148,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
 
   $scope.delete_activity = function (activity) {
     if (confirm($attrs.confirmdeleteactivity)) {
-      $http.delete('/projects/' + $scope.project_id + '/objectives/' + $scope.objective_id + '/activities/' + activity.id);
+      $http.delete('/projects/' + $scope.project_id + '/activities/' + activity.id);
       $scope.activities.splice($scope.activities.indexOf(activity), 1);
     }
   }
@@ -239,7 +240,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   };
 
   $scope.get_ical = function(activity) {
-    $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/activities/'+activity.id+'/generate_ical')
+    $http.get('/projects/'+$scope.project_id+'/activities/'+activity.id+'/generate_ical')
         .success( function(data){
           var blob = new Blob([data], {type: "text/calendar; charset=UTF-8;"})
           var url = window.URL.createObjectURL(blob);
@@ -255,7 +256,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   }
 
   $scope.get_full_calendar = function() {
-    $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/generate_massive_ical')
+    $http.get('/projects/'+$scope.project_id+'/generate_massive_ical')
         .success( function(data){
           var blob = new Blob([data], {type: "text/calendar; charset=UTF-8;"})
           var url = window.URL.createObjectURL(blob);
@@ -270,22 +271,48 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         })
   }
 
+var thisMonth = moment().format('YYYY-MM');
+var eventArray = [
+        {
+            title: 'Multi-Day Event',
+            endDate: thisMonth + '-14',
+            startDate: thisMonth + '-10'
+        }, {
+            endDate: thisMonth + '-23',
+            startDate: thisMonth + '-21',
+            title: 'Another Multi-Day Event'
+        }, {
+            date: thisMonth + '-27',
+            title: 'Single Day Event'
+        }
+    ];
   /* calendar */
   $scope.options = {
-      weekOffset: 1,
+    events: eventArray,
+      weekOffset: 0,
       constraints: {
           startDate: moment().subtract(1, 'months').format('YYYY-MM-15'),
           endDate: moment().add(2, 'months').format('YYYY-MM-15')
-      }
+      },
+        multiDayEvents: {
+            singleDay: 'date',
+            endDate: 'endDate',
+            startDate: 'startDate'
+        }
   };
 
   function draw_event_calendar(proj_id, obj_id) {
-    $http.get('/projects/'+proj_id+'/objectives/'+obj_id+'/activities.json')
+    $http.get('/projects/'+proj_id+'/activities.json')
       .success(function (data) {
         $scope.events = []
         data.forEach(function(d){
+          if(d.end_date){
           // $scope.events.push({ date: moment(d.scheduling, 'YYYY-MM-DD').format('LL'), title: d.title })
-          $scope.events.push({ date: moment(d.scheduling, 'YYYY-MM-DD'), title: d.title, fdate: moment(d.scheduling, 'YYYY-MM-DD').format('LL') })
+          //$scope.events.push({ date: moment(d.start_date, 'YYYY-MM-DD'), title: d.title, fdate: moment(d.end_date, 'YYYY-MM-DD').format('LL') })
+            $scope.events.push({color:'#FF0000', startDate: moment(d.start_date, 'YYYY-MM-DD'), endDate: moment(d.end_date, 'YYYY-MM-DD'), title: d.description, fdate: moment(d.start_date, 'YYYY-MM-DD').format('LL') })
+          } else{
+            $scope.events.push({date: moment(d.start_date, 'YYYY-MM-DD'), title: d.description, fdate: moment(d.start_date, 'YYYY-MM-DD').format('LL') })
+          }
         })
       })
       .error(function (){
