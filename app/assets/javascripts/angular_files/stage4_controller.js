@@ -25,7 +25,7 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/outcomes.json')
     .success(function (data) {
       $scope.outcomes = data;
-      init_dnd_list();
+      // init_dnd_list();
     })
     .error(function (){
       $scope.messages = {response: false, message: $attrs.errorgettingoutcomes }
@@ -188,24 +188,24 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
 
   function init_dnd_list() {
     if ($scope.drag_outcomes) {
-          var obj = JSON.parse($scope.current_objective.theory_of_change);
-          if (obj){
-          if (obj.dropzones){
-            if (obj.dropzones[0]){
-              $scope.drag_outcomes = obj;
-            }
+      var obj = JSON.parse($scope.current_objective.theory_of_change);
+      if (obj){
+        if (obj.dropzones){
+          if (obj.dropzones[0]){
+            $scope.drag_outcomes = obj;
           }
-          }else{
-            $scope.drag_outcomes.dropzones = [$scope.outcomes];
-          }
-    }else{
+        }
+      } else {
+        $scope.drag_outcomes.dropzones = [$scope.outcomes];
+      }
+    } else {
       $scope.drag_outcomes={
         selected: null,
         templates: [
             {type: "container", id: 1,"label":"Agrupador", elements: [[]]}
         ],
         dropzones:[$scope.outcomes]
-    };
+      };
     }
     $scope.$watch('drag_outcomes', function(model) {
         if ($scope.current_objective) {
@@ -219,7 +219,7 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     $http.get('/projects/' + project_id + '/objectives/' + objective_id + '.json')
       .success(function (data) {
         $scope.current_objective = data;
-        init_dnd_list()
+        // init_dnd_list()
       })
       .error(function (){
         $scope.messages = { response: false, message: $attrs.errorgettingobjectives }

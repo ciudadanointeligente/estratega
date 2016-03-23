@@ -59,61 +59,30 @@
                     </div>
                   </div>
                   <div class="contenedor">
-                    <div class="nestedDemo row ng-scope" >
-                      <script type="text/ng-template" id="list.html">
-                        <ul dnd-list="list">
-                          <li ng-repeat="item in list"
-                          dnd-draggable="item"
-                          dnd-effect-allowed="move"
-                          dnd-moved="list.splice($index, 1)"
-                          dnd-selected="list.selected = item"
-                          ng-class="{selected: list.selected === item}"
-                          ng-include="item.description ? 'item.html' : 'container.html'"></li>
-                        </ul>
-                      </script>
-                      <script type="text/ng-template" id="container.html">
-                        <div class="panel panel-default">
-                          <div class="panel-heading">
-                            <h4 class="panel-title">{{item.label}} {{item.id}}</h4>
-                          </div>
-                          <div class="container-element box box-blue dropzone">
-                            <div class="" ng-repeat="list in item.elements" ng-include="'list.html'"></div>
-                            <div class="clearfix"></div>
-                          </div>
-                        </div>
-                      </script>
-                      <script type="text/ng-template" id="item.html">
-                        <div class="item">
-                          <table class="table">
-                            <tr>
-                              <td>
-                                {{item.description}}
-                              </td>
-                              <td class="text-right">
-                                <a href="#" title="Editar" ng-click="add_edit_outcome(item)"><i class="fa fa-pencil-square-o"></i></a>
-
-                                <a href="#" title="Indicators" ng-click="add_edit_indicator(item)"><i class="fa fa-line-chart"></i></a>
-
-                                <a href="#" title="Eliminar" ng-click="delete_outcome(item)"><i class="fa fa-trash"></i></a>
-                              </td>
-                            </tr>
-                          </table>
-                        </div>
-                      </script>
-
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <button type="button" class="btn btn-primary pull-right btn-in-line" data-toggle="tooltip" data-placement="left" title="<%= t('.theoryofchange_tooltip') %>"><i class="fa fa-info"></i></button>
-                          <span class="panel-title"><%= t('.theoryofchange') %></span>
-                        </div>
-                        <div class="dropzone">
-                          <div ng-repeat="list in drag_outcomes.dropzones" ng-model="drag_outcomes" class="">
-                            <div  ng-include="'list.html'"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th><%= t('.interim_outcome') %></th>
+                          <th><%= t('.interim_outcome_type') %></th>
+                          <th><%= t('.actor_type') %></th>
+                          <th data-step="2" data-intro="<%= t('.step_two') %>"><%= t('.activities_number') %></th>
+                          <th class="text-right"><%= t('.actions') %></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="outcome in outcomes">
+                          <td>{{outcome.description}}</td>
+                          <td>{{outcome.outcome_type_id}}</td>
+                          <td>{{outcome.actor_type_id}}</td>
+                          <td>{{outcome.no_activities}}</td>
+                          <td class="text-right">
+                            <a href="#" title="Editar" ng-click="add_edit_outcome(outcome)"><i class="fa fa-pencil-square-o"></i></a>
+                            <a href="#" title="Indicators" ng-click="add_edit_indicator(outcome)"><i class="fa fa-line-chart"></i></a>
+                            <a href="#" title="Eliminar" ng-click="delete_outcome(outcome)"><i class="fa fa-trash"></i></a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                     <nav>
                       <!-- <ul class="pagination">
                       <li>
@@ -132,7 +101,6 @@
                           </a>
                       </li>
                     </ul> -->
-
                     </nav>
                   </div>
                   <%=render "outcome_modal" %>
