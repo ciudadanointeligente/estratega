@@ -54,16 +54,25 @@
                   <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_msj(ask)"><i class="fa fa-plus-circle"></i> <%= t('.add_button') %></button>
                 <h4><%= t('.subtitle2') %></h4>
                 <div>
-                  <table class="table compuesta">
+                  <div>
+                    <input type="text" ng-model="searchAsk">
+                  </div>
+                  <table class="table compuesta table-responsive">
                     <thead>
                       <tr>
                         <th></th>
-                        <th>Fecha</th>
+                        <th>
+                          <a href="#" ng-click="sortType = 'created_at'; sortReverse = !sortReverse">
+                            Fecha
+                            <span ng-show="sortType == 'created_at' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'created_at' && sortReverse" class="fa fa-caret-up"></span>
+                          </a>
+                        </th>
                         <th>Actor(es)</th>
                         <th class="text-right">Acciones</th>
                       </tr>
                     </thead>
-                    <tbody ng-repeat="m in ask.messages track by $index">
+                    <tbody ng-repeat="m in ask.messages | orderBy:sortType:sortReverse | filter:searchAsk">
                       <tr>
                         <td width="5%">
                           <i class="fa" ng-class="{'fa-check': m.executed}" title="Entregado"></i>

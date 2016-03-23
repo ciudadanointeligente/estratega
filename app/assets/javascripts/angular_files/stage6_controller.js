@@ -4,6 +4,10 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   $scope.outcome_id = $location.path().split("/")[6];
   $scope.messages = {response: "", description: ""}
 
+  $scope.sortType     = 'created_at'; // set the default sort type
+  $scope.sortReverse  = false;  // set the default sort order
+  $scope.searchAsk   = '';
+
   // //get all actors
   $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/actors.json')
   .success(function(data){
