@@ -63,7 +63,7 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         .success(function (data) {
           get_outcomes($scope.project_id, $scope.objective_id)
           $scope.current_outcome = data;
-          $scope.drag_outcomes.dropzones[0].push(data);
+          // $scope.drag_outcomes.dropzones[0].push(data);
         })
         .error(function (){
           $scope.messages = {response: false, message: $attrs.errorcreatingoutcome }
@@ -111,7 +111,7 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     if(confirm($attrs.confirmdeleteoutcome)) {
     $http.delete('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/outcomes/'+outcome.id);
     $scope.outcomes.splice($scope.outcomes.indexOf(outcome),1);
-    $scope.drag_outcomes.dropzones[0].splice($scope.drag_outcomes.dropzones[0].indexOf(outcome),1);
+    // $scope.drag_outcomes.dropzones[0].splice($scope.drag_outcomes.dropzones[0].indexOf(outcome),1);
     }
   }
 
