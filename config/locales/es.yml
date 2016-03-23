@@ -24,6 +24,8 @@ es:
   #
   visitors:
     index:
+      what_title: "¿Qué es Estratega?"
+      what_txt: "Estratega es una metodología, una plataforma web y un taller, que en su conjunto buscan aumentar la efectividad en la incidencia de los diversos tipos de organizaciones que trabajan en el ámbito público. Nuestra misión es fortalecer a la sociedad civil organizada a través de la generación de capacidades y el uso de herramientas de incidencia"
       main_txt: "Beneficios"
       sentence_resources: "Uso efectivo de sus recursos"
       sentence_risks: "Minimiza riesgos y maximiza oportunidades"
@@ -39,7 +41,7 @@ es:
       testimony3_txt: "Estratega me ha servido para identificar y ponderar todos los factores que influyen en el éxito de una planificación de incidencia teniendo muy claro qué es lo que se quiere conseguir. Esto nos ha permitido planificar con el nivel de detalle y orden cronológico que requiere el logro de cada uno de nuestros objetivos"
       testimony3_signer: "Danae Fuentes, Encargada de Incidencia en Políticas Públicas Hogar de Cristo"
       title_orgs: "Usan Estratega"
-      guest_main_txt: "Reduce los riesgos y aumenta el desempeño de tu equipo al momento de incidir en políticas públicas"
+      guest_main_txt: "Asegura tu impacto con una Estrategia clara y bien comunicada"
       sign_up: "Registrate"
       email_placeholder: "Email"
       password_placeholder: "Contraseña"

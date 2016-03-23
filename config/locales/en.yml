@@ -24,6 +24,8 @@ en:
   #
   visitors:
     index:
+      what_title: "What is Estratega?"
+      what_txt: "Estratega es una metodología, una plataforma web y un taller, que en su conjunto buscan aumentar la efectividad en la incidencia de los diversos tipos de organizaciones que trabajan en el ámbito público. Nuestra misión es fortalecer a la sociedad civil organizada a través de la generación de capacidades y el uso de herramientas de incidencia"
       main_txt: "Benefits"
       sentence_resources: "Effective use for your resources"
       sentence_risks: "Minimize risks and maximize opportunities"
