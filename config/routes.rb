@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: 'visitors#index'
-
+  
   resources :actors do
     get 'actor_type', on: :collection
     get 'actor_support', on: :collection
@@ -87,4 +87,6 @@ Rails.application.routes.draw do
   resources :asks do
     resources :indicators
   end
+  
+  match "*path", to: "errors#catch_404", via: :all
 end
