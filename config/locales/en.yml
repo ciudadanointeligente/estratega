@@ -540,6 +540,7 @@ en:
         - 'Other'
       actor_type: "Actor Type"
       activities_number: "Activities Number"
+      interim_outcome_completed: "Completed"
       actions: "Actions"
       error_getting_actor_type: "Error while getting actor type information"
       error_getting_outcomes: "Error while getting outcomes information"
@@ -556,6 +557,7 @@ en:
       interim_outcome_placeholder: "Add any important outcome info"
       interim_outcome_type: "Interim Outcome Type"
       actor_type: "Actor Type"
+      completion_mark: "Completed"
       save_button: "Save"
       cancel_button: "Cancel"
     explanation_stage4: #tab `Explanation & Examples` of stage 4

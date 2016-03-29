@@ -20,6 +20,11 @@
           <option ng-repeat="at in actor_types">{{ at }}</option>
         </select>
       </div>-->
+      <div class="form-group">
+      <label>
+        <input type="checkbox" ng-model="current_outcome.completion_mark" checked> <%= t('.completion_mark').html_safe %>
+      </label>
+    </div>
     </form>
   </div>
   <div class="modal-footer">
