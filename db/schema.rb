@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329212940) do
+ActiveRecord::Schema.define(version: 20160329215733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 20160329212940) do
     t.text     "outcome_type_id"
     t.text     "actor_type_id"
     t.string   "categorie"
+    t.boolean  "completion_mark"
   end
 
   add_index "outcomes", ["objective_id"], name: "index_outcomes_on_objective_id", using: :btree

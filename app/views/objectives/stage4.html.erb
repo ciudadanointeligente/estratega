@@ -63,6 +63,7 @@
                       <thead>
                         <tr>
                           <th><%= t('.interim_outcome') %></th>
+                          <th><%= t('.interim_outcome_completed') %></th>
                           <th><%= t('.interim_outcome_type') %></th>
                           <th><%= t('.actor_type') %></th>
                           <th data-step="2" data-intro="<%= t('.step_two') %>"><%= t('.activities_number') %></th>
@@ -72,6 +73,9 @@
                       <tbody>
                         <tr ng-repeat="outcome in outcomes">
                           <td>{{outcome.description}}</td>
+                          <td class="text-center">
+                            <i class="fa fa-check" ng-if="outcome.completion_mark"></i>
+                          </td>
                           <td>{{outcome.outcome_type_id}}</td>
                           <td>{{outcome.actor_type_id}}</td>
                           <td>{{outcome.no_activities}}</td>

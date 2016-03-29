@@ -604,6 +604,7 @@ es:
         - Otras
       actor_type: "Tipo de actor"
       activities_number: "Número de actividades"
+      interim_outcome_completed: "Completado"
       actions: "Acciones"
       error_getting_actor_type: "Error al obtener la información de un tipo de actor"
       error_getting_outcomes: "Error al obtener la información de los resultados"
@@ -635,6 +636,7 @@ es:
         - 'Organizational visibility or issue recognition'
         - 'Other'
       actor_type: "Tipo de actor"
+      completion_mark: "Completado"
       save_button: "Guardar"
       cancel_button: "Cancelar"
     explanation_stage4: #tab `Explanation & Examples` of stage 4
