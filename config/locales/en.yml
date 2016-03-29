@@ -1063,3 +1063,13 @@ en:
       confirm_delete_policy: "Are you sure you want to delete this policy problem?"
       step_five: "step five"
       step_six: "step six"
+  contacts:
+    new:
+      send_us: "Send a message to administrator"
+      name: "Name"
+      name_placeholder: "Your name here"
+      email: "Email"
+      email_placeholder: "Your email here"
+      message: "Message"
+      message_placeholder: "Your message here"
+      send_message: "Send message"

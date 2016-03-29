@@ -45,6 +45,10 @@ es:
       password_placeholder: "Contraseña"
       confirm_password_placeholder: "Confirme contraseña"
       button_sign_up: "Comienza ahora!"
+    contact:
+      email_placeholder: "Email"
+      message_placeholder: "Mensaje"
+      contact_button: "Enviar Petición"
   #
   # Projects sections
   #
@@ -1160,3 +1164,14 @@ es:
       confirm_delete_policy: "¿Estás seguro que quieres elimina este problema de política pública?"
       step_five: "Etapa cinco"
       step_six: "Etapa seis"
+  contacts:
+    new:
+      send_us: "Enviar mensaje al administrador"
+      name: "Nombre"
+      name_placeholder: "Escriba aquí su nombre"
+      email: "Email"
+      email_placeholder: "Escriba aquí su email"
+      message: "Mensaje"
+      message_placeholder: "Escriba aquí su mensaje"
+      send_message: "Enviar mensaje"
+      

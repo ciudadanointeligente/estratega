@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root to: 'visitors#index'
 
   resources :actors do
@@ -67,7 +68,7 @@ Rails.application.routes.draw do
   get '/javascript_test/:script' => 'javascript_test#render_test', :as => 'javascript_test'
 
   get '/models', to: 'visitors#models'
-
+  
   resources :demo do
     get 'stage1', on: :member
   end
@@ -87,4 +88,7 @@ Rails.application.routes.draw do
   resources :asks do
     resources :indicators
   end
+  
+  match '/contacts',     to: 'contacts#new',             via: 'get'
+  resources "contacts", only: [:new, :create]
 end
