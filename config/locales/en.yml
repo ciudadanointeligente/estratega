@@ -1073,3 +1073,11 @@ en:
       message: "Message"
       message_placeholder: "Your message here"
       send_message: "Send message"
+  devise:
+    mailer:
+      reset_password_instructions:
+        greeting: "Hello"
+        link_text: "Change my password"
+        sentence1: "Someone has requested a link to change your password. You can do this through the link below."
+        sentence2: "If you didn't request this, please ignore this email."
+        sentence3: "Your password won't change until you access the link above and create a new one."

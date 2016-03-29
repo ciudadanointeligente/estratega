@@ -1174,4 +1174,11 @@ es:
       message: "Mensaje"
       message_placeholder: "Escriba aquí su mensaje"
       send_message: "Enviar mensaje"
-      
+  devise:
+    mailer:
+      reset_password_instructions:
+        greeting: "Hola"
+        link_text: "Cambiar mi password"
+        sentence1: "Se ha solicitado un link para cambiar su password. Siga el link a continuación para seguir con el proceso."
+        sentence2: "Si usted no ha solicitado este cambio, simplemente ignore este email"
+        sentence3: "Su password no cambiará hasta que usted acceda al link anterior y cree uno nuevo."
