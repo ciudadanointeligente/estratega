@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317132337) do
+ActiveRecord::Schema.define(version: 20160329212940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 20160317132337) do
     t.integer  "added_value_arguments"
     t.string   "objective_type"
     t.string   "theory_of_change"
+    t.boolean  "completion_mark"
   end
 
   add_index "objectives", ["project_id"], name: "index_objectives_on_project_id", using: :btree
@@ -152,6 +153,15 @@ ActiveRecord::Schema.define(version: 20160317132337) do
 
   add_index "objectives_solutions", ["objective_id", "solution_id"], name: "index_objectives_solutions_on_objective_id_and_solution_id", using: :btree
   add_index "objectives_solutions", ["solution_id", "objective_id"], name: "index_objectives_solutions_on_solution_id_and_objective_id", using: :btree
+
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "subdomain"
+    t.string   "max_projects"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "outcomes", force: :cascade do |t|
     t.text     "title"

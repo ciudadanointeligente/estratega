@@ -245,6 +245,7 @@ en:
       without_objectives_begin_sentence: "There are still "
       without_objectives_end_sentence: " policy solutions without objectives"
       objectives: "Objectives"
+      objective_completed: "Completed"
       subtotal_key_contribution: "Subtotal Key Contribution"
       subtotal_momentum: "Subtotal Momentum"
       subtotal_comparative_advantage: "Subtotal Comparative Advantage"
@@ -281,6 +282,7 @@ en:
       back_button: "Back"
     objective_modal: # modal `add objective` of stage 2
       objective: "Objective"
+      completion_mark: "Completed"
       select_solution: "Select Solution"
       objective_type: "Objective Type"
       objective_placeholder: "Add any important objective info"

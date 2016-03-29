@@ -74,6 +74,7 @@
                 <thead>
                   <tr>
                     <th><%= t('.objectives') %></th>
+                    <th><%= t('.objective_completed') %></th>
                     <th class="text-center"><%= t('.subtotal_key_contribution') %></th>
                     <th class="text-center"><%= t('.subtotal_momentum') %></th>
                     <th class="text-center"><%= t('.subtotal_comparative_advantage') %></th>
@@ -86,6 +87,9 @@
                 <tbody>
                   <tr ng-repeat="objective in objectives">
                     <td>{{objective.title}}</td>
+                    <td class="text-center">
+                      <i class="fa fa-check" ng-if="objective.completion_mark"></i>
+                    </td>
                     <td class="text-center">{{ objective.big_difference_score + objective.multiplying_effect_score + objective.catalytic_score }}</td>
                     <td class="text-center">{{ objective.demand_score + objective.hooks_processes_score + objective.intuitive_score }}</td>
                     <td class="text-center">{{ objective.alignment_score + objective.added_value_score + objective.loss_gain_score }}</td>

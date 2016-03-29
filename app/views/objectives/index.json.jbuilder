@@ -30,6 +30,8 @@ json.array!(@objectives) do |objective|
   json.loss_gain_score objective.loss_gain_score
   json.loss_gain_arguments objective.loss_gain_arguments
   
+  json.completion_mark objective.completion_mark
+  
   if objective.indicator
     json.indicator_id objective.indicator.id
   end
