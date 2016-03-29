@@ -251,6 +251,7 @@ es:
       without_objectives_begin_sentence: "Todavía hay"
       without_objectives_end_sentence: "Soluciones de política pública sin objetivos"
       objectives: "Objetivos"
+      objective_completed: "Completado"
       subtotal_key_contribution: "Subtotal Contribución Clave"
       subtotal_momentum: "Subtotal Momentum"
       subtotal_comparative_advantage: "Subtotal Ventaja Comparativa"
@@ -294,6 +295,7 @@ es:
       prioritized: "Priorizado <br /><span class='mini-explicacion'>(Solo prodrá trabajar con este objetivo si se encuentra priorizado)</span>"
       save_button: "Guardar"
       cancel_button: "Cancelar"
+      completion_mark: "Completado"
     prioritized_modal:
       prioritized: Priorización de Objetivos
       key_contribution: "CONTRIBUCIÓN CLAVE: ¿El objetivo es una contribución clave para la solución del problema?"

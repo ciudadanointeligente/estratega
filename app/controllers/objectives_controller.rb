@@ -78,7 +78,7 @@ class ObjectivesController < ApplicationController
       :big_difference_arguments, :multiplying_effect_score, :multiplying_effect_arguments, :catalytic_score, 
       :catalytic_arguments, :demand_score, :demand_arguments, :hooks_processes_score, :hooks_processes_arguments, 
       :intuitive_score, :intuitive_arguments, :alignment_score, :alignment_arguments, :added_value_score, :added_value_arguments, 
-      :loss_gain_score, :loss_gain_arguments, :objective_type, 
+      :loss_gain_score, :loss_gain_arguments, :objective_type, :completion_mark, 
       :theory_of_change, actor_ids: [], barriers: [], enabling_factors: [])
     end
 end
