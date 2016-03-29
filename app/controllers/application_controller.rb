@@ -8,13 +8,7 @@ class ApplicationController < ActionController::Base
   
   rescue_from ActiveRecord::RecordNotFound, with: :not_found 
   
-  rescue_from ActionController::RoutingError do |exception|
-    puts '----------------------------------------------------------------------------------------------->>>> notFound routine'
-    puts '----------------------------------------------------------------------------------------------->>>> notFound routine'
-    puts '----------------------------------------------------------------------------------------------->>>> notFound routine'
-    flash[:alert] = "Resource not found. An error ocurred."
-    redirect_to(request.referrer || root_path)
-  end
+  rescue_from ActionController::RoutingError , with: :not_found
   
   rescue_from Exception, with: :not_found
   
@@ -28,11 +22,7 @@ class ApplicationController < ActionController::Base
   end
   
   def not_found
-    puts '----------------------------------------------------------------------------------------------->>>> notFound routine'
-    puts '----------------------------------------------------------------------------------------------->>>> notFound routine'
-    puts '----------------------------------------------------------------------------------------------->>>> notFound routine'
-    flash[:alert] = "Resource not found. An error ocurred."
-    redirect_to(request.referrer || root_path)
+    redirect_to(request.referrer || projects_path, :alert => 'Resource not found. An error ocurred.')
   end
 
 	def after_sign_in_path_for(resource)

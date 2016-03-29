@@ -1,6 +1,11 @@
 <div ng-controller="projectCtrl">
   <h3><%= t('.projects') %></h3>
-
+  <div id="main_alerts" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="alert" role="alert" ng-class="alert-danger" ng-if="<%= !alert.blank? %>">
+        <button ng-click="dismiss_modal()" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <%= alert %>
+      </div>
+  </div>
   <div class="row">
     <div class="addNew col-md-12 text-right">
       <button class="btn btn-warning" ng-click="add_edit_project()" data-step="1" data-intro="<%= t('.step_one') %>">
