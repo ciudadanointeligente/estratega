@@ -784,6 +784,7 @@ es:
       cancel_button: "Cancelar"
       event_title: "Título del evento"
       event_title_placeholder: "Ingrese un título para describir el evento"
+      place: "Lugar"
     modal_indicator:
       indicators: "Indicadores"
       owner_name: "Encargado"

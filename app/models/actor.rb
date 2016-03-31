@@ -3,6 +3,7 @@ class Actor < ActiveRecord::Base
   has_and_belongs_to_many :objectives
   has_many :messages
   has_and_belongs_to_many :activities
+  has_and_belongs_to_many :asks
 
   def actor_type_list
     return I18n.t "objectives.actors_modal.actor_type_list"

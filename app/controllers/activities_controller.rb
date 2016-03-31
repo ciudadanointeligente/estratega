@@ -87,6 +87,6 @@ class ActivitiesController < ApplicationController
       # if params[:activity][:actor_ids]
       #   params[:activity][:actor_ids] ||= []  
       # end
-      params.require(:activity).permit(:title, :description, :completion, :start_date, :end_date, :organizer, :activity_types, :event_title, actor_ids: [])
+      params.require(:activity).permit(:title, :objective_id, :description, :completion, :start_date, :end_date, :organizer, :activity_types, :event_title, :place, actor_ids: [])
     end
 end

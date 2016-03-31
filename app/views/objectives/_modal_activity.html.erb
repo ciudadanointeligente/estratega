@@ -8,6 +8,10 @@
       <textarea name="description" class="form-control" ng-model="current_activity.description" placeholder="<%= t('.description_placeholder') %>"></textarea>
     </div>
     <div class="form-group">
+      <label for="place"><%= t('.place') %></label>
+      <input type="text" class="form-control" ng-model="current_activity.place" placeholder="<%= t('.place') %>"></input>
+    </div>
+    <div class="form-group">
       <label for="activity_types"><%= t('.activity_types') %></label>
       <select class="form-control" name="activity_types" ng-model="current_activity.activity_types">
         <optgroup ng-repeat="at in activity_types" label="{{at.type}}">
@@ -29,7 +33,7 @@
       <input type="date" name="end_date" class="form-control" ng-model="current_activity.end_date" placeholder="2000/12/24" min="1900-01-01"></input>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: current_activity.title == ''}"><%= t('.save_button') %></button>
+      <button class="btn btn-primary" ng-click="save($event)" ng-class="{disabled: current_activity.description == ''}"><%= t('.save_button') %></button>
       <button class="btn btn-warning" ng-click="cancel($event)"><%= t('.cancel_button') %></button>
     </div>
   </div>
