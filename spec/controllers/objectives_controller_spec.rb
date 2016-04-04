@@ -107,6 +107,17 @@ RSpec.describe ObjectivesController, :type => :controller do
       get :actors, {project_id: @project, :id => objective, format: :json}, valid_session
       expect(response.body).to include(actor.to_json)
     end
+    describe "in csv format" do
+      render_views
+      it "downloads a csv file" do
+        objective = create(:objective)
+        actor = create(:actor)
+        objective.actors << actor
+        get :actors, {project_id: @project, :id => objective, format: :csv}, valid_session
+        expect(response.content_type).to eq("text/csv")
+        expect(response.body).to eq("Name,Description,Actor type,Support,Influence,Important\nMyString,MyText,MyString,1,1,\n")
+      end
+    end
   end
 
   describe "GET objective_types" do

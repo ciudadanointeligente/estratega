@@ -24,6 +24,7 @@ gem 'ng-rails-csrf'
 gem 'acts-as-taggable-on'
 gem 'pundit'
 gem 'icalendar'
+gem 'csv_shaper'
 
 group :development do
   gem 'better_errors'

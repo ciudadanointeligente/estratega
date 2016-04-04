@@ -1,0 +1,4 @@
+csv.headers :name, :description, :actor_type, :support, :influence, :important
+csv.rows @actors do |csv, actor|
+    csv.cells :name, :description, :actor_type, :support, :influence, :important
+end
