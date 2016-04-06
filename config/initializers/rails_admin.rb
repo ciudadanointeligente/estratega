@@ -1,5 +1,5 @@
 RailsAdmin.config do |config|
-
+  config.main_app_name = ["logo.png", "Admin"]
   ### Popular gems integration
 
   ## == Devise ==
@@ -33,7 +33,7 @@ RailsAdmin.config do |config|
     ## With an audit adapter, you can add:
     # history_index
     # history_show
-    
+
     # config.excluded_models = ["Organization"]
     config.model 'Organization' do
       visible do
@@ -41,14 +41,14 @@ RailsAdmin.config do |config|
         bindings[:controller].current_user.role == 2
       end
     end
-    
+
     config.model 'User' do
       visible do
         # controller bindings is available here. Example:
         bindings[:controller].current_user.role == 2
       end
     end
-    
+
     ActiveRecord::Base.descendants.each do |imodel|
       config.model "#{imodel.name}" do
         list do
@@ -56,6 +56,6 @@ RailsAdmin.config do |config|
         end
       end
     end
-    
+
   end
 end

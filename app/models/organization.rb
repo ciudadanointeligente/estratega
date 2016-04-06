@@ -4,7 +4,10 @@ class Organization < ActiveRecord::Base
   validates :subdomain, presence: true
   validates :subdomain, uniqueness: true
   validates :subdomain, length: { minimum: 3 }
-  
+
+  has_attached_file :logo, styles: { medium: "200x100>", thumb: "100x50>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
+
     after_create :create_tenant
     after_destroy :drop_tenant
 
@@ -15,7 +18,7 @@ class Organization < ActiveRecord::Base
       create_local_admin
       create_full_admin
     end
-    
+
     def create_local_admin
       Apartment::Tenant.switch!(subdomain)
       generated_password = Devise.friendly_token.first(8)
@@ -27,7 +30,7 @@ class Organization < ActiveRecord::Base
       new_user.save
       Apartment::Tenant.switch!
     end
-    
+
     def create_full_admin
       Apartment::Tenant.switch!(subdomain)
       generated_password = Devise.friendly_token.first(8)
@@ -39,7 +42,7 @@ class Organization < ActiveRecord::Base
       new_user.save
       Apartment::Tenant.switch!
     end
-    
+
     def drop_tenant
       Apartment::Tenant.drop(subdomain)
     end

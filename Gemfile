@@ -26,6 +26,7 @@ gem 'pundit'
 gem 'icalendar'
 gem 'apartment'
 gem 'rails_admin'
+gem 'paperclip'
 
 group :development do
   gem 'better_errors'
