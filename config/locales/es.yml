@@ -11,7 +11,7 @@ es:
       navbar_projects: "Proyectos"
       navbar_documents: "Documentos"
       navbar_tools: "Herramientas"
-      navbar_dropdown_welcome: "Bienvenidos,"
+      navbar_dropdown_welcome: "Bienvenido,"
       navbar_dropdown_my_account: "Mi Cuenta"
       navbar_dropdown_sign_out: "Cerrar sesión"
       footer_left_txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec."
@@ -19,6 +19,26 @@ es:
       footer_phone_number_txt: "+56 2 2419 2770"
       footer_email_txt: "Press Contact"
       footer_address_txt: "Holanda 895, Providencia, Santiago"
+    navbar_signin:
+      sign_in: "Iniciar sesión"
+    sign_in:
+      mail: "E-mail"
+      password: "Contraseña"
+      remember_me: "Recuérdame"
+      sign_in: "Iniciar Sesión"
+      forgot_password: "¿Olvidó su contraseña?"
+    footer:
+      estratega_description: "Estratega es una metodología de planificación de advocacy que reduce los riesgos y aumenta el desempeño de tu equipo"
+      contact: "Contacto"
+      mail: "Mail"
+      mailing_adress: "lab@ciudadanointeligente.org"
+      office_adress: "Holanda 895, Providencia"
+    application:
+      home: "Inicio"
+      projects: "Proyectos"
+      welcome: "Bienvenido, "
+      my_account: "Mi cuenta"
+      sign_out: "Cerrar sesión"
   #
   # Home
   #
