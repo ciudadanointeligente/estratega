@@ -25,13 +25,13 @@
             <h2><%= @project.title %></h2>
             <p><%= @project.description %></p>
             <button class="btn btn-success" onclick="javascript:introJs().setOptions({exitOnOverlayClick: false}).start();">
-              <i class="fa fa-map"></i> Guíame
+              <i class="fa fa-map"></i><%= t('.guide_me') %>
             </button>
           </div>
-          <h3 class="mb50">Etapa 1: Identificar el problema y los objetivos políticos a lograr</h3>
+          <h3 class="mb50"><%= t('.section1_title') %></h3>
           <div class="panel panel-default" data-step="2" data-intro="<%= t('.step_two') %>">
             <div class="panel-heading">
-              <h4 class="panel-title" title="<%= title_stage 1 %>"><i class="<%= icon_class_stage 1 %>"></i> <%= t('.stage1_title') %></h4>
+              <h4 class="panel-title" title="<%= title_stage 1 %>"><i class="<%= icon_class_stage 1 %>"></i><%= t('.stage1_title') %></h4>
             </div>
             <div id="stage1">
               <table class="table">
@@ -91,7 +91,7 @@
         </div>
       </div>
       <hr>
-      <h3 class="mb50">Etapa 2 : El Plan para cada uno de sus Objetivos de política priorizados en detalle</h3>
+      <h3 class="mb50"><%= t('.section2_title') %></h3>
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title"><i class="<%= icon_class_stage 3 %>"></i> <%= t('.stage3_title') %></h4>
@@ -104,7 +104,7 @@
                   <div class="panel panel-info">
                     <div class="panel-heading">
                       <table class="table_goals">
-                      <tr title="Stage Uninitiated or Incomplete">
+                      <tr>
                         <td><%= t('.objective_cnt') %> <%= i + 1 %> / <%= objective.title %></td>
                       </tr>
                       </table>
@@ -116,7 +116,7 @@
                             <td class="text-center td-w-10p">
                               <i class="<%= icon_class objective.actors %>"></i>
                             </td>
-                            <td><%= link_to "Comprender el proceso institucional de ciclos de toma de decisiones / Procesos Políticos", stage3_project_objective_path(@project, objective), target: "_self" %></td>
+                            <td><%= link_to t('projects.show.process_description') , stage3_project_objective_path(@project, objective), target: "_self" %></td>
                           </tr>
                           <tr title="<%= title_stage 3 %>">
                             <td class="text-center td-w-10p">
@@ -175,7 +175,7 @@
                   <div class="panel panel-info">
                     <div class="panel-heading">
                       <table class="table_goal_outcomes">
-                      <tr title="Stage Uninitiated or Incomplete">
+                      <tr>
                         <td><%= t('.outcome_cnt') %> <%= i + 1 %> / <%= outcome.description %></td>
                       </tr>
                       </table>

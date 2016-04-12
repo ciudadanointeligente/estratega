@@ -170,13 +170,13 @@
   <div class="box">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h2><%= t('.objetives') %></h2>
+        <h2><%= t('.objectives') %></h2>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well">
-          <h3><%= @objectives.count.presence || "0" %> <%= t('.objetives') %></h3>
+          <h3><%= @objectives.count.presence || "0" %> <%= t('.objectives') %></h3>
           <ul class="fa-ul">
             <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @objectives_without_outcomes.presence %> <%= t('.objectives_without_interim_outcomes') %></li>
             <li class="failed"><i class="fa-li fa fa-times-circle"></i><%= @objectives_with_failed_activities_diff.presence %> <%= t('.objectives_with_failed_activities') %></li>

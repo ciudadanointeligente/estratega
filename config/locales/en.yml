@@ -19,6 +19,26 @@ en:
       footer_phone_number_txt: "+56 2 2419 2770"
       footer_email_txt: "Press Contact"
       footer_address_txt: "Holanda 895, Providencia, Santiago"
+    navbar_signin:
+      sign_in: "Sign in"
+    sign_in:
+      mail: "E-mail"
+      password: "Password"
+      remember_me: "Remember me"
+      sign_in: "Sign in"
+      forgot_password: "Forgot your password?"
+    footer:
+      estratega_description: "Estratega is an advocacy planning methodology that reduces risks and enhances your team's performance"
+      contact: "Contact"
+      mail: "Mail"
+      mailing_adress: "lab@ciudadanointeligente.org"
+      office_adress: "Holanda 895, Providencia"
+    application:
+      home: "Home"
+      projects: "Projects"
+      welcome: "Welcome, "
+      my_account: "My account"
+      sign_out: "Sign out"
   #
   # Home
   #
@@ -27,17 +47,19 @@ en:
       main_txt: "Benefits"
       sentence_resources: "Effective use for your resources"
       sentence_risks: "Minimize risks and maximize opportunities"
-      sentence_advocacy: "Align advocacy width other areas and organization goals, both long and short term"
+      sentence_advocacy: "Align advocacy with other areas and organization goals, both long and short term"
       sentence_keep_track: "Keep track and evaluate your performance"
       button_demo: "Demo"
       button_read_more: "I want to read more about it"
-      testimony1_txt: "Align advocacy width other areas and organization goals, both long and short term"
-      testimony1_signer: "UNICEF Ambassador Matt Dawson"
-      testimony2_txt: "Align advocacy width other areas and organization goals, both long and short term"
-      testimony2_signer: "Unicef Goodwill Ambassador Angélique Kidjo"
-      testimony3_txt: "Align advocacy width other areas and organization goals, both long and short term"
-      testimony3_signer: "UNICEF Ambassador Matt Dawson"
-      guest_main_txt: "Marcel, you are the best!"
+      testimony: "Testimonies"
+      testimony1_txt: "Estratega fue el comienzo para abordar el tema de incidencia de forma profesional y con sentido. Con Estratega nos encontramos, no solo con un equipo de profesionales que nos orientaron hacia dónde apuntar con nuestro trabajo, sino con personas convencidas de que el trabajo entre la sociedad civil es posible"
+      testimony1_signer: "José Manuel Tapia, Coordinador de Extensión CIS TECHO - Chile"
+      testimony2_txt: "Con Estratega he observado cómo intenciones se traducen en objetivos de política pública definidos y concretos, con indicadores de éxito y un itinerario de acciones claro que orienta la acción de incidencia. Esto nos ha permitido priorizar los objetivos y distribuir los esfuerzos de la organización"
+      testimony2_signer: "Octavio Del Favero, Coordinador Legislativo Fundación Ciudadano Inteligente"
+      testimony3_txt: "Estratega me ha servido para identificar y ponderar todos los factores que influyen en el éxito de una planificación de incidencia teniendo muy claro qué es lo que se quiere conseguir. Esto nos ha permitido planificar con el nivel de detalle y orden cronológico que requiere el logro de cada uno de nuestros objetivos"
+      testimony3_signer: "Danae Fuentes, Encargada de Incidencia en Políticas Públicas Hogar de Cristo"
+      title_orgs: "Estratega Users"
+      guest_main_txt: "Ensure your impact by planning chain actions"
       sign_up: "Sign up"
       email_placeholder: "Email"
       password_placeholder: "Password"
@@ -65,16 +87,27 @@ en:
       edit: "Edit"
       overview: "Overview"
       delete: "Delete the project"
-
     project_modal: # modal `new project` of index
       project: "Project"
       title: "Title"
       title_placeholder: "Enter a title for the project"
       description: "Description"
-      title_placeholder: "Enter a description for the project"
+      description_placeholder: "Enter a description for the project"
       focus_area: "Focus Area"
-      public: "Public"
+      focus_area_placeholder: "Eg: Health, Poverty, etc."
+      public: "Public (other users may view your project, but not edit it)"
       save: "Save"
+      cancel: "Cancel"
+    user_permission_modal:
+      share: "Share"
+      persons: "Persons"
+      persons_placeholder: "Add mails, separated by commas"
+      message: "Message"
+      message_placeholder: "Write an invitation message"
+      shared_list: "Shared persons"
+      users: "Users"
+      actions: "Actions"
+      delete: "Delete"
       cancel: "Cancel"
     show:     # http://localhost:3000/projects/1
       projects: "Projects"
@@ -82,27 +115,76 @@ en:
       dashboard: "Dashboard"
       documents: "Documents"
       overview: "Overview"
+      guide_me: "Guide me"
+      step1_description: "Articulate the real world problem you want to face"
+      step2_description: "Identify the causes of the problem"
+      step3_description: "Formulate political solutions for the causes the problem"
+      step4_description: "Define and prioritize policy objectives"
       step_one: "Once the project page you will see 3 tabs. In <strong>Stages</strong> are the stages of data entry, <strong>Dashboard</strong> will show indicators of success and progress , will be the <strong>Documents</strong> library of important documents , and finally <strong>Overview</strong> showing the summary of all the information entered"
       step_two: "Let's start with the advocacy plan by completing the information requested in the <strong>Stage 1</strong>"
       step_three: "These icons show you the 3 states of data entry. They'll tell you if you need to fill a previous step (<i class='fa fa-lock'></i>), if they are ready to income (<i class='fa fa-unlock'></i>) or it contains information (<i class='fa fa-check'></i>)"
-      stage1_title: "Step 1: Describe the problems and the corresponding policy solutions"
-      stage2_title: "Step 2: Formulate policy objetives and rank them in order or priority"
-      stage3_title: "Step 1: Set Goals"
+      section1_title: "Stage 1: Identify the real world problem and define policy objectives"
+      section2_title: "Stage 2: Detailed plan for achieving each objective"
+      stage1_title: "Step 1: Understand the problem"
+      stage2_title: "Step 2: Define objectives"
+      stage3_title: "Step 3: Create a work plan"
       stage3_without_objectives: |
-                    <p>You need add objectives for settings goals</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <h4><i class='fa fa-times-circle'></i> You need to add objectives for establishing your goals</h4>
+                    <p>Finish the previous step to continue your advocacy plan</p>
       objective_cnt: 'Objective'
       outcome_cnt: "Interim Outcome"
+      complete_stage_tooltip: "Step in progress"
+      incomplete_stage_tooltip: "Step not started"
+      causes: "Causes"
+      solutions: "Solutions"
+      objectives: "Objectives"
+      actors: "Actors"
+      enabling_factors: "Enabling factors"
+      barriers: "Barriers"
+      outcomes: "Interim outcomes"
+      activities: "Activities"
+      asks: "Asks"
+      process_description: "Understand processes and policy making cycles"
+      actors_description: "List actors and create power map"
+      external_factors_description: "Identify enabling factors and barriers"
+      outcomes_description: "Establish interim outcomes"
+      activities_description: "Define activities"
+      asks_description: "Specify asks"
     overview:     # http://localhost:3000/projects/1#overview
       projects: "Projects"
       overview: "Overview"
-      empty: "( empty field )"
+      empty: "( No data )"
       uncreated: "( uncreated )"
+      actors: "Actors"
+      print: "Print"
+      focus_area: "Focus area"
+      real_problem: "Real world problem"
+      goal: "Goal"
+      cause: "Cause"
+      solutions: "Solutions"
+      solution: "Solution"
+      objective: "Objective"
+      type: "Type"
+      barriers: "Barriers"
+      enabling_factors: "Enabling factors"
+      actor: "Actor"
+      actor_type: "Actor type"
+      support: "Support"
+      influence: "Influence"
+      outcomes: "Outcomes"
+      outcome: "Outcome"
+      outcome_type: "Outcome type"
+      activities: "Activities"
+      activity: "Activity"
+      owner_name: "Owner name"
+      owner_role: "Owner role"
+      expected_results: "Expected results"
+      obtained_results: "Obtained results"
+      adjustments: "Adjustments"
+      percentaje: "Success rate"
+      asks: "Asks"
+      ask: "Ask"
+      related_objectives: "Related objectives"
     dashboard:    # http://localhost:3000/projects/1#dashboard
       activities: "Activities"
       successful_activities: "successful activities"
@@ -123,11 +205,29 @@ en:
       outcomes_with_overdue_activities: "outcomes with overdue activities"
       percentage_interim_outcomes_achieved: "Percentage interim outcomes achieved"
       percentage_allocation_of_predefined_activities: "Percentage allocation of predefined activities"
-      objetives: "Objetives"
+      objectives: "Objectives"
       objectives_without_interim_outcomes: "Objectives without interim outcomes"
       objectives_with_failed_activities: "Objectives with failed activities"
       percentage_advance_priority_objectives: "Percentage advance priority objectives"
       percentage_of_total_advance_objectives: "Percentage of total advance objectives"
+    resources:
+      new_resource: "Add resource"
+      title: "Title"
+      description: "Description"
+      tags: "Tags"
+      public: "Public"
+      last_change: "Last change"
+      actions: "Actions"
+      edit: "Edit"
+      delete: "Delete"
+    real_problem_modal:
+      real_problem: "Real world problem"
+      title: "Title"
+      title_placeholder: "Name your real world problem"
+      description: "Description"
+      description_placeholder: "Describe the problem"
+      save: "Save"
+      cancel: "Cancel"
     #
     # Stage 1
     #
@@ -170,6 +270,7 @@ en:
       step_one: "At all stages we find these 2 sections. <strong>Data entry</strong> will give us the opportunity to enter information into the system and <strong>Explanation & Examples</strong> will explain what each step."
       step_two: "To add information press <i class='fa fa-plus-circle'></i> <strong>Add</strong>, if you want information guide takes the pointer over the <i class='fa fa-info'></i> button. Once entered the data, you only have to press <i class='fa fa-pencil'></i> <strong>Edit</strong> to modify the information"
       step_three: "Now add <strong>Policy Problems</strong>, they group <strong>Policy Solution</strong>"
+      step_four: "To go back to the index page (previous), press the link with the name of your project"
     policy_modal: # modal `add policy` of stage 1
       policy: "Policy"
       title: "Title"
@@ -187,10 +288,12 @@ en:
       title1: "Which real-world problem children are facing that you want to address?"
       title1_description: |
                           <p>A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)</p>
+
       title2: "Which are the policy-related causes of the real-world problem?"
       title2_description: |
                           <p>Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem.</p>
                           <p>To conduct the problem analysis, you can use a problem tree. The problem tree is a well-known tool that “will help advocates understand the immediate, underlying and root causes of the issue, as well as help in gathering information to support the analysis”.</p>
+
       title3: "Which policy solutions would constitute an appropriate response?"
       title3_description: |
                           <p>What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?</p>
@@ -264,7 +367,7 @@ en:
       step_two: "Remember that you can <strong>Add</strong> and <strong>Edit</strong> with orange buttons and have <strong>Additional Information</strong> with blue buttons"
       step_three: "This alert will inform the number of solutions without associated objectives"
       step_four: "Pressing the text of the alert window will display a list of solutions, colored in <strong class='red'>red</strong> are unassigned"
-      step_five: "In this selection we <strong>add Objetives</strong> and <strong>partner with Solutions</strong>"
+      step_five: "In this selection we <strong>add Objectives</strong> and <strong>partner with Solutions</strong>"
     goal_modal: # modal `goal` of stage 2
       goal: "Goal"
       title: "Title"
@@ -279,14 +382,18 @@ en:
     objective_modal: # modal `add objective` of stage 2
       objective: "Objective"
       select_solution: "Select Solution"
+      select_solution_placeholder: "(To select more than 1 solution press and hold the ctrl key)"
       objective_type: "Objective Type"
       objective_placeholder: "Add any important objective info"
+      prioritized: "Prioritized <br /><span class='mini-explicacion'>(You will only be able to work with this objective if it's prioritized)</span>"
+      save_button: "Save"
+      cancel_button: "Cancel"
+    prioritized_modal:
+      prioritized: "Prioritization of objectives"
       key_contribution: "KEY CONTRIBUTION: is the advocacy objective a key contribution to the problem?"
       big_difference: "<p><strong>Big difference:</strong> Would success on the advocacy objective make a significant difference in addressing the problem children face (assess in comparison with other objectives)?</p>"
       score: "Score"
-      score_placeholder: "Enter number 1 to 3"
       main_arguments: "Main arguments"
-      main_arguments_placeholder: "Enter Main Arguments"
       multiplying_effect: "<p><strong>Multiplying effect:</strong> Would it address several important real world problems at the same time? (at national level and/or at national and global level)</p>"
       catalytic: "<p><strong>Catalytic:</strong> Is achieving this particular advocacy objective almost a precondition for tackling other UNICEF advocacy objectives (e.g. policy adoption is a precondition for funding)?</p>"
       momentum: "MOMENTUM: Does the advocacy objective have enough momentum, or can momentum be generated?"
@@ -337,6 +444,8 @@ en:
                 <li>Is it an issue that UNICEF can’t be seen to be silent on (UNICEF must be there)?</li>
                 <li>Are there significant risks for UNICEF, including from not engaging on the issue? </li>
               </ul>
+      score_placeholder: "Enter number 1 to 3"
+      main_arguments_placeholder: "Enter Main Arguments"
       save_button: "Save"
       cancel_button: "Cancel"
     explanation_stage2:  #tab `Explanation & Examples` of stage 2
@@ -344,10 +453,12 @@ en:
       title1: "Which real-world problem children are facing that you want to address?"
       title1_description: |
                           <p>A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)</p>
+      
       title2: "Which are the policy-related causes of the real-world problem?"
       title2_description: |
                           <p>Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem.</p>
                           <p>To conduct the problem analysis, you can use a problem tree. The problem tree is a well-known tool that “will help advocates understand the immediate, underlying and root causes of the issue, as well as help in gathering information to support the analysis”.</p>
+      
       title3: "Which policy solutions would constitute an appropriate response?"
       title3_description: |
                           <p>What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?</p>
@@ -398,7 +509,7 @@ en:
       guide_me: "Guide me"
       step_one: "It draws the decision-making cycles using the draw.io application, a new tab will open in your browser"
       step_two: "Add to actors involved in your advocacy plan with the <strong>Add Actor button</strong>, then you can edit or delete actions column"
-      step_three: "Enter the factors holding (<strong>Barriers</strong>) and help (<strong>Enabling Factors</strong>) to your advocacy objetives"
+      step_three: "Enter the factors holding (<strong>Barriers</strong>) and help (<strong>Enabling Factors</strong>) to your advocacy objectives"
       data_entry: "Data Entry"
       explanation_examples: "Explanation & Examples"
       draw_sandbox_button: "Draw in draw.io"
@@ -425,6 +536,8 @@ en:
       confirm_delete_actor: "Are you sure you want to delete this actor?"
       confirm_delete_enabling_factor: "Are you sure you want to delete this enabling factor?"
       confirm_delete_barrier: "Are you sure you want to delete this enabling factor?"
+      edit: "Edit"
+      delete: "Delete"
     actors_modal:  # modal `add actor` of stage 3
       actor: "Actor"
       actor_type: "Actor Type"
@@ -464,6 +577,14 @@ en:
       title1: "Which real-world problem children are facing that you want to address?"
       title1_description: |
                           <p>A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)</p>
+      
+
+
+
+
+
+
+
       title2: "Which are the policy-related causes of the real-world problem?"
       title2_description: |
                           <p>Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem.</p>
@@ -492,6 +613,14 @@ en:
                             <li>PMTCT not included as a priority in the National Strategic Plan (few resources to improve services, campaigns, etc.)- Few donors paying attention to it.</li>
                             <li>Current legal framework stipulates detention for sex workers (after 3 monetary sanctions), which prevents sex workers to attend health services due to fear of being denounced. </li>
                           </ul>
+      
+
+
+
+
+
+
+
       policy_solutions: "Policy Solutions"
       policy_solutions_description: |
                           <ul>
@@ -500,6 +629,52 @@ en:
                             <li>Health insurance policy framework revised to cover disadvantaged informal workers</li>
                             <li>Increase donor funding on PMTCT</li>
                           </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     #
     # Stage 4
     #
@@ -536,6 +711,9 @@ en:
       actor_type: "Actor Type"
       activities_number: "Activities Number"
       actions: "Actions"
+      edit: "Edit"
+      indicators: "Indicators"
+      delete: "Delete"
       error_getting_actor_type: "Error while getting actor type information"
       error_getting_outcomes: "Error while getting outcomes information"
       error_getting_categories: "Error while getting categories information"
@@ -550,6 +728,21 @@ en:
       interim_outcome: "Interim Outcome"
       interim_outcome_placeholder: "Add any important outcome info"
       interim_outcome_type: "Interim Outcome Type"
+      interim_outcome_type_list:
+        - 'Political will'
+        - 'Public will'
+        - 'Attitudes or beliefs'
+        - 'Salience'
+        - 'Awareness'
+        - 'New champions'
+        - 'New advocates'
+        - 'Partnerships or alliances'
+        - 'Constituency or support-base growth'
+        - 'Media coverage'
+        - 'Issue reframing'
+        - 'Organizational advocacy capacity'
+        - 'Organizational visibility or issue recognition'
+        - 'Other'
       actor_type: "Actor Type"
       save_button: "Save"
       cancel_button: "Cancel"
@@ -647,6 +840,7 @@ en:
                     <li>Members of Parliament are aware of our policy proposal and recognize that the problem exists and solutions must be promptly set in place (awareness and salience)</li>
                     <li>UNICEF/ UN is invited to prepare and present a report on the implementation of the HI Law (organizational recognition)</li>
                   </ul>
+
     #
     # Stage 5
     #
@@ -666,9 +860,10 @@ en:
       activities: "Activities"
       description: "Description"
       outcomes: "Outcomes"
-      actors: "Actors"
-      type: "Activity Type"
       actions: "Actions"
+      date: "Date"
+      progress: "% Progress"
+      completion: "Completed"
       download_as_ical: "Downloads activities as iCal"
       error_getting_outcomes: "Error while getting outcomes information"
       error_getting_asks: "Error while getting asks information"
@@ -683,20 +878,31 @@ en:
       description: "Description"
       description_placeholder: "Enter a description for an activity"
       completion: "Completion"
+      actors_label: "Select actor(s)"
       organizer: "Organizer"
       activity_types: "Activity types"
       scheduling: "Scheduling"
       outcome: "Outcome"
+      outcome_label: "Select interim outcome(s)"
+      ask_label: "Select ask(s)"
       save_button: "Save"
       cancel_button: "Cancel"
-      actors_label: "Select Actor(s)"
+      event_title: "Event title"
+      event_title_placeholder: "Add title to describe the event"
     modal_indicator:
+      indicators: "Indicators"
       owner_name: "Owner"
+      owner_name_place: "Enter name of the owner"
       owner_role: "Role"
+      owner_role_place: "Owner role"
       expected_results: "Expected results"
+      expected_results_place: "List the expected outcomes"
       obtained_results: "Obtained results"
+      obtained_results_place: "List the real outcomes"
       settings: "Settings"
+      settings_place: "What changes would you make in a future similar situation?"
       percentage: "Percentage"
+      percentage_place: "Enter the success percentage of your activity"
       save_button: "Save"
       cancel_button: "Cancel"
     explanation_stage5: #tab `Explanation & Examples` of stage 5
@@ -935,6 +1141,7 @@ en:
       actor: "Actor"
       ask: "Ask"
       actions: "Actions"
+      execution: "Ask delivered"
       error_getting_actors: "Error while getting actors information"
       error_getting_asks: "Error while getting asks information"
       error_updating_ask: "Error while updating ask information"
@@ -942,6 +1149,9 @@ en:
       confirm_delete_ask: "Are you sure you want to delete this ask?"
       edit: "Edit"
       delete: "Delete"
+      date: "Date"
+      actors: "Actors"
+      actions: "Actions"
     asks_modal: # modal 'add ask' of stage 6
       asks: "Asks"
       actor: "Actor"
@@ -954,8 +1164,8 @@ en:
       save_button: "Save"
       cancel_button: "Cancel"
     msj_modal: # modal 'add messages' of stage 6
-      menssage: "Menssage"
-      menssage_placeholder: " "
+      message: "Message"
+      message_placeholder: " "
       actors: "Select Actors to convey the message"
       executed: "Executed"
       save_button: "Save"
@@ -1016,9 +1226,20 @@ en:
     index:
       step_one: "step one"
       step_two: "step two"
+      my_projects: "My Projects"
+      other_projects: "Other Projects"
+      project: "Project"
+      focus_area: "Focus Area"
+      actions: "Actions"
+      new_project: "New Project"
+      demo: "Projects"
     show:
       step_three: "step three"
       step_four: "step four"
+      stages: "Stages"
+      dashboard: "Dashboard"
+      documents: "Documents"
+      overview: "Overview"
     stage1:
       projects: "Demo"
       stage1: "Stage 1"

@@ -6,15 +6,15 @@
     <form>
       <div class="form-group">
         <label for="title"><%= t('.title') %></label>
-        <input type="text" name="title" class="form-control" ng-model="current_project.title" placeholder="Ingrese un nombre de proyecto">
+        <input type="text" name="title" class="form-control" ng-model="current_project.title" placeholder="<%= t('.title_placeholder') %>">
       </div>
       <div class="form-group">
         <label for="description"><%= t('.description') %></label>
-        <textarea name="description" class="form-control" ng-model="current_project.description" placeholder="Ingrese una descripción del proyecto"></textarea>
+        <textarea name="description" class="form-control" ng-model="current_project.description" placeholder="<%= t('.description_placeholder') %>" ></textarea>
       </div>
       <div class="form-group">
         <label for="focus_area"><%= t('.focus_area') %></label>
-        <input type="text" name="focus_area" class="form-control" ng-model="current_project.focus_area" placeholder="Ingrese un área de focalización">
+        <input type="text" name="focus_area" class="form-control" ng-model="current_project.focus_area" placeholder="<%= t('.focus_area_placeholder') %>">
       </div>
       <div class="checkbox">
         <label>

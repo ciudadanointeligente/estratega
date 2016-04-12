@@ -8,7 +8,7 @@
         <div class="addNew dropdown pull-right">
             <%# link_to 'New Resource', new_resource_path %>
             <a id="dLabel" class="btn btn-warning" ng-click="open_form()" >
-            <i class="fa fa-plus-circle"></i> Añadir Documentos
+            <i class="fa fa-plus-circle"></i><%= t('.new_resource') %>
           </a>
         </div>
         <div class="clearfix"></div>
@@ -21,12 +21,12 @@
                 <thead>
                   <tr>
                     <th>Id</th>
-                    <th st-sort="title" >Nombre</th>
-                    <th>Descripción</th>
-                    <th>Tags</th>
-                    <th class="text-center no-sort">Público</th>
-                    <th>Último Cambio</th>
-                    <th class="text-right no-sort">Acciones</th>
+                    <th st-sort="title" ><%= t('.name') %></th>
+                    <th><%= t('.description') %></th>
+                    <th><%= t('.tags') %></th>
+                    <th class="text-center no-sort"><%= t('.public') %></th>
+                    <th><%= t('.last_change') %></th>
+                    <th class="text-right no-sort"><%= t('.actions') %></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -40,11 +40,11 @@
                         <td>{{resource.public}}</td>
                         <td>{{resource.updated_at}}</td>
                         <td class="text-right">
-                            <%= button_tag "Editar", {class: "btn btn-link", :"ng-click" => "open_form(resource)", type: "button"} do %>
-                              <i class="fa fa-edit" title="Editar"></i>
+                            <%= button_tag t('.edit'), {class: "btn btn-link", :"ng-click" => "open_form(resource)", type: "button"} do %>
+                              <i class="fa fa-edit" title="<%= t('.edit') %>"></i>
                             <% end %>
-                            <%= button_tag "Eliminar", class: "btn btn-link", :"ng-click" => "delete_resource(resource)", type: "button" do %>
-                              <i class="fa fa-trash" title="Eliminar"></i>
+                            <%= button_tag t('.delete'), class: "btn btn-link", :"ng-click" => "delete_resource(resource)", type: "button" do %>
+                              <i class="fa fa-trash" title="<%= t('.delete') %>"></i>
                             <% end %>
                         </td>
                     </tr>

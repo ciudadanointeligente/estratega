@@ -11,7 +11,7 @@ es:
       navbar_projects: "Proyectos"
       navbar_documents: "Documentos"
       navbar_tools: "Herramientas"
-      navbar_dropdown_welcome: "Bienvenidos,"
+      navbar_dropdown_welcome: "Bienvenido,"
       navbar_dropdown_my_account: "Mi Cuenta"
       navbar_dropdown_sign_out: "Cerrar sesión"
       footer_left_txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec."
@@ -19,6 +19,26 @@ es:
       footer_phone_number_txt: "+56 2 2419 2770"
       footer_email_txt: "Press Contact"
       footer_address_txt: "Holanda 895, Providencia, Santiago"
+    navbar_signin:
+      sign_in: "Iniciar sesión"
+    sign_in:
+      mail: "E-mail"
+      password: "Contraseña"
+      remember_me: "Recuérdame"
+      sign_in: "Iniciar Sesión"
+      forgot_password: "¿Olvidó su contraseña?"
+    footer:
+      estratega_description: "Estratega es una metodología de planificación de advocacy que reduce los riesgos y aumenta el desempeño de tu equipo"
+      contact: "Contacto"
+      mail: "Mail"
+      mailing_adress: "lab@ciudadanointeligente.org"
+      office_adress: "Holanda 895, Providencia"
+    application:
+      home: "Inicio"
+      projects: "Proyectos"
+      welcome: "Bienvenido, "
+      my_account: "Mi cuenta"
+      sign_out: "Cerrar sesión"
   #
   # Home
   #
@@ -67,16 +87,27 @@ es:
       edit: "Editar"
       overview: "Resumen"
       delete: "Borrar el proyecto"
-
     project_modal: # modal `new project` of index
       project: "Proyecto"
       title: "Título"
       title_placeholder: "Ingrese un título para el proyecto"
       description: "Descripción"
-      title_placeholder: "Ingrese la descripción del proyecto"
+      description_placeholder: "Ingrese la descripción del proyecto"
       focus_area: "Área de focalización"
+      focus_area_placeholder: "Ej: Salud, Pobreza, etc."
       public: "Proyecto Público (las personas de la red podrán ver el contenido pero no editar)"
       save: "Guardar"
+      cancel: "Cancelar"
+    user_permission_modal:
+      share: "Compartir"
+      persons: "Personas"
+      persons_placeholder: "Añada mails, separados por comas"
+      message: "Mensaje"
+      message_placeholder: "Escriba un mensaje de invitación"
+      shared_list: "Personas compartidas"
+      users: "Usuarios"
+      actions: "Acciones"
+      delete: "Eliminar"
       cancel: "Cancelar"
     show:     # http://localhost:3000/projects/1
       projects: "Proyectos"
@@ -84,23 +115,76 @@ es:
       dashboard: "Panel de control"
       documents: "Documentos"
       overview: "Resumen"
+      guide_me: "Gíame"
+      step1_description: "Articular el problema del mundo real que se desea abordar"
+      step2_description: "Identificar las causas del problema"
+      step3_description: "Formular soluciones políticas para las causas del problema"
+      step4_description: "Definir y priorizar objetivos de políticas públicas"
       step_one: "Una vez que abras la página del proyecto verás 4 pestañas. Las <strong>Etapas</strong> son las fases del ingreso de datos, en <strong>Panel de control</strong> se muestran los indicadores de progreso, en <strong>Documentos</strong> un repositorio para que enlaces documentos importantes, y finalmente en <strong>Resumen</strong> se muestra el compendio de toda la información"
       step_two: "Vamos a comenzar con la planificación de advocacy completando la información requerida en la <strong>Etapa 1</strong>"
       step_three: "Estos iconos muestran los tres estados de de entrada de datos. Te dirán si tienes que completar un paso anterior(<i class='fa fa-lock'></i>), si están listos para el ingreso (<i class='fa fa-unlock'></i>) o que contienen información (<i class='fa fa-check'></i>)"
+      section1_title: "Etapa 1: Identificar el problema y los objetivos políticos a lograr"
+      section2_title: "Etapa 2 : El Plan para cada uno de sus Objetivos de política priorizados en detalle"
       stage1_title: "Paso 1: Describa el problema y la correspondiente solución de política pública"
-      stage2_title: "Paso 2: Formular los objetivos y ordenarlos en orden de prioridad"
+      stage2_title: "Paso 2: Definir objetivos y priorizarlos"
       stage3_title: "Paso 3: Establecer metas"
       stage3_without_objectives: |
                     <h4><i class='fa fa-times-circle'></i> Necesitas agregar objetivos para para establecer las metas</h4>
                     <p>Completa el paso anterior para poder seguir con el ingreso de tu plan de advocacy</p>
       objective_cnt: 'Objetivo'
       outcome_cnt: "Resultado Intermedio"
+      complete_stage_tooltip: "Etapa iniciada"
+      incomplete_stage_tooltip: "Etapa sin iniciar"
+      causes: "Causas"
+      solutions: "Soluciones"
+      objectives: "Objetivos"
+      actors: "Actores"
+      enabling_factors: "Factores habilitantes"
+      barriers: "Barreras"
+      outcomes: "Interim outcomes"
+      activities: "Actividades"
+      asks: "Peticiones"
+      process_description: "Comprender procesos y ciclos de toma de decisiones"
+      actors_description: "Listar de Actores y Mapa de Poder"
+      external_factors_description: "Identificar factores habilitantes y barreras"
+      outcomes_description: "Establecer Resultados intermedios"
+      activities_description: "Definir actividades"
+      asks_description: "Especificar peticiones"
     overview:     # http://localhost:3000/projects/1#overview
       projects: "Proyectos"
       overview: "Resumen"
       empty: "( Sin datos )"
       uncreated: "( No creado )"
-      actors: Actores
+      actors: "Actores"
+      print: "Imprimir"
+      focus_area: "Área de focalización"
+      real_problem: "Problema público"
+      goal: "Meta"
+      cause: "Causa"
+      solutions: "Soluciones"
+      solution: "Solución"
+      objective: "Objetivo"
+      type: "Tipo"
+      barriers: "Barreras"
+      enabling_factors: "Factores habilitantes"
+      actor: "Actor"
+      actor_type: "Tipo de actor"
+      support: "Apoyo"
+      influence: "Influencia"
+      outcomes: "Resultados intermedios"
+      outcome: "Resultado intermedio"
+      outcome_type: "Tipo de resultado intermedio"
+      activities: "Actividades"
+      activity: "Actividad"
+      owner_name: "Nombre del encargado"
+      owner_role: "Cargo del encargado"
+      expected_results: "Resultados esperados"
+      obtained_results: "Resultados obtenidos"
+      adjustments: "Ajustes"
+      percentaje: "Porcentaje de éxito"
+      asks: "Peticiones"
+      ask: "Petición"
+      related_objectives: "Objetivos asociados"
     dashboard:    # http://localhost:3000/projects/1#dashboard
       activities: "Actividades"
       successful_activities: "Actividades exitosas"
@@ -126,6 +210,24 @@ es:
       objectives_with_failed_activities: "Objetivos sin actividades fallidas"
       percentage_advance_priority_objectives: "Porcentaje de avance de los objetivos priorizados"
       percentage_of_total_advance_objectives: "Porcentaje total de avance de los objetivos"
+    resources:
+      new_resource: "Añadir recurso"
+      title: "Título"
+      description: "Descripción"
+      tags: "Tags"
+      public: "Público"
+      last_change: "Último cambio"
+      actions: "Acciones"
+      edit: "Editar"
+      delete: "Eliminar"
+    real_problem_modal:
+      real_problem: "Problema público"
+      title: "Título"
+      title_placeholder: "Nombre su problema público"
+      description: "Descripción"
+      description_placeholder: "Describa el problema"
+      save: "Guardar"
+      cancel: "Cancelar"
     #
     # Stage 1
     #
@@ -187,7 +289,6 @@ es:
       title1_description: |
                           <p>La primera etapa del proceso de planificación está centrada en la identificación y caracterización de un problema. Un problema público puede ser entendido como una situación negativa que afecta a la población de un país o una localidad específica y que la organización desea revertir. </p>
                           <p>La identificación y definición del problema debe responder a por qué la temática en cuestión puede ser considerada como un problema, además de acotarla a un contexto territorial, a uno temporal y mencionar la población que resulta afectada. También es necesario tener en consideración que un problema público tiene causas múltiples y que la identificación de estas puede estar determinada por la forma en que se defina el problema.</p>
-
       title2: "¿Cuales son las causas políticas relacionadas con el problema público?"
       title2_description: |
                           <p>Como se mencionaba anteriormente, detrás de los problemas públicos existen múltiples causas, incluyendo los programas políticos y las malas prácticas relacionadas con el ambiente político. </p>
@@ -288,7 +389,7 @@ es:
       save_button: "Guardar"
       cancel_button: "Cancelar"
     prioritized_modal:
-      prioritized: Priorización de Objetivos
+      prioritized: "Priorización de Objetivos"
       key_contribution: "CONTRIBUCIÓN CLAVE: ¿El objetivo es una contribución clave para la solución del problema?"
       big_difference: "<p><strong>Gran diferencia:</strong> ¿Podría el éxito del objetivo hacer una diferencia significativa en el tratamiento del problema público?</p>"
       score: "Puntaje"
@@ -303,15 +404,19 @@ es:
                 <li>¿Hay otros grupos importantes empujando a los responsables políticos?</li>
                 <li>¿Hay suficiente conciencia pública?</li>
               </ul>
+
       hooks_processes: |
               <p><strong>Ganchos y procesos:</strong></p>
               <ul>
                 <li>¿hay ventanas de oportunidad en los procesos políticos?</li>
               </ul>
+
       intuitive: |
               <p><strong>Intuitivo:</strong> ¿El tema detrás de la estrategia de advocacy es fácil de comunicar o entender?</p>
               <ul>
               </ul>
+
+
       comparative_advantage: "Ventaja comparativa: ¿tiene la organización una ventaja comparativa en relación al objetivo de advocacy?"
       alignment: |
               <p><strong>Alineación:</strong></p>
@@ -319,18 +424,26 @@ es:
                 <li> ¿la estrategia de advocacy es coherente con el mandato de la organización?</li>
                 <li>¿Existen sinergias con otro programa de la organización?</li>
               </ul>
+
+
+
+
       added_value: |
               <p><strong>Valor agregado:</strong> ¿puede la organización agregar valor y peso al discurso de otras organizaciones para la consecución de la meta de advocacy?</p>
               <ul>
                 <li>¿Está el tema que impulsa la estrategia de advocacy siendo tratado por alguien más?</li>
                 <li>¿La organización cuenta con la expertise técnica y es capaz de convocar a socios clave?</li>
               </ul>
+
+
       loss_or_gain: |
               <p><strong>Perdida o ganancia:</strong> ¿La organización tiene mucho  que ganar de llevar a cabo el objetivo de advocacy?</p>
               <ul>
                 <li>¿Se fortalece la reputación o credibilidad de la organización al llevar a cabo el plan de advocacy? </li>
                 <li>¿Existen riesgos significativos para la organización de no participar en el tema?</li>
               </ul>
+
+
       score_placeholder: "Ingrese un número del 1 al 3"
       main_arguments_placeholder: "Ingrese sus argumentos"
       save_button: "Guardar"
@@ -358,6 +471,7 @@ es:
                             <li>Mantenimiento de políticas públicas</li>
                           </ul>
                           <p>En aquellos contextos en los que un cambio de políticas públicas sea considerado demasiado ambicioso, la organización puede aspirar a un cambio discursivo, el que debería allanar el camino para que en el largo plazo se genere un cambio más profundo. Por ejemplo, por muchos años y dada la falta de opciones de lograr un cambio en las políticas relacionadas a los paraísos fiscales, las organizaciones que trabajan en la justicia fiscal centraron sus esfuerzos de advocacy en un cambio discursivo centrado en la sociedad, a modo que los paraísos fiscales fueran vistos por la mayoría como una práctica inaceptable. Estos esfuerzos constituyen la base de los cambios políticos que se consiguieron unos años después.</p>
+      
       example: "Ejemplos"
       real_world_problem: "Problema público"
       real_world_problem_description: |
@@ -422,6 +536,8 @@ es:
       confirm_delete_actor: "¿Estas seguro que quieres eliminar a este actor?"
       confirm_delete_enabling_factor: "¿Estas seguro que quieres eliminar este factor habilitante"
       confirm_delete_barrier: "¿Estas seguroo que quieres eliminar esta barrera?"
+      edit: "Editar"
+      delete: "Eliminar"
     actors_modal:  # modal `add actor` of stage 3
       actor: "Actor"
       actor_type: "Tipo de actor"
@@ -469,7 +585,6 @@ es:
                             <li>Monitoreo y evaluación</li>
                           </ul>
                           <p>En cada una de las fases anteriormente listadas se encuentran presentes actores diversos formales e informales que cuentan con distintos niveles de influencia, por lo cual es necesario tener algún tipo de conocimientos sobre estos.</p>
-
       title2: "Mapeo de actores relacionados para analizar su influencia relativa y su nivel de apoyo"
       title2_description: |
                           <p>Para realizar una estrategia de advocacy efectiva se debe tener un buen conocimiento de todos los actores relevantes, es decir, los que tienen el poder de hacer cambios , los que tienen influencia sobre estos y los miembros de la comunidad que actúan en forma conjunta apoyando u oponiéndose a una temática particular.</p>
@@ -596,6 +711,9 @@ es:
       actor_type: "Tipo de actor"
       activities_number: "Número de actividades"
       actions: "Acciones"
+      edit: "Editar"
+      indicators: "Indicadores"
+      delete: "Eliminar"
       error_getting_actor_type: "Error al obtener la información de un tipo de actor"
       error_getting_outcomes: "Error al obtener la información de los resultados"
       error_getting_categories: "Error al obtener la información de las categorias"
@@ -611,20 +729,20 @@ es:
       interim_outcome_placeholder: "Agregar información del resultado intermedio"
       interim_outcome_type: "Tipo de resultado intermedio"
       interim_outcome_type_list:
-        - 'Political will'
-        - 'Public will'
-        - 'Attitudes or beliefs'
-        - 'Salience'
-        - 'Awareness'
-        - 'New champions'
-        - 'New advocates'
-        - 'Partnerships or alliances'
-        - 'Constituency or support-base growth'
-        - 'Media coverage'
-        - 'Issue reframing'
-        - 'Organizational advocacy capacity'
-        - 'Organizational visibility or issue recognition'
-        - 'Other'
+        - 'Voluntad política'
+        - 'Voluntad pública'
+        - 'Actitudes o creencias'
+        - 'Relevancia'
+        - 'Conciencia'
+        - 'Líderes de opinión'
+        - 'Nuevos Defensores'
+        - 'Asociaciones y alianzas'
+        - 'Circunscripción o base de apoyo en crecimiento'
+        - 'Cobertura mediática'
+        - 'Replanteamiento del asunto'
+        - 'Capacidad de advocacy de la organización'
+        - 'Visibilidad de la organización o reconocimiento del problema'
+        - 'Otro'
       actor_type: "Tipo de actor"
       save_button: "Guardar"
       cancel_button: "Cancelar"
@@ -886,6 +1004,8 @@ es:
                 <td>Visibilidad organizacional y reconocimiento del problema</td>
                 <td>Análisis e investigación de políticas y temas</td>
               </tr>
+      
+
       after_outcomes_table_description:  |
               <p>Las acciones elegidas deben ser las que tienen el mayor potencial para contribuir a cada uno de los resultados provisionales. Durante su selección, también hay que tener en cuenta sus recursos organizacionales, ya sean humanos o financieros.</p>
               <p>Para planificar y coordinar lo más recomendable es agendar las actividades, así resultará mucho más sencillo acoplar los distintos elementos asociados.</p>
@@ -937,7 +1057,7 @@ es:
                 <td>
                   <ul>
                     <li>Organizar visitas a clínicas que trabajen en la prevención de la transmisión maternoinfantil del VIH, a las que asistan distintos miembros del gobierno, parlamento y periodistas</li>
-                    <li>Llevar a cabo una reunión de lobby con el gobierno</li>
+                    <li>Llevar a cabo una reunión de lobby con el gobierno</li>  
                   </ul>
                 </td>
               </tr>
@@ -959,6 +1079,8 @@ es:
                   </ul>
                 </td>
               </tr>
+
+
       months_table_content: |
               <tr>
                 <th>Mes</th>
@@ -998,6 +1120,7 @@ es:
                 <td>Llevar a cabo una reunión de lobby con el gobierno<strong>*</strong> <br></td>
                 <td></td>
               </tr>
+      
       after_months_table_description: "<p><strong>*</strong>Comprometerse con grupos de afectadas y fortalecer sus conocimientos sobre las oportunidades de cambio. Sumado a lo anterior, es necesario identificar líderes dentro de la colectividad  y enseñarles técnicas de comunicación</p>"
     #
     # Stage 6
@@ -1026,6 +1149,9 @@ es:
       confirm_delete_ask: "¿Está seguro que quiere eliminar esta petición?"
       edit: "Editar"
       delete: "Eliminar"
+      date: "Fecha"
+      actors: "Actores"
+      actions: "Acciones"
     asks_modal: # modal 'add ask' of stage 6
       asks: "Peticiones"
       actor: "Actor"
@@ -1038,8 +1164,8 @@ es:
       save_button: "Guardar"
       cancel_button: "Cancelar"
     msj_modal: # modal 'add messages' of stage 6
-      menssage: "Mensaje"
-      menssage_placeholder: "Ingrese un mensaje"
+      message: "Mensaje"
+      message_placeholder: "Ingrese un mensaje"
       actors: "Seleccione Actores para transmitir el mensaje"
       executed: "Ejecutado"
       save_button: "Guardar"
@@ -1114,7 +1240,6 @@ es:
       dashboard: "Panel de control"
       documents: "Documentos"
       overview: "Resumen"
-
     stage1:
       projects: "Demo"
       stage1: "Etapa 1"
