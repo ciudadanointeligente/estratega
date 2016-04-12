@@ -220,6 +220,14 @@ en:
       actions: "Actions"
       edit: "Edit"
       delete: "Delete"
+    real_problem_modal:
+      real_problem: "Real world problem"
+      title: "Title"
+      title_placeholder: "Name your real world problem"
+      description: "Description"
+      description_placeholder: "Describe the problem"
+      save: "Save"
+      cancel: "Cancel"
     #
     # Stage 1
     #
@@ -528,6 +536,8 @@ en:
       confirm_delete_actor: "Are you sure you want to delete this actor?"
       confirm_delete_enabling_factor: "Are you sure you want to delete this enabling factor?"
       confirm_delete_barrier: "Are you sure you want to delete this enabling factor?"
+      edit: "Edit"
+      delete: "Delete"
     actors_modal:  # modal `add actor` of stage 3
       actor: "Actor"
       actor_type: "Actor Type"
@@ -701,6 +711,9 @@ en:
       actor_type: "Actor Type"
       activities_number: "Activities Number"
       actions: "Actions"
+      edit: "Edit"
+      indicators: "Indicators"
+      delete: "Delete"
       error_getting_actor_type: "Error while getting actor type information"
       error_getting_outcomes: "Error while getting outcomes information"
       error_getting_categories: "Error while getting categories information"
@@ -1136,6 +1149,9 @@ en:
       confirm_delete_ask: "Are you sure you want to delete this ask?"
       edit: "Edit"
       delete: "Delete"
+      date: "Date"
+      actors: "Actors"
+      actions: "Actions"
     asks_modal: # modal 'add ask' of stage 6
       asks: "Asks"
       actor: "Actor"
@@ -1148,8 +1164,8 @@ en:
       save_button: "Save"
       cancel_button: "Cancel"
     msj_modal: # modal 'add messages' of stage 6
-      menssage: "Menssage"
-      menssage_placeholder: " "
+      message: "Message"
+      message_placeholder: " "
       actors: "Select Actors to convey the message"
       executed: "Executed"
       save_button: "Save"

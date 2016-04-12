@@ -220,6 +220,14 @@ es:
       actions: "Acciones"
       edit: "Editar"
       delete: "Eliminar"
+    real_problem_modal:
+      real_problem: "Problema público"
+      title: "Título"
+      title_placeholder: "Nombre su problema público"
+      description: "Descripción"
+      description_placeholder: "Describa el problema"
+      save: "Guardar"
+      cancel: "Cancelar"
     #
     # Stage 1
     #
@@ -528,6 +536,8 @@ es:
       confirm_delete_actor: "¿Estas seguro que quieres eliminar a este actor?"
       confirm_delete_enabling_factor: "¿Estas seguro que quieres eliminar este factor habilitante"
       confirm_delete_barrier: "¿Estas seguroo que quieres eliminar esta barrera?"
+      edit: "Editar"
+      delete: "Eliminar"
     actors_modal:  # modal `add actor` of stage 3
       actor: "Actor"
       actor_type: "Tipo de actor"
@@ -701,6 +711,9 @@ es:
       actor_type: "Tipo de actor"
       activities_number: "Número de actividades"
       actions: "Acciones"
+      edit: "Editar"
+      indicators: "Indicadores"
+      delete: "Eliminar"
       error_getting_actor_type: "Error al obtener la información de un tipo de actor"
       error_getting_outcomes: "Error al obtener la información de los resultados"
       error_getting_categories: "Error al obtener la información de las categorias"
@@ -1136,6 +1149,9 @@ es:
       confirm_delete_ask: "¿Está seguro que quiere eliminar esta petición?"
       edit: "Editar"
       delete: "Eliminar"
+      date: "Fecha"
+      actors: "Actores"
+      actions: "Acciones"
     asks_modal: # modal 'add ask' of stage 6
       asks: "Peticiones"
       actor: "Actor"
@@ -1148,8 +1164,8 @@ es:
       save_button: "Guardar"
       cancel_button: "Cancelar"
     msj_modal: # modal 'add messages' of stage 6
-      menssage: "Mensaje"
-      menssage_placeholder: "Ingrese un mensaje"
+      message: "Mensaje"
+      message_placeholder: "Ingrese un mensaje"
       actors: "Seleccione Actores para transmitir el mensaje"
       executed: "Ejecutado"
       save_button: "Guardar"

@@ -65,7 +65,7 @@
                     <td>{{ actor.actor_type }}</td>
                     <td>{{ get_support_name (actor.support) }}</td>
                     <td>{{ get_influence_name (actor.influence) }}</td>
-                    <td class="text-center"><a href="#" title="Editar" ng-click="add_edit_actor(actor)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Eliminar" ng-click="delete_actor(actor)"><i class="fa fa-trash"></i></a></td>
+                    <td class="text-center"><a href="#" title="<%= t('.edit') %>" ng-click="add_edit_actor(actor)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="<%= t('.delete') %>" ng-click="delete_actor(actor)"><i class="fa fa-trash"></i></a></td>
                   </tr>
                 </table>
             </div>
@@ -93,7 +93,7 @@
                   <tbody>
                     <tr ng-repeat="barrier in objective.barriers track by $index">
                       <td>{{barrier}}</td>
-                      <td class="text-right"><a href="#" title="Editar" ng-click="add_edit_barrier(barrier)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Eliminar" ng-click="delete_barrier(barrier)"><i class="fa fa-trash"></i></a></td>
+                      <td class="text-right"><a href="#" title="<%= t('.edit') %>" ng-click="add_edit_barrier(barrier)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="<%= t('.delete') %>" ng-click="delete_barrier(barrier)"><i class="fa fa-trash"></i></a></td>
                     </tr>
                   </tbody>
                 </table>
@@ -114,7 +114,7 @@
                   <tbody>
                     <tr ng-repeat="enabling_factor in objective.enabling_factors">
                       <td>{{enabling_factor}}</td>
-                      <td class="text-right"><a href="#" title="Edit" ng-click="add_edit_enabling_factor(enabling_factor)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="Delete" ng-click="delete_enabling_factor(enabling_factor)"><i class="fa fa-trash"></i></a></td>
+                      <td class="text-right"><a href="#" title="<%= t('.edit') %>" ng-click="add_edit_enabling_factor(enabling_factor)"><i class="fa fa-pencil-square-o"></i></a> <a href="#" title="<%= t('.delete') %>" ng-click="delete_enabling_factor(enabling_factor)"><i class="fa fa-trash"></i></a></td>
                     </tr>
                   </tbody>
                 </table>
