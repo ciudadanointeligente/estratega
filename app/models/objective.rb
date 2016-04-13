@@ -9,8 +9,7 @@ class Objective < ActiveRecord::Base
   has_one :indicator, dependent: :destroy
 
   def objective_type_list
-    objective_type = ["Desarrollo de políticas públicas","Establecimiento de un tema en la agenda política","Adopción de políticas públicas","Bloqueo de políticas públicas","Implementación de políticas públicas","Mantenimiento de políticas públicas", "Otros"]
-    return objective_type
+    return I18n.t "projects.objective_modal.objective_type_list"
   end
 
   def as_ical
