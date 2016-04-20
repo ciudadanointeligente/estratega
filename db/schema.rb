@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160406160620) do
     t.text     "event_title"
     t.integer  "project_id"
     t.date     "end_date"
+    t.string   "place"
   end
 
   add_index "activities", ["project_id"], name: "index_activities_on_project_id", using: :btree
