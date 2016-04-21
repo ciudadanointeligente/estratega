@@ -40,7 +40,7 @@ RSpec.describe OrganizationsController, :type => :controller do
     it "assigns all organizations as @organizations" do
       organization = Organization.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:organizations)).to eq([organization])
+      expect(assigns(:organizations)).to include(organization)
     end
   end
 

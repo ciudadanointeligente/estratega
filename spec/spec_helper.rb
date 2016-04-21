@@ -99,13 +99,14 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
     # Truncating doesn't drop schemas, ensure we're clean here, app *may not* exist
     Apartment::Tenant.drop('app') rescue nil
-    # Create the default tenant for our tests
-    Organization.create!(name: 'Influitive Corp.', subdomain: 'app')
+    
   end
 
   config.before(:each) do
     # Start transaction for this test
     DatabaseCleaner.start
+    # Create the default tenant for our tests
+    Organization.create!(name: 'Influitive Corp.', subdomain: 'app', max_projects:100)
     # Switch into the default tenant
     Apartment::Tenant.switch! 'app'
   end
