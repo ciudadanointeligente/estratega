@@ -10,6 +10,15 @@ class Ability
       # else
       #   can :read, Sandboxes
       # end
+    can :read, :all                   # allow everyone to read everything
+    if user.role
+      can :access, :rails_admin       # only allow admin users to access Rails Admin
+      can :dashboard                  # allow access to dashboard
+      can :manage, :all
+    else
+      cannot :access, :rails_admin
+    end
+
     
     # The first argument to `can` is the action you are giving the user
     # permission to do.

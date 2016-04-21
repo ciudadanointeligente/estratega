@@ -7,6 +7,18 @@ class Project < ActiveRecord::Base
   has_many :activities, dependent: :destroy
 
   validates :title, presence: true
+  validate :max_projects_not_reached
+  
+  def max_projects_not_reached
+    tenant = Apartment::Tenant.current
+    if tenant != 'public'
+      org = Organization.find_by_subdomain tenant.to_s
+      num_projects = Project.all.count
+      if num_projects >= Integer(org.max_projects)
+        errors[:base] << I18n.t('.max_projects_reached')
+      end
+    end
+  end
 
   # def activities
   #   @activities = []

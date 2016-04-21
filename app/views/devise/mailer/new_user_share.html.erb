@@ -13,6 +13,6 @@
     <p><%= @message %></p>
   <% end %>
 
-  <%= link_to t('.activate_account'), edit_password_url(@user, reset_password_token: @token) %>
+  <%= link_to t('.activate_account'), edit_password_url(@user, reset_password_token: @token, subdomain: Apartment::Tenant.current) %>
 </body>
 </html>

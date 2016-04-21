@@ -24,7 +24,14 @@ gem 'ng-rails-csrf'
 gem 'acts-as-taggable-on'
 gem 'pundit'
 gem 'icalendar'
+<<<<<<< HEAD
 gem 'http_accept_language'
+||||||| merged common ancestors
+=======
+gem 'apartment'
+gem 'rails_admin'
+gem 'paperclip'
+>>>>>>> dev_multitenancy_custom
 
 group :development do
   gem 'better_errors'

@@ -19,6 +19,7 @@ Rails.application.configure do
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
+  config.log_tags = [ :subdomain ]
 
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
@@ -34,7 +35,7 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   # Raises error for missing translations
-  # config.action_view.raise_on_missing_translations = true
+  config.action_view.raise_on_missing_translations = false
   config.action_mailer.default_url_options = { host: ENV['BASE_URL'] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {

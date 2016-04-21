@@ -312,31 +312,22 @@ class ProjectsController < ApplicationController
         new_user.save
         @project.users << new_user
 
-        # permission = Permission.where(project_id: @project.id ).where(user_id: new_user.id).first
-        permission = Permission.find_by_project_id_and_user_id(@project.id,new_user.id)
-        # permission.role = :collaborator
-        set_permission = Permission.find(permission.id)
-        set_permission.role = :collaborator
-
-        if set_permission.save
-          data_send = {email: new_user.email, message: message, token: raw_token, project: @project}
+        permission = Permission.where(project_id: @project.id ).where(user_id: new_user.id).first
+        permission.role = :collaborator
+        if permission.save
+          data_send = {email: new_user.email, message: message, token: raw_token, project: @project, subdomain: request.subdomain}
           UserMailer.new_user_share(data_send).deliver_now
         end
       else
-        permission = Permission.find_by_project_id_and_user_id(@project.id, share_user.id)
-        if permission.nil? || (permission.role != nil || permission.role != :owner)
-            if !@project.users.include? share_user
-              @project.users << share_user
+        if !@project.users.include? share_user
+          @project.users << share_user
+        end
 
-            permission = Permission.find_by_project_id_and_user_id(@project,share_user)
-            set_permission = Permission.find(permission.id)
-            set_permission.role = :collaborator
-
-            if set_permission.save
-              data_send = {email: share_user.email, message: message, project: @project}
-              UserMailer.exist_user_share(data_send).deliver_now
-            end
-          end
+        permission = Permission.where(project_id: @project.id ).where(user_id: share_user.id).first
+        permission.role = :collaborator
+        if permission.save
+          data_send = {email: share_user.email, message: message, project: @project, subdomain: request.subdomain}
+          UserMailer.exist_user_share(data_send).deliver_now
         end
       end
     end

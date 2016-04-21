@@ -1,10 +1,10 @@
 development:
-  BASE_URL: ''
-  SMTP_SETTING_ADDRESS: ''
-  SMTP_SETTING_PORT: ''
-  SMTP_SETTING_USERNAME: ''
-  SMTP_SETTING_PASSWORD: ''
-  MAILER_SENDER: ''
+  BASE_URL: 'ciudadanoi.org'
+  SMTP_SETTING_ADDRESS: 'smtp.postmarkapp.com'
+  SMTP_SETTING_PORT: '2525'
+  SMTP_SETTING_USERNAME: '30c379ab-afa2-47b9-ac4e-bc868e61e2b4'
+  SMTP_SETTING_PASSWORD: '30c379ab-afa2-47b9-ac4e-bc868e61e2b4'
+  MAILER_SENDER: 'jbari@ciudadanointeligente.org'
 test:
   BASE_URL: ''
   SMTP_SETTING_ADDRESS: ''

@@ -19,6 +19,8 @@ Rails.application.configure do
   # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
   # config.action_dispatch.rack_cache = true
 
+  config.assets.debug = true
+  
   # Disable Rails's static asset server (Apache or nginx will already do this).
   # config.serve_static_assets = false
 
@@ -45,7 +47,7 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  # config.log_tags = [ :subdomain, :uuid ]
+  config.log_tags = [ :subdomain ]
 
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
@@ -58,7 +60,7 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  # config.action_mailer.raise_delivery_errors = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -80,15 +82,14 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: ENV['BASE_URL'] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
 
   config.action_mailer.smtp_settings = {
-    address: ENV['SMTP_SETTING_ADDRESS'],
-    port: ENV['SMTP_SETTING_PORT'],
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: ENV["SMTP_SETTING_USERNAME"],
-    password: ENV["SMTP_SETTING_PASSWORD"]
+    :address        => ENV['SMTP_SETTING_ADDRESS'],
+    :port           => ENV['SMTP_SETTING_PORT'],
+    :authentication => :plain,
+    :user_name      => ENV["SMTP_SETTING_USERNAME"],
+    :password       => ENV["SMTP_SETTING_PASSWORD"]
   }
 end
