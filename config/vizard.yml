@@ -1,5 +1,5 @@
 development:
-  BASE_URL: 'c9-stratega-jbci.c9users.io'
+  BASE_URL: 'ciudadanoi.org'
   SMTP_SETTING_ADDRESS: 'smtp.postmarkapp.com'
   SMTP_SETTING_PORT: '2525'
   SMTP_SETTING_USERNAME: '30c379ab-afa2-47b9-ac4e-bc868e61e2b4'
