@@ -47,7 +47,7 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :subdomain, :uuid ]
+  config.log_tags = [ :subdomain ]
 
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
@@ -86,11 +86,10 @@ Rails.application.configure do
   config.action_mailer.default :charset => "utf-8"
 
   config.action_mailer.smtp_settings = {
-    address: ENV['SMTP_SETTING_ADDRESS'],
-    port: ENV['SMTP_SETTING_PORT'],
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: ENV["SMTP_SETTING_USERNAME"],
-    password: ENV["SMTP_SETTING_PASSWORD"]
+    :address        => ENV['SMTP_SETTING_ADDRESS'],
+    :port           => ENV['SMTP_SETTING_PORT'],
+    :authentication => :plain,
+    :user_name      => ENV["SMTP_SETTING_USERNAME"],
+    :password       => ENV["SMTP_SETTING_PASSWORD"]
   }
 end
