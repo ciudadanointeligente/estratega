@@ -1,31 +1,31 @@
 <script type="text/ng-template" id="user-permission-aside">
   <div class="modal-header">
-      <h3 class="modal-title">Compartir</h3>
+      <h3 class="modal-title"><%= t('.share') %></h3>
   </div>
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label for="share_users">Añade a Personas</label>
-        <input type="text" class="form-control" name="share_users" ng-model="share.share_users" placeholder="Añade las cuentas de mail separadas por comas">
+        <label for="share_users"><%= t('.persons') %></label>
+        <input type="text" class="form-control" name="share_users" ng-model="share.share_users" placeholder="<%= t('.persons_placeholder') %>">
       </div>
       <div class="form-group">
-        <label for="message">Mensaje</label>
-        <textarea class="form-control" name="message" ng-model="share.message" placeholder="Escribe un mensaje"></textarea>
+        <label for="message"><%= t('.message') %></label>
+        <textarea class="form-control" name="message" ng-model="share.message" placeholder="<%= t('.message_placeholder') %>"></textarea>
       </div>
       <hr>
-      <div class="form-group" ng-class="{hidden: current_project.members.length < 2}">
-        <h4>Compartido con</h4>
+      <div class="form-group">
+        <h4><%= t('.shared_list') %></h4>
         <table class="table">
           <thead>
             <tr>
-              <th with="90%">Usuarios</th>
-              <th class="text-right">Acciones</th>
+              <th with="90%"><%= t('.users') %></th>
+              <th class="text-right"><%= t('.actions') %></th>
             </tr>
           </thead>
           <tbody>
             <tr ng-repeat="member in current_project.members" ng-if="member.role != 'owner' ">
               <td>{{ member.email }}</td>
-              <td class="text-right"><a href="#" title="Eliminar"><i class="fa fa-trash" ng-click="delete_shared_user(member)"></i></a></td>
+              <td class="text-right"><a href="#" title="<%= t('.delete') %>"><i class="fa fa-trash" ng-click="delete_shared_user(member)"></i></a></td>
             </tr>
           </tbody>
         </table>
@@ -33,7 +33,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="save($event)">Compartir</button>
-    <button class="btn btn-warning" ng-click="cancel($event)">Cancelar</button>
+    <button class="btn btn-primary" ng-click="save($event)"><%= t('.share') %></button>
+    <button class="btn btn-warning" ng-click="cancel($event)"><%= t('.cancel') %></button>
   </div>
 </script>

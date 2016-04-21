@@ -1,17 +1,17 @@
 <%= form_for(:user, :url => session_path(:user)) do |f| %>
   <div class="form-group">
-    <label for="email">E-mail</label>
+    <label for="email"><%= t('.mail') %></label>
     <%= f.text_field :email, class: "form-control" %>
   </div>
   <div class="form-group">
-    <label for="email">Contraseña</label>
+    <label for="email"><%= t('password') %></label>
     <%= f.password_field :password, class: "form-control" %>
   </div>
   <div class="checkbox">
     <label>
-      <%= f.check_box :remember_me %> Recuerdame
+      <%= f.check_box :remember_me %> <%= t('.remember_me')%>
     </label>
   </div>
-  <%= f.submit 'Iniciar Sesión', class: "btn btn-success" %>
-  <p><%= link_to "¿Olvidó su contraseña?", new_password_path(:user) %></p>
+  <%= f.submit t('layouts.sign_in.sign_in'), class: "btn btn-success" %>
+  <p><%= link_to t('layouts.sign_in.forgot_password'), new_password_path(:user) %></p>
 <% end %>

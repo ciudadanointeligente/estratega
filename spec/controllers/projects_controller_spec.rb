@@ -273,14 +273,35 @@ RSpec.describe ProjectsController, :type => :controller do
       expect(assigns(:project).users[1].permissions[0].role).to eq "collaborator"
     end
 
-    it "add an existence user" do
-      existence_user = User.create(email: 'dgarrido@ciudadanoi.org', password: 'stupidPassw0rd')
-      project = FactoryGirl.create(:project)
+    it "add an existence user on the project and a guest" do
+      existence_user = create(:user)
+      existence_user_2 = create(:user)
 
-      share_users = "dgarrido@ciudadanoi.org, guest_02@ciudadanoi.org"
+      project = FactoryGirl.create(:project)
+      project.users << existence_user
+      project.save
+
+      share_users = existence_user_2.email+", guest_03@ciudadanoi.org"
       post :share, {:id => project.to_param, :share_users => share_users, :message => 'simple message' }, valid_session
 
-      expect(assigns(:project).users[0].permissions[0].role).to eq "collaborator"
+      expect(assigns(:project).users.find_by_email(existence_user_2.email).permissions.find_by_project_id(assigns(:project).id).role).to eq 'collaborator'
+      expect(assigns(:project).users.find_by_email('guest_03@ciudadanoi.org').permissions.find_by_project_id(assigns(:project).id).role).to eq 'collaborator'
+    end
+
+    it "share with itself" do
+      owner = create(:user)
+      the_project = create(:project)
+      older_project = create(:project)
+      the_project.users << owner
+      older_project.users << owner
+      permission = Permission.find_by_project_id_and_user_id(the_project.id,owner.id)
+      permission.role = :owner
+      permission.save
+
+      share_users = owner.email
+      post :share, {:id => the_project.to_param, :share_users => share_users, :message => 'simple message' }, valid_session
+
+      expect(assigns(:project).users.find_by_email(owner.email).permissions.find_by_project_id(assigns(:project)).role).to eq 'owner'
     end
   end
 
