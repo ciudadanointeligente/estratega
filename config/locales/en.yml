@@ -46,6 +46,7 @@ en:
   #
   # Projects sections
   #
+  max_projects_reached: "Maximum numbre of projects reached."
   projects:
     index:    # http://localhost:3000/projects/
       projects: "Projects"

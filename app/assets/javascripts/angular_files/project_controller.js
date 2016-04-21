@@ -48,6 +48,9 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
       $http.post('/projects', $scope.current_project)
         .success(function (data){
           $scope.messages = { response: true, message: "Proyecto creado!"}
+        })
+        .error(function(error){
+          $scope.messages = { response: false, message: error.errors.base[0] }
         });
     }
 
