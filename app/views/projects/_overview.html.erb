@@ -11,16 +11,16 @@
             <p><%= t('.empty') %></p>
           <% else %>
             <div class="box">
-              <button class="btn btn-warning pull-right" onclick="window.print()"><i class="fa fa-print"></i><%= t('.print') %></button>
-              <div class="label label-default"><%= t('.real_problem') %></div>
+              <button class="btn btn-warning pull-right" onclick="window.print()"><i class="fa fa-print"></i> Imprimir Resumen</button>
+              <div class="label label-default">Problema Real</div>
               <h3><%= @real_problem.title.presence || t('.empty') %></h3>
               <p><%= @real_problem.description.presence || t('.empty') %></p>
               <ul>
                 <li>
-                  <%= t('.focus_area') %>: <%= @real_problem.focus_area.presence || t('.empty') %>
+                  Área de focalización: <%= @real_problem.focus_area.presence || t('.empty') %>
                 </li>
                 <li>
-                  <%= t('.goal') %>: <%= @real_problem.goal.presence || t('.empty') %>
+                  Meta: <%= @real_problem.goal.presence || t('.empty') %>
                 </li>
               </ul>
               </br>
@@ -29,7 +29,7 @@
             <% if !@policy_problems.blank? %>
             <div class="box">
               <% @policy_problems.each_with_index do |policy, i| %>
-                <div class="label label-default"><%= t('.cause') %> <%= i+1 %></div>
+                <div class="label label-default">Problema Político <%= i+1 %></div>
               <% if @policy_problems.nil? %>
                 <p><%= t('.uncreated') %></p>
               <% elsif @policy_problems.count < 1 %>
@@ -43,11 +43,11 @@
                         <% if @solutions.nil? %>
                           <p><%= t('.uncreated') %></p>
                         <% elsif @solutions.count < 1 %>
-                          <b><%= t('.solutions') %></b>
+                          <b>Soluciones</b>
                           <p><%= t('.empty') %></p>
                         <% else %>
                           <% policy.solutions.each_with_index do |solution, i| %>
-                            <li><span class='blue'><%= t('.solution') %><%= i+1 %>. </span><%= solution.title.presence || t('.empty') %></li>
+                            <li><span class='blue'>sol<%= i+1 %>. </span><%= solution.title.presence || t('.empty') %></li>
                           <% end %>
                       </ul>
                       <% end %>
@@ -72,12 +72,11 @@
           <% elsif @objectives.count < 1 %>
             <p></p>
           <% else %>
-            <div class="label label-default"><%= t('.objective') %> <%= i+1 %></div>
-            <% @objectives.each do |objective| %>
+            <div class="label label-default">Objetivo <%= i+1 %></div>
               <h3><%= objective.title.presence || t('.empty') %></h3>
               <p><%= objective.description.presence %></p>
               <ul style="list-style-type:disc">
-                <li><%= t('.type') %>: </b><%= objective.objective_type.presence || t('.empty') %></li>
+                <li>Tipo: </b><%= objective.objective_type.presence || t('.empty') %></li>
               </ul>
               <!-- barriers -->
               <% if objective.barriers.nil? %>
@@ -85,7 +84,7 @@
               <% else %>
                 <% objective.barriers.each_with_index do |barrier, cnt_barrier| %>
                 <div class="separator"></div>
-                <h4><%= t('.barriers') %> <%= cnt_barrier + 1 %>: </h4>
+                <h4>Barreras <%= cnt_barrier + 1 %>: </h4>
                   <ul style="list-style-type:disc">
                     <li><%= barrier %></li>
                   </ul>
@@ -98,13 +97,56 @@
               <% else %>
                 <% objective.enabling_factors.each_with_index do |efactor, cnt_factor| %>
                   <div class="separator"></div>
-                  <h4><%= t('.enabling_factors') %> <%= cnt_factor + 1 %>:</h4>
+                  <h4>Factores habilitantes <%= cnt_factor + 1 %>:</h4>
                   <ul style="list-style-type:disc">
                     <li><%= efactor %></li>
                   </ul>
                 <% end %>
               <% end %>
               <!-- end enabling factors -->
+              <!-- outcomes -->
+              <div class="outcome">
+                <% if objective.outcomes.nil? %>
+                  <p></p>
+                <% elsif objective.outcomes.count < 1 %>
+                  <p></p>
+                <% else %>
+                  <div class="separator"></div>
+                  <h4><%= t('.interim_outcomes')%></h4>
+                    <% objective.outcomes.each_with_index do |outcome, i| %>
+                      <span class='blue'><%= t('.interim_outcome')%> <%= i+1 %>. </span><b><%= outcome.description.presence || t('.empty') %></b>
+                    <ul style="list-style-type:disc">
+                      <li><%= t('.type_interim_outcomes')%>: <%= outcome.outcome_type_id %></li>
+                      <!-- <li>Actor type: <%= outcome.actor_type_id %></li> -->
+                      <div class="asks">
+                        <% if outcome.asks.nil? %>
+                          <p></p>
+                        <% elsif outcome.asks.count < 1 %>
+                          <p></p>
+                        <% else %>
+                          <h4>Peticiones</h4>
+                          <% outcome.asks.each_with_index do |ask, i| %>
+                            <span class='blue'>Petición <%= i+1 %>. </span><b><%= ask.description.presence || t('.empty') %></b>
+                            <ul style="list-style-type:disc">
+                              <% ask.messages.each do |m| %>
+                              <li>
+                                <%= m.description %>
+                                <p><%= t('.actors') %></p>
+                                <ul>
+                                  <li><%= m.actor ? m.actor.name : ""%></li>
+                                </ul>
+                                <li>Objetivos esperados: <%= get_objective_related ask.objective_id %></li>
+                              </li>
+                              <% end %>
+                            </ul>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </ul>
+                  <% end %>
+                <% end %>
+              </div>
+              <!-- end outcomes -->
               <!-- actors -->
               <div>
                 <% if objective.actors.nil? %>
@@ -113,56 +155,19 @@
                   <p></p>
                 <% else %>
                   <div class="separator"></div>
-                  <h4><%= t('.actors') %></h4>
+                  <h4>Actores</h4>
                     <% objective.actors.each_with_index do |actor, i| %>
-                      <p><span class="blue"><%= t('.actor') %></span><b><%= i+1 %>. <%= actor.name %></b></p>
+                      <p><span class="blue">Actor </span><b><%= i+1 %>. <%= actor.name %></b></p>
                     <p><%= actor.description.presence || t('.empty') %></p>
                     <ul style="list-style-type:disc">
-                      <li><b><%= t('.actor_type') %>: </b><%= actor.actor_type.presence || t('.empty') %></li>
-                      <li><b><%= t('.support') %>: </b><%= get_support actor.support.presence || t('.empty') %></li>
-                      <li><b><%= t('.influence') %>: </b><%= get_influence actor.influence.presence || t('.empty') %></li>
+                      <li><b>Tipo de Actor: </b><%= actor.actor_type.presence || t('.empty') %></li>
+                      <li><b>Apoyo: </b><%= get_support actor.support.presence || t('.empty') %></li>
+                      <li><b>Influencia: </b><%= get_influence actor.influence.presence || t('.empty') %></li>
                     </ul>
                   <% end %>
                 <% end %>
               </div>
               <!-- end actors -->
-              <!-- outcomes -->
-              <div>
-                <% if objective.outcomes.nil? %>
-                  <p></p>
-                <% elsif objective.outcomes.count < 1 %>
-                  <p></p>
-                <% else %>
-                  <div class="separator"></div>
-<<<<<<< HEAD
-                  <h4><%= t('.interim_outcomes')%></h4>
-||||||| merged common ancestors
-                  <h4>Metas Intermedias</h4>
-=======
-                  <h4><%= t('.outcomes') %></h4>
->>>>>>> master
-                    <% objective.outcomes.each_with_index do |outcome, i| %>
-<<<<<<< HEAD
-                      <span class='blue'><%= t('.interim_outcome')%> <%= i+1 %>. </span><b><%= outcome.description.presence || t('.empty') %></b>
-||||||| merged common ancestors
-                      <span class='blue'>Meta Intermedia <%= i+1 %>. </span><b><%= outcome.description.presence || t('.empty') %></b>
-=======
-                      <span class='blue'><%= t('.outcome') %> <%= i+1 %>. </span><b><%= outcome.description.presence || t('.empty') %></b>
->>>>>>> master
-                    <ul style="list-style-type:disc">
-<<<<<<< HEAD
-                      <li><%= t('.type_interim_outcomes')%>: <%= outcome.outcome_type_id %></li>
-||||||| merged common ancestors
-                      <li>Tipo de Meta Intermedia: <%= outcome.outcome_type_id %></li>
-=======
-                      <li><%= t('.outcome_type') %>: <%= outcome.outcome_type_id %></li>
->>>>>>> master
-                      <!-- <li>Actor type: <%= outcome.actor_type_id %></li> -->
-                    </ul>
-                  <% end %>
-                <% end %>
-              </div>
-              <!-- end outcomes -->
               <!-- activity -->
               <div>
                 <% if objective.project.activities.nil? %>
@@ -171,28 +176,18 @@
                   <p></p>
                 <% else %>
                   <div class="separator"></div>
-<<<<<<< HEAD
                   <h4>Actividades</h4>
                   <% objective.project.activities.each_with_index do |activity, i| %>
                     <span class='blue'>Actividad <%= i+1 %>. </span><b><%= activity.title.presence || t('.empty') %></b>
-||||||| merged common ancestors
-                  <h4>Actividades</h4>
-                  <% objective.activities.each_with_index do |activity, i| %>
-                    <span class='blue'>Actividad <%= i+1 %>. </span><b><%= activity.title.presence || t('.empty') %></b>
-=======
-                  <h4><%= t('.activities') %></h4>
-                  <% objective.activities.each_with_index do |activity, i| %>
-                    <span class='blue'><%= t('.activity') %> <%= i+1 %>. </span><b><%= activity.title.presence || t('.empty') %></b>
->>>>>>> master
                     <p><%= activity.description.presence || t('.empty') %></p>
                     <% if !activity.indicator.blank? %>
                     <ul>
-                      <% if !activity.indicator.owner_name.blank? %><li><b><%= t('.owner_name') %>:</b> <%= activity.indicator.owner_name %></li><% end %>
-                      <% if !activity.indicator.owner_role.blank? %><li><b><%= t('.owner_role') %>:</b> <%= activity.indicator.owner_role %></li><% end %>
-                      <% if !activity.indicator.expected_results.blank? %><li><b><%= t('.expected_results') %>:</b> <%= activity.indicator.expected_results %></li><% end %>
-                      <% if !activity.indicator.obtained_results.blank? %><li><b><%= t('.obtained_results') %>:</b> <%= activity.indicator.obtained_results %></li><% end %>
-                      <% if !activity.indicator.settings.blank? %><li><b><%= t('.adjustments') %>:</b> <%= activity.indicator.settings %></li><% end %>
-                      <% if !activity.indicator.percentage.blank? %><li><b><%= t('.percentage') %>:</b> <%= activity.indicator.percentage %> %</li><% end %>
+                      <% if !activity.indicator.owner_name.blank? %><li><b>Encargado:</b> <%= activity.indicator.owner_name %></li><% end %>
+                      <% if !activity.indicator.owner_role.blank? %><li><b>Puesto del encargado:</b> <%= activity.indicator.owner_role %></li><% end %>
+                      <% if !activity.indicator.expected_results.blank? %><li><b>Resultados esperados:</b> <%= activity.indicator.expected_results %></li><% end %>
+                      <% if !activity.indicator.obtained_results.blank? %><li><b>Resultados obtenidos:</b> <%= activity.indicator.obtained_results %></li><% end %>
+                      <% if !activity.indicator.settings.blank? %><li><b>Ajustes:</b> <%= activity.indicator.settings %></li><% end %>
+                      <% if !activity.indicator.percentage.blank? %><li><b>Porcentaje:</b> <%= activity.indicator.percentage %> %</li><% end %>
                     </ul>
                     <% end %>
                   <% end %>
@@ -200,34 +195,32 @@
               </div>
               <!-- end activity -->
               <!-- ask -->
-              <div>
-                <% if objective.asks.nil? %>
-                  <p></p>
-                <% elsif objective.asks.count < 1 %>
-                  <p></p>
-                <% else %>
-                  <div class="separator"></div>
-                  <h4><%= t('.asks') %></h4>
-                  <% objective.asks.each_with_index do |ask, i| %>
-                    <span class='blue'><%= t('.ask') %> <%= i+1 %>. </span><b><%= ask.description.presence || t('.empty') %></b>
-                    <ul style="list-style-type:disc">
-                      <% ask.messages.each do |m| %>
-                      <li>
-                        <%= m.description %>
-                        <p><%= t('.actors') %></p>
-                        <ul>
-                          <li><%= m.actor ? m.actor.name : ""%></li>
-                        </ul>
-                        <li><%= t('.related_objectives') %>: <%= get_objective_related ask.objective_id %></li>
-                      </li>
-                      <% end %>
-                    </ul>
-                  <% end %>
-                <% end %>
-              </div>
+              <!--<div class="ask">-->
+              <!--  <% if objective.asks.nil? %>-->
+              <!--    <p></p>-->
+              <!--  <% elsif objective.asks.count < 1 %>-->
+              <!--    <p></p>-->
+              <!--  <% else %>-->
+              <!--    <div class="separator"></div>-->
+              <!--    <h4>Peticiones</h4>-->
+              <!--    <% objective.asks.each_with_index do |ask, i| %>-->
+              <!--      <span class='blue'>Petición <%= i+1 %>. </span><b><%= ask.description.presence || t('.empty') %></b>-->
+              <!--      <ul style="list-style-type:disc">-->
+              <!--        <% ask.messages.each do |m| %>-->
+              <!--        <li>-->
+              <!--          <%= m.description %>-->
+              <!--          <p><%= t('.actors') %></p>-->
+              <!--          <ul>-->
+              <!--            <li><%= m.actor ? m.actor.name : ""%></li>-->
+              <!--          </ul>-->
+              <!--          <li>Objetivos esperados: <%= get_objective_related ask.objective_id %></li>-->
+              <!--        </li>-->
+              <!--        <% end %>-->
+              <!--      </ul>-->
+              <!--    <% end %>-->
+              <!--  <% end %>-->
+              <!--</div>-->
               <!-- end ask -->
-
-            <% end %>
           <% end %>
         </div>
           <% end %>
