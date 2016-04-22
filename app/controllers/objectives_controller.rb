@@ -1,5 +1,5 @@
 class ObjectivesController < ApplicationController
-  before_action :set_objective, only: [:show, :edit, :update, :actors, :update_ww, :destroy, :destroy_ww, :outcomes, :generate_massive_ical]
+  before_action :set_objective, only: [:show, :edit, :update, :actors, :activities, :update_ww, :destroy, :destroy_ww, :outcomes, :generate_massive_ical]
   before_action :set_project
 
   respond_to :html, :json
@@ -42,6 +42,10 @@ class ObjectivesController < ApplicationController
 
   def actors
     respond_with(@objective.actors)
+  end
+  
+  def activities
+    respond_with(@objective.activities)
   end
 
   def objective_types

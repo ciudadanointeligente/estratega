@@ -5,14 +5,29 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   $scope.messages = {response: "", description: ""}
 
   // //get all actors
-  $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/actors.json')
-  .success(function(data){
-      $scope.actors = data;
-  })
-  .error(function (){
-    $scope.messages = { response: false, message: $attrs.errorgettingactors }
-    scroll_to_top();
-  });
+  function get_actors(project_id, objective_id) {
+    $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/actors.json')
+    .success(function(data){
+        $scope.actors = data;
+    })
+    .error(function (){
+      $scope.messages = { response: false, message: $attrs.errorgettingactors }
+      scroll_to_top();
+    });
+  }
+  get_actors($scope.project_id, $scope.objective_id);
+  
+  function get_activities(project_id, objective_id) {
+    $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/activities.json')
+    .success(function(data){
+        $scope.activities = data;
+    })
+    .error(function (){
+      $scope.messages = { response: false, message: $attrs.errorgettingactors }
+      scroll_to_top();
+    });
+  }
+  get_activities($scope.project_id, $scope.objective_id);
 
   function get_asks(project_id, objective_id,outcome_id) {
     $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/outcomes/'+outcome_id+'/asks.json')

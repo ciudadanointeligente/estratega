@@ -129,14 +129,10 @@
                             <span class='blue'>Petición <%= i+1 %>. </span><b><%= ask.description.presence || t('.empty') %></b>
                             <ul style="list-style-type:disc">
                               <% ask.messages.each do |m| %>
-                              <li>
-                                <%= m.description %>
-                                <p><%= t('.actors') %></p>
-                                <ul>
-                                  <li><%= m.actor ? m.actor.name : ""%></li>
-                                </ul>
-                                <li>Objetivos esperados: <%= get_objective_related ask.objective_id %></li>
-                              </li>
+                              <li> <%= m.description %> </li>
+                                <p><%= t('.actors') %>: <%= m.actor ? m.actor.name : ""%></p>
+                                <p>Actividad: <%= m.activity ? m.activity.description : ""%></p>
+                                <p>Objetivos esperados: <%= get_objective_related ask.objective_id %></p>
                               <% end %>
                             </ul>
                           <% end %>
@@ -170,14 +166,14 @@
               <!-- end actors -->
               <!-- activity -->
               <div>
-                <% if objective.project.activities.nil? %>
+                <% if objective.activities.nil? %>
                   <p></p>
-                <% elsif objective.project.activities.count < 1 %>
+                <% elsif objective.activities.count < 1 %>
                   <p></p>
                 <% else %>
                   <div class="separator"></div>
                   <h4>Actividades</h4>
-                  <% objective.project.activities.each_with_index do |activity, i| %>
+                  <% objective.activities.each_with_index do |activity, i| %>
                     <span class='blue'>Actividad <%= i+1 %>. </span><b><%= activity.title.presence || t('.empty') %></b>
                     <p><%= activity.description.presence || t('.empty') %></p>
                     <% if !activity.indicator.blank? %>

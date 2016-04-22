@@ -58,8 +58,9 @@
                     <thead>
                       <tr>
                         <th></th>
-                        <th>Fecha</th>
-                        <th>Actor(es)</th>
+                        <th><%= t('.date') %></th>
+                        <th><%= t('.actors') %></th>
+                        <th><%= t('.activities') %></th>
                         <th class="text-right">Acciones</th>
                       </tr>
                     </thead>
@@ -71,6 +72,9 @@
                         <td>{{m.created_at | date:'dd/MM/yyyy'}}</td>
                         <td width="30%">
                           {{m.actor.name}}
+                        </td>
+                        <td width="30%">
+                          {{m.activity.description}}
                         </td>
                         <td class="text-right">
                           <i class="fa fa-pencil-square-o" ng-click="add_edit_msj(ask, m)" title="<%= t('.edit') %>"></i>

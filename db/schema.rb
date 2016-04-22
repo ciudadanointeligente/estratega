@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406160620) do
+ActiveRecord::Schema.define(version: 20160422190120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,8 +108,10 @@ ActiveRecord::Schema.define(version: 20160406160620) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "actor_id"
+    t.integer  "activity_id"
   end
 
+  add_index "messages", ["activity_id"], name: "index_messages_on_activity_id", using: :btree
   add_index "messages", ["actor_id"], name: "index_messages_on_actor_id", using: :btree
   add_index "messages", ["ask_id"], name: "index_messages_on_ask_id", using: :btree
 
@@ -302,6 +304,7 @@ ActiveRecord::Schema.define(version: 20160406160620) do
   add_foreign_key "indicators", "asks"
   add_foreign_key "indicators", "objectives"
   add_foreign_key "indicators", "outcomes"
+  add_foreign_key "messages", "activities"
   add_foreign_key "messages", "actors"
   add_foreign_key "permissions", "projects"
 end
