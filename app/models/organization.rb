@@ -34,7 +34,7 @@ class Organization < ActiveRecord::Base
     def create_full_admin
       Apartment::Tenant.switch!(subdomain)
       generated_password = Devise.friendly_token.first(8)
-      new_user = User.create(email: 'jordi@ciudadanoi.org', password: generated_password)
+      new_user = User.create(email: ENV['ADMIN_MAIL'], password: generated_password)
       raw_token, hashed_token = Devise.token_generator.generate(User, :reset_password_token)
       new_user.reset_password_token = hashed_token
       new_user.reset_password_sent_at = Time.now.utc

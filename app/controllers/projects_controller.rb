@@ -322,12 +322,17 @@ class ProjectsController < ApplicationController
         if !@project.users.include? share_user
           @project.users << share_user
         end
-
-        permission = Permission.where(project_id: @project.id ).where(user_id: share_user.id).first
-        permission.role = :collaborator
-        if permission.save
-          data_send = {email: share_user.email, message: message, project: @project, subdomain: request.subdomain}
-          UserMailer.exist_user_share(data_send).deliver_now
+        is_owner = Permission.where(project_id: @project.id ).where(user_id: share_user.id).first.role == 'owner'
+        puts Permission.where(project_id: @project.id ).where(user_id: share_user.id).first.inspect
+        puts Permission.where(project_id: @project.id ).where(user_id: share_user.id).first.role
+        puts is_owner
+        unless is_owner
+          permission = Permission.where(project_id: @project.id ).where(user_id: share_user.id).first
+          permission.role = :collaborator
+          if permission.save
+            data_send = {email: share_user.email, message: message, project: @project, subdomain: request.subdomain}
+            UserMailer.exist_user_share(data_send).deliver_now
+          end
         end
       end
     end
