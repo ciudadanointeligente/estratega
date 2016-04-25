@@ -28,6 +28,7 @@ gem 'apartment'
 gem 'rails_admin'
 gem 'paperclip'
 gem 'http_accept_language'
+gem 'seed_dump'
 
 group :development do
   gem 'better_errors'
@@ -40,7 +41,7 @@ group :development do
   gem 'rb-fchange', :require=>false
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
-  gem 'seed_dump'
+  
 end
 
 group :development, :test do
