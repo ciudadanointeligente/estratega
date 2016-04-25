@@ -4,8 +4,8 @@ en:
   #
   layouts:
     landing:
-      meta_description: "Wizard, an advocacy tool"
-      brand: "Wizard"
+      meta_description: "An advocacy tool"
+      brand: "Estratega"
       brand_extra: "Beta"
       navbar_home: "Home"
       navbar_projects: "Projects"
@@ -464,12 +464,12 @@ en:
       title1: "Which real-world problem children are facing that you want to address?"
       title1_description: |
                           <p>A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)</p>
-      
+
       title2: "Which are the policy-related causes of the real-world problem?"
       title2_description: |
                           <p>Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem.</p>
                           <p>To conduct the problem analysis, you can use a problem tree. The problem tree is a well-known tool that “will help advocates understand the immediate, underlying and root causes of the issue, as well as help in gathering information to support the analysis”.</p>
-      
+
       title3: "Which policy solutions would constitute an appropriate response?"
       title3_description: |
                           <p>What are the main policy solutions that would resolve the problems identified and that UNICEF would like to see adopted?</p>
@@ -588,7 +588,7 @@ en:
       title1: "Which real-world problem children are facing that you want to address?"
       title1_description: |
                           <p>A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)</p>
-      
+
 
 
 
@@ -624,7 +624,7 @@ en:
                             <li>PMTCT not included as a priority in the National Strategic Plan (few resources to improve services, campaigns, etc.)- Few donors paying attention to it.</li>
                             <li>Current legal framework stipulates detention for sex workers (after 3 monetary sanctions), which prevents sex workers to attend health services due to fear of being denounced. </li>
                           </ul>
-      
+
 
 
 
