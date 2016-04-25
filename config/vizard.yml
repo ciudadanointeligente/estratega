@@ -1,10 +1,10 @@
 development:
-  BASE_URL: 'c9-stratega-jbci.c9users.io'
+  BASE_URL: 'ciudadanoi.org'
   SMTP_SETTING_ADDRESS: 'smtp.postmarkapp.com'
   SMTP_SETTING_PORT: '2525'
   SMTP_SETTING_USERNAME: '30c379ab-afa2-47b9-ac4e-bc868e61e2b4'
   SMTP_SETTING_PASSWORD: '30c379ab-afa2-47b9-ac4e-bc868e61e2b4'
-  MAILER_SENDER: 'jbari@ciudadanointeligente.org'
+  MAILER_SENDER: 'estratega@ciudadanointeligente.org'
   ADMIN_MAIL: 'estratega@ciudadanointeligente.org'
 test:
   BASE_URL: ''
