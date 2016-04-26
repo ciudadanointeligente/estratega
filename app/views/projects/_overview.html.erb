@@ -12,12 +12,12 @@
           <% else %>
             <div class="box">
               <button class="btn btn-warning pull-right" onclick="window.print()"><i class="fa fa-print"></i> Imprimir Resumen</button>
-              <div class="label label-default">Problema Real</div>
+              <div class="label label-default"><%= t('.real_problem') %></div>
               <h3><%= @real_problem.title.presence || t('.empty') %></h3>
               <p><%= @real_problem.description.presence || t('.empty') %></p>
               <ul>
                 <li>
-                  Área de focalización: <%= @real_problem.focus_area.presence || t('.empty') %>
+                  <%= t('.focus_area') %>: <%= @real_problem.focus_area.presence || t('.empty') %>
                 </li>
                 <li>
                   Meta: <%= @real_problem.goal.presence || t('.empty') %>
@@ -29,7 +29,7 @@
             <% if !@policy_problems.blank? %>
             <div class="box">
               <% @policy_problems.each_with_index do |policy, i| %>
-                <div class="label label-default">Problema Político <%= i+1 %></div>
+                <div class="label label-default"><%= t('.cause') %> <%= i+1 %></div>
               <% if @policy_problems.nil? %>
                 <p><%= t('.uncreated') %></p>
               <% elsif @policy_problems.count < 1 %>
@@ -43,11 +43,11 @@
                         <% if @solutions.nil? %>
                           <p><%= t('.uncreated') %></p>
                         <% elsif @solutions.count < 1 %>
-                          <b>Soluciones</b>
+                          <b><%= t('.solutions') %></b>
                           <p><%= t('.empty') %></p>
                         <% else %>
                           <% policy.solutions.each_with_index do |solution, i| %>
-                            <li><span class='blue'>sol<%= i+1 %>. </span><%= solution.title.presence || t('.empty') %></li>
+                            <li><span class='blue'><%= t('.solution') %><%= i+1 %>. </span><%= solution.title.presence || t('.empty') %></li>
                           <% end %>
                       </ul>
                       <% end %>
@@ -72,11 +72,11 @@
           <% elsif @objectives.count < 1 %>
             <p></p>
           <% else %>
-            <div class="label label-default">Objetivo <%= i+1 %></div>
+            <div class="label label-default"><%= t('.objective') %> <%= i+1 %></div>
               <h3><%= objective.title.presence || t('.empty') %></h3>
               <p><%= objective.description.presence %></p>
               <ul style="list-style-type:disc">
-                <li>Tipo: </b><%= objective.objective_type.presence || t('.empty') %></li>
+                <li><%= t('.type') %>: </b><%= objective.objective_type.presence || t('.empty') %></li>
               </ul>
               <!-- barriers -->
               <% if objective.barriers.nil? %>
@@ -84,7 +84,7 @@
               <% else %>
                 <% objective.barriers.each_with_index do |barrier, cnt_barrier| %>
                 <div class="separator"></div>
-                <h4>Barreras <%= cnt_barrier + 1 %>: </h4>
+                <h4><%= t('.barriers') %> <%= cnt_barrier + 1 %>: </h4>
                   <ul style="list-style-type:disc">
                     <li><%= barrier %></li>
                   </ul>
@@ -97,7 +97,7 @@
               <% else %>
                 <% objective.enabling_factors.each_with_index do |efactor, cnt_factor| %>
                   <div class="separator"></div>
-                  <h4>Factores habilitantes <%= cnt_factor + 1 %>:</h4>
+                  <h4><%= t('.enabling_factors') %> <%= cnt_factor + 1 %>:</h4>
                   <ul style="list-style-type:disc">
                     <li><%= efactor %></li>
                   </ul>
@@ -124,15 +124,15 @@
                         <% elsif outcome.asks.count < 1 %>
                           <p></p>
                         <% else %>
-                          <h4>Peticiones</h4>
+                          <h4><%= t('.asks') %></h4>
                           <% outcome.asks.each_with_index do |ask, i| %>
-                            <span class='blue'>Petición <%= i+1 %>. </span><b><%= ask.description.presence || t('.empty') %></b>
+                            <span class='blue'><%= t('.ask') %> <%= i+1 %>. </span><b><%= ask.description.presence || t('.empty') %></b>
                             <ul style="list-style-type:disc">
                               <% ask.messages.each do |m| %>
                               <li> <%= m.description %> </li>
                                 <p><%= t('.actors') %>: <%= m.actor ? m.actor.name : ""%></p>
-                                <p>Actividad: <%= m.activity ? m.activity.description : ""%></p>
-                                <p>Objetivos esperados: <%= get_objective_related ask.objective_id %></p>
+                                <p><%= t('.activity') %>: <%= m.activity ? m.activity.description : ""%></p>
+                                <p><%= t('.related_objectives') %>: <%= get_objective_related ask.objective_id %></p>
                               <% end %>
                             </ul>
                           <% end %>
@@ -151,14 +151,14 @@
                   <p></p>
                 <% else %>
                   <div class="separator"></div>
-                  <h4>Actores</h4>
+                  <h4><%= t('.actors') %></h4>
                     <% objective.actors.each_with_index do |actor, i| %>
-                      <p><span class="blue">Actor </span><b><%= i+1 %>. <%= actor.name %></b></p>
+                      <p><span class="blue"><%= t('.actor') %> </span><b><%= i+1 %>. <%= actor.name %></b></p>
                     <p><%= actor.description.presence || t('.empty') %></p>
                     <ul style="list-style-type:disc">
-                      <li><b>Tipo de Actor: </b><%= actor.actor_type.presence || t('.empty') %></li>
-                      <li><b>Apoyo: </b><%= get_support actor.support.presence || t('.empty') %></li>
-                      <li><b>Influencia: </b><%= get_influence actor.influence.presence || t('.empty') %></li>
+                      <li><b><%= t('.actor_type') %>: </b><%= actor.actor_type.presence || t('.empty') %></li>
+                      <li><b><%= t('.support') %>: </b><%= get_support actor.support.presence || t('.empty') %></li>
+                      <li><b><%= t('.influence') %>: </b><%= get_influence actor.influence.presence || t('.empty') %></li>
                     </ul>
                   <% end %>
                 <% end %>
@@ -172,18 +172,18 @@
                   <p></p>
                 <% else %>
                   <div class="separator"></div>
-                  <h4>Actividades</h4>
+                  <h4><%= t('.activities') %></h4>
                   <% objective.activities.each_with_index do |activity, i| %>
-                    <span class='blue'>Actividad <%= i+1 %>. </span><b><%= activity.title.presence || t('.empty') %></b>
+                    <span class='blue'><%= t('.activity') %> <%= i+1 %>. </span><b><%= activity.title.presence || t('.empty') %></b>
                     <p><%= activity.description.presence || t('.empty') %></p>
                     <% if !activity.indicator.blank? %>
                     <ul>
-                      <% if !activity.indicator.owner_name.blank? %><li><b>Encargado:</b> <%= activity.indicator.owner_name %></li><% end %>
-                      <% if !activity.indicator.owner_role.blank? %><li><b>Puesto del encargado:</b> <%= activity.indicator.owner_role %></li><% end %>
-                      <% if !activity.indicator.expected_results.blank? %><li><b>Resultados esperados:</b> <%= activity.indicator.expected_results %></li><% end %>
-                      <% if !activity.indicator.obtained_results.blank? %><li><b>Resultados obtenidos:</b> <%= activity.indicator.obtained_results %></li><% end %>
-                      <% if !activity.indicator.settings.blank? %><li><b>Ajustes:</b> <%= activity.indicator.settings %></li><% end %>
-                      <% if !activity.indicator.percentage.blank? %><li><b>Porcentaje:</b> <%= activity.indicator.percentage %> %</li><% end %>
+                      <% if !activity.indicator.owner_name.blank? %><li><b><%= t('.owner_name') %>:</b> <%= activity.indicator.owner_name %></li><% end %>
+                      <% if !activity.indicator.owner_role.blank? %><li><b><%= t('.owner_role') %>:</b> <%= activity.indicator.owner_role %></li><% end %>
+                      <% if !activity.indicator.expected_results.blank? %><li><b><%= t('.expected_results') %>:</b> <%= activity.indicator.expected_results %></li><% end %>
+                      <% if !activity.indicator.obtained_results.blank? %><li><b><%= t('.obtained_results') %>:</b> <%= activity.indicator.obtained_results %></li><% end %>
+                      <% if !activity.indicator.settings.blank? %><li><b><%= t('.adjustments') %>:</b> <%= activity.indicator.settings %></li><% end %>
+                      <% if !activity.indicator.percentage.blank? %><li><b><%= t('.percentage') %>:</b> <%= activity.indicator.percentage %> %</li><% end %>
                     </ul>
                     <% end %>
                   <% end %>
