@@ -186,6 +186,8 @@ en:
       asks: "Asks"
       ask: "Ask"
       related_objectives: "Related objectives"
+      messages: "Messages"
+      message: "Message"
     dashboard:    # http://localhost:3000/projects/1#dashboard
       activities: "Activities"
       successful_activities: "successful activities"

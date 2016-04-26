@@ -190,6 +190,8 @@ es:
       asks: "Peticiones"
       ask: "Petición"
       related_objectives: "Objetivos asociados"
+      messages: "Mensajes"
+      message: "Mensaje"
     dashboard:    # http://localhost:3000/projects/1#dashboard
       activities: "Actividades"
       successful_activities: "Actividades exitosas"
