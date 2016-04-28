@@ -870,6 +870,14 @@ table.document td .btn {
     padding: 0;
 }
 
+.collapsible {
+  display: none;
+}
+.collapse_button {
+  float: right;
+  margin-top: -7px;
+}
+
 /* Colores Graficos*/
 
 .ct-perfect-fourth .ct-series-a .ct-line {

@@ -590,14 +590,6 @@ en:
       title1: "Which real-world problem children are facing that you want to address?"
       title1_description: |
                           <p>A real-world problem is the negative situation children face that UNICEF would like to change (malnutrition, child poverty, infant mortality, disparities in education, etc). At the early stages of the planning process you should identify and articulate the real-world problem you want to address. The problem should be described as precisely and concretely as possible. For instance, whenever is possible, it should include the geographical scope, a time period, and population affected (see example below)</p>
-
-
-
-
-
-
-
-
       title2: "Which are the policy-related causes of the real-world problem?"
       title2_description: |
                           <p>Behind the real-world problems there are usually multiple causes, including causes related to programmes, to bad practices or to the policymaking environment. Advocacy work focuses specifically on the latest and often refers to causes such as deficient governance mechanisms, inadequate legal framework or imbalanced power relationships. Therefore, your problem analysis should prioritize the identification of these causes rather than all the factors behind the real-world problem.</p>
@@ -642,52 +634,6 @@ en:
                             <li>Health insurance policy framework revised to cover disadvantaged informal workers</li>
                             <li>Increase donor funding on PMTCT</li>
                           </ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     #
     # Stage 4
     #
@@ -1320,7 +1266,31 @@ en:
       confirm_delete_solution: "Are you sure you want to delete this solution?"
       confirm_delete_policy: "Are you sure you want to delete this policy problem?"
       step_five: "step five"
-      sentence3: "Your password won't change until you access the link above and create a new one."
+  contacts:
+    new:
+      send_us: "Send a message to the administrator"
+      name: "Name"
+      name_placeholder: "Write your name here"
+      email: "Email"
+      email_placeholder: "Write your email here"
+      message: "Message"
+      message_placeholder: "Write your message here"
+      send_message: "Send message"
+  devise:
+    mailer:
+      reset_password_instructions:
+        greeting: "Hello"
+        link_text: "Change my password"
+        sentence1: "A link to change your password has been requested. Follow the link to keep on with the process."
+        sentence2: "If you did not requested this change, just ignore this email."
+        sentence3: "Your password will not change until you create a new one."
+      exist_user_share:
+        title: "Estratega Project Shared"
+        exist_add_to_share: 'You are invited to collaborate in project:'
+      new_user_share:
+        title: "Estratega Project Shared"
+        new_add_to_share: 'You are invited to activate your account and collaborate in project:'
+        activate_account: 'Activate my account.'
 
   activerecord:
     errors:

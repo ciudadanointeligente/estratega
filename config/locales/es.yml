@@ -1265,12 +1265,8 @@ es:
       edit: "Editar"
       delete: "Eliminar"
       confirm_delete_msj: "¿Está seguro que quiere eliminar este mensaje?"
-  user_mailer:
-    exist_user_share:
-      exist_add_to_share: 'Estas invitado a colaborar con el proyecto:'
-    new_user_share:
-      new_add_to_share: 'Estas invitado para activar tu cuenta y colaborar con el proyecto:'
-      activate_account: 'Activar mi cuenta'
+
+    
   demo:
     index:
       step_one: "Paso uno"
@@ -1344,6 +1340,13 @@ es:
         sentence1: "Se ha solicitado un link para cambiar su password. Siga el link a continuación para seguir con el proceso."
         sentence2: "Si usted no ha solicitado este cambio, simplemente ignore este email"
         sentence3: "Su password no cambiará hasta que usted acceda al link anterior y cree uno nuevo."
+      exist_user_share:
+        title: "Proyecto de Estratega Compartido"
+        exist_add_to_share: 'Estas invitado a colaborar con el proyecto:'
+      new_user_share:
+        title: "Proyecto de Estratega Compartido"
+        new_add_to_share: 'Estas invitado para activar tu cuenta y colaborar con el proyecto:'
+        activate_account: 'Activar mi cuenta'
   admin:
     js:
       true: Cierto

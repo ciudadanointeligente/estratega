@@ -104,6 +104,29 @@
                 <% end %>
               <% end %>
               <!-- end enabling factors -->
+              
+              <!-- actors -->
+              <div>
+                <% if objective.actors.nil? %>
+                  <p></p>
+                <% elsif objective.actors.count < 1 %>
+                  <p></p>
+                <% else %>
+                  <div class="separator"></div>
+                  <h4><%= t('.actors') %></h4>
+                    <% objective.actors.each_with_index do |actor, i| %>
+                      <p><span class="blue"><%= t('.actor') %> </span><b><%= i+1 %>. <%= actor.name %></b></p>
+                    <p><%= actor.description.presence || t('.empty') %></p>
+                    <ul style="list-style-type:disc">
+                      <li><b><%= t('.actor_type') %>: </b><%= actor.actor_type.presence || t('.empty') %></li>
+                      <li><b><%= t('.support') %>: </b><%= get_support actor.support.presence || t('.empty') %></li>
+                      <li><b><%= t('.influence') %>: </b><%= get_influence actor.influence.presence || t('.empty') %></li>
+                    </ul>
+                  <% end %>
+                <% end %>
+              </div>
+              <!-- end actors -->
+              
               <!-- outcomes -->
               <div class="outcome">
                 <% if objective.outcomes.nil? %>
@@ -139,7 +162,6 @@
                                   <p><%= m.description %></p> 
                                   <p><%= t('.actors') %>: <%= m.actor ? m.actor.name : ""%></p>
                                   <p><%= t('.activity') %>: <%= m.activity ? m.activity.description : ""%></p>
-                                  <p><%= t('.related_objectives') %>: <%= get_objective_related ask.objective_id %></p>
                                 <% end %>
                               </ul>
                               <% end %>
@@ -151,27 +173,6 @@
                 <% end %>
               </div>
               <!-- end outcomes -->
-              <!-- actors -->
-              <div>
-                <% if objective.actors.nil? %>
-                  <p></p>
-                <% elsif objective.actors.count < 1 %>
-                  <p></p>
-                <% else %>
-                  <div class="separator"></div>
-                  <h4><%= t('.actors') %></h4>
-                    <% objective.actors.each_with_index do |actor, i| %>
-                      <p><span class="blue"><%= t('.actor') %> </span><b><%= i+1 %>. <%= actor.name %></b></p>
-                    <p><%= actor.description.presence || t('.empty') %></p>
-                    <ul style="list-style-type:disc">
-                      <li><b><%= t('.actor_type') %>: </b><%= actor.actor_type.presence || t('.empty') %></li>
-                      <li><b><%= t('.support') %>: </b><%= get_support actor.support.presence || t('.empty') %></li>
-                      <li><b><%= t('.influence') %>: </b><%= get_influence actor.influence.presence || t('.empty') %></li>
-                    </ul>
-                  <% end %>
-                <% end %>
-              </div>
-              <!-- end actors -->
               <!-- activity -->
               <div>
                 <% if objective.activities.nil? %>

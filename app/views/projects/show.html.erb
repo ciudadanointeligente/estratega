@@ -106,10 +106,11 @@
                       <table class="table_goals">
                       <tr>
                         <td><%= t('.objective_cnt') %> <%= i + 1 %> / <%= objective.title %></td>
+                        <a href="" class="btn btn-info collapse_button" data-toggle="goal-<%= objective.id %>"><i class="fa fa-expand" aria-hidden="false"></i></a>
                       </tr>
                       </table>
                     </div>
-                    <div id="goal-<%= objective.id %>">
+                    <div id="goal-<%= objective.id %>" class="collapsible">
                       <table class="table">
                         <tbody>
                           <tr title="<%= title_stage 3 %>">
