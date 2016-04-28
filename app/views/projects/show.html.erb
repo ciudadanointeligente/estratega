@@ -37,7 +37,7 @@
               <table class="table">
                   <tbody>
                     <!-- real problem -->
-                    <tr title="<%= title_stage 1 %>">
+                    <tr>
                       <td class="text-center td-w-10p">
                         <i class="<%= icon_class @real_problem %>" data-step="3" data-intro="<%= t('.step_three') %>"></i>
                       </td>
@@ -46,7 +46,7 @@
                       </td>
                     </tr>
                     <!-- policy problems -->
-                    <tr title="<%= title_stage 1 %>">
+                    <tr>
                       <td class="text-center td-w-10p">
                           <i class="<%= icon_class @policy_problems, @real_problem %>"></i>
                       </td>
@@ -55,7 +55,7 @@
                       </td>
                     </tr>
                     <!-- policy solutions -->
-                    <tr title="<%= title_stage 1 %>">
+                    <tr>
                       <td class="text-center td-w-10p">
                         <i class="<%= icon_class @solutions, @policy_problems %>"></i>
                       </td>
@@ -78,7 +78,7 @@
             <div id="stage2">
               <table class="table">
                 <tbody>
-                  <tr title="<%= title_stage 2 %>">
+                  <tr>
                     <td class="text-center td-w-10p"><i class="<%= icon_class @objectives, @solutions %>"></i></td>
                     <td>
                       <%= link_to link_text(:objectives), stage2_project_path, target: "_self" %>
@@ -94,7 +94,7 @@
       <h3 class="mb50"><%= t('.section2_title') %></h3>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h4 class="panel-title"><i class="<%= icon_class_stage 3 %>"></i> <%= t('.stage3_title') %></h4>
+          <h4 class="panel-title"  title="<%= title_stage 2 %>"><i class="<%= icon_class_stage 3 %>"></i> <%= t('.stage3_title') %></h4>
         </div>
           <% if @objectives.count < 1 %>
             <%= t('.stage3_without_objectives').html_safe %>
@@ -104,18 +104,18 @@
                   <!--<div class="panel panel-info">-->
                     <div class="panel-heading">
                       <button type="button" class="btn btn-warning pull-right collapse_button" data-toggle="goal-<%= objective.id %>"><i class="fa fa-expand"></i></button>
-                      <h4 class="panel-title"><%= t('.objective_cnt') %> <%= i + 1 %> / <%= objective.title %></h4>
+                      <h4 class="panel-title"><i class="<%= icon_class_objective objective %>"></i><%= t('.objective_cnt') %> <%= i + 1 %> / <%= objective.title %></h4>
                     </div>
                     <div id="goal-<%= objective.id %>" class="collapsible">
                       <table class="table">
                         <tbody>
-                          <tr title="<%= title_stage 3 %>">
+                          <tr>
                             <td class="text-center td-w-10p">
                               <i class="<%= icon_class objective.actors %>"></i>
                             </td>
                             <td><%= link_to t('projects.show.process_description') , stage3_project_objective_path(@project, objective), target: "_self" %></td>
                           </tr>
-                          <tr title="<%= title_stage 3 %>">
+                          <tr>
                             <td class="text-center td-w-10p">
                               <i class="<%= icon_class objective.actors %>"></i>
                             </td>
@@ -123,7 +123,7 @@
                               <%= link_to objective_link_text(objective, :actors), stage3_project_objective_path(@project, objective, anchor: "actors"), target: "_self" %>
                             </td>
                           </tr>
-                          <tr title="<%= title_stage 3 %>">
+                          <tr>
                             <td class="text-center td-w-10p">
                               <i class="<%= icon_class objective.enabling_factors %>"></i>
                             </td>
@@ -131,7 +131,7 @@
                               <%= link_to objective_link_text(objective, :enabling_factors), stage3_project_objective_path(@project, objective, anchor: "factors-barriers"), target: "_self" %>
                             </td>
                           </tr>
-                          <tr title="<%= title_stage 3 %>">
+                          <tr>
                             <td class="text-center td-w-10p">
                               <i class="<%= icon_class objective.outcomes %>"></i>
                             </td>
@@ -172,14 +172,14 @@
                     <div class="panel-heading">
                       <table class="table_goal_outcomes">
                       <tr>
-                        <td><%= t('.outcome_cnt') %> <%= i + 1 %> / <%= outcome.description %></td>
+                        <td><h5 class="panel-title"><i class="<%= icon_class_outcome outcome %>"></i><%= t('.outcome_cnt') %> <%= i + 1 %> / <%= outcome.description %></h5></td>
                       </tr>
                       </table>
                     </div>
                     <div id="goal-outcome-<%= outcome.id %>">
                       <table class="table">
                         <tbody>
-                          <tr title="<%= title_stage 3 %>">
+                          <tr>
                             <td class="text-center td-w-10p">
                               <i class="<%= icon_class outcome.asks %>"></i>
                             </td>
@@ -187,9 +187,9 @@
                               <%= link_to outcome_link_text(outcome, :asks), stage6_project_objective_outcome_path(@project, objective, outcome), target: "_self" %>
                             </td>
                           </tr>
-                          <tr title="<%= title_stage 3 %>">
+                          <tr>
                             <td class="text-center td-w-10p">
-                              <i class="<%= icon_class objective.activities %>"></i>
+                              <i class="<%= icon_class objective.project.activities %>"></i>
                             </td>
                             <td>
                               <%= link_to objective_link_text(objective, :activities_all), stage5_project_objective_path(@project, objective), target: "_self" %>

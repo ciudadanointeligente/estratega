@@ -95,6 +95,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         completion: false,
         start_date: "",
         end_date: "",
+        project_id: $scope.project_id,
         objective_id: $scope.objective_id,
         outcome_ids: [],
         ask_ids: [],
