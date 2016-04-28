@@ -4,5 +4,4 @@
 $(document).ready ->
   $(".collapse_button").click ->
     t = $(this).data("toggle")
-    console.log t
     $("#"+t).toggle()

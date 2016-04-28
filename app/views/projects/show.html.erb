@@ -103,12 +103,8 @@
               <div class="panel panel-default">
                   <!--<div class="panel panel-info">-->
                     <div class="panel-heading">
-                      <table class="table_goals">
-                      <tr>
-                        <td><%= t('.objective_cnt') %> <%= i + 1 %> / <%= objective.title %></td>
-                        <a href="" class="btn btn-warning pull-right collapse_button" data-toggle="goal-<%= objective.id %>"><i class="fa fa-expand" aria-hidden="false"></i></a>
-                      </tr>
-                      </table>
+                      <button type="button" class="btn btn-warning pull-right collapse_button" data-toggle="goal-<%= objective.id %>"><i class="fa fa-expand"></i></button>
+                      <h4 class="panel-title"><%= t('.objective_cnt') %> <%= i + 1 %> / <%= objective.title %></h4>
                     </div>
                     <div id="goal-<%= objective.id %>" class="collapsible">
                       <table class="table">
