@@ -62,6 +62,8 @@ module ProjectsHelper
       objective.outcomes.blank? ? t('projects.show.outcomes_description') : " #{objective.outcomes.size} #{t('projects.show.outcomes')}"
     when :activities
       objective.activities.blank? ? t('projects.show.activities_description') : " #{objective.activities.size} #{t('projects.show.activities')}"
+    when :activities_all
+      objective.activities.blank? ? t('projects.show.activities') : t('projects.show.activities')
     when :asks
       objective.asks.blank? ? t('projects.show.asks_description') : " #{objective.asks.size} #{t('projects.show.asks')}"
     end

@@ -47,11 +47,13 @@
                 <button type="button" class="btn btn-warning pull-right" ng-click="delete_ask(ask)"><i class="fa fa-trash"></i></button>
                 <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_ask(ask)"><i class="fa fa-pencil"></i></button>
                 <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_indicator(ask)"><i class="fa fa-line-chart"></i></button>
+                <button type="button" class="btn btn-warning pull-right" data-toggle="asks-{{ask.id}}"><i class="fa fa-expand"></i></button>
+                <a href="" class="btn btn-info collapse_button" data-toggle="asks-{{ask.id}}"><i class="fa fa-expand" aria-hidden="false"></i></a>
                 <h4 class="panel-title">{{ ask.description }}</h4>
               </div>
-              <div class="collapse in">
+              <div class="collapsible" id=asks-{{ask.id}}>
                 <button type="button" class="btn btn-primary pull-right" onmouseenter="$(this).tooltip('show')" data-toggle="tooltip" data-placement="left" data-title="<%= t('.subtitle2_explanation') %>"><i class="fa fa-info"></i></button>
-                  <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_msj(ask)"><i class="fa fa-plus-circle"></i> <%= t('.add_button') %></button>
+                <button type="button" class="btn btn-warning pull-right" ng-click="add_edit_msj(ask)"><i class="fa fa-plus-circle"></i> <%= t('.add_button') %></button>
                 <h4><%= t('.subtitle2') %></h4>
                 <div>
                   <table class="table compuesta">

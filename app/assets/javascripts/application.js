@@ -41,4 +41,5 @@
 //= require angular_files/solutions_form
 //= require angular_files/project_controller
 
-//=require projects.js
+//= require projects.js
+//= require outcomes.js
