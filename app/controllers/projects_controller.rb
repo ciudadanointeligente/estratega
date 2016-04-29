@@ -44,6 +44,14 @@ class ProjectsController < ApplicationController
     @successful_activities = 0
     @neutral_activities = 0
     @failed_activities = 0
+    
+    @successful_asks = 0
+    @neutral_asks = 0
+    @failed_asks = 0
+    @completed_asks = 0
+    @rate_completed_asks = 0
+    @rate_success_asks = 0
+    @objectives_with_failed_asks = Array.new
 
     today = DateTime.now
     near_future = DateTime.now + 3.weeks
@@ -77,6 +85,232 @@ class ProjectsController < ApplicationController
       {type: "Organizational advocacy capacity", values: ["Any of the others"]},
       {type: "Organizational visibility or issue recognition", values: ["Issue/policy analysis and research"]}
     ];
+    
+        # start asks kpis
+    @success_asks_by_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    @neutral_asks_by_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    @fail_asks_by_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    
+    @project.asks.each do |ask|
+      if !ask.indicator.nil?
+        @completed_asks = @completed_asks + 1
+        if !ask.indicator.percentage.nil?
+          if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+            @successful_asks = @successful_asks + 1
+          elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+            @neutral_asks = @neutral_asks + 1
+          elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+            @failed_asks = @failed_asks + 1
+            @objectives_with_failed_asks << ask.objective
+          end
+        end
+        if ( ask.indicator.updated_at.strftime("%Y") == today.strftime("%Y") )
+            if ask.indicator.updated_at.strftime("%B") == "January"
+              if !ask.indicator.percentage.nil?
+                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+                   @success_asks_by_month[0] = @success_asks_by_month[0] + 1
+                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                  @neutral_asks_by_month[0] = @neutral_asks_by_month[0] + 1
+                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                  @fail_asks_by_month[0] = @fail_asks_by_month[0] + 1
+                end
+              end
+            elsif ask.indicator.updated_at.strftime("%B") == "February"
+              if !ask.indicator.percentage.nil?
+                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+                   @success_asks_by_month[1] = @success_asks_by_month[1] + 1
+                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                  @neutral_asks_by_month[1] = @neutral_asks_by_month[1] + 1
+                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                  @fail_asks_by_month[1] = @fail_asks_by_month[1] + 1
+                end
+              end
+            elsif ask.indicator.updated_at.strftime("%B") == "March"
+              if !ask.indicator.percentage.nil?
+                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+                   @success_asks_by_month[2] = @success_asks_by_month[2] + 1
+                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                  @neutral_asks_by_month[2] = @neutral_asks_by_month[2] + 1
+                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                  @fail_asks_by_month[2] = @fail_asks_by_month[2] + 1
+                end
+              end
+            elsif ask.indicator.updated_at.strftime("%B") == "April"
+              if !ask.indicator.percentage.nil?
+                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+                   @success_asks_by_month[3] = @success_asks_by_month[3] + 1
+                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                  @neutral_asks_by_month[3] = @neutral_asks_by_month[3] + 1
+                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                  @fail_asks_by_month[3] = @fail_asks_by_month[3] + 1
+                end
+              end
+            elsif ask.indicator.updated_at.strftime("%B") == "May"
+              if !ask.indicator.percentage.nil?
+                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+                   @success_asks_by_month[4] = @success_asks_by_month[4] + 1
+                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                  @neutral_asks_by_month[4] = @neutral_asks_by_month[4] + 1
+                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                  @fail_asks_by_month[4] = @fail_asks_by_month[4] + 1
+                end
+              end
+            elsif ask.indicator.updated_at.strftime("%B") == "June"
+              if !ask.indicator.percentage.nil?
+                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+                   @success_asks_by_month[5] = @success_asks_by_month[5] + 1
+                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                  @neutral_asks_by_month[5] = @neutral_asks_by_month[5] + 1
+                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                  @fail_asks_by_month[5] = @fail_asks_by_month[5] + 1
+                end
+              end
+            elsif ask.indicator.updated_at.strftime("%B") == "July"
+              if !ask.indicator.percentage.nil?
+                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+                   @success_asks_by_month[6] = @success_asks_by_month[6] + 1
+                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                  @neutral_asks_by_month[6] = @neutral_asks_by_month[6] + 1
+                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                  @fail_asks_by_month[6] = @fail_asks_by_month[6] + 1
+                end
+              end
+            elsif ask.indicator.updated_at.strftime("%B") == "August"
+              if !ask.indicator.percentage.nil?
+                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+                   @success_asks_by_month[7] = @success_asks_by_month[7] + 1
+                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                  @neutral_asks_by_month[7] = @neutral_asks_by_month[7] + 1
+                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                  @fail_asks_by_month[7] = @fail_asks_by_month[7] + 1
+                end
+              end
+            elsif ask.indicator.updated_at.strftime("%B") == "September"
+              if !ask.indicator.percentage.nil?
+                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+                   @success_asks_by_month[8] = @success_asks_by_month[8] + 1
+                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                  @neutral_asks_by_month[8] = @neutral_asks_by_month[8] + 1
+                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                  @fail_asks_by_month[8] = @fail_asks_by_month[8] + 1
+                end
+              end
+            elsif ask.indicator.updated_at.strftime("%B") == "October"
+              if !ask.indicator.percentage.nil?
+                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+                   @success_asks_by_month[9] = @success_asks_by_month[9] + 1
+                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                  @neutral_asks_by_month[9] = @neutral_asks_by_month[9] + 1
+                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                  @fail_asks_by_month[9] = @fail_asks_by_month[9] + 1
+                end
+              end
+            elsif ask.indicator.updated_at.strftime("%B") == "November"
+              if !ask.indicator.percentage.nil?
+                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+                   @success_asks_by_month[10] = @success_asks_by_month[10] + 1
+                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                  @neutral_asks_by_month[10] = @neutral_asks_by_month[10] + 1
+                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                  @fail_asks_by_month[10] = @fail_asks_by_month[10] + 1
+                end
+              end
+            elsif ask.indicator.updated_at.strftime("%B") == "December"
+              if !ask.indicator.percentage.nil?
+                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+                   @success_asks_by_month[11] = @success_asks_by_month[11] + 1
+                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                  @neutral_asks_by_month[11] = @neutral_asks_by_month[11] + 1
+                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                  @fail_asks_by_month[11] = @fail_asks_by_month[11] + 1
+                end
+              end
+            end
+          end
+      end
+
+      # if !ac.start_date.blank?
+      #   if ac.start_date.to_datetime < today
+      #     @outcomes_with_overdue_activities = @outcomes_with_overdue_activities + 1
+      #   elsif ac.start_date.to_datetime > near_future
+      #     @outcomes_without_upcoming_activities = @outcomes_without_upcoming_activities + 1
+      #   end
+
+      #   if ( ac.start_date.to_datetime < today && ac.completion == false )
+      #     @overdue_activities = @overdue_activities + 1
+      #   elsif ( ac.start_date.to_datetime > today && ac.completion == false )
+      #     @unfinished_activities = @unfinished_activities + 1
+      #   end
+      #   # ac.outcomes.each do |outcome|
+      #   #   @assigned_outcomes << outcome
+      #   # end
+
+      #   if ac.completion == true
+      #     @completed_activities = @completed_activities + 1
+      #   end
+
+      #   if ac.start_date.to_datetime > today
+      #     @upcoming_activities << ac
+      #   end
+
+      #   if ( ac.start_date.strftime("%Y") == today.strftime("%Y") )
+      #     if ac.start_date.strftime("%B") == "January"
+      #       @current_state_per_objective[0] = @current_state_per_objective[0] + 1
+      #     elsif ac.start_date.strftime("%B") == "February"
+      #       @current_state_per_objective[1] = @current_state_per_objective[1] + 1
+      #     elsif ac.start_date.strftime("%B") == "March"
+      #       @current_state_per_objective[2] = @current_state_per_objective[2] + 1
+      #     elsif ac.start_date.strftime("%B") == "April"
+      #       @current_state_per_objective[3] = @current_state_per_objective[3] + 1
+      #     elsif ac.start_date.strftime("%B") == "May"
+      #       @current_state_per_objective[4] = @current_state_per_objective[4] + 1
+      #     elsif ac.start_date.strftime("%B") == "June"
+      #       @current_state_per_objective[5] = @current_state_per_objective[5] + 1
+      #     elsif ac.start_date.strftime("%B") == "July"
+      #       @current_state_per_objective[6] = @current_state_per_objective[6] + 1
+      #     elsif ac.start_date.strftime("%B") == "August"
+      #       @current_state_per_objective[7] = @current_state_per_objective[7] + 1
+      #     elsif ac.start_date.strftime("%B") == "September"
+      #       @current_state_per_objective[8] = @current_state_per_objective[8] + 1
+      #     elsif ac.start_date.strftime("%B") == "October"
+      #       @current_state_per_objective[9] = @current_state_per_objective[9] + 1
+      #     elsif ac.start_date.strftime("%B") == "November"
+      #       @current_state_per_objective[10] = @current_state_per_objective[10] + 1
+      #     elsif ac.start_date.strftime("%B") == "December"
+      #       @current_state_per_objective[11] = @current_state_per_objective[11] + 1
+      #     end
+      #   end
+      # end
+
+      # if !ac.activity_types.nil?
+      #   # ac.outcomes.each do |outcome|
+      #   #   if !outcome.outcome_type_id.nil?
+      #   #     @outcome_activities_usually_associated.each do |option|
+      #   #       if option[:type] == outcome.outcome_type_id
+      #   #         option[:values].each do |activity_usually_associated|
+      #   #           if activity_usually_associated == ac.activity_types
+      #   #             @outcomes_with_predefined_activities << outcome
+      #   #           end
+      #   #         end
+      #   #       end
+      #   #     end
+      #   #   end
+      #   # end
+      #   if @outcomes_with_predefined_activities.size > 0 && @outcomes_size.size > 0
+      #     @percentage_outcomes_with_predefined_activities = ( 100 / @outcomes_size ) / @outcomes_with_predefined_activities.uniq{|x| x.id}.count
+      #   end
+      # end
+    
+    end
+    
+    if @project.asks.count == 0
+      @rate_completed_asks = 0
+      @rate_success_asks = 0
+    else
+      @rate_completed_asks = ( 100 / @project.asks.count ) * @completed_asks
+      @rate_success_asks = ( 100 / @project.asks.count ) * @successful_asks
+    end
+    # end asks kpis
 
     @objectives.each do |o|
       @a_size = @a_size + o.actors.size
@@ -93,6 +327,9 @@ class ProjectsController < ApplicationController
       end
 
       @current_state_per_objective = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      
+
+      # start activities kpis
       @project.activities.each do |ac|
         if !ac.indicator.nil?
           if !ac.indicator.percentage.nil?
@@ -180,7 +417,9 @@ class ProjectsController < ApplicationController
         end
 
       end
+      # end activities kpis
       @state_of_activities_this_year << @current_state_per_objective
+      #puts @state_of_activities_this_year
     end
     @objectives_with_failed_activities_diff = @objectives_with_failed_activities.uniq{|x| x.id}.size
     @outcomes_without_activities = @outcomes.uniq{|x| x.id}.size - @assigned_outcomes.uniq{|x| x.id}.size

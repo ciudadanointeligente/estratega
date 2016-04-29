@@ -19,6 +19,16 @@ class Project < ActiveRecord::Base
       end
     end
   end
+  
+  def asks
+    @asks = []
+    self.objectives.each do |objective|
+      objective.asks.each do |ask|
+        @asks << ask
+      end
+    end
+    return @asks    
+  end
 
   # def activities
   #   @activities = []

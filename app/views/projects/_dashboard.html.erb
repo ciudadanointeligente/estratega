@@ -2,25 +2,26 @@
   <div class="box">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h2><%= t('.activities') %></h2>
+        <h2><%= t('.asks') %></h2>
       </div>
     </div>
+    <!-- start asks kpis -->
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well">
-          <h3><%= @project.activities.count.presence || "0" %> <%= t('.activities') %></h3>
+          <h3><%= @project.asks.count.presence || "0" %> <%= t('.asks') %></h3>
           <ul class="fa-ul">
-            <li class="successful"><i class="fa-li fa fa-check-circle"></i><%= @successful_activities.presence %> <%= t('.successful_activities') %></li>
-            <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @neutral_activities.presence %> <%= t('.neutral_activities') %></li>
-            <li class="failed"><i class="fa-li fa fa-times-circle"></i><%= @failed_activities.presence %> <%= t('.failed_activities') %></li>
+            <li class="successful"><i class="fa-li fa fa-check-circle"></i><%= @successful_asks.presence %> <%= t('.successful_asks') %></li>
+            <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @neutral_asks.presence %> <%= t('.neutral_asks') %></li>
+            <li class="failed"><i class="fa-li fa fa-times-circle"></i><%= @failed_asks.presence %> <%= t('.failed_asks') %></li>
           </ul>
         </div>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well text-center">
-          <h3><%= t('.completed_activities_rate') %></h3>
-          <div class="c100 p<%= @rate_completed_activities %> big">
-              <span><%= @rate_completed_activities %>%</span>
+          <h3><%= t('.completed_asks_rate') %></h3>
+          <div class="c100 p<%= @rate_completed_asks %> big">
+              <span><%= @rate_completed_asks %>%</span>
               <div class="slice">
                   <div class="bar"></div>
                   <div class="fill"></div>
@@ -32,8 +33,8 @@
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well text-center">
           <h3><%= t('.success_rate') %></h3>
-          <div class="c100 p<%= @rate_success_activities %> big">
-              <span><%= @rate_success_activities %>%</span>
+          <div class="c100 p<%= @rate_success_asks %> big">
+              <span><%= @rate_success_asks %>%</span>
               <div class="slice">
                   <div class="bar"></div>
                   <div class="fill"></div>
@@ -43,44 +44,45 @@
         </div>
       </div>
     </div>
-    <div class="row">
+        <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="well">
-          <h3><%= t('.state_of_activities') %></h3>
+          <h3><%= t('.state_of_asks_this_year') %></h3>
           <div class="ct-chart ct-perfect-fourth"></div>
 
           <script>
             function draw_graph() {
-              var chart = new Chartist.Line('.ct-chart', {
+              var chart = new Chartist.Bar('.ct-chart', {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-                series: <%= @state_of_activities_this_year %>
+                series: [ <%= @success_asks_by_month %>, <%= @neutral_asks_by_month %>, <%= @fail_asks_by_month %> ]
               }, {
+                stackBars: false,
+                seriesBarDistance: 5,
                 low: 0,
-                showArea: true,
-                showPoint: true,
                 height: '300px',
-                fullWidth: true
+                fullWidth: true,
+                axisY: {
+                        labelInterpolationFnc: function(value) {
+                          return value + ' asks'
+                        },
+                        onlyInteger: true,
+                      }
               });
 
               chart.on('draw', function(data) {
-                if(data.type === 'line' || data.type === 'area') {
-                  data.element.animate({
-                    d: {
-                      begin: 2000 * data.index,
-                      dur: 2000,
-                      from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
-                      to: data.path.clone().stringify(),
-                      easing: Chartist.Svg.Easing.easeOutQuint
-                    }
+                  if(data.type === 'bar') {
+                    data.element.attr({
+                      //style: 'stroke-width: 10px'
+                    });
+                  }
                   });
                 }
-              });
-            }
           </script>
 
         </div>
       </div>
     </div>
+    <!-- end asks kpis --> 
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
         <div class="well">

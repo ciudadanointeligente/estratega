@@ -880,51 +880,27 @@ table.document td .btn {
 
 /* Colores Graficos*/
 
-.ct-perfect-fourth .ct-series-a .ct-line {
+.ct-perfect-fourth .ct-series-a .ct-bar {
   /* Set the colour of this series line */
   stroke: green;
   /* Control the thikness of your lines */
-  stroke-width: 3px;
+  stroke-width: 5px;
 }
-.ct-perfect-fourth .ct-series-a .ct-point {
-  /* Colour of your points */
-  stroke: green;
-  /* Size of your points */
-  stroke-width: 10px;
-}
-.ct-perfect-fourth .ct-series-a .ct-area {
-    fill: green;
-}
-.ct-perfect-fourth .ct-series-b .ct-line {
+
+.ct-perfect-fourth .ct-series-b .ct-bar {
   /* Set the colour of this series line */
   stroke: #EAB751;
   /* Control the thikness of your lines */
-  stroke-width: 3px;
+  stroke-width: 5px;
 }
-.ct-perfect-fourth .ct-series-b .ct-point {
-  /* Colour of your points */
-  stroke: #EAB751;
-  /* Size of your points */
-  stroke-width: 10px;
-}
-.ct-perfect-fourth .ct-series-b .ct-area {
-    fill: #EAB751;
-}
-.ct-perfect-fourth .ct-series-c .ct-line {
+
+.ct-perfect-fourth .ct-series-c .ct-bar {
   /* Set the colour of this series line */
   stroke: red;
   /* Control the thikness of your lines */
-  stroke-width: 3px;
+  stroke-width: 5px;
 }
-.ct-perfect-fourth .ct-series-c .ct-point {
-  /* Colour of your points */
-  stroke: red;
-  /* Size of your points */
-  stroke-width: 10px;
-}
-.ct-perfect-fourth .ct-series-c .ct-area {
-    fill: red;
-}
+
 .red {
   color: #ff0000;
 }

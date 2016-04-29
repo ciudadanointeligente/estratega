@@ -181,18 +181,18 @@
                         <tbody>
                           <tr>
                             <td class="text-center td-w-10p">
-                              <i class="<%= icon_class outcome.asks %>"></i>
-                            </td>
-                            <td>
-                              <%= link_to outcome_link_text(outcome, :asks), stage6_project_objective_outcome_path(@project, objective, outcome), target: "_self" %>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="text-center td-w-10p">
                               <i class="<%= icon_class objective.project.activities %>"></i>
                             </td>
                             <td>
                               <%= link_to objective_link_text(objective, :activities_all), stage5_project_objective_path(@project, objective), target: "_self" %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="text-center td-w-10p">
+                              <i class="<%= icon_class outcome.asks %>"></i>
+                            </td>
+                            <td>
+                              <%= link_to outcome_link_text(outcome, :asks), stage6_project_objective_outcome_path(@project, objective, outcome), target: "_self" %>
                             </td>
                           </tr>
                         </tbody>
