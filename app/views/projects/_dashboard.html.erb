@@ -87,7 +87,7 @@
       <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
         <div class="well">
           <h3><%= t('.upcoming_activities') %></h3>
-          <p><a href="#"><%= t('.all_activities') %></a></p>
+          <p><a href="<%=stage5_project_objective_path(@project, @project.objectives.first)%>" target: "_self" ><%= t('.all_activities') %></a></p>
           <table class="table">
             <% if @upcoming_activities.size > 0 %>
             <tr>

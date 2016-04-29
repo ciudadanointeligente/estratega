@@ -86,7 +86,7 @@ class ProjectsController < ApplicationController
       {type: "Organizational visibility or issue recognition", values: ["Issue/policy analysis and research"]}
     ];
     
-        # start asks kpis
+    ################################################################################## start asks kpis
     @success_asks_by_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     @neutral_asks_by_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     @fail_asks_by_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -228,79 +228,6 @@ class ProjectsController < ApplicationController
             end
           end
       end
-
-      # if !ac.start_date.blank?
-      #   if ac.start_date.to_datetime < today
-      #     @outcomes_with_overdue_activities = @outcomes_with_overdue_activities + 1
-      #   elsif ac.start_date.to_datetime > near_future
-      #     @outcomes_without_upcoming_activities = @outcomes_without_upcoming_activities + 1
-      #   end
-
-      #   if ( ac.start_date.to_datetime < today && ac.completion == false )
-      #     @overdue_activities = @overdue_activities + 1
-      #   elsif ( ac.start_date.to_datetime > today && ac.completion == false )
-      #     @unfinished_activities = @unfinished_activities + 1
-      #   end
-      #   # ac.outcomes.each do |outcome|
-      #   #   @assigned_outcomes << outcome
-      #   # end
-
-      #   if ac.completion == true
-      #     @completed_activities = @completed_activities + 1
-      #   end
-
-      #   if ac.start_date.to_datetime > today
-      #     @upcoming_activities << ac
-      #   end
-
-      #   if ( ac.start_date.strftime("%Y") == today.strftime("%Y") )
-      #     if ac.start_date.strftime("%B") == "January"
-      #       @current_state_per_objective[0] = @current_state_per_objective[0] + 1
-      #     elsif ac.start_date.strftime("%B") == "February"
-      #       @current_state_per_objective[1] = @current_state_per_objective[1] + 1
-      #     elsif ac.start_date.strftime("%B") == "March"
-      #       @current_state_per_objective[2] = @current_state_per_objective[2] + 1
-      #     elsif ac.start_date.strftime("%B") == "April"
-      #       @current_state_per_objective[3] = @current_state_per_objective[3] + 1
-      #     elsif ac.start_date.strftime("%B") == "May"
-      #       @current_state_per_objective[4] = @current_state_per_objective[4] + 1
-      #     elsif ac.start_date.strftime("%B") == "June"
-      #       @current_state_per_objective[5] = @current_state_per_objective[5] + 1
-      #     elsif ac.start_date.strftime("%B") == "July"
-      #       @current_state_per_objective[6] = @current_state_per_objective[6] + 1
-      #     elsif ac.start_date.strftime("%B") == "August"
-      #       @current_state_per_objective[7] = @current_state_per_objective[7] + 1
-      #     elsif ac.start_date.strftime("%B") == "September"
-      #       @current_state_per_objective[8] = @current_state_per_objective[8] + 1
-      #     elsif ac.start_date.strftime("%B") == "October"
-      #       @current_state_per_objective[9] = @current_state_per_objective[9] + 1
-      #     elsif ac.start_date.strftime("%B") == "November"
-      #       @current_state_per_objective[10] = @current_state_per_objective[10] + 1
-      #     elsif ac.start_date.strftime("%B") == "December"
-      #       @current_state_per_objective[11] = @current_state_per_objective[11] + 1
-      #     end
-      #   end
-      # end
-
-      # if !ac.activity_types.nil?
-      #   # ac.outcomes.each do |outcome|
-      #   #   if !outcome.outcome_type_id.nil?
-      #   #     @outcome_activities_usually_associated.each do |option|
-      #   #       if option[:type] == outcome.outcome_type_id
-      #   #         option[:values].each do |activity_usually_associated|
-      #   #           if activity_usually_associated == ac.activity_types
-      #   #             @outcomes_with_predefined_activities << outcome
-      #   #           end
-      #   #         end
-      #   #       end
-      #   #     end
-      #   #   end
-      #   # end
-      #   if @outcomes_with_predefined_activities.size > 0 && @outcomes_size.size > 0
-      #     @percentage_outcomes_with_predefined_activities = ( 100 / @outcomes_size ) / @outcomes_with_predefined_activities.uniq{|x| x.id}.count
-      #   end
-      # end
-    
     end
     
     if @project.asks.count == 0
@@ -310,7 +237,13 @@ class ProjectsController < ApplicationController
       @rate_completed_asks = ( 100 / @project.asks.count ) * @completed_asks
       @rate_success_asks = ( 100 / @project.asks.count ) * @successful_asks
     end
-    # end asks kpis
+    ################################################################################## end asks kpis
+    ################################################################################## start objective kpis
+    
+    ################################################################################## end objective kpis
+    ################################################################################## start outcome kpis
+    
+    ################################################################################## end outcome kpis
 
     @objectives.each do |o|
       @a_size = @a_size + o.actors.size
@@ -367,50 +300,9 @@ class ProjectsController < ApplicationController
           if ac.start_date.to_datetime > today
             @upcoming_activities << ac
           end
-
-          if ( ac.start_date.strftime("%Y") == today.strftime("%Y") )
-            if ac.start_date.strftime("%B") == "January"
-              @current_state_per_objective[0] = @current_state_per_objective[0] + 1
-            elsif ac.start_date.strftime("%B") == "February"
-              @current_state_per_objective[1] = @current_state_per_objective[1] + 1
-            elsif ac.start_date.strftime("%B") == "March"
-              @current_state_per_objective[2] = @current_state_per_objective[2] + 1
-            elsif ac.start_date.strftime("%B") == "April"
-              @current_state_per_objective[3] = @current_state_per_objective[3] + 1
-            elsif ac.start_date.strftime("%B") == "May"
-              @current_state_per_objective[4] = @current_state_per_objective[4] + 1
-            elsif ac.start_date.strftime("%B") == "June"
-              @current_state_per_objective[5] = @current_state_per_objective[5] + 1
-            elsif ac.start_date.strftime("%B") == "July"
-              @current_state_per_objective[6] = @current_state_per_objective[6] + 1
-            elsif ac.start_date.strftime("%B") == "August"
-              @current_state_per_objective[7] = @current_state_per_objective[7] + 1
-            elsif ac.start_date.strftime("%B") == "September"
-              @current_state_per_objective[8] = @current_state_per_objective[8] + 1
-            elsif ac.start_date.strftime("%B") == "October"
-              @current_state_per_objective[9] = @current_state_per_objective[9] + 1
-            elsif ac.start_date.strftime("%B") == "November"
-              @current_state_per_objective[10] = @current_state_per_objective[10] + 1
-            elsif ac.start_date.strftime("%B") == "December"
-              @current_state_per_objective[11] = @current_state_per_objective[11] + 1
-            end
-          end
         end
 
         if !ac.activity_types.nil?
-          # ac.outcomes.each do |outcome|
-          #   if !outcome.outcome_type_id.nil?
-          #     @outcome_activities_usually_associated.each do |option|
-          #       if option[:type] == outcome.outcome_type_id
-          #         option[:values].each do |activity_usually_associated|
-          #           if activity_usually_associated == ac.activity_types
-          #             @outcomes_with_predefined_activities << outcome
-          #           end
-          #         end
-          #       end
-          #     end
-          #   end
-          # end
           if @outcomes_with_predefined_activities.size > 0 && @outcomes_size.size > 0
             @percentage_outcomes_with_predefined_activities = ( 100 / @outcomes_size ) / @outcomes_with_predefined_activities.uniq{|x| x.id}.count
           end
