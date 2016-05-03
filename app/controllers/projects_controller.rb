@@ -86,6 +86,16 @@ class ProjectsController < ApplicationController
       {type: "Organizational visibility or issue recognition", values: ["Issue/policy analysis and research"]}
     ];
     
+    if !@project.real_problem.blank?
+      @real_problem = @project.real_problem
+      if !@project.real_problem.try(:policy_problems).try(:blank?)
+        @policy_problems = @project.real_problem.policy_problems
+        if !@project.real_problem.try(:get_solutions).try(:blank?)
+          @solutions = @project.real_problem.get_solutions
+        end
+      end
+    end
+    
     ################################################################################## start asks kpis
     @success_asks_by_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     @neutral_asks_by_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -248,6 +258,11 @@ class ProjectsController < ApplicationController
     @rate_success_objectives = 0
     
     @project.objectives.each do |objective|
+      
+      @a_size = @a_size + objective.actors.size
+      @barriers_size = @barriers_size + objective.barriers.size
+      @factors_size = @factors_size + objective.enabling_factors.size
+      
       if !objective.indicator.nil?
         @completed_objectives = @completed_objectives + 1
         if !objective.indicator.percentage.nil?
