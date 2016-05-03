@@ -63,7 +63,7 @@ Rails.application.routes.draw do
     resources :indicators
   end
 
-  devise_for :users, :controllers => {:registrations => "registrations"}
+  devise_for :users, :controllers => {:registrations => "registrations",  :passwords => "passwords" }
   resources :people
   resources :other_names
   resources :sandboxes do
