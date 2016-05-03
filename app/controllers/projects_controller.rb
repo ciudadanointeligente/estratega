@@ -239,155 +239,89 @@ class ProjectsController < ApplicationController
     end
     ################################################################################## end asks kpis
     ################################################################################## start objective kpis
+    @completed_objectives = 0
+    @objectives_without_outcomes = 0
+    @successful_objectives = 0
+    @neutral_objectives = 0
+    @failed_objectives = 0
+    @rate_completed_objectives = 0
+    @rate_success_objectives = 0
     
+    @project.objectives.each do |objective|
+      if !objective.indicator.nil?
+        @completed_objectives = @completed_objectives + 1
+        if !objective.indicator.percentage.nil?
+          if ( objective.indicator.percentage >= 60 && objective.indicator.percentage <= 100 )
+            @successful_objectives = @successful_objectives + 1
+          elsif ( objective.indicator.percentage >= 39 && objective.indicator.percentage <= 59 )
+            @neutral_objectives = @neutral_objectives + 1
+          elsif ( objective.indicator.percentage >= 0 && objective.indicator.percentage <= 38 )
+            @failed_objectives = @failed_objectives + 1
+          end
+        end
+      end
+      if objective.outcomes.empty?
+        @objectives_without_outcomes = @objectives_without_outcomes + 1
+      else
+        
+      end
+      
+    if @project.objectives.count == 0
+      @rate_completed_objectives = 0
+      @rate_success_objectives = 0
+    else
+      @rate_completed_objectives = ( 100 / @project.objectives.count ) * @completed_objectives
+      @rate_success_objectives = ( 100 / @project.objectives.count ) * @successful_objectives
+    end
+    end
     ################################################################################## end objective kpis
     ################################################################################## start outcome kpis
+    @outcomes_with_all_asks_completed = 0
+    @outcomes_without_asks = 0
+    @outcomes_with_overdue_asks = 0
+    @completed_outcomes = 0
+    @successful_outcomes = 0
+    @neutral_outcomes = 0
+    @failed_outcomes = 0
+    @rate_completed_outcomes = 0
+    @rate_success_outcomes = 0
+    
+    
+    @project.outcomes.each do |outcome|
+      if !outcome.indicator.nil?
+        @completed_outcomes = @completed_outcomes + 1
+        if !outcome.indicator.percentage.nil?
+          if ( outcome.indicator.percentage >= 60 && outcome.indicator.percentage <= 100 )
+            @successful_outcomes = @successful_outcomes + 1
+          elsif ( outcome.indicator.percentage >= 39 && outcome.indicator.percentage <= 59 )
+            @neutral_outcomes = @neutral_outcomes + 1
+          elsif ( outcome.indicator.percentage >= 0 && outcome.indicator.percentage <= 38 )
+            @failed_outcomes = @failed_outcomes + 1
+          end
+        end
+      end
+      if outcome.asks.empty?
+        @outcomes_without_asks = @outcomes_without_asks + 1
+      else
+        if outcome.asks.all? {|a| !a.indicator.nil?}
+          @outcomes_with_all_asks_completed = @outcomes_with_all_asks_completed + 1
+        end
+        if outcome.asks.all? {|a| a.messages.all? {|m| (m.executed && m.activity.start_date < today) }}
+          @outcomes_with_overdue_asks = @outcomes_with_overdue_asks + 1
+        end
+      end
+    end
+    
+    if @project.outcomes.count == 0
+      @rate_completed_outcomes = 0
+      @rate_success_outcomes = 0
+    else
+      @rate_completed_outcomes = ( 100 / @project.outcomes.count ) * @completed_outcomes
+      @rate_success_outcomes = ( 100 / @project.outcomes.count ) * @successful_outcomes
+    end
     
     ################################################################################## end outcome kpis
 
-    @objectives.each do |o|
-      @a_size = @a_size + o.actors.size
-      @barriers_size = @barriers_size + o.barriers.size
-      @factors_size = @factors_size + o.enabling_factors.size
-      @outcomes_size = @outcomes_size + o.outcomes.size
-
-      if o.outcomes.blank?
-        @objectives_without_outcomes = @objectives_without_outcomes + 1
-      end
-
-      o.outcomes.each do |outcome|
-        @outcomes << outcome
-      end
-
-      @current_state_per_objective = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-      
-
-      # start activities kpis
-      @project.activities.each do |ac|
-        if !ac.indicator.nil?
-          if !ac.indicator.percentage.nil?
-            if ( ac.indicator.percentage >= 60 && ac.indicator.percentage <= 100 )
-              @successful_activities = @successful_activities + 1
-            elsif ( ac.indicator.percentage >= 39 && ac.indicator.percentage <= 59 )
-              @neutral_activities = @neutral_activities + 1
-            elsif ( ac.indicator.percentage >= 0 && ac.indicator.percentage <= 38 )
-              @failed_activities = @failed_activities + 1
-              @objectives_with_failed_activities << ac.objective
-            end
-          end
-        end
-
-        if !ac.start_date.blank?
-          if ac.start_date.to_datetime < today
-            @outcomes_with_overdue_activities = @outcomes_with_overdue_activities + 1
-          elsif ac.start_date.to_datetime > near_future
-            @outcomes_without_upcoming_activities = @outcomes_without_upcoming_activities + 1
-          end
-
-          if ( ac.start_date.to_datetime < today && ac.completion == false )
-            @overdue_activities = @overdue_activities + 1
-          elsif ( ac.start_date.to_datetime > today && ac.completion == false )
-            @unfinished_activities = @unfinished_activities + 1
-          end
-          # ac.outcomes.each do |outcome|
-          #   @assigned_outcomes << outcome
-          # end
-
-          if ac.completion == true
-            @completed_activities = @completed_activities + 1
-          end
-
-          if ac.start_date.to_datetime > today
-            @upcoming_activities << ac
-          end
-        end
-
-        if !ac.activity_types.nil?
-          if @outcomes_with_predefined_activities.size > 0 && @outcomes_size.size > 0
-            @percentage_outcomes_with_predefined_activities = ( 100 / @outcomes_size ) / @outcomes_with_predefined_activities.uniq{|x| x.id}.count
-          end
-        end
-
-      end
-      # end activities kpis
-      @state_of_activities_this_year << @current_state_per_objective
-      #puts @state_of_activities_this_year
-    end
-    @objectives_with_failed_activities_diff = @objectives_with_failed_activities.uniq{|x| x.id}.size
-    @outcomes_without_activities = @outcomes.uniq{|x| x.id}.size - @assigned_outcomes.uniq{|x| x.id}.size
-    @upcoming_activities = @upcoming_activities.uniq{|x| x.id}
-
-    if @project.activities.count == 0
-      @rate_completed_activities = 0
-      @rate_success_activities = 0
-    else
-      @rate_completed_activities = ( 100 / @project.activities.count ) * @completed_activities
-      @rate_success_activities = ( 100 / @project.activities.count ) * @successful_activities
-    end
-
-    if !@project.real_problem.blank?
-      @real_problem = @project.real_problem
-      if !@project.real_problem.try(:policy_problems).try(:blank?)
-        @policy_problems = @project.real_problem.policy_problems
-        if !@project.real_problem.try(:get_solutions).try(:blank?)
-          @solutions = @project.real_problem.get_solutions
-        end
-      end
-    end
-
-    @objectives_prioritized = @project.objectives.where('prioritized = true')
-    @advance_priority_objectives = 0
-    @advance_total_objectives = 0
-    @percentage_outcomes_achieved = 0
-
-    if @objectives_prioritized.count > 0
-      @objectives_completed = 0
-      @outcomes_achieved = Array.new
-      @outcomes_failed = Array.new
-
-      @objectives_prioritized.each do |o|
-        @outcomes_per_objective = Array.new
-        @outcomes_not_completed = Array.new
-
-        o.outcomes.each do |outcome|
-          @outcomes_per_objective << outcome
-        end
-
-        # o.activities.each do |ac|
-        #   if !ac.completion
-        #     ac.outcomes.each do |outcome|
-        #       @outcomes_not_completed << outcome
-        #     end
-        #   end
-        #   if !ac.indicator.nil?
-        #       if ( (!ac.indicator.percentage.nil? ? ac.indicator.percentage : 0) >= 60 && (!ac.indicator.percentage.nil? ? ac.indicator.percentage : 0) <= 100 )
-        #         ac.outcomes.each do |outcome|
-        #           @outcomes_achieved << outcome
-        #         end
-        #       else
-        #         ac.outcomes.each do |outcome|
-        #           @outcomes_failed << outcome
-        #         end
-        #       end
-        #   end
-        # end
-
-        outcomes_diff = @outcomes_per_objective.uniq{|x| x.id} - @outcomes_not_completed.uniq{|x| x.id}
-        if outcomes_diff.count > 0
-          @objectives_completed = @objectives_completed + 1
-        end
-
-      end
-      @advance_priority_objectives = ( 100 / @objectives_prioritized.count ) * @objectives_completed
-      @advance_total_objectives =  ( 100 / @project.objectives.count ) * @objectives_completed
-    end
-    if !@outcomes_achieved.nil? && @outcomes_achieved.size > 0
-      outcomes_diff = @outcomes_achieved.uniq{|x| x.id} - @outcomes_failed.uniq{|x| x.id}
-      @percentage_outcomes_achieved = ( 100 / @outcomes.count ) * outcomes_diff.count
-    end
-
-    # @policy_problems = @project.real_problem.policy_problems || PolicyProblem.none
-    # @solutions = @project.real_problem.policy_problems.first.solutions || Solution.none
     respond_with(@project)
   end
 

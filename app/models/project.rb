@@ -29,6 +29,16 @@ class Project < ActiveRecord::Base
     end
     return @asks    
   end
+  
+  def outcomes
+    @outcomes = []
+    self.objectives.each do |objective|
+      objective.outcomes.each do |outcome|
+        @outcomes << outcome
+      end
+    end
+    return @outcomes
+  end
 
   # def activities
   #   @activities = []

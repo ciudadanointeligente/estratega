@@ -44,7 +44,8 @@
         </div>
       </div>
     </div>
-        <div class="row">
+            <!-- start asks chart --> 
+    <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="well">
           <h3><%= t('.state_of_asks_this_year') %></h3>
@@ -82,12 +83,13 @@
         </div>
       </div>
     </div>
+            <!-- end asks chart --> 
     <!-- end asks kpis --> 
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
         <div class="well">
           <h3><%= t('.upcoming_activities') %></h3>
-          <p><a href="<%=stage5_project_objective_path(@project, @project.objectives.first)%>" target: "_self" ><%= t('.all_activities') %></a></p>
+          <p><a href="" target="_self" ><%= t('.all_activities') %></a></p>
           <table class="table">
             <% if @upcoming_activities.size > 0 %>
             <tr>
@@ -124,6 +126,7 @@
       </div>
     </div>
   </div>
+    <!-- start outcomes kpis --> 
   <div class="box">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -133,19 +136,19 @@
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well">
-          <h3><%= @outcomes_size.presence %> <%= t('.interim_outcomes') %></h3>
+          <h3><%= @project.outcomes.size %> <%= t('.interim_outcomes') %></h3>
           <ul class="fa-ul">
-            <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @outcomes_without_activities.presence %> <%= t('.outcomes_without_activities') %></li>
-            <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @outcomes_without_upcoming_activities.presence %> <%= t('.outcomes_without_upcoming_activities') %></li>
-            <li class="failed"><i class="fa-li fa fa-times-circle"></i><%= @outcomes_with_overdue_activities.presence %> <%= t('.outcomes_with_overdue_activities') %></li>
+            <li class="successful"><i class="fa-li fa fa-check-circle"></i><%= @outcomes_with_all_asks_completed.presence %> <%= t('.outcomes_with_all_asks_completed') %></li>
+            <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @outcomes_without_asks.presence %> <%= t('.outcomes_without_asks') %></li>
+            <li class="failed"><i class="fa-li fa fa-times-circle"></i><%= @outcomes_with_overdue_asks.presence %> <%= t('.outcomes_with_overdue_asks') %></li>
           </ul>
         </div>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well text-center">
-          <h3><%= t('.percentage_interim_outcomes_achieved') %></h3>
-          <div class="c100 p<%= @percentage_outcomes_achieved %> big">
-              <span><%= @percentage_outcomes_achieved %>%</span>
+          <h3><%= t('.rate_completed_outcomes') %></h3>
+          <div class="c100 p<%= @rate_completed_outcomes %> big">
+              <span><%= @rate_completed_outcomes %>%</span>
               <div class="slice">
                   <div class="bar"></div>
                   <div class="fill"></div>
@@ -156,9 +159,9 @@
       </div>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well text-center">
-          <h3><%= t('.percentage_allocation_of_predefined_activities') %></h3>
-          <div class="c100 p<%= @percentage_outcomes_with_predefined_activities %> big">
-              <span><%= @percentage_outcomes_with_predefined_activities %>%</span>
+          <h3><%= t('.rate_success_outcomes') %></h3>
+          <div class="c100 p<%= @rate_success_outcomes %> big">
+              <span><%= @rate_success_outcomes %>%</span>
               <div class="slice">
                   <div class="bar"></div>
                   <div class="fill"></div>
@@ -169,6 +172,8 @@
       </div>
     </div>
   </div>
+    <!-- end outcomes kpis --> 
+    <!-- start objectives kpis --> 
   <div class="box">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -187,9 +192,9 @@
       </div>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well text-center">
-          <h3><%= t('.percentage_advance_priority_objectives') %></h3>
-          <div class="c100 p<%= @advance_priority_objectives %> big">
-              <span><%= @advance_priority_objectives %>%</span>
+          <h3><%= t('.rate_completed_objectives') %></h3>
+          <div class="c100 p<%= @rate_completed_objectives%> big">
+              <span><%= @rate_completed_objectives %>%</span>
               <div class="slice">
                   <div class="bar"></div>
                   <div class="fill"></div>
@@ -200,9 +205,9 @@
       </div>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well text-center">
-          <h3><%= t('.percentage_of_total_advance_objectives') %></h3>
-          <div class="c100 p<%= @advance_total_objectives %> big">
-              <span><%= @advance_total_objectives %>%</span>
+          <h3><%= t('.rate_success_objectives') %></h3>
+          <div class="c100 p<%= @rate_success_objectives %> big">
+              <span><%= @rate_success_objectives %>%</span>
               <div class="slice">
                   <div class="bar"></div>
                   <div class="fill"></div>
@@ -213,4 +218,5 @@
       </div>
     </div>
   </div>
+    <!-- end objectives kpis --> 
 </div>
