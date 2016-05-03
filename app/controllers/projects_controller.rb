@@ -251,6 +251,7 @@ class ProjectsController < ApplicationController
     ################################################################################## start objective kpis
     @completed_objectives = 0
     @objectives_without_outcomes = 0
+    @objectives_with_failed_outcomes = 0
     @successful_objectives = 0
     @neutral_objectives = 0
     @failed_objectives = 0
@@ -278,8 +279,11 @@ class ProjectsController < ApplicationController
       if objective.outcomes.empty?
         @objectives_without_outcomes = @objectives_without_outcomes + 1
       else
-        
+        # if objective.outcomes.all? {|o| !.indicator.nil?}
+        #   @outcomes_with_all_asks_completed = @outcomes_with_all_asks_completed + 1
+        # end
       end
+    end
       
     if @project.objectives.count == 0
       @rate_completed_objectives = 0
@@ -287,7 +291,6 @@ class ProjectsController < ApplicationController
     else
       @rate_completed_objectives = ( 100 / @project.objectives.count ) * @completed_objectives
       @rate_success_objectives = ( 100 / @project.objectives.count ) * @successful_objectives
-    end
     end
     ################################################################################## end objective kpis
     ################################################################################## start outcome kpis

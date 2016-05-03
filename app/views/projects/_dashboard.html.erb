@@ -64,7 +64,7 @@
                 fullWidth: true,
                 axisY: {
                         labelInterpolationFnc: function(value) {
-                          return value + ' asks'
+                          return value + '<%= t('.asks') %>'
                         },
                         onlyInteger: true,
                       }
@@ -186,7 +186,7 @@
           <h3><%= @objectives.count.presence || "0" %> <%= t('.objectives') %></h3>
           <ul class="fa-ul">
             <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @objectives_without_outcomes.presence %> <%= t('.objectives_without_interim_outcomes') %></li>
-            <li class="failed"><i class="fa-li fa fa-times-circle"></i><%= @objectives_with_failed_activities_diff.presence %> <%= t('.objectives_with_failed_activities') %></li>
+            <li class="failed"><i class="fa-li fa fa-times-circle"></i><%= @objectives_with_failed_outcomes.presence %> <%= t('.objectives_with_failed_outcomes') %></li>
           </ul>
         </div>
       </div>
