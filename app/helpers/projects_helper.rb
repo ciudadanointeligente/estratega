@@ -48,7 +48,7 @@ module ProjectsHelper
     when :solutions
       @solutions.blank? ? t('projects.show.step3_description') : " #{@solutions.size} #{t('projects.show.solutions')}"
     when :objectives
-      @objectives.blank? ? t('projects.show.step4_description') : " #{@objectives.size} #{t('projects.show.objectives')}"
+      @objectives.blank? ? t('projects.show.step4_description') : " #{@project.objectives.size} #{t('projects.show.objectives')},  #{@objectives.size} #{t('projects.show.objectives_prioritized')}"
     end
   end
 

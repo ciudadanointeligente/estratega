@@ -7,13 +7,11 @@
     <thead>
       <tr>
         <th><%= t('.title') %></th>
-        <th><%= t('.description') %></th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="solution in solutions" ng-class="{danger: solution.objective_ids.length<1}">
-        <td>{{ solution.title }}</td>
-        <td>{{ solution.description | limitTo:500 }}...</td>
+        <td ng-if="solution.objective_ids.length<1">{{ solution.title }}</td>
       </tr>
     </tbody>
   </table>

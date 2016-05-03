@@ -143,6 +143,7 @@ es:
       causes: "Causas"
       solutions: "Soluciones"
       objectives: "Objetivos"
+      objectives_prioritized: "Priorizados"
       actors: "Actores"
       enabling_factors: "Factores habilitantes"
       barriers: "Barreras"
