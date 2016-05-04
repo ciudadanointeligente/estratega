@@ -514,14 +514,14 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
     stage3:   # http://localhost:3000/projects/1/objectives/1/stage3
       projects: "Proyectos"
       stage3: "Etapa 3"
-      title: "¿Qué factores externos son necesarios de tener en cuenta para llevar a cabo la planificación de advocacy?"
-      title_description: "Los factores externos se refieren al lado práctico del contexto político, es decir, a los procesos de toma de decisión, a quién toma la decisión, a los actores con algún tipo de poder relativo que se oponen o apoyan a la organización y otros factores relacionados con los objetivos que se desean realizar. Entender cómo funciona el contexto externo resulta de gran ayuda para comprobar la viabilidad de los objetivos que se buscan llevar a cabo."
+      title: "¿Qué factores externos son necesarios de tener en cuenta para llevar a cabo el proceso de planificación de incidencia en políticas públicas?"
+      title_description: "Los factores externos se refieren al lado práctico del contexto político, es decir, a los procesos de toma de decisión, a quién toma la decisión, a los actores con algún tipo de poder relativo que se oponen o apoyan a la organización y otros factores relacionados con los objetivos que se desean realizar. Entender cómo funciona el contexto externo, resulta de gran ayuda para comprobar la viabilidad de los objetivos que se buscan llevar a cabo."
       subtitle1: "Comprender los ciclos políticos y los de toma de decisión"
-      subtitle1_explanation: "Las decisiones relacionadas con políticas públicas a menudo se hacen de acuerdo a un ciclo o programa. Para maximizar la influencia de la organización es necesario tener una buena comprensión de los procesos políticos. Esto en un primer lugar porque el análisis del proceso de toma de decisión ayuda a identificar oportunidades y puntos de partida para comenzar a influir respecto a un tema determinado, y en segundo lugar, porque las intervenciones de último minuto rara vez funcionan, por lo cual, mientras antes se inserte una idea en el ciclo político, más efectivo será el resultado."
+      subtitle1_explanation: "El ciclo político puede ser entendido como una descomposición de la política en una serie de etapas o pasos, que sin bien no son causales o consecutivas facilitan la delimitación del objeto de análisis y por ende simplifica el estudio"
       subtitle2: "Mapear actores relacionados para analizar su influencia relativa y su nivel de apoyo"
-      subtitle2_explanation: "Para realizar una estrategia de advocacy efectiva se debe tener un buen conocimiento de todos los actores relevantes, es decir, los que tienen el poder de hacer cambios , los que tienen influencia sobre estos y los miembros de la comunidad que actúan en forma conjunta apoyando u oponiéndose a una temática particular."
+      subtitle2_explanation: "Luego de identificar los principales hitos políticos se debe llevar a cabo una identificación de actores. Para ello se debe tener en cuenta que  un actor puede ser toda persona, cargo u organización que se encuentre relacionado con la problemática o el objetivo a lograr, y que posea poder relativo o capacidad de afectar el proceso de toma de decisión directa o indirectamente"
       subtitle3: "Identificar factores habilitantes y barreras"
-      subtitle3_tooltip: "Gracias al análisis del ciclo de toma de decisiones y el mapeo de actores, ya habrán identificado una serie de factores que permitirán lograr los objetivos y otros que serán un freno, sin embargo puede que sea necesario profundizar aún más el contexto que rodea el cambio deseado. Una forma de profundizar más es a través de la identificación de factores habilitantes y barreras, los que pueden propiciar el cumplimiento de los objetivos de advocacy o entorpecer y dificultar la estrategia."
+      subtitle3_tooltip: "Los factores habilitantes y las barreras son elementos del contexto que pueden propiciar el cumplimiento de los objetivos o que pueden entorpecer y dificultar la estrategia de incidencia"
       guide_me: "Guíame"
       step_one: "Dibuja los ciclos de toma de decisiones mediante la aplicación draw.io, una nueva pestaña se abrirá en su navegador"
       step_two: "Agrega a los actores involucrados en el plan de advocacy con el botón <strong>Agregar actor</strong>, luego se pueden editar o eliminar en la columna de acciones"
@@ -590,107 +590,92 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
       cancel_button: "Cancelar"
     explanation_stage3: #tab `Explanation & Examples` of stage 3
       explanation: "Explicación"
-      title1: "Comprensión de los ciclos políticos y los de toma de decisión"
+      title1: "Mapeo de ciclos de toma de decisión, identificación de actores e identificación de factores habilitantes y barreras"
       title1_description: |
-                          <p>Las decisiones relacionadas con políticas públicas a menudo se hacen de acuerdo a un ciclo o programa. Para maximizar la influencia de la organización es necesario tener una buena comprensión de los procesos políticos. Esto en un primer lugar porque el análisis del proceso de toma de decisión ayuda a identificar oportunidades y puntos de partida para comenzar a influir respecto a un tema determinado, y en segundo lugar, porque las intervenciones de último minuto rara vez funcionan, por lo cual, mientras antes se inserte una idea en el ciclo político, más efectivo será el resultado.</p>
-                          <p>El ciclo de las políticas públicas está compuesto de cuatro fases:</p>
-                          <ul>
-                            <li>Configuración de la agenda</li>
-                            <li>Formulación de soluciones y toma de decisión</li>
-                            <li>Implementación y cumplimiento</li>
-                            <li>Monitoreo y evaluación</li>
-                          </ul>
-                          <p>En cada una de las fases anteriormente listadas se encuentran presentes actores diversos formales e informales que cuentan con distintos niveles de influencia, por lo cual es necesario tener algún tipo de conocimientos sobre estos.</p>
-      title2: "Mapeo de actores relacionados para analizar su influencia relativa y su nivel de apoyo"
-      title2_description: |
-                          <p>Para realizar una estrategia de advocacy efectiva se debe tener un buen conocimiento de todos los actores relevantes, es decir, los que tienen el poder de hacer cambios , los que tienen influencia sobre estos y los miembros de la comunidad que actúan en forma conjunta apoyando u oponiéndose a una temática particular.</p>
-                          <p>Para tener una buena comprensión de estos actores, es necesario analizar su nivel de influencia y apoyo con respecto a una temática en particular, lo que también ayudará a que la organización defina  a sus aliados y opositores más relevantes.</p>
-      title3: "Identificación de factores habilitantes y barreras"
-      title3_description: |
-                          <p>Gracias al análisis del ciclo de toma de decisiones y el mapeo de actores, ya habrán identificado una serie de factores que permitirán lograr los objetivos y otros que serán un freno, sin embargo puede que sea necesario profundizar aún más el contexto que rodea el cambio deseado. Una forma de profundizar más es a través de la identificación de factores habilitantes y barreras, los que pueden propiciar el cumplimiento de los objetivos de advocacy o entorpecer y dificultar la estrategia.</p>
-                          <p>Los factores habilitantes y barreras se relacionan con elementos del contexto como:</p>
-                          <ul>
-                            <li>Financieros (ej: Posibilidad de la organización de acceder a nuevas formas de financiamiento)</li>
-                            <li>Sociales (ej: Oposición por parte de la ciudadanía a realizar o impulsar cambios)</li>
-                            <li>Tecnológicos (ej: Baja penetración de internet en el país o región)</li>
-                            <li>Legales (ej: Existe legislación que ampara la participación de organizaciones de la sociedad civil en la evaluación de políticas y programas)</li>
-                            <li>Políticos (ej: Oposición desde partidos políticos o movimientos)</li>
-                            <li>Religiosos (ej: La Iglesia Católica (u otra) se muestra a favor de la iniciativa o tema que se busca potenciar)</li>
-                            <li>Entre otros</li>
-                          </ul>
+                          <p>La primera arista que se debe tener en cuenta para comenzar con la etapa 3 son los procesos institucionales y los de toma de decisión. Conocer los ciclos políticos, así como los actores formales e informales que participan en ellos, será de gran ayuda para determinar los momentos en los cuales es posible generar algún tipo de influencia.</p> 
+                          <p>Una buena primera aproximación a los procesos políticos es el ciclo de las políticas públicas, que está compuesto de cinco fases:
+                          <ol>
+                            <li>Configuración de la agenda </li>
+                            <li>Formulación de soluciones </li>
+                            <li>Toma de decisión</li>
+                            <li>Implementación y cumplimiento </li>
+                            <li>Monitoreo y evaluación </li>
+                          </ol>
+                          <p>A partir de las cinco fases anteriormente nombradas, la organización debe establecer en qué etapa se encuentra la problemática que se está trabajando, para luego determinar los principales hitos y acontecimientos que posicionaron a al objetivo en esa parte del ciclo. El reconocimiento de los procesos políticos será fundamental para comprender los momentos en los que surjan ventanas de oportunidad y riesgos relacionados con la actividad gubernamental y/o parlamentaria. Las ventanas de oportunidad son los momentos claves en los cuales se tiene contacto con tomadores de decisión o simplemente existe la posibilidad de hacer llegar las ideas de la organización a algún órgano gubernamental, los riesgos son los peligros a los que se enfrenta la organización al momento de incidir en políticas públicas. </p>   
+                          <p>Una vez que ya se tenga el mapa de procesos políticos ya ocurridos, es momento de pensar en el camino o los caminos que el objetivo debería cursar para concretarse. Este proceso implica identificar a priori las vías tradicionales a través de las cuales los proyectos de ley, ordenanzas y programas, entre otros llegan a concretarse y al igual que en la identificación de los hitos previos, se deben tener en consideración ventanas de oportunidad y riesgos. </p>   
+                          <p>Luego de tener claros los procesos institucionales, se debe llevar a cabo una identificación más profunda de los actores relacionados con cada uno de los objetivos, determinando sus niveles de influencia, atribuciones y apoyos. Hay que tener en cuenta que un actor puede ser una persona particular (Michelle Bachelet), un cargo (Presidenta de la República) o una institución u organización (Gobierno de Chile).</p>
+                          <p>Por último, es necesario identificar factores habilitantes y barreras que no hayan sido registrados dentro de los pasos anteriores, y que se encuentran relacionados con ámbitos sociales, tecnológicos, geográficos, religiosos, culturales, etc. Los factores habilitantes y las barreras son elementos del contexto que pueden propiciar el cumplimiento de los objetivos de advocacy o que pueden entorpecer y dificultar la estrategia. El siguiente esquema muestra cómo constuir los factores habilitantes y barreras:</p>
+                          <br>
+                          <h4><i>[Este Factor habilitante: Financiero, Tecnológico, Legal, Religioso, Cultural, Geográfico, Organizacional, entre otros] [me ayudará a lograr mi(s) objetivo(s)]</i></h4>
+                          <br>
+                          <h4><i>[Esta Barrera: Financiero, Tecnológico, Legal, Religioso, Cultural, Geográfico, Organizacional, entre otros] [me dificultará lograr mi(s) objetivo(s)]</i></h4>
+      title2: " "
+      title2_description: " "
+      title3: " "
+      title3_description: " "
       example: "Ejemplos"
-      real_world_problem: "Comprensión de los ciclos políticos y los de toma de decisión"
+      real_world_problem: " "
       real_world_problem_description: |
+                          <h4>Procesos políticos</h4>
+                          <ol>
+                            <li>Objetivo: Desarrollo de una Ley de Tenencia Responsable de Animales</li>
+                            <li>Fase(s) del ciclo político: Toma de decisión.</li>
+                            <li>Principales hitos:</li>
+                              <ul>
+                                <li>Antecedente en un proyecto de ley sobre protección animal vigente desde el año 2009.</li>
+                                <li>Emergencia de grupos activistas pro animal, mediante redes sociales y manifestaciones públicas.</li>
+                                <li>Guido Girardi presentó la moción que dio pié al Proyecto de Ley sobre la tenencia responsable de mascotas a inicios del año 2009.</li>
+                                <li>En el mes de mayo del 2009, el proyecto ingresa a su primer trámite constitucional.</li>
+                                <li>La ordenanza municipal que otorga sanciones monetarias a las personas que alimenten a animales callejeros, produce un gran revuelo en medios de comunicación y redes sociales.</li>
+                                <li>Movilizaciones constantes de grupos animalistas en contra del rodeo y en contra de la Ley de Caza.</li>
+                                <li>Proyecto de Ley sobre tenencia responsable de animales aún se encuentra siendo discutido por ambas cámaras en el congreso, en una comisión mixta.</li>
+                                <li>Municipalidad de Antofagasta realiza una polémica eliminación de animales callejeros. </li>
+                              </ul>
+                            <li>¿Qué debería ocurrir para concretar este objetivo?</li>
+                              <ul>
+                                <li>Desarrollo de una campaña comunicacional que busca concientizar y convertir a la problemática en una de carácter público.</li>
+                                <li>Noticia del contexto nacional potencia el carácter problemático de la situación de los animales domésticos abandonados.</li>
+                                <li>Figura relevante de la política nacional emite una declaración con respecto a la importancia que tiene la aprobación de la Ley de Tenencia Responsable.</li>
+                                <li>Agenda política se alinea con los planteamientos de los grupos animalistas, generando nuevos debates en la comisión mixta a cargo del Proyecto de Ley.</li>
+                                <li>Se genera un acuerdo en la comisión mixta y el Proyecto de Ley es aprobado.</li>
+                              </ul>
+                          </ol>
+                          <br>
+                          <h4>Riesgos</h4> 
                           <ul>
-                            <li>Octubre 2015: Comisión de la Asamblea Nacional asigna al Ministro de Salud para realizar un informe sobre la aplicación de la Ley de VIH </li>
-                            <li>Octubre 2015: ONU invita a actores claves no gubernamentales a realizar informes sobre la situación de los trabajadores informales y sus familias </li>
-                            <li>Diciembre 2015: El Ministro de Salud se reune con los actores invitados (ONG's internacionales y ONU) para discutir sobre la problemática y sus posibles soluciones </li>
-                            <li>Enero 2016: ONU prepara un informe de evaluación de la política de salud actual y se lo entrega al Primer Ministro </li>
+                            <li>En la actualidad el tema es muy poco relevante en la agenda política, lo que imposibilita el avance del Proyecto de Ley de Tenencia Responsable.</li>
+                            <li>Guido Girardi está ampliamente cuestionado por financiamiento irregular de campaña.</li>
                           </ul>
-                          <h4>Mapeo de actores relacionados</h4>
+                          <h4>Ventana de Oportunidad</h4>
+                          <p>Políticos nacionales buscan potenciar Proyectos de Ley que se relacionan con temas de interés social, a modo de desviar la atención de otros casos que los afectan directamente.</p>
+                          <h4>Actores relacionados:</h4>
+                          <ol>
+                            <li>Guido Girardi (Responsable de la moción que dio pié al Proyecto de Ley sobre la tenencia responsable de mascotas)</li>
+                            <li>Pro Animal Chile (Red que agrupa a 40 organizaciones de protección animal a lo largo de Chile)</li>
+                            <li>Fundación EDRA</li>
+                            <li>Juan Luis Castro (Diputado)</li>
+                            <li>Ministerio del Medio Ambiente</li>
+                            <li>Ministro de Medio Ambiente (Pablo Badenier)</li>
+                            <li>Colegio Médico de Veterinarios de Chile</li>
+                            <li>Patricia Escárate (Presidenta del Colegio de Veterinarios)</li>
+                            <li>Oficina de Bienestar Animal del Servicio Agrícola y Ganadero SAG</li>
+                            <li>Vegetarianos Chile</li>
+                            <li>Fundación Julieta</li>
+                            <li>Defensa Anti-Especista </li>
+                            <li>Ilustre Municipalidad de Laja (Proyecto piloto de tenencia responsable)</li>
+                            <li>Ciudadanía</li>
+                          </ol>
+                          <br>
+                          <h4>Factores habilitantes</h4>
                           <ul>
-                            <li>Ministro de Salud</li>
-                            <li>Parlamento</li>
-                            <li>Miembro X del Parlamento</li>
-                            <li>ONG internacional X</li>
-                            <li>Agencias ONU: ONUSIDA, OMS, ONU Mujeres, UNESCO, OIT,etc</li>
-                            <li>Medio de comunicación X </li>
-                            <li>Grupo de personas afectadas </li>
+                            <li>La creciente aparición de grupos animalistas en todas las regiones de Chile ayudará a mantener una red de cuidados y rescate informal de animales domésticos abandonados.</li>
+                            <li>En la actualidad los animales de compañía son considerados como bienes muebles por la legislación chilena, lo que ha generado el descontento de las organizaciones animalistas y de la ciudadanía. </li>
                           </ul>
-      policy_solutions: "Identificación de factores habilitantes y barreras"
-      policy_solutions_description: |
-                          <table>
-                            <tr>
-                              <th>Elementos del contexto                        </th>
-                              <th>Factores habilitantes</th>
-                              <th>Barerras</th>
-                            </tr>
-                            <tr>
-                              <td>Financiero</td>
-                              <td>                                              </td>
-                              <td>                                              </td>
-                            </tr>
-                            <tr>
-                              <td>Social</td>
-                              <td>Apoyo por parte de la ciudadanía en las materias en las cuales se busca incidir</td>
-                              <td> </td>
-                            </tr>
-                            <tr>
-                              <td>Tecnológico</td>
-                              <td> </td>
-                              <td>Baja penetración de internet en el país o región</td>
-                            </tr>
-                            <tr>
-                              <td>Legal</td>
-                              <td> </td>
-                              <td>El tipo de ley que se quiere modificar o cambiar necesita de una mayoría especial de votos</td>
-                           </tr>
-                           <tr>
-                              <td>Político</td>
-                              <td> </td>
-                              <td> </td>
-                            </tr>
-                            <tr>
-                              <td>Religioso</td>
-                              <td> </td>
-                              <td> </td>
-                            </tr>
-                            <tr>
-                              <td>Cultural</td>
-                              <td>Dentro de la sociedad existen posturas y comportamientos arraigados que resultan favorables al tema que se busca potenciar</td>
-                              <td> </td>
-                            </tr>
-                            <tr>
-                              <td>Geográfico</td>
-                              <td> </td>
-                              <td> </td>
-                            </tr>
-                            <tr>
-                              <td>Organizacional</td>
-                              <td>La organización se encuentra totalmente institucionalizada y posee el reconocimiento de la sociedad</td>
-                              <td> </td>
-                            </tr>
-                          </table>
+                          <br>
+                          <h4>Barreras</h4>
+                          <p>No existe vinculación con los grupos animalistas de la IX región, lo que no nos permite conocer los estudios relacionados al abandono de animales domésticos en esa región.</p>
+      policy_solutions: " "
+      policy_solutions_description: " "
     #
     # Stage 4
     #
