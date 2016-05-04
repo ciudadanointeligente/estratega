@@ -1086,8 +1086,8 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
     stage6: # http://localhost:3000/projects/1/objectives/1/stage6
       projects: "Proyectos"
       stage6: "Etapa 6"
-      title: "¿Qué quieren que realicen como organización el actor o los actores claves?"
-      title_description: "Después de haber identificado el público objetivo y los actores claves, es momento de definir la “petición” que es una solicitud a un actor clave o un grupo de actores para que estos lleven a cabo una acción que genere el cumplimiento de los resultados intermedios"
+      title: "¿Qué acciones concretas se deben llevar a cabo para lograr un resultado intermedio? ¿Qué actores se encuentran relacionados a estas acciones?"
+      title_description: "La etapa de peticiones hace referencia a la materialización del proceso de incidencia, por lo que es momento de comenzar a planear acciones determinadas que lleven a la concreción de los resultados intermedios y por ende, al logro de los objetivos. Es posible entender una petición como la bajada de los pasos anteriormente dados en la planificación, en donde se deben establecer acciones que deben ser llevadas a cabo por un actor o por un grupo de actores. "
       subtitle1: "¿Cuál será la petición para cada actor?"
       subtitle1_explanation: "Una petición debe ser clara, concisa, centrada en el resultado y adaptada a cada actor. Las peticiones también pueden ser entendidas como una solicitud a un actor clave o un grupo de actores para que estos lleven a cabo una acción que genere el cumplimiento de los resultados intermedios."
       subtitle2: "¿Cuál es la bajada comunicacional de una petición para transmitir la idea central del resultado  intermedio según el o los actores a los que te enfrentes?"
@@ -1130,61 +1130,45 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
       cancel_button: "Cancelar"
     explanation_stage6: #tab `Explanation & Examples` of stage 6
       title: "Explicación"
-      subtitle1: "¿Qué es lo que quieren como organización que transmita el actor o actores claves?"
+      subtitle1: "Establecimiento de peticiones"
       subtitle1_explanation:  |
-                    <p>Después de haber identificado el público objetivo y los actores claves (los que tienen la capacidad de generar el cambio deseado), es momento de definir la “petición” para cada uno de ellos. Una petición debe ser clara, concisa, centrada en el resultado y adaptada a cada actor. Las peticiones también pueden ser entendidas como una solicitud a un actor clave o un grupo de actores para que estos lleven a cabo una acción que genere el cumplimiento de los resultados intermedios.</p>
-                    <p>Los especialistas en comunicación de la organización deben transformar las peticiones en mensajes, los que son la bajada comunicacional de una petición y deben transmitir la idea central del resultado intermedio según el actor al cual se enfrente. El mensaje debe favorecer un intercambio políticamente correcto, a modo de hacer efectivo el resultado intermedio y no pasar a llevar susceptibilidades.</p>
-      example: "Ejemplos"
+                    <p>El primer paso que dar para la planificación de las peticiones, es determinar cuántas peticiones son necesarias para la realización de un resultado intermedio y en qué consiste cada una. Por ejemplo, si el resultado intermedio es lograr que al menos cuatro figuras públicas aboguen por la aprobación de la ley de tenencia responsable, las peticiones deben representar el camino para contactar a las figuras y convencerlas de que sean rostro o compartan una campaña determinada. </p>
+                    <p>Definida la cantidad de peticiones necesarias para la realización de los resultados intermedios, es momento de definir para cada petición un encargado de la organización, un actor o un grupo de actores relacionados, un mensaje y un evento o actividad en donde tendrá lugar la petición. </p>
+                    <p>Cada uno de los elementos anteriormente mencionados tienen un rol clave para la realización de cada petición, ya que el encargado de la organización es quien debe coordinar y supervisar la ejecución de un resultado intermedio, delegando tareas y velando por cumplir con lo planificado. El actor o grupo de actores son los individuos que tienen las atribuciones (formales e informales) para desencadenar el logro de una petición. El mensaje es la forma en que le vamos a transmitir al actor la necesidad de alguna acción, por lo que debe ajustarse a su contexto, creencias y posición política. Por último, el evento o actividad es el medio en el cual transmitir el mensaje a el actor.  </p>
+                    <p>Para que la planificación de peticiones sea un proceso más simple, es necesario que contenga los siguientes elementos:
+                    <ul>
+                      <li><strong>Definición de petición:</strong> Paso que ayuda al logro de una petición.</li>
+                      <li><strong>Actor(res):</strong> Individuo, cargo o institución que debe llevar a cabo una acción determinada para contribuir al logro de una petición.</li>
+                      <li><strong>Encargado de la organización:</strong> Persona que debe coordinar todos los elementos. Debe ser seleccionada a posterior del actor o actores debido a que idealmente este tiene que ser afín a ellos.</li>
+                      <li><strong>Mensaje(s):</strong> Mejor forma de transmitir la petición al actor o actores.</li>
+                      <li><strong>Actividad:</strong> Momento, situación o evento a través del cual transmitir el mensaje al actor.</li>
+                      <li><strong>Indicadores:</strong> Forma a través de la cual medir el logro de la petición. Debe representar un resultado ideal o esperado. Estos se encuentran ejemplificados en el anexo 6 y nunca deberán ser de carácter binario (sí o no).</li>
+                    </ul>
+      example: "Ejemplo"
       actors_ask_table_content: |
-                    <tr>
-                      <th>Actores</th>
-                      <th>Peticiones</th>
-                    </tr>
-                    <tr>
-                      <td>Ministro de Salud</td>
-                      <td>Apoyar la revisión sobre el marco normativo del VIH y recomendar la extensión de la cobertura del Plan Nacional de Salud a los trabajadores informales</td>
-                    </tr>
-                    <tr>
-                      <td>Miembros del Parlamento</td>
-                      <td>Apoyar la revisión sobre el marco normativo del VIH y recomendar la extensión de la cobertura del Plan Nacional de Salud a los trabajadores informales<br>
-                      Invitar a UNICEF o alguno de sus socios a preparar y entregar un informe sobre el tema
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Directos del Departamento</td>
-                      <td>Abogar públicamente por el tema</td>
-                    </tr>
-                    <tr>
-                      <td>ONG internacional “X”</td>
-                      <td>Unir fuerzas con la ONU para usar los informes de la ley de VIH a modo de abogar por la expansión del Plan Nacional de Salud para los trabajadores informales y sus familias</td>
-                    </tr>
-                    <tr>
-                      <td>Agencias ONU</td>
-                      <td>Unir fuerzas al interior de la ONU a modo de utilizar los informes para abogar por la expansión del Plan Nacional de Salud para los trabajadores informales y sus familias</td>
-                    </tr>
-                    <tr>
-                      <td>Medios de comunicación neutrales</td>
-                      <td>Dar voz a la posición de los trabajadores informales, relatando sus historias respecto de a falta de acceso a servicios de salud debido a que estos son muy caros<br>
-                      Unirse con ONU y con la ONG internacional X para realizar una visita de campo
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Grupos de personas afectadas</td>
-                      <td>Contar sus historias a los medios de comunicación y a los tomadores de decisión<br>
-                      Ofrecer participar en talleres ofrecidos por la ONU y una ONG internacional X
-                      </td>
-                    </tr>
+                    <ul>
+                      <li><strong>Definición de petición:</strong> Figura pública aboga por la aprobación de la Ley de tenencia responsable a través de una campaña específica.</li>
+                      <li><strong>Actor(res):</strong> Sebastián Jiménez (Lindorfo)</li>
+                      <li><strong>Encargado de la organización:</strong> Directora de Comunicaciones</li>
+                      <li><strong>Mensaje(s):</strong>  Debido a su popularidad en relación con los animales y su importancia como figura pública, será de gran ayuda su colaboración en la campaña, a modo de concientizar respecto de la situación de los animales abandonados.</li>
+                      <li><strong>Actividad:</strong> Almuerzo el día 20 de mayo del 2016</li>
+                      <li><strong>Indicadores:</strong></li>
+                      <ul>
+                        <li>El tweet de Sebastián jiménez alcanzará 300 retweets y 700 me gusta.</li>
+                        <li>Sebastián jiménez realiza una mención en un programa de televisión, con 8 puntos de rating.</li>
+                      </ul>
+                    </ul>
 
   outcomes:
     stage6: # http://localhost:3000/projects/1/objectives/1/stage6
       projects: "Proyectos"
       stage6: "Etapa 6"
       title: "¿Qué quieren que realicen como organización el actor o los actores claves?"
-      title_description: "Después de haber identificado el público objetivo y los actores claves, es momento de definir la “petición” que es una solicitud a un actor clave o un grupo de actores para que estos lleven a cabo una acción que genere el cumplimiento de los resultados intermedios"
+      title_description: "La etapa de peticiones hace referencia a la materialización del proceso de incidencia, por lo que es momento de comenzar a planear acciones determinadas que lleven a la concreción de los resultados intermedios y por ende, al logro de los objetivos. Es posible entender una petición como la bajada de los pasos anteriormente dados en la planificación, en donde se deben establecer acciones que deben ser llevadas a cabo por un actor o por un grupo de actores. "
       subtitle1: "¿Cuál será la petición para cada actor?"
-      subtitle1_explanation: "Una petición debe ser clara, concisa, centrada en el resultado y adaptada a cada actor. Las peticiones también pueden ser entendidas como una solicitud a un actor clave o un grupo de actores para que estos lleven a cabo una acción que genere el cumplimiento de los resultados intermedios."
+      subtitle1_explanation: "Una petición es una tarea determinada, que debe ser llevada a cabo por un actor o un grupo de actores a modo de contribuir al logro de un resultado intermedio"
       subtitle2: "¿Cuál es la bajada comunicacional de una petición para transmitir la idea central del resultado  intermedio según el o los actores a los que te enfrentes?"
-      subtitle2_explanation: "Un Mensaje es la bajada comunicacional de una petición que debe transmitir la idea central del resultado intermedio según el actor al cual se enfrente"
+      subtitle2_explanation: "El mensaje es la forma de transmitir las intenciones de la petición a un actor determinado. Debe favorecer un intercambio políticamente correcto, a modo de no pasar a llevar susceptibilidades y también debe adaptarse a las características de cada actor"
       data_entry: "Ingreso de datos"
       explanation_examples: "Explicaciones y Ejemplos"
       workshop_tips: "Consejos para el taller"
@@ -1193,6 +1177,7 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
       ask: "Petición"
       actions: "Acciones"
       execution: "Petición entregada"
+      date: "Fecha(s)"
       error_getting_actors: "Error al obtener información de los actores"
       error_getting_asks: "Error al obtener la información de las peticiones"
       error_updating_ask: "Error al subir la información de las peticiones"
