@@ -354,12 +354,13 @@ es:
     stage2:   # http://localhost:3000/projects/1/stage2
       projects: "Proyectos"
       stage2: "Etapa 2"
-      title: "¿Qué cambios en políticas públicas serían necesarios de llevar a cabo para solucionar el problema?"
-      description: "La planificación de advocacy implica la definición y construcción de consenso a nivel organizacional sobre los principales cambios políticos que deben alcanzarse para solucionar el problema público. La selección estratégica de los objetivos llevará a la organización a hacer un uso eficiente de los recursos disponibles y maximizar las oportunidades existentes."
-      subtitle1: "Formular el problema público como una meta"
-      subtitle1_tooltip: "La meta puede ser entendida como el gran cambio que resultará de la planificación de advocacy, por lo cual en este punto es necesario señalar cómo la estrategia ayudará a cambiar de forma positiva la situación inicial o “problemática”."
+      title: "¿Cuál es el gran cambio que queremos lograr con la planificación de incidencia? ¿Cuales son los pasos que debemos dar para cumplirlo?"
+      description: "Para continuar con el proceso de planificación se debe definir el gran cambio que se desea lograr. Este gran cambio o meta será el elemento que estructurará los pasos siguientes de la planificación, por lo que debe elaborarse teniendo en consideración los criterios SMART.
+Utilizando los mismos criterios se deben definir los objetivos del plan estratégico, los que pueden ser entendidos como hitos que de ocurrir los llevarán al cumplimiento de la meta de incidencia"
+      subtitle1: "Formular el problema público como una meta."
+      subtitle1_tooltip: "La meta es el gran cambio que resultará de la estrategia de incidencia, por lo que para su establecimiento se debe reinterpretar el problema hacia una situación deseada"
       subtitle2: "Formular las soluciones políticas como objetivos"
-      subtitle2_tooltip: "Los objetivos son los propósitos que la organización busca alcanzar en el transcurso de 3 a 5 años. También pueden ser entendidos como los cambios en políticas públicas que se desean alcanzar a través de la estrategia de advocacy."
+      subtitle2_tooltip: "Los objetivos hacen referencia al establecimiento de un conjunto de propósitos a alcanzar que se relacionan de forma directa con la meta. Para tenerlo presente, los objetivos deben estar planteados como una carrera de postas, ya que el cumplimiento de un objetivo liberará recursos para avanzar al siguiente paso"
       data_entry: "Ingreso de datos"
       explanation_examples: "Explicaciones y Ejemplos"
       add_objective_button: "Agregar objetivos"
@@ -484,45 +485,28 @@ es:
       explanation: "Explicación"
       title1: "¿Qué problema público desean abordar?"
       title1_description: |
-                          <p>Un problema público puede ser entendido como una situación negativa que afecta a la población de un país o una localidad específica y que lo organización desea revertir. La primera etapa del proceso de planificación está centrada en la identificación y caracterización del problema público que se desea abordar.</p>
-                          <p>La identificación y definición del problema debe responder a por qué la temática en cuestión puede ser considerada como un problema, además de acotarla a un contexto territorial, a uno temporal y mencionar la población que resulta afectada. También es necesario tener en consideración que un problema público tiene causas múltiples y que la identificación de estas puede estar determinada por la forma en que se defina el problema.</p>
-      title2: "¿Cuales son las causas políticas relacionadas al problema público?"
-      title2_description: |
-                          <p>Como se mencionaba anteriormente, detrás de los problemas públicos existen múltiples causas, incluyendo los programas políticos y las malas prácticas relacionadas con el ambiente político.</p>
-                          <p>La labor de la estrategia de advocacy se refiere a causas tales como mecanismos de gobernabilidad deficientes, la existencia de un marco jurídico inadecuado o la presencia de relaciones de poder desequilibradas. Por lo anterior, el análisis del problema debería priorizar la identificación a estas causas en lugar de otros factores explicativos del problema público.</p>
-                          <p>Una herramienta de gran utilidad para llevar a cabo el análisis del problema es el “árbol de problemas”, ya que este puede ayudar a visibilizar las causas y consecuencias subyacentes y también a recaudar información para las posteriores fases de la estrategia de advocacy.</p>
-      title3: "¿Qué soluciones políticas podrían constituir una respuesta adecuada para enfrentar el problema público?"
-      title3_description: |
-                          <p>Las soluciones de política pública se refieren principalmente a:</p>
-                          <ul>
-                            <li>El desarrollo de políticas</li>
-                            <li>Establecimiento de un tema en la agenda política</li>
-                            <li>Adopción de políticas públicas</li>
-                            <li>Bloqueo de políticas públicas</li>
-                            <li>Implementación de políticas públicas</li>
-                            <li>Mantenimiento de políticas públicas</li>
-                          </ul>
-                          <p>En aquellos contextos en los que un cambio de políticas públicas sea considerado demasiado ambicioso, la organización puede aspirar a un cambio discursivo, el que debería allanar el camino para que en el largo plazo se genere un cambio más profundo. Por ejemplo, por muchos años y dada la falta de opciones de lograr un cambio en las políticas relacionadas a los paraísos fiscales, las organizaciones que trabajan en la justicia fiscal centraron sus esfuerzos de advocacy en un cambio discursivo centrado en la sociedad, a modo que los paraísos fiscales fueran vistos por la mayoría como una práctica inaceptable. Estos esfuerzos constituyen la base de los cambios políticos que se consiguieron unos años después.</p>
+                          <p>Para desarrollar la meta y los objetivos se debe tener en cuenta el criterio SMART (por sus siglas en inglés), el cual indica que estos deben ser Específicos, Medibles, Alcanzables, Orientados a resultados, Realistas, relevantes y con un límite temporal, a modo de que la estrategia de advocacy sea factible. Siguiendo las disposiciones del criterio SMART, al establecer los objetivos se deben acompañar de un indicador o un conjunto de indicadores (que no debe ser de carácter binario), y que permiten en el mediano y largo plazo medir el cumplimiento de un objetivo. </p>
+                          <p>Al igual que para la definición del problema y la estructuración de la meta, es posible usar un esquema para simplificar el establecimiento de los objetivos:</p>
+                          <br>
+                          <h4><i>Con el/la [Tipo de objetivo a alcanzar: Desarrollo de políticas públicas, Establecimiento de un tema en la agenda política, Adopción de políticas públicas, Bloqueo de políticas públicas, Implementación de políticas públicas, Mantenimiento de políticas públicas, etc.] el/en [Hito que marcará el término: Año o fecha; acontecimiento político, histórico o social] [Lograremos: indicador] [Que llevará al logro de la meta de incidencia]</i></h4>
+                          <br>
+                          <p>Una vez establecidos los objetivos, estos deben ser priorizados a través de un conjunto de “criterios de viabilidad”, los cuales ordenan los objetivos según la ventaja comparativa de cada uno a través de la asignación de puntajes conforme criterios predefinidos. Los objetivos con mayor puntaje serán los que tengan preferencia al momento de completar la planificación y luego llevarla a cabo, salvo los que tengan solo el puntaje MOMENTUM elevado, ya que estos dependen exclusivamente de la contingencia por lo tanto no pueden esperar. </p>
+      title2: " "
+      title2_description: " "
+      title3: " "
+      title3_description: " "
       
       example: "Ejemplos"
-      real_world_problem: "Problema público"
+      real_world_problem: "Meta"
       real_world_problem_description: |
-                          <p>Aumento de la transmisión maternoinfantil de VIH en el país X durante los últimos tres años</p>
-                          <h4>Dimensiones políticas</h4>
-                          <ul>
-                            <li>Las mujeres y los niños no son incluidos como público objetivo del Plan de Salud Estratégico Nacional, ya que la epidemia ha estado históricamente concentrada en los consumidores de drogas masculinos.</li>
-                            <li>El seguro de salud no cubre a los trabajadores informales y muchas mujeres en situación de riesgo pertenecen a este grupo (Debido a los pocos ingresos que perciben las mujeres al trabajar de forma informal, no pueden acceder a los exámenes para detectar el VIH y a tratamientos).</li>
-                            <li>La prevención de la transmisión de VIH de madre a hijo no está incluida como una prioridad en el Plan de Salud Estratégico Nacional.</li>
-                            <li>El marco legal actual considera el comercio sexual como ilegal, por lo que las trabajadoras sexuales evitan asistir a controles médicos por temor a ser denunciadas. </li>
-                          </ul>
-      policy_solutions: "Soluciones de política pública"
+                          <p>El año 2022 reduciremos en 50% el número de animales domésticos abandonados en Chile.</p> <br>
+      policy_solutions: "Objetivos"
       policy_solutions_description: |
-                          <ul>
-                            <li>Enmienda al Código Penal, a modo de que se eliminen las detenciones a las trabajadoras sexuales.</li>
-                            <li>Revisión de la estrategia nacional del VIH.</li>
-                            <li>Cambio del marco de la política de salud para cubrir a los trabajadores informales que resultan desfavorecidos.</li>
-                            <li>Aumentar la financiación a través de donantes para la prevención de la transmisión del VIH de madre a hijo.</li>
-                          </ul>
+                          <ol>
+                            <li>El 10% de las municipalidades a lo largo de Chile establecerán el año 2018 una ordenanza municipal que asegura la esterilización de animales en situación de abandono.</li>
+                            <li>Con el desarrollo de una ley de tenencia responsable de animales el 2020, se reducirá en un 30% la población de animales domésticos en las calles.</li>
+                            <li>Con el establecimiento de oficinas regionales de bienestar animal el 2022, se creará un sistema de fiscalización efectivo, el que reducirá la población de animales domésticos en las calles en un 10%.</li>
+                          </ol>
     #
     # Stage 3
     #
