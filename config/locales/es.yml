@@ -685,9 +685,9 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
       projects: "Proyectos"
       stage4: "Etapa 4"
       title: "¿Que pasos los llevarán a la consecución de sus objetivos de advocacy?"
-      subtitle1: "Establecimiento de resultados intermedios"
-      subtitle1_explanation: "En este punto del proceso de planificación, el análisis necesario para sostener la estrategia de advocacy se ha completado, por lo tanto ahora es momento de utilizar este marco para orientar la definición de resultados a más corto plazo. Los resultados intermedios se pueden organizar de forma secuencial y ayudan a ver y a describir el camino plausible para lograr un cambio. De una forma simplificada, es posible entender los resultados intermedios como una serie de pasos que permitirán lograr un objetivo."
-      subtitle1_tooltip: "Los resultados intermedios se refieren a cambios en actitudes, creencias o comportamientos del público objetivo."
+      subtitle1: "¿Qué cambios políticos o sociales son necesarios para lograr un objetivo de incidencia?"
+      subtitle1_explanation: "Luego de analizar los factores externos y del entorno que rodean el proceso de las políticas públicas para cada objetivo, es momento de continuar con la planificación y establecer los resultados intermedios. Los resultados intermedios son una serie de pasos que en su conjunto llevan al cumplimiento de un objetivo."
+      subtitle1_tooltip: "Los resultados intermedios son una serie de pasos organizados de forma secuencial, que en su conjunto llevan al cumplimiento de un objetivo. Por ejemplo, si una organización determinada busca que se apruebe un proyecto de ley, los resultados intermedios serán todas las fases por las cuales tenga que pasar una política pública para ser aprobada"
       data_entry: "Ingreso de datos"
       guide_me: "Guíame"
       step_one: "Defina sus resultados intermedios agregandolos con el botón <i class='fa fa-plus-circle'></i> <strong>Agregar</strong>"
@@ -754,98 +754,48 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
     explanation_stage4: #tab `Explanation & Examples` of stage 4
       title: "Explicación"
       explanation_part1: |
-                  <p>En este punto del proceso de planificación, el análisis necesario para sostener la estrategia de advocacy se ha completado, por lo tanto ahora es momento de utilizar este marco para orientar la definición de resultados a más corto plazo. Los resultados intermedios se pueden organizar de forma secuencial y ayudan a ver y a describir el camino plausible para lograr un cambio. De una forma simplificada, es posible entender los resultados intermedios como una serie de pasos que permitirán lograr un objetivo.</p>
-                  <p>Los resultados intermedios se refieren a cambios en actitudes, creencias o comportamientos del público objetivo.</p>
-      table_content:  |
-                  <tr>
-                    <th>Categorias frecuentes de resultados intermedios</th>
-                    <th>Definición</th>
-                    <th>Ejemplos</th>
-                  </tr>
-                  <tr>
-                    <td>Voluntad política</td>
-                    <td>La voluntad de los políticos de actuar en apoyo de una propuesta o tema</td>
-                    <td>Miembros del Parlamento emiten una declaración en favor de regular la fracturación hidráulica</td>
-                  </tr>
-                  <tr>
-                    <td>Voluntad pública</td>
-                    <td> La voluntad de los actores relacionados al problema que no son tomadores de decisión, de actuar en apoyo a una propuesta o tema</td>
-                    <td>Aumento de la voluntad ciudadana de participar en actos en contra al desalojo</td>
-                  </tr>
-                  <tr>
-                    <td>Actitudes o creencias</td>
-                    <td>Pensamientos, sentimientos o juicios acerca de un tema o una propuesta de política pública del público objetivo</td>
-                    <td>Incremento del número de jóvenes en favor de la eliminación del sistema bicameral</td>
-                  </tr>
-                  <tr>
-                    <td>Relevancia</td>
-                    <td>La importancia que el público objetivo asigna a una propuesta política o tema</td>
-                    <td>El aumento de la cantidad de ciudadanos que creen que la pobreza infantil es un problema urgente de resolver</td>
-                  </tr>
-                  <tr>
-                    <td>Conciencia</td>
-                    <td>Reconocimiento público de que existe un problema o familiaridad con una propuesta política</td>
-                    <td>Mayor conciencia de parte de la Unión Europea respecto del conflicto en Siria y la situación de los refugiados</td>
-                  </tr>
-                  <tr>
-                    <td>Líderes de opinión</td>
-                    <td>Personas de alto perfil que adoptan un problema y que abogan públicamente por una solución</td>
-                    <td>Líderes africanos transmiten mensajes a modo de reducir el estigma de las personas homosexuales</td>
-                  </tr>
-                  <tr>
-                    <td>Nuevos Defensores</td>
-                    <td>Individuos que se encontraban anteriormente desvinculados toman medidas en apoyo a un tema u oposición</td>
-                    <td>Conocidos jugadores de bascketball se pronuncian contra el racismo</td>
-                  </tr>
-                  <tr>
-                    <td>Asociaciones y alianzas</td>
-                    <td>Relaciones mutuamente beneficiosas con otras organizaciones o individuos que apoyan o participan en una estrategia de promoción</td>
-                    <td>Las Fundaciones Ciudadano Inteligente y Espacio Público se unen en el proyecto Observatorío Anticorrupción</td>
-                  </tr>
-                  <tr>
-                    <td>Circunscripción o base de apoyo en crecimiento</td>
-                    <td>Aumento en el número de individuos con los que se puede contar para la defensa sostenida de un tema</td>
-                    <td>Crecimiento del apoyo por parte de jóvenes</td>
-                  </tr>
-                  <tr>
-                    <td>Cobertura mediática</td>
-                    <td>La cantidad y/o la calidad de la cobertura generada en la difusión de los medios sociales</td>
-                    <td>Los principales medios de comunicación del país X hacen una extensa cobertura a un hecho</td>
-                  </tr>
-                  <tr>
-                    <td>Replanteamiento del asunto</td>
-                    <td>los cambios en la forma en que se presenta un problema.</td>
-                    <td>El cambio climático es presentado como un problema que afecta a las personas</td>
-                  </tr>
-                  <tr>
-                    <td>Capacidad de advocacy de la organización</td>
-                    <td>La capacidad de una organización o coalición para llevar, adaptar, gestionar e implementar la estrategia de advocacy</td>
-                    <td>La coalición define y lleva a cabo una estrategia de advocacy de acuerdo con el objetivo general</td>
-                  </tr>
-                  <tr>
-                    <td>Visibilidad de la organización o reconocimiento del problema</td>
-                    <td>Identificación de una organización o campaña como una fuente creíble</td>
-                    <td>La organización es reconocida como una voz creible en temas de transparencia y fiscalización</td>
-                  </tr>
-      table_content_source: "<p>Fuente: Adaptado desde, UNICEF (2010) Advocacy toolkit, pág. 64</p>"
-      explanation_part2:  |
-                  <p>La selección de resultados intermedios debe estar basada en las conclusiones de las etapas anteriores, como el mapeo de actores, los procesos de toma de decisión, ciclo político y los factores habilitantes y barreras.</p>
-                  <p>Por ejemplo: a) Una organización define como parte de sus objetivos de advocacy la adopción de la Ley X el próximo año; b) El mapeo de actores muestra que hay partidarios y opositores activos con niveles similares de influencia, el gobierno es neutral al igual que la ciudadanía y existen pocas organizaciones de la sociedad civil con influencia respecto del tema; c) El análisis de los procesos de toma de decisión muestran que la Ley en cuestión ha sido asignada a la Comisión de Trabajo, la que será un actor clave en el proceso de advocacy. Luego, con el fin de mover la balanza a favor de la organización y progresar en el desarrollo de sus objetivos, los resultados intermedios deben incluir cambios en el público tales como aumentar el conocimiento de la sociedad o un grupo de la sociedad respecto del tema, a modo de generar voluntad pública para presionar a los tomadores de decisión. Es muy probable que se necesite el apoyo de personas con mayor cantidad de influencia, como líderes de opinión, los que pueden emitir comentarios a modo de posicionar el tema. Todas las acciones tienen que tener como foco o finalidad la reducción de los opositores de la causa en cuestión.</p>
-                  <p>Los resultados intermedios pueden ser entendidos como indicadores del tránsito hacia los objetivos de advocacy, por lo que deben ser pensados y planificados en función de ellos. hay que tener en consideración que cuanto más profundo ha sido el análisis del problema público, más precisos serán los resultados intermedios.</p>
-                  <p>Los resultados intermedios también pueden ser ordenados de forma lógica y secuencial, a modo que el cumplimiento de un conjunto de resultados genere la realización de un objetivo. Este ordenamiento es conocido como “teoría de cambio”.</p>
+                  <hr>
+                  <h4>Generación de resultados intermedios</h4>
+                  <p>Los resultados intermedios pueden entenderse como una serie de pasos que organizados de forma secuencial llevan al cumplimiento de un objetivo. Por ejemplo, si una organización determinada busca que se apruebe un proyecto de ley, los resultados intermedios serán todas las fases por las cuales tenga que pasar una política pública para ser aprobada.</p>
+                  <p>Los resultados intermedios se refieren a cambios en actitudes, creencias o comportamientos de los actores, y por lo general incluyen algunos de estos elementos:</p>
+                  <ol>
+                    <li><strong>Voluntad política:</strong> La voluntad de los políticos de actuar en apoyo de una propuesta o tema.</li>
+                    <li><strong>Voluntad pública:</strong> La voluntad de los actores relacionados al problema que no son tomadores de decisión, de actuar en apoyo a una propuesta o tema.   </li>
+                    <li><strong>Actitudes y creencias:</strong> Pensamientos, sentimientos o juicios acerca de un tema o una propuesta de política pública</li>
+                    <li><strong>Relevancia:</strong> La importancia que los actores asignan a una propuesta política o tema.</li>
+                    <li><strong>Conciencia:</strong> Reconocimiento público de que existe un problema o familiaridad con una propuesta política.</li>
+                    <li><strong>Líderes de opinión:</strong> Personas de alto perfil (actores) que adoptan un problema y que abogan públicamente por una solución.</li>
+                    <li><strong>Nuevos defensores:</strong> individuos que se encontraban anteriormente desvinculados (nuevos actores), toman medidas en apoyo u oposición a un tema.</li>
+                    <li><strong>Asociaciones y alianzas:</strong> Relaciones mutuamente beneficiosas con otras organizaciones o individuos (actores) que apoyan o participan en una estrategia de incidencia.</li>
+                    <li><strong>Base de apoyo en crecimiento:</strong> Aumento en el número de individuos (actores) con los que se puede contar para la defensa sostenida de un tema. </li>
+                    <li><strong>Cobertura mediática:</strong> Aumento en la cantidad y/o la calidad de la cobertura proveniente de los medios de comunicación y las redes sociales.</li>
+                    <li><strong>Replanteamiento del asunto:</strong> Cambios en la forma en que se presenta un problema.</li>
+                    <li><strong>Capacidad de incidencia de la organización:</strong> La capacidad de una organización o coalición para llevar, adaptar, gestionar e implementar la estrategia de advocacy.</li>
+                    <li><strong>Visibilidad de la organización o reconocimiento del problema:</strong> Identificación de una organización o campaña como una fuente creíble.</li>
+                    <li>Entre otras.</li>
+                  </ol>
+                  <p>Al igual que con los objetivos, al momento de establecer los resultados intermedios, se deben precisar los indicadores con los cuales se evaluará el desempeño del proceso, los que no deben ser de carácter binario. La instauración a priori de los indicadores permitirá establecer claramente los propósitos de cada resultado intermedio y facilitar su medición.</p>
+                  <p>Se debe tener en consideración que en esta etapa de la planificación, aún nos encontramos en un nivel teórico, por este nivel de complejidad es posible utilizar un esquema para que el establecimiento de los resultados intermedios sea más sencillo:</p>
+                  <br>
+                  <h4><i>[Queremos: Voluntad política, Voluntad pública, Actitudes y creencias, Relevancia, Conciencia, Líderes de opinión, Nuevos defensores, Asociaciones y alianzas, Base de apoyo en crecimiento, Cobertura mediática, Replanteamiento del asunto, Capacidad de advocacy de la organización, Visibilidad de la organización o reconocimiento del problema, etc.] [que comprobaremos mediante este indicador] [Para lograr el objetivo]</i></h4>
+                  <br>
+                  <p>Establecidos los resultados intermedios a través del esquema anterior, el siguiente paso es construir una “teoría de cambio”, la que consiste en el ordenamiento temporal y secuencial de los resultados intermedios. Es posible que, al momento de construir la teoría de cambio, existan algunos resultados intermedios que se superpongan unos con otros,  y que también haya otros que se enlacen de forma lineal, por lo que no existen reglas al momento de establecer la teoría. </p>
+      table_content:  ""
+      table_content_source: " "
+      explanation_part2: " "
       example:    |
                   <h3>Ejemplos</h3>
                   <hr>
-                  <ul>
-                    <li>ONG’s internacionales y UNICEF refuerzan su colaboración y conjuntamente abogan para reformar el marco normativo del Plan Nacional de Salud, a modo de que los trabajadores informales y sus familias tengan una cobertura de salud garantizada.</li>
-                    <li>Todas las organizaciones de la ONU (OMS, OIT, UNICEF, ONU Mujeres Y ONUSIDA) están de acuerdo en promocionar de forma conjunta el problema de la cobertura de salud, y también de participar activamente en su implementación.</li>
-                    <li>Un actor clave y neutral de los medios de comunicación, apoya y ayuda a visibilizar las demandas de los trabajadores informales.</li>
-                    <li>Un grupo de personas afectadas crean una red a modo de gestionar la ayuda</li>
-                    <li>(Crecimiento de la base de apoyo).
-                    <li>El Director del Departamento de Salud demuestra su apoyo a la ampliación de la cobertura del Plan de Salud, hablando públicamente del tema en una conferencia.</li>
-                    <li>Algunos miembros del Parlamento son conscientes de la propuesta para ampliar la cobertura del Plan de Salud, reconociendo la existencia del problema.</li>
-                    <li>UNICEF y la ONU preparan un informe sobre la aplicación del Plan Nacional de Salud.</li>
-                  </ul>
+                  <h4>Resultados intermedios</h4>
+                  <ol>
+                    <li>Lograr cobertura mediática de los 3 principales medios escritos y televisivos en Chile, sobre el problema de los animales domésticos abandonados.</li>
+                    <li>Generar una alianza con 2 diputados pertenecientes a la comisión de salud, a modo que defiendan el proyecto de ley de tenencia responsable de animales.</li>
+                    <li>Lograr que la problemática del abandono de mascotas se encuentre en encuestas de opinión pública.</li>
+                    <li>Al menos 4 figuras públicas abogan en distintas redes sociales y medios de comunicación por la aprobación de la Ley de Tenencia Responsable.</li>
+                  </ol>
+                  <br>
+                  <h4>Teoría de cambio</h4>
+                  <p>El aumento del reconocimiento público respecto de que el abandono de mascotas es un problema público (C), llevará a que cada vez sean más los líderes de opinión (D) quienes aboguen por la aprobación del Proyecto de Ley de Tenencia Responsable de Mascotas, lo que impulsará un mayor apoyo desde el legislativo (B) y una mayor cobertura mediática (A).</p>
     #
     # Stage 5
     #
