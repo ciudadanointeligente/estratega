@@ -258,15 +258,15 @@ es:
     stage1:   # http://localhost:3000/projects/1/stage1
       projects: "Proyectos"
       stage1: "Etapa 1"
-      title: "¿Qué problema desean abordar? ¿Qué cambios en políticas públicas serían necesarios de llevar a cabo para solucionar el problema?"
-      description: "La definición eficaz de una estrategia de advocacy ayuda a la generación de una idea organizacional compartida respecto de un problema público, sus causas y posibles soluciones políticas. Es importante que se tome el tiempo necesario para generar una discusión en torno al problema, ya que si no existe una definición clara es posible perder el foco durante el desarrollo."
+      title: "¿Qué problema público desean abordar? ¿Qué cambios en políticas públicas serían necesarios de llevar a cabo para solucionar el problema?"
+      description: "La definición eficaz de una estrategia de incidencia ayudará a la generación de una idea organizacional compartida respecto de un problema público, sus causas y posibles soluciones políticas. Es importante que como organización se tomen el tiempo necesario para analizar todas las aristas relacionadas a la problemática, ya que un análisis poco riguroso podría decantar en un plan de acción que no ayude a reducir el problema inicial"
       subtitle1: "¿Qué problema público desean abordar?"
-      subtitle1_tooltip: "Un problema público puede ser entendido como una situación negativa que afecta a la población de un país o una localidad específica y que la organización desea revertir."
+      subtitle1_tooltip: "Se está en presencia de un problema público cuando una situación deja de ser particular y se transforma en una que afecta en forma negativa el bienestar social, el medio ambiente o inclusive la existencia de la misma comunidad"
       subtitle1_explanation: "Un problema público puede ser entendido como una situación negativa que afecta a la población de un país o una localidad específica y que la organización desea revertir."
       subtitle2: "¿Cuales son las causas políticas relacionadas al problema público?"
-      subtitle2_tooltip: "Como se mencionaba anteriormente, detrás de los problemas públicos existen múltiples causas, incluyendo los programas políticos y las malas prácticas relacionadas con el ambiente político. La labor de la estrategia de advocacy se refiere a causas tales como mecanismos de gobernabilidad deficientes, la existencia de un marco jurídico inadecuado o la presencia de relaciones de poder desequilibradas. Por lo anterior, el análisis del problema debería priorizar la identificación a estas causas en lugar de otros factores explicativos del problema público."
+      subtitle2_tooltip: "Identificar las principales causas asociadas al problema ayudará a enfrentar la problemática de raíz y no solo sus consecuencias"
       subtitle3: "¿Qué soluciones políticas podrían constituir una respuesta adecuada para enfrentar el problema público?"
-      subtitle3_tooltip: "Las soluciones de política pública se refieren principalmente a: El desarrollo de políticas, Establecimiento de un tema en la agenda política, Adopción de políticas públicas, Bloqueo de políticas públicas, Implementación de políticas públicas, Mantenimiento de políticas públicas, Entre otros."
+      subtitle3_tooltip: "Identificadas las causas del problema público, lo que queda ahora es pensar en medidas que puedan ser llevadas a cabo por organismos gubernamentales y que puedan ayudar a reducir o a solucionar el problema inicial"
       problem: "Problema"
       problem_description: "Descripción"
       focus_area: "Área de focalización"
@@ -309,47 +309,45 @@ es:
       cancel_button: "Cancelar"
     explanation:  #tab `Explanation & Examples` of stage 1
       explanation: "Explicación"
-      title1: "¿Qué problema público desean abordar?"
+      title1: " "
       title1_description: |
-                          <p>La primera etapa del proceso de planificación está centrada en la identificación y caracterización de un problema. Un problema público puede ser entendido como una situación negativa que afecta a la población de un país o una localidad específica y que la organización desea revertir. </p>
-                          <p>La identificación y definición del problema debe responder a por qué la temática en cuestión puede ser considerada como un problema, además de acotarla a un contexto territorial, a uno temporal y mencionar la población que resulta afectada. También es necesario tener en consideración que un problema público tiene causas múltiples y que la identificación de estas puede estar determinada por la forma en que se defina el problema.</p>
-      title2: "¿Cuales son las causas políticas relacionadas con el problema público?"
-      title2_description: |
-                          <p>Como se mencionaba anteriormente, detrás de los problemas públicos existen múltiples causas, incluyendo los programas políticos y las malas prácticas relacionadas con el ambiente político. </p>
-                          <p>La labor de la estrategia de advocacy se refiere a causas tales como mecanismos de gobernabilidad deficientes, la existencia de un marco jurídico inadecuado o la presencia de relaciones de poder desequilibradas. Por lo anterior, el análisis del problema debería priorizar la identificación a estas causas en lugar de otros factores explicativos del problema público.</p>
-                          <p>Una herramienta de gran utilidad para llevar a cabo el análisis del problema es el “árbol de problemas”, ya que este puede ayudar a visibilizar las causas y consecuencias subyacentes y también a recaudar información para las posteriores fases de la estrategia de advocacy.</p>
-      title3: "¿Qué soluciones políticas podrían constituir una respuesta adecuada para enfrentar el problema público?"
-      title3_description: |
-                          <p>Las soluciones de política pública se refieren principalmente a:</p>
-                          <ul>
-                            <li>El desarrollo de políticas </li>
-                            <li>Establecimiento de un tema en la agenda política</li>
-                            <li>Adopción de políticas públicas</li>
-                            <li>Bloqueo de políticas públicas</li>
-                            <li>Implementación de políticas públicas</li>
-                            <li>Mantenimiento de políticas públicas</li>
-                            <li>Entre otros</li>
-                          </ul>
-                          <p>En aquellos contextos en los que un cambio de políticas públicas sea considerado demasiado ambicioso, la organización puede aspirar a un cambio discursivo, el que debería allanar el camino para que en el largo plazo se genere un cambio más profundo. Por ejemplo, por muchos años y dada la falta de opciones de lograr un cambio en las políticas relacionadas a los paraísos fiscales, las organizaciones que trabajan en la justicia fiscal centraron sus esfuerzos de advocacy en un cambio discursivo centrado en la sociedad, a modo que los paraísos fiscales fueran vistos por la mayoría como una práctica inaceptable. Estos esfuerzos constituyen la base de los cambios políticos que se consiguieron unos años después.</p>
+                          <p>La primera etapa de la planificación de advocacy se relaciona con la identificación de un problema público y también, con los cambios que en el largo plazo serían necesarios de llevar a cabo en políticas públicas para solucionar el problema. </p>
+                          <p>Es necesario tener en consideración que un problema público tiene causas múltiples y que la identificación de estas puede estar determinada por la forma en que se defina el problema. La identificación y definición del problema debe responder a por qué la temática en cuestión puede ser considerada como un problema, además explicitar a quién afecta y acotarla a un contexto territorial y a uno temporal. </p>
+                          <p>A modo de que la definición del problema sea más sencilla, es posible completar el siguiente esquema:</p>
+                          <br><h4><i>En [Un lugar determinado: País, Región, Ciudad, Continente, etc.] [Un grupo afectado: Ciudadanía, raza, segmento etario, sexo, etc.] [Pasa por esta problemática]</i></h4><br>
+                          <p>Una vez establecido y definido el problema público, se deben identificar las causas y las consecuencias relacionados con el problema. Una herramienta de gran utilidad para estos fines es el “árbol de problemas”, ya que permite organizar esta información de forma gráfica. La identificación de las causas será la que dará pié al siguiente paso de la planificación, ya que permitirá tantear posibles soluciones de política pública. Es importante tener en consideración que las soluciones políticas pueden encontrarse relacionadas a más de una causa.</p>
+      title2: " "
+      title2_description: " "
+      title3: " "
+      title3_description: " "
       example: "Ejemplos"
-      real_world_problem: "Problema público"
+      real_world_problem: "Problema"
       real_world_problem_description: |
-                          <p>Aumento de la transmisión maternoinfantil de VIH en el país X durante los últimos tres años.</p>
-                          <h4>Dimensiones políticas (o causas) del problema</h4>
-                          <ul>
-                            <li>Las mujeres y los niños no son incluidos como público objetivo del Plan de Salud Estratégico Nacional, ya que la epidemia ha estado históricamente concentrada en los consumidores de drogas masculinos.</li>
-                            <li>El seguro de salud no cubre a los trabajadores informales y muchas mujeres en situación de riesgo pertenecen a este grupo (Debido a los pocos ingresos que perciben las mujeres al trabajar de forma informal, no pueden acceder a los exámenes para detectar el VIH y a tratamientos).</li>
-                            <li>La prevención de la transmisión de VIH de madre a hijo no está incluida como una prioridad en el Plan de Salud Estratégico Nacional.</li>
-                            <li>El marco legal actual considera el comercio sexual como ilegal, por lo que las trabajadoras sexuales evitan asistir a controles médicos por temor a ser denunciadas.</li>
-                          </ul>
-      policy_solutions: "Soluciones de política pública"
-      policy_solutions_description: |
-                          <ul>
-                            <li>Enmienda al Código Penal, a modo de que se eliminen las detenciones a las trabajadoras sexuales.</li>
-                            <li>Revisión de la estrategia nacional del VIH.</li>
-                            <li>Cambio del marco de la política de salud para cubrir a los trabajadores informales que resultan desfavorecidos.</li>
-                            <li>Aumentar la financiación a través de donantes para la prevención de la transmisión del VIH de madre a hijo.</li>
-                          </ul>
+                          <p>En Chile existen más de un millón de animales domésticos que se encuentran en situación de abandono, sin los cuidados ni alimentación adecuada.</p>
+                          <br>
+                          <h4>Causas</h4>
+                          <ol> 
+                            <li>En Chile no existe una cultura de tenencia responsable de animales.</li>
+                            <li>No existen políticas relacionadas a la tenencia de animales.</li>
+                            <li>No está claro qué institución del Estado de Chile debe hacerse cargo del problema (SAG y su departamento de bienestar animal, Municipalidades, Ministerio de salud, etc.). </li>
+                            <li>No se fiscaliza a las personas que poseen animales, ni tampoco se sanciona a quienes luego de un par de meses se deshacen de sus mascotas.</li>
+                          </ol>
+                          <br>
+                          <h4>Consecuencias</h4>
+                          <ol> 
+                            <li>Alta reproducción de enfermedades como: sarna, rabia, quiste hidatídico y tiña, entre otras.</li>
+                            <li>Ataques de perros callejeros.</li>
+                            <li>Aumento progresivo de la cantidad de animales callejeros debido a la reproducción descontrolada de las mascotas abandonadas.</li>
+                          </ol>
+                          <br>
+                          <h4>Posibles soluciones políticas</h4>
+                          <ol> 
+                            <li>Ley de tenencia responsable de animales.</li>
+                            <li>Programas de esterilización de animales callejeros a nivel municipal.</li>
+                            <li>Creación de oficinas regionales de bienestar animal.</li>
+                          </ol>
+      policy_solutions: ""
+      policy_solutions_description: ""
     #
     # Stage 2
     #
