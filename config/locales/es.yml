@@ -802,8 +802,8 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
     stage5: # http://localhost:3000/projects/1/objectives/1/stage5
       projects: "Proyectos"
       stage5: "Etapa 5"
-      title: "¿Qué van a hacer como organización para alcanzar sus objetivos de advocacy?"
-      title_description: "Las actividades son la materialización del proceso de advocacy, es decir, las principales acciones que se llevarán a cabo con el fin de contribuir al cambio deseado. Los tipos de acciones realizables son numerosas y cada una puede contribuir a un resultado diferente."
+      title: "¿En qué situaciones se podría entrar en contacto con actores relevantes para el cumplimiento de los resultados intermedios?"
+      title_description: "Luego de definir los resultados intermedios que desencadenaran el cumplimiento de un objetivo, es necesario identificar eventos a los cuales la organización haya sido invitada o que se están organizando de forma interna, a modo de tener una agenda clara sobre la cual trabajar redes de contactos. Es posible entender una actividad como foros, cenas, conferencias de prensa, comités, marchas o cualquier otro evento en donde se tenga contacto con actores claves."
       subtitle1: "¿Qué acciones se deben llevar a cabo para lograr los resultados intermedios? "
       subtitle2: "Descargue las actividades para agregarlas a su calendario"
       subtitle2_explanation: "Se descargará un archivo con formato ical. En este se encuentran todas las actividades y sus fechas, las que se pueden importar en las aplicaciones de Calendario, Google Calendar, o en otras herramientas de gestión"
@@ -811,7 +811,7 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
       explanation_examples: "Explicaciones y Ejemplos"
       workshop_tips: "Consejos para el taller"
       add_button: "Agregar"
-      without_activities: "En este punto se deben describir las principales acciones que llevarán al cambio deseado."
+      without_activities: "Una actividad es todo aquel evento que permita entrar en contacto con el actor al cual se le quiere transmitir el mensaje"
       activities: "Actividades"
       description: "Descripción"
       outcomes: "Resultados"
@@ -866,220 +866,19 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
     explanation_stage5: #tab `Explanation & Examples` of stage 5
       title: "Explicación"
       subtitle1: "¿Qué van a hacer como organización para alcanzar sus objetivos de advocacy?"
-      subtitle1_explanation: "<p>Las actividades son la materialización del proceso de advocacy, es decir, las principales acciones que se llevarán a cabo con el fin de contribuir al cambio deseado. Los tipos de acciones realizables son numerosas y cada una puede contribuir a un resultado diferente.</p>"
-      outcomes_table_content: |
-              <tr>
-                <th>Resultado intermedio</th>
-                <th>Ejemplos de actividades usualmente asociadas con este resultados intermedios</th>
-              </tr>
-              <tr>
-                <td>Voluntad política</td>
-                <td>Lobby<br>
-                  Construcción de relaciones con tomadores de decisión<br>
-                  Lítigios y defensa legal<br>
-                  Desarrollo de una propuesta política<br>
-                  Demostración de proyectos y pilotos<br>
-                  Medios ganados
-                </td>
-              </tr>
-              <tr>
-                <td>Voluntad pública</td>
-                <td>Manifestaciones
-                  y marchas <br>
-                  Difusión a través de redes sociales
-                </td>
-              </tr>
-              <tr>
-                <td>Actitudes y creencias</td>
-                <td>Análisis e investigación de políticas y temas
-                  <br>
-                  Anuncios de servicios públicos <br>
-                  Conferencias de prensa
-                </td>
-              </tr>
-              <tr>
-                <td>Relevancia</td>
-                <td>Lobby <br>
-                  Construcción de relaciones con tomadores de decisión<br>
-                </td>
-              </tr>
-              <tr>
-                <td>Conciencia</td>
-                <td>
-                  Anuncios de servicios públicos<br>
-                  Manifestaciones y marchas<br>
-                  Conferencias de prensa<br>
-                  Difusión a través de redes sociales
-                </td>
-              </tr>
-              <tr>
-                <td>Líderes de opinión</td>
-                <td>
-                  Construcción de relaciones con tomadores de decisión<br>
-                  Difusióna través de redes sociales
-                </td>
-              </tr>
-              <tr>
-                <td>Nuevos Defensores</td>
-                <td>Conferencias de prensa</td>
-              </tr>
-              <tr>
-                <td>Asociaciones y alianzas</td>
-                <td>
-                  Análisis e investigación de políticas y temas<br>
-                  Manifestaciones y marchas<br>
-                  Organización y movilización popular
-                </td>
-              </tr>
-              <tr>
-                <td>Circunscripción o base de apoyo en crecimiento</td>
-                <td>
-                  Manifestaciones y marchas<br>
-                  Organización y movilización popular
-                </td>
-              </tr>
-              <tr>
-                <td>Cobertura mediática</td>
-                <td>
-                  Manifestaciones y marchas<br>
-                  Organización y movilización popular<br>
-                  alianzas con medios<br>
-                  difusión a través de redes sociales
-                </td>
-              </tr>
-              <tr>
-                <td>Replanteamiento del asunto</td>
-                <td>
-                  Análisis e investigación de políticas y temas<br>
-                  Medios ganados
-                </td>
-              </tr>
-              <tr>
-                <td>Capacidad organizacional de advocacy</td>
-                <td>Cualquiera de las demás actividades</td>
-              </tr>
-              <tr>
-                <td>Visibilidad organizacional y reconocimiento del problema</td>
-                <td>Análisis e investigación de políticas y temas</td>
-              </tr>
+      subtitle1_explanation: "<p>Antes de seguir con la etapa 5 de la planificación de incidencia se debe realizar un barrido que compendie todas las actividades planificadas por la organización o a las cuales han sido invitados, poniendo énfasis en las que exista la posibilidad de encontrarse con algún actor relevante. La importancia de la identificación de actividades radica en que si se sabe la fecha y hora exacta en la que se desarrollará una actividad, además de quienes estarán presentes. Se podrá planificar de forma más rápida el siguiente paso de la metodología.</p>"
+      outcomes_table_content: " "
       
 
-      after_outcomes_table_description:  |
-              <p>Las acciones elegidas deben ser las que tienen el mayor potencial para contribuir a cada uno de los resultados provisionales. Durante su selección, también hay que tener en cuenta sus recursos organizacionales, ya sean humanos o financieros.</p>
-              <p>Para planificar y coordinar lo más recomendable es agendar las actividades, así resultará mucho más sencillo acoplar los distintos elementos asociados.</p>
-      example: "Ejemplos"
-      activities: "Actividades"
-      interim_outcome_table_content: |
-              <tr>
-                <th>Resultado intermedio</th>
-                <th>Actividades principales</th>
-              </tr>
-              <tr>
-                <td>1) ONG’s internacionales y UNICEF refuerzan su colaboración y conjuntamente abogan para reformar el marco normativo del Plan Nacional de Salud, a modo de que los trabajadores informales y sus familias tengan una cobertura de salud garantizada (alianzas)</td>
-                <td>
-                  <ul>
-                    <li>De forma conjunta, UNICEF y un conjunto de ONG’s internacionales recolectan y publican historias de familias afectadas.</li>
-                    <li>Reuniones de lobby conjuntas (Ver más adelante)</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>2) Todas las organizaciones de la ONU (OMS, OIT, UNICEF, ONU Mujeres Y ONUSIDA) están de acuerdo en promocionar de forma conjunta el problema de la cobertura de salud, y también de participar activamente en su implementación (alianzas)</td>
-                <td>
-                  <ul>
-                    <li>Desarrollo de un documento interno ONU en donde se establezcan peticiones y mensajes</li>
-                    <li>Realizar un evento conjunto para presentar el informe de la OMS “Salud para Todos”, con la asistencia de gobernadores, diputados, miembros de la ONU y personas afectadas.</li>
-                    <li>Producir y publicar en forma conjunta con la ONU un análisis de caso sobre un trabajador informal con VIH y su familia. </li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>3) Un actor clave y neutral de los medios de comunicación, apoya y ayuda a visibilizar las demandas de los trabajadores informales (cobertura mediática).</td>
-                <td>
-                  <ul>
-                    <li>La ONU y UNICEF realizan de forma conjunta la recolección y publicación de historias de niños nacidos con VIH </li>
-                    <li>Identificar los contactos que posee la ONU en medios de comunicación claves e informales respecto de la problemática </li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>4) Un grupo de personas afectadas crean una red a modo de gestionar la ayuda (Crecimiento de la base de apoyo).</td>
-                <td>
-                  <ul>
-                    <li>Comprometerse con grupos de afectadas y fortalecer sus conocimientos sobre las oportunidades de cambio. Sumado a lo anterior, es necesario identificar líderes dentro de la colectividad y enseñarles técnicas de comunicación </li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>5) El Director del Departamento de Salud demuestra su apoyo a la ampliación de la cobertura del Plan de Salud, hablando públicamente del tema en una conferencia (voluntad política).</td>
-                <td>
-                  <ul>
-                    <li>Organizar visitas a clínicas que trabajen en la prevención de la transmisión maternoinfantil del VIH, a las que asistan distintos miembros del gobierno, parlamento y periodistas</li>
-                    <li>Llevar a cabo una reunión de lobby con el gobierno</li>  
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>6) Algunos miembros del Parlamento son conscientes de la propuesta para ampliar la cobertura del Plan de Salud, reconociendo la existencia del problema (conciencia y relevancia).</td>
-                <td>
-                  <ul>
-                    <li>Organizar visitas a clínicas que trabajen en la prevención de la transmisión maternoinfantil del VIH, a las que asistan distintos miembros del gobierno, parlamento y periodistas</li>
-                    <li>Llevar a cabo una reunión de lobby con el gobierno</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>7) UNICEF y la ONU preparan un informe sobre la aplicación del Plan Nacional de Salud (reconocimiento organizacional).</td>
-                <td>
-                  <ul>
-                    <li>Llevar a cabo una reunión de lobby con el gobierno o parlamento</li>
-                    <li>Realizar publicaciones como las anteriormente mencionadas</li>
-                  </ul>
-                </td>
-              </tr>
+      after_outcomes_table_description:  " "
+      example: "Ejemplo"
+      activities: ""
+      interim_outcome_table_content: " "
 
 
-      months_table_content: |
-              <tr>
-                <th>Mes</th>
-                <th>Abril</th>
-                <th>Mayo</th>
-                <th>Junio</th>
-                <th>Julio</th>
-                <th>Agosto</th>
-                <th>Septiembre</th>
-                <th>Octubre</th>
-                <th>Noviembre</th>
-                <th>Diciembre</th>
-              </tr>
-              <tr>
-                <th>Evento externo</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>1era semana-informe<br>
-                  2da semana- presentaciones
-                </td>
-              </tr>
-              <tr>
-                <th>Acción organanizacional</th>
-                <td>Desarrollo de un documento interno ONU en donde se establezcan peticiones y mensajes</td>
-                <td></td>
-                <td>Llevar a cabo una reunión de lobby con el gobierno o parlamento<strong>*</strong></td>
-                <td>Identificar los contactos que posee la ONU en medios de comunicación claves e informales respecto de la problemática</td>
-                <td></td>
-                <td>Organizar visitas a clínicas que trabajen en la prevención de la transmisión maternoinfantil del VIH, a las que asistan distintos miembros del gobierno, parlamento y periodistas</td>
-                <td></td>
-                <td>Llevar a cabo una reunión de lobby con el gobierno<strong>*</strong> <br></td>
-                <td></td>
-              </tr>
+      months_table_content: " "
       
-      after_months_table_description: "<p><strong>*</strong>Comprometerse con grupos de afectadas y fortalecer sus conocimientos sobre las oportunidades de cambio. Sumado a lo anterior, es necesario identificar líderes dentro de la colectividad  y enseñarles técnicas de comunicación</p>"
+      after_months_table_description: "<p>Por ejemplo, si se recibe una invitación a una cena de recaudación de fondos para el rescate de animales domésticos abandonados, y se sabe que asistirán los coordinadores de Proanimal Chile y de otras organizaciones relevantes y con interés en que se apruebe la Ley de Tenencia Responsable de Animales, se debe agendar la actividad y preparar mensajes adecuados para cada uno de los actores, a modo de poder trabajar en conjunto y potenciar la aprobación de la Ley.</p>"
     #
     # Stage 6
     #
