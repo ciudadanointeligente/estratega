@@ -65,9 +65,9 @@ end
 # }
 
 # Rails.application.config.middleware.use 'Apartment::Elevators::Domain'
-#Rails.application.config.middleware.use 'Apartment::Elevators::Subdomain'
-Rails.application.config.middleware.use 'Apartment::Elevators::Generic',
-                          Proc.new { |request|
-                            subdomain = request.host.split('.').first
-                            Apartment.tenant_names.include?(subdomain) ? subdomain : 'public'
-                      }
+Rails.application.config.middleware.use 'Apartment::Elevators::Subdomain'
+# Rails.application.config.middleware.use 'Apartment::Elevators::Generic',
+#                           Proc.new { |request|
+#                             subdomain = request.host.split('.').first
+#                             Apartment.tenant_names.include?(subdomain) ? subdomain : 'public'
+#                       }
