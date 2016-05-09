@@ -279,9 +279,9 @@ class ProjectsController < ApplicationController
       if objective.outcomes.empty?
         @objectives_without_outcomes = @objectives_without_outcomes + 1
       else
-        # if objective.outcomes.all? {|o| !.indicator.nil?}
-        #   @outcomes_with_all_asks_completed = @outcomes_with_all_asks_completed + 1
-        # end
+        if objective.outcomes.all? {|o| !o.indicator.nil?}
+          @objectives_with_failed_outcomes = @objectives_with_failed_outcomes + 1
+        end
       end
     end
       
