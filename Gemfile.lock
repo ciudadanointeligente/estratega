@@ -72,6 +72,8 @@ GEM
     chromedriver-helper (0.0.8)
       nokogiri (~> 1.6)
       version_sorter (~> 1.1)
+    ci_reporter (2.0.0)
+      builder (>= 2.1.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -369,6 +371,7 @@ DEPENDENCIES
   cancancan (~> 1.10)
   capybara
   chromedriver-helper
+  ci_reporter
   coffee-rails (~> 4.0.0)
   coveralls
   database_cleaner

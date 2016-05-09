@@ -30,6 +30,7 @@ gem 'paperclip'
 gem 'http_accept_language'
 gem 'seed_dump'
 gem 'newrelic_rpm'
+gem "ci_reporter"
 
 group :development do
   gem 'better_errors'
