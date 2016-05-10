@@ -1,5 +1,5 @@
 development:
-  BASE_URL: 'ciudadanoi.org'
+  BASE_URL: 'estratega.io'
   SMTP_SETTING_ADDRESS: 'smtp.postmarkapp.com'
   SMTP_SETTING_PORT: '2525'
   SMTP_SETTING_USERNAME: ''
