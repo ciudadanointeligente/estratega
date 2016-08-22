@@ -58,9 +58,10 @@ table .fa-pencil-square-o, table .fa-trash, table .fa-line-chart, table .fa-cale
   color: #0091EA;
   cursor: pointer;
 }
-.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+.navbar-default .navbar-default .navbar-brand:focus {
     color: #ffffff;
 }
+
 .mini-explicacion{
   font-size: 12px;
 }
@@ -234,6 +235,7 @@ table a {
   color: #ffffff;
   font-weight: 400;
 }
+
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
   color: #ffffff;
   background-color: #0276BD;
@@ -616,6 +618,7 @@ div#resources_paginate {
 img.logos {
     max-width: 140px;
     max-height: 110px;
+    margin-bottom: 20px;
 }
 .banner {
   background: image-url("welcome.png");
@@ -933,8 +936,9 @@ table.document td .btn {
 /*Section Hero*/
 
 #hero {
-  background: image-url("hero.jpg") no-repeat center right;
+  background: image-url("hero.jpg") no-repeat bottom;
   padding: 150px 0;
+  background-size: cover;
 }
 
 /*Section preguntas*/
@@ -985,6 +989,18 @@ table.document td .btn {
   content: none;
 }
 
+@media screen and (max-width: 1140px) {
+  #preguntas:before {
+   display: none;
+  }
+
+  #preguntas:after {
+   display: none;
+  }
+}
+
+
+
 @media screen and (max-width: 991px) {
   .benefits{
     height: 800px;
@@ -995,6 +1011,10 @@ table.document td .btn {
   }
   .testimonial img {
     width: 40%;
+  }
+
+  #metodologia .arrow:after{
+   display: none;
   }
 }
 
