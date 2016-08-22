@@ -1,44 +1,42 @@
-<% content_for :top do %>
-  <% if( !user_signed_in? ) %>
-    <div class="row banner">
-      <div class="container">
-        <div class="col-md-6 mtb40">
-          <h2><%= t('.guest_main_txt') %></h2>
-        </div>
-      </div>
-    </div>
-  <% end %>
-<% end %>
-<div class="benefits">
+<section id="hero">
   <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h2><%= t('.main_txt') %></h2>
-      </div>
-    </div>
-    <div class="row benefits">
-      <div class="col-sm-6 col-md-3">
-        <p><%= image_tag "1.png" %></p>
-        <p><%= t('.sentence_resources') %></p>
-      </div>
-      <div class="col-sm-6 col-md-3">
-        <p><%= image_tag "2.png" %></p>
-        <p><%= t('.sentence_advocacy') %></p>
-      </div>
-      <div class="col-sm-6 col-md-3 ">
-        <p><%= image_tag "3.png" %></p>
-        <p><%= t('.sentence_risks') %></p>
-      </div>
-      <div class="col-sm-6 col-md-3">
-        <p><%= image_tag "4.png" %></p>
-        <p><%= t('.sentence_keep_track') %></p>
-      </div>
-    </div>
-    <!-- <div class="row text_right">
-      <a class="btn btn-warning" id="startButton" href="/demo/?tour=true" target="_self" role="button"><%= t('.button_demo') %></a>
-      <a class="btn btn-default" href="#" role="button"><%= t('.button_read_more') %></a>
-    </div> -->
+      <h1 class="text-width text-center text-white"><span><%= t('.guest_main_txt') %></span></h1>
   </div>
+</section>
+<section id="preguntas">
+  <div class="container text-center text-width">
+    <h3 class="text-white">¿Tienes objetivos de acción claros pero no logras cumplirlos?</h3>
+    <h3 class="text-white">¿No logran conectar con los actores sociales con los que te deberías relacionar?</h3>
+    <h3 class="text-white">¿Tu presupuesto organizacional es escaso y necesitas optimizarlo de la mejor manera?</h3>
+    <h3 class="text-white">¿Existe alta rotación en los miembros de tu organización?</h3>
+    <h3 class="text-white">¿Tus flujos de comunicación interna y externa trabajan en función de tu meta institucional?</h3>
+  </div>
+</section>
+<section id="metodologia">
+  <div class="container">
+    <h2 class="text-white text-center">Metodología</h2>
+    <div class="row">
+      <div class="col-md-2 text-center arrow"><%= image_tag "m02.svg", class: "" %>
+        <p class="text-white">Caracterizar el problema público</p>
+      </div>
+      <div class="col-md-2 text-center arrow"><%= image_tag "m03.svg", class: "" %>
+      <p class="text-white">Definir objetivos</p>
+      </div>
+      <div class="col-md-2 text-center arrow"><%= image_tag "m04.svg", class: "" %>
+      <p class="text-white">Analizar factores externos</p>
+      </div>
+      <div class="col-md-2 text-center arrow"><%= image_tag "m05.svg", class: "" %>
+      <p class="text-white">Definir resultados intermedios</p>
+      </div>
+      <div class="col-md-2 text-center arrow"><%= image_tag "m06.svg", class: "" %>
+      <p class="text-white">Planificar peticiones</p>
+      </div>
+      <div class="col-md-2 text-center arrow"><%= image_tag "m07.svg", class: "" %>
+      <p class="text-white">Evaluación monitoreo</p>
+      </div>
+    </div>
+  </div>
+</section>
 </div>
 <div class="testimonial">
   <div class="container">
@@ -48,29 +46,22 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
         <%= image_tag "t6.png", class: "img-circle" %>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-9 col-lg-9">
-        <p class="cita">“<%= t('.testimony3_txt') %>”</p>
+        <p class="cita text-center">me ha servido para identificar y ponderar todos los factores que influyen en el éxito</p>
+        <p><%= t('.testimony3_txt') %></p>
         <p class="persona"><%= t('.testimony3_signer') %></p>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
         <%= image_tag "t4.png", class: "img-circle" %>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-9 col-lg-9">
-        <p class="cita">“<%= t('.testimony1_txt') %>”</p>
+        <p class="cita text-center">fue el comienzo para abordar el tema de incidencia de forma profesional y con sentido</p>
+        <p class=""><%= t('.testimony1_txt') %></p>
         <p class="persona"><%= t('.testimony1_signer') %></p>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
         <%= image_tag "t5.jpg", class: "img-circle" %>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-9 col-lg-9">
-        <p class="cita">“<%= t('.testimony2_txt') %>”</p>
+        <p class="cita text-center">nos ha permitido priorizar los objetivos y distribuir los esfuerzos de la organización</p>
+        <p class=""><%= t('.testimony2_txt') %></p>
         <p class="persona"><%= t('.testimony2_signer') %></p>
       </div>
     </div>
@@ -80,21 +71,21 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h2><%= t('.title_orgs') %></h2>
+        <h2 class="text-white"><%= t('.title_orgs') %></h2>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        <a href="http://www.techo.org/paises/chile/" target="_blank"><%= image_tag "logo-techo.png", class: "logos" %></a>
+        <a href="http://www.techo.org/paises/chile/" target="_blank"><%= image_tag "logo-techo.svg", class: "logos" %></a>
       </div>
       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        <a href="http://www.hogardecristo.cl/" target="_blank"><%= image_tag "logo-hogar.png", class: "logos" %></a>
+        <a href="http://www.hogardecristo.cl/" target="_blank"><%= image_tag "logo-hogar.svg", class: "logos" %></a>
       </div>
       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        <a href="http://ciudadanointeligente.org/" target="_blank"><%= image_tag "logo-FCI.png", class: "logos" %></a>
+        <a href="http://ciudadanointeligente.org/" target="_blank"><%= image_tag "logo-fci.svg", class: "logos" %></a>
       </div>
       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-         <a href="http://bordepolitico.com/" target="_blank"><img class="logos" src="/assets/logo-borde-politico.png" alt="Logo borde politico"></a>
+         <a href="http://bordepolitico.com/" target="_blank"><img class="logos" src="/assets/logo-borde.svg" alt="Logo borde politico"></a>
        </div>     
     </div>
   </div>

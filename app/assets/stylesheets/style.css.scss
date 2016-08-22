@@ -5,6 +5,8 @@ body {
   color: #575757;
   background-color: #f3f3f3;
   font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 body.home {
   background-color: #ffffff;
@@ -21,16 +23,28 @@ body {
     from { opacity: 1; }
     to   { opacity: 1; }
 }
-.row, section {
-  margin-left: 15px;
-  margin-right: 15px;
-}
+
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: #575757;
   font-weight: 400;
 }
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 46px;
+    font-weight: 300;
+    line-height: 64px;
+}
+
 h2, .h2 {
-  font-size: 36px;
+  font-size: 46px;
+  font-weight: 300;
+  margin: 40px 0 80px;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 300;
 }
 
 input, button, select, textarea {
@@ -52,6 +66,17 @@ table .fa-pencil-square-o, table .fa-trash, table .fa-line-chart, table .fa-cale
 }
 .h500 {
   min-height: 300px;
+}
+
+/*General*/
+
+.text-white {
+  color: white;
+}
+
+.text-width {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 /*BUTTONS */
@@ -273,6 +298,11 @@ footer {
   padding: 40px 0;
   font-size: 12px;
 }
+
+footer img {
+    max-width: 200px;
+}
+
 footer h5 {
   color: #ffffff;
   font-size: 20px;
@@ -542,30 +572,23 @@ div#resources_paginate {
 }
 
 .testimonial {
-  background-color: #021b2d;
+  background-color: white;
   font-weight: 400;
   padding-top: 100px;
   padding-bottom: 100px;
 }
 
 .testimonial h2 {
-  color: #ffffff;
   text-align: center;
   margin-bottom: 40px;
 }
 .testimonial p.cita {
   font-size: 20px;
-  font-weight: 400;
-  font-style: italic;
-  color: #ffffff;
-  margin-bottom: 5px;
-  margin: 20px 0 5px 0;
+  padding: 50px 0;
+  background: image-url("comillas.svg") no-repeat center center;
 }
 .testimonial p.persona {
-  font-size: 16px;
-  font-weight: 700;
-  color: #FF6459;
-  margin-top: 0;
+  color: #54ACC1;
 }
 .testimonial .t2 {
   background-color: #00C2E4;
@@ -576,28 +599,23 @@ div#resources_paginate {
   color: #ffffff;
 }
 .testimonial img {
-  width: 90%;
+  width: 40%;
 }
 .testimonial .row {
   margin-bottom: 20px;
 }
-.organizations h2 {
-  color: #ffffff;
-  margin-bottom: 50px;
-}
+
 .organizations{
   padding: 50px 0;
   text-align: center;
-  background-color: #00C2E4;
-  height: 500px;
+  background-color: #7BC8CA;
 }
 .col-md-12.logos{
   position: relative;
 }
-img.logos{
-  display: inline-block;
-  vertical-align: middle;
-  margin: 6%;
+img.logos {
+    max-width: 140px;
+    max-height: 110px;
 }
 .banner {
   background: image-url("welcome.png");
@@ -912,6 +930,61 @@ table.document td .btn {
     cursor: pointer;
 }
 
+/*Section Hero*/
+
+#hero {
+  background: image-url("hero.jpg") no-repeat center right;
+  padding: 150px 0;
+}
+
+/*Section preguntas*/
+
+#preguntas {
+  background: #E75663;
+  padding: 60px;
+  position: relative;
+}
+
+
+#preguntas:before {
+  content: image-url("illustration01.svg");
+  position: absolute;
+  bottom: 180px;
+  left: 0;
+}
+
+#preguntas:after {
+  content: image-url("illustration02.svg");
+  position: absolute;
+  bottom: 180px;
+  right: 0;
+}
+
+
+#preguntas h3 {
+  background: image-url("oval.svg") no-repeat bottom;
+  padding: 10px 0 40px;
+}
+
+/*Section metodología*/
+
+#metodologia {
+  background: #7BC8CA;
+  padding: 30px 0 90px;
+  position: relative;
+}
+
+#metodologia .arrow:after {
+  content: image-url("arrow-right.svg");
+  position: absolute;
+  right: -10px;
+  top: 20px;
+}
+
+#metodologia .arrow:last-child:after {
+  content: none;
+}
+
 @media screen and (max-width: 991px) {
   .benefits{
     height: 800px;
@@ -921,7 +994,7 @@ table.document td .btn {
     margin-top: 30px;
   }
   .testimonial img {
-    width: 75%;
+    width: 40%;
   }
 }
 

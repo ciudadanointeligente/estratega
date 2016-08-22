@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="90px" height="95px" viewBox="0 0 90 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="41.640625 0 58.909657 0 54.1457861 4.63573514 58.909657 9.27147027 41.640625 9.27147027"></polygon>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="17.269032" height="9.27147027" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-2">
+            <g id="Group-22-Copy" transform="translate(1.000000, 4.000000)">
+                <g id="Group-16">
+                    <circle id="Oval-2-Copy-4" fill="#54ACC1" cx="44" cy="44" r="44"></circle>
+                    <g id="Group-Copy-8" transform="translate(4.000000, 10.000000)" stroke="#FFFFFF">
+                        <g id="Group-Copy-7" transform="translate(0.000000, 0.286357)">
+                            <g transform="translate(0.362547, 0.357701)" id="Group-Copy-6">
+                                <g>
+                                    <g id="Group">
+                                        <use id="Rectangle-54" mask="url(#mask-2)" stroke-width="4" fill="#E75663" xlink:href="#path-1"></use>
+                                        <path d="M42.65625,2.21183322 L42.65625,15.1509268" id="Line" stroke-width="2"></path>
+                                        <polyline id="Path-14-Copy" stroke-width="2" points="42.65625 62.3246919 0 55.4625249 20.6705264 20.4641483 29.8560802 35.7113678"></polyline>
+                                        <path d="M78.3483905,52.6762544 L42.293703,62.3246919" id="Line" stroke-width="2" stroke-linecap="square"></path>
+                                        <polyline id="Path-14-Copy-2" stroke-width="2" points="56.664315 36.2568728 62.6410561 26.0741608 78.6291627 52.7786938"></polyline>
+                                        <polyline id="Path-18" stroke-width="2" points="59.8524111 41.6189344 63.2599352 38.9753113 67.0701334 44.6510662 70.5609613 39.0692289 62.6418505 26.0178103"></polyline>
+                                        <polyline id="Path-14" stroke-width="2" points="17.4906845 58.0515523 43.1165711 14.0527054 67.7294547 55.4558318"></polyline>
+                                        <polygon id="Path-16" stroke-width="2" points="33.8242477 29.9543282 38.6074087 35.6913252 42.709176 28.3923244 46.4312441 33.0976084 51.0932797 27.4504453 43.1169683 14.0274651"></polygon>
+                                        <polygon id="Path-17" stroke-width="2" points="20.7338416 20.4158199 12.5986395 34.2142749 19.0399134 31.730957 23.7219962 38.8970466 28.0225537 32.4666246"></polygon>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
