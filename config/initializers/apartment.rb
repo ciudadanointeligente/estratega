@@ -2,7 +2,7 @@
 # Apartment can support many different "Elevators" that can take care of this routing to your data.
 # Require whichever Elevator you're using below or none if you have a custom one.
 #
-# require 'apartment/elevators/generic'
+ require 'apartment/elevators/generic'
 # require 'apartment/elevators/domain'
 require 'apartment/elevators/subdomain'
 
@@ -65,9 +65,16 @@ end
 # }
 
 # Rails.application.config.middleware.use 'Apartment::Elevators::Domain'
-Rails.application.config.middleware.use 'Apartment::Elevators::Subdomain'
+#Rails.application.config.middleware.use 'Apartment::Elevators::Subdomain'
 # Rails.application.config.middleware.use 'Apartment::Elevators::Generic',
 #                           Proc.new { |request|
 #                             subdomain = request.host.split('.').first
 #                             Apartment.tenant_names.include?(subdomain) ? subdomain : 'public'
 #                       }
+Rails.application.config.middleware.use 'Apartment::Elevators::Generic',
+                          Proc.new { |request|
+                            subdomain = request.host.split('.').first
+                            tenant = Apartment.tenant_names.include?(subdomain) ? subdomain : 'public'
+			    puts 'Elevator resolving tenant to: ' + tenant.to_s
+                            tenant
+				}
