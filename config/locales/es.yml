@@ -21,6 +21,9 @@ es:
       footer_address_txt: "Holanda 895, Providencia, Santiago, Chile"
     navbar_signin:
       sign_in: "Iniciar sesión"
+      methodology: "Metodología"
+      testimonies: "Testimonios"
+      estratega_users: "Usan Estratega"
     sign_in:
       mail: "E-mail"
       password: "Contraseña"
@@ -52,14 +55,29 @@ es:
       button_demo: "Demo"
       button_read_more: "Quiero saber más acerca de esto"
       testimony: "Testimonios"
+      testimony1_cite: "me ha servido para identificar y ponderar todos los factores que influyen en el éxito"
       testimony1_txt: "Estratega fue el comienzo para abordar el tema de incidencia de forma profesional y con sentido. Con Estratega nos encontramos, no solo con un equipo de profesionales que nos orientaron hacia dónde apuntar con nuestro trabajo, sino con personas convencidas de que el trabajo entre la sociedad civil es posible"
       testimony1_signer: "José Manuel Tapia, Coordinador de Extensión CIS TECHO - Chile"
+      testimony2_cite: "fue el comienzo para abordar el tema de incidencia de forma profesional y con sentido"
       testimony2_txt: "Con Estratega he observado cómo intenciones se traducen en objetivos de política pública definidos y concretos, con indicadores de éxito y un itinerario de acciones claro que orienta la acción de incidencia. Esto nos ha permitido priorizar los objetivos y distribuir los esfuerzos de la organización"
       testimony2_signer: "Octavio Del Favero, Coordinador Legislativo Fundación Ciudadano Inteligente"
+      testimony3_cite: "nos ha permitido priorizar los objetivos y distribuir los esfuerzos de la organización"
       testimony3_txt: "Estratega me ha servido para identificar y ponderar todos los factores que influyen en el éxito de una planificación de incidencia teniendo muy claro qué es lo que se quiere conseguir. Esto nos ha permitido planificar con el nivel de detalle y orden cronológico que requiere el logro de cada uno de nuestros objetivos"
       testimony3_signer: "Danae Fuentes, Encargada de Incidencia en Políticas Públicas Hogar de Cristo"
       title_orgs: "Usan Estratega"
       guest_main_txt: "Reduce los riesgos y aumenta el desempeño de tu equipo al momento de incidir en políticas públicas"
+      ask_1: "¿Tienes objetivos de acción claros pero no logras cumplirlos?"
+      ask_2: "¿No logran conectar con los actores sociales con los que te deberías relacionar?"
+      ask_3: "¿Tu presupuesto organizacional es escaso y necesitas optimizarlo de la mejor manera?"
+      ask_4: "¿Existe alta rotación en los miembros de tu organización?"
+      ask_5: "¿Tus flujos de comunicación interna y externa trabajan en función de tu meta institucional?"
+      methodology_title: "Metodología"
+      methodology_step_1: "Caracterizar el problema público"
+      methodology_step_2: "Definir objetivos"
+      methodology_step_3: "Analizar factores externos"
+      methodology_step_4: "Definir resultados intermedios"
+      methodology_step_5: "Planificar peticiones"
+      methodology_step_6: "Evaluación monitoreo"
       sign_up: "Registrate"
       email_placeholder: "Email"
       password_placeholder: "Contraseña"
@@ -326,7 +344,7 @@ es:
                           <p>En Chile existen más de un millón de animales domésticos que se encuentran en situación de abandono, sin los cuidados ni alimentación adecuada.</p>
                           <br>
                           <h4>Causas</h4>
-                          <ol> 
+                          <ol>
                             <li>En Chile no existe una cultura de tenencia responsable de animales.</li>
                             <li>No existen políticas relacionadas a la tenencia de animales.</li>
                             <li>No está claro qué institución del Estado de Chile debe hacerse cargo del problema (SAG y su departamento de bienestar animal, Municipalidades, Ministerio de salud, etc.). </li>
@@ -334,14 +352,14 @@ es:
                           </ol>
                           <br>
                           <h4>Consecuencias</h4>
-                          <ol> 
+                          <ol>
                             <li>Alta reproducción de enfermedades como: sarna, rabia, quiste hidatídico y tiña, entre otras.</li>
                             <li>Ataques de perros callejeros.</li>
                             <li>Aumento progresivo de la cantidad de animales callejeros debido a la reproducción descontrolada de las mascotas abandonadas.</li>
                           </ol>
                           <br>
                           <h4>Posibles soluciones políticas</h4>
-                          <ol> 
+                          <ol>
                             <li>Ley de tenencia responsable de animales.</li>
                             <li>Programas de esterilización de animales callejeros a nivel municipal.</li>
                             <li>Creación de oficinas regionales de bienestar animal.</li>
@@ -495,7 +513,7 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
       title2_description: " "
       title3: " "
       title3_description: " "
-      
+
       example: "Ejemplos"
       real_world_problem: "Meta"
       real_world_problem_description: |
@@ -592,7 +610,7 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
       explanation: "Explicación"
       title1: "Mapeo de ciclos de toma de decisión, identificación de actores e identificación de factores habilitantes y barreras"
       title1_description: |
-                          <p>La primera arista que se debe tener en cuenta para comenzar con la etapa 3 son los procesos institucionales y los de toma de decisión. Conocer los ciclos políticos, así como los actores formales e informales que participan en ellos, será de gran ayuda para determinar los momentos en los cuales es posible generar algún tipo de influencia.</p> 
+                          <p>La primera arista que se debe tener en cuenta para comenzar con la etapa 3 son los procesos institucionales y los de toma de decisión. Conocer los ciclos políticos, así como los actores formales e informales que participan en ellos, será de gran ayuda para determinar los momentos en los cuales es posible generar algún tipo de influencia.</p>
                           <p>Una buena primera aproximación a los procesos políticos es el ciclo de las políticas públicas, que está compuesto de cinco fases:
                           <ol>
                             <li>Configuración de la agenda </li>
@@ -601,8 +619,8 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
                             <li>Implementación y cumplimiento </li>
                             <li>Monitoreo y evaluación </li>
                           </ol>
-                          <p>A partir de las cinco fases anteriormente nombradas, la organización debe establecer en qué etapa se encuentra la problemática que se está trabajando, para luego determinar los principales hitos y acontecimientos que posicionaron a al objetivo en esa parte del ciclo. El reconocimiento de los procesos políticos será fundamental para comprender los momentos en los que surjan ventanas de oportunidad y riesgos relacionados con la actividad gubernamental y/o parlamentaria. Las ventanas de oportunidad son los momentos claves en los cuales se tiene contacto con tomadores de decisión o simplemente existe la posibilidad de hacer llegar las ideas de la organización a algún órgano gubernamental, los riesgos son los peligros a los que se enfrenta la organización al momento de incidir en políticas públicas. </p>   
-                          <p>Una vez que ya se tenga el mapa de procesos políticos ya ocurridos, es momento de pensar en el camino o los caminos que el objetivo debería cursar para concretarse. Este proceso implica identificar a priori las vías tradicionales a través de las cuales los proyectos de ley, ordenanzas y programas, entre otros llegan a concretarse y al igual que en la identificación de los hitos previos, se deben tener en consideración ventanas de oportunidad y riesgos. </p>   
+                          <p>A partir de las cinco fases anteriormente nombradas, la organización debe establecer en qué etapa se encuentra la problemática que se está trabajando, para luego determinar los principales hitos y acontecimientos que posicionaron a al objetivo en esa parte del ciclo. El reconocimiento de los procesos políticos será fundamental para comprender los momentos en los que surjan ventanas de oportunidad y riesgos relacionados con la actividad gubernamental y/o parlamentaria. Las ventanas de oportunidad son los momentos claves en los cuales se tiene contacto con tomadores de decisión o simplemente existe la posibilidad de hacer llegar las ideas de la organización a algún órgano gubernamental, los riesgos son los peligros a los que se enfrenta la organización al momento de incidir en políticas públicas. </p>
+                          <p>Una vez que ya se tenga el mapa de procesos políticos ya ocurridos, es momento de pensar en el camino o los caminos que el objetivo debería cursar para concretarse. Este proceso implica identificar a priori las vías tradicionales a través de las cuales los proyectos de ley, ordenanzas y programas, entre otros llegan a concretarse y al igual que en la identificación de los hitos previos, se deben tener en consideración ventanas de oportunidad y riesgos. </p>
                           <p>Luego de tener claros los procesos institucionales, se debe llevar a cabo una identificación más profunda de los actores relacionados con cada uno de los objetivos, determinando sus niveles de influencia, atribuciones y apoyos. Hay que tener en cuenta que un actor puede ser una persona particular (Michelle Bachelet), un cargo (Presidenta de la República) o una institución u organización (Gobierno de Chile).</p>
                           <p>Por último, es necesario identificar factores habilitantes y barreras que no hayan sido registrados dentro de los pasos anteriores, y que se encuentran relacionados con ámbitos sociales, tecnológicos, geográficos, religiosos, culturales, etc. Los factores habilitantes y las barreras son elementos del contexto que pueden propiciar el cumplimiento de los objetivos de advocacy o que pueden entorpecer y dificultar la estrategia. El siguiente esquema muestra cómo constuir los factores habilitantes y barreras:</p>
                           <br>
@@ -641,7 +659,7 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
                               </ul>
                           </ol>
                           <br>
-                          <h4>Riesgos</h4> 
+                          <h4>Riesgos</h4>
                           <ul>
                             <li>En la actualidad el tema es muy poco relevante en la agenda política, lo que imposibilita el avance del Proyecto de Ley de Tenencia Responsable.</li>
                             <li>Guido Girardi está ampliamente cuestionado por financiamiento irregular de campaña.</li>
@@ -868,7 +886,7 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
       subtitle1: "¿Qué van a hacer como organización para alcanzar sus objetivos de advocacy?"
       subtitle1_explanation: "<p>Antes de seguir con la etapa 5 de la planificación de incidencia se debe realizar un barrido que compendie todas las actividades planificadas por la organización o a las cuales han sido invitados, poniendo énfasis en las que exista la posibilidad de encontrarse con algún actor relevante. La importancia de la identificación de actividades radica en que si se sabe la fecha y hora exacta en la que se desarrollará una actividad, además de quienes estarán presentes. Se podrá planificar de forma más rápida el siguiente paso de la metodología.</p>"
       outcomes_table_content: " "
-      
+
 
       after_outcomes_table_description:  " "
       example: "Ejemplo"
@@ -877,7 +895,7 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
 
 
       months_table_content: " "
-      
+
       after_months_table_description: "<p>Por ejemplo, si se recibe una invitación a una cena de recaudación de fondos para el rescate de animales domésticos abandonados, y se sabe que asistirán los coordinadores de Proanimal Chile y de otras organizaciones relevantes y con interés en que se apruebe la Ley de Tenencia Responsable de Animales, se debe agendar la actividad y preparar mensajes adecuados para cada uno de los actores, a modo de poder trabajar en conjunto y potenciar la aprobación de la Ley.</p>"
     #
     # Stage 6
@@ -986,7 +1004,7 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
       delete: "Eliminar"
       confirm_delete_msj: "¿Está seguro que quiere eliminar este mensaje?"
 
-    
+
   demo:
     index:
       step_one: "Paso uno"

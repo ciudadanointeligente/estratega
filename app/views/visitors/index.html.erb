@@ -5,34 +5,34 @@
 </section>
 <section id="preguntas">
   <div class="container text-center text-width">
-    <h3 class="text-white">¿Tienes objetivos de acción claros pero no logras cumplirlos?</h3>
-    <h3 class="text-white">¿No logran conectar con los actores sociales con los que te deberías relacionar?</h3>
-    <h3 class="text-white">¿Tu presupuesto organizacional es escaso y necesitas optimizarlo de la mejor manera?</h3>
-    <h3 class="text-white">¿Existe alta rotación en los miembros de tu organización?</h3>
-    <h3 class="text-white">¿Tus flujos de comunicación interna y externa trabajan en función de tu meta institucional?</h3>
+    <h3 class="text-white"><%= t('.ask_1') %></h3>
+    <h3 class="text-white"><%= t('.ask_2') %></h3>
+    <h3 class="text-white"><%= t('.ask_3') %></h3>
+    <h3 class="text-white"><%= t('.ask_4') %></h3>
+    <h3 class="text-white"><%= t('.ask_5') %></h3>
   </div>
 </section>
 <section id="metodologia">
   <div class="container">
-    <h2 class="text-white text-center">Metodología</h2>
+    <h2 class="text-white text-center"><%= t('.methodology_title') %></h2>
     <div class="row">
-      <div class="col-md-2 text-center arrow"><%= image_tag "m02.svg", class: "" %>
-        <p class="text-white">Caracterizar el problema público</p>
+      <div class="col-md-2 text-center arrow"><%= image_tag "m02.svg", class: "", alt: t('.methodology_step_1') %>
+        <p class="text-white"><%= t('.methodology_step_1') %></p>
       </div>
-      <div class="col-md-2 text-center arrow"><%= image_tag "m03.svg", class: "" %>
-      <p class="text-white">Definir objetivos</p>
+      <div class="col-md-2 text-center arrow"><%= image_tag "m03.svg", class: "", alt: t('.methodology_step_2') %>
+      <p class="text-white"><%= t('.methodology_step_2') %></p>
       </div>
-      <div class="col-md-2 text-center arrow"><%= image_tag "m04.svg", class: "" %>
-      <p class="text-white">Analizar factores externos</p>
+      <div class="col-md-2 text-center arrow"><%= image_tag "m04.svg", class: "", alt: t('.methodology_step_3') %>
+      <p class="text-white"><%= t('.methodology_step_3') %></p>
       </div>
-      <div class="col-md-2 text-center arrow"><%= image_tag "m05.svg", class: "" %>
-      <p class="text-white">Definir resultados intermedios</p>
+      <div class="col-md-2 text-center arrow"><%= image_tag "m05.svg", class: "", alt: t('.methodology_step_4') %>
+      <p class="text-white"><%= t('.methodology_step_4') %></p>
       </div>
-      <div class="col-md-2 text-center arrow"><%= image_tag "m06.svg", class: "" %>
-      <p class="text-white">Planificar peticiones</p>
+      <div class="col-md-2 text-center arrow"><%= image_tag "m06.svg", class: "", alt: t('.methodology_step_5') %>
+      <p class="text-white"><%= t('.methodology_step_5') %></p>
       </div>
-      <div class="col-md-2 text-center arrow"><%= image_tag "m07.svg", class: "" %>
-      <p class="text-white">Evaluación monitoreo</p>
+      <div class="col-md-2 text-center arrow"><%= image_tag "m07.svg", class: "", alt: t('.methodology_step_6') %>
+      <p class="text-white"><%= t('.methodology_step_6') %></p>
       </div>
     </div>
   </div>
@@ -48,19 +48,19 @@
     <div class="row">
       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
         <%= image_tag "t6.png", class: "img-circle" %>
-        <p class="cita text-center">me ha servido para identificar y ponderar todos los factores que influyen en el éxito</p>
+        <p class="cita text-center"><%= t('.testimony1_cite') %></p>
         <p><%= t('.testimony3_txt') %></p>
         <p class="persona"><%= t('.testimony3_signer') %></p>
       </div>
       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
         <%= image_tag "t4.png", class: "img-circle" %>
-        <p class="cita text-center">fue el comienzo para abordar el tema de incidencia de forma profesional y con sentido</p>
+        <p class="cita text-center"><%= t('.testimony2_cite') %></p>
         <p class=""><%= t('.testimony1_txt') %></p>
         <p class="persona"><%= t('.testimony1_signer') %></p>
       </div>
       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
         <%= image_tag "t5.jpg", class: "img-circle" %>
-        <p class="cita text-center">nos ha permitido priorizar los objetivos y distribuir los esfuerzos de la organización</p>
+        <p class="cita text-center"><%= t('.testimony3_cite') %></p>
         <p class=""><%= t('.testimony2_txt') %></p>
         <p class="persona"><%= t('.testimony2_signer') %></p>
       </div>
@@ -76,17 +76,17 @@
     </div>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-        <a href="http://www.techo.org/paises/chile/" target="_blank"><%= image_tag "logo-techo.svg", class: "logos" %></a>
+        <a href="//www.techo.org/paises/chile/" target="_blank"><%= image_tag "logo-techo.svg", class: "logos", alt: "Logo TECHO" %></a>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-        <a href="http://www.hogardecristo.cl/" target="_blank"><%= image_tag "logo-hogar.svg", class: "logos" %></a>
+        <a href="//www.hogardecristo.cl/" target="_blank"><%= image_tag "logo-hogar.svg", class: "logos", alt: "Logo Hogar de Cristo" %></a>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-        <a href="http://ciudadanointeligente.org/" target="_blank"><%= image_tag "logo-fci.svg", class: "logos" %></a>
+        <a href="//ciudadanointeligente.org/" target="_blank"><%= image_tag "logo-fci.svg", class: "logos", alt: "Logo Fundación Ciudadano Inteligente" %></a>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-         <a href="http://bordepolitico.com/" target="_blank"><img class="logos" src="/assets/logo-borde.svg" alt="Logo borde politico"></a>
-       </div>     
+         <a href="//bordepolitico.com/" target="_blank"><img class="logos" src="/assets/logo-borde.svg" alt="Logo Borde Político"></a>
+       </div>
     </div>
   </div>
 </div>
