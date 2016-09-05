@@ -16,14 +16,16 @@
           <li><a href="#metodologia"><%= t(".methodology") %></a></li>
           <li><a href="#testimonios"><%= t(".testimonies") %></a></li>
           <li><a href="#usanestratega"><%= t(".estratega_users") %></a></li>
-      <li class="dropdown">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><%= t('.sign_in') %><span class="caret"></span></button>
-        <ul class="dropdown-menu dropdown-menu-button">
-          <li>
-            <%= render 'layouts/signin' %>
+          <li class="dropdown">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><%= t('.sign_in') %><span class="caret"></span></button>
+            <ul class="dropdown-menu dropdown-menu-button">
+              <li>
+                <%= render 'layouts/signin' %>
+              </li>
+            </ul>
           </li>
-        </ul>
-      </li>
+          <li><%= link_to 'English', url_for( :locale => 'en' ) %></li>
+          <li><%= link_to 'Spanish', url_for( :locale => 'es' ) %></li>
     </ul>
     <!-- this prevent close the dropdown menu http://stackoverflow.com/a/16050828 -->
     </div>

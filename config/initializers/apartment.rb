@@ -75,6 +75,6 @@ Rails.application.config.middleware.use 'Apartment::Elevators::Generic',
                           Proc.new { |request|
                             subdomain = request.host.split('.').first
                             tenant = Apartment.tenant_names.include?(subdomain) ? subdomain : 'public'
-			    puts 'Elevator resolving tenant to: ' + tenant.to_s
+			    #puts 'Elevator resolving tenant to: ' + tenant.to_s
                             tenant
 				}
