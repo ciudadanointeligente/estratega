@@ -29,7 +29,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_language
-    p :set_language
     if session[:locale].nil?
       if params[:locale].nil?
         session[:locale] = I18n.default_locale
@@ -38,11 +37,11 @@ class ApplicationController < ActionController::Base
       end
     else
       if params[:locale].nil?
-        #session[:locale] = session[:locale]
+
       else
         session[:locale] = params[:locale]
       end
     end
-    I18n.locale = session[:locale]
+    I18n.locale =  I18n.available_locales.map{|l|l.to_s}.include?(session[:locale]) ? session[:locale] : I18n.default_locale
   end
 end

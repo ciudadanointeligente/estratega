@@ -24,8 +24,16 @@
               </li>
             </ul>
           </li>
-          <li><%= link_to 'English', url_for( :locale => 'en' ) %></li>
-          <li><%= link_to 'Spanish', url_for( :locale => 'es' ) %></li>
+          <li>
+              <%= link_to url_for( :locale => 'en' ), :target => "_self" do %>
+                  <%= image_tag 'uk_icon.png', width: 20, height: 12, alt: 'a face that is unnervingly happy'%>
+              <% end %>
+          </li>
+          <li>
+              <%= link_to url_for( :locale => 'es' ), :target => "_self" do %>
+                  <%= image_tag 'chile_icon.png', width: 20, height: 12, alt: 'a face that is unnervingly happy'%>
+              <% end %>
+          </li>
     </ul>
     <!-- this prevent close the dropdown menu http://stackoverflow.com/a/16050828 -->
     </div>

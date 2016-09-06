@@ -42,8 +42,16 @@
           <ul class="nav navbar-nav">
             <li><a href="<%= root_path %>" target="_self"><%= t('.home') %></a></li>
             <li class="active"><a href="<%= projects_path %>" target="_self"><%= t('.projects')%></a></li>
-            <li><%= link_to 'English', url_for( :locale => 'en' ), :target => "_self" %></li>
-            <li><%= link_to 'Spanish', url_for( :locale => 'es' ), :target => "_self" %></li>
+            <li>
+                <%= link_to url_for( :locale => :en ), :target => "_self" do %>
+                    <%= image_tag 'uk_icon.png', width: 20, height: 12, alt: 'english version'%> en
+                <% end %>
+            </li>
+            <li>
+                <%= link_to url_for( :locale => :es ), :target => "_self" do %>
+                    <%= image_tag 'chile_icon.png', width: 20, height: 12, alt: 'spanish version'%> es
+                <% end %>
+            </li>
             <!-- <li><a href="#">Documents</a></li>
             <li><a href="#">Tools</a></li> -->
           </ul>

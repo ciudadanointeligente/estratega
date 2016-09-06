@@ -6,6 +6,7 @@ addons:
 before_script:
         - psql -c 'create database travis_ci_test;' -U postgres
         - cp config/database.yml.travis config/database.yml
+        - cp config/vizard.yml.travis config/vizard.yml
 notifications:
     email:
         recipients:
