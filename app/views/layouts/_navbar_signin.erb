@@ -16,6 +16,16 @@
           <li><a href="#metodologia"><%= t(".methodology") %></a></li>
           <li><a href="#testimonios"><%= t(".testimonies") %></a></li>
           <li><a href="#usanestratega"><%= t(".estratega_users") %></a></li>
+          <li>
+            <%= link_to url_for( :locale => 'en' ), :target => "_self" do %>
+              EN
+              <% end %>
+          </li>
+          <li>
+              <%= link_to url_for( :locale => 'es' ), :target => "_self" do %>
+              ES
+              <% end %>
+          </li>
           <li class="dropdown">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><%= t('.sign_in') %><span class="caret"></span></button>
             <ul class="dropdown-menu dropdown-menu-button">
@@ -23,16 +33,6 @@
                 <%= render 'layouts/signin' %>
               </li>
             </ul>
-          </li>
-          <li>
-              <%= link_to url_for( :locale => 'en' ), :target => "_self" do %>
-                  <%= image_tag 'uk_icon.png', width: 20, height: 12, alt: 'a face that is unnervingly happy'%>
-              <% end %>
-          </li>
-          <li>
-              <%= link_to url_for( :locale => 'es' ), :target => "_self" do %>
-                  <%= image_tag 'chile_icon.png', width: 20, height: 12, alt: 'a face that is unnervingly happy'%>
-              <% end %>
           </li>
     </ul>
     <!-- this prevent close the dropdown menu http://stackoverflow.com/a/16050828 -->

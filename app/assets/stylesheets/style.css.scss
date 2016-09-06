@@ -264,6 +264,9 @@ table a {
 .nav > li > a:hover, .nav > li > a:focus {
   background-color: #0276BD;
 }
+.nav > li{
+  float: left;
+}
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
   background-color: #0276BD;
 }
