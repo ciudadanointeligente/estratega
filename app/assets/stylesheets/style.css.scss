@@ -221,7 +221,10 @@ table a {
     border-top: 1px solid #F3F3F3;
 }
 .navbar {
-  margin-bottom: 0px;
+  margin-bottom: 0;
+}
+.navbar-nav {
+  margin-left: 0;
 }
 .navbar-default, .menu {
   background-color: #021b2d;
@@ -235,7 +238,6 @@ table a {
   color: #ffffff;
   font-weight: 400;
 }
-
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
   color: #ffffff;
   background-color: #0276BD;
@@ -273,6 +275,13 @@ table a {
 .nav.nav-stacked > li > a:hover, .nav > li > a:focus {
   background-color: #0276BD;
   text-decoration: underline;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus{
+  background-color: transparent;
+  color: white;
+}
+ul.dropdown-menu.dropdown-menu-button.thin{
+  min-width: 0;
 }
 .breadcrumb {
   font-size: 14px;
@@ -738,9 +747,6 @@ table.indicator td:first-child {
 @media all and (min-width: 993px) {
   .project-hero h2, .project-hero p, .project-hero02 h2, .project-hero02 p {
     width: 80%;
-  }
-  .navbar-nav {
-    margin-left: 60px;
   }
   .navbar-nav .dropdown .btn-default {
     margin-top: 10px;

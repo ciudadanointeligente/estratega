@@ -11,20 +11,27 @@
     <a class="navbar-brand" href="<%= root_path %>" target="_self"><%= image_tag "logo.svg" %></a>
   </div>
   <!-- Collect the nav links, forms, and other content for toggling -->
-  <div id="navbar" class="nav navbar-collapse collapse pull-right">
-    <ul class="nav navbar-nav">
+    <div id="navbar" class="nav navbar-collapse collapse">
+    <ul class="nav navbar-nav pull-left">
           <li><a href="#metodologia"><%= t(".methodology") %></a></li>
           <li><a href="#testimonios"><%= t(".testimonies") %></a></li>
           <li><a href="#usanestratega"><%= t(".estratega_users") %></a></li>
-          <li>
-            <%= link_to url_for( :locale => 'en' ), :target => "_self" do %>
-              EN
-              <% end %>
-          </li>
-          <li>
-              <%= link_to url_for( :locale => 'es' ), :target => "_self" do %>
-              ES
-              <% end %>
+    </ul>
+    <ul class="nav navbar-nav pull-right">  
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Idioma<span class="caret"></span></a>
+            <ul class="dropdown-menu dropdown-menu-button thin">
+              <li>
+                <%= link_to url_for( :locale => 'en' ), :target => "_self" do %>
+                  EN
+                  <% end %>
+              </li>
+              <li>
+                  <%= link_to url_for( :locale => 'es' ), :target => "_self" do %>
+                  ES
+                  <% end %>
+              </li>
+            </ul>
           </li>
           <li class="dropdown">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><%= t('.sign_in') %><span class="caret"></span></button>
