@@ -46,7 +46,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         scroll_to_top();
       });
   }
-  
+
   function get_actors(project_id, objective_id) {
     $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/actors.json')
       .success(function (data){
@@ -168,7 +168,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     }
     return names
   }
-  
+
   $scope.get_actor_names = function(actor_ids, actors){
     var names = []
     for(k in actor_ids) {
@@ -219,11 +219,11 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     if($scope.activity.indicator_id) {
       $http.put('/activities/'+$scope.activity.id+'/indicators/'+$scope.activity.indicator_id, $scope.current_indicator)
           .success(function(){
-            $scope.messages = { response: true, message: "Indicator actualizado"}
+            $scope.messages = { response: true, message: "Indicator updated"}
             get_activities($scope.project_id, $scope.objective_id);
           })
           .error(function(){
-            $scope.messages = { response: false, message: "Error al actualizar los resultados de información"}
+            $scope.messages = { response: false, message: "Error updating"}
             scroll_to_top();
           });
     } else {
@@ -233,7 +233,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
             get_activities($scope.project_id, $scope.objective_id);
           })
           .error(function(){
-            $scope.messages = { response: false, message: "Error al crear el indicador"}
+            $scope.messages = { response: false, message: "Error creating indicator"}
             scroll_to_top();
           });
     }

@@ -142,7 +142,7 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
               $modalInstance.dismiss();
               e.stopPropagation();
           } else {
-            $scope.messages_modal = { error: true, msg: 'El porcentaje debe ser un nro válido'}
+            $scope.messages_modal = { error: true, msg: 'Percentage must be a valid number.'}
           }
         }
         $scope.cancel = function (e) {
@@ -158,21 +158,21 @@ app.controller("stage4Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     if($scope.outcome.indicator_id) {
       $http.put('/outcomes/'+$scope.outcome.id+'/indicators/'+$scope.outcome.indicator_id, $scope.current_indicator)
           .success(function(){
-            $scope.messages = { response: true, message: "Indicator actualizado"}
+            $scope.messages = { response: true, message: "Indicator updated"}
             get_outcomes($scope.project_id, $scope.objective_id);
           })
           .error(function(){
-            $scope.messages = { response: false, message: "Error al actualizar los resultados de información"}
+            $scope.messages = { response: false, message: "Error updating"}
             scroll_to_top();
           });
     } else {
       $http.post('/outcomes/'+$scope.outcome.id+'/indicators/', $scope.current_indicator)
           .success(function(data){
-            $scope.messages = { response: true, message: "Indicator añadido"}
+            $scope.messages = { response: true, message: "Indicator added"}
             get_outcomes($scope.project_id, $scope.objective_id);
           })
           .error(function(){
-            $scope.messages = { response: false, message: "Error al crear el indicador"}
+            $scope.messages = { response: false, message: "Error creating indicator."}
             scroll_to_top();
           });
     }

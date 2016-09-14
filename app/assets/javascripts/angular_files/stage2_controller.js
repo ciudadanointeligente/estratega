@@ -277,7 +277,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       }
     });
   }
-  
+
   $scope.add_edit_indicator = function(objective) {
     $scope.objective = objective;
     if(objective.indicator_id) {
@@ -301,7 +301,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
               $modalInstance.dismiss();
               e.stopPropagation();
           } else {
-            $scope.messages_modal = { error: true, msg: 'El porcentaje debe ser un nro válido'}
+            $scope.messages_modal = { error: true, msg: 'Percentage must be a valid number'}
           }
         }
         $scope.cancel = function (e) {
@@ -312,32 +312,32 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     });
 
   }
-  
+
   var save_or_update_indicator = function() {
     if($scope.objective.indicator_id) {
       $http.put('/objectives/'+$scope.objective.id+'/indicators/'+$scope.objective.indicator_id, $scope.current_indicator)
           .success(function(){
-            $scope.messages = { response: true, message: "Indicator actualizado"}
+            $scope.messages = { response: true, message: "Indicator updated"}
             get_objectives($scope.project_id, $scope.objective_id);
           })
           .error(function(){
-            $scope.messages = { response: false, message: "Error al actualizar los resultados de información"}
+            $scope.messages = { response: false, message: "Error updating"}
             scroll_to_top();
           });
     } else {
       $http.post('/objectives/'+$scope.objective.id+'/indicators/', $scope.current_indicator)
           .success(function(data){
-            $scope.messages = { response: true, message: "Indicator añadido"}
+            $scope.messages = { response: true, message: "Indicator added"}
             get_objectives($scope.project_id, $scope.objective_id);
           })
           .error(function(){
-            $scope.messages = { response: false, message: "Error al crear el indicador"}
+            $scope.messages = { response: false, message: "Error creating indicator"}
             scroll_to_top();
           });
     }
 
   }
-  
+
   function get_objective(project_id, objective_id) {
     $http.get('/projects/' + project_id + '/objectives/' + objective_id + '.json')
       .success(function (data) {

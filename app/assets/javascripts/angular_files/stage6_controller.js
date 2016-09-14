@@ -16,7 +16,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     });
   }
   get_actors($scope.project_id, $scope.objective_id);
-  
+
   function get_activities(project_id, objective_id) {
     $http.get('/projects/'+$scope.project_id+'/objectives/'+$scope.objective_id+'/activities.json')
     .success(function(data){
@@ -163,7 +163,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         .success(function(data){
         })
         .error(function(){
-          $scope.messages = { response: false, message: 'Error actualizando el mensaje' }
+          $scope.messages = { response: false, message: 'Error updating message.' }
         })
     } else {
       $scope.current_msj.ask_id = $scope.ask_id;
@@ -172,7 +172,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         .success(function(data){
         })
         .error(function(){
-          $scope.messages = { response: false, message: 'Error al guardar mensaje' }
+          $scope.messages = { response: false, message: 'Error saving message.' }
         })
     }
   }
@@ -207,7 +207,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
               $modalInstance.dismiss();
               e.stopPropagation();
           } else {
-            $scope.messages_modal = { error: true, msg: 'El porcentaje debe ser un nro válido'}
+            $scope.messages_modal = { error: true, msg: 'Percentage must be a valid number.'}
           }
         }
         $scope.cancel = function (e) {
@@ -223,21 +223,21 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     if($scope.ask.indicator_id) {
       $http.put('/asks/'+$scope.ask.id+'/indicators/'+$scope.ask.indicator_id, $scope.current_indicator)
           .success(function(){
-            $scope.messages = { response: true, message: "Indicator actualizado"}
+            $scope.messages = { response: true, message: "Indicator updated"}
             get_asks($scope.project_id, $scope.objective_id, $scope.outcome_id);
           })
           .error(function(){
-            $scope.messages = { response: false, message: "Error al actualizar los resultados de información"}
+            $scope.messages = { response: false, message: "Error updating."}
             scroll_to_top();
           });
     } else {
       $http.post('/asks/'+$scope.ask.id+'/indicators/', $scope.current_indicator)
           .success(function(data){
-            $scope.messages = { response: true, message: "Indicator añadido"}
+            $scope.messages = { response: true, message: "Indicator added."}
             get_asks($scope.project_id, $scope.objective_id, $scope.outcome_id);
           })
           .error(function(){
-            $scope.messages = { response: false, message: "Error al crear el indicador"}
+            $scope.messages = { response: false, message: "Error creating indicator."}
             scroll_to_top();
           });
     }
