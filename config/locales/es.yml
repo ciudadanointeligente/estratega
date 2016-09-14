@@ -24,6 +24,7 @@ es:
       methodology: "Metodología"
       testimonies: "Testimonios"
       estratega_users: "Usan Estratega"
+      language: "Idioma"
     sign_in:
       mail: "E-mail"
       password: "Contraseña"
