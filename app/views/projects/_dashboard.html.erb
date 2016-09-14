@@ -44,7 +44,7 @@
         </div>
       </div>
     </div>
-            <!-- start asks chart --> 
+            <!-- start asks chart -->
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="well">
@@ -83,8 +83,8 @@
         </div>
       </div>
     </div>
-            <!-- end asks chart --> 
-    <!-- end asks kpis --> 
+            <!-- end asks chart -->
+    <!-- end asks kpis -->
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
         <div class="well">
@@ -126,7 +126,7 @@
       </div>
     </div>
   </div>
-    <!-- start outcomes kpis --> 
+    <!-- start outcomes kpis -->
   <div class="box">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -172,8 +172,8 @@
       </div>
     </div>
   </div>
-    <!-- end outcomes kpis --> 
-    <!-- start objectives kpis --> 
+    <!-- end outcomes kpis -->
+    <!-- start objectives kpis -->
   <div class="box">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -185,6 +185,7 @@
         <div class="well">
           <h3><%= @objectives.count.presence || "0" %> <%= t('.objectives') %></h3>
           <ul class="fa-ul">
+            <li class="successful"><i class="fa-li fa fa-check-circle"></i><%= @successful_objectives.presence %> <%= t('.objectives_succesful') %></li>
             <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @objectives_without_outcomes.presence %> <%= t('.objectives_without_interim_outcomes') %></li>
             <li class="failed"><i class="fa-li fa fa-times-circle"></i><%= @objectives_with_failed_outcomes.presence %> <%= t('.objectives_with_failed_outcomes') %></li>
           </ul>

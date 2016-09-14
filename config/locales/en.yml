@@ -38,6 +38,7 @@ en:
       office_adress: "Holanda 895, Providencia, Chile"
     application:
       home: "Home"
+      language: "Language"
       projects: "Projects"
       welcome: "Welcome, "
       my_account: "My account"
@@ -228,7 +229,6 @@ en:
       percentage_interim_outcomes_achieved: "Percentage interim outcomes achieved"
       percentage_allocation_of_predefined_activities: "Percentage allocation of predefined activities"
       objectives: "Objectives"
-      objectives_without_interim_outcomes: "Objectives without interim outcomes"
       objectives_with_failed_activities: "Objectives with failed activities"
       percentage_advance_priority_objectives: "Percentage advance priority objectives"
       percentage_of_total_advance_objectives: "Percentage of total advance objectives"
@@ -247,6 +247,7 @@ en:
       objectives_with_failed_outcomes: "Objectives with failed Interim Outcomes"
       rate_completed_objectives: "Completed Rate"
       rate_success_objectives: "Success Rate"
+      objectives_succesful: "Succesful Objectives"
       asks: Asks
     resources:
       new_resource: "Add resource"

@@ -38,6 +38,7 @@ es:
       office_adress: "Holanda 895, Providencia"
     application:
       home: "Inicio"
+      language: "Idioma"
       projects: "Proyectos"
       welcome: "Bienvenido, "
       my_account: "Mi cuenta"
@@ -232,7 +233,6 @@ es:
       percentage_interim_outcomes_achieved: "Porcentaje de resultados intermedios logrados"
       percentage_allocation_of_predefined_activities: "Porcentaje de asignación de actividades predefinidas"
       objetives: "Objetivos"
-      objectives_without_interim_outcomes: "Objetivos sin resultados intermedios"
       objectives_with_failed_activities: "Objetivos sin actividades fallidas"
       percentage_advance_priority_objectives: "Porcentaje de avance de los objetivos priorizados"
       percentage_of_total_advance_objectives: "Porcentaje total de avance de los objetivos"
@@ -251,6 +251,7 @@ es:
       objectives_with_failed_outcomes: "Objetivos con Resultados Intermedios Fallidos"
       rate_completed_objectives: "Porcentaje de Objetivos Completados"
       rate_success_objectives: "Porcentaje de Objetivos Exitosos"
+      objectives_succesful: "Objetivos Exitosos"
       asks: "Peticiones"
     resources:
       new_resource: "Añadir recurso"
