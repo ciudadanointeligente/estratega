@@ -44,7 +44,7 @@ class ProjectsController < ApplicationController
     @successful_activities = 0
     @neutral_activities = 0
     @failed_activities = 0
-    
+
     @successful_asks = 0
     @neutral_asks = 0
     @failed_asks = 0
@@ -85,7 +85,7 @@ class ProjectsController < ApplicationController
       {type: "Organizational advocacy capacity", values: ["Any of the others"]},
       {type: "Organizational visibility or issue recognition", values: ["Issue/policy analysis and research"]}
     ];
-    
+
     if !@project.real_problem.blank?
       @real_problem = @project.real_problem
       if !@project.real_problem.try(:policy_problems).try(:blank?)
@@ -95,12 +95,12 @@ class ProjectsController < ApplicationController
         end
       end
     end
-    
+
     ################################################################################## start asks kpis
     @success_asks_by_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     @neutral_asks_by_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     @fail_asks_by_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    
+
     @project.asks.each do |ask|
       if !ask.indicator.nil?
         @completed_asks = @completed_asks + 1
@@ -239,7 +239,7 @@ class ProjectsController < ApplicationController
           end
       end
     end
-    
+
     if @project.asks.count == 0
       @rate_completed_asks = 0
       @rate_success_asks = 0
@@ -257,13 +257,13 @@ class ProjectsController < ApplicationController
     @failed_objectives = 0
     @rate_completed_objectives = 0
     @rate_success_objectives = 0
-    
+
     @project.objectives.each do |objective|
-      
+
       @a_size = @a_size + objective.actors.size
       @barriers_size = @barriers_size + objective.barriers.size
       @factors_size = @factors_size + objective.enabling_factors.size
-      
+
       if !objective.indicator.nil?
         @completed_objectives = @completed_objectives + 1
         if !objective.indicator.percentage.nil?
@@ -284,7 +284,7 @@ class ProjectsController < ApplicationController
         end
       end
     end
-      
+
     if @project.objectives.count == 0
       @rate_completed_objectives = 0
       @rate_success_objectives = 0
@@ -303,8 +303,8 @@ class ProjectsController < ApplicationController
     @failed_outcomes = 0
     @rate_completed_outcomes = 0
     @rate_success_outcomes = 0
-    
-    
+
+
     @project.outcomes.each do |outcome|
       if !outcome.indicator.nil?
         @completed_outcomes = @completed_outcomes + 1
@@ -324,12 +324,12 @@ class ProjectsController < ApplicationController
         if outcome.asks.all? {|a| !a.indicator.nil?}
           @outcomes_with_all_asks_completed = @outcomes_with_all_asks_completed + 1
         end
-        if outcome.asks.all? {|a| a.messages.all? {|m| (m.executed && m.activity.start_date < today) }}
+        if outcome.asks.all? {|a| a.messages.all? {|m| (m.executed && !m.activity.start_date.nil? && m.activity.start_date < today) }}
           @outcomes_with_overdue_asks = @outcomes_with_overdue_asks + 1
         end
       end
     end
-    
+
     if @project.outcomes.count == 0
       @rate_completed_outcomes = 0
       @rate_success_outcomes = 0
@@ -337,7 +337,7 @@ class ProjectsController < ApplicationController
       @rate_completed_outcomes = ( 100 / @project.outcomes.count ) * @completed_outcomes
       @rate_success_outcomes = ( 100 / @project.outcomes.count ) * @successful_outcomes
     end
-    
+
     ################################################################################## end outcome kpis
 
     respond_with(@project)
@@ -452,12 +452,12 @@ class ProjectsController < ApplicationController
     @project.users.delete(user_id)
     respond_with(@project)
   end
-  
+
   def generate_massive_ical
     cal = @project.as_ical
     headers['Content-Type'] = "text/calendar; charset=UTF-8"
     render :layout => false, :text => cal
-  end  
+  end
 
   private
     def set_project
