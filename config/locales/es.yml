@@ -268,8 +268,8 @@ es:
       real_problem: "Problema público"
       title: "Título"
       title_placeholder: "Nombre su problema público"
-      description: "Descripción"
-      description_placeholder: "Describa el problema"
+      description: "Argumento"
+      description_placeholder: "Describa el argumento"
       save: "Guardar"
       cancel: "Cancelar"
     #

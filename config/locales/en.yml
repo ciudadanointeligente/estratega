@@ -264,8 +264,8 @@ en:
       real_problem: "Real world problem"
       title: "Title"
       title_placeholder: "Name your real world problem"
-      description: "Description"
-      description_placeholder: "Describe the problem"
+      description: "Argument"
+      description_placeholder: "Describe the argument"
       save: "Save"
       cancel: "Cancel"
     #
