@@ -32,17 +32,16 @@
           <thead>
             <tr>
               <th width="60%"><%= t('.project') %></th>
-              <th><%= t('.public') %>?</th>
               <th><%= t('.focus_area') %></th>
+              <th><%= t('.public') %>?</th>
               <th class="text-right"><%= t('.actions') %></th>
             </tr>
           </thead>
           <tbody>
             <tr title="{{ project.description | limitTo: 140 }}" ng-repeat="project in projects">
-              <td><a href="/projects/{{ project.id }}" target="_self">{{ project.title }}</a>
-              </td>
-              <td><i class="fa fa-globe" ng-if="project.public" title="<%= t('.public') %>"></i></td>
-              <td>{{ project.focus_area }}</td>
+              <td> <a href="/projects/{{ project.id }}" target="_self">{{ project.title }}</a> </td>
+              <td> {{ project.focus_area }} </td>
+              <td> <i class="fa fa-globe" ng-if="project.public" title="<%= t('.public') %>"></i> </td>
               <td class="controllers">
                 <i class="fa fa-gears" ng-click="add_edit_project(project)" ng-if="project.permission == 'owner'" title="<%= t('.config') %>"></i>
                 <i class="fa fa-user-plus" ng-click="user_permission(project)" ng-if="project.permission == 'owner'" title="<%= t('.share') %>"></i>
