@@ -311,6 +311,8 @@ en:
       step_two: "To add information press <i class='fa fa-plus-circle'></i> <strong>Add</strong>, if you want information guide press <i class='fa fa-info'></i> button. Once the data is entered, you only have to press <i class='fa fa-pencil'></i> <strong>Edit</strong> to modify the information"
       step_three: "Now add <strong>Policy Problems</strong>, they group <strong>Policy Solution</strong>"
       step_four: "To go back to the index page (previous), press the link with the name of your project"
+      edit: "Edit"
+      delete: "Delete"
     policy_modal: # modal `add policy` of stage 1
       policy: "Causes related to public policy"
       title: "Title"

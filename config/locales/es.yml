@@ -315,6 +315,8 @@ es:
       step_two: "Para añadir información presiona <i class='fa fa-plus-circle'></i> <strong>Agregar</strong>, y si necesitas una guía puedes presionar <i class='fa fa-info'></i>. Una vez introducidos los datos, solo tienes que presionar <i class='fa fa-pencil'></i> <strong>Editar</strong> para modificar la información."
       step_three: "Ahora agrega <strong>Causas de política pública</strong>, las que agrupan <strong>Soluciones de política pública</strong>"
       step_four: "Para volver a la página indice (anterior), presiona el link con el nombre del proyecto"
+      edit: "Editar"
+      delete: "Borrar"
     policy_modal: # modal `add policy` of stage 1
       policy: "Causa relacionada a políticas públicas"
       title: "Título"
