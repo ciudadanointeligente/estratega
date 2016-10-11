@@ -28,6 +28,7 @@ class ProjectsController < ApplicationController
       public_projects = Project.where(public: :true)
       @projects = public_projects - my_projects
     end
+    @projects = @projects.order(:title)
     respond_with(@projects)
   end
 
