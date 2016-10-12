@@ -12,8 +12,8 @@ class UserMailer < Devise::Mailer
     @token = data[:token]
     @project = data[:project]
     @subdomain = data[:subdomain]
-    
-    mail(to: @user.email, subject: 'Added to collaborate')
+
+    mail(to: @user.email, subject: I18n.t('devise.mailer.new_user_share.added'))
   end
 
   def exist_user_share(data)
@@ -22,8 +22,8 @@ class UserMailer < Devise::Mailer
     @message = data[:message]
     @project = data[:project]
     @subdomain = data[:subdomain]
-    
-    mail(to: @user.email, subject: 'Shared a project')
+
+    mail(to: @user.email, subject: I18n.t('devise.mailer.exist_user_share.shared'))
   end
 
 end

@@ -1110,9 +1110,11 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
         sentence2: "Si usted no ha solicitado este cambio, simplemente ignore este email"
         sentence3: "Su password no cambiará hasta que usted acceda al link anterior y cree uno nuevo."
       exist_user_share:
+        shared: "Proyecto de Estratega compartido"
         title: "Proyecto de Estratega Compartido"
         exist_add_to_share: 'Estas invitado a colaborar con el proyecto:'
       new_user_share:
+        added: "Añadido para colaborar"
         title: "Proyecto de Estratega Compartido"
         new_add_to_share: 'Estas invitado para activar tu cuenta y colaborar con el proyecto:'
         activate_account: 'Activar mi cuenta'

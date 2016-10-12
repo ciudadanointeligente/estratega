@@ -1351,9 +1351,11 @@ en:
         sentence2: "If you did not requested this change, just ignore this email."
         sentence3: "Your password will not change until you create a new one."
       exist_user_share:
+        shared: "Shared a project"
         title: "Estratega Project Shared"
         exist_add_to_share: 'You are invited to collaborate in project:'
       new_user_share:
+        added: "Added to collaborate"
         title: "Estratega Project Shared"
         new_add_to_share: 'You are invited to activate your account and collaborate in project:'
         activate_account: 'Activate my account.'
