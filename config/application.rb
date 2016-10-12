@@ -42,7 +42,10 @@ module VizardRails
     config.assets.paths << Rails.root.join("vendor","assets","bower_components")
 
     config.action_mailer.default_url_options = { host: ENV['BASE_URL'] }
-    
+
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.middleware.use I18n::JS::Middleware
+
   end
 end

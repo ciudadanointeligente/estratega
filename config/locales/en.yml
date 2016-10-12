@@ -2,6 +2,33 @@ en:
   #
   # Landing page and tags
   #
+  js_texts:
+    add: "Add"
+    edit: "Edit"
+    percentage: "Percentage must be a valid number"
+    indicator_updated: "Indicator updated"
+    error_updating: "Error updating"
+    indicator_added: "Indicator added"
+    indicator_create_error: "Error creating indicator"
+    event_ext: "External event"
+    event_org: "Event of the  organisation"
+    error_edit_msg: "Error editing message"
+    error_update_msg: "Error updating message"
+    error_save_msg: "Error saving message"
+    delete_confirmation: "¿Are you sure you want to delete?"
+    error_getting_projects: "Error getting projects."
+    error_public_projects: "Error getting public projects."
+    project_updated: "Project Updated!"
+    project_update_error: "Error updating project!"
+    project_created: "Project created!"
+    error_get_data: "Error getting data!!!"
+    project_deleted: "Project deleted!"
+    project_delete_error: "Error deleting project!"
+    shared: "Shared with users"
+    share_error: "Error while sharing"
+    colaborator_delete_confirmation: "¿Sure you want to delete this collaborator?"
+    unlinking_error: "Error while unlinking user!"
+    shared_project_delete_confirmation: "This project is shared. ¿Are you sure to delete this project?"
   layouts:
     landing:
       meta_description: "An advocacy tool"

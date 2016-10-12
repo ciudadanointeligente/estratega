@@ -138,6 +138,8 @@ GEM
     hitimes (1.2.2)
     http_accept_language (2.0.5)
     i18n (0.7.0)
+    i18n-js (3.0.0.rc14)
+      i18n (~> 0.6, >= 0.6.6)
     icalendar (2.3.0)
     interception (0.5)
     jbuilder (2.2.0)
@@ -382,6 +384,7 @@ DEPENDENCIES
   guard-rails
   guard-rspec
   http_accept_language
+  i18n-js (>= 3.0.0.rc11)
   icalendar
   jbuilder (~> 2.0)
   jquery-rails
@@ -415,3 +418,9 @@ DEPENDENCIES
   unicorn
   unicorn-rails
   wicked
+
+RUBY VERSION
+   ruby 2.0.0p648
+
+BUNDLED WITH
+   1.12.5

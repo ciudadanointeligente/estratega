@@ -8,7 +8,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   $scope.actors = [];
 
   $scope.messages = {response: "", message: ""}
-  $scope.organizer = ["Evento Externo", "Evento de la Organización"];
+  $scope.organizer = [I18n.t('js_texts.event_ext'), I18n.t('js_texts.event_org')];
   $scope.activity_types = [
     {type: "Voluntad Política", values: ["Lobby", "Construcción de relaciones con los tomadores de decisiones", "Fijar responsable político y candidato educación", "Litigios o defensa legal", "Política de desarrollo de la propuesta", "Demostración de proyectos o pilotos", "Ganar Medios"]},
     {type: "Voluntad Pública", values: ["Votación", "Convocatorias y marchas", "Medios de Comunicación Digital o basados en Internet / medios de comunicación social"]},
@@ -203,7 +203,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
               $modalInstance.dismiss();
               e.stopPropagation();
           } else {
-            $scope.messages_modal = { error: true, msg: 'El porcentaje debe ser un nro válido'};
+            $scope.messages_modal = { error: true, msg: I18n.t('js_texts.percentage')};
           }
         };
         $scope.cancel = function (e) {
@@ -219,21 +219,21 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     if($scope.activity.indicator_id) {
       $http.put('/activities/'+$scope.activity.id+'/indicators/'+$scope.activity.indicator_id, $scope.current_indicator)
           .success(function(){
-            $scope.messages = { response: true, message: "Indicator updated"}
+            $scope.messages = { response: true, message: I18n.t('js_texts.indicator_updated')}
             get_activities($scope.project_id, $scope.objective_id);
           })
           .error(function(){
-            $scope.messages = { response: false, message: "Error updating"}
+            $scope.messages = { response: false, message: I18n.t('js_texts.error_updating')}
             scroll_to_top();
           });
     } else {
       $http.post('/activities/'+$scope.activity.id+'/indicators/', $scope.current_indicator)
           .success(function(data){
-            $scope.messages = { response: true, message: "Indicator añadido"}
+            $scope.messages = { response: true, message: I18n.t('js_texts.indicator_added')}
             get_activities($scope.project_id, $scope.objective_id);
           })
           .error(function(){
-            $scope.messages = { response: false, message: "Error creating indicator"}
+            $scope.messages = { response: false, message: I18n.t('js_texts.indicator_create_error')}
             scroll_to_top();
           });
     }

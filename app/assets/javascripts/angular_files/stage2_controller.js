@@ -1,6 +1,6 @@
 app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs", function ($scope, $http, $aside, $location, $attrs) {
   $scope.project_id = $location.path().split("/")[2];
-  $scope.btn_problem = "Add";
+  $scope.btn_problem =  I18n.t('js_texts.add');
   $scope.problem = {};
   $scope.objective = {};
   $scope.objective_types = {};
@@ -152,7 +152,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       $http.put("/real_problems/" + $scope.problem.id, $scope.problem)
         .success(function (data) {
           // alertar en caso de success o error
-          $scope.btn_problem = "Edit";
+          $scope.btn_problem =  I18n.t('js_texts.edit');
         })
         .error(function (){
           $scope.messages = { response: false, message: $attrs.errorupdatinggoal }
@@ -301,7 +301,7 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
               $modalInstance.dismiss();
               e.stopPropagation();
           } else {
-            $scope.messages_modal = { error: true, msg: 'Percentage must be a valid number'}
+            $scope.messages_modal = { error: true, msg:  I18n.t('js_texts.percentage')}
           }
         }
         $scope.cancel = function (e) {
@@ -317,21 +317,21 @@ app.controller("stage2Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     if($scope.objective.indicator_id) {
       $http.put('/objectives/'+$scope.objective.id+'/indicators/'+$scope.objective.indicator_id, $scope.current_indicator)
           .success(function(){
-            $scope.messages = { response: true, message: "Indicator updated"}
+            $scope.messages = { response: true, message: I18n.t('js_texts.indicator_updated')}
             get_objectives($scope.project_id, $scope.objective_id);
           })
           .error(function(){
-            $scope.messages = { response: false, message: "Error updating"}
+            $scope.messages = { response: false, message: I18n.t('js_texts.error_updating')}
             scroll_to_top();
           });
     } else {
       $http.post('/objectives/'+$scope.objective.id+'/indicators/', $scope.current_indicator)
           .success(function(data){
-            $scope.messages = { response: true, message: "Indicator added"}
+            $scope.messages = { response: true, message: I18n.t('js_texts.indicator_added')}
             get_objectives($scope.project_id, $scope.objective_id);
           })
           .error(function(){
-            $scope.messages = { response: false, message: "Error creating indicator"}
+            $scope.messages = { response: false, message: I18n.t('js_texts.indicator_create_error')}
             scroll_to_top();
           });
     }
