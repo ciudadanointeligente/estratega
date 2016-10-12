@@ -38,7 +38,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr title="{{ project.description | limitTo: 140 }}" ng-repeat="project in projects">
+            <tr title="{{ project.description | limitTo: 140 }}" ng-repeat="project in projects | orderBy:'title'">
               <td> <a href="/projects/{{ project.id }}" target="_self">{{ project.title }}</a> </td>
               <td> {{ project.focus_area }} </td>
               <td> <i class="fa fa-globe" ng-if="project.public" title="<%= t('.public') %>"></i> </td>

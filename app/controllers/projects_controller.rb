@@ -1,3 +1,4 @@
+
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_project, only: [:show, :edit, :update, :destroy, :solutions, :public, :stage1, :stage2, :share, :overview, :unshare, :generate_massive_ical]
@@ -28,7 +29,7 @@ class ProjectsController < ApplicationController
       public_projects = Project.where(public: :true)
       @projects = public_projects - my_projects
     end
-    @projects = @projects.order(:title)
+    #@projects = @projects.order(:title)
     respond_with(@projects)
   end
 
