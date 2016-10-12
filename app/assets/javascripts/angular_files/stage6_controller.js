@@ -133,7 +133,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
           $scope.current_msj = data
         })
         .error(function(){
-          $scope.messages = { response: false, message: 'Error editando mensaje' }
+          $scope.messages = { response: false, message: I18n.t('js_texts.error_edit_msg') }
         })
 
     }
@@ -163,7 +163,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         .success(function(data){
         })
         .error(function(){
-          $scope.messages = { response: false, message: 'Error updating message.' }
+          $scope.messages = { response: false, message: I18n.t('js_texts.error_update_msg')'Error updating message.' }
         })
     } else {
       $scope.current_msj.ask_id = $scope.ask_id;
@@ -172,7 +172,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         .success(function(data){
         })
         .error(function(){
-          $scope.messages = { response: false, message: 'Error saving message.' }
+          $scope.messages = { response: false, message: I18n.t('js_texts.error_save_msg') }
         })
     }
   }
@@ -207,7 +207,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
               $modalInstance.dismiss();
               e.stopPropagation();
           } else {
-            $scope.messages_modal = { error: true, msg: 'Percentage must be a valid number.'}
+            $scope.messages_modal = { error: true, msg: I18n.t('js_texts.percentage')}
           }
         }
         $scope.cancel = function (e) {
@@ -223,21 +223,21 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     if($scope.ask.indicator_id) {
       $http.put('/asks/'+$scope.ask.id+'/indicators/'+$scope.ask.indicator_id, $scope.current_indicator)
           .success(function(){
-            $scope.messages = { response: true, message: "Indicator updated"}
+            $scope.messages = { response: true, message: I18n.t('js_texts.indicator_updated')}
             get_asks($scope.project_id, $scope.objective_id, $scope.outcome_id);
           })
           .error(function(){
-            $scope.messages = { response: false, message: "Error updating."}
+            $scope.messages = { response: false, message: I18n.t('js_texts.error_updating')}
             scroll_to_top();
           });
     } else {
       $http.post('/asks/'+$scope.ask.id+'/indicators/', $scope.current_indicator)
           .success(function(data){
-            $scope.messages = { response: true, message: "Indicator added."}
+            $scope.messages = { response: true, message: I18n.t('js_texts.indicator_added')}
             get_asks($scope.project_id, $scope.objective_id, $scope.outcome_id);
           })
           .error(function(){
-            $scope.messages = { response: false, message: "Error creating indicator."}
+            $scope.messages = { response: false, message: I18n.t('js_texts.indicator_create_error')}
             scroll_to_top();
           });
     }

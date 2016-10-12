@@ -2,6 +2,17 @@ es:
   #
   # Landing page and tags
   #
+  js_texts:
+    add: "Añadir"
+    edit: "Editar"
+    percentage: "Percentage must be a valid number"
+    indicator_updated: "Indicator updated"
+    error_updating: "Error updating"
+    indicator_added: "Indicator added"
+    indicator_create_error: "Error creating indicator"
+    event_ext: "Evento Externo"
+    event_org: "Evento de la Organización"
+    error_edit_msg: "Error editando mensaje"
   layouts:
     landing:
       meta_description: "Estratega, una herramienta de advocacy"

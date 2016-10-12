@@ -41,4 +41,7 @@
 //= require angular_files/solutions_form
 //= require angular_files/project_controller
 
+//= require i18n
+//= require i18n/translations
+
 //= require projects.js

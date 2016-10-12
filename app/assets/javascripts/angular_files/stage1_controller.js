@@ -10,7 +10,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
       scroll_to_top();
     });
 
-  $scope.btn_problem = "Add";
+  $scope.btn_problem = I18n.t('js_texts.add');
   $scope.problem = {
     title: "",
     description: ""
@@ -34,7 +34,7 @@ app.controller("stage1Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
           .success(function (data) {
             $scope.problem = data;
             if(data.title!='.')
-              $scope.btn_problem = "Edit";
+              $scope.btn_problem = I18n.t('js_texts.edit');
           })
           .error(function (){
             $scope.messages = { response: false, message: $attrs.errorproject }

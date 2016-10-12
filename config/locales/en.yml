@@ -2,6 +2,9 @@ en:
   #
   # Landing page and tags
   #
+  js_texts:
+    add: "Add"
+    edit: "Edit"
   layouts:
     landing:
       meta_description: "An advocacy tool"

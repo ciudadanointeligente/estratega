@@ -17,7 +17,7 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
         $scope.projects = data;
       })
       .error(function (){
-        $scope.messages = { response: false, message: "Error getting projects."}
+        $scope.messages = { response: false, message: I18n.t('js_texts.error_getting_projects')}
       })
   }
 
@@ -27,7 +27,7 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
         $scope.public_projects = data;
       })
       .error(function(){
-        $scope.messages = { response: false, message: "Error getting public projects."}
+        $scope.messages = { response: false, message: I18n.t('js_texts.error_public_projects')}
       })
   }
 
@@ -39,15 +39,15 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
     if( $scope.current_project.id ) {
       $http.put('/projects/' + $scope.current_project.id, $scope.current_project)
         .success(function (data){
-          $scope.messages = { response: true, message: "Project Updated!"}
+          $scope.messages = { response: true, message: I18n.t('js_texts.project_updated')}
         })
         .error(function(){
-          $scope.messages = { response: false, message: "Error updating project!"}
+          $scope.messages = { response: false, message: I18n.t('js_texts.project_delete_error')}
         });
     } else {
       $http.post('/projects', $scope.current_project)
         .success(function (data){
-          $scope.messages = { response: true, message: "Project created!"}
+          $scope.messages = { response: true, message: I18n.t('js_texts.project_created')}
         })
         .error(function(error){
           $scope.messages = { response: false, message: error.errors.base[0] }
@@ -64,7 +64,7 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
           $scope.current_project = data;
         })
         .error(function(){
-          $scope.messages = { response: false, message: "Error getting data!!!"}
+          $scope.messages = { response: false, message: I18n.t('js_texts.error_get_data')}
         });
     } else {
       $scope.current_project = { title: "", description: "", focus_area: "", public: false };
@@ -97,25 +97,25 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
     $http.get('/projects/'+project.id+'.json')
         .success(function (data) {
           if( data ) {
-            var msg = '¿Are you sure to delete this project?';
+            var msg = I18n.t('js_texts.delete_confirmation');
             if( data.members.length > 1 )
-              msg = 'This project is shared. ¿Are you sure to delete this project?';
+              msg = I18n.t('js_texts.shared_project_delete_confirmation');
 
 
             if(confirm(msg)) {
               $http.delete('/projects/' + data.id)
                   .success(function(){
-                    $scope.messages = { response: true, message: "Project deleted!"}
+                    $scope.messages = { response: true, message:  I18n.t('js_texts.project_deleted')}
                     get_projects();
                   })
                   .error(function(){
-                    $scope.messages = { response: false, message: "Error deleting project!"}
+                    $scope.messages = { response: false, message:  I18n.t('js_texts.project_delete_error')}
                   });
             }
           }
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error deleting project!"}
+          $scope.messages = { response: false, message:  I18n.t('js_texts.project_delete_error')}
         });
   }
 
@@ -144,11 +144,11 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
   function send_invitations(project) {
     $http.post('projects/'+ project.id +'/share', $scope.share)
         .success(function(data){
-          $scope.messages = {response: true, message: "Shared with users"}
+          $scope.messages = {response: true, message:  I18n.t('js_texts.shared')}
           $scope.share = {share_users: "", message: ""}
         })
         .error(function(){
-          $scope.messages = {response: false, message: "Error while sharing"}
+          $scope.messages = {response: false, message:  I18n.t('js_texts.share_error')}
         })
   }
 
@@ -158,7 +158,7 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
 
 
   $scope.delete_shared_user = function (user){
-    var msg = '¿Sure you want to delete this collaborator?';
+    var msg =  I18n.t('js_texts.colaborator_delete_confirmation');
 
     if(confirm(msg)) {
       $http.delete('/projects/'+$scope.current_project.id+'/unshare?user_id='+user.id)
@@ -166,7 +166,7 @@ app.controller("projectCtrl", ["$scope", "$http", "$aside", "$location", functio
           get_project_info($scope.current_project)
         })
         .error(function (){
-          $scope.messages = { response: false, message: "Error while unlinking user!"}
+          $scope.messages = { response: false, message:  I18n.t('js_texts.unlinking_error')}
         })
     }
   }

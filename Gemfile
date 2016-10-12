@@ -31,6 +31,7 @@ gem 'http_accept_language'
 gem 'seed_dump'
 gem 'newrelic_rpm'
 gem "ci_reporter"
+gem "i18n-js", ">= 3.0.0.rc11"
 
 group :development do
   gem 'better_errors'
@@ -43,7 +44,7 @@ group :development do
   gem 'rb-fchange', :require=>false
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
-  
+
 end
 
 group :development, :test do
