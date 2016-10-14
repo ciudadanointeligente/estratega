@@ -2,6 +2,10 @@ en:
   #
   # Landing page and tags
   #
+  resources:
+    aside:
+      cancel: "Cancel"
+      create: "Create"
   js_texts:
     add: "Add"
     edit: "Edit"
@@ -205,7 +209,7 @@ en:
       empty: "( No data )"
       uncreated: "( uncreated )"
       actors: "Actors"
-      print: "Print"
+      print: "  Print"
       focus_area: "Focus area"
       real_problem: "Real world problem"
       goal: "Goal"
@@ -277,8 +281,9 @@ en:
       rate_success_objectives: "Success Rate"
       objectives_succesful: "Succesful Objectives"
       asks: Asks
+      objectives: "Objectives"
     resources:
-      new_resource: "Add resource"
+      new_resource: "  Add resource"
       title: "Title"
       description: "Description"
       tags: "Tags"
@@ -287,6 +292,8 @@ en:
       actions: "Actions"
       edit: "Edit"
       delete: "Delete"
+      cancel: "Cancel"
+      name: "Name"
     real_problem_modal:
       real_problem: "Real world problem"
       title: "Title"
@@ -295,6 +302,8 @@ en:
       description_placeholder: "Describe the argument"
       save: "Save"
       cancel: "Cancel"
+    aside:
+      cancel: "Cancelar"
     #
     # Stage 1
     #

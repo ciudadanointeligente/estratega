@@ -18,10 +18,10 @@
     </div>
     <div class="form-group">
         <%= f.input :public , label:"Archivo público", input_html: {:"ng-model" => "current_resource.public"} %>
-    </div>        
+    </div>
 </div>
 <div class="modal-footer">
-    <%= f.button :button, class: "btn btn-primary", "ng-click" => "add_resource($event)" %>
-        <button class="btn btn-warning" ng-click="cancel($event)">Cancelar</button>
+    <%= f.button :button, t('.create'),  class: "btn btn-primary", "ng-click" => "add_resource($event)" %>
+        <button class="btn btn-warning" ng-click="cancel($event)"><%= t('.cancel') %> </button>
     <% end %>
 </div>

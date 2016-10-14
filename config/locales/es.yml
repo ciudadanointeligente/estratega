@@ -2,6 +2,10 @@ es:
   #
   # Landing page and tags
   #
+  resources:
+    aside:
+      cancel: "Cancelar"
+      create: "Crear"
   js_texts:
     add: "Añadir"
     edit: "Editar"
@@ -209,7 +213,7 @@ es:
       empty: "( Sin datos )"
       uncreated: "( No creado )"
       actors: "Actores"
-      print: "Imprimir"
+      print: "  Imprimir"
       focus_area: "Área de focalización"
       real_problem: "Problema público"
       goal: "Meta"
@@ -281,8 +285,9 @@ es:
       rate_success_objectives: "Porcentaje de Objetivos Exitosos"
       objectives_succesful: "Objetivos Exitosos"
       asks: "Peticiones"
+      objectives: "Objetivos"
     resources:
-      new_resource: "Añadir recurso"
+      new_resource: "  Añadir recurso"
       title: "Título"
       description: "Descripción"
       tags: "Tags"
@@ -291,6 +296,8 @@ es:
       actions: "Acciones"
       edit: "Editar"
       delete: "Eliminar"
+      cancel: "Cancelar"
+      name: "Nombre"
     real_problem_modal:
       real_problem: "Problema público"
       title: "Título"
@@ -298,6 +305,8 @@ es:
       description: "Argumento"
       description_placeholder: "Describa el argumento"
       save: "Guardar"
+      cancel: "Cancelar"
+    aside:
       cancel: "Cancelar"
     #
     # Stage 1

@@ -11,7 +11,7 @@
             <p><%= t('.empty') %></p>
           <% else %>
             <div class="box">
-              <button class="btn btn-warning pull-right" onclick="window.print()"><i class="fa fa-print"></i> Imprimir Resumen</button>
+              <button class="btn btn-warning pull-right" onclick="window.print()"><i class="fa fa-print"></i><%= t('.print') %></button>
               <div class="label label-default"><%= t('.real_problem') %></div>
               <h3><%= @real_problem.title.presence || t('.empty') %></h3>
               <p><%= @real_problem.description.presence || t('.empty') %></p>
@@ -104,7 +104,7 @@
                 <% end %>
               <% end %>
               <!-- end enabling factors -->
-              
+
               <!-- actors -->
               <div>
                 <% if objective.actors.nil? %>
@@ -126,7 +126,7 @@
                 <% end %>
               </div>
               <!-- end actors -->
-              
+
               <!-- outcomes -->
               <div class="outcome">
                 <% if objective.outcomes.nil? %>
@@ -159,7 +159,7 @@
                               <ul style="list-style-type:disc">
                                 <% ask.messages.each_with_index do |m,i| %>
                                 <li><span class='blue'><%= t('.message') %>  <%= i+1 %></span></li>
-                                  <p><%= m.description %></p> 
+                                  <p><%= m.description %></p>
                                   <p><%= t('.actors') %>: <%= m.actor ? m.actor.name : ""%></p>
                                   <p><%= t('.activity') %>: <%= m.activity ? m.activity.description : ""%></p>
                                 <% end %>
