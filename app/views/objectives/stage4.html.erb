@@ -76,9 +76,9 @@
                           </td>
                           <td>{{outcome.outcome_type_id}}</td>
                           <td class="text-right">
-                            <a href="#" title="Editar" ng-click="add_edit_outcome(outcome)"><i class="fa fa-pencil-square-o"></i></a>
-                            <a href="#" title="Indicators" ng-click="add_edit_indicator(outcome)"><i class="fa fa-line-chart"></i></a>
-                            <a href="#" title="Eliminar" ng-click="delete_outcome(outcome)"><i class="fa fa-trash"></i></a>
+                            <a href="#" title="<%= t('.edit') %>" ng-click="add_edit_outcome(outcome)"><i class="fa fa-pencil-square-o"></i></a>
+                            <a href="#" title="<%= t('.indicators') %>" ng-click="add_edit_indicator(outcome)"><i class="fa fa-line-chart"></i></a>
+                            <a href="#" title="<%= t('.delete') %>" ng-click="delete_outcome(outcome)"><i class="fa fa-trash"></i></a>
                           </td>
                         </tr>
                       </tbody>

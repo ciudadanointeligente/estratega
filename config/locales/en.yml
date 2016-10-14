@@ -893,6 +893,8 @@ en:
       outcomes: "Outcomes"
       actions: "Actions"
       date: "Date"
+      actors: "Actors"
+      type: "Type"
       progress: "% Progress"
       completion: "Completed"
       download_as_ical: "Downloads activities as iCal"
@@ -902,6 +904,8 @@ en:
       error_updating_activity: "Error while updating activity information"
       error_creating_activity: "Error while creating activity information"
       confirm_delete_activity: "Are you sure you want to delete this activity?"
+      edit: "Edit"
+      delete: "Delete"
     modal_activity: # modal 'activities' of stage 5
       activities: "Activities"
       title: "Title"
@@ -1186,7 +1190,7 @@ en:
       delete: "Delete"
       date: "Date"
       actors: "Actors"
-      actions: "Actions"
+      activities: "Activities"
     asks_modal: # modal 'add ask' of stage 6
       asks: "Asks"
       actor: "Actor"
@@ -1276,6 +1280,8 @@ en:
       edit: "Edit"
       delete: "Delete"
       confirm_delete_msj: "Are you sure you want to delete this message?"
+      activities: "Activities"
+      actors: "Actors"
   user_mailer:
     exist_user_share:
       exist_add_to_share: 'You are invited to collaborate in the project:'

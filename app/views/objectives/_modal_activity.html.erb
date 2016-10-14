@@ -21,15 +21,15 @@
       </select>
     </div>
     <div class="form-group">
-      <label for="actors"><%= t('.actors') %></label>
+      <label for="actors"><%= t('.actors_label') %></label>
       <select name="actor_ids" multiple="multiple" ng-multiple="true" ng-options="actor.id as actor.name for actor in actors" ng-model="current_activity.actor_ids" class="form-control"></select>
     </div>
     <div class="form-group">
-      <label for="start_date"><%= t('.start_date') %> (Elegida: {{current_activity.start_date | date:'dd/MM/yyyy'}})</label>
+      <label for="start_date"><%= t('.start_date') %> ({{current_activity.start_date | date:'dd/MM/yyyy'}})</label>
       <input type="date" name="start_date" class="form-control" ng-model="current_activity.start_date" placeholder="2000/12/24" min="1900-01-01"></input>
     </div>
     <div class="form-group">
-      <label for="end_date"><%= t('.end_date') %> (Elegida: {{current_activity.end_date | date:'dd/MM/yyyy'}})</label>
+      <label for="end_date"><%= t('.end_date') %> ({{current_activity.end_date | date:'dd/MM/yyyy'}})</label>
       <input type="date" name="end_date" class="form-control" ng-model="current_activity.end_date" placeholder="2000/12/24" min="1900-01-01"></input>
     </div>
     <div class="modal-footer">

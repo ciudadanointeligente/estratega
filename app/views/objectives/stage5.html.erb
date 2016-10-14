@@ -61,16 +61,16 @@
                         <li>{{ actor }}</li>
                       </ul>
                     </td>
-                    
+
                     <td class="text-left">{{ activity.activity_types }}</td>
-                  
+
                     <td class="text-right" nowrap>
-                      <i class="fa fa-pencil-square-o" ng-click="add_edit_activity(activity)" title="Edit"></i>
+                      <i class="fa fa-pencil-square-o" ng-click="add_edit_activity(activity)" title="<%= t('.edit') %>"></i>
                       <!--
                       <i class="fa fa-line-chart" ng-click="add_edit_indicator(activity)" title="Indicators"></i>
                       -->
                       <a href="" id="activity_{{activity.id}}"></a><i class="fa fa-calendar" ng-if="activity.start_date" ng-click="get_ical(activity)" title="iCal"></i>
-                      <i class="fa fa-trash" ng-click="delete_activity(activity)" title="Delete"></i>
+                      <i class="fa fa-trash" ng-click="delete_activity(activity)" title="<%= t('.delete') %>"></i>
                   </tr>
                 </tbody>
               </table>

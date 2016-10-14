@@ -870,6 +870,8 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
       outcomes: "Resultados"
       actions: "Acciones"
       date: "Fecha"
+      actors: "Actores"
+      type: "Tipo"
       progress: "% Éxito"
       completion: "Finalizado"
       download_as_ical: "Exportar actividades en iCal"
@@ -879,6 +881,8 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
       error_updating_activity: "Error al obtener la información de las actividades"
       error_creating_activity: "Error al crear la información de las actividades"
       confirm_delete_activity: "¿Está seguro que quiere eliminar esta actividad?"
+      edit: "Editar"
+      delete: "Eliminar"
     modal_activity: # modal 'activities' of stage 5
       activities: "Actividades"
       title: "Título"
@@ -961,7 +965,7 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
       delete: "Eliminar"
       date: "Fecha"
       actors: "Actores"
-      actions: "Acciones"
+      activities: "Actividades"
     asks_modal: # modal 'add ask' of stage 6
       asks: "Peticiones"
       actor: "Actor"
@@ -1038,8 +1042,8 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
       edit: "Editar"
       delete: "Eliminar"
       confirm_delete_msj: "¿Está seguro que quiere eliminar este mensaje?"
-
-
+      activities: "Actividades"
+      actors: "Actores"
   demo:
     index:
       step_one: "Paso uno"
