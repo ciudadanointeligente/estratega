@@ -436,7 +436,7 @@ en:
       step_one: "Here we have 2 types of income: Goal and Objectives"
       step_two: "Remember that you can <strong>Add</strong> and <strong>Edit</strong> with orange buttons and have <strong>Additional Information</strong> with blue buttons"
       step_three: "This alert will inform the number of solutions without associated objectives"
-      step_four: "Pressing the text of the alert window will display a list of solutions, colored in <strong class='red'>red</strong> are unassigned"
+      step_four: "Pressing the text of the alert window will display a list of unassigned solutions"
       step_five: "In this selection we <strong>add Objectives</strong> and <strong>partner with Solutions</strong>"
     goal_modal: # modal `goal` of stage 2
       goal: "Goal"
@@ -1357,7 +1357,7 @@ en:
       new_user_share:
         added: "Added to collaborate"
         title: "Estratega Project Shared"
-        new_add_to_share: 'You are invited to activate your account and collaborate in project: '        
+        new_add_to_share: 'You are invited to activate your account and collaborate in project: '
         if_not_account: "If you don't have an estratega account, you can activate it on the following link: "
         activate_account: 'Activate my account.'
 

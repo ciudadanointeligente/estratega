@@ -163,7 +163,7 @@ app.controller("stage6Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
         .success(function(data){
         })
         .error(function(){
-          $scope.messages = { response: false, message: I18n.t('js_texts.error_update_msg')'Error updating message.' }
+          $scope.messages = { response: false, message: I18n.t('js_texts.error_update_msg') }
         })
     } else {
       $scope.current_msj.ask_id = $scope.ask_id;

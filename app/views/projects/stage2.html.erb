@@ -57,8 +57,8 @@
               </div>
             </div>
             <div class="contenedor">
-              <div class="alert alert-info" role="alert" ng-class="{hidden: unrelated_solutions < 1}" data-step="4" data-intro="<%= t('.step_three') %>">
-                <i class="fa fa-exclamation-triangle"></i> <a href="#" ng-click="list_policy_solutions()" data-step="5" data-intro="<%= t('.step_four') %>"><%= t('.without_objectives_begin_sentence') %> {{unrelated_solutions}} <%= t('.without_objectives_end_sentence') %></a>
+              <div class="alert alert-info" role="alert" ng-class="{hidden: unrelated_solutions < 1}" data-step="{{unrelated_solutions >= 1 ? '4' : ''}}" data-intro="<%= t('.step_three') %>">
+                <i class="fa fa-exclamation-triangle"></i> <a href="#" ng-click="list_policy_solutions()" data-step="{{unrelated_solutions >= 1 ? '5' : ''}}" data-intro="<%= t('.step_four') %>"><%= t('.without_objectives_begin_sentence') %> {{unrelated_solutions}} <%= t('.without_objectives_end_sentence') %></a>
               </div>
 
               <div>
