@@ -3,10 +3,13 @@
     <h3 class="modal-title"><%= t('.enabling_factor') %></h3>
   </div>
   <div class="modal-body">
-    <form>
+    <form id="factor_form">
       <div class="form-group">
-        <label for="title"><%= t('.description') %></label>
-        <input type="text" name="description" class="form-control" ng-model="current_enabling_factor" placeholder="<%= t('.description_placeholder') %>">
+        <!-- <label for="title"><%= t('.description') %></label> -->
+        <!-- <input type="text" name="description" class="form-control" ng-model="current_enabling_factor" placeholder="<%= t('.description_placeholder') %>"> -->
+        <textarea name="description" id="desc_area" form="factor_form" cols="30" rows="10" class="form-control" ng-model="current_enabling_factor" placeholder="<%= t('.description_placeholder') %>">
+          {{current_enabling_factor}}
+        </textarea>
       </div>
     </form>
   </div>
