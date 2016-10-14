@@ -441,6 +441,10 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
       step_three: "Esta alerta le informará sobre el número de soluciones sin objetivo asociado"
       step_four: "Al pulsar el texto de la ventana de alerta se mostrará una lista de soluciones que estan sin asignar"
       step_five: "En esta selección se puede <strong>Agregar objetivos</strong> y <strong> asociarse con soluciones</strong>"
+      edit: "Editar"
+      prioritize: "Priorizar"
+      indicator: "Indicadores"
+      delete: "Eliminar"
     goal_modal: # modal `goal` of stage 2
       goal: "Meta"
       title: "Título"

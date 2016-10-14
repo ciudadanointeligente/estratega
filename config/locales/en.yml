@@ -438,6 +438,10 @@ en:
       step_three: "This alert will inform the number of solutions without associated objectives"
       step_four: "Pressing the text of the alert window will display a list of unassigned solutions"
       step_five: "In this selection we <strong>add Objectives</strong> and <strong>partner with Solutions</strong>"
+      edit: "Edit"
+      prioritize: "Prioritize"
+      indicator: "Indicators"
+      delete: "Delete"
     goal_modal: # modal `goal` of stage 2
       goal: "Goal"
       title: "Title"
