@@ -1353,11 +1353,12 @@ en:
       exist_user_share:
         shared: "Shared a project"
         title: "Estratega Project Shared"
-        exist_add_to_share: 'You are invited to collaborate in project:'
+        exist_add_to_share: 'You are invited to collaborate in project: '
       new_user_share:
         added: "Added to collaborate"
         title: "Estratega Project Shared"
-        new_add_to_share: 'You are invited to activate your account and collaborate in project:'
+        new_add_to_share: 'You are invited to activate your account and collaborate in project: '        
+        if_not_account: "If you don't have an estratega account, you can activate it on the following link: "
         activate_account: 'Activate my account.'
 
   activerecord:

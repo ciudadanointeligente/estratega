@@ -5,9 +5,7 @@
   <title><%= t('.title')%></title>
 </head>
 <body>
-  <p><%= t('.exist_add_to_share') %></p>
-
-  <p><%= link_to @project.title, project_url(@project), subdomain: Apartment::Tenant.current %></p>
+  <p><%= t('.exist_add_to_share') %> <%= link_to @project.title, project_url(@project), subdomain: Apartment::Tenant.current %></p>
 
   <% if @message %>
     <p><%= @message %></p>

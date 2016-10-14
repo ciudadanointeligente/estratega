@@ -1112,11 +1112,12 @@ Utilizando los mismos criterios se deben definir los objetivos del plan estraté
       exist_user_share:
         shared: "Proyecto de Estratega compartido"
         title: "Proyecto de Estratega Compartido"
-        exist_add_to_share: 'Estas invitado a colaborar con el proyecto:'
+        exist_add_to_share: 'Estas invitado a colaborar con el proyecto: '
       new_user_share:
         added: "Añadido para colaborar"
         title: "Proyecto de Estratega Compartido"
-        new_add_to_share: 'Estas invitado para activar tu cuenta y colaborar con el proyecto:'
+        new_add_to_share: 'Estas invitado para activar tu cuenta y colaborar con el proyecto: '
+        if_not_account: "Si no tiene cuenta en Estratega, puede activarla en el siguiente enlace: "
         activate_account: 'Activar mi cuenta'
   admin:
     js:

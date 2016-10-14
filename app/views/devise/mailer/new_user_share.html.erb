@@ -5,14 +5,14 @@
   <title><%= t('.title')%></title>
 </head>
 <body>
-  <p><%= t('.new_add_to_share') %></p>
-
-  <p><%= link_to @project.title, project_url(@project) %></p>
+  <p><%= t('.new_add_to_share') %> <%= link_to @project.title, project_url(@project) %></p>
 
   <% if @message %>
     <p><%= @message %></p>
   <% end %>
-
+  <p>
+  <%= t('.if_not_account') %>
   <%= link_to t('.activate_account'), edit_password_url(@user, reset_password_token: @token, subdomain: Apartment::Tenant.current) %>
+  </p>
 </body>
 </html>
