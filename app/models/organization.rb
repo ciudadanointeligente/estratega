@@ -8,10 +8,20 @@ class Organization < ActiveRecord::Base
   has_attached_file :logo, styles: { medium: "200x100>", thumb: "100x50>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
 
-    after_create :create_tenant
-    after_destroy :drop_tenant
+  after_create :create_tenant
+  after_destroy :drop_tenant
+  after_commit :flush_cache
+
+  def self.cached_organizations
+    Rails.cache.fetch('organizations')  { Organization.pluck :subdomain }
+  end
 
   private
+
+    def flush_cache
+      p 'clearing organizations cache'
+      Rails.cache.delete('organizations')
+    end
 
     def create_tenant
       Apartment::Tenant.create(subdomain)

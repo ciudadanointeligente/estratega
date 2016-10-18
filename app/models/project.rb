@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
 
   validates :title, presence: true
   validate :max_projects_not_reached
-  
+
   def max_projects_not_reached
     tenant = Apartment::Tenant.current
     if tenant != 'public'
@@ -19,7 +19,7 @@ class Project < ActiveRecord::Base
       end
     end
   end
-  
+
   def asks
     @asks = []
     self.objectives.each do |objective|
@@ -27,9 +27,9 @@ class Project < ActiveRecord::Base
         @asks << ask
       end
     end
-    return @asks    
+    return @asks
   end
-  
+
   def outcomes
     @outcomes = []
     self.objectives.each do |objective|
@@ -49,7 +49,7 @@ class Project < ActiveRecord::Base
   #   end
   #   return @activities
   # end
-  
+
   def as_ical
     cal = Icalendar::Calendar.new
     self.activities.each do |a|
@@ -68,4 +68,7 @@ class Project < ActiveRecord::Base
     return cal.to_ical
   end
   
+  def cache_key
+    [super, Apartment::Tenant.current].join("/")
+  end
 end

@@ -198,39 +198,9 @@
                   <% end %>
                 <% end %>
               </div>
-              <!-- end activity -->
-              <!-- ask -->
-              <!--<div class="ask">-->
-              <!--  <% if objective.asks.nil? %>-->
-              <!--    <p></p>-->
-              <!--  <% elsif objective.asks.count < 1 %>-->
-              <!--    <p></p>-->
-              <!--  <% else %>-->
-              <!--    <div class="separator"></div>-->
-              <!--    <h4>Peticiones</h4>-->
-              <!--    <% objective.asks.each_with_index do |ask, i| %>-->
-              <!--      <span class='blue'>Petición <%= i+1 %>. </span><b><%= ask.description.presence || t('.empty') %></b>-->
-              <!--      <ul style="list-style-type:disc">-->
-              <!--        <% ask.messages.each do |m| %>-->
-              <!--        <li>-->
-              <!--          <%= m.description %>-->
-              <!--          <p><%= t('.actors') %></p>-->
-              <!--          <ul>-->
-              <!--            <li><%= m.actor ? m.actor.name : ""%></li>-->
-              <!--          </ul>-->
-              <!--          <li>Objetivos esperados: <%= get_objective_related ask.objective_id %></li>-->
-              <!--        </li>-->
-              <!--        <% end %>-->
-              <!--      </ul>-->
-              <!--    <% end %>-->
-              <!--  <% end %>-->
-              <!--</div>-->
-              <!-- end ask -->
           <% end %>
         </div>
           <% end %>
-          <!-- end objectives -->
-
     </div>
   </div>
 </div>

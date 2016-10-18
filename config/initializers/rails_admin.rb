@@ -1,5 +1,5 @@
 RailsAdmin.config do |config|
-  config.main_app_name = ["logo.png", "Admin"]
+  config.main_app_name = ["logo.svg", "Admin"]
   ### Popular gems integration
 
   ## == Devise ==
