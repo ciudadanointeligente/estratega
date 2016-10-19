@@ -29,8 +29,6 @@ gem 'rails_admin'
 gem 'paperclip'
 gem 'http_accept_language'
 gem 'seed_dump'
-gem 'newrelic_rpm'
-gem "ci_reporter"
 gem "i18n-js", ">= 3.0.0.rc11"
 gem 'actionpack-page_caching'
 

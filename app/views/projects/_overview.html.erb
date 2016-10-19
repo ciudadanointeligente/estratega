@@ -69,7 +69,7 @@
           <!-- objetives -->
           <% if @objectives.nil? %>
             <p></p>
-          <% elsif @objectives.count < 1 %>
+          <% elsif @project.cached_prioritized_objectives_count < 1 %>
             <p></p>
           <% else %>
             <div class="label label-default"><%= t('.objective') %> <%= i+1 %></div>
@@ -107,14 +107,14 @@
 
               <!-- actors -->
               <div>
-                <% if objective.actors.nil? %>
+                <% if objective.cached_actors.nil? %>
                   <p></p>
-                <% elsif objective.actors.count < 1 %>
+                <% elsif objective.cached_actors.count < 1 %>
                   <p></p>
                 <% else %>
                   <div class="separator"></div>
                   <h4><%= t('.actors') %></h4>
-                    <% objective.actors.each_with_index do |actor, i| %>
+                    <% objective.cached_actors.each_with_index do |actor, i| %>
                       <p><span class="blue"><%= t('.actor') %> </span><b><%= i+1 %>. <%= actor.name %></b></p>
                     <p><%= actor.description.presence || t('.empty') %></p>
                     <ul style="list-style-type:disc">
@@ -131,12 +131,12 @@
               <div class="outcome">
                 <% if objective.outcomes.nil? %>
                   <p></p>
-                <% elsif objective.outcomes.count < 1 %>
+                <% elsif objective.cached_outcomes_count < 1 %>
                   <p></p>
                 <% else %>
                   <div class="separator"></div>
                   <h4><%= t('.outcomes')%></h4>
-                    <% objective.outcomes.each_with_index do |outcome, i| %>
+                    <% objective.cached_outcomes.each_with_index do |outcome, i| %>
                       <span class='blue'><%= t('.outcome')%> <%= i+1 %>. </span><b><%= outcome.description.presence || t('.empty') %></b>
                     <ul style="list-style-type:disc">
                       <li><%= t('.outcome_type')%>: <%= outcome.outcome_type_id %></li>
@@ -144,11 +144,11 @@
                       <div class="asks">
                         <% if outcome.asks.nil? %>
                           <p></p>
-                        <% elsif outcome.asks.count < 1 %>
+                        <% elsif outcome.cached_asks_count < 1 %>
                           <p></p>
                         <% else %>
                           <h4><%= t('.asks') %></h4>
-                          <% outcome.asks.each_with_index do |ask, i| %>
+                          <% outcome.cached_asks.each_with_index do |ask, i| %>
                             <span class='blue'><%= t('.ask') %> <%= i+1 %>. </span><b><%= ask.description.presence || t('.empty') %></b>
                             <% if ask.messages.nil? %>
                               <p></p>
@@ -175,24 +175,24 @@
               <!-- end outcomes -->
               <!-- activity -->
               <div>
-                <% if objective.activities.nil? %>
+                <% if objective.cached_activities.nil? %>
                   <p></p>
-                <% elsif objective.activities.count < 1 %>
+                <% elsif objective.cached_activities_count < 1 %>
                   <p></p>
                 <% else %>
                   <div class="separator"></div>
                   <h4><%= t('.activities') %></h4>
-                  <% objective.activities.each_with_index do |activity, i| %>
+                  <% objective.cached_activities.each_with_index do |activity, i| %>
                     <span class='blue'><%= t('.activity') %> <%= i+1 %>. </span><b><%= activity.title.presence || t('.empty') %></b>
                     <p><%= activity.description.presence || t('.empty') %></p>
-                    <% if !activity.indicator.blank? %>
+                    <% if !activity.cached_indicator.blank? %>
                     <ul>
-                      <% if !activity.indicator.owner_name.blank? %><li><b><%= t('.owner_name') %>:</b> <%= activity.indicator.owner_name %></li><% end %>
-                      <% if !activity.indicator.owner_role.blank? %><li><b><%= t('.owner_role') %>:</b> <%= activity.indicator.owner_role %></li><% end %>
-                      <% if !activity.indicator.expected_results.blank? %><li><b><%= t('.expected_results') %>:</b> <%= activity.indicator.expected_results %></li><% end %>
-                      <% if !activity.indicator.obtained_results.blank? %><li><b><%= t('.obtained_results') %>:</b> <%= activity.indicator.obtained_results %></li><% end %>
-                      <% if !activity.indicator.settings.blank? %><li><b><%= t('.adjustments') %>:</b> <%= activity.indicator.settings %></li><% end %>
-                      <% if !activity.indicator.percentage.blank? %><li><b><%= t('.percentage') %>:</b> <%= activity.indicator.percentage %> %</li><% end %>
+                      <% if !activity.cached_indicator.owner_name.blank? %><li><b><%= t('.owner_name') %>:</b> <%= activity.cached_indicator.owner_name %></li><% end %>
+                      <% if !activity.cached_indicator.owner_role.blank? %><li><b><%= t('.owner_role') %>:</b> <%= activity.cached_indicator.owner_role %></li><% end %>
+                      <% if !activity.cached_indicator.expected_results.blank? %><li><b><%= t('.expected_results') %>:</b> <%= activity.cached_indicator.expected_results %></li><% end %>
+                      <% if !activity.cached_indicator.obtained_results.blank? %><li><b><%= t('.obtained_results') %>:</b> <%= activity.cached_indicator.obtained_results %></li><% end %>
+                      <% if !activity.cached_indicator.settings.blank? %><li><b><%= t('.adjustments') %>:</b> <%= activity.cached_indicator.settings %></li><% end %>
+                      <% if !activity.cached_indicator.percentage.blank? %><li><b><%= t('.percentage') %>:</b> <%= activity.cached_indicator.percentage %> %</li><% end %>
                     </ul>
                     <% end %>
                   <% end %>

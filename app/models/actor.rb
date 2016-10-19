@@ -1,6 +1,6 @@
 class Actor < ActiveRecord::Base
   validates :name, presence: true
-  has_and_belongs_to_many :objectives
+  has_and_belongs_to_many :objectives, touch: true
   has_many :messages
   has_and_belongs_to_many :activities
   has_and_belongs_to_many :asks

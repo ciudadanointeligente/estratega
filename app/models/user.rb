@@ -6,4 +6,16 @@ class User < ActiveRecord::Base
   has_many :sandboxes
   has_many :projects, through: :permissions
   has_many :permissions, dependent: :destroy
+
+  def cache_key
+    [super, Apartment::Tenant.current].join("/")
+  end
+
+  def cached_projects
+    Rails.cache.fetch([self, 'projects']) { self.projects.to_a }
+  end
+
+  def flush_cache
+    Rails.cache.delete([self, 'projects'])
+  end
 end
