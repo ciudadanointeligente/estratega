@@ -38,7 +38,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr title="{{ project.description | limitTo: 140 }}" ng-repeat="project in projects | orderBy:'title'">
+            <tr title="{{ project.description | limitTo: 140 }}" ng-repeat="project in projects track by project.id | orderBy:'title'">
               <td> <a href="/projects/{{ project.id }}" target="_self">{{ project.title }}</a> </td>
               <td> {{ project.focus_area }} </td>
               <td> <i class="fa fa-globe" ng-if="project.public" title="<%= t('.public') %>"></i> </td>
@@ -64,7 +64,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr title="{{ project.description | limitTo: 140 }}" ng-repeat="project in public_projects">
+            <tr title="{{ project.description | limitTo: 140 }}" ng-repeat="project in public_projects track by project.id">
               <td><a href="/projects/{{ project.id }}/overview" target="_self">{{ project.title }}</a></td>
               <td>{{ project.focus_area }}</td>
               <td class="controllers">

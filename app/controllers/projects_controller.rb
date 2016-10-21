@@ -23,10 +23,11 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = current_user.projects
+    @projects = current_user.cached_projects
     if params[:public]
-      my_projects = current_user.projects
-      public_projects = Project.where(public: :true)
+      my_projects = current_user.cached_projects
+      #public_projects = Project.where(public: :true)
+      public_projects = Project.cached_public_projects
       @projects = public_projects - my_projects
     end
     #@projects = @projects.order(:title)
@@ -35,7 +36,7 @@ class ProjectsController < ApplicationController
 
   def show
     authorize @project
-    @objectives = @project.objectives.where('prioritized = true')
+    @objectives = @project.cached_prioritized_objectives
     @a_size = 0
     @barriers_size = 0
     @factors_size = 0
@@ -88,12 +89,12 @@ class ProjectsController < ApplicationController
       {type: "Organizational visibility or issue recognition", values: ["Issue/policy analysis and research"]}
     ];
 
-    if !@project.real_problem.blank?
-      @real_problem = @project.real_problem
-      if !@project.real_problem.try(:policy_problems).try(:blank?)
-        @policy_problems = @project.real_problem.policy_problems
-        if !@project.real_problem.try(:get_solutions).try(:blank?)
-          @solutions = @project.real_problem.get_solutions
+    if !@project.cached_real_problem.blank?
+      @real_problem = @project.cached_real_problem
+      if !@project.cached_real_problem.try(:policy_problems).try(:blank?)
+        @policy_problems = @project.cached_real_problem.policy_problems
+        if !@project.cached_real_problem.try(:get_solutions).try(:blank?)
+          @solutions = @project.cached_real_problem.get_solutions
         end
       end
     end
@@ -104,136 +105,136 @@ class ProjectsController < ApplicationController
     @fail_asks_by_month = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     @project.asks.each do |ask|
-      if !ask.indicator.nil?
+      if !ask.cached_indicator.nil?
         @completed_asks = @completed_asks + 1
-        if !ask.indicator.percentage.nil?
-          if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+        if !ask.cached_indicator.percentage.nil?
+          if ( ask.cached_indicator.percentage >= 60 && ask.cached_indicator.percentage <= 100 )
             @successful_asks = @successful_asks + 1
-          elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+          elsif ( ask.cached_indicator.percentage >= 39 && ask.cached_indicator.percentage <= 59 )
             @neutral_asks = @neutral_asks + 1
-          elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+          elsif ( ask.cached_indicator.percentage >= 0 && ask.cached_indicator.percentage <= 38 )
             @failed_asks = @failed_asks + 1
             @objectives_with_failed_asks << ask.objective
           end
         end
-        if ( ask.indicator.updated_at.strftime("%Y") == today.strftime("%Y") )
-            if ask.indicator.updated_at.strftime("%B") == "January"
-              if !ask.indicator.percentage.nil?
-                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+        if ( ask.cached_indicator.updated_at.strftime("%Y") == today.strftime("%Y") )
+            if ask.cached_indicator.updated_at.strftime("%B") == "January"
+              if !ask.cached_indicator.percentage.nil?
+                if ( ask.cached_indicator.percentage >= 60 && ask.cached_indicator.percentage <= 100 )
                    @success_asks_by_month[0] = @success_asks_by_month[0] + 1
-                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                elsif ( ask.cached_indicator.percentage >= 39 && ask.cached_indicator.percentage <= 59 )
                   @neutral_asks_by_month[0] = @neutral_asks_by_month[0] + 1
-                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                elsif ( ask.cached_indicator.percentage >= 0 && ask.cached_indicator.percentage <= 38 )
                   @fail_asks_by_month[0] = @fail_asks_by_month[0] + 1
                 end
               end
-            elsif ask.indicator.updated_at.strftime("%B") == "February"
-              if !ask.indicator.percentage.nil?
-                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+            elsif ask.cached_indicator.updated_at.strftime("%B") == "February"
+              if !ask.cached_indicator.percentage.nil?
+                if ( ask.cached_indicator.percentage >= 60 && ask.cached_indicator.percentage <= 100 )
                    @success_asks_by_month[1] = @success_asks_by_month[1] + 1
-                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                elsif ( ask.cached_indicator.percentage >= 39 && ask.cached_indicator.percentage <= 59 )
                   @neutral_asks_by_month[1] = @neutral_asks_by_month[1] + 1
-                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                elsif ( ask.cached_indicator.percentage >= 0 && ask.cached_indicator.percentage <= 38 )
                   @fail_asks_by_month[1] = @fail_asks_by_month[1] + 1
                 end
               end
-            elsif ask.indicator.updated_at.strftime("%B") == "March"
-              if !ask.indicator.percentage.nil?
-                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+            elsif ask.cached_indicator.updated_at.strftime("%B") == "March"
+              if !ask.cached_indicator.percentage.nil?
+                if ( ask.cached_indicator.percentage >= 60 && ask.cached_indicator.percentage <= 100 )
                    @success_asks_by_month[2] = @success_asks_by_month[2] + 1
-                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                elsif ( ask.cached_indicator.percentage >= 39 && ask.cached_indicator.percentage <= 59 )
                   @neutral_asks_by_month[2] = @neutral_asks_by_month[2] + 1
-                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                elsif ( ask.cached_indicator.percentage >= 0 && ask.cached_indicator.percentage <= 38 )
                   @fail_asks_by_month[2] = @fail_asks_by_month[2] + 1
                 end
               end
-            elsif ask.indicator.updated_at.strftime("%B") == "April"
-              if !ask.indicator.percentage.nil?
-                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+            elsif ask.cached_indicator.updated_at.strftime("%B") == "April"
+              if !ask.cached_indicator.percentage.nil?
+                if ( ask.cached_indicator.percentage >= 60 && ask.cached_indicator.percentage <= 100 )
                    @success_asks_by_month[3] = @success_asks_by_month[3] + 1
-                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                elsif ( ask.cached_indicator.percentage >= 39 && ask.cached_indicator.percentage <= 59 )
                   @neutral_asks_by_month[3] = @neutral_asks_by_month[3] + 1
-                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                elsif ( ask.cached_indicator.percentage >= 0 && ask.cached_indicator.percentage <= 38 )
                   @fail_asks_by_month[3] = @fail_asks_by_month[3] + 1
                 end
               end
-            elsif ask.indicator.updated_at.strftime("%B") == "May"
-              if !ask.indicator.percentage.nil?
-                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+            elsif ask.cached_indicator.updated_at.strftime("%B") == "May"
+              if !ask.cached_indicator.percentage.nil?
+                if ( ask.cached_indicator.percentage >= 60 && ask.cached_indicator.percentage <= 100 )
                    @success_asks_by_month[4] = @success_asks_by_month[4] + 1
-                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                elsif ( ask.cached_indicator.percentage >= 39 && ask.cached_indicator.percentage <= 59 )
                   @neutral_asks_by_month[4] = @neutral_asks_by_month[4] + 1
-                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                elsif ( ask.cached_indicator.percentage >= 0 && ask.cached_indicator.percentage <= 38 )
                   @fail_asks_by_month[4] = @fail_asks_by_month[4] + 1
                 end
               end
-            elsif ask.indicator.updated_at.strftime("%B") == "June"
-              if !ask.indicator.percentage.nil?
-                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+            elsif ask.cached_indicator.updated_at.strftime("%B") == "June"
+              if !ask.cached_indicator.percentage.nil?
+                if ( ask.cached_indicator.percentage >= 60 && ask.cached_indicator.percentage <= 100 )
                    @success_asks_by_month[5] = @success_asks_by_month[5] + 1
-                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                elsif ( ask.cached_indicator.percentage >= 39 && ask.cached_indicator.percentage <= 59 )
                   @neutral_asks_by_month[5] = @neutral_asks_by_month[5] + 1
-                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                elsif ( ask.cached_indicator.percentage >= 0 && ask.cached_indicator.percentage <= 38 )
                   @fail_asks_by_month[5] = @fail_asks_by_month[5] + 1
                 end
               end
-            elsif ask.indicator.updated_at.strftime("%B") == "July"
-              if !ask.indicator.percentage.nil?
-                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+            elsif ask.cached_indicator.updated_at.strftime("%B") == "July"
+              if !ask.cached_indicator.percentage.nil?
+                if ( ask.cached_indicator.percentage >= 60 && ask.cached_indicator.percentage <= 100 )
                    @success_asks_by_month[6] = @success_asks_by_month[6] + 1
-                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                elsif ( ask.cached_indicator.percentage >= 39 && ask.cached_indicator.percentage <= 59 )
                   @neutral_asks_by_month[6] = @neutral_asks_by_month[6] + 1
-                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                elsif ( ask.cached_indicator.percentage >= 0 && ask.cached_indicator.percentage <= 38 )
                   @fail_asks_by_month[6] = @fail_asks_by_month[6] + 1
                 end
               end
-            elsif ask.indicator.updated_at.strftime("%B") == "August"
-              if !ask.indicator.percentage.nil?
-                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+            elsif ask.cached_indicator.updated_at.strftime("%B") == "August"
+              if !ask.cached_indicator.percentage.nil?
+                if ( ask.cached_indicator.percentage >= 60 && ask.cached_indicator.percentage <= 100 )
                    @success_asks_by_month[7] = @success_asks_by_month[7] + 1
-                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                elsif ( ask.cached_indicator.percentage >= 39 && ask.cached_indicator.percentage <= 59 )
                   @neutral_asks_by_month[7] = @neutral_asks_by_month[7] + 1
-                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                elsif ( ask.cached_indicator.percentage >= 0 && ask.cached_indicator.percentage <= 38 )
                   @fail_asks_by_month[7] = @fail_asks_by_month[7] + 1
                 end
               end
-            elsif ask.indicator.updated_at.strftime("%B") == "September"
-              if !ask.indicator.percentage.nil?
-                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+            elsif ask.cached_indicator.updated_at.strftime("%B") == "September"
+              if !ask.cached_indicator.percentage.nil?
+                if ( ask.cached_indicator.percentage >= 60 && ask.cached_indicator.percentage <= 100 )
                    @success_asks_by_month[8] = @success_asks_by_month[8] + 1
-                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                elsif ( ask.cached_indicator.percentage >= 39 && ask.cached_indicator.percentage <= 59 )
                   @neutral_asks_by_month[8] = @neutral_asks_by_month[8] + 1
-                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                elsif ( ask.cached_indicator.percentage >= 0 && ask.cached_indicator.percentage <= 38 )
                   @fail_asks_by_month[8] = @fail_asks_by_month[8] + 1
                 end
               end
-            elsif ask.indicator.updated_at.strftime("%B") == "October"
-              if !ask.indicator.percentage.nil?
-                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+            elsif ask.cached_indicator.updated_at.strftime("%B") == "October"
+              if !ask.cached_indicator.percentage.nil?
+                if ( ask.cached_indicator.percentage >= 60 && ask.cached_indicator.percentage <= 100 )
                    @success_asks_by_month[9] = @success_asks_by_month[9] + 1
-                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                elsif ( ask.cached_indicator.percentage >= 39 && ask.cached_indicator.percentage <= 59 )
                   @neutral_asks_by_month[9] = @neutral_asks_by_month[9] + 1
-                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                elsif ( ask.cached_indicator.percentage >= 0 && ask.cached_indicator.percentage <= 38 )
                   @fail_asks_by_month[9] = @fail_asks_by_month[9] + 1
                 end
               end
-            elsif ask.indicator.updated_at.strftime("%B") == "November"
-              if !ask.indicator.percentage.nil?
-                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+            elsif ask.cached_indicator.updated_at.strftime("%B") == "November"
+              if !ask.cached_indicator.percentage.nil?
+                if ( ask.cached_indicator.percentage >= 60 && ask.cached_indicator.percentage <= 100 )
                    @success_asks_by_month[10] = @success_asks_by_month[10] + 1
-                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                elsif ( ask.cached_indicator.percentage >= 39 && ask.cached_indicator.percentage <= 59 )
                   @neutral_asks_by_month[10] = @neutral_asks_by_month[10] + 1
-                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                elsif ( ask.cached_indicator.percentage >= 0 && ask.cached_indicator.percentage <= 38 )
                   @fail_asks_by_month[10] = @fail_asks_by_month[10] + 1
                 end
               end
-            elsif ask.indicator.updated_at.strftime("%B") == "December"
-              if !ask.indicator.percentage.nil?
-                if ( ask.indicator.percentage >= 60 && ask.indicator.percentage <= 100 )
+            elsif ask.cached_indicator.updated_at.strftime("%B") == "December"
+              if !ask.cached_indicator.percentage.nil?
+                if ( ask.cached_indicator.percentage >= 60 && ask.cached_indicator.percentage <= 100 )
                    @success_asks_by_month[11] = @success_asks_by_month[11] + 1
-                elsif ( ask.indicator.percentage >= 39 && ask.indicator.percentage <= 59 )
+                elsif ( ask.cached_indicator.percentage >= 39 && ask.cached_indicator.percentage <= 59 )
                   @neutral_asks_by_month[11] = @neutral_asks_by_month[11] + 1
-                elsif ( ask.indicator.percentage >= 0 && ask.indicator.percentage <= 38 )
+                elsif ( ask.cached_indicator.percentage >= 0 && ask.cached_indicator.percentage <= 38 )
                   @fail_asks_by_month[11] = @fail_asks_by_month[11] + 1
                 end
               end
@@ -260,39 +261,44 @@ class ProjectsController < ApplicationController
     @rate_completed_objectives = 0
     @rate_success_objectives = 0
 
-    @project.objectives.each do |objective|
+    @project.cached_objectives.each do |objective|
 
-      @a_size = @a_size + objective.actors.size
+      @a_size = @a_size + objective.cached_actors.size
       @barriers_size = @barriers_size + objective.barriers.size
       @factors_size = @factors_size + objective.enabling_factors.size
 
-      if !objective.indicator.nil?
+      if !objective.cached_indicator.nil?
         @completed_objectives = @completed_objectives + 1
-        if !objective.indicator.percentage.nil?
-          if ( objective.indicator.percentage >= 60 && objective.indicator.percentage <= 100 )
+        if !objective.cached_indicator.percentage.nil?
+          if ( objective.cached_indicator.percentage >= 60 && objective.cached_indicator.percentage <= 100 )
             @successful_objectives = @successful_objectives + 1
-          elsif ( objective.indicator.percentage >= 39 && objective.indicator.percentage <= 59 )
+          elsif ( objective.cached_indicator.percentage >= 39 && objective.cached_indicator.percentage <= 59 )
             @neutral_objectives = @neutral_objectives + 1
-          elsif ( objective.indicator.percentage >= 0 && objective.indicator.percentage <= 38 )
+          elsif ( objective.cached_indicator.percentage >= 0 && objective.cached_indicator.percentage <= 38 )
             @failed_objectives = @failed_objectives + 1
           end
         end
       end
-      if objective.outcomes.empty?
+      #if objective.outcomes.empty?
+      if objective.cached_outcomes_count < 1
         @objectives_without_outcomes = @objectives_without_outcomes + 1
       else
-        if objective.outcomes.all? {|o| !o.indicator.nil?}
+        #if objective.outcomes.all? {|o| !o.indicator.nil?}
+        if objective.cached_outcomes.all? {|o| !o.cached_indicator.nil?}
           @objectives_with_failed_outcomes = @objectives_with_failed_outcomes + 1
         end
       end
     end
 
-    if @project.objectives.count == 0
+    #if @project.objectives.count == 0
+    if @project.cached_objectives_count == 0
       @rate_completed_objectives = 0
       @rate_success_objectives = 0
     else
-      @rate_completed_objectives = ( 100 / @project.objectives.count ) * @completed_objectives
-      @rate_success_objectives = ( 100 / @project.objectives.count ) * @successful_objectives
+      #@rate_completed_objectives = ( 100 / @project.objectives.count ) * @completed_objectives
+      #@rate_success_objectives = ( 100 / @project.objectives.count ) * @successful_objectives
+      @rate_completed_objectives = ( 100 / @project.cached_objectives_count ) * @completed_objectives
+      @rate_success_objectives = ( 100 / @project.cached_objectives_count ) * @successful_objectives
     end
     ################################################################################## end objective kpis
     ################################################################################## start outcome kpis
@@ -308,25 +314,25 @@ class ProjectsController < ApplicationController
 
 
     @project.outcomes.each do |outcome|
-      if !outcome.indicator.nil?
+      if !outcome.cached_indicator.nil?
         @completed_outcomes = @completed_outcomes + 1
-        if !outcome.indicator.percentage.nil?
-          if ( outcome.indicator.percentage >= 60 && outcome.indicator.percentage <= 100 )
+        if !outcome.cached_indicator.percentage.nil?
+          if ( outcome.cached_indicator.percentage >= 60 && outcome.cached_indicator.percentage <= 100 )
             @successful_outcomes = @successful_outcomes + 1
-          elsif ( outcome.indicator.percentage >= 39 && outcome.indicator.percentage <= 59 )
+          elsif ( outcome.cached_indicator.percentage >= 39 && outcome.cached_indicator.percentage <= 59 )
             @neutral_outcomes = @neutral_outcomes + 1
-          elsif ( outcome.indicator.percentage >= 0 && outcome.indicator.percentage <= 38 )
+          elsif ( outcome.cached_indicator.percentage >= 0 && outcome.cached_indicator.percentage <= 38 )
             @failed_outcomes = @failed_outcomes + 1
           end
         end
       end
-      if outcome.asks.empty?
+      if outcome.cached_asks_count < 1
         @outcomes_without_asks = @outcomes_without_asks + 1
       else
-        if outcome.asks.all? {|a| !a.indicator.nil?}
+        if outcome.cached_asks.all? {|a| !a.cached_indicator.nil?}
           @outcomes_with_all_asks_completed = @outcomes_with_all_asks_completed + 1
         end
-        if outcome.asks.all? {|a| a.messages.all? {|m| (m.executed && !m.activity.start_date.nil? && m.activity.start_date < today) }}
+        if outcome.cached_asks.all? {|a| a.messages.all? {|m| (m.executed && !m.activity.start_date.nil? && m.activity.start_date < today) }}
           @outcomes_with_overdue_asks = @outcomes_with_overdue_asks + 1
         end
       end
@@ -463,7 +469,8 @@ class ProjectsController < ApplicationController
 
   private
     def set_project
-      @project = Project.find(params[:id])
+      #@project = Project.find(params[:id])
+      @project = Project.cached_find(params[:id])
       rescue ActiveRecord::RecordNotFound
         redirect_to(new_project_path, :notice => 'Project not found')
     end

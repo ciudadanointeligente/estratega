@@ -183,7 +183,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <div class="well">
-          <h3><%= @objectives.count.presence || "0" %> <%= t('.objectives') %></h3>
+          <h3><%= @project.cached_prioritized_objectives_count.presence || "0" %> <%= t('.objectives') %></h3>
           <ul class="fa-ul">
             <li class="successful"><i class="fa-li fa fa-check-circle"></i><%= @successful_objectives.presence %> <%= t('.objectives_succesful') %></li>
             <li class="neutral"><i class="fa-li fa fa-minus-circle"></i><%= @objectives_without_outcomes.presence %> <%= t('.objectives_without_interim_outcomes') %></li>

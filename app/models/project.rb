@@ -8,7 +8,9 @@ class Project < ActiveRecord::Base
 
   validates :title, presence: true
   validate :max_projects_not_reached
-  
+
+  after_commit :flush_cache
+
   def max_projects_not_reached
     tenant = Apartment::Tenant.current
     if tenant != 'public'
@@ -19,21 +21,21 @@ class Project < ActiveRecord::Base
       end
     end
   end
-  
+
   def asks
     @asks = []
-    self.objectives.each do |objective|
-      objective.asks.each do |ask|
+    self.cached_objectives.each do |objective|
+      objective.cached_asks.each do |ask|
         @asks << ask
       end
     end
-    return @asks    
+    return @asks
   end
-  
+
   def outcomes
     @outcomes = []
-    self.objectives.each do |objective|
-      objective.outcomes.each do |outcome|
+    self.cached_objectives.each do |objective|
+      objective.cached_outcomes.each do |outcome|
         @outcomes << outcome
       end
     end
@@ -49,7 +51,7 @@ class Project < ActiveRecord::Base
   #   end
   #   return @activities
   # end
-  
+
   def as_ical
     cal = Icalendar::Calendar.new
     self.activities.each do |a|
@@ -67,5 +69,62 @@ class Project < ActiveRecord::Base
     cal.publish
     return cal.to_ical
   end
-  
+
+  def cache_key
+    [super, Apartment::Tenant.current].join("/")
+  end
+
+  def cached_objectives_count
+    Rails.cache.fetch([self, 'objectives_count']) { self.objectives.size }
+  end
+
+  def cached_objectives
+    Rails.cache.fetch([self, 'objectives']) { self.objectives.to_a }
+  end
+
+  def cached_prioritized_objectives_count
+    Rails.cache.fetch([self, 'prioritized_objectives_count']) { self.objectives.where('prioritized = true').size }
+  end
+
+  def cached_prioritized_objectives
+    Rails.cache.fetch([self, 'prioritized_objectives']) { self.objectives.where('prioritized = true').to_a }
+  end
+
+  def cached_real_problem
+    Rails.cache.fetch([self, 'real_problem']) { self.real_problem }
+  end
+
+  def cached_resources
+    Rails.cache.fetch([self, 'resources']) { self.resources.to_a }
+  end
+
+  def cached_activities
+    Rails.cache.fetch([self, 'activities']) { self.activities.to_a }
+  end
+
+  def cached_users
+    Rails.cache.fetch([self, 'users']) { self.users.to_a }
+  end
+
+  def cached_permissions
+    Rails.cache.fetch([self, 'permissions']) { self.permissions.to_a }
+  end
+
+  def self.cached_public_projects
+    Rails.cache.fetch(['public_projects', Apartment::Tenant.current]) { Project.where(public: :true).to_a }
+  end
+
+  def self.cached_find(id)
+    Rails.cache.fetch([name, id, Apartment::Tenant.current]) { find(id) }
+  end
+
+  def flush_cache
+    Rails.cache.delete([self.class.name, id, Apartment::Tenant.current])
+    Rails.cache.delete(['public_projects', Apartment::Tenant.current])
+    self.users.map{ |u| u.flush_cache }
+  end
+  # def cached_asks_count
+  #   Rails.cache.fetch([self, 'asks_count']) { self.asks.size }
+  # end
+
 end

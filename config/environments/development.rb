@@ -11,7 +11,9 @@ Rails.application.configure do
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = false
+  config.action_controller.perform_caching = true
+
+  config.action_controller.page_cache_directory = "#{Rails.root.to_s}/public/deploy"
 
   config.action_mailer.perform_deliveries = true
   # Don't care if the mailer can't send.
@@ -45,4 +47,5 @@ Rails.application.configure do
     :password             => ENV['SMTP_SETTING_PASSWORD'],
     :authentication       => :plain
   }
+
 end

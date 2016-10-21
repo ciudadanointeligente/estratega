@@ -5,7 +5,7 @@ class ResourcesController < ApplicationController
   respond_to :html, :json
 
   def index
-    @resources = @project.resources
+    @resources = @project.cached_resources
     respond_with(@resources)
   end
 
@@ -47,7 +47,8 @@ class ResourcesController < ApplicationController
 
   private
     def set_project
-      @project = Project.find(params[:project_id])
+      #@project = Project.find(params[:project_id])
+      @project = Project.cached_find(params[:project_id])
     end
 
     def set_resource

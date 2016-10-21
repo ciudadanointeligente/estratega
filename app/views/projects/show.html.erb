@@ -96,7 +96,7 @@
         <div class="panel-heading">
           <h4 class="panel-title"  title="<%= title_stage 2 %>"><i class="<%= icon_class_stage 3 %>"></i> <%= t('.stage3_title') %></h4>
         </div>
-          <% if @objectives.count < 1 %>
+          <% if @project.cached_prioritized_objectives_count < 1 %>
             <%= t('.stage3_without_objectives').html_safe %>
           <% else %>
             <% @objectives.each_with_index do |objective, i| %>
@@ -111,13 +111,13 @@
                         <tbody>
                           <tr>
                             <td class="text-center td-w-10p">
-                              <i class="<%= icon_class objective.actors %>"></i>
+                              <i class="<%= icon_class objective.cached_actors %>"></i>
                             </td>
                             <td><%= link_to t('projects.show.process_description') , stage3_project_objective_path(@project, objective), target: "_self" %></td>
                           </tr>
                           <tr>
                             <td class="text-center td-w-10p">
-                              <i class="<%= icon_class objective.actors %>"></i>
+                              <i class="<%= icon_class objective.cached_actors %>"></i>
                             </td>
                             <td>
                               <%= link_to objective_link_text(objective, :actors), stage3_project_objective_path(@project, objective, anchor: "actors"), target: "_self" %>
@@ -133,40 +133,15 @@
                           </tr>
                           <tr>
                             <td class="text-center td-w-10p">
-                              <i class="<%= icon_class objective.outcomes %>"></i>
+                              <i class="<%= icon_class objective.cached_outcomes %>"></i>
                             </td>
                             <td>
                               <%= link_to objective_link_text(objective, :outcomes), stage4_project_objective_path(@project, objective), target: "_self" %>
                             </td>
                           </tr>
-<!--                           <tr title="You must complete the previous step">
-                            <td class="text-center td-w-10p">
-                              <i class="fa fa-lock"></i>
-                            </td>
-                            <td>
-                              <a href="#">(Coming soon) Define theory of change</a>
-                            </td>
-                          </tr> -->
-<!-- 
-                          <tr title="<%= title_stage 3 %>">
-                            <td class="text-center td-w-10p">
-                              <i class="<%= icon_class objective.activities %>"></i>
-                            </td>
-                            <td>
-                              <%= link_to objective_link_text(objective, :activities), stage5_project_objective_path(@project, objective), target: "_self" %>
-                            </td>
-                          </tr>     -->
-<!--                           <tr title="You must complete the previous step">
-                            <td class="text-center td-w-10p">
-                              <i class="fa fa-lock"></i>
-                            </td>
-                            <td>
-                              <a href="#">(Coming soon) Develop messages</a>
-                            </td>
-                          </tr> -->
                         </tbody>
                       </table>
-                    <% objective.outcomes.each_with_index do |outcome, i| %>
+                    <% objective.cached_outcomes.each_with_index do |outcome, i| %>
               <div class="panel-body">
                   <div class="panel panel-info">
                     <div class="panel-heading">
@@ -181,7 +156,7 @@
                         <tbody>
                           <tr>
                             <td class="text-center td-w-10p">
-                              <i class="<%= icon_class objective.project.activities %>"></i>
+                              <i class="<%= icon_class objective.project.cached_activities %>"></i>
                             </td>
                             <td>
                               <%= link_to objective_link_text(objective, :activities_all), stage5_project_objective_path(@project, objective), target: "_self" %>
@@ -189,7 +164,7 @@
                           </tr>
                           <tr>
                             <td class="text-center td-w-10p">
-                              <i class="<%= icon_class outcome.asks %>"></i>
+                              <i class="<%= icon_class outcome.cached_asks %>"></i> 
                             </td>
                             <td>
                               <%= link_to outcome_link_text(outcome, :asks), stage6_project_objective_outcome_path(@project, objective, outcome), target: "_self" %>
@@ -200,7 +175,7 @@
                     </div>
                 </div>
               </div>
-              <% end %>  
+              <% end %>
                     </div>
                 <!--</div>-->
               </div>

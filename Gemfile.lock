@@ -14,6 +14,8 @@ GEM
       rack-test (~> 0.6.2)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    actionpack-page_caching (1.0.2)
+      actionpack (>= 4.0.0, < 5)
     actionview (4.2.6)
       activesupport (= 4.2.6)
       builder (~> 3.1)
@@ -72,8 +74,6 @@ GEM
     chromedriver-helper (0.0.8)
       nokogiri (~> 1.6)
       version_sorter (~> 1.1)
-    ci_reporter (2.0.0)
-      builder (>= 2.1.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -175,7 +175,6 @@ GEM
     multi_json (1.12.0)
     nested_form (0.3.2)
     netrc (0.7.7)
-    newrelic_rpm (3.15.2.317)
     ng-rails-csrf (0.1.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
@@ -201,6 +200,8 @@ GEM
     quiet_assets (1.0.3)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
+    rack-mini-profiler (0.10.1)
+      rack (>= 1.2.0)
     rack-pjax (0.8.0)
       nokogiri (~> 1.5)
       rack (~> 1.1)
@@ -364,6 +365,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionpack-page_caching
   acts-as-taggable-on
   apartment
   better_errors
@@ -373,7 +375,6 @@ DEPENDENCIES
   cancancan (~> 1.10)
   capybara
   chromedriver-helper
-  ci_reporter
   coffee-rails (~> 4.0.0)
   coveralls
   database_cleaner
@@ -389,7 +390,6 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   launchy
-  newrelic_rpm
   ng-rails-csrf
   paperclip
   pg
@@ -397,6 +397,7 @@ DEPENDENCIES
   pry-rescue
   pundit
   quiet_assets
+  rack-mini-profiler
   rails (~> 4.2.6)
   rails-i18n (~> 4.0.4)
   rails_12factor

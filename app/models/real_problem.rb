@@ -1,6 +1,6 @@
 class RealProblem < ActiveRecord::Base
   validates :title, presence: true
-  belongs_to :project
+  belongs_to :project, touch: true
   has_many :policy_problems, dependent: :destroy
 
   def to_graph_json

@@ -33,6 +33,18 @@ es:
     colaborator_delete_confirmation: "¿Estas seguro de eliminar este colaborador?"
     unlinking_error: "Error desvinculando usuario!"
     shared_project_delete_confirmation: "Este es un proyecto compartido, ¿Estas seguro de eliminarlo?"
+    1: 'Enero'
+    2: 'Febrero'
+    3: 'Marzo'
+    4: 'Abril'
+    5: 'Mayo'
+    6: 'Junio'
+    7: 'Julio'
+    8: 'Augosto'
+    9: 'Septiembre'
+    10: 'Octubre'
+    11: 'Noviembre'
+    12: 'Diciembre'
   layouts:
     landing:
       meta_description: "Estratega, una herramienta de advocacy"
