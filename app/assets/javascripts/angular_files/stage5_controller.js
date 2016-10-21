@@ -24,6 +24,7 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
     {type: "Visibilidad de la organización o reconocimiento del problema", values: ["Edición / análisis de políticas y investigación"]},
     {type: "Capacidad de advocacy de la organización", values: ["Cualquier otra"]}
   ];
+  $scope.month_t = I18n.t('month')
 
   function get_outcomes(project_id, objective_id) {
     $http.get('/projects/'+project_id+'/objectives/'+objective_id+'/outcomes.json')
@@ -273,6 +274,8 @@ app.controller("stage5Ctrl", ["$scope", "$http", "$aside", "$location", "$attrs"
   }
 
 var thisMonth = moment().format('YYYY-MM');
+var translatable_month = moment().format('MM');
+$scope.month_t = I18n.t('js_texts.'+translatable_month)
 var eventArray = [
         {
             title: 'Multi-Day Event',
